@@ -44,10 +44,10 @@ package net.fproject.rpc
 				find:{route:"", namedParams:true},
 				create:{route:"", method:HTTPRequestMessage.POST_METHOD, routeX:"/save", methodX:HTTPRequestMessage.POST_METHOD},
 				update:{route:"/:id", method:HTTPRequestMessage.PUT_METHOD, routeX:"/save", methodX:HTTPRequestMessage.POST_METHOD},
-				remove:{route:"/:id", method:HTTPRequestMessage.DELETE_METHOD, routeX:"/remove/:id", methodX:HTTPRequestMessage.POST_METHOD},
 				save:{route:"/save", method:HTTPRequestMessage.POST_METHOD},
 				batchSave:{route:"/batch-save", method:HTTPRequestMessage.POST_METHOD},
-				batchSave:{route:"/batch-remove", method:HTTPRequestMessage.POST_METHOD}
+				remove:{route:"/:id", method:HTTPRequestMessage.DELETE_METHOD, routeX:"/remove/:id", methodX:HTTPRequestMessage.POST_METHOD},
+				batchRemove:{route:"/batch-remove", method:HTTPRequestMessage.POST_METHOD}
 			};
 		}
 		
