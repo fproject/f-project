@@ -1,0 +1,27 @@
+entity --class ~.common.entity.Project --identifierField id --identifierColumn id
+field date --fieldName actualEndDate --column actual_end_date --type java.util.Date
+field date --fieldName actualStartDate --column actual_start_date --type java.util.Date
+field reference --fieldName applicationType --type ~.common.entity.MstApplicationType --joinColumnName application_type_id 
+field reference --fieldName businessDomain --type ~.common.entity.MstBusinessDomain --joinColumnName business_domain_id 
+field string --fieldName cancelledReason --column cancelled_reason --sizeMax 256 
+field number --fieldName categoryId --column category_id --type java.lang.Integer--comment "0:"Internal",1:"External"" 
+field string --fieldName code --column code --notNull --sizeMax 64 
+field reference --fieldName contractType --type ~.common.entity.MstContractType --joinColumnName contract_type_id 
+field date --fieldName createdDate --column created_date --type java.util.Date
+field reference --fieldName createdUser --type ~.common.entity.Resource --joinColumnName created_user_id 
+field reference --fieldName customer2nd --type ~.common.entity.Customer --joinColumnName customer_2nd_id 
+field reference --fieldName customer --type ~.common.entity.Customer --joinColumnName customer_id 
+field number --fieldName esqr --column esqr --type java.lang.Double--digitsInteger 13 --digitsFraction 3 --comment "ESQR value. Duoc tinh toan lai moi khi PM submit view" 
+field number --fieldName estBillableEffort --column est_billable_effort --type java.lang.Double--digitsInteger 10 --digitsFraction 2 
+field number --fieldName lid --column lid --type java.lang.Integer
+field reference --fieldName manager --type ~.common.entity.Resource --joinColumnName manager_id 
+field string --fieldName name --column name --notNull --sizeMax 128 
+field string --fieldName objective --column objective --sizeMax 1024 
+field reference --fieldName organizationUnit --type ~.common.entity.OrganizationUnit --joinColumnName organization_unit_id --notNull 
+field reference --fieldName parent --type ~.common.entity.Project --joinColumnName parent_id 
+field date --fieldName plannedEndDate --column planned_end_date --notNull --type java.util.Date
+field date --fieldName plannedStartDate --column planned_start_date --notNull --type java.util.Date
+field reference --fieldName rank --type ~.common.entity.MstProjectRank --joinColumnName rank_id 
+field reference --fieldName seniorManager --type ~.common.entity.Resource --joinColumnName senior_manager_id 
+field reference --fieldName status --type ~.common.entity.MstProjectStatus --joinColumnName status_id 
+field reference --fieldName type --type ~.common.entity.MstProjectType --joinColumnName type_id 

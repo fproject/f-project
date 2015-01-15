@@ -1,0 +1,321 @@
+// ******TABLE: assessment_criteria ******
+entity --class ~.common.entity.AssessmentCriteria --identifierField id --identifierColumn id --identifierType java.lang.Integer --table assessment_criteria
+field string --fieldName name --column name --sizeMax 64 
+field string --fieldName description --column description --sizeMax 128 
+// ******TABLE: calendar_shift ******
+entity --class ~.common.entity.CalendarShift --identifierField id --identifierColumn id --identifierType java.lang.Long --table calendar_shift
+field string --fieldName startTime --column start_time --notNull --sizeMax 7 --comment "Start working time of the shift, example \"08:30AM\"" 
+field string --fieldName endTime --column end_time --notNull --sizeMax 7 --comment "End working time of the shift, example \"12:00PM\"" 
+// ******TABLE: customer ******
+entity --class ~.common.entity.Customer --identifierField id --identifierColumn id --identifierType java.lang.Integer --table customer
+field string --fieldName name --column name --sizeMax 256 
+// ******TABLE: mst_application_type ******
+entity --class ~.common.entity.MstApplicationType --identifierField id --identifierColumn id --identifierType java.lang.Integer --table mst_application_type
+field string --fieldName name --column name --sizeMax 256 
+// ******TABLE: mst_business_domain ******
+entity --class ~.common.entity.MstBusinessDomain --identifierField id --identifierColumn id --identifierType java.lang.Integer --table mst_business_domain
+field string --fieldName name --column name --sizeMax 256 
+// ******TABLE: mst_contract_type ******
+entity --class ~.common.entity.MstContractType --identifierField id --identifierColumn id --identifierType java.lang.Integer --table mst_contract_type
+field string --fieldName name --column name --sizeMax 256 
+// ******TABLE: mst_deliverable_type ******
+entity --class ~.common.entity.MstDeliverableType --identifierField id --identifierColumn id --identifierType java.lang.Integer --table mst_deliverable_type
+field string --fieldName name --column name --sizeMax 256 
+field string --fieldName description --column description --sizeMax 512 
+// ******TABLE: mst_job ******
+entity --class ~.common.entity.MstJob --identifierField id --identifierColumn id --identifierType java.lang.Integer --table mst_job
+field string --fieldName name --column name --sizeMax 256 
+// ******TABLE: mst_language ******
+entity --class ~.common.entity.MstLanguage --identifierField id --identifierColumn id --identifierType java.lang.Integer --table mst_language
+field string --fieldName name --column name --sizeMax 256 
+// ******TABLE: mst_project_rank ******
+entity --class ~.common.entity.MstProjectRank --identifierField id --identifierColumn id --identifierType java.lang.Integer --table mst_project_rank
+field string --fieldName name --column name --sizeMax 256 
+// ******TABLE: mst_project_status ******
+entity --class ~.common.entity.MstProjectStatus --identifierField id --identifierColumn id --identifierType java.lang.Integer --table mst_project_status
+field string --fieldName name --column name --sizeMax 255 
+// ******TABLE: mst_project_type ******
+entity --class ~.common.entity.MstProjectType --identifierField id --identifierColumn id --identifierType java.lang.Integer --table mst_project_type
+field string --fieldName name --column name --sizeMax 128 
+field string --fieldName description --column description --sizeMax 256 
+// ******TABLE: mst_resource_rank ******
+entity --class ~.common.entity.MstResourceRank --identifierField id --identifierColumn id --identifierType java.lang.Integer --table mst_resource_rank
+field string --fieldName name --column name --sizeMax 32 
+// ******TABLE: mst_skill_category ******
+entity --class ~.common.entity.MstSkillCategory --identifierField id --identifierColumn id --identifierType java.lang.Integer --table mst_skill_category
+field string --fieldName name --column name --sizeMax 128 
+// ******TABLE: mst_task_status ******
+entity --class ~.common.entity.MstTaskStatus --identifierField id --identifierColumn id --identifierType java.lang.Integer --table mst_task_status
+field string --fieldName name --column name --sizeMax 32 
+// ******TABLE: mst_task_type ******
+entity --class ~.common.entity.MstTaskType --identifierField id --identifierColumn id --identifierType java.lang.Integer --table mst_task_type
+field string --fieldName name --column name --sizeMax 64 
+// ******TABLE: mst_timesheet_status ******
+entity --class ~.common.entity.MstTimesheetStatus --identifierField id --identifierColumn id --identifierType java.lang.Integer --table mst_timesheet_status
+field string --fieldName name --column name --sizeMax 32 
+// ******TABLE: process ******
+entity --class ~.common.entity.Process --identifierField id --identifierColumn id --identifierType java.lang.Integer --table process
+field string --fieldName name --column name --sizeMax 64 
+field string --fieldName description --column description --sizeMax 255 
+// ******TABLE: size_unit ******
+entity --class ~.common.entity.SizeUnit --identifierField id --identifierColumn id --identifierType java.lang.Integer --table size_unit
+field string --fieldName name --column name --sizeMax 128 
+// ******TABLE: calendar ******
+entity --class ~.common.entity.Calendar --identifierField id --identifierColumn id --identifierType java.lang.Long --table calendar
+field reference --fieldName baseCalendar --type ~.common.entity.Calendar --joinColumnName base_calendar_id 
+field string --fieldName name --column name --sizeMax 128 
+// ******TABLE: resource ******
+entity --class ~.common.entity.Resource --identifierField id --identifierColumn id --identifierType java.lang.Long --table resource
+field string --fieldName name --column name --notNull --sizeMax 64 
+field string --fieldName nickName --column nick_name --sizeMax 128 
+field date --fieldName lastLoginTime --column last_login_time --type java.util.Date 
+field date --fieldName startDate --column start_date --notNull --type java.util.Date 
+field date --fieldName expireDate --column expire_date --type java.util.Date 
+field number --fieldName disabled --column disabled --type java.lang.Integer 
+field reference --fieldName calendar --type ~.common.entity.Calendar --joinColumnName calendar_id 
+field date --fieldName createdDate --column created_date --notNull --type java.util.Date 
+field reference --fieldName createdUser --type ~.common.entity.Resource --joinColumnName created_user_id 
+field date --fieldName updateDate --column update_date --type java.util.Date 
+field reference --fieldName updatedUser --type ~.common.entity.Resource --joinColumnName updated_user_id 
+// ******TABLE: organization_unit ******
+entity --class ~.common.entity.OrganizationUnit --identifierField id --identifierColumn id --identifierType java.lang.Integer --table organization_unit
+field reference --fieldName parent --type ~.common.entity.OrganizationUnit --joinColumnName parent_id 
+field string --fieldName name --column name --notNull --sizeMax 256 
+field number --fieldName typeId --column type_id --notNull --type java.lang.Integer 
+field number --fieldName protectedFlag --column protected_flag --type java.lang.Integer 
+// ******TABLE: calendar_exception ******
+entity --class ~.common.entity.CalendarException --identifierField id --identifierColumn id --identifierType java.lang.Long --table calendar_exception
+field reference --fieldName calendar --type ~.common.entity.Calendar --joinColumnName calendar_id 
+field string --fieldName description --column description --sizeMax 64 
+field number --fieldName daysOfWeek --column days_of_week --type java.lang.Integer 
+field date --fieldName startDate --column start_date --type java.util.Date 
+field date --fieldName endDate --column end_date --type java.util.Date 
+field number --fieldName type --column type --type java.lang.Integer 
+field number --fieldName monthIndex --column month_index --type java.lang.Integer 
+field number --fieldName monthDay --column month_day --type java.lang.Integer 
+field number --fieldName monthItem --column month_item --type java.lang.Integer 
+field number --fieldName monthPosition --column month_position --type java.lang.Integer 
+field reference --fieldName shift1 --type ~.common.entity.CalendarShift --joinColumnName shift1_id 
+field reference --fieldName shift2 --type ~.common.entity.CalendarShift --joinColumnName shift2_id 
+field reference --fieldName shift3 --type ~.common.entity.CalendarShift --joinColumnName shift3_id 
+field reference --fieldName shift4 --type ~.common.entity.CalendarShift --joinColumnName shift4_id 
+field reference --fieldName shift5 --type ~.common.entity.CalendarShift --joinColumnName shift5_id 
+// ******TABLE: project ******
+entity --class ~.common.entity.Project --identifierField id --identifierColumn id --identifierType java.lang.Long --table project
+field reference --fieldName parent --type ~.common.entity.Project --joinColumnName parent_id 
+field number --fieldName lid --column lid --type java.lang.Integer 
+field string --fieldName code --column code --notNull --sizeMax 64 
+field string --fieldName name --column name --notNull --sizeMax 128 
+field reference --fieldName type --type ~.common.entity.MstProjectType --joinColumnName type_id 
+field number --fieldName categoryId --column category_id --type java.lang.Integer --comment "0:\"Internal\",1:\"External\"" 
+field reference --fieldName organizationUnit --type ~.common.entity.OrganizationUnit --joinColumnName organization_unit_id --notNull 
+field date --fieldName plannedStartDate --column planned_start_date --notNull --type java.util.Date 
+field date --fieldName plannedEndDate --column planned_end_date --notNull --type java.util.Date 
+field date --fieldName actualStartDate --column actual_start_date --type java.util.Date 
+field date --fieldName actualEndDate --column actual_end_date --type java.util.Date 
+field reference --fieldName manager --type ~.common.entity.Resource --joinColumnName manager_id 
+field reference --fieldName seniorManager --type ~.common.entity.Resource --joinColumnName senior_manager_id 
+field reference --fieldName customer --type ~.common.entity.Customer --joinColumnName customer_id 
+field reference --fieldName customer2nd --type ~.common.entity.Customer --joinColumnName customer_2nd_id 
+field reference --fieldName businessDomain --type ~.common.entity.MstBusinessDomain --joinColumnName business_domain_id 
+field reference --fieldName applicationType --type ~.common.entity.MstApplicationType --joinColumnName application_type_id 
+field reference --fieldName contractType --type ~.common.entity.MstContractType --joinColumnName contract_type_id 
+field number --fieldName estBillableEffort --column est_billable_effort --type java.lang.Double --digitsInteger 10 --digitsFraction 2 
+field reference --fieldName rank --type ~.common.entity.MstProjectRank --joinColumnName rank_id 
+field reference --fieldName status --type ~.common.entity.MstProjectStatus --joinColumnName status_id 
+field number --fieldName esqr --column esqr --type java.lang.Double --digitsInteger 13 --digitsFraction 3 --comment "ESQR value. Duoc tinh toan lai moi khi PM submit view" 
+field string --fieldName objective --column objective --sizeMax 1024 
+field string --fieldName cancelledReason --column cancelled_reason --sizeMax 256 
+field date --fieldName createdDate --column created_date --type java.util.Date 
+field reference --fieldName createdUser --type ~.common.entity.Resource --joinColumnName created_user_id 
+// ******TABLE: requirement ******
+entity --class ~.common.entity.Requirement --identifierField id --identifierColumn id --identifierType java.lang.Long --table requirement
+field reference --fieldName project --type ~.common.entity.Project --joinColumnName project_id --notNull 
+field number --fieldName type --column type --type java.lang.Integer 
+field date --fieldName createdDate --column created_date --notNull --type java.util.Date 
+field reference --fieldName createdUser --type ~.common.entity.Resource --joinColumnName created_user_id 
+field date --fieldName updatedDate --column updated_date --type java.util.Date 
+// ******TABLE: deliverable ******
+entity --class ~.common.entity.Deliverable --identifierField id --identifierColumn id --identifierType java.lang.Long --table deliverable
+field reference --fieldName parent --type ~.common.entity.Deliverable --joinColumnName parent_id 
+field string --fieldName name --column name --sizeMax 512 
+field reference --fieldName project --type ~.common.entity.Project --joinColumnName project_id --notNull 
+field reference --fieldName type --type ~.common.entity.MstDeliverableType --joinColumnName type_id 
+field number --fieldName progress --column progress --type java.lang.Double --digitsInteger 6 --digitsFraction 3 
+field reference --fieldName sizeUnit --type ~.common.entity.SizeUnit --joinColumnName size_unit_id 
+field number --fieldName sizeDriven --column size_driven --type java.lang.Integer --comment "cho biet size cua Deliverable co duoc tinh toan theo cac child deliverable cua no hay khong\r\n0: khong tinh theo child Deliverable\r\n1: khong tinh theo child Deliverable" 
+field number --fieldName plannedSize --column planned_size --type java.lang.Integer 
+field number --fieldName replannedSize --column replanned_size --type java.lang.Integer 
+field number --fieldName actualSize --column actual_size --type java.lang.Integer 
+field number --fieldName plannedEffort --column planned_effort --type java.lang.Double --digitsInteger 13 --digitsFraction 3 
+field number --fieldName plannedReviewEffort --column planned_review_effort --type java.lang.Double --digitsInteger 13 --digitsFraction 3 
+field number --fieldName plannedNumberOfComments --column planned_number_of_comments --type java.lang.Integer 
+field number --fieldName plannedNumberOfTestcases --column planned_number_of_testcases --type java.lang.Double --digitsInteger 13 --digitsFraction 3 --comment "so luong testcase plan" 
+field number --fieldName plannedBugSizeUnitId --column planned_bug_size_unit_id --type java.lang.Integer 
+field date --fieldName deadline --column deadline --type java.util.Date 
+field number --fieldName plannedTestcaseSizeUnitId --column planned_testcase_size_unit_id --type java.lang.Integer 
+field number --fieldName plannedNumberOfBugs --column planned_number_of_bugs --type java.lang.Double --digitsInteger 13 --digitsFraction 3 --comment "so luong bug plan" 
+field reference --fieldName personInCharge --type ~.common.entity.Resource --joinColumnName person_in_charge_id 
+field reference --fieldName reviewer --type ~.common.entity.Resource --joinColumnName reviewer_id 
+field reference --fieldName approver --type ~.common.entity.Resource --joinColumnName approver_id 
+// ******TABLE: size_column_spec ******
+entity --class ~.common.entity.SizeColumnSpec --identifierField id --identifierColumn id --identifierType java.lang.Long --table size_column_spec
+field reference --fieldName sizeUnit --type ~.common.entity.SizeUnit --joinColumnName size_unit_id --notNull 
+field string --fieldName columnName --column column_name --notNull --sizeMax 128 
+field string --fieldName columnTitle --column column_title --sizeMax 128 
+field string --fieldName columnRenderer --column column_renderer --sizeMax 512 --comment "L?u c?u truy v?n cho ph?p l?y ra Renderer cho item c?a c?t n?y:\r\n\r\nS? d?ng bi?n chu?n DELIVERABLE_SIZE_TABLE ?? truy c?p ??n b?ng ??ng" 
+field string --fieldName columnFormula --column column_formula --sizeMax 256 
+// ******TABLE: task ******
+entity --class ~.common.entity.Task --identifierField id --identifierColumn id --identifierType java.lang.Long --table task
+field reference --fieldName parent --type ~.common.entity.Task --joinColumnName parent_id 
+field reference --fieldName project --type ~.common.entity.Project --joinColumnName project_id 
+field number --fieldName lid --column lid --type java.lang.Integer --comment "Layout ID (order)" 
+field string --fieldName name --column name --sizeMax 256 
+field reference --fieldName taskType --type ~.common.entity.MstTaskType --joinColumnName task_type_id 
+field date --fieldName planStartDate --column plan_start_date --type java.util.Date 
+field date --fieldName planEndDate --column plan_end_date --type java.util.Date 
+field date --fieldName actualStartDate --column actual_start_date --type java.util.Date 
+field date --fieldName actualEndDate --column actual_end_date --type java.util.Date 
+field number --fieldName priority --column priority --type java.lang.Integer 
+field number --fieldName planDuration --column plan_duration --type java.lang.Integer --comment "measuring unit: seconds" 
+field number --fieldName planWork --column plan_work --type java.lang.Integer --comment "measuring unit: seconds" 
+field number --fieldName effortDriven --column effort_driven --type java.lang.Integer 
+field number --fieldName recurring --column recurring --type java.lang.Integer --comment "Check if the task is recuring task" 
+field number --fieldName summary --column summary --type java.lang.Integer --comment "Check if the task is summary task (composite task)" 
+field number --fieldName master --column master --type java.lang.Integer --comment "1: this task is in master schedule; 0: otherwise" 
+field number --fieldName critical --column critical --type java.lang.Integer 
+field number --fieldName overtimeWork --column overtime_work --type java.lang.Integer --comment "measuring unit: seconds" 
+field number --fieldName actualDuration --column actual_duration --type java.lang.Integer --comment "measuring unit: seconds" 
+field number --fieldName actualWork --column actual_work --type java.lang.Integer --comment "seconds" 
+field number --fieldName percentComplete --column percent_complete --type java.lang.Integer 
+field number --fieldName percentWorkComplete --column percent_work_complete --type java.lang.Integer 
+field reference --fieldName status --type ~.common.entity.MstTaskStatus --joinColumnName status_id 
+field string --fieldName notes --column notes --sizeMax 512 
+field date --fieldName createdDate --column created_date --notNull --type java.util.Date 
+field reference --fieldName createdUser --type ~.common.entity.Resource --joinColumnName created_user_id 
+// ******TABLE: deliverable_type_process ******
+entity --class ~.common.entity.DeliverableTypeProcess --identifierField id --identifierColumn id --identifierType java.lang.Integer --table deliverable_type_process
+field reference --fieldName deliverableType --type ~.common.entity.MstDeliverableType --joinColumnName deliverable_type_id 
+field reference --fieldName process --type ~.common.entity.Process --joinColumnName process_id 
+// ******TABLE: mst_deliverable_language ******
+entity --class ~.common.entity.MstDeliverableLanguage --identifierField id --identifierColumn id --identifierType java.lang.Integer --table mst_deliverable_language
+field string --fieldName name --column name --sizeMax 64 
+field reference --fieldName sizeUnit --type ~.common.entity.SizeUnit --joinColumnName size_unit_id 
+// ******TABLE: mst_message ******
+entity --class ~.common.entity.MstMessage --identifierField id --identifierColumn id --identifierType java.lang.Long --table mst_message
+field string --fieldName code --column code --notNull --sizeMax 128 
+field string --fieldName tableName --column table_name --notNull --sizeMax 256 
+field reference --fieldName mstLanguage --type ~.common.entity.MstLanguage --joinColumnName mst_language_id 
+field string --fieldName message --column message --sizeMax 1024 
+// ******TABLE: mst_scope ******
+entity --class ~.common.entity.MstScope --identifierField id --identifierColumn id --identifierType java.lang.Integer --table mst_scope
+field reference --fieldName parent --type ~.common.entity.MstScope --joinColumnName parent_id 
+field string --fieldName name --column name --sizeMax 64 
+// ******TABLE: mst_skill ******
+entity --class ~.common.entity.MstSkill --identifierField id --identifierColumn id --identifierType java.lang.Integer --table mst_skill
+field reference --fieldName skillCategory --type ~.common.entity.MstSkillCategory --joinColumnName skill_category_id 
+field string --fieldName name --column name --sizeMax 128 
+// ******TABLE: project_role ******
+entity --class ~.common.entity.ProjectRole --identifierField id --identifierColumn id --identifierType java.lang.Long --table project_role
+field reference --fieldName project --type ~.common.entity.Project --joinColumnName project_id --notNull --comment "Tr??ng h?p project_id = null s? hi?u l? standard role" 
+field string --fieldName name --column name --sizeMax 64 
+field reference --fieldName job --type ~.common.entity.MstJob --joinColumnName job_id --notNull 
+field reference --fieldName resourceRank --type ~.common.entity.MstResourceRank --joinColumnName resource_rank_id --notNull 
+field string --fieldName responsibility --column responsibility --sizeMax 128 
+// ******TABLE: project_hr_plan ******
+entity --class ~.common.entity.ProjectHrPlan --identifierField id --identifierColumn id --identifierType java.lang.Long --table project_hr_plan
+field reference --fieldName projectRole --type ~.common.entity.ProjectRole --joinColumnName project_role_id --notNull 
+field date --fieldName startDate --column start_date --notNull --type java.util.Date 
+field date --fieldName endDate --column end_date --notNull --type java.util.Date 
+field number --fieldName personsNumber --column persons_number --type java.lang.Double --digitsInteger 9 --digitsFraction 3 
+// ******TABLE: project_role_skill ******
+entity --class ~.common.entity.ProjectRoleSkill --identifierField id --identifierColumn id --identifierType java.lang.Long --table project_role_skill
+field reference --fieldName projectRole --type ~.common.entity.ProjectRole --joinColumnName project_role_id --notNull 
+field string --fieldName skillCategory --column skill_category --sizeMax 128 
+field reference --fieldName skill --type ~.common.entity.MstSkill --joinColumnName skill_id --comment "T?m th?i ch?a qu?n l? Skill v? Skill Category n?n trong ph?n n?y User nh?p t? do Skill v? Skill Category" 
+field string --fieldName proficiency --column proficiency --sizeMax 64 --comment "Experience (year)/Proficiency" 
+field string --fieldName note --column note --sizeMax 128 
+// ******TABLE: project_scope ******
+entity --class ~.common.entity.ProjectScope --identifierField id --identifierColumn id --identifierType java.lang.Integer --table project_scope
+field reference --fieldName project --type ~.common.entity.Project --joinColumnName project_id 
+field reference --fieldName mstScope --type ~.common.entity.MstScope --joinColumnName mst_scope_id 
+// ******TABLE: project_team_struct ******
+entity --class ~.common.entity.ProjectTeamStruct --identifierField id --identifierColumn id --identifierType java.lang.Long --table project_team_struct
+field reference --fieldName parent --type ~.common.entity.ProjectTeamStruct --joinColumnName parent_id 
+field number --fieldName lid --column lid --type java.lang.Integer 
+field reference --fieldName project --type ~.common.entity.Project --joinColumnName project_id --notNull 
+field reference --fieldName teamLeader --type ~.common.entity.Resource --joinColumnName team_leader_id 
+field string --fieldName name --column name --sizeMax 256 
+field string --fieldName responsibilityDescription --column responsibility_description --sizeMax 512 
+// ******TABLE: task_assignment ******
+entity --class ~.common.entity.TaskAssignment --identifierField id --identifierColumn id --identifierType java.lang.Long --table task_assignment
+field reference --fieldName task --type ~.common.entity.Task --joinColumnName task_id 
+field reference --fieldName resource --type ~.common.entity.Resource --joinColumnName resource_id 
+field number --fieldName percentWorkComplete --column percent_work_complete --type java.lang.Integer --comment "Cache gia tri tinh toan cua actual completeness de tang performance" 
+field date --fieldName planStartDate --column plan_start_date --type java.util.Date 
+field date --fieldName planEndDate --column plan_end_date --type java.util.Date 
+field date --fieldName actualStartDate --column actual_start_date --type java.util.Date 
+field date --fieldName actualEndDate --column actual_end_date --type java.util.Date 
+field number --fieldName unit --column unit --type java.lang.Double --digitsInteger 9 --digitsFraction 3 
+field date --fieldName createdDate --column created_date --notNull --type java.util.Date 
+field reference --fieldName createdUser --type ~.common.entity.Resource --joinColumnName created_user_id 
+// ******TABLE: timesheet ******
+entity --class ~.common.entity.Timesheet --identifierField id --identifierColumn id --identifierType java.lang.Long --table timesheet
+field reference --fieldName project --type ~.common.entity.Project --joinColumnName project_id 
+field reference --fieldName taskAssignment --type ~.common.entity.TaskAssignment --joinColumnName task_assignment_id --notNull 
+field string --fieldName note --column note --sizeMax 256 
+field reference --fieldName timesheetStatus --type ~.common.entity.MstTimesheetStatus --joinColumnName timesheet_status_id 
+field string --fieldName rejectComment --column reject_comment --sizeMax 512 
+field date --fieldName workingDay --column working_day --type java.util.Date 
+field number --fieldName effort --column effort --type java.lang.Double --digitsInteger 5 --digitsFraction 3 
+field date --fieldName createdDate --column created_date --notNull --type java.util.Date 
+field reference --fieldName createdUser --type ~.common.entity.Resource --joinColumnName created_user_id 
+// ******TABLE: timesheet_day_summary ******
+entity --class ~.common.entity.TimesheetDaySummary --identifierField id --identifierColumn id --identifierType java.lang.Long --table timesheet_day_summary
+field reference --fieldName resource --type ~.common.entity.Resource --joinColumnName resource_id 
+field date --fieldName timesheetDay --column timesheet_day --type java.util.Date 
+field number --fieldName effort --column effort --type java.lang.Double --digitsInteger 5 --digitsFraction 3 
+// ******TABLE: week_day ******
+entity --class ~.common.entity.WeekDay --identifierField id --identifierColumn id --identifierType java.lang.Long --table week_day
+field reference --fieldName calendar --type ~.common.entity.Calendar --joinColumnName calendar_id 
+field number --fieldName dayIndex --column day_index --type java.lang.Integer 
+field string --fieldName name --column name --sizeMax 128 
+field number --fieldName working --column working --type java.lang.Integer 
+field reference --fieldName shift1 --type ~.common.entity.CalendarShift --joinColumnName shift1_id 
+field reference --fieldName shift2 --type ~.common.entity.CalendarShift --joinColumnName shift2_id 
+field reference --fieldName shift3 --type ~.common.entity.CalendarShift --joinColumnName shift3_id 
+field reference --fieldName shift4 --type ~.common.entity.CalendarShift --joinColumnName shift4_id 
+field reference --fieldName shift5 --type ~.common.entity.CalendarShift --joinColumnName shift5_id 
+// ******TABLE: project_hr_allocation ******
+entity --class ~.common.entity.ProjectHrAllocation --identifierField id --identifierColumn id --identifierType java.lang.Long --table project_hr_allocation
+field reference --fieldName projectHrPlan --type ~.common.entity.ProjectHrPlan --joinColumnName project_hr_plan_id --notNull 
+field reference --fieldName resource --type ~.common.entity.Resource --joinColumnName resource_id --notNull 
+field number --fieldName allocationTypeId --column allocation_type_id --notNull --type java.lang.Integer --comment "0:Full time 1:Task based" 
+field number --fieldName calendarEffortUsage --column calendar_effort_usage --notNull --type java.lang.Integer --comment "% s? d?ng resource. Editable khi Allocation type l? [task based], n?u l? Full time th? = 100% kh?ng edit ???c." 
+field number --fieldName qualified --column qualified --type java.lang.Integer --comment "Th? hi?n m?c ?? ??p ?ng (t?nh theo %) c?a resource ???c allowcate v?o d? ?n so v?i plan." 
+field date --fieldName startDate --column start_date --notNull --type java.util.Date 
+field date --fieldName endDate --column end_date --type java.util.Date 
+field number --fieldName plannedEffort --column planned_effort --type java.lang.Double --digitsInteger 13 --digitsFraction 3 
+field number --fieldName actualEffort --column actual_effort --type java.lang.Double --digitsInteger 13 --digitsFraction 3 
+field number --fieldName workingPlace --column working_place --type java.lang.Integer --comment "0: Offshore; 1: Onsite" 
+// ******TABLE: deliverable_requirement ******
+entity --class ~.common.entity.DeliverableRequirement --identifierField id --identifierColumn id --identifierType java.lang.Long --table deliverable_requirement
+field reference --fieldName deliverable --type ~.common.entity.Deliverable --joinColumnName deliverable_id --notNull 
+field reference --fieldName requirement --type ~.common.entity.Requirement --joinColumnName requirement_id --notNull 
+field string --fieldName description --column description --sizeMax 256 
+// ******TABLE: deliverable_size ******
+entity --class ~.common.entity.DeliverableSize --identifierField id --identifierColumn id --identifierType java.lang.Long --table deliverable_size
+field reference --fieldName sizeColumnSpec --type ~.common.entity.SizeColumnSpec --joinColumnName size_column_spec_id 
+field reference --fieldName deliverable --type ~.common.entity.Deliverable --joinColumnName deliverable_id 
+field number --fieldName rowId --column row_id --type java.lang.Integer 
+field number --fieldName sizeValue --column size_value --type java.lang.Double --digitsInteger 13 --digitsFraction 3 
+// ******TABLE: deliverable_task ******
+entity --class ~.common.entity.DeliverableTask --identifierField id --identifierColumn id --identifierType java.lang.Long --table deliverable_task
+field reference --fieldName task --type ~.common.entity.Task --joinColumnName task_id --notNull 
+field reference --fieldName deliverable --type ~.common.entity.Deliverable --joinColumnName deliverable_id --notNull 
+field string --fieldName description --column description --sizeMax 256 
+// ******TABLE: allocation_assessment_criteria ******
+entity --class ~.common.entity.AllocationAssessmentCriteria --identifierField id --identifierColumn id --identifierType java.lang.Long --table allocation_assessment_criteria
+field reference --fieldName projectHrAllocation --type ~.common.entity.ProjectHrAllocation --joinColumnName project_hr_allocation_id --notNull 
+field reference --fieldName assessmentCriteria --type ~.common.entity.AssessmentCriteria --joinColumnName assessment_criteria_id --notNull 
+field date --fieldName testDate --column test_date --type java.util.Date 
