@@ -9,7 +9,8 @@ The fprj-core library is the core component set of F-Project.
 * **Bootstrapping**: Application bootstrapping.
 * **Lightweight IOC Container**: Configuration with AS3 Metadata, MXML, XML files, ActionScript
 * **Lightweight Dependency Injection**: DI instantiator, class implementation injection, event listener injection.
-* **Advanced Data Binding**: Advanced data binding using AS3 Metadata.
 * **Strong Typing RESTfull**: A beautiful solution for working with RESTfull services ofwhich data can be deserialized directly to typed object.
-* **Lightweight MVC**: The Fprj MVC framework especially designed for Flex AIR project.
+* **Advanced Data Binding**: Advanced data binding using AS3 Metadata.
+* **Advanced Module & RSLs Manager**: Advanced Module & RSLs management using dependency injection.
+* **Lightweight MVC Template**: The F-Project MVC template especially designed for Flex AIR project.
 * *And much more...*
