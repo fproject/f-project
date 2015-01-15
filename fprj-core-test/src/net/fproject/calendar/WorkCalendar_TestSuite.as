@@ -1,0 +1,77 @@
+package net.fproject.calendar
+{
+	[Suite]
+	[RunWith("org.flexunit.runners.Suite")]
+	public class WorkCalendar_TestSuite
+	{
+		public var workcalendarWorkcalendar:WorkCalendar_WorkCalendar;
+		public var workcalendarGetGregoriancalendar:WorkCalendar_get_gregorianCalendar;
+		public var workcalendarSetGregoriancalendar:WorkCalendar_set_gregorianCalendar;
+		public var workcalendarGetName:WorkCalendar_get_name;
+		public var workcalendarSetName:WorkCalendar_set_name;
+		public var workcalendarGetBasecalendar:WorkCalendar_get_baseCalendar;
+		public var workcalendarSetBasecalendar:WorkCalendar_set_baseCalendar;
+		public var workcalendarGetPeriods:WorkCalendar_get_periods;
+		public var workcalendarSetPeriods:WorkCalendar_set_periods;
+		public var workcalendarGetExceptions:WorkCalendar_get_exceptions;
+		public var workcalendarSetExceptions:WorkCalendar_set_exceptions;
+		public var workcalendarGetWeekdays:WorkCalendar_get_weekDays;
+		public var workcalendarSetWeekdays:WorkCalendar_set_weekDays;
+		public var workcalendarEquals:WorkCalendar_equals;
+		public var workcalendarGetIspredefinedcalendar:WorkCalendar_get_isPredefinedCalendar;
+		public var workcalendarCopyfrom:WorkCalendar_copyFrom;
+		public var workcalendarClone:WorkCalendar_clone;
+		public var workcalendarTostring:WorkCalendar_toString;
+		public var workcalendarGetIsrootcalendar:WorkCalendar_get_isRootCalendar;
+		public var workcalendarGetrootcalendar:WorkCalendar_getRootCalendar;
+		public var workcalendarGettotalworkbetween:WorkCalendar_getTotalWorkBetween;
+		public var workcalendarGetduration:WorkCalendar_getDuration;
+		public var workcalendarGettotalworkatday:WorkCalendar_getTotalWorkAtDay;
+		public var workcalendarFillperiodbyworkingduration:WorkCalendar_fillPeriodByWorkingDuration;
+		public var workcalendarFillperiodbywork:WorkCalendar_fillPeriodByWork;
+		public var workcalendarGetpreviousworkingtime:WorkCalendar_getPreviousWorkingTime;
+		public var workcalendarGetpreviousworkingtimeinternal:WorkCalendar_getPreviousWorkingTimeInternal;
+		public var workcalendarGetfirstworkingtime:WorkCalendar_getFirstWorkingTime;
+		public var workcalendarGetlastworkingtime:WorkCalendar_getLastWorkingTime;
+		public var workcalendarGetnextworkingtime:WorkCalendar_getNextWorkingTime;
+		public var workcalendarGetnextworkingtimeinternal:WorkCalendar_getNextWorkingTimeInternal;
+		public var workcalendarGetnextnonworkingtime:WorkCalendar_getNextNonWorkingTime;
+		public var workcalendarGetnextnonworkingtimeinternal:WorkCalendar_getNextNonWorkingTimeInternal;
+		public var workcalendarHasnextworkingtime:WorkCalendar_hasNextWorkingTime;
+		public var workcalendarHaspreviousworkingtime:WorkCalendar_hasPreviousWorkingTime;
+		public var workcalendarHasnextnonworkingtime:WorkCalendar_hasNextNonWorkingTime;
+		public var workcalendarResetperiodtodefault:WorkCalendar_resetPeriodToDefault;
+		public var workcalendarSetperiodworkshifts:WorkCalendar_setPeriodWorkShifts;
+		public var workcalendarSetperiodtononworking:WorkCalendar_setPeriodToNonWorking;
+		public var workcalendarSetweekdaytononworking:WorkCalendar_setWeekDayToNonWorking;
+		public var workcalendarSetweekdayworkshifts:WorkCalendar_setWeekDayWorkShifts;
+		public var workcalendarIsworkingdayofweek:WorkCalendar_isWorkingDayOfWeek;
+		public var workcalendarIsworkingdate:WorkCalendar_isWorkingDate;
+		public var workcalendarIsmodifiedfrombasecalendar:WorkCalendar_isModifiedFromBaseCalendar;
+		public var workcalendarIsmodifiedperiodat:WorkCalendar_isModifiedPeriodAt;
+		public var workcalendarIsdefaultworkingdate:WorkCalendar_isDefaultWorkingDate;
+		public var workcalendarIsdefaultworkingweekday:WorkCalendar_isDefaultWorkingWeekDay;
+		public var workcalendarIsdefaultweekday:WorkCalendar_isDefaultWeekDay;
+		public var workcalendarGetworkshiftsat:WorkCalendar_getWorkShiftsAt;
+		public var workcalendarGetworkshiftsatweekday:WorkCalendar_getWorkShiftsAtWeekDay;
+		public var workcalendarIsstandardworkingdate:WorkCalendar_isStandardWorkingDate;
+		public var workcalendarIsstandardworkingday:WorkCalendar_isStandardWorkingDay;
+		public var workcalendarResetweekdaytodefault:WorkCalendar_resetWeekDayToDefault;
+		public var workcalendarCreatedefaultweekday:WorkCalendar_createDefaultWeekDay;
+		public var workcalendarInitdefaultweekdays:WorkCalendar_initDefaultWeekDays;
+		public var workcalendarIsstandardweekday:WorkCalendar_isStandardWeekDay;
+		public var workcalendarGetperiodat:WorkCalendar_getPeriodAt;
+		public var workcalendarGetDefaultworkshifts:WorkCalendar_get_defaultWorkShifts;
+		public var workcalendarSetDefaultworkshifts:WorkCalendar_set_defaultWorkShifts;
+		public var workcalendarSetdefaultworkshifts:WorkCalendar_setDefaultWorkShifts;
+		public var workcalendarSetdefaultworkshiftsinternal:WorkCalendar_setDefaultWorkShiftsInternal;
+		public var workcalendarGetdefaultworkshiftsinternal:WorkCalendar_getDefaultWorkShiftsInternal;
+		public var workcalendarGetdefaultnonworkingdays:WorkCalendar_getDefaultNonWorkingDays;
+		public var workcalendarPeriodhasstandardworkshifts:WorkCalendar_periodHasStandardWorkShifts;
+		public var workcalendarGetnonworkingtimesat:WorkCalendar_getNonWorkingTimesAt;
+		public var workcalendarDateaddbywork:WorkCalendar_dateAddByWork;
+		public var workcalendarDateaddbyworkingdays:WorkCalendar_dateAddByWorkingDays;
+		public var workcalendarDatesubbywork:WorkCalendar_dateSubByWork;
+		public var workcalendarGetworkingtimeforunit:WorkCalendar_getWorkingTimeForUnit;
+	}
+}

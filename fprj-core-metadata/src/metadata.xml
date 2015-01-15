@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<annotations version="1.0">
+	<metadata name="Instantiator" 
+			description="Khởi tạo một instance cho một interface bằng cách chỉ định implementation class cho interface đó.">
+		<context name="class"/>
+		<context name="variable"/>
+		<context name="getter"/>
+		<attribute name="impl" type="Class" required="false" 
+			description="Class path trỏ đến implementation class"/>
+		<attribute name="delegate" type="Class" required="false" 
+			description="Class path chỉ định delegate class"/>
+	</metadata>
+	
+	<metadata name="EventHandling" 
+			description="Tự động add event listener cho một member variable của một UI component class hoặc cho chính instance của class đó.
+Hơn thế nữa, việc add event listener này được tự động thực hiện khi member variable được gán giá trị. Điều này giúp ta không cần quan tâm đến thời điểm mà Flex framework khởi tạo giá trị cho những component động, chẳng hạn như các đối tượng SkinPart.">
+		<context name="class"/>
+		<context name="variable"/>
+		<context name="getter"/>
+		<attribute name="dispatcher" type="String" required="false" 
+			description="Đường dẫn tên trường (field chain) dẫn đến một đối tượng con cháu của đối tượng gốc mặc định"/>
+		<attribute name="event" type="String" required="false" 
+			description="Tham số type của event, có thể nhận giá trị là một literal string của event type chẳng hạn như 'creationComplete', hoặc đường dẫn đến một hằng số static được định nghĩa trong một class, chẳng hạn như 'mx.events.CloseEvent.CLOSE'."/>
+		<attribute name="handler" type="Function" required="false" 
+			description="Class path chỉ định delegate class"/>
+	</metadata>
+	
+	<metadata name="PropertyBinding" 
+			description="Thực hiện liên kết giá trị của một đối tượng nguồn (source) với một đối tượng đích (target) trong một ActionScript class, thay thế cho việc khai báo binding bằng MXML.">
+		<context name="class"/>
+		<context name="variable"/>
+		<context name="getter"/>
+		<attribute name="hostChain" type="String" required="false" 
+			description="Đường dẫn tên trường (field chain) dẫn đến một đối tượng con cháu của đối tượng gốc mặc định"/>
+	</metadata>
+	
+	<metadata name="RemoteService" 
+			description="Khai báo remote service">
+		<context name="class"/>
+		<attribute name="name" type="String" required="false" 
+			description="Tên của remote service"/>
+	</metadata>
+</annotations>

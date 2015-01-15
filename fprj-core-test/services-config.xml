@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<services-config>
+    <services>
+        <service id="amfService"
+            class="flex.messaging.services.RemotingService"
+            messageTypes="flex.messaging.messages.RemotingMessage">
+            <destination id="amf-destination">
+                <channels>
+                    <channel ref="amf-chanel"/>
+                </channels>
+                <properties>
+                    <source>*</source>
+                </properties>
+            </destination>
+        </service>
+        <service id="httpService"
+            class="flex.messaging.services.RemotingService"
+            messageTypes="flex.messaging.messages.RemotingMessage">
+            <destination id="http-destination">
+                <channels>
+                    <channel ref="http-chanel"/>
+                </channels>
+                <properties>
+                    <source>*</source>
+                </properties>
+            </destination>
+        </service>
+    </services>
+    <channels>
+        <channel-definition id="amf-chanel"
+            class="mx.messaging.channels.AMFChannel">
+            <endpoint uri="http://localhost/projectkit/?r=amfGateway"
+                class="flex.messaging.endpoints.AMFEndpoint"/>
+        </channel-definition>
+        <channel-definition id="http-chanel"
+            class="net.fproject.rpc.JSONChannel">
+            <endpoint uri="http://localhost:9000/"/>
+        </channel-definition>
+    </channels>
+</services-config>

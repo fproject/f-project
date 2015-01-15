@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<componentPackage>
+	<component id="Period" class="net.fproject.calendar.Period"/>
+	<component id="WeekDay" class="net.fproject.calendar.WeekDay"/>
+	<component id="WorkCalendar" class="net.fproject.calendar.WorkCalendar"/>
+	<component id="WorkCalendarException" class="net.fproject.calendar.WorkCalendarException"/>
+	<component id="WorkShift" class="net.fproject.calendar.WorkShift"/>
+	<component id="ImplementationConfig" class="net.fproject.di.ImplementationConfig"/>
+	<component id="Implementation" class="net.fproject.di.Implementation"/>
+	<component id="GraphicButtonSkin" class="net.fproject.gui.component.GraphicButtonSkin"/>
+	<component id="HorizontalSeparator" class="net.fproject.gui.component.HorizontalSeparator"/>
+	<component id="VerticalSeparator" class="net.fproject.gui.component.VerticalSeparator"/>
+	<component id="SolidColorRect" class="net.fproject.gui.component.SolidColorRect"/>
+</componentPackage>

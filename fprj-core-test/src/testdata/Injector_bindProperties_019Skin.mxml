@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:fb="http://ns.adobe.com/flashbuilder/2009" alpha.disabled="0.5" 
+		xmlns:testdata="testdata.*" 
+		xmlns:ns="http://f-project.net/xmlns/fprj/2013">
+	<fx:Metadata>[HostComponent("testdata.Injector_bindProperties_019")]</fx:Metadata>
+	<s:states>
+		<s:State name="normal" />
+		<s:State name="disabled" />
+	</s:states>
+	<ns:Calendar id="calendar"/>
+</s:Skin>

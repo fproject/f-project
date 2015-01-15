@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- This is an auto generated file and is not intended for modification. -->
+
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:flexui="flexunit.flexui.*"
+			   minWidth="955" minHeight="600" creationComplete="onCreationComplete()">
+	<fx:Script>
+		<![CDATA[
+			import net.fproject.rpc.AMFRemoteObject_TestSuite;
+			import net.fproject.rpc.JSONChannel_TestSuite;
+			import net.fproject.serialize.Serialize_TestSuite;
+			import net.fproject.rpc.JSONMessage_TestSuite;
+			import net.fproject.rpc.JSONOperation_TestSuite;
+			import net.fproject.rpc.JSONRemoteObject_TestSuite;
+			import net.fproject.rpc.RemoteObjectFactory_TestSuite;
+			
+			public function currentRunTestSuite():Array
+			{
+				var testsToRun:Array = new Array();
+				testsToRun.push(AMFRemoteObject_TestSuite);
+				testsToRun.push(JSONChannel_TestSuite);
+				testsToRun.push(JSONRemoteObject_TestSuite);
+				testsToRun.push(JSONMessage_TestSuite);
+				testsToRun.push(JSONOperation_TestSuite);
+				testsToRun.push(Serialize_TestSuite);
+				testsToRun.push(RemoteObjectFactory_TestSuite);
+				return testsToRun;
+			}
+			
+			
+			private function onCreationComplete():void
+			{
+				testRunner.runWithFlexUnit4Runner(currentRunTestSuite(), "fprj-test");
+			}
+			
+		]]>
+	</fx:Script>
+	<flexui:FlexUnitTestRunnerUI id="testRunner" portNumber="8765">
+	</flexui:FlexUnitTestRunnerUI>
+	
+</s:Application>

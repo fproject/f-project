@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<design version="2">
+
+	<namespaces>
+		<namespace prefix="fprj" uri="http://f-project.net/xmlns/fprj/2013" />
+	</namespaces>
+	
+	<!-- all the categories -->
+	<categories>
+		<category id="fproject" label="F-Project Framework"
+			defaultExpand="true" />
+	</categories>
+
+	<!-- all the components -->
+	<!--  
+	<components>
+
+	</components>
+	-->
+</design>

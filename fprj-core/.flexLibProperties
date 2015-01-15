@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
+  <includeClasses>
+    <classEntry path="net.fproject.calendar.Period"/>
+    <classEntry path="net.fproject.calendar.PeriodInternal"/>
+    <classEntry path="net.fproject.calendar.PeriodInternalBase"/>
+    <classEntry path="net.fproject.calendar.WeekDay"/>
+    <classEntry path="net.fproject.calendar.WeekDayInternal"/>
+    <classEntry path="net.fproject.calendar.WorkCalendar"/>
+    <classEntry path="net.fproject.calendar.WorkCalendarException"/>
+    <classEntry path="net.fproject.calendar.WorkShift"/>
+    <classEntry path="net.fproject.di.ImplementationConfig"/>
+    <classEntry path="net.fproject.di.Injector"/>
+    <classEntry path="net.fproject.di.Implementation"/>
+    <classEntry path="net.fproject.fproject_internal"/>
+    <classEntry path="net.fproject.gui.RenderItem"/>
+    <classEntry path="net.fproject.gui.component.GraphicButtonSkin"/>
+    <classEntry path="net.fproject.gui.component.HorizontalSeparator"/>
+    <classEntry path="net.fproject.gui.component.LineSeparatorBase"/>
+    <classEntry path="net.fproject.gui.component.SolidColorRect"/>
+    <classEntry path="net.fproject.gui.component.VerticalSeparator"/>
+    <classEntry path="net.fproject.model.User"/>
+    <classEntry path="net.fproject.rpc.AMFRemoteObject"/>
+    <classEntry path="net.fproject.rpc.IRemoteObject"/>
+    <classEntry path="net.fproject.rpc.JSONChannel"/>
+    <classEntry path="net.fproject.rpc.JSONMessage"/>
+    <classEntry path="net.fproject.rpc.JSONOperation"/>
+    <classEntry path="net.fproject.rpc.JSONRemoteObject"/>
+    <classEntry path="net.fproject.rpc.RemoteObjectFactory"/>
+    <classEntry path="net.fproject.serialize.Deserializer"/>
+    <classEntry path="net.fproject.serialize.InjectionDetail"/>
+    <classEntry path="net.fproject.serialize.InjectionMap"/>
+    <classEntry path="net.fproject.serialize.MarshallingError"/>
+    <classEntry path="net.fproject.serialize.Serializer"/>
+    <classEntry path="net.fproject.utils.AdvancedDateFormatter"/>
+    <classEntry path="net.fproject.utils.ApplicationUtil"/>
+    <classEntry path="net.fproject.utils.BindableObject"/>
+    <classEntry path="net.fproject.utils.BitmapFactory"/>
+    <classEntry path="net.fproject.utils.ColorUtil"/>
+    <classEntry path="net.fproject.utils.CssUtil"/>
+    <classEntry path="net.fproject.utils.CurrencyUtil"/>
+    <classEntry path="net.fproject.utils.Cursor"/>
+    <classEntry path="net.fproject.utils.DataUtil"/>
+    <classEntry path="net.fproject.utils.DateRange"/>
+    <classEntry path="net.fproject.utils.DateTimeUtil"/>
+    <classEntry path="net.fproject.utils.GraphicsUtil"/>
+    <classEntry path="net.fproject.utils.GregorianCalendar"/>
+    <classEntry path="net.fproject.utils.Hex"/>
+    <classEntry path="net.fproject.utils.IAnimationObserver"/>
+    <classEntry path="net.fproject.utils.InstanceCache"/>
+    <classEntry path="net.fproject.di.InstanceFactory"/>
+    <classEntry path="net.fproject.utils.ItemRendererCache"/>
+    <classEntry path="net.fproject.utils.Lic"/>
+    <classEntry path="net.fproject.utils.LinkedList"/>
+    <classEntry path="net.fproject.utils.LinkedListNode"/>
+    <classEntry path="net.fproject.utils.LoggingUtil"/>
+    <classEntry path="net.fproject.utils.LruCache"/>
+    <classEntry path="net.fproject.utils.LunarCalendar"/>
+    <classEntry path="net.fproject.utils.MathUtil"/>
+    <classEntry path="net.fproject.utils.MessageUtil"/>
+    <classEntry path="net.fproject.utils.NumberUtil"/>
+    <classEntry path="net.fproject.utils.Orientation"/>
+    <classEntry path="net.fproject.utils.ResourceUtil"/>
+    <classEntry path="net.fproject.utils.SelectionMode"/>
+    <classEntry path="net.fproject.utils.StringUtil"/>
+    <classEntry path="net.fproject.utils.Time"/>
+    <classEntry path="net.fproject.utils.TimePrecision"/>
+    <classEntry path="net.fproject.utils.TimeRange"/>
+    <classEntry path="net.fproject.utils.TimeUnit"/>
+    <classEntry path="net.fproject.core.IAppContextService"/>
+    <classEntry path="net.fproject.core.AppContextDataDescriptor"/>
+    <classEntry path="net.fproject.core.ServiceBase"/>
+  </includeClasses>
+  <includeResources>
+    <resourceEntry destPath="manifest.xml" sourcePath="manifest.xml"/>
+    <resourceEntry destPath="design.xml" sourcePath="design.xml"/>
+  </includeResources>
+  <namespaceManifests>
+    <namespaceManifestEntry manifest="manifest.xml" namespace="http://f-project.net/xmlns/fprj/2013"/>
+  </namespaceManifests>
+</flexLibProperties>
