@@ -22,5 +22,5 @@
 * **fprj-tool**: This GUI tool is written in Java Swing, and have these following features:
   * FlexUnit Auto Wire: Automatically generate FlexUnit test scripts based on analysing the AS3 source code's methods.
   * Flex Code Analyser: Flex source Line of Code counter, Source code statistics...
-  * [Under Development] Flex Code Auto Wire: Automatically generate model and service classes from server code written in PHP, Java, Scala
+  * [Under Development] Flex Code Auto Wire: Automatically generate AS3 model and service classes from server code written in PHP, Java, Scala
 * **fproject/pinta**: A fork from [dunamis/pinta](https://github.com/dunamis/pinta) with many new features for testing AMF Server and RESTful Webservices
