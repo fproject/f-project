@@ -2,21 +2,19 @@ package testdata
 {
 	import flash.display.DisplayObject;
 	
+	import mx.controls.AdvancedDataGrid;
 	import mx.core.FlexGlobals;
 	import mx.managers.PopUpManager;
 	
 	import spark.components.SkinnableContainer;
 	
-	import net.fproject.calendar.components.Calendar;
-	import net.fproject.calendar.components.supportClasses.CalendarRenderItem;
-
 	public class Injector_bindProperties_020 extends SkinnableContainer
 	{
 		[SkinPart(required="true",type="static")]
-		public var calendar:Calendar;
+		public var adg:AdvancedDataGrid;
 		
-		[PropertyBinding("@calendar.dataDescriptor.dataTipFunction@","@calendar.dataDescriptor.editingTipFunction@")]
-		public function calendarTooltipFunction(item:CalendarRenderItem):String 
+		[PropertyBinding("@adg.dataTipFunction@","@adg.labelFunction@")]
+		public function calendarTooltipFunction(item:Object):String 
 		{
 			return '1234567890';
 		}

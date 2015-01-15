@@ -503,10 +503,10 @@ package net.fproject.di
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertNotNull(container.calendar);
-			assertNotNull(container.calendar.dataDescriptor.dataTipFunction);
-			assertNotNull(container.calendar.dataDescriptor.editingTipFunction);
-			assertEquals('1234567890', container.calendar.dataDescriptor.dataTipFunction());
+			assertNotNull(container.adg);
+			assertNotNull(container.adg.dataTipFunction);
+			assertNotNull(container.adg.labelFunction);
+			assertEquals('1234567890', container.adg.dataTipFunction());
 		}
 		
 		[Test (async, description="Fix bug: http://bug.f-project.net/view.php?id=199")]
@@ -531,11 +531,11 @@ package net.fproject.di
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertNotNull(container.calendar);
-			assertNotNull(container.calendar.dataDescriptor.dataTipFunction);
-			assertNotNull(container.calendar.dataDescriptor.editingTipFunction);
-			assertEquals('1234567890', container.calendar.dataDescriptor.dataTipFunction(null));
-			assertEquals('1234567890', container.calendar.dataDescriptor.editingTipFunction(null));
+			assertNotNull(container.adg);
+			assertNotNull(container.adg.dataTipFunction);
+			assertNotNull(container.adg.labelFunction);
+			assertEquals('1234567890', container.adg.dataTipFunction(null));
+			assertEquals('1234567890', container.adg.labelFunction(null));
 		}
 	}
 }
