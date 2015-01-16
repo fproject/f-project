@@ -50,7 +50,6 @@
     <classEntry path="net.fproject.utils.InstanceCache"/>
     <classEntry path="net.fproject.di.InstanceFactory"/>
     <classEntry path="net.fproject.utils.ItemRendererCache"/>
-    <classEntry path="net.fproject.utils.Lic"/>
     <classEntry path="net.fproject.utils.LinkedList"/>
     <classEntry path="net.fproject.utils.LinkedListNode"/>
     <classEntry path="net.fproject.utils.LoggingUtil"/>
