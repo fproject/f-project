@@ -33,15 +33,15 @@ package net.fproject.rpc
 		public function JSONRemoteObject(destination:String = null)
 		{
 			super(destination);
-			predefinedOperations = getPredefinedOperations();
+			predefOperations = getPredefOperations();
 		}
 		
-		protected function getPredefinedOperations():Object
+		protected function getPredefOperations():Object
 		{
 			return {
 				findOne:{route:"/:id"},
 				findAll:{route:""},
-				find:{route:"", namedParams:true},
+				find:{route:"/find", method:HTTPRequestMessage.POST_METHOD},
 				create:{route:"", method:HTTPRequestMessage.POST_METHOD, routeX:"/save", methodX:HTTPRequestMessage.POST_METHOD},
 				update:{route:"/:id", method:HTTPRequestMessage.PUT_METHOD, routeX:"/save", methodX:HTTPRequestMessage.POST_METHOD},
 				save:{route:"/save", method:HTTPRequestMessage.POST_METHOD},
@@ -76,7 +76,14 @@ package net.fproject.rpc
 			var op:AbstractOperation = super.getOperation(name);
 			if (op == null)
 			{
-				op = new JSONOperation(this, name);
+				if(predefOperations != null && predefOperations[name] != undefined)
+				{
+					op = new JSONPredefOperation(this, name, predefOperations[name]);
+				}
+				else
+				{
+					op = new JSONOperation(this, name);
+				}		
 				mx_internal::_operations[name] = op;
 				op.mx_internal::asyncRequest = mx_internal::asyncRequest;
 				op.mx_internal::setKeepLastResultIfNotSet(_keepLastResult);
@@ -119,7 +126,7 @@ package net.fproject.rpc
 		/**
 		 * Predefined operations 
 		 */
-		public var predefinedOperations:Object;
+		public var predefOperations:Object;
 		
 		fproject_internal function initEndpoint():void
 		{
