@@ -45,7 +45,6 @@
     <classEntry path="net.fproject.utils.DateTimeUtil"/>
     <classEntry path="net.fproject.utils.GraphicsUtil"/>
     <classEntry path="net.fproject.utils.GregorianCalendar"/>
-    <classEntry path="net.fproject.utils.Hex"/>
     <classEntry path="net.fproject.utils.IAnimationObserver"/>
     <classEntry path="net.fproject.utils.InstanceCache"/>
     <classEntry path="net.fproject.di.InstanceFactory"/>

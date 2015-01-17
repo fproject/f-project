@@ -82,11 +82,14 @@ package net.fproject.core
 		
 		protected function onServiceFailed(e:FaultEvent):void
 		{
-			checkFaultForNetworkStatus(e);
+			if(getNetworkFaultCode(e) != null)
+			{
+				changeNetworkAvailability(false);
+			}
 			
 			trace("Service failed: " + e.currentTarget.source + "\n" + e.message);
 			if(appContext.hasEventListener(AppContextEvent.SERVICE_FAILED))
-				appContext.dispatchEvent(new AppContextEvent(AppContextEvent.SERVICE_FAILED, e));
+				appContext.dispatchEvent(new AppContextEvent(AppContextEvent.SERVICE_FAILED, e.fault));
 		}
 		
 		protected function onCallFailed(e:FaultEvent):void
@@ -162,14 +165,6 @@ package net.fproject.core
 			appContext.fproject_internal::setNetworkAvailable(value);
 			if(appContext.hasEventListener(AppContextEvent.NETWORK_AVAILABILITY_CHANGE))
 				appContext.dispatchEvent(new AppContextEvent(AppContextEvent.NETWORK_AVAILABILITY_CHANGE));
-		}
-		
-		private function checkFaultForNetworkStatus(e:FaultEvent):void
-		{
-			if(getNetworkFaultCode(e) != null)
-			{
-				changeNetworkAvailability(false);
-			}
 		}
 		
 		private function getNetworkFaultCode(e:FaultEvent):String
