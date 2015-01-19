@@ -1,7 +1,7 @@
 # F-Project Framework for Flex
 
 **F-Project** is a lightweight framework for Flex applications.
-The original a is proprietary framework developed by F-Project Team in Hanoi, Vietnam.
+The original is a proprietary framework developed by F-Project Team in Hanoi, Vietnam.
 The framework is public to opensource from Jan-2015 and still being in refactoring from original proprietary version.
 We planned to release first stable version in head of Feb-2015.
 
