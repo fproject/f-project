@@ -39,7 +39,7 @@ package net.fproject.rpc
 		 */
 		public static function prepare(operation:JSONOperation, sendingArgs:Array, token:AsyncToken):JSONMessage
 		{
-			// Determine parameters to send
+			// Determine parameters to send.
 			var params:Object = {};
 			if (operation.method == HTTPRequestMessage.GET_METHOD || operation.namedParams)
 			{
@@ -73,13 +73,7 @@ package net.fproject.rpc
 			if (rpcMessage.method == HTTPRequestMessage.POST_METHOD) 
 			{
 				// JSON encode parameters in POST body
-				rpcMessage.body = Serializer.getInstance().toJSON(
-					{
-						"method": operation.name,
-						"params": params,
-						"version": "1.1",
-						"id": rpcMessage.messageId
-					});
+				rpcMessage.body = Serializer.getInstance().toJSON(params);
 			} 
 			else 
 			{
