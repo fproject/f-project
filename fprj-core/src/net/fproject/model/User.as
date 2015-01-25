@@ -24,7 +24,7 @@ package net.fproject.model
 		/**
 		 * The user account name 
 		 */
-		public var userName:String;
+		public var username:String;
 		
 		private var _token:String;
 		
