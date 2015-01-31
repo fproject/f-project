@@ -30,14 +30,32 @@ Hơn thế nữa, việc add event listener này được tự động thực hi
 		<context name="class"/>
 		<context name="variable"/>
 		<context name="getter"/>
+		<context name="method"/>
 		<attribute name="hostChain" type="String" required="false" 
 			description="Đường dẫn tên trường (field chain) dẫn đến một đối tượng con cháu của đối tượng gốc mặc định"/>
 	</metadata>
 	
-	<metadata name="RemoteService" 
-			description="Khai báo remote service">
+	<metadata name="RemoteObject" 
+			description="Khai báo remote object">
 		<context name="class"/>
 		<attribute name="name" type="String" required="false" 
-			description="Tên của remote service"/>
+			description="Tên của remote object"/>
+		<attribute name="uri" type="String" required="false" 
+			description="URI của endpoint"/>
+		<attribute name="destination" type="String" required="false" 
+			description="Destination của endpoint"/>
+	</metadata>
+	
+	<metadata name="RESTOperation" 
+			description="Khai báo REST operation">
+		<context name="method"/>
+		<attribute name="method" type="String" required="false" 
+			description="HTTP Method, có thể dùng GET, POST, PUT, DELETE, OPTIONS, HEAD"/>
+		<attribute name="returning" type="String" required="false" 
+			description="Kiểu của dữ liệu trả về. Sử dụng cú pháp ClassName cho kiểu đơn hoặc ClassName[] cho kiểu mảng"/>
+		<attribute name="namedParams" type="String" required="false" 
+			description="Sử dụng named parameter cho URI"/>
+		<attribute name="route" type="String" required="false" 
+			description="Khai báo route của REST operation"/>
 	</metadata>
 </annotations>
