@@ -1,4 +1,4 @@
-package testdata
+package testdata.rpc
 {
 	[RemoteObject(name="MyService",destination="http-destination",url="/myService")]
 	public class RemoteObjectFactory_getInstance_001
