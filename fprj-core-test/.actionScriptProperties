@@ -2,7 +2,7 @@
 <actionScriptProperties analytics="false" mainApplicationPath="FlexUnitApplication.mxml" projectUUID="bc8dce5f-f0cb-450c-807a-4b2b8bbb319f" version="11">
   <compiler additionalCompilerArguments="-locale en_US vi_VN&#13;&#10;-services services-config.xml" autoRSLOrdering="true" copyDependentFiles="true" fteInMXComponents="false" generateAccessible="true" htmlExpressInstall="true" htmlGenerate="true" htmlHistoryManagement="true" htmlPlayerVersionCheck="true" includeNetmonSwc="false" outputFolderPath="bin-debug" removeUnusedRSL="true" sourceFolderPath="src" strict="true" targetPlayerVersion="0.0.0" useApolloConfig="false" useDebugRSLSwfs="true" useFlashSDK="false" verifyDigests="true" warn="true">
     <compilerSourcePath/>
-    <libraryPath defaultLinkType="3">
+    <libraryPath defaultLinkType="1">
       <libraryPathEntry kind="4" path="">
         <excludedEntries>
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/flex.swc" useDefaultLinkType="false"/>
@@ -20,11 +20,11 @@
   <applications>
     <application path="RPC_Test.mxml"/>
     <application path="WorkCalendar_Test.mxml"/>
-    <application path="DateTimeUtil_Test.mxml"/>
-    <application path="FlexUnitApplication.mxml"/>
-    <application path="InjectionUtil_Test.mxml"/>
-    <application path="StringUtil_Test.mxml"/>
+    <application path="Injector_Test.mxml"/>
     <application path="Serialize_Test.mxml"/>
+    <application path="DateTimeUtil_Test.mxml"/>
+    <application path="StringUtil_Test.mxml"/>
+    <application path="FlexUnitApplication.mxml"/>
   </applications>
   <modules/>
   <workers/>
