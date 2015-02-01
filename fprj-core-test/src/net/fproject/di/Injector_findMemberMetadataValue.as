@@ -5,8 +5,8 @@ package net.fproject.di
 	import org.flexunit.asserts.assertFalse;
 	import org.flexunit.asserts.assertTrue;
 	
-	import testdata.Injector_findMemberMetadataValue_001;
-	import testdata.Injector_findMemberMetadataValue_037;
+	import testdata.di.Injector_findMemberMetadataValue_001;
+	import testdata.di.Injector_findMemberMetadataValue_037;
 
 	/**
 	 * FlexUnit test case class for method<br/>

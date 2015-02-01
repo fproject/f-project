@@ -10,17 +10,17 @@ package net.fproject.di
 	import org.flexunit.asserts.assertTrue;
 	import org.flexunit.async.Async;
 	
-	import testdata.Injector_attachEventListeners_001;
-	import testdata.Injector_attachEventListeners_009;
-	import testdata.Injector_attachEventListeners_011;
-	import testdata.Injector_attachEventListeners_012;
-	import testdata.Injector_attachEventListeners_013;
-	import testdata.Injector_attachEventListeners_014;
-	import testdata.Injector_attachEventListeners_015;
-	import testdata.Injector_attachEventListeners_016;
-	import testdata.Injector_attachEventListeners_017;
-	import testdata.Injector_attachEventListeners_018;
-	import testdata.Injector_attachEventListeners_019;
+	import testdata.di.Injector_attachEventListeners_001;
+	import testdata.di.Injector_attachEventListeners_009;
+	import testdata.di.Injector_attachEventListeners_011;
+	import testdata.di.Injector_attachEventListeners_012;
+	import testdata.di.Injector_attachEventListeners_013;
+	import testdata.di.Injector_attachEventListeners_014;
+	import testdata.di.Injector_attachEventListeners_015;
+	import testdata.di.Injector_attachEventListeners_016;
+	import testdata.di.Injector_attachEventListeners_017;
+	import testdata.di.Injector_attachEventListeners_018;
+	import testdata.di.Injector_attachEventListeners_019;
 
 	/**
 	 * FlexUnit test case class for method<br/>
