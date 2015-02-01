@@ -9,10 +9,10 @@ package net.fproject.serialize
 	import org.flexunit.asserts.assertNull;
 	import org.flexunit.asserts.assertTrue;
 	
-	import testdata.Deserializer_fromJSON_12;
-	import testdata.Deserializer_fromJSON_14;
-	import testdata.Deserializer_fromJSON_15;
-	import testdata.Deserializer_fromJSON_16;
+	import testdata.serialize.Deserializer_fromJSON_12;
+	import testdata.serialize.Deserializer_fromJSON_14;
+	import testdata.serialize.Deserializer_fromJSON_15;
+	import testdata.serialize.Deserializer_fromJSON_16;
 	
 	/**
 	 * FlexUnit test case class for method<br/>

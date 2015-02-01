@@ -5,23 +5,23 @@ package net.fproject.di
 	import org.flexunit.asserts.assertTrue;
 	import org.flexunit.async.Async;
 	
-	import testdata.Injector_bindProperties_001;
-	import testdata.Injector_bindProperties_005;
-	import testdata.Injector_bindProperties_006;
-	import testdata.Injector_bindProperties_007;
-	import testdata.Injector_bindProperties_008;
-	import testdata.Injector_bindProperties_009;
-	import testdata.Injector_bindProperties_010;
-	import testdata.Injector_bindProperties_011;
-	import testdata.Injector_bindProperties_012;
-	import testdata.Injector_bindProperties_013;
-	import testdata.Injector_bindProperties_014;
-	import testdata.Injector_bindProperties_015;
-	import testdata.Injector_bindProperties_016;
-	import testdata.Injector_bindProperties_017;
-	import testdata.Injector_bindProperties_018;
-	import testdata.Injector_bindProperties_019;
-	import testdata.Injector_bindProperties_020;
+	import testdata.di.Injector_bindProperties_001;
+	import testdata.di.Injector_bindProperties_005;
+	import testdata.di.Injector_bindProperties_006;
+	import testdata.di.Injector_bindProperties_007;
+	import testdata.di.Injector_bindProperties_008;
+	import testdata.di.Injector_bindProperties_009;
+	import testdata.di.Injector_bindProperties_010;
+	import testdata.di.Injector_bindProperties_011;
+	import testdata.di.Injector_bindProperties_012;
+	import testdata.di.Injector_bindProperties_013;
+	import testdata.di.Injector_bindProperties_014;
+	import testdata.di.Injector_bindProperties_015;
+	import testdata.di.Injector_bindProperties_016;
+	import testdata.di.Injector_bindProperties_017;
+	import testdata.di.Injector_bindProperties_018;
+	import testdata.di.Injector_bindProperties_019;
+	import testdata.di.Injector_bindProperties_020;
 	
 	/**
 	 * FlexUnit test case class for method<br/>
