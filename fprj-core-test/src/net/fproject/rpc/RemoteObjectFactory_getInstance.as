@@ -11,8 +11,8 @@ package net.fproject.rpc
 	import org.flexunit.asserts.assertEquals;
 	import org.flexunit.asserts.assertTrue;
 	
-	import testdata.RemoteObjectFactory_getInstance_001;
-	import testdata.RemoteObjectFactory_getInstance_003;
+	import testdata.rpc.RemoteObjectFactory_getInstance_001;
+	import testdata.rpc.RemoteObjectFactory_getInstance_003;
 
 	/**
 	 * FlexUnit test case class for method<br/>

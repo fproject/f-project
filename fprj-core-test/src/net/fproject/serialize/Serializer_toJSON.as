@@ -8,8 +8,8 @@ package net.fproject.serialize
 	import org.flexunit.asserts.assertEquals;
 	import org.flexunit.asserts.assertTrue;
 	
-	import testdata.Serializer_toJSON_001;
-	import testdata.Serializer_toJSON_003;
+	import testdata.serialize.Serializer_toJSON_001;
+	import testdata.serialize.Serializer_toJSON_003;
 
 	/**
 	 * FlexUnit test case class for method<br/>

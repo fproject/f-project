@@ -13,7 +13,7 @@ package net.fproject.rpc
 	import org.flexunit.asserts.assertTrue;
 	import org.flexunit.async.Async;
 	
-	import testdata.JSONOperation_processResult_001;
+	import testdata.rpc.JSONOperation_processResult_001;
 	
 	use namespace mx_internal;
 	

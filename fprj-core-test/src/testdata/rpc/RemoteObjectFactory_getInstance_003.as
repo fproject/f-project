@@ -1,4 +1,4 @@
-package testdata
+package testdata.rpc
 {
 	[RemoteObject(name="MyService",destination="amf-destination")]
 	public class RemoteObjectFactory_getInstance_003

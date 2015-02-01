@@ -10,12 +10,10 @@
 	<fx:Script>
 		<![CDATA[
 			import net.fproject.rpc.AMFRemoteObject_TestSuite;
-			import net.fproject.serialize.Serialize_TestSuite;
 			
 			public function currentRunTestSuite():Array
 			{
 				var testsToRun:Array = new Array();
-				testsToRun.push(net.fproject.serialize.Serialize_TestSuite);
 				testsToRun.push(net.fproject.rpc.AMFRemoteObject_TestSuite);
 				return testsToRun;
 			}
@@ -23,7 +21,7 @@
 			
 			private function onCreationComplete():void
 			{
-				testRunner.runWithFlexUnit4Runner(currentRunTestSuite(), "fprj-test");
+				testRunner.runWithFlexUnit4Runner(currentRunTestSuite(), "fprj-core-test");
 			}
 			
 		]]>
