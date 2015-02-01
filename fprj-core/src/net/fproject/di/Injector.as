@@ -19,12 +19,12 @@ package net.fproject.di
 	import spark.events.SkinPartEvent;
 	
 	import net.fproject.fproject_internal;
+	import net.fproject.utils.LoggingUtil;
 	
 	import org.as3commons.reflect.AbstractMember;
 	import org.as3commons.reflect.Metadata;
 	import org.as3commons.reflect.MetadataArgument;
 	import org.as3commons.reflect.Type;
-	import net.fproject.utils.ResourceUtil;
 	
 	/**
 	 * 
@@ -181,7 +181,7 @@ package net.fproject.di
 						IEventDispatcher(container).addEventListener(
 							evt.listenerInfo.event, evt.listenerInfo.handler);
 					else
-						throw new Error(ResourceUtil.getString("invalid.dispatcher.error", null, [container]));
+						LoggingUtil.fproject_internal::error(Injector, 4, "invalid.dispatcher.error", [container]);
 				}
 			}			
 			
@@ -422,7 +422,7 @@ package net.fproject.di
 			if(target is IEventDispatcher)
 				IEventDispatcher(target).addEventListener(listenerInfo.event, listenerInfo.handler);
 			else if(target != null)
-				throw new Error(ResourceUtil.getString("invalid.dispatcher.error", null, [target]));
+				LoggingUtil.fproject_internal::error(Injector, 4, "invalid.dispatcher.error", [target]);
 		}
 		
 		/**
@@ -452,7 +452,7 @@ package net.fproject.di
 		fproject_internal function bindProperties(container:Object):void
 		{
 			if(container == null)
-				throw new Error(ResourceUtil.getString("property.binding.null.object"));
+				LoggingUtil.fproject_internal::error(Injector, 6, "property.binding.null.object");
 			const HOST_CHAIN:String = "hostChain";
 			
 			var type:Type = Type.forInstance(container);
@@ -820,7 +820,7 @@ package net.fproject.di
 			}
 			else
 			{
-				throw new Error(ResourceUtil.getString("property.binding.not.dispatcher"));
+				LoggingUtil.fproject_internal::error(Injector, 5, "property.binding.not.dispatcher");
 			}
 		}
 		
@@ -888,7 +888,7 @@ package net.fproject.di
 				return;
 			if(!(container is IEventDispatcher))
 			{
-				throw new Error(ResourceUtil.getString("property.binding.not.dispatcher"));
+				LoggingUtil.fproject_internal::error(Injector, 5, "property.binding.not.dispatcher");
 			}
 			var tailMap:Object = {};
 			var roots:Object = {};
@@ -986,7 +986,7 @@ package net.fproject.di
 				{
 					if(meta != "propertyChange")
 					{
-						trace(ResourceUtil.getString("property.binding.invalid.event"));
+						LoggingUtil.fproject_internal::warn(Injector, 3, "property.binding.invalid.event");
 						isBindable = false;
 					}
 				}
@@ -997,7 +997,7 @@ package net.fproject.di
 					{
 						if(args[0] != "propertyChange")
 						{
-							trace(ResourceUtil.getString("property.binding.invalid.event"));
+							LoggingUtil.fproject_internal::warn(Injector, 3, "property.binding.invalid.event");
 							isBindable = false;
 						}
 					}
@@ -1279,7 +1279,8 @@ package net.fproject.di
 			}
 			else
 			{
-				throw new Error("Container already injected: " + container);
+				LoggingUtil.fproject_internal::error(Injector, 7, "container.injected", [container]);
+				return null;
 			}
 		}
 	}

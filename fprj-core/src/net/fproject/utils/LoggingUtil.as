@@ -7,11 +7,16 @@
 ///////////////////////////////////////////////////////////////////////////////
 package net.fproject.utils
 {
-	import flash.utils.*;
+	import flash.utils.getQualifiedClassName;
 	
-	import mx.logging.*;
+	import mx.logging.ILogger;
+	import mx.logging.Log;
+	import mx.logging.LogEventLevel;
 	import mx.logging.targets.TraceTarget;
-	import mx.resources.*;
+	import mx.resources.IResourceManager;
+	
+	import net.fproject.fproject_internal;
+	import net.fproject.di.Injector;
 	
 	public class LoggingUtil
 	{
@@ -183,5 +188,19 @@ package net.fproject.utils
 			LoggingUtil.log(clazz, LogEventLevel.ERROR, msgUid);
 			throw new Error(msgUid);
 		}// end function
+		
+		fproject_internal static function warn(clazz:Class, messageNumber:int, 
+													 bundleKey:String, parameters:Array = null):void
+		{
+			logWarning(clazz, ResourceUtil.FPRJ_CORE, messageNumber, null, 
+				ResourceUtil.FPRJ_CORE_BUNDLE, bundleKey, parameters);
+		}
+		
+		fproject_internal static function error(clazz:Class, messageNumber:int, 
+														   bundleKey:String, parameters:Array = null):void
+		{
+			logAndThrowError(clazz, ResourceUtil.FPRJ_CORE, messageNumber, null, 
+				ResourceUtil.FPRJ_CORE_BUNDLE, bundleKey, parameters);
+		}
 	}
 }
