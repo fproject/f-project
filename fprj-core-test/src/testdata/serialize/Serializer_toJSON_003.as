@@ -1,4 +1,4 @@
-package testdata
+package testdata.serialize
 {
 	public class Serializer_toJSON_003
 	{

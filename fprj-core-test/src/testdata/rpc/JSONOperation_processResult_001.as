@@ -1,4 +1,4 @@
-package testdata
+package testdata.rpc
 {
 	public class JSONOperation_processResult_001
 	{

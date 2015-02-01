@@ -7,7 +7,7 @@ package net.fproject.rpc
 	import org.flexunit.asserts.assertTrue;
 	import org.flexunit.async.Async;
 	
-	import testdata.JSONRemoteObject_JSONRemoteObjectRESTfulService;
+	import testdata.rpc.JSONRemoteObject_JSONRemoteObjectRESTfulService;
 
 	/**
 	 * FlexUnit test case class for method<br/>
