@@ -9,12 +9,16 @@
 			   minWidth="955" minHeight="600" creationComplete="onCreationComplete()">
 	<fx:Script>
 		<![CDATA[
-			import net.fproject.rpc.AMFRemoteObject_TestSuite;
+			import net.fproject.utils.StringUtil_localeEquals;
+			
+			import org.flexunit.runner.Request;
 			
 			public function currentRunTestSuite():Array
 			{
 				var testsToRun:Array = new Array();
-				testsToRun.push(net.fproject.rpc.AMFRemoteObject_TestSuite);
+				
+				testsToRun.push(Request.methods(net.fproject.utils.StringUtil_localeEquals,["testCase021",
+					"testCase019"]));
 				return testsToRun;
 			}
 			

@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testrun name="" >
 <testsuite  name="Default Test Suite" project="fprj-core-test">
-<testsuite name="net.fproject.rpc:AMFRemoteObject_TestSuite" type="testsuiteclass"/>
+<testsuite name="net.fproject.utils:StringUtil_localeEquals" type="testcaseclass">
+<testcase name="testCase021" classname="net.fproject.utils:StringUtil_localeEquals"/>
+<testcase name="testCase019" classname="net.fproject.utils:StringUtil_localeEquals"/>
+</testsuite>
 </testsuite>
 <portNumber value="8765" />
 </testrun>
