@@ -6,14 +6,15 @@
 			   minWidth="955" minHeight="600" creationComplete="onCreationComplete()">
 	<fx:Script>
 		<![CDATA[
-			import net.fproject.di.Injector_TestSuite;
-
+			import net.fproject.di.Injector_instantiateMembers;
+			
 			public function currentRunTestSuite():Array
 			{
 				var testsToRun:Array = new Array();
-testsToRun.push(net.fproject.di.Injector_TestSuite);
-return testsToRun;
+				testsToRun.push(net.fproject.di.Injector_instantiateMembers);
+				return testsToRun;
 			}
+			
 			private function onCreationComplete():void
 			{
 				testRunner.runWithFlexUnit4Runner(currentRunTestSuite(), "fprj-core-test");

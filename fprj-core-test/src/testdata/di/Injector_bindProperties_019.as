@@ -14,7 +14,7 @@ package testdata.di
 		public var adg:AdvancedDataGrid;
 		
 		[PropertyBinding("@adg.dataTipFunction@")]
-		[PropertyBinding("@adg.labelFunction@")]
+		//[PropertyBinding("@adg.labelFunction@")]
 		public function calendarTooltipFunction(item:Object):String 
 		{
 			return '1234567890';
