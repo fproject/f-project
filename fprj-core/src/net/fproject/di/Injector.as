@@ -1151,7 +1151,7 @@ package net.fproject.di
 		 * Search metadata value for a member of a class by its <code>id</code> property.
 		 * @param source the metadata source to search. This can be a class, an instance object of a class
 		 * or an instance of org.as3commons.reflect.Type
-		 * @param member the member name or the member object.
+		 * @param member the member name/id or the member object.
 		 * If this value is the member itself, them member must have an <code>id</code> property.
 		 * @param metadataName the metadata name to search, should be in lower-case
 		 * @param argumentName the metadata argument name to search, should be in lower-case
@@ -1168,7 +1168,7 @@ package net.fproject.di
 		{
 			if(member is String)
 				var memberId:String = member as String;
-			else
+			else if(member != null && member.hasOwnProperty("id"))
 				memberId = member.id;
 			if(memberId == null)
 				return null;
