@@ -57,10 +57,10 @@ package net.fproject.di
 									  deferredBinding:Boolean=true,
 									  constructorParam:*=undefined):void
 		{
-			var util:Injector = getInstance(container);
-			util.fproject_internal::instantiateMembers(container, constructorParam);
-			util.fproject_internal::attachEventListeners(container);
-			util.fproject_internal::bindProperties(container);
+			var injector:Injector = getInstance(container);
+			injector.fproject_internal::instantiateMembers(container, constructorParam);
+			injector.fproject_internal::attachEventListeners(container);
+			injector.fproject_internal::bindProperties(container);
 		}
 		
 		/**
@@ -81,8 +81,8 @@ package net.fproject.di
 		 */
 		public static function instantiateMembers(container:Object, constructorParam:*=undefined):void
 		{
-			var util:Injector = getInstance(container);
-			util.fproject_internal::instantiateMembers(container, constructorParam);
+			var injector:Injector = getInstance(container);
+			injector.fproject_internal::instantiateMembers(container, constructorParam);
 		}
 		
 		/**
@@ -147,8 +147,8 @@ package net.fproject.di
 		 */
 		public static function attachEventListeners(container:Object):void
 		{
-			var util:Injector = getInstance(container);
-			util.fproject_internal::attachEventListeners(container);
+			var injector:Injector = getInstance(container);
+			injector.fproject_internal::attachEventListeners(container);
 		}
 		
 		/**
@@ -441,8 +441,8 @@ package net.fproject.di
 		 */
 		public static function bindProperties(container:Object):void
 		{
-			var util:Injector = getInstance(container);
-			util.fproject_internal::bindProperties(container);
+			var injector:Injector = getInstance(container);
+			injector.fproject_internal::bindProperties(container);
 		}
 		
 		private static const THIS:String = "this";
@@ -1272,7 +1272,11 @@ package net.fproject.di
 		private static var instanceCache:Dictionary = new Dictionary;
 		private static function getInstance(container:Object):Injector
 		{
-			if(!instanceCache[container])
+			if(container == null)
+			{
+				LoggingUtil.fproject_internal::error(Injector, 8, "cannot.inject.null");
+			}
+			else if(!instanceCache[container])
 			{
 				instanceCache[container] = true;
 				return new Injector;
@@ -1280,8 +1284,8 @@ package net.fproject.di
 			else
 			{
 				LoggingUtil.fproject_internal::error(Injector, 7, "container.injected", [container]);
-				return null;
 			}
+			return null;
 		}
 	}
 }
