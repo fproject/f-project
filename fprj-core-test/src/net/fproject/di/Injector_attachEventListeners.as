@@ -22,6 +22,7 @@ package net.fproject.di
 	import testdata.di.Injector_attachEventListeners_018;
 	import testdata.di.Injector_attachEventListeners_019;
 
+	[ResourceBundle("fprjcore")]
 	/**
 	 * FlexUnit test case class for method<br/>
 	 * <code>internal function attachEventListeners(container:Object, clazz:Class:Boolean):void</code><br/>

@@ -1,8 +1,17 @@
 package net.fproject.di
 {
 	
+	import org.flexunit.asserts.assertEquals;
 	import org.flexunit.asserts.assertFalse;
-
+	import org.flexunit.asserts.assertNotNull;
+	import org.flexunit.asserts.assertTrue;
+	
+	import testdata.di.Injector_instantiateMembers_001_container;
+	import testdata.di.Injector_instantiateMembers_001_impl;
+	import testdata.di.Injector_instantiateMembers_003_container;
+	import testdata.di.Injector_instantiateMembers_003_impl;
+	
+	[ResourceBundle("fprjcore")]
 	/**
 	 * FlexUnit test case class for method<br/>
 	 * <code>internal function instantiateMembers(container:Object, constructorParam:*):void</code><br/>
@@ -41,17 +50,19 @@ package net.fproject.di
 		 */
 		public function testCase001():void
 		{
-			var container:Object = new Object();
-			var constructorParam:* = new Object();
+			var container:Injector_instantiateMembers_001_container = new Injector_instantiateMembers_001_container();
+			var constructorParam:* = "ABCXYZ";
 			Injector.instantiateMembers(container, constructorParam);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertFalse(true);
+			assertNotNull(container.impl);
+			assertTrue(container.impl is Injector_instantiateMembers_001_impl);
+			assertEquals(constructorParam, container.impl.param);
 			//-------------------------------------
 		}
 
-		[Test (description="Boundary case: [container = null, constructorParam = new *()]")]
+		[Test (expected="Error",description="Boundary case: [container = null, constructorParam = new *()]")]
 		/**
 		 * Test Case Type: Boundary<br/>
 		 * <br/>
@@ -71,7 +82,6 @@ package net.fproject.di
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertFalse(true);
 			//-------------------------------------
 		}
 
@@ -89,17 +99,18 @@ package net.fproject.di
 		 */
 		public function testCase003():void
 		{
-			var container:Object = new Object();
+			var container:Injector_instantiateMembers_003_container = new Injector_instantiateMembers_003_container();
 			var constructorParam:* = null;
 			Injector.instantiateMembers(container, constructorParam);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertFalse(true);
+			assertNotNull(container.impl);
+			assertTrue(container.impl is Injector_instantiateMembers_003_impl);
 			//-------------------------------------
 		}
 
-		[Test (description="Boundary case: [container = null, constructorParam = null]")]
+		[Test (expected="Error",description="Boundary case: [container = null, constructorParam = null]")]
 		/**
 		 * Test Case Type: Boundary<br/>
 		 * <br/>
@@ -116,11 +127,6 @@ package net.fproject.di
 			var container:Object = null;
 			var constructorParam:* = null;
 			Injector.instantiateMembers(container, constructorParam);
-			//---- Place result assertion here ----
-			// You must replace this code by function specifications or 
-			// the test always returns false!
-			assertFalse(true);
-			//-------------------------------------
 		}
 
 	}

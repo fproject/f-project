@@ -23,6 +23,7 @@ package net.fproject.di
 	import testdata.di.Injector_bindProperties_019;
 	import testdata.di.Injector_bindProperties_020;
 	
+	[ResourceBundle("fprjcore")]
 	/**
 	 * FlexUnit test case class for method<br/>
 	 * <code>internal function bindProperties(container:Object, clazz:Class):void</code><br/>
@@ -505,8 +506,8 @@ package net.fproject.di
 			// the test always returns false!
 			assertNotNull(container.adg);
 			assertNotNull(container.adg.dataTipFunction);
-			assertNotNull(container.adg.labelFunction);
-			assertEquals('1234567890', container.adg.dataTipFunction());
+			//assertNotNull(container.adg.labelFunction);
+			assertEquals('1234567890', container.adg.dataTipFunction(null));
 		}
 		
 		[Test (async, description="Fix bug: http://bug.f-project.net/view.php?id=199")]
