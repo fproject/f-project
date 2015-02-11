@@ -54,7 +54,6 @@ package net.fproject.di
 		 * 
 		 */
 		public static function inject(container:Object,
-									  deferredBinding:Boolean=true,
 									  constructorParam:*=undefined):void
 		{
 			var injector:Injector = getInstance(container);
