@@ -8,6 +8,7 @@ package net.fproject.di
 	import testdata.di.Injector_findMemberMetadataValue_001;
 	import testdata.di.Injector_findMemberMetadataValue_037;
 
+	[ResourceBundle("fprjcore")]
 	/**
 	 * FlexUnit test case class for method<br/>
 	 * <code>public static function findMemberMetadataValue(clazz:Class, member:Object, metadataName:String, argumentName:String = null):Object</code><br/>

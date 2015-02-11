@@ -21,7 +21,7 @@
 			
 			private function onCreationComplete():void
 			{
-				testRunner.runWithFlexUnit4Runner(currentRunTestSuite(), "fprj-ut");
+				testRunner.runWithFlexUnit4Runner(currentRunTestSuite(), "fprj-core-test");
 			}
 			
 		]]>
