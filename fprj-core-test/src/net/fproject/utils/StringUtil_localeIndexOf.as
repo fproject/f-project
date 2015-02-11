@@ -1377,7 +1377,7 @@ package net.fproject.utils
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertEquals(returnTestValue, -1);
+			assertEquals(-1, returnTestValue);
 			//-------------------------------------
 		}
 
@@ -1405,7 +1405,7 @@ package net.fproject.utils
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertEquals(returnTestValue, -1);
+			assertEquals(-1, returnTestValue);
 			//-------------------------------------
 		}
 

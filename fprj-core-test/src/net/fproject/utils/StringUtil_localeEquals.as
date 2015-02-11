@@ -1,10 +1,14 @@
 package net.fproject.utils
 {
+	import flash.events.Event;
+	
 	import mx.resources.ResourceManager;
+	import mx.rpc.events.FaultEvent;
 	
 	import org.flexunit.asserts.assertFalse;
 	import org.flexunit.asserts.assertTrue;
-
+	import org.flexunit.async.Async;
+	
 	/**
 	 * FlexUnit test case class for method<br/>
 	 * <code>public static function localeEquals(s1:String, s2:String, characterCompareMethod:Function = null):Boolean</code><br/>
@@ -18,13 +22,13 @@ package net.fproject.utils
 		{
 			//Your test data initialization
 		}
-
+		
 		[After]
 		public function runAfterEveryTest():void
 		{
 			//Your test data cleaning
 		}
-
+		
 		[Test (description="Normal case: [s1 = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789', s2 = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789', characterCompareMethod = function():Boolean]")]
 		/**
 		 * Test Case Type: Normal<br/>
@@ -50,7 +54,7 @@ package net.fproject.utils
 			assertTrue(returnTestValue);
 			//-------------------------------------
 		}
-
+		
 		[Test (description="Boundary case: [s1 = '', s2 = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789', characterCompareMethod = function():Boolean]")]
 		/**
 		 * Test Case Type: Boundary<br/>
@@ -76,7 +80,7 @@ package net.fproject.utils
 			assertFalse(returnTestValue);
 			//-------------------------------------
 		}
-
+		
 		[Test (description="Boundary case: [s1 = null, s2 = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789', characterCompareMethod = function():Boolean]")]
 		/**
 		 * Test Case Type: Boundary<br/>
@@ -102,7 +106,7 @@ package net.fproject.utils
 			assertFalse(returnTestValue);
 			//-------------------------------------
 		}
-
+		
 		[Test (description="Boundary case: [s1 = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789', s2 = '', characterCompareMethod = function():Boolean]")]
 		/**
 		 * Test Case Type: Boundary<br/>
@@ -128,7 +132,7 @@ package net.fproject.utils
 			assertFalse(returnTestValue);
 			//-------------------------------------
 		}
-
+		
 		[Test (description="Boundary case: [s1 = '', s2 = '', characterCompareMethod = function():Boolean]")]
 		/**
 		 * Test Case Type: Boundary<br/>
@@ -154,7 +158,7 @@ package net.fproject.utils
 			assertTrue(returnTestValue);
 			//-------------------------------------
 		}
-
+		
 		[Test (description="Boundary case: [s1 = null, s2 = '', characterCompareMethod = function():Boolean]")]
 		/**
 		 * Test Case Type: Boundary<br/>
@@ -180,7 +184,7 @@ package net.fproject.utils
 			assertFalse(returnTestValue);
 			//-------------------------------------
 		}
-
+		
 		[Test (description="Boundary case: [s1 = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789', s2 = null, characterCompareMethod = function():Boolean]")]
 		/**
 		 * Test Case Type: Boundary<br/>
@@ -206,7 +210,7 @@ package net.fproject.utils
 			assertFalse(returnTestValue);
 			//-------------------------------------
 		}
-
+		
 		[Test (description="Boundary case: [s1 = '', s2 = null, characterCompareMethod = function():Boolean]")]
 		/**
 		 * Test Case Type: Boundary<br/>
@@ -232,7 +236,7 @@ package net.fproject.utils
 			assertFalse(returnTestValue);
 			//-------------------------------------
 		}
-
+		
 		[Test (description="Boundary case: [s1 = null, s2 = null, characterCompareMethod = function():Boolean]")]
 		/**
 		 * Test Case Type: Boundary<br/>
@@ -258,7 +262,7 @@ package net.fproject.utils
 			assertTrue(returnTestValue);
 			//-------------------------------------
 		}
-
+		
 		[Test (description="Boundary case: [s1 = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789', s2 = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789', characterCompareMethod = null]")]
 		/**
 		 * Test Case Type: Boundary<br/>
@@ -284,7 +288,7 @@ package net.fproject.utils
 			assertTrue(returnTestValue);
 			//-------------------------------------
 		}
-
+		
 		[Test (description="Boundary case: [s1 = '', s2 = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789', characterCompareMethod = null]")]
 		/**
 		 * Test Case Type: Boundary<br/>
@@ -310,7 +314,7 @@ package net.fproject.utils
 			assertFalse(returnTestValue);
 			//-------------------------------------
 		}
-
+		
 		[Test (description="Boundary case: [s1 = null, s2 = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789', characterCompareMethod = null]")]
 		/**
 		 * Test Case Type: Boundary<br/>
@@ -336,7 +340,7 @@ package net.fproject.utils
 			assertFalse(returnTestValue);
 			//-------------------------------------
 		}
-
+		
 		[Test (description="Boundary case: [s1 = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789', s2 = '', characterCompareMethod = null]")]
 		/**
 		 * Test Case Type: Boundary<br/>
@@ -362,7 +366,7 @@ package net.fproject.utils
 			assertFalse(returnTestValue);
 			//-------------------------------------
 		}
-
+		
 		[Test (description="Boundary case: [s1 = '', s2 = '', characterCompareMethod = null]")]
 		/**
 		 * Test Case Type: Boundary<br/>
@@ -388,7 +392,7 @@ package net.fproject.utils
 			assertTrue(returnTestValue);
 			//-------------------------------------
 		}
-
+		
 		[Test (description="Boundary case: [s1 = null, s2 = '', characterCompareMethod = null]")]
 		/**
 		 * Test Case Type: Boundary<br/>
@@ -414,7 +418,7 @@ package net.fproject.utils
 			assertFalse(returnTestValue);
 			//-------------------------------------
 		}
-
+		
 		[Test (description="Boundary case: [s1 = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789', s2 = null, characterCompareMethod = null]")]
 		/**
 		 * Test Case Type: Boundary<br/>
@@ -440,7 +444,7 @@ package net.fproject.utils
 			assertFalse(returnTestValue);
 			//-------------------------------------
 		}
-
+		
 		[Test (description="Boundary case: [s1 = '', s2 = null, characterCompareMethod = null]")]
 		/**
 		 * Test Case Type: Boundary<br/>
@@ -466,7 +470,7 @@ package net.fproject.utils
 			assertFalse(returnTestValue);
 			//-------------------------------------
 		}
-
+		
 		[Test (description="Boundary case: [s1 = null, s2 = null, characterCompareMethod = null]")]
 		/**
 		 * Test Case Type: Boundary<br/>
@@ -492,8 +496,8 @@ package net.fproject.utils
 			assertTrue(returnTestValue);
 			//-------------------------------------
 		}
-
-		[Test (description="Normal case: [s1 = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789', s2 = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789', characterCompareMethod = function():Boolean]")]
+		
+		[Test (async, description="Normal case: [s1 = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789', s2 = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789', characterCompareMethod = function():Boolean]")]
 		/**
 		 * Test Case Type: Normal<br/>
 		 * <br/>
@@ -508,18 +512,40 @@ package net.fproject.utils
 		 */
 		public function testCase019():void
 		{
-			//Change locale to Vietnamese to test "so sánh tiếng Việt không dấu"
-			ResourceManager.getInstance().localeChain = ["vi_VN"];
-			
-			var s1:String = "Tôi yêu em đến nay chừng có thể";
-			var s2:String = "Toi yeu em den nay chung co the";
-			var characterCompareMethod:Function = null;
-			var returnTestValue:Boolean = StringUtil.localeEquals(s1, s2, characterCompareMethod);
-			//---- Place result assertion here ----
-			// You must replace this code by function specifications or 
-			// the test always returns false!
-			assertTrue(returnTestValue);
-			//-------------------------------------
+			if(ResourceManager.getInstance().localeChain == ["vi_VN"])
+			{
+				testCase019_resultHandler(null, null);
+			}
+			else
+			{
+				Async.handleEvent(this, ResourceManager.getInstance(), "change",
+					testCase019_resultHandler,
+					1000,null,
+					function():void
+					{
+						throw new Error("Cannot dispatch CHANGE event when changing locale");
+					});	
+				//Change locale to Vietnamese to test "so sánh tiếng Việt không dấu"
+				ResourceManager.getInstance().localeChain = ["vi_VN"];
+			}
+					
+		}
+		
+		private function testCase019_resultHandler(e:Event,o:Object=null):void
+		{
+			Async.delayCall(this, 
+				function():void
+				{
+					var s1:String = "Tôi yêu em đến nay chừng có thể";
+					var s2:String = "Toi yeu em den nay chung co the";
+					var characterCompareMethod:Function = null;
+					var returnTestValue:Boolean = StringUtil.localeEquals(s1, s2, characterCompareMethod);
+					//---- Place result assertion here ----
+					// You must replace this code by function specifications or 
+					// the test always returns false!
+					assertTrue(returnTestValue);
+					//-------------------------------------
+				}, 1000);			
 		}
 		
 		[Test (description="Normal case: [s1 = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789', s2 = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789', characterCompareMethod = function():Boolean]")]
