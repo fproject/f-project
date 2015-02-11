@@ -3,8 +3,10 @@ package net.fproject.di
 	import spark.components.Label;
 	
 	import org.flexunit.asserts.assertFalse;
+	import org.flexunit.asserts.assertNull;
 	import org.flexunit.asserts.assertTrue;
 	
+	import testdata.di.Injector_bindProperties_001;
 	import testdata.di.Injector_findMemberMetadataValue_001;
 	import testdata.di.Injector_findMemberMetadataValue_037;
 
@@ -29,12 +31,12 @@ package net.fproject.di
 			//Your test data cleaning
 		}
 
-		[Test (description="Normal case: [clazz = new Class(), member = new Object(), metadataName = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789', argumentName = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789']")]
+		[Test (description="Normal case: [clazz = Injector_bindProperties_001, member = new Object(), metadataName = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789', argumentName = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789']")]
 		/**
 		 * Test Case Type: Normal<br/>
 		 * <br/>
 		 * INPUT VALUES:<br/>
-		 * <code>clazz = new Class()</code><br/>
+		 * <code>clazz = Injector_bindProperties_001</code><br/>
 		 * <code>member = new Object()</code><br/>
 		 * <code>metadataName = "ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789"</code><br/>
 		 * <code>argumentName = "ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789"</code><br/>
@@ -86,12 +88,12 @@ package net.fproject.di
 			//-------------------------------------
 		}
 
-		[Test (expected="Error",description="Boundary case: [clazz = new Class(), member = null, metadataName = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789', argumentName = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789']")]
+		[Test (description="Boundary case: [clazz = Injector_bindProperties_001, member = null, metadataName = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789', argumentName = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789']")]
 		/**
 		 * Test Case Type: Boundary<br/>
 		 * <br/>
 		 * INPUT VALUES:<br/>
-		 * <code>clazz = new Class()</code><br/>
+		 * <code>clazz = Injector_bindProperties_001</code><br/>
 		 * <code>member = null</code><br/>
 		 * <code>metadataName = "ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789"</code><br/>
 		 * <code>argumentName = "ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789"</code><br/>
@@ -102,7 +104,7 @@ package net.fproject.di
 		 */
 		public function testCase003():void
 		{
-			var clazz:Class = new Class();
+			var clazz:Class = Injector_bindProperties_001;
 			var member:Object = null;
 			var metadataName:String = "ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789";
 			var argumentName:String = "ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789";
@@ -111,9 +113,10 @@ package net.fproject.di
 			// You must replace this code by function specifications or 
 			// the test always returns false!
 			//-------------------------------------
+			assertNull(returnTestValue);
 		}
 
-		[Test (expected="Error",description="Boundary case: [clazz = null, member = null, metadataName = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789', argumentName = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789']")]
+		[Test (description="Boundary case: [clazz = null, member = null, metadataName = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789', argumentName = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789']")]
 		/**
 		 * Test Case Type: Boundary<br/>
 		 * <br/>
@@ -138,14 +141,15 @@ package net.fproject.di
 			// You must replace this code by function specifications or 
 			// the test always returns false!
 			//-------------------------------------
+			assertNull(returnTestValue);
 		}
 
-		[Test (description="Boundary case: [clazz = new Class(), member = new Object(), metadataName = '', argumentName = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789']")]
+		[Test (expected="Error",description="Boundary case: [clazz = Injector_bindProperties_001, member = new Object(), metadataName = '', argumentName = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789']")]
 		/**
 		 * Test Case Type: Boundary<br/>
 		 * <br/>
 		 * INPUT VALUES:<br/>
-		 * <code>clazz = new Class()</code><br/>
+		 * <code>clazz = Injector_bindProperties_001</code><br/>
 		 * <code>member = new Object()</code><br/>
 		 * <code>metadataName = ""</code><br/>
 		 * <code>argumentName = "ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789"</code><br/>
@@ -156,7 +160,7 @@ package net.fproject.di
 		 */
 		public function testCase005():void
 		{
-			var clazz:Class = new Class();
+			var clazz:Class = Injector_bindProperties_001;
 			var member:Object = new Object();
 			var metadataName:String = "";
 			var argumentName:String = "ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789";
@@ -192,16 +196,16 @@ package net.fproject.di
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertFalse(true);
+			assertNull(returnTestValue);
 			//-------------------------------------
 		}
 
-		[Test (description="Boundary case: [clazz = new Class(), member = null, metadataName = '', argumentName = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789']")]
+		[Test (description="Boundary case: [clazz = Injector_bindProperties_001, member = null, metadataName = '', argumentName = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789']")]
 		/**
 		 * Test Case Type: Boundary<br/>
 		 * <br/>
 		 * INPUT VALUES:<br/>
-		 * <code>clazz = new Class()</code><br/>
+		 * <code>clazz = Injector_bindProperties_001</code><br/>
 		 * <code>member = null</code><br/>
 		 * <code>metadataName = ""</code><br/>
 		 * <code>argumentName = "ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789"</code><br/>
@@ -212,7 +216,7 @@ package net.fproject.di
 		 */
 		public function testCase007():void
 		{
-			var clazz:Class = new Class();
+			var clazz:Class = Injector_bindProperties_001;
 			var member:Object = null;
 			var metadataName:String = "";
 			var argumentName:String = "ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789";
@@ -220,7 +224,7 @@ package net.fproject.di
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertFalse(true);
+			assertNull(returnTestValue);
 			//-------------------------------------
 		}
 
@@ -248,16 +252,16 @@ package net.fproject.di
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertFalse(true);
+			assertNull(returnTestValue);
 			//-------------------------------------
 		}
 
-		[Test (description="Boundary case: [clazz = new Class(), member = new Object(), metadataName = null, argumentName = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789']")]
+		[Test (description="Boundary case: [clazz = Injector_bindProperties_001, member = new Object(), metadataName = null, argumentName = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789']")]
 		/**
 		 * Test Case Type: Boundary<br/>
 		 * <br/>
 		 * INPUT VALUES:<br/>
-		 * <code>clazz = new Class()</code><br/>
+		 * <code>clazz = Injector_bindProperties_001</code><br/>
 		 * <code>member = new Object()</code><br/>
 		 * <code>metadataName = null</code><br/>
 		 * <code>argumentName = "ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789"</code><br/>
@@ -268,7 +272,7 @@ package net.fproject.di
 		 */
 		public function testCase009():void
 		{
-			var clazz:Class = new Class();
+			var clazz:Class = Injector_bindProperties_001;
 			var member:Object = new Object();
 			var metadataName:String = null;
 			var argumentName:String = "ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789";
@@ -276,7 +280,7 @@ package net.fproject.di
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertFalse(true);
+			assertNull(returnTestValue);
 			//-------------------------------------
 		}
 
@@ -304,16 +308,16 @@ package net.fproject.di
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertFalse(true);
+			assertNull(returnTestValue);
 			//-------------------------------------
 		}
 
-		[Test (description="Boundary case: [clazz = new Class(), member = null, metadataName = null, argumentName = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789']")]
+		[Test (description="Boundary case: [clazz = Injector_bindProperties_001, member = null, metadataName = null, argumentName = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789']")]
 		/**
 		 * Test Case Type: Boundary<br/>
 		 * <br/>
 		 * INPUT VALUES:<br/>
-		 * <code>clazz = new Class()</code><br/>
+		 * <code>clazz = Injector_bindProperties_001</code><br/>
 		 * <code>member = null</code><br/>
 		 * <code>metadataName = null</code><br/>
 		 * <code>argumentName = "ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789"</code><br/>
@@ -324,7 +328,7 @@ package net.fproject.di
 		 */
 		public function testCase011():void
 		{
-			var clazz:Class = new Class();
+			var clazz:Class = Injector_bindProperties_001;
 			var member:Object = null;
 			var metadataName:String = null;
 			var argumentName:String = "ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789";
@@ -332,7 +336,7 @@ package net.fproject.di
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertFalse(true);
+			assertNull(returnTestValue);
 			//-------------------------------------
 		}
 
@@ -360,16 +364,16 @@ package net.fproject.di
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertFalse(true);
+			assertNull(returnTestValue);
 			//-------------------------------------
 		}
 
-		[Test (description="Boundary case: [clazz = new Class(), member = new Object(), metadataName = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789', argumentName = '']")]
+		[Test (description="Boundary case: [clazz = Injector_bindProperties_001, member = new Object(), metadataName = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789', argumentName = '']")]
 		/**
 		 * Test Case Type: Boundary<br/>
 		 * <br/>
 		 * INPUT VALUES:<br/>
-		 * <code>clazz = new Class()</code><br/>
+		 * <code>clazz = Injector_bindProperties_001</code><br/>
 		 * <code>member = new Object()</code><br/>
 		 * <code>metadataName = "ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789"</code><br/>
 		 * <code>argumentName = ""</code><br/>
@@ -380,7 +384,7 @@ package net.fproject.di
 		 */
 		public function testCase013():void
 		{
-			var clazz:Class = new Class();
+			var clazz:Class = Injector_bindProperties_001;
 			var member:Object = new Object();
 			var metadataName:String = "ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789";
 			var argumentName:String = "";
@@ -388,7 +392,7 @@ package net.fproject.di
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertFalse(true);
+			assertNull(returnTestValue);
 			//-------------------------------------
 		}
 
@@ -416,16 +420,16 @@ package net.fproject.di
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertFalse(true);
+			assertNull(returnTestValue);
 			//-------------------------------------
 		}
 
-		[Test (description="Boundary case: [clazz = new Class(), member = null, metadataName = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789', argumentName = '']")]
+		[Test (description="Boundary case: [clazz = Injector_bindProperties_001, member = null, metadataName = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789', argumentName = '']")]
 		/**
 		 * Test Case Type: Boundary<br/>
 		 * <br/>
 		 * INPUT VALUES:<br/>
-		 * <code>clazz = new Class()</code><br/>
+		 * <code>clazz = Injector_bindProperties_001</code><br/>
 		 * <code>member = null</code><br/>
 		 * <code>metadataName = "ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789"</code><br/>
 		 * <code>argumentName = ""</code><br/>
@@ -436,7 +440,7 @@ package net.fproject.di
 		 */
 		public function testCase015():void
 		{
-			var clazz:Class = new Class();
+			var clazz:Class = Injector_bindProperties_001;
 			var member:Object = null;
 			var metadataName:String = "ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789";
 			var argumentName:String = "";
@@ -444,7 +448,7 @@ package net.fproject.di
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertFalse(true);
+			assertNull(returnTestValue);
 			//-------------------------------------
 		}
 
@@ -472,16 +476,16 @@ package net.fproject.di
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertFalse(true);
+			assertNull(returnTestValue);
 			//-------------------------------------
 		}
 
-		[Test (description="Boundary case: [clazz = new Class(), member = new Object(), metadataName = '', argumentName = '']")]
+		[Test (description="Boundary case: [clazz = Injector_bindProperties_001, member = new Object(), metadataName = '', argumentName = '']")]
 		/**
 		 * Test Case Type: Boundary<br/>
 		 * <br/>
 		 * INPUT VALUES:<br/>
-		 * <code>clazz = new Class()</code><br/>
+		 * <code>clazz = Injector_bindProperties_001</code><br/>
 		 * <code>member = new Object()</code><br/>
 		 * <code>metadataName = ""</code><br/>
 		 * <code>argumentName = ""</code><br/>
@@ -492,7 +496,7 @@ package net.fproject.di
 		 */
 		public function testCase017():void
 		{
-			var clazz:Class = new Class();
+			var clazz:Class = Injector_bindProperties_001;
 			var member:Object = new Object();
 			var metadataName:String = "";
 			var argumentName:String = "";
@@ -500,7 +504,7 @@ package net.fproject.di
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertFalse(true);
+			assertNull(returnTestValue);
 			//-------------------------------------
 		}
 
@@ -528,16 +532,16 @@ package net.fproject.di
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertFalse(true);
+			assertNull(returnTestValue);
 			//-------------------------------------
 		}
 
-		[Test (description="Boundary case: [clazz = new Class(), member = null, metadataName = '', argumentName = '']")]
+		[Test (description="Boundary case: [clazz = Injector_bindProperties_001, member = null, metadataName = '', argumentName = '']")]
 		/**
 		 * Test Case Type: Boundary<br/>
 		 * <br/>
 		 * INPUT VALUES:<br/>
-		 * <code>clazz = new Class()</code><br/>
+		 * <code>clazz = Injector_bindProperties_001</code><br/>
 		 * <code>member = null</code><br/>
 		 * <code>metadataName = ""</code><br/>
 		 * <code>argumentName = ""</code><br/>
@@ -548,7 +552,7 @@ package net.fproject.di
 		 */
 		public function testCase019():void
 		{
-			var clazz:Class = new Class();
+			var clazz:Class = Injector_bindProperties_001;
 			var member:Object = null;
 			var metadataName:String = "";
 			var argumentName:String = "";
@@ -556,7 +560,7 @@ package net.fproject.di
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertFalse(true);
+			assertNull(returnTestValue);
 			//-------------------------------------
 		}
 
@@ -584,16 +588,16 @@ package net.fproject.di
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertFalse(true);
+			assertNull(returnTestValue);
 			//-------------------------------------
 		}
 
-		[Test (description="Boundary case: [clazz = new Class(), member = new Object(), metadataName = null, argumentName = '']")]
+		[Test (description="Boundary case: [clazz = Injector_bindProperties_001, member = new Object(), metadataName = null, argumentName = '']")]
 		/**
 		 * Test Case Type: Boundary<br/>
 		 * <br/>
 		 * INPUT VALUES:<br/>
-		 * <code>clazz = new Class()</code><br/>
+		 * <code>clazz = Injector_bindProperties_001</code><br/>
 		 * <code>member = new Object()</code><br/>
 		 * <code>metadataName = null</code><br/>
 		 * <code>argumentName = ""</code><br/>
@@ -604,7 +608,7 @@ package net.fproject.di
 		 */
 		public function testCase021():void
 		{
-			var clazz:Class = new Class();
+			var clazz:Class = Injector_bindProperties_001;
 			var member:Object = new Object();
 			var metadataName:String = null;
 			var argumentName:String = "";
@@ -612,7 +616,7 @@ package net.fproject.di
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertFalse(true);
+			assertNull(returnTestValue);
 			//-------------------------------------
 		}
 
@@ -640,16 +644,16 @@ package net.fproject.di
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertFalse(true);
+			assertNull(returnTestValue);
 			//-------------------------------------
 		}
 
-		[Test (description="Boundary case: [clazz = new Class(), member = null, metadataName = null, argumentName = '']")]
+		[Test (description="Boundary case: [clazz = Injector_bindProperties_001, member = null, metadataName = null, argumentName = '']")]
 		/**
 		 * Test Case Type: Boundary<br/>
 		 * <br/>
 		 * INPUT VALUES:<br/>
-		 * <code>clazz = new Class()</code><br/>
+		 * <code>clazz = Injector_bindProperties_001</code><br/>
 		 * <code>member = null</code><br/>
 		 * <code>metadataName = null</code><br/>
 		 * <code>argumentName = ""</code><br/>
@@ -660,7 +664,7 @@ package net.fproject.di
 		 */
 		public function testCase023():void
 		{
-			var clazz:Class = new Class();
+			var clazz:Class = Injector_bindProperties_001;
 			var member:Object = null;
 			var metadataName:String = null;
 			var argumentName:String = "";
@@ -668,7 +672,7 @@ package net.fproject.di
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertFalse(true);
+			assertNull(returnTestValue);
 			//-------------------------------------
 		}
 
@@ -696,16 +700,16 @@ package net.fproject.di
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertFalse(true);
+			assertNull(returnTestValue);
 			//-------------------------------------
 		}
 
-		[Test (description="Boundary case: [clazz = new Class(), member = new Object(), metadataName = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789', argumentName = null]")]
+		[Test (description="Boundary case: [clazz = Injector_bindProperties_001, member = new Object(), metadataName = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789', argumentName = null]")]
 		/**
 		 * Test Case Type: Boundary<br/>
 		 * <br/>
 		 * INPUT VALUES:<br/>
-		 * <code>clazz = new Class()</code><br/>
+		 * <code>clazz = Injector_bindProperties_001</code><br/>
 		 * <code>member = new Object()</code><br/>
 		 * <code>metadataName = "ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789"</code><br/>
 		 * <code>argumentName = null</code><br/>
@@ -716,7 +720,7 @@ package net.fproject.di
 		 */
 		public function testCase025():void
 		{
-			var clazz:Class = new Class();
+			var clazz:Class = Injector_bindProperties_001;
 			var member:Object = new Object();
 			var metadataName:String = "ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789";
 			var argumentName:String = null;
@@ -724,7 +728,7 @@ package net.fproject.di
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertFalse(true);
+			assertNull(returnTestValue);
 			//-------------------------------------
 		}
 
@@ -752,16 +756,16 @@ package net.fproject.di
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertFalse(true);
+			assertNull(returnTestValue);
 			//-------------------------------------
 		}
 
-		[Test (description="Boundary case: [clazz = new Class(), member = null, metadataName = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789', argumentName = null]")]
+		[Test (description="Boundary case: [clazz = Injector_bindProperties_001, member = null, metadataName = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789', argumentName = null]")]
 		/**
 		 * Test Case Type: Boundary<br/>
 		 * <br/>
 		 * INPUT VALUES:<br/>
-		 * <code>clazz = new Class()</code><br/>
+		 * <code>clazz = Injector_bindProperties_001</code><br/>
 		 * <code>member = null</code><br/>
 		 * <code>metadataName = "ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789"</code><br/>
 		 * <code>argumentName = null</code><br/>
@@ -772,7 +776,7 @@ package net.fproject.di
 		 */
 		public function testCase027():void
 		{
-			var clazz:Class = new Class();
+			var clazz:Class = Injector_bindProperties_001;
 			var member:Object = null;
 			var metadataName:String = "ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789";
 			var argumentName:String = null;
@@ -780,7 +784,7 @@ package net.fproject.di
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertFalse(true);
+			assertNull(returnTestValue);
 			//-------------------------------------
 		}
 
@@ -808,16 +812,16 @@ package net.fproject.di
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertFalse(true);
+			assertNull(returnTestValue);
 			//-------------------------------------
 		}
 
-		[Test (description="Boundary case: [clazz = new Class(), member = new Object(), metadataName = '', argumentName = null]")]
+		[Test (description="Boundary case: [clazz = Injector_bindProperties_001, member = new Object(), metadataName = '', argumentName = null]")]
 		/**
 		 * Test Case Type: Boundary<br/>
 		 * <br/>
 		 * INPUT VALUES:<br/>
-		 * <code>clazz = new Class()</code><br/>
+		 * <code>clazz = Injector_bindProperties_001</code><br/>
 		 * <code>member = new Object()</code><br/>
 		 * <code>metadataName = ""</code><br/>
 		 * <code>argumentName = null</code><br/>
@@ -828,7 +832,7 @@ package net.fproject.di
 		 */
 		public function testCase029():void
 		{
-			var clazz:Class = new Class();
+			var clazz:Class = Injector_bindProperties_001;
 			var member:Object = new Object();
 			var metadataName:String = "";
 			var argumentName:String = null;
@@ -836,7 +840,7 @@ package net.fproject.di
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertFalse(true);
+			assertNull(returnTestValue);
 			//-------------------------------------
 		}
 
@@ -864,16 +868,16 @@ package net.fproject.di
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertFalse(true);
+			assertNull(returnTestValue);
 			//-------------------------------------
 		}
 
-		[Test (description="Boundary case: [clazz = new Class(), member = null, metadataName = '', argumentName = null]")]
+		[Test (description="Boundary case: [clazz = Injector_bindProperties_001, member = null, metadataName = '', argumentName = null]")]
 		/**
 		 * Test Case Type: Boundary<br/>
 		 * <br/>
 		 * INPUT VALUES:<br/>
-		 * <code>clazz = new Class()</code><br/>
+		 * <code>clazz = Injector_bindProperties_001</code><br/>
 		 * <code>member = null</code><br/>
 		 * <code>metadataName = ""</code><br/>
 		 * <code>argumentName = null</code><br/>
@@ -884,7 +888,7 @@ package net.fproject.di
 		 */
 		public function testCase031():void
 		{
-			var clazz:Class = new Class();
+			var clazz:Class = Injector_bindProperties_001;
 			var member:Object = null;
 			var metadataName:String = "";
 			var argumentName:String = null;
@@ -892,7 +896,7 @@ package net.fproject.di
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertFalse(true);
+			assertNull(returnTestValue);
 			//-------------------------------------
 		}
 
@@ -920,16 +924,16 @@ package net.fproject.di
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertFalse(true);
+			assertNull(returnTestValue);
 			//-------------------------------------
 		}
 
-		[Test (description="Boundary case: [clazz = new Class(), member = new Object(), metadataName = null, argumentName = null]")]
+		[Test (description="Boundary case: [clazz = Injector_bindProperties_001, member = new Object(), metadataName = null, argumentName = null]")]
 		/**
 		 * Test Case Type: Boundary<br/>
 		 * <br/>
 		 * INPUT VALUES:<br/>
-		 * <code>clazz = new Class()</code><br/>
+		 * <code>clazz = Injector_bindProperties_001</code><br/>
 		 * <code>member = new Object()</code><br/>
 		 * <code>metadataName = null</code><br/>
 		 * <code>argumentName = null</code><br/>
@@ -940,7 +944,7 @@ package net.fproject.di
 		 */
 		public function testCase033():void
 		{
-			var clazz:Class = new Class();
+			var clazz:Class = Injector_bindProperties_001;
 			var member:Object = new Object();
 			var metadataName:String = null;
 			var argumentName:String = null;
@@ -948,7 +952,7 @@ package net.fproject.di
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertFalse(true);
+			assertNull(returnTestValue);
 			//-------------------------------------
 		}
 
@@ -976,16 +980,16 @@ package net.fproject.di
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertFalse(true);
+			assertNull(returnTestValue);
 			//-------------------------------------
 		}
 
-		[Test (description="Boundary case: [clazz = new Class(), member = null, metadataName = null, argumentName = null]")]
+		[Test (description="Boundary case: [clazz = Injector_bindProperties_001, member = null, metadataName = null, argumentName = null]")]
 		/**
 		 * Test Case Type: Boundary<br/>
 		 * <br/>
 		 * INPUT VALUES:<br/>
-		 * <code>clazz = new Class()</code><br/>
+		 * <code>clazz = Injector_bindProperties_001</code><br/>
 		 * <code>member = null</code><br/>
 		 * <code>metadataName = null</code><br/>
 		 * <code>argumentName = null</code><br/>
@@ -996,7 +1000,7 @@ package net.fproject.di
 		 */
 		public function testCase035():void
 		{
-			var clazz:Class = new Class();
+			var clazz:Class = Injector_bindProperties_001;
 			var member:Object = null;
 			var metadataName:String = null;
 			var argumentName:String = null;
@@ -1004,7 +1008,7 @@ package net.fproject.di
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertFalse(true);
+			assertNull(returnTestValue);
 			//-------------------------------------
 		}
 
@@ -1032,16 +1036,16 @@ package net.fproject.di
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertFalse(true);
+			assertNull(returnTestValue);
 			//-------------------------------------
 		}
 
-		[Test (description="Normal case: [clazz = new Class(), member = new Object(), metadataName = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789', argumentName = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789']")]
+		[Test (description="Normal case: [clazz = Injector_bindProperties_001, member = new Object(), metadataName = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789', argumentName = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789']")]
 		/**
 		 * Test Case Type: Normal<br/>
 		 * <br/>
 		 * INPUT VALUES:<br/>
-		 * <code>clazz = new Class()</code><br/>
+		 * <code>clazz = Injector_bindProperties_001</code><br/>
 		 * <code>member = new Object()</code><br/>
 		 * <code>metadataName = "ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789"</code><br/>
 		 * <code>argumentName = "ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789"</code><br/>
