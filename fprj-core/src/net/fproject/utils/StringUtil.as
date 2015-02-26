@@ -7,6 +7,8 @@
 ///////////////////////////////////////////////////////////////////////////////
 package net.fproject.utils
 {
+	import net.fproject.core.TimeUnit;
+
 	[ResourceBundle("fprjcore")]
 	public class StringUtil
 	{

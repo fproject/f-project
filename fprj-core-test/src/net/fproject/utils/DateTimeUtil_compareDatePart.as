@@ -2,6 +2,7 @@ package net.fproject.utils
 {
 	import org.flexunit.asserts.assertEquals;
 	import org.flexunit.asserts.assertFalse;
+	import net.fproject.core.TimeUnit;
 
 	/**
 	 * FlexUnit test case class for method<br/>
