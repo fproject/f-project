@@ -5,7 +5,7 @@
 // Copyright © 2015 f-project.net. All Rights Reserved.
 //
 ///////////////////////////////////////////////////////////////////////////////
-package net.fproject.model
+package net.fproject.core
 {
 	import flash.events.EventDispatcher;
 	
@@ -20,10 +20,12 @@ package net.fproject.model
 	import net.fproject.utils.LoggingUtil;
 	import net.fproject.utils.ResourceUtil;
 	import net.fproject.service.IAppContextService;
+	import net.fproject.model.User;
 	
 	/**
-	 * <p>AppContext class is used for bootstrapping this Flex application.
-	 * It is also used for storing application context data and application states
+	 * <p>AppContext class is used to bootstrap Flex application by
+	 * supplying properties and methods to store application context 
+	 * data and application states.
 	 * 
 	 * @author Bui Sy Nguyen
 	 * 

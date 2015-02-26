@@ -17,7 +17,7 @@ package net.fproject.service
 	import net.fproject.fproject_internal;
 	import net.fproject.di.InstanceFactory;
 	import net.fproject.event.AppContextEvent;
-	import net.fproject.model.AppContext;
+	import net.fproject.core.AppContext;
 	import net.fproject.rpc.IRemoteObject;
 	import net.fproject.rpc.RemoteObjectFactory;
 
