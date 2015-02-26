@@ -13,7 +13,7 @@ package net.fproject.core
 	 * <p>To specify the start of the <code>TimeRange</code>, use the <code>start</code> property.
 	 * To specify the end of the <code>TimeRange</code>, use the <code>end</code> property.</p>
 	 * 
-	 * @see net.fproject.utils.Time
+	 * @see net.fproject.core.Time
 	 * 
 	 */
 	public class TimeRange

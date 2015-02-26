@@ -57,16 +57,16 @@
     <classEntry path="net.fproject.utils.MathUtil"/>
     <classEntry path="net.fproject.utils.MessageUtil"/>
     <classEntry path="net.fproject.utils.NumberUtil"/>
-    <classEntry path="net.fproject.utils.Orientation"/>
+    <classEntry path="net.fproject.gui.Orientation"/>
     <classEntry path="net.fproject.utils.ResourceUtil"/>
-    <classEntry path="net.fproject.utils.SelectionMode"/>
+    <classEntry path="net.fproject.gui.SelectionMode"/>
     <classEntry path="net.fproject.utils.StringUtil"/>
     <classEntry path="net.fproject.core.Time"/>
     <classEntry path="net.fproject.core.TimePrecision"/>
     <classEntry path="net.fproject.core.TimeRange"/>
     <classEntry path="net.fproject.core.TimeUnit"/>
     <classEntry path="net.fproject.service.IAppContextService"/>
-    <classEntry path="net.fproject.model.AppContextDataDescriptor"/>
+    <classEntry path="net.fproject.core.AppContextDataDescriptor"/>
     <classEntry path="net.fproject.service.ServiceBase"/>
     <classEntry path="net.fproject.rpc.JSONPredefOperation"/>
   </includeClasses>
