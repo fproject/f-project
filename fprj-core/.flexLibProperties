@@ -49,8 +49,8 @@
     <classEntry path="net.fproject.utils.InstanceCache"/>
     <classEntry path="net.fproject.di.InstanceFactory"/>
     <classEntry path="net.fproject.utils.ItemRendererCache"/>
-    <classEntry path="net.fproject.utils.LinkedList"/>
-    <classEntry path="net.fproject.utils.LinkedListNode"/>
+    <classEntry path="net.fproject.core.LinkedList"/>
+    <classEntry path="net.fproject.core.LinkedListNode"/>
     <classEntry path="net.fproject.utils.LoggingUtil"/>
     <classEntry path="net.fproject.utils.LruCache"/>
     <classEntry path="net.fproject.utils.LunarCalendar"/>
@@ -61,10 +61,10 @@
     <classEntry path="net.fproject.utils.ResourceUtil"/>
     <classEntry path="net.fproject.utils.SelectionMode"/>
     <classEntry path="net.fproject.utils.StringUtil"/>
-    <classEntry path="net.fproject.utils.Time"/>
-    <classEntry path="net.fproject.utils.TimePrecision"/>
-    <classEntry path="net.fproject.utils.TimeRange"/>
-    <classEntry path="net.fproject.utils.TimeUnit"/>
+    <classEntry path="net.fproject.core.Time"/>
+    <classEntry path="net.fproject.core.TimePrecision"/>
+    <classEntry path="net.fproject.core.TimeRange"/>
+    <classEntry path="net.fproject.core.TimeUnit"/>
     <classEntry path="net.fproject.service.IAppContextService"/>
     <classEntry path="net.fproject.model.AppContextDataDescriptor"/>
     <classEntry path="net.fproject.service.ServiceBase"/>

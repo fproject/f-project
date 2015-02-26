@@ -17,9 +17,9 @@ package net.fproject.calendar
 	import net.fproject.utils.LruCache;
 	import net.fproject.utils.MessageUtil;
 	import net.fproject.utils.ResourceUtil;
-	import net.fproject.utils.Time;
-	import net.fproject.utils.TimeRange;
-	import net.fproject.utils.TimeUnit;
+	import net.fproject.core.Time;
+	import net.fproject.core.TimeRange;
+	import net.fproject.core.TimeUnit;
 
 	/**
 	 * FlexUnit test case class for method<br/>

@@ -8,6 +8,8 @@
 package net.fproject.utils
 {
     import flash.utils.*;
+    import net.fproject.core.LinkedList;
+    import net.fproject.core.LinkedListNode;
 
 	/**
 	 * A Dictionary implementing a cache using an LRU cache-replacement algorithm.
