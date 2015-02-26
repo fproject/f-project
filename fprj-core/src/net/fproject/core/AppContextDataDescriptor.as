@@ -5,7 +5,7 @@
 // Copyright © 2015 f-project.net. All Rights Reserved.
 //
 ///////////////////////////////////////////////////////////////////////////////
-package net.fproject.model
+package net.fproject.core
 {
 	public class AppContextDataDescriptor
 	{
