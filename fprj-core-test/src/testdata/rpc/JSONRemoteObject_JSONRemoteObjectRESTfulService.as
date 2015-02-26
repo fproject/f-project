@@ -1,10 +1,7 @@
 package testdata.rpc
 {
-	[RemoteObject(destination="http-destination",uri="/users")]
+	[RemoteObject(destination="test-http-destination",modelClass="testdata.rpc.TestUser",uri="/users")]
 	public class JSONRemoteObject_JSONRemoteObjectRESTfulService
 	{
-		public function JSONRemoteObject_JSONRemoteObjectRESTfulService()
-		{
-		}
 	}
 }

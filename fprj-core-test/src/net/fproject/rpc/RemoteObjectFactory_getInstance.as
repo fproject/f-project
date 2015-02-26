@@ -57,7 +57,7 @@ package net.fproject.rpc
 			
 			var cs:ChannelSet = ServerConfig.getChannelSet("http-destination");
 			var channel:Channel = ServerConfig.getChannel(cs.channelIds[0]);
-			var url:String = StringUtil.endsWith(channel.url, "/") ? channel.url + "myService" : channel.url + "/myService";
+			var url:String = StringUtil.endsWith(channel.url, "/") ? channel.url + "myservice" : channel.url + "/myservice";
 			assertEquals(url, jsonRemote.source);
 			
 			var meta:Object = jsonRemote.fproject_internal::operationNameToMetadata["method01"];
