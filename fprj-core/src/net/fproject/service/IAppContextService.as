@@ -5,7 +5,7 @@
 // Copyright © 2015 f-project.net. All Rights Reserved.
 //
 ///////////////////////////////////////////////////////////////////////////////
-package net.fproject.core
+package net.fproject.service
 {
 	import mx.rpc.CallResponder;
 	

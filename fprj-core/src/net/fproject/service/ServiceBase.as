@@ -5,7 +5,7 @@
 // Copyright © 2015 f-project.net. All Rights Reserved.
 //
 ///////////////////////////////////////////////////////////////////////////////
-package net.fproject.core
+package net.fproject.service
 {
 	import flash.utils.Dictionary;
 	
@@ -17,6 +17,7 @@ package net.fproject.core
 	import net.fproject.fproject_internal;
 	import net.fproject.di.InstanceFactory;
 	import net.fproject.event.AppContextEvent;
+	import net.fproject.model.AppContext;
 	import net.fproject.rpc.IRemoteObject;
 	import net.fproject.rpc.RemoteObjectFactory;
 
@@ -45,32 +46,32 @@ package net.fproject.core
 	{		
 		protected var responderToCallbackInfo:Dictionary;
 		
-		protected var _remoteService:IRemoteObject;
+		protected var _remoteObject:IRemoteObject;
 
 		/**
 		 * 
 		 * The remote service object
 		 * 
 		 */
-		protected function get remoteService():Object
+		protected function get remoteObject():Object
 		{
-			if(_remoteService == null)
+			if(_remoteObject == null)
 			{
 				//Initialize callback dictionary
 				responderToCallbackInfo = new Dictionary();
 				
-				_remoteService = RemoteObjectFactory.getInstance(this);
+				_remoteObject = RemoteObjectFactory.getInstance(this);
 				
 				//Set credentials if needed
-				if(_remoteService != null && _remoteService.channelSet.authenticated == false)
+				if(_remoteObject != null && _remoteObject.channelSet.authenticated == false)
 				{
-					_remoteService.setCredentials(appContext.loginUser.id,
+					_remoteObject.setCredentials(appContext.loginUser.id,
 						appContext.loginUser.token);
 				}				
 				
-				_remoteService.addEventListener(FaultEvent.FAULT, onServiceFailed, false, 0, true);
+				_remoteObject.addEventListener(FaultEvent.FAULT, onServiceFailed, false, 0, true);
 			}
-			return _remoteService;
+			return _remoteObject;
 		}
 
 		protected function deleteServiceCall(responder:CallResponder):void
@@ -204,7 +205,7 @@ package net.fproject.core
 		public function findOne(id:String,
 								completeCallback:Function=null, failCallback:Function=null):CallResponder
 		{
-			return createServiceCall(remoteService.findOne(id),
+			return createServiceCall(remoteObject.findOne(id),
 				completeCallback, failCallback);
 		}
 		
@@ -236,7 +237,7 @@ package net.fproject.core
 		public function find(filter:Object=null, pagination:Object=null,
 								completeCallback:Function=null, failCallback:Function=null):CallResponder
 		{
-			return createServiceCall(remoteService.find(filter, pagination),
+			return createServiceCall(remoteObject.find(filter, pagination),
 				completeCallback, failCallback);
 		}
 		
@@ -258,7 +259,7 @@ package net.fproject.core
 		public function save(model:Object,
 							 completeCallback:Function=null, failCallback:Function=null):CallResponder
 		{
-			return createServiceCall(remoteService.save(model),
+			return createServiceCall(remoteObject.save(model),
 				completeCallback, failCallback);
 		}
 		
@@ -279,7 +280,7 @@ package net.fproject.core
 		public function remove(id:String,
 							 completeCallback:Function=null, failCallback:Function=null):CallResponder
 		{
-			return createServiceCall(remoteService.remove(id),
+			return createServiceCall(remoteObject.remove(id),
 				completeCallback, failCallback);
 		}
 		
@@ -301,7 +302,7 @@ package net.fproject.core
 		public function batchSave(models:Array,
 							 completeCallback:Function=null, failCallback:Function=null):CallResponder
 		{
-			return createServiceCall(remoteService.batchSave(models),
+			return createServiceCall(remoteObject.batchSave(models),
 				completeCallback, failCallback);
 		}
 		
@@ -322,7 +323,7 @@ package net.fproject.core
 		public function batchRemove(ids:Array,
 							   completeCallback:Function=null, failCallback:Function=null):CallResponder
 		{
-			return createServiceCall(remoteService.batchRemove(ids),
+			return createServiceCall(remoteObject.batchRemove(ids),
 				completeCallback, failCallback);
 		}
 	}

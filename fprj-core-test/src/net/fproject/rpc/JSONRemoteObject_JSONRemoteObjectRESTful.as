@@ -41,9 +41,9 @@ package net.fproject.rpc
 		 * ---- expectations ----
 		 *
 		 */
-		public function testCase001():void
+		public function testCase100():void
 		{
-			var at:AsyncToken = restService.findAll();
+			var at:AsyncToken = restService.find();
 			Async.handleEvent(this, at, ResultEvent.RESULT, 
 				function(e:ResultEvent):void
 				{
@@ -70,7 +70,7 @@ package net.fproject.rpc
 		 * ---- expectations ----
 		 *
 		 */
-		public function testCase002():void
+		public function testCase200():void
 		{
 			var at:AsyncToken = restService.findOne(1);
 			Async.handleEvent(this, at, ResultEvent.RESULT, 
@@ -99,7 +99,7 @@ package net.fproject.rpc
 		 * ---- expectations ----
 		 *
 		 */
-		public function testCase003():void
+		public function testCase300():void
 		{
 			var at:AsyncToken = restService.save({"id":null,"name":"User 04","bod":1325397000000});
 			Async.handleEvent(this, at, ResultEvent.RESULT, 
@@ -128,7 +128,7 @@ package net.fproject.rpc
 		 * ---- expectations ----
 		 *
 		 */
-		public function testCase004():void
+		public function testCase400():void
 		{
 			var at:AsyncToken = restService.batchSave(
 				[
@@ -162,7 +162,7 @@ package net.fproject.rpc
 		 * ---- expectations ----
 		 *
 		 */
-		public function testCase005():void
+		public function testCase500():void
 		{
 			var at:AsyncToken = restService.remove(1);
 			Async.handleEvent(this, at, ResultEvent.RESULT, 
@@ -191,7 +191,7 @@ package net.fproject.rpc
 		 * ---- expectations ----
 		 *
 		 */
-		public function testCase006():void
+		public function testCase600():void
 		{
 			var at:AsyncToken = restService.batchRemove([2,3]);
 			Async.handleEvent(this, at, ResultEvent.RESULT, 
