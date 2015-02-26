@@ -18,7 +18,19 @@
             messageTypes="flex.messaging.messages.RemotingMessage">
             <destination id="http-destination">
                 <channels>
-                    <channel ref="http-chanel"/>
+                    <channel ref="local-http-chanel"/>
+                </channels>
+                <properties>
+                    <source>*</source>
+                </properties>
+            </destination>
+        </service>
+        <service id="testService"
+            class="flex.messaging.services.RemotingService"
+            messageTypes="flex.messaging.messages.RemotingMessage">
+            <destination id="test-http-destination">
+                <channels>
+                    <channel ref="test-http-chanel"/>
                 </channels>
                 <properties>
                     <source>*</source>
@@ -32,7 +44,11 @@
             <endpoint uri="http://localhost/projectkit/?r=amfGateway"
                 class="flex.messaging.endpoints.AMFEndpoint"/>
         </channel-definition>
-        <channel-definition id="http-chanel"
+        <channel-definition id="test-http-chanel"
+            class="net.fproject.rpc.JSONChannel">
+            <endpoint uri="http://test.f-project.net"/>
+        </channel-definition>
+        <channel-definition id="local-http-chanel"
             class="net.fproject.rpc.JSONChannel">
             <endpoint uri="http://localhost:9000/"/>
         </channel-definition>
