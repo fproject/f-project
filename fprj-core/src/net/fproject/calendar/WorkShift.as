@@ -9,8 +9,8 @@ package net.fproject.calendar
 {    
 	import net.fproject.fproject_internal;
 	import net.fproject.utils.MessageUtil;
-	import net.fproject.utils.Time;
-	import net.fproject.utils.TimeUnit;
+	import net.fproject.core.Time;
+	import net.fproject.core.TimeUnit;
 	
 	use namespace fproject_internal;
 	/**

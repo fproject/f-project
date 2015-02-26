@@ -12,6 +12,8 @@ package net.fproject.utils
 	import mx.resources.*;
 	
 	import net.fproject.fproject_internal;
+	import net.fproject.core.TimePrecision;
+	import net.fproject.core.TimeUnit;
 
 	[ResourceBundle("fprjcore")]
 	[ResourceBundle("fprjutils")]

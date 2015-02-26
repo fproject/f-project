@@ -8,7 +8,12 @@
 package net.fproject.calendar
 {
 	import net.fproject.fproject_internal;
-	import net.fproject.utils.*;
+	import net.fproject.core.Time;
+	import net.fproject.core.TimeRange;
+	import net.fproject.core.TimeUnit;
+	import net.fproject.utils.DateTimeUtil;
+	import net.fproject.utils.GregorianCalendar;
+	import net.fproject.utils.MessageUtil;
 	
 	use namespace fproject_internal;
 	

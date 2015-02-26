@@ -14,6 +14,7 @@ package net.fproject.utils
 	import mx.utils.StringUtil;
 	
 	import net.fproject.fproject_internal;
+	import net.fproject.core.TimeUnit;
 
 	use namespace mx_internal;
 

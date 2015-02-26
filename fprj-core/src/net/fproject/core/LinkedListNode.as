@@ -5,7 +5,7 @@
 // Copyright © 2013 f-project.net. All Rights Reserved.
 //
 ///////////////////////////////////////////////////////////////////////////////
-package net.fproject.utils
+package net.fproject.core
 {
 
 	/**
