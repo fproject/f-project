@@ -41,7 +41,7 @@
     <classEntry path="net.fproject.utils.CurrencyUtil"/>
     <classEntry path="net.fproject.utils.Cursor"/>
     <classEntry path="net.fproject.utils.DataUtil"/>
-    <classEntry path="net.fproject.utils.DateRange"/>
+    <classEntry path="net.fproject.core.DateRange"/>
     <classEntry path="net.fproject.utils.DateTimeUtil"/>
     <classEntry path="net.fproject.utils.GraphicsUtil"/>
     <classEntry path="net.fproject.utils.GregorianCalendar"/>
@@ -65,9 +65,9 @@
     <classEntry path="net.fproject.utils.TimePrecision"/>
     <classEntry path="net.fproject.utils.TimeRange"/>
     <classEntry path="net.fproject.utils.TimeUnit"/>
-    <classEntry path="net.fproject.core.IAppContextService"/>
-    <classEntry path="net.fproject.core.AppContextDataDescriptor"/>
-    <classEntry path="net.fproject.core.ServiceBase"/>
+    <classEntry path="net.fproject.service.IAppContextService"/>
+    <classEntry path="net.fproject.model.AppContextDataDescriptor"/>
+    <classEntry path="net.fproject.service.ServiceBase"/>
     <classEntry path="net.fproject.rpc.JSONPredefOperation"/>
   </includeClasses>
   <includeResources>

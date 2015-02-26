@@ -5,7 +5,7 @@
 // Copyright © 2015 f-project.net. All Rights Reserved.
 //
 ///////////////////////////////////////////////////////////////////////////////
-package net.fproject.core
+package net.fproject.model
 {
 	import flash.events.EventDispatcher;
 	
@@ -16,10 +16,10 @@ package net.fproject.core
 	import net.fproject.di.ImplementationConfig;
 	import net.fproject.di.InstanceFactory;
 	import net.fproject.event.AppContextEvent;
-	import net.fproject.model.User;
 	import net.fproject.rpc.RemoteObjectFactory;
 	import net.fproject.utils.LoggingUtil;
 	import net.fproject.utils.ResourceUtil;
+	import net.fproject.service.IAppContextService;
 	
 	/**
 	 * <p>AppContext class is used for bootstrapping this Flex application.

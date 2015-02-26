@@ -8,8 +8,9 @@
 package net.fproject.calendar
 {
 	import net.fproject.fproject_internal;
-	import net.fproject.utils.*;
+	import net.fproject.core.DateRange;
 	import net.fproject.utils.AdvancedDateFormatter;
+	import net.fproject.utils.DateTimeUtil;
 	
 	use namespace fproject_internal;
 	
