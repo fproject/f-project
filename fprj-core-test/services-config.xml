@@ -46,7 +46,7 @@
         </channel-definition>
         <channel-definition id="test-http-chanel"
             class="net.fproject.rpc.JSONChannel">
-            <endpoint uri="http://test.f-project.net"/>
+            <endpoint uri="http://localhost/fprj-test/web"/>
         </channel-definition>
         <channel-definition id="local-http-chanel"
             class="net.fproject.rpc.JSONChannel">
