@@ -1,7 +1,7 @@
 package net.fproject.rpc
 {
 	import org.flexunit.asserts.assertEquals;
-	import org.flexunit.asserts.assertFalse;
+	import org.flexunit.asserts.assertNull;
 
 	/**
 	 * FlexUnit test case class for method<br/>
@@ -45,7 +45,7 @@ package net.fproject.rpc
 			// the test always returns false!
 			assertEquals(service, returnTestValue.service);
 			assertEquals(name, returnTestValue.name);
-			assertFalse(returnTestValue.namedParams);
+			assertNull(returnTestValue.route);
 			//-------------------------------------
 		}
 
@@ -71,7 +71,7 @@ package net.fproject.rpc
 			// the test always returns false!
 			assertEquals(service, returnTestValue.service);
 			assertEquals(name, returnTestValue.name);
-			assertFalse(returnTestValue.namedParams);
+			assertNull(returnTestValue.route);
 			//-------------------------------------
 		}
 
@@ -97,7 +97,7 @@ package net.fproject.rpc
 			// the test always returns false!
 			assertEquals(service, returnTestValue.service);
 			assertEquals(name, returnTestValue.name);
-			assertFalse(returnTestValue.namedParams);
+			assertNull(returnTestValue.route);
 			//-------------------------------------
 		}
 
@@ -123,7 +123,7 @@ package net.fproject.rpc
 			// the test always returns false!
 			assertEquals(service, returnTestValue.service);
 			assertEquals(name, returnTestValue.name);
-			assertFalse(returnTestValue.namedParams);
+			assertNull(returnTestValue.route);
 			//-------------------------------------
 		}
 
@@ -149,7 +149,7 @@ package net.fproject.rpc
 			// the test always returns false!
 			assertEquals(service, returnTestValue.service);
 			assertEquals(name, returnTestValue.name);
-			assertFalse(returnTestValue.namedParams);
+			assertNull(returnTestValue.route);
 			//-------------------------------------
 		}
 
@@ -175,7 +175,7 @@ package net.fproject.rpc
 			// the test always returns false!
 			assertEquals(service, returnTestValue.service);
 			assertEquals(name, returnTestValue.name);
-			assertFalse(returnTestValue.namedParams);
+			assertNull(returnTestValue.route);
 			//-------------------------------------
 		}
 

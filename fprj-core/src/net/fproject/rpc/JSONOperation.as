@@ -45,14 +45,14 @@ package net.fproject.rpc
 		}
 		
 		/**
-		 * Use named parameters for 'POST' invokations.
-		 */
-		public var namedParams:Boolean = false;
-		
-		/**
 		 * HTTP method to use when invoking rpc.
 		 */
 		public var method:String = HTTPRequestMessage.GET_METHOD;
+		
+		/**
+		 * HTTP URI route to use when invoking rpc.
+		 */
+		public var route:String;
 		
 		/**
 		 * Retuning type, used to deserialize JSON data to strong typing models
@@ -97,8 +97,8 @@ package net.fproject.rpc
 				var meta:Object = remoteObject.fproject_internal::operationNameToMetadata[this.name];
 				if(meta.hasOwnProperty("method"))
 					this.method = meta["method"];
-				if(meta.hasOwnProperty("namedParams"))
-					this.namedParams = meta["namedParams"];
+				if(meta.hasOwnProperty("route"))
+					this.route = meta["route"];
 				if(meta.hasOwnProperty("returning"))
 					this.returning = meta["returning"];
 			}
