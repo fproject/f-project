@@ -7,7 +7,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 package net.fproject.service
 {
+	import flash.system.ApplicationDomain;
+	import flash.utils.getQualifiedClassName;
+	
 	import mx.rpc.CallResponder;
+	
+	import net.fproject.utils.StringUtil;
 
 	/**
 	 * <p>ActiveService implements a common set of operations for supporting remote access 
@@ -28,7 +33,7 @@ package net.fproject.service
 	 * </ul>
 	 *
 	 * <p>
-	 * To modify existing operation or add a new one, either override existing operation or 
+	 * To modify existing operation or add a new one, either override existing operation method or 
 	 * write a new operation method and specify appropriate information in [RESTOperation] metadata.</p>
 	 * Example:
 	 * <pre>
@@ -44,7 +49,24 @@ package net.fproject.service
 	 */
 	public class ActiveService extends ServiceBase
 	{		
+		private var _modelClass:Class;
+		public function get modelClass():Class
+		{
+			if(_modelClass == null)
+			{
+				var s:String = getQualifiedClassName(this);
+				var i:int = s.lastIndexOf("::");
+				s = s.substr(i + 1);
+				if(StringUtil.endsWith(s, "Service"))
+					s = s.substr(0, s.length - 7);
+				if(ApplicationDomain.currentDomain.hasDefinition(s))
+					_modelClass = ApplicationDomain.currentDomain.getDefinition(s) as Class;
+			}
+			
+			return _modelClass;
+		}
 		
+		[RESTOperation(method='GET', route="/:id")]
 		/**
 		 * Returns a single model instance by a primary key or a compsite value of primary key.
 		 *
@@ -75,6 +97,7 @@ package net.fproject.service
 				completeCallback, failCallback);
 		}
 		
+		[RESTOperation(method='GET', route="?filter=:filter&page=:page&per-page=:perPage")]
 		/**
 		 * Finds models by a filter condition and returns a set of model instances with pagination.
 		 *
@@ -85,8 +108,8 @@ package net.fproject.service
 		 * customer = customerService.find({condition:"name LIKE {name}",name:"ABC"});
 		 * 
 		 * // find a all customers whose name is like "ABC", paging with 10 records per page and
-		 * // seek to page 2
-		 * customer = customerService.find({condition:"name LIKE {name}",name:"ABC"},{page:2, perPage:10});</pre>
+		 * // seek to page #2
+		 * customer = customerService.find({condition:"name LIKE {name}",name:"ABC"}, page:2, perPage:10);</pre>
 		 *
 		 * @param filter the filter condition
 		 * @param pagination the pagination information
@@ -100,14 +123,14 @@ package net.fproject.service
 		 * The <code>result</code> field of RESULT event will be an array of model instances
 		 * matching the condition, or null if nothing matches.
 		 */
-		public function find(filter:Object=null, pagination:Object=null,
+		public function find(filter:Object=null, page:Number=NaN, perPage:Number=NaN,
 								completeCallback:Function=null, failCallback:Function=null):CallResponder
 		{
-			return createServiceCall(remoteObject.find(filter, pagination),
+			return createServiceCall(remoteObject.find(filter, page, perPage),
 				completeCallback, failCallback);
 		}
 		
-		
+		[RESTOperation(method='POST', route="/save")]
 		/**
 		 * Save a model object
 		 *
@@ -129,6 +152,7 @@ package net.fproject.service
 				completeCallback, failCallback);
 		}
 		
+		[RESTOperation(method='GET', route="/remove/:id")]
 		/**
 		 * Remove a model by its ID
 		 *
@@ -150,6 +174,7 @@ package net.fproject.service
 				completeCallback, failCallback);
 		}
 		
+		[RESTOperation(method='POST', route="/batch-save")]
 		/**
 		 * Batch save an array of models
 		 *
@@ -172,6 +197,7 @@ package net.fproject.service
 				completeCallback, failCallback);
 		}
 		
+		[RESTOperation(method='POST', route="/batch-remove")]
 		/**
 		 * Remove a set of models by IDs
 		 *
