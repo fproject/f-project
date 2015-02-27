@@ -12,7 +12,6 @@ package net.fproject.rpc
 	import mx.messaging.ChannelSet;
 	import mx.messaging.channels.HTTPChannel;
 	import mx.messaging.channels.SecureHTTPChannel;
-	import mx.messaging.messages.HTTPRequestMessage;
 	import mx.rpc.AbstractOperation;
 	import mx.rpc.AbstractService;
 	
@@ -33,22 +32,6 @@ package net.fproject.rpc
 		public function JSONRemoteObject(destination:String = null)
 		{
 			super(destination);
-			predefOperations = getPredefOperations();
-		}
-		
-		protected function getPredefOperations():Object
-		{
-			return {
-				findOne:{route:"/:id"},
-				findAll:{route:""},
-				find:{route:"/find", method:HTTPRequestMessage.POST_METHOD},
-				create:{route:"", method:HTTPRequestMessage.POST_METHOD, routeX:"/save", methodX:HTTPRequestMessage.POST_METHOD},
-				update:{route:"/:id", method:HTTPRequestMessage.PUT_METHOD, routeX:"/save", methodX:HTTPRequestMessage.POST_METHOD},
-				save:{route:"/save", method:HTTPRequestMessage.POST_METHOD},
-				batchSave:{route:"/batch-save", method:HTTPRequestMessage.POST_METHOD},
-				remove:{route:"/:id", method:HTTPRequestMessage.DELETE_METHOD, routeX:"/remove/:id", methodX:HTTPRequestMessage.POST_METHOD},
-				batchRemove:{route:"/batch-remove", method:HTTPRequestMessage.POST_METHOD}
-			};
 		}
 		
 		private var _source:String
@@ -76,14 +59,7 @@ package net.fproject.rpc
 			var op:AbstractOperation = super.getOperation(name);
 			if (op == null)
 			{
-				if(predefOperations != null && predefOperations[name] != undefined)
-				{
-					op = new JSONPredefOperation(this, name, predefOperations[name]);
-				}
-				else
-				{
-					op = new JSONOperation(this, name);
-				}		
+				op = new JSONOperation(this, name);
 				mx_internal::_operations[name] = op;
 				op.mx_internal::asyncRequest = mx_internal::asyncRequest;
 				op.mx_internal::setKeepLastResultIfNotSet(_keepLastResult);
@@ -122,11 +98,6 @@ package net.fproject.rpc
 				channelSet = null;
 			}
 		}
-		
-		/**
-		 * Predefined operations 
-		 */
-		public var predefOperations:Object;
 		
 		fproject_internal function initEndpoint():void
 		{
