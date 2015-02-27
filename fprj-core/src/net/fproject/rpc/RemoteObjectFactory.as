@@ -165,7 +165,6 @@ package net.fproject.rpc
 		private static const REST_OPERATION:String = "restoperation";
 		private static const METHOD:String = "method";
 		private static const RETURNING:String = "returning";
-		private static const NAMED_PARAMS:String = "namedParams";
 		private static const ROUTE:String = "route";
 		
 		private static function getOperationMetadata(type:Type):Object
@@ -190,25 +189,14 @@ package net.fproject.rpc
 							found = true;
 						}
 							
-						if(meta.hasArgumentWithKey(NAMED_PARAMS))
-						{
-							returnMeta.namedParams = ("true" == meta.getArgument(NAMED_PARAMS).value);
-							found = true;
-						}
-						else if(meta.arguments.length > 1 && StringUtil.isBlank(MetadataArgument(meta.arguments[1]).key))
-						{
-							returnMeta.namedParams = ("true" == MetadataArgument(meta.arguments[1]).value);
-							found = true;
-						}
-						
 						if(meta.hasArgumentWithKey(RETURNING))
 						{
 							returnMeta.returning = meta.getArgument(RETURNING).value;
 							found = true;
 						}
-						else if(meta.arguments.length > 2 && StringUtil.isBlank(MetadataArgument(meta.arguments[2]).key))
+						else if(meta.arguments.length > 1 && StringUtil.isBlank(MetadataArgument(meta.arguments[1]).key))
 						{
-							returnMeta.returning = MetadataArgument(meta.arguments[2]).value;
+							returnMeta.returning = MetadataArgument(meta.arguments[1]).value;
 							found = true;
 						}
 						
@@ -217,9 +205,9 @@ package net.fproject.rpc
 							returnMeta.route = meta.getArgument(ROUTE).value;
 							found = true;
 						}
-						else if(meta.arguments.length > 3 && StringUtil.isBlank(MetadataArgument(meta.arguments[3]).key))
+						else if(meta.arguments.length > 2 && StringUtil.isBlank(MetadataArgument(meta.arguments[2]).key))
 						{
-							returnMeta.route = MetadataArgument(meta.arguments[3]).value;
+							returnMeta.route = MetadataArgument(meta.arguments[2]).value;
 							found = true;
 						}
 						

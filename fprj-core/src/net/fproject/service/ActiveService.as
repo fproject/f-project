@@ -66,7 +66,7 @@ package net.fproject.service
 			return _modelClass;
 		}
 		
-		[RESTOperation(method='GET', route="/:id")]
+		[RESTOperation(method='GET', route="/{0}")]
 		/**
 		 * Returns a single model instance by a primary key or a compsite value of primary key.
 		 *
@@ -97,7 +97,7 @@ package net.fproject.service
 				completeCallback, failCallback);
 		}
 		
-		[RESTOperation(method='GET', route="?filter=:filter&page=:page&per-page=:perPage")]
+		[RESTOperation(method='GET', route="?filter={0}&page={1}&per-page={2}")]
 		/**
 		 * Finds models by a filter condition and returns a set of model instances with pagination.
 		 *
@@ -105,11 +105,11 @@ package net.fproject.service
 		 *
 		 * <pre>
 		 * // find a all customers whose name is like "ABC"
-		 * customer = customerService.find({condition:"name LIKE {name}",name:"ABC"});
+		 * customer = customerService.find({condition:"name LIKE :name",name:"ABC"});
 		 * 
 		 * // find a all customers whose name is like "ABC", paging with 10 records per page and
 		 * // seek to page #2
-		 * customer = customerService.find({condition:"name LIKE {name}",name:"ABC"}, page:2, perPage:10);</pre>
+		 * customer = customerService.find({condition:"name LIKE :name",name:"ABC"}, page:2, perPage:10);</pre>
 		 *
 		 * @param filter the filter condition
 		 * @param pagination the pagination information
@@ -152,7 +152,7 @@ package net.fproject.service
 				completeCallback, failCallback);
 		}
 		
-		[RESTOperation(method='GET', route="/remove/:id")]
+		[RESTOperation(method='GET', route="/remove/{0}")]
 		/**
 		 * Remove a model by its ID
 		 *
