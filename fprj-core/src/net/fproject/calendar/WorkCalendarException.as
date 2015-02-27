@@ -709,8 +709,8 @@ package net.fproject.calendar
 		private function get daysOfWeekBitTable():Array
 		{
 			if (_daysOfWeekBitTable == null)
-				_daysOfWeekBitTable = new Array(BIT_SUNDAY, BIT_MONDAY, BIT_TUESDAY,
-					BIT_WEDNESDAY, BIT_THURSDAY, BIT_FRIDAY, BIT_SATURDAY);
+				_daysOfWeekBitTable = [BIT_SUNDAY, BIT_MONDAY, BIT_TUESDAY,
+					BIT_WEDNESDAY, BIT_THURSDAY, BIT_FRIDAY, BIT_SATURDAY];
 			return _daysOfWeekBitTable;
 		}
 		
