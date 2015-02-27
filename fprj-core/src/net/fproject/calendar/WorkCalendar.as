@@ -418,8 +418,31 @@ package net.fproject.calendar
 		
 		
 		/**
-		 * The calendar exceptions for of this <code>WorkCalendar</code>.
 		 *
+		 * <p>List of the specific exceptions defined in this calendar.</p>
+		 * <p>
+		 * The <code>exceptions</code> property is a collection of 
+		 * <code>WorkCalendarException</code> objects.<br/>
+		 * The following mxml fragment shows how to specify that the period from
+		 * 8/1 to 8/7/2010 is a nonworking period, the period from 1/1 to 9/7/2010
+		 * has 7AM-1PM and 3PM-8PM as working times, and an exception on 25/1 yearly 
+		 * from 2010 will be nonworking day until 10 times occurs</p>
+		 * <pre>
+		 * &lt;cal:WorkCalendar baseCalendar="{WorkCalendar.STANDARD}"&gt;
+		 * 	&lt;cal:exceptions&gt;
+		 * 		&lt;cal:WorkCalendarException start="2010/8/1" end="2010/8/1" isWorking="false" /&gt;
+		 * 		&lt;cal:WorkCalendarException start="2010/1/1" end="2010/9/7" &gt;
+		 * 			&lt;cal:workShifts&gt;
+		 * 				&lt;cal:WorkShift start="07:00" end="13:00" /&gt;
+		 * 				&lt;cal:WorkShift start="15:00" end="20:00" /&gt;
+		 * 			&lt;/cal:workShifts&gt;
+		 * 		&lt;/cal:WorkCalendarException&gt;
+		 * 		&lt;cal:WorkCalendarException start="2010/1/25" end="2019/1/25" isWorking="false"
+		 * 			type="2", monthDay="25", monthIndex="0" /&gt;
+		 * 	&lt;/cal:exceptions&gt;
+		 * &lt;/cal:WorkCalendar&gt;
+		 * </pre>
+		 * 
 		 * @default null
 		 *
 		 * @see WorkCalendarException
