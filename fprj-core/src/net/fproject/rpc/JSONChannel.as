@@ -455,12 +455,6 @@ class JSONMessageResponder extends MessageResponder
 	/**
 	 *  Handle a request timeout by closing our associated URLLoader and
 	 *  faulting the message to the agent.
-	 *  
-	 *  @langversion 3.0
-	 *  @playerversion Flash 9
-	 *  @playerversion AIR 1.1
-	 *  @productversion BlazeDS 4
-	 *  @productversion LCDS 3 
 	 */
 	override protected function requestTimedOut():void
 	{

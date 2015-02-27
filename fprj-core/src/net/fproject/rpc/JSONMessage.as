@@ -31,7 +31,8 @@ package net.fproject.rpc
 		}   
 		
 		/**
-		 * Create an instance of JSONMessage from JSONOperation and the arguments of <code>send</code> method
+		 * Create an instance of JSONMessage from JSONOperation and the 
+		 * arguments of <code>send</code> method
 		 * @param operation
 		 * @param args
 		 * @return 
@@ -39,26 +40,8 @@ package net.fproject.rpc
 		 */
 		public static function prepare(operation:JSONOperation, sendingArgs:Array, token:AsyncToken):JSONMessage
 		{
-			// Determine parameters to send.
-			var params:Object = {};
-			if (operation.method == HTTPRequestMessage.GET_METHOD || operation.namedParams)
-			{
-				// Named parameters MUST be used
-				if (sendingArgs.length > 1) 
-				{
-					throw new Error("Un-named parameters can only be used if 'requestType' is 'POST' and 'useNamedParams' is set to false.");
-				}
-				
-				for (var argName:String in sendingArgs[0])
-				{
-					params[argName] = sendingArgs[0][argName];
-				}
-			} 
-			else
-			{
-				// Using array parameters
-				params = sendingArgs;
-			}
+			var preparedMsg:Object = prepareImpl(operation, sendingArgs, token);
+			
 			
 			// Create message to send.
 			var rpcMessage:JSONMessage 	= new JSONMessage();
@@ -67,21 +50,56 @@ package net.fproject.rpc
 			rpcMessage.messageId   		= UIDUtil.createUID();
 			rpcMessage.operation   		= operation.name;
 			rpcMessage.method      		= operation.method;
-			rpcMessage.url         		= rpcMessage.getServiceOperationUrl(operation);
+			rpcMessage.url         		= preparedMsg.url;
 			rpcMessage.destination 		= operation.service.destination;
 			
 			if (rpcMessage.method == HTTPRequestMessage.POST_METHOD) 
 			{
 				// JSON encode parameters in POST body
-				rpcMessage.body = Serializer.getInstance().toJSON(params);
+				rpcMessage.body = Serializer.getInstance().toJSON(preparedMsg.body);
 			} 
 			else 
 			{
 				// encode parameters in URL
-				rpcMessage.body = params;
+				rpcMessage.body = preparedMsg.params;
 			}
 			
 			return rpcMessage;
+		}
+		
+		private static function prepareImpl(operation:JSONOperation, sendingArgs:Array, token:AsyncToken):Object
+		{
+			var preparedMsg:Object = {};
+			var route:String = operation.route;
+			//Determine parameters to send.
+//			var params:Object = {};
+//			if (operation.method == HTTPRequestMessage.GET_METHOD || operation.namedParams)
+//			{
+//				// Named parameters MUST be used
+//				if (sendingArgs.length > 1) 
+//				{
+//					throw new Error("Un-named parameters can only be used if 'requestType' is 'POST' and 'useNamedParams' is set to false.");
+//				}
+//				
+//				for (var argName:String in sendingArgs[0])
+//				{
+//					params[argName] = sendingArgs[0][argName];
+//				}
+//			} 
+//			else
+//			{
+//				// Using array parameters
+//				params = sendingArgs;
+//			}
+			
+			return preparedMsg;
+		}
+		
+		private static function parseRoute(route:String):Object
+		{
+			var routeData:Object = {};
+			
+			return routeData;
 		}
 		
 		/**
