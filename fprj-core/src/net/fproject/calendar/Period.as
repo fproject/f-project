@@ -9,7 +9,6 @@ package net.fproject.calendar
 {
 	import net.fproject.fproject_internal;
 	import net.fproject.core.DateRange;
-	import net.fproject.utils.AdvancedDateFormatter;
 	import net.fproject.utils.DateTimeUtil;
 	
 	use namespace fproject_internal;
@@ -155,22 +154,22 @@ package net.fproject.calendar
 		 * <p>The date is formatted using the <code>yyyy/MM/dd</code> pattern.</p>
 		 * 
 		 */
-		public function get sStart() : String
+		/*public function get sStart() : String
 		{
 			var formatter:AdvancedDateFormatter = new AdvancedDateFormatter();
 			formatter.formatString = "yyyy/MM/dd";
 			return formatter.format(this._start);
-		}// end function
+		}*/// end function
 		
 		/**
 		 * 
 		 * @private
 		 * 
 		 */
-		public function set sStart(value:String) : void
+		/*public function set sStart(value:String) : void
 		{
 			this.start = new Date(value);
-		}// end function
+		}*/// end function
 		
 		/**
 		 * 
@@ -178,22 +177,22 @@ package net.fproject.calendar
 		 * <p>The date is formatted using the <code>yyyy/MM/dd</code> pattern.</p>
 		 * 
 		 */
-		public function get sEnd() : String
+		/*public function get sEnd() : String
 		{
 			var formatter:AdvancedDateFormatter = new AdvancedDateFormatter();
 			formatter.formatString = "yyyy/MM/dd";
 			return formatter.format(this._end);
-		}// end function
+		}*/// end function
 		
 		/**
 		 * 
 		 * @private
 		 * 
 		 */
-		public function set sEnd(value:String) : void
+		/*public function set sEnd(value:String) : void
 		{
 			this.end = new Date(value);
-		}// end function
+		}*/// end function
 		
 		/**
 		 * Create a Period object from an PeriodInternal object 
@@ -211,6 +210,5 @@ package net.fproject.calendar
 			period.workShifts = p.workShifts;
 			return period;
 		}// end function
-		
 	}
 }

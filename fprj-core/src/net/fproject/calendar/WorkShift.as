@@ -55,6 +55,7 @@ package net.fproject.calendar
 			this.endTime = TimeUnit.DAY.milliseconds;			
 		}// end function
 		
+		[Transient]
 		/**
 		 * <p>Gets or sets the end time in raw-data of the period.</p>
 		 * This property is expressed in milliseconds from midnight.<br/>
@@ -80,6 +81,7 @@ package net.fproject.calendar
 			_end = new Time(value);
 		}
 
+		[Transient]
 		/**
 		 * <p>Gets or sets the start time in raw-data of the period.</p>
 		 * This property is expressed in milliseconds from midnight. 
@@ -129,6 +131,7 @@ package net.fproject.calendar
 			}
 		}// end function
 		
+		[Transient]
 		/**
 		 *  
 		 * The duration of this working time in milliseconds. 
@@ -197,7 +200,7 @@ package net.fproject.calendar
 		 * Clone the object
 		 * 
 		 */
-		fproject_internal function clone() : WorkShift
+		public function clone() : WorkShift
 		{
 			return create(this.startTime, this.endTime);
 		}// end function
