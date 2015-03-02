@@ -75,17 +75,12 @@ package net.fproject.serialize
 		 * Serialize an AS3 object to JSON string.
 		 * 
 		 * @param object the object to encode
-		 * @param dateSerializeFunction The callback function to serialize date-time object to string
-		 * 								This function must have one parameter in type of Date and return String:
-		 * 								<pre>function myDateSerialize(s:Date):String</pre>.
 		 * 
 		 * @return the JSON string
 		 * 
 		 */
 		public function toJSON(object:Object):String
 		{
-			this.dateSerializeFunction = dateSerializeFunction; 
-			
 			return JSON.stringify(object);
 		}
 	}
