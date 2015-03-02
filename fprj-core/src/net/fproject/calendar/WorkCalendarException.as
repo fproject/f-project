@@ -8,7 +8,10 @@
 package net.fproject.calendar
 {
 	import net.fproject.fproject_internal;
-	import net.fproject.utils.*;
+	import net.fproject.utils.DateTimeUtil;
+	import net.fproject.utils.GregorianCalendar;
+	import net.fproject.utils.LoggingUtil;
+	import net.fproject.utils.ResourceUtil;
 	
 	use namespace fproject_internal;
 	
@@ -52,7 +55,6 @@ package net.fproject.calendar
 		private var _monthDay:uint;
 		private var _monthItem:uint;
 		private var _monthPosition:uint;		
-		private var _periods:Vector.<PeriodInternal>;
 		
 		/**
 		 * Constructor 
@@ -103,22 +105,14 @@ package net.fproject.calendar
 			this.description = description;
 		}
 		
-		
-		/**
-		 * The <code>WorkCalendar</code> periods created from the <code>WorkCalendarException</code> 
-		 * 
-		 */
-		public function get periods():Vector.<PeriodInternal>
-		{
-			return _periods;
-		}
-		
 		/**
 		 * Create <code>WorkCalendar</code> periods from the <code>WorkCalendarException</code>. 
 		 * @param calendar The <code>WorkCalendar</code> that this exception belongs to.
+		 * @return the periods
 		 */
-		public function createPeriods(calendar:WorkCalendar):void
+		fproject_internal function createPeriods(calendar:WorkCalendar):Vector.<PeriodInternal>
 		{
+			var _periods:Vector.<PeriodInternal>;
 			if (this.start == null || this.end == null)
 				LoggingUtil.logAndThrowError(WorkCalendarException, ResourceUtil.FPRJ_UTILITIES,
 					9, null, ResourceUtil.FPRJ_UTILS_BUNDLE, "illegal.calendar.exception.date.range", 
@@ -130,28 +124,27 @@ package net.fproject.calendar
 					_periods.push(PeriodInternal.create(calendar,this));
 					break;
 				case WEEKLY:
-					createWeeklyPeriods(calendar);
+					_periods = createWeeklyPeriods(calendar);
 					break;
 				case MONTHLY_MONTH_DAY:
-					createMonthlyMonthDayPeriods(calendar);
+					_periods = createMonthlyMonthDayPeriods(calendar);
 					break;
 				case MONTHLY_POSITIONAL:
-					createMonthlyPositionalPeriods(calendar);
+					_periods = createMonthlyPositionalPeriods(calendar);
 					break;
 				case YEARLY_MONTH_DAY:
-					createYearlyMonthDayPeriods(calendar);
+					_periods = createYearlyMonthDayPeriods(calendar);
 					break;
 				case YEARLY_POSITIONAL:
-					createYearlyPositionalPeriods(calendar);
+					_periods = createYearlyPositionalPeriods(calendar);
 					break
 				default:
-					/*throw new Error(MessageUtil.log(WorkCalendarException, LogEventLevel.ERROR, 
-						ResourceUtil.FPRJ_GANTT_BUNDLE, 
-						"illegal.calendar.exception.type", [_type]));*/
 					LoggingUtil.logAndThrowError(WorkCalendarException, ResourceUtil.FPRJ_UTILITIES,
 						1, null, ResourceUtil.FPRJ_UTILS_BUNDLE, "illegal.calendar.exception.type", [_type]);
 					break;
 			}
+			
+			return _periods;
 		}
 		
 		/**
@@ -159,7 +152,7 @@ package net.fproject.calendar
 		 * @param calendar
 		 * 
 		 */
-		private function createWeeklyPeriods(calendar:WorkCalendar):void
+		private function createWeeklyPeriods(calendar:WorkCalendar):Vector.<PeriodInternal>
 		{
 			var fromDate:Date;
 			var toDate:Date;
@@ -173,7 +166,7 @@ package net.fproject.calendar
 				fromDate = this.start;
 				toDate = this.end;
 			}
-			_periods = new Vector.<PeriodInternal>();			
+			var _periods:Vector.<PeriodInternal> = new Vector.<PeriodInternal>();			
 			var occurenceDays:Array = getWeeklyOccurrenceDays();
 			for each (var day:int in occurenceDays)
 			{
@@ -196,6 +189,8 @@ package net.fproject.calendar
 					}
 				}
 			}
+			
+			return _periods;
 		}
 		
 		/**
@@ -203,7 +198,7 @@ package net.fproject.calendar
 		 * @param calendar
 		 * 
 		 */
-		private function createMonthlyMonthDayPeriods(calendar:WorkCalendar):void
+		private function createMonthlyMonthDayPeriods(calendar:WorkCalendar):Vector.<PeriodInternal>
 		{
 			var fromDate:Date;
 			var toDate:Date;
@@ -217,7 +212,7 @@ package net.fproject.calendar
 				fromDate = this.start;
 				toDate = this.end;
 			}
-			_periods = new Vector.<PeriodInternal>();
+			var _periods:Vector.<PeriodInternal> = new Vector.<PeriodInternal>();
 			var month:Number = fromDate.month;
 			var year:Number = fromDate.fullYear;			
 			while (true)
@@ -246,6 +241,8 @@ package net.fproject.calendar
 				if(year >= toDate.fullYear && month > toDate.month)
 					break;
 			}
+			
+			return _periods;
 		}
 		
 		/**
@@ -253,7 +250,7 @@ package net.fproject.calendar
 		 * @param calendar
 		 * 
 		 */
-		private function createYearlyMonthDayPeriods(calendar:WorkCalendar):void
+		private function createYearlyMonthDayPeriods(calendar:WorkCalendar):Vector.<PeriodInternal>
 		{
 			var fromDate:Date;
 			var toDate:Date;
@@ -267,7 +264,7 @@ package net.fproject.calendar
 				fromDate = this.start;
 				toDate = this.end;
 			}
-			_periods = new Vector.<PeriodInternal>();
+			var _periods:Vector.<PeriodInternal> = new Vector.<PeriodInternal>();
 			var year:Number = fromDate.fullYear;	
 			while (true)
 			{
@@ -289,6 +286,8 @@ package net.fproject.calendar
 				if(year > toDate.fullYear)
 					break;
 			}
+			
+			return _periods;
 		}
 		
 		/**
@@ -296,7 +295,7 @@ package net.fproject.calendar
 		 * @param calendar
 		 * 
 		 */
-		private function createMonthlyPositionalPeriods(calendar:WorkCalendar):void
+		private function createMonthlyPositionalPeriods(calendar:WorkCalendar):Vector.<PeriodInternal>
 		{
 			var fromDate:Date;
 			var toDate:Date;
@@ -310,7 +309,7 @@ package net.fproject.calendar
 				fromDate = this.start;
 				toDate = this.end;
 			}
-			_periods = new Vector.<PeriodInternal>();
+			var _periods:Vector.<PeriodInternal> = new Vector.<PeriodInternal>();
 			
 			var period:PeriodInternal;			
 			var d:Date = positionalItemToDate(calendar.gregorianCalendar, fromDate.fullYear, fromDate.month)
@@ -320,7 +319,7 @@ package net.fproject.calendar
 				period = new PeriodInternal(calendar, this.isWorking, d, d, this.workShifts);
 				_periods.push(period);
 				if (DateTimeUtil.compareDatePart(d, toDate) >= 0)
-					return;
+					return _periods;
 			}
 			
 			var year:Number = fromDate.fullYear;			
@@ -345,7 +344,9 @@ package net.fproject.calendar
 					period = new PeriodInternal(calendar, this.isWorking, d, d, this.workShifts);
 					_periods.push(period);
 				}
-			}			
+			}
+			
+			return _periods;
 		}
 		
 		/**
@@ -353,7 +354,7 @@ package net.fproject.calendar
 		 * @param calendar
 		 * 
 		 */
-		private function createYearlyPositionalPeriods(calendar:WorkCalendar):void
+		private function createYearlyPositionalPeriods(calendar:WorkCalendar):Vector.<PeriodInternal>
 		{
 			var fromDate:Date;
 			var toDate:Date;
@@ -367,7 +368,7 @@ package net.fproject.calendar
 				fromDate = this.start;
 				toDate = this.end;
 			}
-			_periods = new Vector.<PeriodInternal>();
+			var _periods:Vector.<PeriodInternal> = new Vector.<PeriodInternal>();
 			
 			var period:PeriodInternal;			
 			var d:Date = positionalItemToDate(calendar.gregorianCalendar, fromDate.fullYear)
@@ -377,7 +378,7 @@ package net.fproject.calendar
 				period = new PeriodInternal(calendar, this.isWorking, d, d, this.workShifts);
 				_periods.push(period);
 				if (d.fullYear >= toDate.fullYear)
-					return;
+					return _periods;
 			}
 			
 			var year:Number = fromDate.fullYear;			
@@ -397,6 +398,8 @@ package net.fproject.calendar
 					_periods.push(period);
 				}
 			}
+			
+			return _periods;
 		}
 		
 		/**
