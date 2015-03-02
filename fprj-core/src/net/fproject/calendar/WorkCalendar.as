@@ -3231,16 +3231,5 @@ package net.fproject.calendar
 		}// end function
 		
 		//20130516 Added (End)
-		
-		/**
-		 * Create a <code>WorkCalendar</code> instance from a JSON string
-		 * @param json the JSON string that represents a work calendar
-		 * @return a <code>WorkCalendar</code> instance
-		 * 
-		 */
-		public static function fromJSON(json:String):WorkCalendar
-		{
-			return Deserializer.getInstance().fromJSON(json, WorkCalendar) as WorkCalendar;
-		}
 	}
 }
