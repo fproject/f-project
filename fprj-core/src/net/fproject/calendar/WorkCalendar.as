@@ -15,15 +15,16 @@ package net.fproject.calendar
 	import mx.resources.ResourceManager;
 	
 	import net.fproject.fproject_internal;
+	import net.fproject.core.Time;
+	import net.fproject.core.TimeRange;
+	import net.fproject.core.TimeUnit;
+	import net.fproject.serialize.Deserializer;
 	import net.fproject.utils.DateTimeUtil;
 	import net.fproject.utils.GregorianCalendar;
 	import net.fproject.utils.LoggingUtil;
 	import net.fproject.utils.LruCache;
 	import net.fproject.utils.MessageUtil;
 	import net.fproject.utils.ResourceUtil;
-	import net.fproject.core.Time;
-	import net.fproject.core.TimeRange;
-	import net.fproject.core.TimeUnit;
 	
 	use namespace fproject_internal;
 	
@@ -126,6 +127,7 @@ package net.fproject.calendar
 		private var _nextWorkingTimeCache:LruCache;
 		private var _nextNonWorkingTimeCache:LruCache;
 		private var _previousWorkingTimeCache:LruCache;
+		[Transient]
 		fproject_internal var _gregorianCalendar:GregorianCalendar;
 		private var _name:String;
 		private var _baseCalendar:WorkCalendar;
@@ -177,7 +179,6 @@ package net.fproject.calendar
 		private static var _resourceManager:IResourceManager;
 		private static var _defaultWorkShifts:Vector.<WorkShift>;
 		private static var _defaultNonWorkingDays:Vector.<uint>;
-		private static const _maxCacheSize:Number = 1024;
 		public static const CALRENDAR_NAME_DEFAULT:String = "Work Calendar";
 		public static const CALRENDAR_NAME_24HOURS:String = "24 Hours";
 		public static const CALRENDAR_NAME_STANDARD:String = "Standard";
@@ -222,7 +223,7 @@ package net.fproject.calendar
 			dispatchEvent(new FlexEvent(FlexEvent.INITIALIZE));
 		} // end function
 		
-		
+		[Transient]
 		/**
 		 * <p>The Gregorian calendar used to do computations on dates.</p>
 		 *
@@ -352,7 +353,7 @@ package net.fproject.calendar
 			}
 		} // end function
 		
-		
+		[Transient]
 		/**
 		 *
 		 * <p>List of the specific periods defined in this calendar.</p>
@@ -464,8 +465,8 @@ package net.fproject.calendar
 			
 			for each (var calException:WorkCalendarException in value)
 			{
-				calException.createPeriods(this);
-				for each (var period:PeriodInternal in calException.periods)
+				var pers:Vector.<PeriodInternal> = calException.fproject_internal::createPeriods(this);
+				for each (var period:PeriodInternal in pers)
 				{
 					if (period.isWorking)
 					{
@@ -564,6 +565,7 @@ package net.fproject.calendar
 				sameWorkingDays(obj._weekDays, this._weekDays) && samePeriods(obj._periods, this._periods);
 		} // end function
 		
+		[Transient]
 		/**
 		 * <p>Indicates whether the calendar is one of the predefined calendars.</p>
 		 *
@@ -661,6 +663,7 @@ package net.fproject.calendar
 				(this.name + " based on " + this.baseCalendar.name);
 		} // end function
 		
+		[Transient]
 		/**
 		 * <p>Indicates if the calendar is a root calendar.</p>
 		 *
@@ -3228,5 +3231,16 @@ package net.fproject.calendar
 		}// end function
 		
 		//20130516 Added (End)
+		
+		/**
+		 * Create a <code>WorkCalendar</code> instance from a JSON string
+		 * @param json the JSON string that represents a work calendar
+		 * @return a <code>WorkCalendar</code> instance
+		 * 
+		 */
+		public static function fromJSON(json:String):WorkCalendar
+		{
+			return Deserializer.getInstance().fromJSON(json, WorkCalendar) as WorkCalendar;
+		}
 	}
 }
