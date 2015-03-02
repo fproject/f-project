@@ -73,5 +73,6 @@ package net.fproject.calendar
 		public var workcalendarDateaddbyworkingdays:WorkCalendar_dateAddByWorkingDays;
 		public var workcalendarDatesubbywork:WorkCalendar_dateSubByWork;
 		public var workcalendarGetworkingtimeforunit:WorkCalendar_getWorkingTimeForUnit;
+		public var workCalendarFromJSON:WorkCalendar_fromJSON;
 	}
 }
