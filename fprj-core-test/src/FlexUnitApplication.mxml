@@ -9,12 +9,12 @@
 			   minWidth="955" minHeight="600" creationComplete="onCreationComplete()">
 	<fx:Script>
 		<![CDATA[
-			import net.fproject.rpc.JSONRemoteObject_JSONRemoteObjectRESTful;
+			import net.fproject.calendar.WorkCalendar_fromJSON;
 			
 			public function currentRunTestSuite():Array
 			{
 				var testsToRun:Array = new Array();
-				testsToRun.push(net.fproject.rpc.JSONRemoteObject_JSONRemoteObjectRESTful);
+				testsToRun.push(net.fproject.calendar.WorkCalendar_fromJSON);
 				return testsToRun;
 			}
 			
