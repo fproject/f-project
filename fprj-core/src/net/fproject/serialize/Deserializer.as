@@ -73,7 +73,7 @@ package net.fproject.serialize
 		 * @return				An instance of the supplied targetType containing all the properties extracted from
 		 * 						the supplied source object.
 		 */
-		public function extract(source : Object, targetType : Class) : *
+		private function extract(source : Object, targetType : Class) : *
 		{
 			return extractImpl(source, targetType);
 		}
@@ -364,9 +364,9 @@ package net.fproject.serialize
 		 * @return the output data in strong-typing format that specified by <code>returning</code>
 		 * 
 		 */
-		public function fromJSON(json:String, returning:String=null):Object
+		public function fromJSON(json:String, returning:*=undefined):Object
 		{
-			if(returning == null)
+			if(returning == undefined)
 				return JSON.parse(json);
 			
 			if(returning != null && returning.length > 2 && returning.substr(-2) == "[]")
@@ -374,12 +374,20 @@ package net.fproject.serialize
 				returning = returning.substr(0, returning.length - 2);
 			}
 			
-			if(retuningToClass[returning] == undefined)
+			if(returning is String)
 			{
-				retuningToClass[returning] = getClassByAlias(returning);
+				if(retuningToClass[returning] == undefined)
+				{
+					retuningToClass[returning] = getClassByAlias(returning);
+				}
+				
+				var clazz:Class = retuningToClass[returning] as Class;
+				
 			}
-			
-			var clazz:Class = retuningToClass[returning] as Class;
+			else
+			{
+				clazz = Class(returning) ;
+			}
 			
 			var obj:Object = JSON.parse(json);
 			
