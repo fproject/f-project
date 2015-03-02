@@ -527,10 +527,9 @@ package net.fproject.calendar
 		 */
 		public function set weekDays(value:Vector.<WeekDay>):void
 		{
-			var weekDay:WeekDay = null;
 			this.assertNotReadOnly();
 			this._weekDays = new Vector.<WeekDayInternal>(7);
-			for each (weekDay in value)
+			for each (var weekDay:WeekDay in value)
 			{
 				this._weekDays[weekDay.dayOfWeek] =
 					WeekDayInternal.create(this, weekDay);
