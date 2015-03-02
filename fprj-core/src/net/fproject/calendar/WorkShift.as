@@ -179,7 +179,7 @@ package net.fproject.calendar
 		 */
 		public function get end() : String
 		{
-			return (new Time(this.endTime)).toString();
+			return _end.toString();
 		}// end function
 		
 		
