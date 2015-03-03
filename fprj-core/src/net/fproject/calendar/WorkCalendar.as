@@ -182,7 +182,6 @@ package net.fproject.calendar
 		public static const CALRENDAR_NAME_STANDARD:String = "Standard";
 		public static const CALRENDAR_NAME_NIGHT_SHIFT:String = "Night Shift";
 		
-		[ResourceBundle("fprjutils")]
 		/**
 		 * Initializes a new instance of the <code>WorkCalendar</code> class.
 		 *
