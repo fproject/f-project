@@ -126,6 +126,59 @@ package net.fproject.utils
 		}
 		
 		/**
+		 *  Gets the value of a specified resource as an Array of Strings.
+		 *
+		 *  <p>This method assumes that the resource value is a String
+		 *  containing a comma-separated list of items.
+		 *  It calls the <code>getString()</code> method, splits the String
+		 *  into items at the commas, and trims white space
+		 *  before and after each item.
+		 *  It is useful if you have written a line such as:</p>
+		 *
+		 *  <pre>
+		 *  COUNTRIES=India, China, Japan
+		 *  </pre>
+		 *
+		 *  <p>in a properties file and you want to obtain the value
+		 *  <code>[ "India", "China", "Japan" ]</code>
+		 *  rather than the value <code>"India, China, Japan"</code>.</p> 
+		 *
+		 *  <p>If the specified resource is not found,
+		 *  this method returns <code>null</code>.</p>
+		 *
+		 *  @param bundleName The name of a resource bundle.
+		 *
+		 *  @param resourceName The name of a resource in the resource bundle.
+		 *
+		 *  @param locale A specific locale to be used for the lookup,
+		 *  or <code>null</code> to search all locales
+		 *  in the <code>localeChain</code>.
+		 *  This parameter is optional and defaults to <code>null</code>;
+		 *  you should seldom need to specify it.
+		 *
+		 *  @return The resource value, as an Array of Strings,
+		 *  or <code>null</code> if it is not found.
+		 *  
+		 */
+		public static function getStringArray(key:String, resourceBundle:String = null,
+										 locale:String = null):Array 
+		{
+			var a:Array;
+			try
+			{
+				if (resourceBundle == null){
+					resourceBundle = defaultResourceBundle;
+				}
+				a = ResourceManager.getInstance().getStringArray(resourceBundle, key, locale);
+			} 
+			catch (e:Error) 
+			{
+				a = null;
+			}
+			return a;
+		}
+		
+		/**
 		 *  Gets the value of a specified resource as a Boolean.
 		 *
 		 *  <p>This method first calls <code>getString()</code>
