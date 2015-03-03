@@ -252,6 +252,11 @@ package net.fproject.calendar
 		} // end function
 		
 		/**
+		 * The unique ID of this calendar using for serialization/deserialization
+		 */
+		public var id:String;
+		
+		/**
 		 *
 		 * <p>The name of the calendar.
 		 * </p><p> The default value is <code>"default"</code>.</p>
