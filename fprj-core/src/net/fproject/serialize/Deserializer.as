@@ -356,18 +356,20 @@ package net.fproject.serialize
 		/**
 		 * Deserialize a JSON string to an AS3 object with strong typing.
 		 * 
-		 * @param json the JSON string to decode
+		 * @param json the JSON string to decode or a generic Object instance
+		 * that need to be converted to the specific type.
 		 * @param returning the ouput type specification, using alias of a model class.
 		 * This can be a single type such as <code>"com.mycompany.Employee[]"</code>,
-		 * or an array type such as <code>"com.mycompany.Employee[]"</code>
+		 * or an array type such as <code>"com.mycompany.Employee[]"</code>.
+		 * You can also directly pass a AS3 Class object such as com.mycompany.Employee.
 		 * 
 		 * @return the output data in strong-typing format that specified by <code>returning</code>
 		 * 
 		 */
-		public function fromJSON(json:String, returning:*=undefined):Object
+		public function fromJSON(json:*, returning:*=undefined):Object
 		{
 			if(returning == undefined)
-				return JSON.parse(json);
+				return (json is String) ? JSON.parse(json) : json;
 			
 			if(returning != null && returning.length > 2 && returning.substr(-2) == "[]")
 			{
@@ -389,7 +391,7 @@ package net.fproject.serialize
 				clazz = Class(returning) ;
 			}
 			
-			var obj:Object = JSON.parse(json);
+			var obj:Object = (json is String) ? JSON.parse(json) : json;
 			
 			if(obj is Array)
 			{
