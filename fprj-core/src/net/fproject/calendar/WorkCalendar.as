@@ -12,13 +12,11 @@ package net.fproject.calendar
 	
 	import mx.events.FlexEvent;
 	import mx.resources.IResourceManager;
-	import mx.resources.ResourceManager;
 	
 	import net.fproject.fproject_internal;
 	import net.fproject.core.Time;
 	import net.fproject.core.TimeRange;
 	import net.fproject.core.TimeUnit;
-	import net.fproject.serialize.Deserializer;
 	import net.fproject.utils.DateTimeUtil;
 	import net.fproject.utils.GregorianCalendar;
 	import net.fproject.utils.LoggingUtil;
@@ -2717,26 +2715,11 @@ package net.fproject.calendar
 			if (_defaultWorkShifts == null)
 			{
 				var defaultWorkingTimesArr:Array =
-					resourceManager.getStringArray(ResourceUtil.FPRJ_GANTT_BUNDLE,
-						"default.workshifts");
+					ResourceUtil.getStringArray("default.workshifts");
 				//"08:30,12:00,13:00,17:30".split(",");
 				setDefaultWorkShiftsInternal(defaultWorkingTimesArr);
 			}
 			return _defaultWorkShifts;
-		} // end function
-		
-		/**
-		 *
-		 * @private
-		 *
-		 */
-		private static function get resourceManager():IResourceManager
-		{
-			if (_resourceManager == null)
-			{
-				_resourceManager = ResourceManager.getInstance();
-			}
-			return _resourceManager;
 		} // end function
 		
 		/**
@@ -2753,8 +2736,7 @@ package net.fproject.calendar
 			{
 				_defaultNonWorkingDays = new Vector.<uint>;
 				nonWdStr =
-					resourceManager.getString(ResourceUtil.FPRJ_GANTT_BUNDLE,
-						"default.non.working.days.of.week");
+					ResourceUtil.getString("default.non.working.days.of.week");
 				if (nonWdStr == null)
 				{
 					_defaultNonWorkingDays.splice(0, 0, 0, 6);
