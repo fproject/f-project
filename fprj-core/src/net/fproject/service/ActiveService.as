@@ -119,11 +119,11 @@ package net.fproject.service
 		 *
 		 * <pre>
 		 * // find a all customers whose name is like "ABC"
-		 * customer = customerService.find({condition:"name LIKE :name",name:"ABC"});
+		 * customer = customerService.find({condition:"name LIKE :name",params:{name:"ABC"}});
 		 * 
 		 * // find a all customers whose name is like "ABC", paging with 10 records per page and
 		 * // seek to page #2
-		 * customer = customerService.find({condition:"name LIKE :name",name:"ABC"}, page:2, perPage:10);</pre>
+		 * customer = customerService.find({condition:"name LIKE :name",params:{name:"ABC"}}, page:2, perPage:10);</pre>
 		 *
 		 * @param filter the filter condition
 		 * @param pagination the pagination information
