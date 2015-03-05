@@ -1,6 +1,6 @@
 package testdata.di
 {
-	public class Injector_findMemberMetadataValue_037
+	public class InjectionUtil_findMemberMetadataValue_037
 	{
 		[Abc(a="a",b="b",c="c")]
 		[Def("Def")]

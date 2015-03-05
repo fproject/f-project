@@ -68,6 +68,7 @@
     <classEntry path="net.fproject.service.IAppContextService"/>
     <classEntry path="net.fproject.core.AppContextDataDescriptor"/>
     <classEntry path="net.fproject.service.ServiceBase"/>
+    <classEntry path="net.fproject.di.InjectionUtil"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="manifest.xml" sourcePath="manifest.xml"/>

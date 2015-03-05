@@ -7,8 +7,8 @@ package net.fproject.di
 	import org.flexunit.asserts.assertTrue;
 	
 	import testdata.di.Injector_bindProperties_001;
-	import testdata.di.Injector_findMemberMetadataValue_001;
-	import testdata.di.Injector_findMemberMetadataValue_037;
+	import testdata.di.InjectionUtil_findMemberMetadataValue_001;
+	import testdata.di.InjectionUtil_findMemberMetadataValue_037;
 
 	[ResourceBundle("fprjcore")]
 	/**
@@ -17,7 +17,7 @@ package net.fproject.di
 	 * of class<br/>
 	 * net.fproject.utils.Injector
 	 */
-	public class Injector_findMemberMetadataValue
+	public class InjectionUtil_findClassMetadataValue
 	{
 		[Before]
 		public function runBeforeEveryTest():void
@@ -47,12 +47,12 @@ package net.fproject.di
 		 */
 		public function testCase001():void
 		{
-			var container:Injector_findMemberMetadataValue_001 = new Injector_findMemberMetadataValue_001();
+			var container:InjectionUtil_findMemberMetadataValue_001 = new InjectionUtil_findMemberMetadataValue_001();
 			var member:Label = container.label;
 			var metadataName:String = "Abc";
 			var argumentName:String = "a";
-			var returnTestValue:Object = Injector.findMemberMetadataValue(
-				Injector_findMemberMetadataValue_001, member, metadataName, argumentName);
+			var returnTestValue:Object = InjectionUtil.findMemberMetadataValue(
+				InjectionUtil_findMemberMetadataValue_001, member, metadataName, argumentName);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -76,11 +76,11 @@ package net.fproject.di
 		 */
 		public function testCase002():void
 		{
-			var container:Injector_findMemberMetadataValue_001 = new Injector_findMemberMetadataValue_001();
+			var container:InjectionUtil_findMemberMetadataValue_001 = new InjectionUtil_findMemberMetadataValue_001();
 			var metadataName:String = "Abc";
 			var argumentName:String = "b";
-			var returnTestValue:Object = Injector.findMemberMetadataValue(
-				Injector_findMemberMetadataValue_001, 'label', metadataName, argumentName);
+			var returnTestValue:Object = InjectionUtil.findMemberMetadataValue(
+				InjectionUtil_findMemberMetadataValue_001, 'label', metadataName, argumentName);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -108,7 +108,7 @@ package net.fproject.di
 			var member:Object = null;
 			var metadataName:String = "ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789";
 			var argumentName:String = "ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789";
-			var returnTestValue:Object = Injector.findMemberMetadataValue(clazz, member, metadataName, argumentName);
+			var returnTestValue:Object = InjectionUtil.findMemberMetadataValue(clazz, member, metadataName, argumentName);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -136,7 +136,7 @@ package net.fproject.di
 			var member:Object = null;
 			var metadataName:String = "ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789";
 			var argumentName:String = "ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789";
-			var returnTestValue:Object = Injector.findMemberMetadataValue(clazz, member, metadataName, argumentName);
+			var returnTestValue:Object = InjectionUtil.findMemberMetadataValue(clazz, member, metadataName, argumentName);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -164,7 +164,7 @@ package net.fproject.di
 			var member:Object = new Object();
 			var metadataName:String = "";
 			var argumentName:String = "ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789";
-			var returnTestValue:Object = Injector.findMemberMetadataValue(clazz, member, metadataName, argumentName);
+			var returnTestValue:Object = InjectionUtil.findMemberMetadataValue(clazz, member, metadataName, argumentName);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -192,7 +192,7 @@ package net.fproject.di
 			var member:Object = new Object();
 			var metadataName:String = "";
 			var argumentName:String = "ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789";
-			var returnTestValue:Object = Injector.findMemberMetadataValue(clazz, member, metadataName, argumentName);
+			var returnTestValue:Object = InjectionUtil.findMemberMetadataValue(clazz, member, metadataName, argumentName);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -220,7 +220,7 @@ package net.fproject.di
 			var member:Object = null;
 			var metadataName:String = "";
 			var argumentName:String = "ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789";
-			var returnTestValue:Object = Injector.findMemberMetadataValue(clazz, member, metadataName, argumentName);
+			var returnTestValue:Object = InjectionUtil.findMemberMetadataValue(clazz, member, metadataName, argumentName);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -248,7 +248,7 @@ package net.fproject.di
 			var member:Object = null;
 			var metadataName:String = "";
 			var argumentName:String = "ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789";
-			var returnTestValue:Object = Injector.findMemberMetadataValue(clazz, member, metadataName, argumentName);
+			var returnTestValue:Object = InjectionUtil.findMemberMetadataValue(clazz, member, metadataName, argumentName);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -276,7 +276,7 @@ package net.fproject.di
 			var member:Object = new Object();
 			var metadataName:String = null;
 			var argumentName:String = "ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789";
-			var returnTestValue:Object = Injector.findMemberMetadataValue(clazz, member, metadataName, argumentName);
+			var returnTestValue:Object = InjectionUtil.findMemberMetadataValue(clazz, member, metadataName, argumentName);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -304,7 +304,7 @@ package net.fproject.di
 			var member:Object = new Object();
 			var metadataName:String = null;
 			var argumentName:String = "ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789";
-			var returnTestValue:Object = Injector.findMemberMetadataValue(clazz, member, metadataName, argumentName);
+			var returnTestValue:Object = InjectionUtil.findMemberMetadataValue(clazz, member, metadataName, argumentName);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -332,7 +332,7 @@ package net.fproject.di
 			var member:Object = null;
 			var metadataName:String = null;
 			var argumentName:String = "ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789";
-			var returnTestValue:Object = Injector.findMemberMetadataValue(clazz, member, metadataName, argumentName);
+			var returnTestValue:Object = InjectionUtil.findMemberMetadataValue(clazz, member, metadataName, argumentName);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -360,7 +360,7 @@ package net.fproject.di
 			var member:Object = null;
 			var metadataName:String = null;
 			var argumentName:String = "ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789";
-			var returnTestValue:Object = Injector.findMemberMetadataValue(clazz, member, metadataName, argumentName);
+			var returnTestValue:Object = InjectionUtil.findMemberMetadataValue(clazz, member, metadataName, argumentName);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -388,7 +388,7 @@ package net.fproject.di
 			var member:Object = new Object();
 			var metadataName:String = "ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789";
 			var argumentName:String = "";
-			var returnTestValue:Object = Injector.findMemberMetadataValue(clazz, member, metadataName, argumentName);
+			var returnTestValue:Object = InjectionUtil.findMemberMetadataValue(clazz, member, metadataName, argumentName);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -416,7 +416,7 @@ package net.fproject.di
 			var member:Object = new Object();
 			var metadataName:String = "ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789";
 			var argumentName:String = "";
-			var returnTestValue:Object = Injector.findMemberMetadataValue(clazz, member, metadataName, argumentName);
+			var returnTestValue:Object = InjectionUtil.findMemberMetadataValue(clazz, member, metadataName, argumentName);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -444,7 +444,7 @@ package net.fproject.di
 			var member:Object = null;
 			var metadataName:String = "ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789";
 			var argumentName:String = "";
-			var returnTestValue:Object = Injector.findMemberMetadataValue(clazz, member, metadataName, argumentName);
+			var returnTestValue:Object = InjectionUtil.findMemberMetadataValue(clazz, member, metadataName, argumentName);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -472,7 +472,7 @@ package net.fproject.di
 			var member:Object = null;
 			var metadataName:String = "ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789";
 			var argumentName:String = "";
-			var returnTestValue:Object = Injector.findMemberMetadataValue(clazz, member, metadataName, argumentName);
+			var returnTestValue:Object = InjectionUtil.findMemberMetadataValue(clazz, member, metadataName, argumentName);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -500,7 +500,7 @@ package net.fproject.di
 			var member:Object = new Object();
 			var metadataName:String = "";
 			var argumentName:String = "";
-			var returnTestValue:Object = Injector.findMemberMetadataValue(clazz, member, metadataName, argumentName);
+			var returnTestValue:Object = InjectionUtil.findMemberMetadataValue(clazz, member, metadataName, argumentName);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -528,7 +528,7 @@ package net.fproject.di
 			var member:Object = new Object();
 			var metadataName:String = "";
 			var argumentName:String = "";
-			var returnTestValue:Object = Injector.findMemberMetadataValue(clazz, member, metadataName, argumentName);
+			var returnTestValue:Object = InjectionUtil.findMemberMetadataValue(clazz, member, metadataName, argumentName);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -556,7 +556,7 @@ package net.fproject.di
 			var member:Object = null;
 			var metadataName:String = "";
 			var argumentName:String = "";
-			var returnTestValue:Object = Injector.findMemberMetadataValue(clazz, member, metadataName, argumentName);
+			var returnTestValue:Object = InjectionUtil.findMemberMetadataValue(clazz, member, metadataName, argumentName);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -584,7 +584,7 @@ package net.fproject.di
 			var member:Object = null;
 			var metadataName:String = "";
 			var argumentName:String = "";
-			var returnTestValue:Object = Injector.findMemberMetadataValue(clazz, member, metadataName, argumentName);
+			var returnTestValue:Object = InjectionUtil.findMemberMetadataValue(clazz, member, metadataName, argumentName);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -612,7 +612,7 @@ package net.fproject.di
 			var member:Object = new Object();
 			var metadataName:String = null;
 			var argumentName:String = "";
-			var returnTestValue:Object = Injector.findMemberMetadataValue(clazz, member, metadataName, argumentName);
+			var returnTestValue:Object = InjectionUtil.findMemberMetadataValue(clazz, member, metadataName, argumentName);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -640,7 +640,7 @@ package net.fproject.di
 			var member:Object = new Object();
 			var metadataName:String = null;
 			var argumentName:String = "";
-			var returnTestValue:Object = Injector.findMemberMetadataValue(clazz, member, metadataName, argumentName);
+			var returnTestValue:Object = InjectionUtil.findMemberMetadataValue(clazz, member, metadataName, argumentName);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -668,7 +668,7 @@ package net.fproject.di
 			var member:Object = null;
 			var metadataName:String = null;
 			var argumentName:String = "";
-			var returnTestValue:Object = Injector.findMemberMetadataValue(clazz, member, metadataName, argumentName);
+			var returnTestValue:Object = InjectionUtil.findMemberMetadataValue(clazz, member, metadataName, argumentName);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -696,7 +696,7 @@ package net.fproject.di
 			var member:Object = null;
 			var metadataName:String = null;
 			var argumentName:String = "";
-			var returnTestValue:Object = Injector.findMemberMetadataValue(clazz, member, metadataName, argumentName);
+			var returnTestValue:Object = InjectionUtil.findMemberMetadataValue(clazz, member, metadataName, argumentName);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -724,7 +724,7 @@ package net.fproject.di
 			var member:Object = new Object();
 			var metadataName:String = "ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789";
 			var argumentName:String = null;
-			var returnTestValue:Object = Injector.findMemberMetadataValue(clazz, member, metadataName, argumentName);
+			var returnTestValue:Object = InjectionUtil.findMemberMetadataValue(clazz, member, metadataName, argumentName);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -752,7 +752,7 @@ package net.fproject.di
 			var member:Object = new Object();
 			var metadataName:String = "ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789";
 			var argumentName:String = null;
-			var returnTestValue:Object = Injector.findMemberMetadataValue(clazz, member, metadataName, argumentName);
+			var returnTestValue:Object = InjectionUtil.findMemberMetadataValue(clazz, member, metadataName, argumentName);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -780,7 +780,7 @@ package net.fproject.di
 			var member:Object = null;
 			var metadataName:String = "ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789";
 			var argumentName:String = null;
-			var returnTestValue:Object = Injector.findMemberMetadataValue(clazz, member, metadataName, argumentName);
+			var returnTestValue:Object = InjectionUtil.findMemberMetadataValue(clazz, member, metadataName, argumentName);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -808,7 +808,7 @@ package net.fproject.di
 			var member:Object = null;
 			var metadataName:String = "ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789";
 			var argumentName:String = null;
-			var returnTestValue:Object = Injector.findMemberMetadataValue(clazz, member, metadataName, argumentName);
+			var returnTestValue:Object = InjectionUtil.findMemberMetadataValue(clazz, member, metadataName, argumentName);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -836,7 +836,7 @@ package net.fproject.di
 			var member:Object = new Object();
 			var metadataName:String = "";
 			var argumentName:String = null;
-			var returnTestValue:Object = Injector.findMemberMetadataValue(clazz, member, metadataName, argumentName);
+			var returnTestValue:Object = InjectionUtil.findMemberMetadataValue(clazz, member, metadataName, argumentName);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -864,7 +864,7 @@ package net.fproject.di
 			var member:Object = new Object();
 			var metadataName:String = "";
 			var argumentName:String = null;
-			var returnTestValue:Object = Injector.findMemberMetadataValue(clazz, member, metadataName, argumentName);
+			var returnTestValue:Object = InjectionUtil.findMemberMetadataValue(clazz, member, metadataName, argumentName);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -892,7 +892,7 @@ package net.fproject.di
 			var member:Object = null;
 			var metadataName:String = "";
 			var argumentName:String = null;
-			var returnTestValue:Object = Injector.findMemberMetadataValue(clazz, member, metadataName, argumentName);
+			var returnTestValue:Object = InjectionUtil.findMemberMetadataValue(clazz, member, metadataName, argumentName);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -920,7 +920,7 @@ package net.fproject.di
 			var member:Object = null;
 			var metadataName:String = "";
 			var argumentName:String = null;
-			var returnTestValue:Object = Injector.findMemberMetadataValue(clazz, member, metadataName, argumentName);
+			var returnTestValue:Object = InjectionUtil.findMemberMetadataValue(clazz, member, metadataName, argumentName);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -948,7 +948,7 @@ package net.fproject.di
 			var member:Object = new Object();
 			var metadataName:String = null;
 			var argumentName:String = null;
-			var returnTestValue:Object = Injector.findMemberMetadataValue(clazz, member, metadataName, argumentName);
+			var returnTestValue:Object = InjectionUtil.findMemberMetadataValue(clazz, member, metadataName, argumentName);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -976,7 +976,7 @@ package net.fproject.di
 			var member:Object = new Object();
 			var metadataName:String = null;
 			var argumentName:String = null;
-			var returnTestValue:Object = Injector.findMemberMetadataValue(clazz, member, metadataName, argumentName);
+			var returnTestValue:Object = InjectionUtil.findMemberMetadataValue(clazz, member, metadataName, argumentName);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1004,7 +1004,7 @@ package net.fproject.di
 			var member:Object = null;
 			var metadataName:String = null;
 			var argumentName:String = null;
-			var returnTestValue:Object = Injector.findMemberMetadataValue(clazz, member, metadataName, argumentName);
+			var returnTestValue:Object = InjectionUtil.findMemberMetadataValue(clazz, member, metadataName, argumentName);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1032,7 +1032,7 @@ package net.fproject.di
 			var member:Object = null;
 			var metadataName:String = null;
 			var argumentName:String = null;
-			var returnTestValue:Object = Injector.findMemberMetadataValue(clazz, member, metadataName, argumentName);
+			var returnTestValue:Object = InjectionUtil.findMemberMetadataValue(clazz, member, metadataName, argumentName);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1059,8 +1059,8 @@ package net.fproject.di
 			var member:String="myMember";
 			var metadataName:String = "Abc";
 			var argumentName:String = "a";
-			var returnTestValue:Object = Injector.findMemberMetadataValue(
-				Injector_findMemberMetadataValue_037, member, metadataName, argumentName);
+			var returnTestValue:Object = InjectionUtil.findMemberMetadataValue(
+				InjectionUtil_findMemberMetadataValue_037, member, metadataName, argumentName);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
