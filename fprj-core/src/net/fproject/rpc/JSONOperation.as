@@ -113,6 +113,7 @@ package net.fproject.rpc
 			asyncRequest.requestTimeout = service.requestTimeout;
 			
 			invoke(rpcMessage, token);
+			trace('JSONOperation.send():'+JSON.stringify(rpcMessage));
 			return token;
 		}
 		

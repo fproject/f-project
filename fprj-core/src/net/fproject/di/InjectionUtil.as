@@ -2,6 +2,7 @@ package net.fproject.di
 {
 	import org.as3commons.reflect.AbstractMember;
 	import org.as3commons.reflect.Metadata;
+	import org.as3commons.reflect.Method;
 	import org.as3commons.reflect.Type;
 
 	public class InjectionUtil
@@ -102,7 +103,7 @@ package net.fproject.di
 			else
 				type = Type.forInstance(source);
 			
-			var metaArray:Array = getAllExtendsClassesMetadata(type);
+			var metaArray:Array = getAllExtendsClassMetadata(type);
 			var a:Array = [];
 			for each (var metadata:Metadata in metaArray)
 			{
@@ -129,7 +130,31 @@ package net.fproject.di
 			return a;
 		}
 		
-		internal static function getAllExtendsClassesMetadata(type:Type):Array
+		public static function getAllExtendsClassMethods(type:Type):Array
+		{
+			var methods:Array = type.methods;
+			var nameToMethod:Object = {};
+			for each (var method:Method in methods)
+			{
+				nameToMethod[method.name] = true;
+			}
+			for each(var c:String in type.extendsClasses)
+			{
+				var t:Type = Type.forName(c);
+				for each (method in t.methods)
+				{
+					if(nameToMethod[method.name] == undefined)
+					{
+						nameToMethod[method.name] = true;
+						methods.push(method);
+					}
+				}
+			}
+			
+			return methods;
+		}
+		
+		internal static function getAllExtendsClassMetadata(type:Type):Array
 		{
 			var a:Array = type.metadata;
 			for each(var c:String in type.extendsClasses)

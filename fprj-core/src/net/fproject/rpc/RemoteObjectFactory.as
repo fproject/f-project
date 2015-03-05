@@ -13,8 +13,7 @@ package net.fproject.rpc
 	import mx.messaging.ChannelSet;
 	import mx.messaging.config.ServerConfig;
 	
-	import net.fproject.fproject_internal;
-	import net.fproject.di.Injector;
+	import net.fproject.di.InjectionUtil;
 	import net.fproject.utils.StringUtil;
 	
 	import org.as3commons.reflect.Metadata;
@@ -50,6 +49,7 @@ package net.fproject.rpc
 		private static const NAME:String = "name";
 		private static const DESTINATION:String = "destination";
 		private static const URI:String = "uri";
+		private static const MODEL_CLASS:String = "modelclass";
 		
 		public static function getInstance(proxy:Object):IRemoteObject
 		{
@@ -58,7 +58,7 @@ package net.fproject.rpc
 			if(nameToRemoteObject[type.fullName] != undefined)
 				return nameToRemoteObject[type.fullName];
 			
-			var meta:Object = Injector.findClassMetadataValue(type, REMOTE_OBJECT);
+			var meta:Object = InjectionUtil.findClassMetadataValue(type, REMOTE_OBJECT);
 			if (meta is Metadata)
 			{
 				var m:Metadata = Metadata(meta);
@@ -87,6 +87,15 @@ package net.fproject.rpc
 				else if(m.arguments.length > 2 && StringUtil.isBlank(MetadataArgument(m.arguments[2]).key))
 				{
 					uri = MetadataArgument(m.arguments[2]).value;
+				}
+				
+				if(m.hasArgumentWithKey(MODEL_CLASS))
+				{
+					var modelClass:String = m.getArgument(MODEL_CLASS).value;
+				}
+				else if(m.arguments.length > 3 && StringUtil.isBlank(MetadataArgument(m.arguments[3]).key))
+				{
+					modelClass = MetadataArgument(m.arguments[3]).value;
 				}
 			}
 			else
@@ -124,36 +133,23 @@ package net.fproject.rpc
 				var channel:Channel = ServerConfig.getChannel(cs.channelIds[0]);
 				if(channel is JSONChannel)
 				{
-					var source:String = channel.url;
-					if(!StringUtil.endsWith(source, "/"))
-						source += "/";
-					
-					var remoteObj:IRemoteObject = new JSONRemoteObject(dest);
-					JSONRemoteObject(remoteObj).fproject_internal::operationNameToMetadata = getOperationMetadata(type);
-					if(StringUtil.isBlank(uri))
-					{
-						source += name.toLowerCase();
-					}
-					else
-					{
-						if(StringUtil.startsWith(uri, "/"))
-							uri = uri.substr(1);
-						source += uri;
-					}
+					var remoteObj:IRemoteObject = 
+						new JSONRemoteObject(name, dest, channel,
+							getOperationMetadata(type), uri, modelClass, proxy);
 				}
 				else
 				{
 					remoteObj = new AMFRemoteObject(dest);
-					source = name;
+					remoteObj.source = name;
 				}
 			}
 			else
 			{
 				var clazz:Class = getDefinitionByName(impl) as Class;
 				remoteObj = new clazz();
+				remoteObj.source = name;
 			}
 			
-			remoteObj.source = source;
 			remoteObj.destination = dest;
 			remoteObj.channelSet = cs;
 			

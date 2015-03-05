@@ -163,7 +163,7 @@ package net.fproject.di
 			var handlingMemberInfoArr:Array = [];
 			
 			var thisInfo:Object = getMemberEventHandlingInfo(container,
-				{name:THIS, metadata:InjectionUtil.getAllExtendsClassesMetadata(type)});
+				{name:THIS, metadata:InjectionUtil.getAllExtendsClassMetadata(type)});
 			
 			if(thisInfo != null)
 			{
@@ -459,7 +459,7 @@ package net.fproject.di
 			var members:Array = type.variables.concat(type.accessors);
 			members = members.concat(type.methods);
 			
-			var containerMember:Object = {name:THIS, metadata:InjectionUtil.getAllExtendsClassesMetadata(type)};
+			var containerMember:Object = {name:THIS, metadata:InjectionUtil.getAllExtendsClassMetadata(type)};
 			members.push(containerMember);
 			
 			var additionalMetadataMap:Object = {};

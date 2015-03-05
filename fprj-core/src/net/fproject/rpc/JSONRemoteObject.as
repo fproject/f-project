@@ -7,6 +7,9 @@
 ///////////////////////////////////////////////////////////////////////////////
 package net.fproject.rpc
 {
+	import flash.system.ApplicationDomain;
+	import flash.utils.getDefinitionByName;
+	
 	import mx.core.mx_internal;
 	import mx.messaging.Channel;
 	import mx.messaging.ChannelSet;
@@ -16,7 +19,8 @@ package net.fproject.rpc
 	import mx.rpc.AbstractService;
 	
 	import net.fproject.fproject_internal;
-
+	import net.fproject.utils.StringUtil;
+	
 	/**
 	 * The JSONRemoteObject class provides access to JSON-based RESTful services on remote servers.
 	 *  
@@ -29,13 +33,47 @@ package net.fproject.rpc
 		 * should match a destination ID in the services-config.xml file.
 		 * 
 		 */
-		public function JSONRemoteObject(destination:String = null)
+		public function JSONRemoteObject(name:String, dest:String, channel:Channel,
+										 opToMeta:Object, uri:String, mdlClass:String,
+										 proxy:Object)
 		{
-			super(destination);
+			super(dest);
+			_source = channel.url;
+			if(!StringUtil.endsWith(_source, "/"))
+				_source += "/";			
+			
+			if(StringUtil.isBlank(uri))
+			{
+				_source += name.toLowerCase();
+			}
+			else
+			{
+				if(StringUtil.startsWith(uri, "/"))
+					uri = uri.substr(1);
+				_source += uri;
+			}
+			
+			this.fproject_internal::operationNameToMetadata = opToMeta;
+			
+			if(!StringUtil.isBlank(mdlClass))
+			{
+				if(mdlClass.indexOf(".") < 0 && mdlClass.indexOf("::") < 0)
+				{
+					if(ApplicationDomain.currentDomain.hasDefinition(mdlClass))
+						modelClass = ApplicationDomain.currentDomain.getDefinition(mdlClass) as Class;
+				}
+				else
+				{
+					modelClass = getDefinitionByName(mdlClass) as Class;
+				}
+			}
+			
+			if(modelClass == null && proxy.hasOwnProperty("modelClass"))
+				modelClass = proxy["modelClass"];		
 		}
 		
 		private var _source:String
-
+		
 		/**
 		 * Lets you specify a source value on the client;
 		 * This is an absolute URL to use for accessing a service
@@ -45,7 +83,7 @@ package net.fproject.rpc
 		{
 			return _source;
 		}
-
+		
 		/**
 		 * @private
 		 */
@@ -136,6 +174,11 @@ package net.fproject.rpc
 		 *  
 		 */
 		public var convertResultHandler:Function;
+		
+		/**
+		 * The class used to serialize/deserialize JSON data.
+		 */
+		public var modelClass:Class;
 		
 		/**
 		 * 
