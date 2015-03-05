@@ -75,6 +75,9 @@ package net.fproject.rpc
 			if (service != null)
 				service.initialize();
 			
+			if (remoteObject.convertParametersHandler != null)
+				args = remoteObject.convertParametersHandler(args);
+			
 			if (operationManager != null)
 				return operationManager(args);
 			
@@ -138,6 +141,9 @@ package net.fproject.rpc
 				dispatchRpcEvent(FaultEvent.createEvent(fault, token, message));
 				return false;
 			}
+			
+			if (remoteObject.convertResultHandler != null)
+				_result = remoteObject.convertResultHandler(_result, this);
 			
 			_result = decodedResult;
 			return true;

@@ -15,9 +15,9 @@ package net.fproject.service
 	import mx.rpc.events.ResultEvent;
 	
 	import net.fproject.fproject_internal;
+	import net.fproject.core.AppContext;
 	import net.fproject.di.InstanceFactory;
 	import net.fproject.event.AppContextEvent;
-	import net.fproject.core.AppContext;
 	import net.fproject.rpc.IRemoteObject;
 	import net.fproject.rpc.RemoteObjectFactory;
 
@@ -45,9 +45,14 @@ package net.fproject.service
 	 */
 	public class ServiceBase
 	{		
-		protected var responderToCallbackInfo:Dictionary;
+		private var _lastCallResponder:CallResponder;
 		
-		protected var _remoteObject:IRemoteObject;
+		public function get lastCallResponder():CallResponder
+		{
+			return _lastCallResponder;
+		}
+
+		private var _remoteObject:IRemoteObject;
 
 		/**
 		 * 
@@ -61,20 +66,29 @@ package net.fproject.service
 				//Initialize callback dictionary
 				responderToCallbackInfo = new Dictionary();
 				
-				_remoteObject = RemoteObjectFactory.getInstance(this);
-				
-				//Set credentials if needed
-				if(_remoteObject != null && _remoteObject.channelSet.authenticated == false)
-				{
-					_remoteObject.setCredentials(appContext.loginUser.id,
-						appContext.loginUser.token);
-				}				
-				
-				_remoteObject.addEventListener(FaultEvent.FAULT, onServiceFailed, false, 0, true);
+				_remoteObject = createRemoteObject();
 			}
 			return _remoteObject;
 		}
 
+		private var responderToCallbackInfo:Dictionary;
+		
+		protected function createRemoteObject():IRemoteObject
+		{
+			var ro:IRemoteObject = RemoteObjectFactory.getInstance(this);
+			
+			//Set credentials if needed
+			if(ro.channelSet.authenticated == false)
+			{
+				ro.setCredentials(appContext.loginUser.id,
+					appContext.loginUser.token);
+			}				
+			
+			ro.addEventListener(FaultEvent.FAULT, onServiceFailed, false, 0, true);
+			
+			return ro;
+		}
+		
 		protected function deleteServiceCall(responder:CallResponder):void
 		{
 			responder.removeEventListener(ResultEvent.RESULT, onCallComplete);
@@ -114,14 +128,6 @@ package net.fproject.service
 				appContext.dispatchEvent(new AppContextEvent(AppContextEvent.SERVICE_COMPLETED));
 			deleteServiceCall(CallResponder(e.currentTarget));
 		}
-		
-		protected var _lastCallResponder:CallResponder;
-
-		public function get lastCallResponder():CallResponder
-		{
-			return _lastCallResponder;
-		}
-
 		
 		/**
 		 * Create a remote call and initialize callbacks for it.
