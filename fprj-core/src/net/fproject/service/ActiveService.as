@@ -13,18 +13,19 @@ package net.fproject.service
 	import mx.rpc.CallResponder;
 	
 	import net.fproject.utils.StringUtil;
-
+	
 	/**
 	 * <p>ActiveService implements a common set of operations for supporting remote access 
 	 * to RESTful or AMF service.</p>
 	 *
-	 * <p>In case of working with JSON, by default the service uses a model class to deserialize/serialize
-	 * data in sending/receieving remote message. The model class should be specified via 
+	 * <p>In case of working with JSON, the service uses a model class to deserialize/serialize
+	 * data when sending/receieving remote message. The model class should be specified via 
 	 * <code>modelClass</code> getter, which must have the following singature:</p>
 	 * <pre>public function get modelClass():Class</pre>
+	 * 
 	 * <p>By default, the following operations are supported:</p>
 	 * <ul>
-	 * <li><code>findOne</code>: Return the details of a model (model) by primary keys (ID)</li>
+	 * <li><code>findOne</code>: Return the details of a model by primary keys (ID)</li>
 	 * <li><code>find</code> Find a list of models by searching condition and pagination information</li>
 	 * <li><code>save</code> Insert a new model or update an existing model if the ID fields are specified</li>
 	 * <li><code>remove</code> Delete an existing model by primary keys (ID)</li>
@@ -49,7 +50,20 @@ package net.fproject.service
 	 */
 	public class ActiveService extends ServiceBase
 	{		
+		/**
+		 * @private 
+		 */
 		private var _modelClass:Class;
+		
+		/**
+		 * <p>Only used in RESTful service, this is the class used to serialize/deserialize 
+		 * JSON data.</p>
+		 * <p>In the case of the extends class doesn't override the getter <code>modelClass</code>,
+		 * the service will find the model class in current application domain by the name of the
+		 * service class itself without suffix <code>'Service'</code>.
+		 * For example, the service with name <code>'UserService'</code>
+		 * will use a model class with name <code>'User'</code> if it exists.</code></p>
+		 */
 		public function get modelClass():Class
 		{
 			if(_modelClass == null)
@@ -124,7 +138,7 @@ package net.fproject.service
 		 * matching the condition, or null if nothing matches.
 		 */
 		public function find(filter:Object=null, page:Number=NaN, perPage:Number=NaN,
-								completeCallback:Function=null, failCallback:Function=null):CallResponder
+							 completeCallback:Function=null, failCallback:Function=null):CallResponder
 		{
 			return createServiceCall(remoteObject.find(filter, page, perPage),
 				completeCallback, failCallback);
@@ -168,7 +182,7 @@ package net.fproject.service
 		 * indicates whether the remove action is success or failed.
 		 */
 		public function remove(id:String,
-							 completeCallback:Function=null, failCallback:Function=null):CallResponder
+							   completeCallback:Function=null, failCallback:Function=null):CallResponder
 		{
 			return createServiceCall(remoteObject.remove(id),
 				completeCallback, failCallback);
@@ -191,7 +205,7 @@ package net.fproject.service
 		 * auto-increment fields.
 		 */
 		public function batchSave(models:Array,
-							 completeCallback:Function=null, failCallback:Function=null):CallResponder
+								  completeCallback:Function=null, failCallback:Function=null):CallResponder
 		{
 			return createServiceCall(remoteObject.batchSave(models),
 				completeCallback, failCallback);
@@ -213,7 +227,7 @@ package net.fproject.service
 		 * indicates whether the remove action is success or failed.
 		 */
 		public function batchRemove(ids:Array,
-							   completeCallback:Function=null, failCallback:Function=null):CallResponder
+									completeCallback:Function=null, failCallback:Function=null):CallResponder
 		{
 			return createServiceCall(remoteObject.batchRemove(ids),
 				completeCallback, failCallback);
