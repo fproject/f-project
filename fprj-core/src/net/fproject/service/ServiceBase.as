@@ -73,6 +73,16 @@ package net.fproject.service
 
 		private var responderToCallbackInfo:Dictionary;
 		
+		/**
+		 * 
+		 * Construct the remote object using RemoteObjectFactory.
+		 * This is an optional function, primarily intended for framework 
+		 * developers who need to install a hook to process the remote object construction.
+		 * 
+		 * For example, you can override this method to set the <code>convertResultHandler</code>
+		 * or <code>convertParametersHandler</code> function. 
+		 * 
+		 */
 		protected function createRemoteObject():IRemoteObject
 		{
 			var ro:IRemoteObject = RemoteObjectFactory.getInstance(this);

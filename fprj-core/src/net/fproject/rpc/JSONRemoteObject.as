@@ -113,12 +113,22 @@ package net.fproject.rpc
 		public var convertParametersHandler:Function;
 		
 		/**
+		 * 
+		 * @inheritDoc
+		 * 
+		 */
+		public function setConvertParametersHandler(value:Function):void
+		{
+			convertParametersHandler = value;
+		}
+		
+		/**
 		 * An optional function, primarily intended for framework developers who need to install
 		 * a hook to process the results of an operation before notifying the result handlers.
 		 *
 		 * The function definition should look like:
 		 * <code>
-		 *   function myConvertResultsFunction(result:*, operation:JSONOperation):*
+		 *   function myConvertResultsFunction(result:&#42;, operation:JSONOperation):&#42;
 		 * </code>
 		 * 
 		 * It is passed the result just after the makeObjectsBindable conversion has been done
@@ -126,6 +136,16 @@ package net.fproject.rpc
 		 *  
 		 */
 		public var convertResultHandler:Function;
+		
+		/**
+		 * 
+		 * @inheritDoc
+		 * 
+		 */
+		public function setConvertResultHandler(value:Function):void
+		{
+			convertResultHandler = value;
+		}
 		
 		fproject_internal function initEndpoint():void
 		{

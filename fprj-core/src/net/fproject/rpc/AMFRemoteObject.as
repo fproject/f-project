@@ -11,6 +11,26 @@ package net.fproject.rpc
 	
 	public dynamic class AMFRemoteObject extends RemoteObject implements IRemoteObject
 	{
+		/**
+		 * 
+		 * @inheritDoc
+		 * 
+		 */
+		public function setConvertParametersHandler(value:Function):void
+		{
+			convertParametersHandler = value;
+		}
+		
+		/**
+		 * 
+		 * @inheritDoc
+		 * 
+		 */
+		public function setConvertResultHandler(value:Function):void
+		{
+			convertResultHandler = value;
+		}
+		
 		public function AMFRemoteObject(destination:String=null)
 		{
 			super(destination);
