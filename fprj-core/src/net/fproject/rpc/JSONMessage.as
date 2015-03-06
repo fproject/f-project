@@ -13,7 +13,6 @@ package net.fproject.rpc
 	import mx.utils.UIDUtil;
 	
 	import net.fproject.serialize.Serializer;
-	import net.fproject.utils.StringUtil;
 	
 	public class JSONMessage extends HTTPRequestMessage
 	{
@@ -22,96 +21,61 @@ package net.fproject.rpc
 		/**
 		 * The operation name 
 		 */
-		public var operation:String;
+		//public var operation:String;
 		
-		public function JSONMessage()
+		public function JSONMessage(operation:JSONOperation, sendingArgs:Array, token:AsyncToken)
 		{
 			super();
-			this.contentType = CONTENT_TYPE_JSON;
-		}   
-		
-		/**
-		 * Create an instance of JSONMessage from JSONOperation and the 
-		 * arguments of <code>send</code> method
-		 * @param operation
-		 * @param args
-		 * @return 
-		 * 
-		 */
-		public static function prepare(operation:JSONOperation, sendingArgs:Array, token:AsyncToken):JSONMessage
-		{
+			
 			var preparedMsg:Object = prepareImpl(operation, sendingArgs, token);
 			
+			this.clientId    		= UIDUtil.getUID(FlexGlobals.topLevelApplication);
+			this.messageId   		= UIDUtil.createUID();
+			//this.operation   		= operation.name;
+			this.method      		= operation.method;
+			this.url         		= preparedMsg.url;
+			this.destination 		= operation.service.destination;
 			
-			// Create message to send.
-			var rpcMessage:JSONMessage 	= new JSONMessage();
-			
-			rpcMessage.clientId    		= UIDUtil.getUID(FlexGlobals.topLevelApplication);
-			rpcMessage.messageId   		= UIDUtil.createUID();
-			rpcMessage.operation   		= operation.name;
-			rpcMessage.method      		= operation.method;
-			rpcMessage.url         		= preparedMsg.url;
-			rpcMessage.destination 		= operation.service.destination;
-			
-			if (rpcMessage.method == HTTPRequestMessage.POST_METHOD) 
+			this.body = preparedMsg.body;
+		}   
+		
+		private function prepareImpl(operation:JSONOperation, sendingArgs:Array, token:AsyncToken):Object
+		{
+			var ub:Object = parseUrlAndBody(operation.route, sendingArgs);
+			var url:String = JSONRemoteObject(operation.service).source + ub.url;
+			if (operation.method == HTTPRequestMessage.POST_METHOD ||
+				operation.method == HTTPRequestMessage.PUT_METHOD)
 			{
-				// JSON encode parameters in POST body
-				rpcMessage.body = Serializer.getInstance().toJSON(preparedMsg.body);
-			} 
-			else 
-			{
-				// encode parameters in URL
-				rpcMessage.body = preparedMsg.params;
+				this.contentType = CONTENT_TYPE_JSON;
+				var body:Object = Serializer.getInstance().toJSON(ub.body);		
 			}
 			
-			return rpcMessage;
+			return {url:url, body:body};
 		}
 		
-		private static function prepareImpl(operation:JSONOperation, sendingArgs:Array, token:AsyncToken):Object
+		private function parseUrlAndBody(route:String, sendingArgs:Array):Object
 		{
-			var preparedMsg:Object = {};
-			var route:String = operation.route;
-			//Determine parameters to send.
-//			var params:Object = {};
-//			if (operation.method == HTTPRequestMessage.GET_METHOD || operation.namedParams)
-//			{
-//				// Named parameters MUST be used
-//				if (sendingArgs.length > 1) 
-//				{
-//					throw new Error("Un-named parameters can only be used if 'requestType' is 'POST' and 'useNamedParams' is set to false.");
-//				}
-//				
-//				for (var argName:String in sendingArgs[0])
-//				{
-//					params[argName] = sendingArgs[0][argName];
-//				}
-//			} 
-//			else
-//			{
-//				// Using array parameters
-//				params = sendingArgs;
-//			}
+			var remainingArgs:Array = [];
+			if(route != null)
+			{
+				for (var i:int = 0; i < sendingArgs.length; i++)
+				{
+					if(route.indexOf("{" + i + "}") == -1)
+					{
+						remainingArgs.push(sendingArgs[i]);
+					}
+					else
+					{
+						route = route.replace(new RegExp("\\{"+i+"\\}", "g"), sendingArgs[i]);
+					}					
+				}
+			}
 			
-			return preparedMsg;
-		}
-		
-		private static function parseRoute(route:String):Object
-		{
-			var routeData:Object = {};
+			var body:Object = remainingArgs.length == 0 ? {} : remainingArgs.length == 1 ? remainingArgs[0] : remainingArgs;				
+			
+			var routeData:Object = {url:route, body:body};
 			
 			return routeData;
-		}
-		
-		/**
-		 * Get the full URL to use when invoking operation.
-		 */
-		private function getServiceOperationUrl(operation:JSONOperation):String
-		{
-			var jsonSvc:JSONRemoteObject = JSONRemoteObject(operation.service);
-			if(StringUtil.endsWith(jsonSvc.source, "/"))
-				return jsonSvc.source + operation.name;
-			else
-				return jsonSvc.source + "/" + operation.name;
 		}
 	}
 }

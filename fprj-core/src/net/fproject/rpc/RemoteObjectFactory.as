@@ -49,7 +49,7 @@ package net.fproject.rpc
 		private static const NAME:String = "name";
 		private static const DESTINATION:String = "destination";
 		private static const URI:String = "uri";
-		private static const MODEL_CLASS:String = "modelclass";
+		private static const MODEL_CLASS:String = "modelClass";
 		
 		public static function getInstance(proxy:Object):IRemoteObject
 		{

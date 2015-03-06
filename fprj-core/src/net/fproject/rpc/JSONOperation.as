@@ -108,12 +108,11 @@ package net.fproject.rpc
 			
 			var token:AsyncToken = new AsyncToken(rpcMessage);
 			// Create message to send.
-			var rpcMessage:JSONMessage = JSONMessage.prepare(this, args, token);
+			var rpcMessage:JSONMessage = new JSONMessage(this, args, token);
 			
 			asyncRequest.requestTimeout = service.requestTimeout;
 			
 			invoke(rpcMessage, token);
-			trace('JSONOperation.send():'+JSON.stringify(rpcMessage));
 			return token;
 		}
 		
@@ -124,7 +123,14 @@ package net.fproject.rpc
 		{
 			try 
 			{
-				var decodedResult:Object = Deserializer.getInstance().fromJSON(String(message.body), this.returning);
+				if(this.returning != null && this.returning.indexOf("{modelClass}") != -1)
+				{
+					if(this.remoteObject.modelClass != null)
+						retn = this.remoteObject.modelClass;
+					else(this.remoteObject.modelClassName != null)
+						var retn:* = this.returning.replace(/\{modelClass\}/g, this.remoteObject.modelClassName);
+				}
+				var decodedResult:Object = Deserializer.getInstance().fromJSON(String(message.body), retn);
 			} 
 			catch (e:Error) 
 			{

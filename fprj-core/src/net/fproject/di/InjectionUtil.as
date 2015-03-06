@@ -130,31 +130,13 @@ package net.fproject.di
 			return a;
 		}
 		
-		public static function getAllExtendsClassMethods(type:Type):Array
-		{
-			var methods:Array = type.methods;
-			var nameToMethod:Object = {};
-			for each (var method:Method in methods)
-			{
-				nameToMethod[method.name] = true;
-			}
-			for each(var c:String in type.extendsClasses)
-			{
-				var t:Type = Type.forName(c);
-				for each (method in t.methods)
-				{
-					if(nameToMethod[method.name] == undefined)
-					{
-						nameToMethod[method.name] = true;
-						methods.push(method);
-					}
-				}
-			}
-			
-			return methods;
-		}
-		
-		internal static function getAllExtendsClassMetadata(type:Type):Array
+		/**
+		 * Get all metadata declare in a class and its parent classes 
+		 * @param type the type of the class
+		 * @return an array of all metadata
+		 * 
+		 */
+		public static function getAllExtendsClassMetadata(type:Type):Array
 		{
 			var a:Array = type.metadata;
 			for each(var c:String in type.extendsClasses)

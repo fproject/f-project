@@ -80,7 +80,7 @@ package net.fproject.service
 			return _modelClass;
 		}
 		
-		[RESTOperation(method='GET', route="/{0}")]
+		[RESTOperation(method='GET', route="/{0}", returning="{modelClass}")]
 		/**
 		 * Returns a single model instance by a primary key or a compsite value of primary key.
 		 *
@@ -111,7 +111,7 @@ package net.fproject.service
 				completeCallback, failCallback);
 		}
 		
-		[RESTOperation(method='GET', route="?filter={0}&page={1}&per-page={2}")]
+		[RESTOperation(method='GET', route="?filter={0}&page={1}&per-page={2}", returning="{modelClass}[]")]
 		/**
 		 * Finds models by a filter condition and returns a set of model instances with pagination.
 		 *
@@ -137,7 +137,7 @@ package net.fproject.service
 		 * The <code>result</code> field of RESULT event will be an array of model instances
 		 * matching the condition, or null if nothing matches.
 		 */
-		public function find(filter:Object=null, page:Number=NaN, perPage:Number=NaN,
+		public function find(filter:Object=null, page:Number=1, perPage:Number=20,
 							 completeCallback:Function=null, failCallback:Function=null):CallResponder
 		{
 			return createServiceCall(remoteObject.find(filter, page, perPage),

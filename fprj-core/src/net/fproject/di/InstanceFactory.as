@@ -10,6 +10,7 @@ package net.fproject.di
 	import flash.utils.Dictionary;
 	import flash.utils.getDefinitionByName;
 	import flash.utils.getQualifiedClassName;
+	import flash.utils.getQualifiedSuperclassName;
 	
 	public class InstanceFactory
 	{
@@ -79,17 +80,24 @@ package net.fproject.di
 					}
 				}
 				
-				if(impl == null)
+				if(impl == null && (clazz == Object || getQualifiedSuperclassName(clazz) != null))
 				{
 					impl = clazz;
 				}
 			}
 			
-			classToImpl[clazz] = impl;
-			
-			implToInstance[impl] = new impl();
-			
-			return implToInstance[impl];
+			if(impl != null)
+			{
+				classToImpl[clazz] = impl;
+				
+				implToInstance[impl] = new impl();
+				
+				return implToInstance[impl];
+			}
+			else
+			{
+				return null;
+			}
 		}
 	}
 }

@@ -28,13 +28,21 @@ package net.fproject.rpc
 	public dynamic class JSONRemoteObject extends AbstractService implements IRemoteObject
 	{	
 		/**
-		 * Constructor 
-		 * @param destination [optional] Destination of the JSONRemoteObject; 
-		 * should match a destination ID in the services-config.xml file.
+		 * 
+		 * Constructor
+		 * 
+		 * @param name
+		 * @param dest Destination of the JSONRemoteObject.
+		 * Should match a destination ID in the services-config.xml file.
+		 * @param chanel
+		 * @param opToMeta
+		 * @param uri
+		 * @param modelClassName
+		 * @param proxy
 		 * 
 		 */
 		public function JSONRemoteObject(name:String, dest:String, channel:Channel,
-										 opToMeta:Object, uri:String, mdlClass:String,
+										 opToMeta:Object, uri:String, modelClassName:String,
 										 proxy:Object)
 		{
 			super(dest);
@@ -55,21 +63,9 @@ package net.fproject.rpc
 			
 			this.fproject_internal::operationNameToMetadata = opToMeta;
 			
-			if(!StringUtil.isBlank(mdlClass))
-			{
-				if(mdlClass.indexOf(".") < 0 && mdlClass.indexOf("::") < 0)
-				{
-					if(ApplicationDomain.currentDomain.hasDefinition(mdlClass))
-						modelClass = ApplicationDomain.currentDomain.getDefinition(mdlClass) as Class;
-				}
-				else
-				{
-					modelClass = getDefinitionByName(mdlClass) as Class;
-				}
-			}
+			this.modelClassName = modelClassName;
 			
-			if(modelClass == null && proxy.hasOwnProperty("modelClass"))
-				modelClass = proxy["modelClass"];		
+			this.proxy = proxy;
 		}
 		
 		private var _source:String
@@ -178,7 +174,38 @@ package net.fproject.rpc
 		/**
 		 * The class used to serialize/deserialize JSON data.
 		 */
-		public var modelClass:Class;
+		public var modelClassName:String;
+		
+		private var _modelClass:Class;
+
+		/**
+		 * The class used to serialize/deserialize JSON data.
+		 */
+		public function get modelClass():Class
+		{
+			if(_modelClass == null)
+			{
+				if(!StringUtil.isBlank(modelClassName))
+				{
+					if(modelClassName.indexOf(".") < 0 && modelClassName.indexOf("::") < 0)
+					{
+						if(ApplicationDomain.currentDomain.hasDefinition(modelClassName))
+							_modelClass = ApplicationDomain.currentDomain.getDefinition(modelClassName) as Class;
+					}
+					else
+					{
+						_modelClass = getDefinitionByName(modelClassName) as Class;
+					}
+				}
+				
+				if(_modelClass == null && proxy.hasOwnProperty("modelClass"))
+					_modelClass = proxy["modelClass"];
+			}			
+			
+			return _modelClass;
+		}
+
+		public var proxy:Object;
 		
 		/**
 		 * 
