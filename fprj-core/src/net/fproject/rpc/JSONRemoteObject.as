@@ -9,6 +9,7 @@ package net.fproject.rpc
 {
 	import flash.system.ApplicationDomain;
 	import flash.utils.getDefinitionByName;
+	import flash.utils.getQualifiedClassName;
 	
 	import mx.core.mx_internal;
 	import mx.messaging.Channel;
@@ -200,6 +201,17 @@ package net.fproject.rpc
 				
 				if(_modelClass == null && proxy.hasOwnProperty("modelClass"))
 					_modelClass = proxy["modelClass"];
+				
+				if(_modelClass == null)
+				{
+					var s:String = getQualifiedClassName(proxy);
+					var i:int = s.lastIndexOf("::");
+					s = s.substr(i + 1);
+					if(StringUtil.endsWith(s, "Service"))
+						s = s.substr(0, s.length - 7);
+					if(ApplicationDomain.currentDomain.hasDefinition(s))
+						_modelClass = ApplicationDomain.currentDomain.getDefinition(s) as Class;
+				}
 			}			
 			
 			return _modelClass;

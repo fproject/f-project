@@ -7,12 +7,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 package net.fproject.service
 {
-	import flash.system.ApplicationDomain;
-	import flash.utils.getQualifiedClassName;
-	
 	import mx.rpc.CallResponder;
-	
-	import net.fproject.utils.StringUtil;
 	
 	/**
 	 * <p>ActiveService implements a common set of operations for supporting remote access 
@@ -51,34 +46,19 @@ package net.fproject.service
 	public class ActiveService extends ServiceBase
 	{		
 		/**
-		 * @private 
-		 */
-		private var _modelClass:Class;
-		
-		/**
 		 * <p>Only used in RESTful service, this is the class used to serialize/deserialize 
 		 * JSON data.</p>
+		 * <p>This model class also can be specified by class metadata, for example:</p>
+		 * <pre>
+		 * [RemoteObject(modelClass="net.fproject.model.User")]
+		 * public class UserService extends ActiveService</pre>
 		 * <p>In the case of the extends class doesn't override the getter <code>modelClass</code>,
 		 * the service will find the model class in current application domain by the name of the
 		 * service class itself without suffix <code>'Service'</code>.
 		 * For example, the service with name <code>'UserService'</code>
 		 * will use a model class with name <code>'User'</code> if it exists.</code></p>
 		 */
-		public function get modelClass():Class
-		{
-			if(_modelClass == null)
-			{
-				var s:String = getQualifiedClassName(this);
-				var i:int = s.lastIndexOf("::");
-				s = s.substr(i + 1);
-				if(StringUtil.endsWith(s, "Service"))
-					s = s.substr(0, s.length - 7);
-				if(ApplicationDomain.currentDomain.hasDefinition(s))
-					_modelClass = ApplicationDomain.currentDomain.getDefinition(s) as Class;
-			}
-			
-			return _modelClass;
-		}
+		public var modelClass:Class
 		
 		[RESTOperation(method='GET', route="/{0}", returning="{modelClass}")]
 		/**
