@@ -85,7 +85,7 @@ package net.fproject.core
 		 */
 		public function get loginUser():User
 		{
-			if(_loginUser == null)
+			if(_loginUser == null && appContextService != null)
 				_loginUser = appContextService.createDefaultLoginUser();
 			return _loginUser;
 		}

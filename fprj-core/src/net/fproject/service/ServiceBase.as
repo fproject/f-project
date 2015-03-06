@@ -88,7 +88,7 @@ package net.fproject.service
 			var ro:IRemoteObject = RemoteObjectFactory.getInstance(this);
 			
 			//Set credentials if needed
-			if(ro.channelSet.authenticated == false)
+			if(ro.channelSet.authenticated == false && appContext.loginUser != null)
 			{
 				ro.setCredentials(appContext.loginUser.id,
 					appContext.loginUser.token);
