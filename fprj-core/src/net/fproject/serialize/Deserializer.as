@@ -369,33 +369,45 @@ package net.fproject.serialize
 		 */
 		public function fromJSON(json:*, returning:*=undefined):Object
 		{
-			if(returning == undefined)
-				return (json is String) ? JSON.parse(json) : json;
-			
-			if(returning != null && returning.length > 2 && returning.substr(-2) == "[]")
-			{
-				returning = returning.substr(0, returning.length - 2);
-			}
-			
 			if(returning is String)
 			{
+				if(returning != null && returning.length > 2 && returning.substr(-2) == "[]")
+				{
+					returning = returning.substr(0, returning.length - 2);
+				}
+				
 				if(retuningToClass[returning] == undefined)
 				{
 					if(ApplicationDomain.currentDomain.hasDefinition(returning))
+					{
 						var c:Object = ApplicationDomain.currentDomain.getDefinition(returning);
+					}					
 					if(c == null || !(c is Class))
-						c = getClassByAlias(returning);
+					{
+						try
+						{
+							c = getClassByAlias(returning);
+						}
+						catch (e:Error)
+						{						
+						}						
+					}
 				}
-				retuningToClass[returning] = c;
-				var clazz:Class = c as Class;
-				
+				if(c != null)
+				{
+					retuningToClass[returning] = c;
+					var clazz:Class = c as Class;
+				}
 			}
-			else
+			else if(returning is Class)
 			{
 				clazz = Class(returning) ;
 			}
 			
 			var obj:Object = (json is String) ? JSON.parse(json) : json;
+			
+			if(clazz == null)
+				return obj;
 			
 			if(obj is Array)
 			{
