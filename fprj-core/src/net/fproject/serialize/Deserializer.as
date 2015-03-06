@@ -8,6 +8,7 @@
 package net.fproject.serialize
 {
 	import flash.net.getClassByAlias;
+	import flash.system.ApplicationDomain;
 	import flash.utils.Dictionary;
 	import flash.utils.getDefinitionByName;
 	import flash.utils.getQualifiedClassName;
@@ -380,10 +381,13 @@ package net.fproject.serialize
 			{
 				if(retuningToClass[returning] == undefined)
 				{
-					retuningToClass[returning] = getClassByAlias(returning);
+					if(ApplicationDomain.currentDomain.hasDefinition(returning))
+						var c:Object = ApplicationDomain.currentDomain.getDefinition(returning);
+					if(c == null || !(c is Class))
+						c = getClassByAlias(returning);
 				}
-				
-				var clazz:Class = retuningToClass[returning] as Class;
+				retuningToClass[returning] = c;
+				var clazz:Class = c as Class;
 				
 			}
 			else
