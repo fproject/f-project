@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testrun name="" >
 <testsuite  name="Default Test Suite" project="fprj-core-test">
-<testsuite name="net.fproject.calendar:WorkCalendar_toJSON" type="testcaseclass"/>
+<testsuite name="net.fproject.rpc:JSONRemoteObject_JSONRemoteObjectRESTful" type="testcaseclass">
+<testcase name="testCase100" classname="net.fproject.rpc:JSONRemoteObject_JSONRemoteObjectRESTful"/>
+<testcase name="testCase600" classname="net.fproject.rpc:JSONRemoteObject_JSONRemoteObjectRESTful"/>
+</testsuite>
 </testsuite>
 <portNumber value="8765" />
 </testrun>

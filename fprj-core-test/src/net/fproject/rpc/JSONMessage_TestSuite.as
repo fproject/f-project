@@ -5,6 +5,5 @@ package net.fproject.rpc
 	public class JSONMessage_TestSuite
 	{
 		public var jsonmessageJsonmessage:JSONMessage_JSONMessage;
-		public var jsonmessagePrepare:JSONMessage_prepare;
 	}
 }

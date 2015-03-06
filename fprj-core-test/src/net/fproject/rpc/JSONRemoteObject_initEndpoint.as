@@ -21,7 +21,7 @@ package net.fproject.rpc
 		[Before]
 		public function runBeforeEveryTest():void
 		{
-			jsonRemoteObject = new JSONRemoteObject();
+			jsonRemoteObject = new JSONRemoteObject("","",null,null,"","",null);
 			//Your test data initialization
 		}
 

@@ -36,7 +36,7 @@ package net.fproject.rpc
 		public function testCase001():void
 		{
 			var destination:String = "ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789";
-			var returnTestValue:JSONRemoteObject = new JSONRemoteObject(destination);
+			var returnTestValue:JSONRemoteObject = new JSONRemoteObject("",destination,null,null,"","",null);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -58,7 +58,7 @@ package net.fproject.rpc
 		public function testCase002():void
 		{
 			var destination:String = "";
-			var returnTestValue:JSONRemoteObject = new JSONRemoteObject(destination);
+			var returnTestValue:JSONRemoteObject = new JSONRemoteObject("",destination,null,null,"","",null);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -80,7 +80,7 @@ package net.fproject.rpc
 		public function testCase003():void
 		{
 			var destination:String = null;
-			var returnTestValue:JSONRemoteObject = new JSONRemoteObject(destination);
+			var returnTestValue:JSONRemoteObject = new JSONRemoteObject("",destination,null,null,"","",null);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
