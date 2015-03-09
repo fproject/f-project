@@ -60,7 +60,10 @@ package net.fproject.rpc
 		public function testCase001_checkResult(event:ResultEvent, passThroughData:Object):void
 		{
 			assertTrue(event.result is Array);
-			assertEquals("1", event.result.id);
+			for each(var o:Object in event.result)
+			{
+				assertTrue(o is TestUser);
+			}
 		}
 		
 		[Test (async, description="Normal case")]
@@ -75,21 +78,14 @@ package net.fproject.rpc
 		 */
 		public function testCase200():void
 		{
-			var at:AsyncToken = restService.findOne("1").token;
-			Async.handleEvent(this, at, ResultEvent.RESULT, 
-				function(e:ResultEvent):void
-				{
-					assertTrue(e.result != null);
-				},2000,null,
-				function():void
-				{
-					throw new Error("ResultEvent not fired!");
-				});
-			Async.handleEvent(this, at, FaultEvent.FAULT, 
-				function(e:FaultEvent):void
-				{
-					throw new Error(e.message);
-				},2500);
+			var responder:CallResponder = restService.findOne("1");
+			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase002_checkResult, null), 2000, null));
+		}
+		
+		public function testCase002_checkResult(event:ResultEvent, passThroughData:Object):void
+		{
+			assertTrue(event.result is TestUser);
+			assertEquals("1", TestUser(event.result).id)
 		}
 		
 		[Test (async, description="Normal case")]

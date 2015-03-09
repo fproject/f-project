@@ -9,16 +9,12 @@
 			   minWidth="955" minHeight="600" creationComplete="onCreationComplete()">
 	<fx:Script>
 		<![CDATA[
-			import net.fproject.rpc.JSONRemoteObject_JSONRemoteObjectRESTful;
-			
-			import org.flexunit.runner.Request;
+			import net.fproject.rpc.JSONMessage_JSONMessage;
 			
 			public function currentRunTestSuite():Array
 			{
 				var testsToRun:Array = new Array();
-				
-				testsToRun.push(Request.methods(net.fproject.rpc.JSONRemoteObject_JSONRemoteObjectRESTful,["testCase100",
-					"testCase600"]));
+				testsToRun.push(net.fproject.rpc.JSONMessage_JSONMessage);
 				return testsToRun;
 			}
 			
