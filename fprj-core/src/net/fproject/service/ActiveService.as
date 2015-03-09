@@ -68,7 +68,7 @@ package net.fproject.service
 		 *
 		 * <pre>
 		 * // find a single customer whose primary key value is 10
-		 * customer = customerService.findOne(10);
+		 * customer = customerService.findOne("10");
 		 * 
 		 * // find a single customer whose composite primary key value is "11,20"
 		 * customer = customerService.findOne("11,20");</pre>
