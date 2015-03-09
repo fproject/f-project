@@ -7,6 +7,8 @@
 ///////////////////////////////////////////////////////////////////////////////
 package net.fproject.rpc
 {
+	import flash.utils.getQualifiedClassName;
+	
 	import mx.core.FlexGlobals;
 	import mx.messaging.messages.HTTPRequestMessage;
 	import mx.rpc.AsyncToken;
@@ -23,7 +25,7 @@ package net.fproject.rpc
 		{
 			super();
 			
-			var preparedMsg:Object = prepareImpl(operation, sendingArgs, token);
+			var preparedMsg:Object = prepare(operation, sendingArgs, token);
 			
 			this.clientId    		= UIDUtil.getUID(FlexGlobals.topLevelApplication);
 			this.messageId   		= UIDUtil.createUID();
@@ -34,7 +36,7 @@ package net.fproject.rpc
 			this.body = preparedMsg.body;
 		}   
 		
-		private function prepareImpl(operation:JSONOperation, sendingArgs:Array, token:AsyncToken):Object
+		private function prepare(operation:JSONOperation, sendingArgs:Array, token:AsyncToken):Object
 		{
 			var ub:Object = parseUrlAndBody(operation.route, sendingArgs);
 			var url:String = JSONRemoteObject(operation.service).source + ub.url;
@@ -75,7 +77,7 @@ package net.fproject.rpc
 		
 		private function replaceRoute(route:String, i:int, argValue:*):String
 		{
-			if(argValue === null || isNaN(argValue))
+			if(argValue === null || (argValue is Number && isNaN(argValue)))
 			{
 				const target:String = "{" + i + "}";
 				var j:int = route.lastIndexOf(target);
@@ -97,13 +99,23 @@ package net.fproject.rpc
 					route = route.substr(1);
 				else if(StringUtil.startsWith(route, "?&"))
 					route = "?" + route.substr(2);
+				if(route == "?")
+					route = "";
 			}
 			else
 			{				
-				route = route.replace(new RegExp("\\{"+i+"\\}", "g"), argValue);
+				route = route.replace(new RegExp("\\{"+i+"\\}", "g"), urlEncode(argValue));
 			}			
 			
 			return route;
+		}
+		
+		private function urlEncode(value:*):String
+		{
+			if(getQualifiedClassName(value) == "Object")
+				return Serializer.getInstance().toJSON(value);
+			else
+				return value;
 		}
 	}
 }
