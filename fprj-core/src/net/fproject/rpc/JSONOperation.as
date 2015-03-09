@@ -123,13 +123,21 @@ package net.fproject.rpc
 		{
 			try 
 			{
-				if(this.returning != null && this.returning.indexOf("{modelClass}") != -1)
+				if(this.returning != null)
 				{
-					if(this.remoteObject.modelClass != null)
-						retn = this.remoteObject.modelClass;
-					else(this.remoteObject.modelClassName != null)
-						var retn:* = this.returning.replace(/\{modelClass\}/g, this.remoteObject.modelClassName);
+					if(this.returning.indexOf("{modelClass}") != -1)
+					{
+						if(this.remoteObject.modelClass != null)
+							var retn:* = this.remoteObject.modelClass;
+						else if(this.remoteObject.modelClassName != null)
+							retn = this.returning.replace(/\{modelClass\}/g, this.remoteObject.modelClassName);
+					}
+					else
+					{
+						retn = this.returning
+					}
 				}
+				
 				var decodedResult:Object = Deserializer.getInstance().fromJSON(String(message.body), retn);
 			} 
 			catch (e:Error) 
