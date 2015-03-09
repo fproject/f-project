@@ -91,7 +91,7 @@ package net.fproject.service
 				completeCallback, failCallback);
 		}
 		
-		[RESTOperation(method='GET', route="?filter={0}&page={1}&per-page={2}", returning="{modelClass}[]")]
+		[RESTOperation(method='GET', route="?criteria={0}&page={1}&per-page={2}&sort={3}", returning="{modelClass}[]")]
 		/**
 		 * Finds models by a filter condition and returns a set of model instances with pagination.
 		 *
@@ -105,8 +105,10 @@ package net.fproject.service
 		 * // seek to page #2
 		 * customer = customerService.find({condition:"name LIKE :name",params:{name:"ABC"}}, page:2, perPage:10);</pre>
 		 *
-		 * @param filter the filter condition
-		 * @param pagination the pagination information
+		 * @param criteria the criteria contains searching condition and params to bind
+		 * @param page the page to load
+		 * @param page the page-size of pagination
+		 * @param sort the sort parameter
 		 * 
 		 * @param completeCallback The call-back function that will be invoked after
 		 * the remote object call succesfully returned.
@@ -117,10 +119,10 @@ package net.fproject.service
 		 * The <code>result</code> field of RESULT event will be an array of model instances
 		 * matching the condition, or null if nothing matches.
 		 */
-		public function find(filter:Object=null, page:Number=1, perPage:Number=20,
+		public function find(criteria:Object=null, page:Number=NaN, perPage:Number=NaN, sort:String=null,
 							 completeCallback:Function=null, failCallback:Function=null):CallResponder
 		{
-			return createServiceCall(remoteObject.find(filter, page, perPage),
+			return createServiceCall(remoteObject.find(criteria, page, perPage, sort),
 				completeCallback, failCallback);
 		}
 		
