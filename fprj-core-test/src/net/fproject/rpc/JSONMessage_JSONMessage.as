@@ -5,7 +5,6 @@ package net.fproject.rpc
 	import mx.rpc.AsyncToken;
 	
 	import org.flexunit.asserts.assertEquals;
-	import org.flexunit.asserts.assertFalse;
 	import org.flexunit.asserts.assertNull;
 	import org.flexunit.asserts.assertTrue;
 

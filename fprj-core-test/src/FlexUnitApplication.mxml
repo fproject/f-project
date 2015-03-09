@@ -9,14 +9,12 @@
 			   minWidth="955" minHeight="600" creationComplete="onCreationComplete()">
 	<fx:Script>
 		<![CDATA[
-			import net.fproject.rpc.JSONOperation_JSONOperation;
-			import net.fproject.rpc.JSONOperation_processResult;
+			import net.fproject.rpc.JSONRemoteObject_JSONRemoteObjectRESTful;
 			
 			public function currentRunTestSuite():Array
 			{
 				var testsToRun:Array = new Array();
-				testsToRun.push(net.fproject.rpc.JSONOperation_JSONOperation);
-				testsToRun.push(net.fproject.rpc.JSONOperation_processResult);
+				testsToRun.push(net.fproject.rpc.JSONRemoteObject_JSONRemoteObjectRESTful);
 				return testsToRun;
 			}
 			
