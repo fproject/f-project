@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testrun name="" >
 <testsuite  name="Default Test Suite" project="fprj-core-test">
-<testsuite name="net.fproject.rpc:JSONMessage_JSONMessage" type="testcaseclass"/>
+<testsuite name="net.fproject.rpc:JSONOperation_JSONOperation" type="testcaseclass"/>
+<testsuite name="net.fproject.rpc:JSONOperation_processResult" type="testcaseclass"/>
 </testsuite>
 <portNumber value="8765" />
 </testrun>

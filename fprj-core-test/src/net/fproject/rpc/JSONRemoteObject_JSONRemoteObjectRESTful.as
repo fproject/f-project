@@ -100,7 +100,7 @@ package net.fproject.rpc
 		 */
 		public function testCase300():void
 		{
-			var at:AsyncToken = restService.save({"id":null,"name":"User 04","bod":1325397000000}).token;
+			var at:AsyncToken = restService.save({"id":null,"username":"User 04","password":"ABC123"}).token;
 			Async.handleEvent(this, at, ResultEvent.RESULT, 
 				function(e:ResultEvent):void
 				{
@@ -131,9 +131,9 @@ package net.fproject.rpc
 		{
 			var at:AsyncToken = restService.batchSave(
 				[
-					{"id":null,"name":"Batch User 01","bod":1325397000000},
-					{"id":null,"name":"Batch User 02","bod":1325398000000},
-					{"id":null,"name":"Batch User 03","bod":1325399000000}
+					{"id":null,"username":"Batch User 01","password":"ABC123"},
+					{"id":null,"username":"Batch User 02","password":"ABC123"},
+					{"id":null,"username":"Batch User 03","password":"ABC123"}
 				]).token;
 			Async.handleEvent(this, at, ResultEvent.RESULT, 
 				function(e:ResultEvent):void

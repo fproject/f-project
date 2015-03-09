@@ -3,6 +3,7 @@ package net.fproject.rpc
 	import flash.net.registerClassAlias;
 	
 	import mx.core.mx_internal;
+	import mx.messaging.Channel;
 	import mx.messaging.messages.HTTPRequestMessage;
 	import mx.messaging.messages.IMessage;
 	import mx.rpc.AsyncToken;
@@ -31,6 +32,7 @@ package net.fproject.rpc
 		public function runBeforeEveryTest():void
 		{
 			jsonOperation = new JSONOperation();
+			jsonOperation.setService(new JSONRemoteObject("ABC", null,new Channel,null,null,null,null));
 			//Your test data initialization
 		}
 		

@@ -1,5 +1,7 @@
 package net.fproject.rpc
 {
+	import mx.messaging.Channel;
+	
 	import org.flexunit.asserts.assertEquals;
 	import org.flexunit.asserts.assertNull;
 
@@ -37,7 +39,7 @@ package net.fproject.rpc
 		 */
 		public function testCase001():void
 		{
-			var service:JSONRemoteObject = new JSONRemoteObject("","",null,null,"","",null);
+			var service:JSONRemoteObject = new JSONRemoteObject("","",new Channel,null,"","",null);
 			var name:String = "ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789";
 			var returnTestValue:JSONOperation = new JSONOperation(service, name);
 			//---- Place result assertion here ----
@@ -89,7 +91,7 @@ package net.fproject.rpc
 		 */
 		public function testCase003():void
 		{
-			var service:JSONRemoteObject = new JSONRemoteObject("","",null,null,"","",null);
+			var service:JSONRemoteObject = new JSONRemoteObject("","",new Channel,null,"","",null);
 			var name:String = "";
 			var returnTestValue:JSONOperation = new JSONOperation(service, name);
 			//---- Place result assertion here ----
@@ -141,7 +143,7 @@ package net.fproject.rpc
 		 */
 		public function testCase005():void
 		{
-			var service:JSONRemoteObject = new JSONRemoteObject("","",null,null,"","",null);
+			var service:JSONRemoteObject = new JSONRemoteObject("","",new Channel,null,"","",null);
 			var name:String = null;
 			var returnTestValue:JSONOperation = new JSONOperation(service, name);
 			//---- Place result assertion here ----
