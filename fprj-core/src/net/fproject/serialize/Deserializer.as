@@ -14,6 +14,7 @@ package net.fproject.serialize
 	import flash.utils.getQualifiedClassName;
 	
 	import net.fproject.utils.DateTimeUtil;
+	import net.fproject.utils.StringUtil;
 	
 	import org.as3commons.lang.ClassUtils;
 	import org.as3commons.reflect.Accessor;
@@ -404,7 +405,7 @@ package net.fproject.serialize
 				clazz = Class(returning) ;
 			}
 			
-			var obj:Object = (json is String) ? JSON.parse(json) : json;
+			var obj:Object = (json is String && !StringUtil.isBlank(json)) ? JSON.parse(json) : json;
 			
 			if(clazz == null)
 				return obj;
