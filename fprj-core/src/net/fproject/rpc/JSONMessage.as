@@ -113,9 +113,10 @@ package net.fproject.rpc
 		private function urlEncode(value:*):String
 		{
 			if(getQualifiedClassName(value) == "Object")
-				return Serializer.getInstance().toJSON(value);
+				var s:String = Serializer.getInstance().toJSON(value);
 			else
-				return value;
+				s = value;
+			return encodeURIComponent(s);
 		}
 	}
 }
