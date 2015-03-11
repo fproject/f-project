@@ -18,8 +18,8 @@ package net.fproject
 		[Before(async)]
 		public function runBeforeEveryTest():void
 		{
-			if (ImplementationConfig.instance.impls == null)
-				ImplementationConfig.instance.impls = [];
+//			if (ImplementationConfig.instance.impls == null)
+//				ImplementationConfig.instance.impls = [];
 			//ImplementationConfig.instance.impls.push(new Implementation(IAppContextService, WebAppContextService));
 			
 			/*RemoteObjectFactory.setServerConfig(<ServerConfig>
