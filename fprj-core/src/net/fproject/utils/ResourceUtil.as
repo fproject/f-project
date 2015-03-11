@@ -46,11 +46,11 @@ package net.fproject.utils
 	 * */
 	public class ResourceUtil
 	{		
-		/**
-		 * ResourceBundle for fproject library 
-		 */
-
-		//----------------------------------------------------
+		/*----------------------------------------------------
+		|
+		| ResourceBundle for fproject library 
+		|
+		------------------------------------------------------*/
 		public static const FPRJ_CORE_BUNDLE:String = "fprjcore";
 		public static const FPRJ_GANTT_BUNDLE:String = "fprjgantt";
 		public static const FPRJ_UTILS_BUNDLE:String = "fprjutils";
@@ -59,11 +59,34 @@ package net.fproject.utils
 		public static const FPRJ_MVC_BUNDLE:String = "fprjmvc";
 		public static const FPRJ_ORG_BUNDLE:String = "fprjorg";
 		
+		/**
+		 * Module ID for fprj-core 
+		 */
 		public static const FPRJ_CORE:String = "FPRJ0";
-		public static const FPRJ_CALENDAR:String = "FPRJ1";	
+		
+		/**
+		 * Module ID for fprj-cal 
+		 */
+		public static const FPRJ_CALENDAR:String = "FPRJ1";
+		
+		/**
+		 * Module ID for fprj-gantt 
+		 */
 		public static const FPRJ_GANTT:String = "FPRJ2";
+		
+		/**
+		 * Module ID for fprj-org 
+		 */
 		public static const FPRJ_ORG:String = "FPRJ5";
+		
+		/**
+		 * Module ID for fprj-vmc 
+		 */
 		public static const FPRJ_MVC:String = "FPRJ8";
+		
+		/**
+		 * Module ID for fprj-util 
+		 */
 		public static const FPRJ_UTILITIES:String = "FPRJ9";	
 		
 		/**
