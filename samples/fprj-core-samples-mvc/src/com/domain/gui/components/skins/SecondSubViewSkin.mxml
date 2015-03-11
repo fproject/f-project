@@ -12,6 +12,9 @@
 		<s:State name="disabled" />
 		<s:State name="normal" />
 	</s:states>
-	
+	<s:layout>
+		<s:VerticalLayout/>
+	</s:layout>
 	<s:TextArea id="theTextArea" width="100%" height="100%"/>
+	<s:Button id="showDialogButton" label="Show Dialog View"/>
 </s:Skin>

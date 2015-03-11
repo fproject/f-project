@@ -14,3 +14,7 @@ c|FirstSubView{
 c|SecondSubView{
 	skinClass:ClassReference("com.domain.gui.components.skins.SecondSubViewSkin")
 }
+
+c|DialogView{
+	skinClass:ClassReference("com.domain.gui.components.skins.DialogViewSkin")
+}
