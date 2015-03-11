@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("com.domain.gui.components.FirstSubView")]
+	</fx:Metadata>
+	
+	<!-- states -->
+	<s:states>
+		<s:State name="disabled" />
+		<s:State name="normal" />
+	</s:states>
+	
+	<s:Label x="10" y="34" 
+			 width="690" height="40" 
+			 text="Employee Portal: Vehicle Request Form"
+			 styleName="titleHeader"/>
+	
+	<s:Form x="10" y="70">
+		
+		<s:FormItem label="Employee:">
+			<s:DropDownList id="dropDownList"/>
+		</s:FormItem>
+		
+		<s:FormItem label="Age:">
+			<s:TextInput id="ageTextInput"/>
+		</s:FormItem>
+		
+		<s:FormItem label="Mobile Phone:">
+			<s:TextInput id="phoneTextInput"/>
+		</s:FormItem>
+		
+		<s:FormHeading label="Dates Requested"/>
+		
+		<!--The two DateChooser instances call the dateChangeHandler() function when the change event is dispatched.-->
+		
+		<s:FormItem label="Pickup Date:">
+			<mx:DateChooser id="pickupDate"/>
+		</s:FormItem>
+		
+		<s:FormItem label="Return Date:">
+			<mx:DateChooser id="returnDate"/>
+		</s:FormItem>
+		
+		<s:FormItem>
+			<s:Button id="submitButton" 
+					  label="Submit Request"/>
+		</s:FormItem>
+		
+	</s:Form>
+</s:Skin>

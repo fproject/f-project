@@ -1,0 +1,16 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+@namespace c "com.domain.gui.components.*";
+
+c|MainView{
+	skinClass:ClassReference("com.domain.gui.components.skins.MainViewSkin");
+}
+
+c|FirstSubView{
+	skinClass:ClassReference("com.domain.gui.components.skins.FirstSubViewSkin")
+}
+
+c|SecondSubView{
+	skinClass:ClassReference("com.domain.gui.components.skins.SecondSubViewSkin")
+}
