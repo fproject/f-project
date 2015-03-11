@@ -17,7 +17,7 @@
 			{
 				var testsToRun:Array = new Array();
 				
-				testsToRun.push(Request.methods(net.fproject.rpc.JSONRemoteObject_JSONRemoteObjectRESTful,["testCase101"]));
+				testsToRun.push(Request.methods(net.fproject.rpc.JSONRemoteObject_JSONRemoteObjectRESTful,["testCase102"]));
 				return testsToRun;
 			}
 			

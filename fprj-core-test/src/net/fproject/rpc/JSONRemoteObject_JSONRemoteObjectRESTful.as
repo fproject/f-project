@@ -94,21 +94,31 @@ package net.fproject.rpc
 			}
 		}
 		
-//		[Test (async, description="Normal case")]
-//		/**
-//		 * Test Case Type: Normal<br/>
-//		 * <br/>
-//		 * INPUT VALUES:<br/>
-//		 * <br/>
-//		 * OUTPUT EXPECTED:<br/>
-//		 * ---- expectations ----
-//		 *
-//		 */
-//		public function testCase102():void
-//		{
-//			var responder:CallResponder = restService.find({condition:"username like {name}", params:{name:"%Batch%"}});
-//			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase101_checkResult, null), 2000, null));
-//		}
+		[Test (async, description="Normal case")]
+		/**
+		 * Test Case Type: Normal<br/>
+		 * <br/>
+		 * INPUT VALUES:<br/>
+		 * <br/>
+		 * OUTPUT EXPECTED:<br/>
+		 * ---- expectations ----
+		 *
+		 */
+		public function testCase102():void
+		{
+			var responder:CallResponder = restService.find({condition:"id < :id", params:{":id":5}});
+			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase102_checkResult, null), 2000, null));
+		}
+		
+		public function testCase102_checkResult(event:ResultEvent, passThroughData:Object):void
+		{
+			assertTrue(event.result is Array);
+			for each(var o:Object in event.result)
+			{
+				assertTrue(o is TestUser);
+				assertTrue(Number(TestUser(o).id) < 3);
+			}
+		}
 		
 		[Test (async, description="Normal case")]
 		/**
