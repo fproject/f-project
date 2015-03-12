@@ -286,7 +286,7 @@ package net.fproject.utils
 		 * @param module The source module to log
 		 * @param messageNumber The message number, this should be unique for each module scope
 		 * @param resourceManager an IResourceManager instance to handle resource bundle.
-		 * If <code>null<code> is passed to this argument, the logger will use  ResourceManager.getInstance() instead.
+		 * If <code>null</code> is passed to this argument, the logger will use  ResourceManager.getInstance() instead.
 		 * @param resourceBundle The resource bundle
 		 * @param bundleKey The bundle key that is used to find log message 
 		 * @param parameters An Array of parameters that are substituted for the "{0}", "{1}", and so on.
@@ -305,15 +305,15 @@ package net.fproject.utils
 		 * <p>Log a message at the WARN level by a message from resource bundle.
 		 * The resource name is composed from message number, bundle key and "W" prefix.</p>
 		 * <p>For example, the call 
-		 * <code>logWarn(MyClass, "FPRJ0", 99, null, "fprjcore", "my.bundle.key")</code>
+		 * <code>logWarn(MyClass, "FPRJ0", 11, null, "fprjcore", "my.bundle.key")</code>
 		 * will search in resource bundle <code>fprjcore.properties</code> to find a resource
-		 * with name <code>my.bundle.key.FPRJ0099W</code></p>
+		 * with name <code>my.bundle.key.FPRJ0011W</code></p>
 		 * 
 		 * @param clazz The source class to log
 		 * @param module The source module to log
 		 * @param messageNumber The message number, this should be unique for each module scope
 		 * @param resourceManager an IResourceManager instance to handle resource bundle.
-		 * If <code>null<code> is passed to this argument, the logger will use  ResourceManager.getInstance() instead.
+		 * If <code>null</code> is passed to this argument, the logger will use  ResourceManager.getInstance() instead.
 		 * @param resourceBundle The resource bundle
 		 * @param bundleKey The bundle key that is used to find log message 
 		 * @param parameters An Array of parameters that are substituted for the "{0}", "{1}", and so on.
@@ -332,15 +332,15 @@ package net.fproject.utils
 		 * <p>Log a message at the ERROR level by a message from resource bundle, and throw an Error after logging.
 		 * The resource name is composed from message number, bundle key and "E" prefix.</p>
 		 * <p>For example, the call 
-		 * <code>logAndThrowError(MyClass, "FPRJ0", 99, null, "fprjcore", "my.bundle.key")</code>
+		 * <code>logAndThrowError(MyClass, "FPRJ0", 1, null, "fprjcore", "my.bundle.key")</code>
 		 * will search in resource bundle <code>fprjcore.properties</code> to find a resource
-		 * with name <code>my.bundle.key.FPRJ0099E</code></p>
+		 * with name <code>my.bundle.key.FPRJ0001E</code></p>
 		 * 
 		 * @param clazz The source class to log
 		 * @param module The source module to log
 		 * @param messageNumber The message number, this should be unique for each module scope
 		 * @param resourceManager an IResourceManager instance to handle resource bundle.
-		 * If <code>null<code> is passed to this argument, the logger will use  ResourceManager.getInstance() instead.
+		 * If <code>null</code> is passed to this argument, the logger will use  ResourceManager.getInstance() instead.
 		 * @param resourceBundle The resource bundle
 		 * @param bundleKey The bundle key that is used to find log message 
 		 * @param parameters An Array of parameters that are substituted for the "{0}", "{1}", and so on.
