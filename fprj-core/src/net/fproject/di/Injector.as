@@ -985,7 +985,7 @@ package net.fproject.di
 				{
 					if(meta != "propertyChange")
 					{
-						LoggingUtil.fproject_internal::warn(Injector, 3, "property.binding.invalid.event");
+						LoggingUtil.fproject_internal::warn(Injector, 3, "property.binding.invalid.event", [meta]);
 						isBindable = false;
 					}
 				}
@@ -1086,7 +1086,7 @@ package net.fproject.di
 			}
 			else
 			{
-				var stack:Array = new Array;
+				var stack:Array = [];
 				stack.push({target:target, chain:chain});
 				
 				while (stack.length > 0)

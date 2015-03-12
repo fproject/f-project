@@ -11,6 +11,8 @@ package net.fproject.utils
 	import mx.resources.ResourceManager;
 	import mx.utils.StringUtil;
 	
+	import net.fproject.fproject_internal;
+	
 	//[ResourceBundle("fprjcore")]	
 	/**
 	 *  Helper class of locale Strings and Images, such as <code>[ "en_US" ]</code>,
@@ -338,12 +340,22 @@ package net.fproject.utils
 			return msgUid + ": " + getMessage(resourceManager, bundleName, resourceName + "." + msgUid, parameters);
 		}// end function
 		
+		fproject_internal static function getInfo(messageNumber:uint, bundleKey:String, parameters:Array = null) : String
+		{
+			return getInfo(FPRJ_CORE, messageNumber, null, FPRJ_CORE_BUNDLE, bundleKey, parameters);
+		}// end function
+		
 		public static function getWarning(module:String, messageNumber:uint, 
 										  resourceManager:IResourceManager, bundleName:String, 
 										  resourceName:String, parameters:Array = null) : String
 		{
 			var msgUid:String = getMessageUniqueID(module, messageNumber, "W");
 			return msgUid + ": " + getMessage(resourceManager, bundleName, resourceName + "." + msgUid, parameters);
+		}// end function
+		
+		fproject_internal static function getWarning(messageNumber:uint, bundleKey:String, parameters:Array = null) : String
+		{
+			return getWarning(FPRJ_CORE, messageNumber, null, FPRJ_CORE_BUNDLE, bundleKey, parameters);
 		}// end function
 		
 		public static function getError(module:String, messageNumber:uint, 
@@ -353,6 +365,11 @@ package net.fproject.utils
 			var msgUid:String = getMessageUniqueID(module, messageNumber, "E");
 			return msgUid + ": " + getMessage(resourceManager, bundleName, resourceName + "." + msgUid, parameters);
 			
+		}// end function
+		
+		fproject_internal static function getError(messageNumber:uint, bundleKey:String, parameters:Array = null) : String
+		{
+			return getError(FPRJ_CORE, messageNumber, null, FPRJ_CORE_BUNDLE, bundleKey, parameters);
 		}// end function
 		
 		private static function getMessage(resourceManager:IResourceManager, bundleName:String, 

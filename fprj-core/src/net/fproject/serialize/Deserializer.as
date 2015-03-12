@@ -13,7 +13,9 @@ package net.fproject.serialize
 	import flash.utils.getDefinitionByName;
 	import flash.utils.getQualifiedClassName;
 	
+	import net.fproject.fproject_internal;
 	import net.fproject.utils.DateTimeUtil;
+	import net.fproject.utils.ResourceUtil;
 	import net.fproject.utils.StringUtil;
 	
 	import org.as3commons.lang.ClassUtils;
@@ -160,7 +162,9 @@ package net.fproject.serialize
 		{
 			// Is this a required injection?
 			if (injectionDetail.isRequired && !source.hasOwnProperty(injectionDetail.name)) {
-				throw new MarshallingError("Required value " + injectionDetail + " does not exist in the source object.", MarshallingError.MISSING_REQUIRED_FIELD);
+				throw new MarshallingError(
+					ResourceUtil.fproject_internal::getError(10, "require.value.not.found", [injectionDetail]), 
+					MarshallingError.MISSING_REQUIRED_FIELD);
 			}
 			
 			var value : * = source[injectionDetail.name];

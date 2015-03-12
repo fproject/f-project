@@ -21,7 +21,6 @@ package net.fproject.rpc
 	
 	import net.fproject.fproject_internal;
 	import net.fproject.utils.LoggingUtil;
-	import net.fproject.utils.ResourceUtil;
 	import net.fproject.utils.StringUtil;
 	
 	/**
@@ -203,8 +202,7 @@ package net.fproject.rpc
 						}
 						catch(e:Error)
 						{
-							LoggingUtil.logWarning(JSONRemoteObject, ResourceUtil.FPRJ_CORE,9, null,
-								ResourceUtil.FPRJ_CORE_BUNDLE, "model.class.not.found", [modelClassName]);
+							LoggingUtil.fproject_internal::warn(JSONRemoteObject, 9, "model.class.not.found", [modelClassName]);
 						}
 					}
 				}
