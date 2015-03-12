@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<services-config>
+    <services>
+        <service id="testService"
+            class="flex.messaging.services.RemotingService"
+            messageTypes="flex.messaging.messages.RemotingMessage">
+            <destination id="test-http-destination">
+                <channels>
+                    <channel ref="test-http-chanel"/>
+                </channels>
+                <properties>
+                    <source>*</source>
+                </properties>
+            </destination>
+        </service>
+    </services>
+    <channels>
+        <channel-definition id="test-http-chanel"
+            class="net.fproject.rpc.JSONChannel">
+            <endpoint uri="http://localhost/fprj-test/web"/>
+        </channel-definition>
+    </channels>
+</services-config>
