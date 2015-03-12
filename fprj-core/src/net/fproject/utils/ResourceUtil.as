@@ -333,11 +333,11 @@ package net.fproject.utils
 		}
 		
 		public static function getInfo(module:String, messageNumber:uint, 
-									   resourceManager:IResourceManager, bundleName:String, 
-									   resourceName:String, parameters:Array = null) : String
+									   resourceManager:IResourceManager, resourceBundle:String, 
+									   bundleKey:String, parameters:Array = null) : String
 		{
 			var msgUid:String = getMessageUniqueID(module, messageNumber, "I");
-			return msgUid + ": " + getMessage(resourceManager, bundleName, resourceName + "." + msgUid, parameters);
+			return msgUid + ": " + getMessage(resourceManager, resourceBundle, bundleKey + "." + msgUid, parameters);
 		}// end function
 		
 		fproject_internal static function getInfo(messageNumber:uint, bundleKey:String, parameters:Array = null) : String
@@ -346,11 +346,11 @@ package net.fproject.utils
 		}// end function
 		
 		public static function getWarning(module:String, messageNumber:uint, 
-										  resourceManager:IResourceManager, bundleName:String, 
-										  resourceName:String, parameters:Array = null) : String
+										  resourceManager:IResourceManager, resourceBundle:String, 
+										  bundleKey:String, parameters:Array = null) : String
 		{
 			var msgUid:String = getMessageUniqueID(module, messageNumber, "W");
-			return msgUid + ": " + getMessage(resourceManager, bundleName, resourceName + "." + msgUid, parameters);
+			return msgUid + ": " + getMessage(resourceManager, resourceBundle, bundleKey + "." + msgUid, parameters);
 		}// end function
 		
 		fproject_internal static function getWarning(messageNumber:uint, bundleKey:String, parameters:Array = null) : String
@@ -359,11 +359,11 @@ package net.fproject.utils
 		}// end function
 		
 		public static function getError(module:String, messageNumber:uint, 
-										resourceManager:IResourceManager, bundleName:String, 
-										resourceName:String, parameters:Array = null) : String
+										resourceManager:IResourceManager, resourceBundle:String, 
+										bundleKey:String, parameters:Array = null) : String
 		{
 			var msgUid:String = getMessageUniqueID(module, messageNumber, "E");
-			return msgUid + ": " + getMessage(resourceManager, bundleName, resourceName + "." + msgUid, parameters);
+			return msgUid + ": " + getMessage(resourceManager, resourceBundle, bundleKey + "." + msgUid, parameters);
 			
 		}// end function
 		
@@ -372,12 +372,12 @@ package net.fproject.utils
 			return getError(FPRJ_CORE, messageNumber, null, FPRJ_CORE_BUNDLE, bundleKey, parameters);
 		}// end function
 		
-		private static function getMessage(resourceManager:IResourceManager, bundleName:String, 
-										   resourceName:String, parameters:Array = null) : String
+		private static function getMessage(resourceManager:IResourceManager, resourceBundle:String, 
+										   bundleKey:String, parameters:Array = null) : String
 		{
 			if (resourceManager == null)
 				resourceManager = ResourceManager.getInstance();
-			return resourceManager.getString(bundleName, resourceName, parameters);
+			return resourceManager.getString(resourceBundle, bundleKey, parameters);
 		}// end function
 		
 		private static function getMessageUniqueID(module:String, messageNumber:uint, type:String) : String

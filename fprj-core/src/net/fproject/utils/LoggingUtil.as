@@ -16,8 +16,14 @@ package net.fproject.utils
 	import mx.resources.IResourceManager;
 	
 	import net.fproject.fproject_internal;
-	import net.fproject.di.Injector;
 	
+	/**
+	 * 
+	 * Provides some convenience methods for client logging, code debugging and exception handling.
+	 * 
+	 * @author Bui Sy Nguyen
+	 * 
+	 */
 	public class LoggingUtil
 	{
 		private static var isInitialized:Boolean = false;
@@ -56,56 +62,153 @@ package net.fproject.utils
 			return Log.getLogger(qualifiedClassName);
 		}// end function
 		
+		/**
+		 * Log a message at the INFO level according to the specified message bundle message and parameters.
+		 *  
+		 * @param clazz
+		 * @param resourceManager
+		 * @param bundleName
+		 * @param resourceName
+		 * @param parameters
+		 * @param locale
+		 * 
+		 */
 		public static function info(clazz:Class, resourceManager:IResourceManager, 
-									bundleName:String, resourceName:String, parameters:Array = null, 
+									resourceBundle:String, bundleKey:String, parameters:Array = null, 
 									locale:String = null) : void
 		{
 			if (Log.isInfo())
 			{
-				getLogger(clazz).info(resourceManager.getString(bundleName, resourceName, parameters, locale));
+				getLogger(clazz).info(resourceManager.getString(resourceBundle, bundleKey, parameters, locale));
 			}
 		}// end function
 		
+		/**
+		 * Log a message at the WARN level according to the specified message bundle message and parameters. 
+		 * 
+		 * @param clazz
+		 * @param resourceManager
+		 * @param bundleName
+		 * @param resourceName
+		 * @param parameters
+		 * @param locale
+		 * 
+		 */
 		public static function warn(clazz:Class, resourceManager:IResourceManager, 
-									bundleName:String, resourceName:String, parameters:Array = null, 
+									resourceBundle:String, bundleKey:String, parameters:Array = null, 
 									locale:String = null) : void
 		{
 			if (Log.isWarn())
 			{
-				getLogger(clazz).warn(resourceManager.getString(bundleName, resourceName, parameters, locale));
+				getLogger(clazz).warn(resourceManager.getString(resourceBundle, bundleKey, parameters, locale));
 			}
 		}// end function
 		
+		
+		/**
+		 * Log a message at the WARN level according to the specified message bundle message and parameters.
+		 *  
+		 * @param clazz
+		 * @param messageNumber
+		 * @param bundleKey
+		 * @param parameters
+		 * 
+		 */
+		fproject_internal static function warn(clazz:Class, messageNumber:int, 
+											   bundleKey:String, parameters:Array = null):void
+		{
+			logWarning(clazz, ResourceUtil.FPRJ_CORE, messageNumber, null, 
+				ResourceUtil.FPRJ_CORE_BUNDLE, bundleKey, parameters);
+		}
+		
+		/**
+		 * Log a message at the ERROR level according to the specified message bundle message and parameters. 
+		 * 
+		 * @param clazz
+		 * @param resourceManager
+		 * @param bundleName
+		 * @param resourceName
+		 * @param parameters
+		 * @param locale
+		 * 
+		 */
 		public static function error(clazz:Class, resourceManager:IResourceManager, 
-									 bundleName:String, resourceName:String, parameters:Array = null, 
+									 resourceBundle:String, bundleKey:String, parameters:Array = null, 
 									 locale:String = null) : void
 		{
 			if (Log.isError())
 			{
-				getLogger(clazz).error(resourceManager.getString(bundleName, resourceName, parameters, locale));
+				getLogger(clazz).error(resourceManager.getString(resourceBundle, bundleKey, parameters, locale));
 			}
 		}// end function
 		
+		/**
+		 * Log a message at the ERROR level according to the specified message bundle message and parameters.
+		 *  
+		 * @param clazz
+		 * @param messageNumber
+		 * @param bundleKey
+		 * @param parameters
+		 * 
+		 */
+		fproject_internal static function error(clazz:Class, messageNumber:int, 
+												bundleKey:String, parameters:Array = null):void
+		{
+			logAndThrowError(clazz, ResourceUtil.FPRJ_CORE, messageNumber, null, 
+				ResourceUtil.FPRJ_CORE_BUNDLE, bundleKey, parameters);
+		}
+		
+		/**
+		 * Log a message at the DEBUG level according to the specified message bundle message and parameters.
+		 * 
+		 * @param clazz
+		 * @param resourceManager
+		 * @param bundleName
+		 * @param resourceName
+		 * @param parameters
+		 * @param locale
+		 * 
+		 */
 		public static function debug(clazz:Class, resourceManager:IResourceManager, 
-									 bundleName:String, resourceName:String, parameters:Array = null, 
+									 resourceBundle:String, bundleKey:String, parameters:Array = null, 
 									 locale:String = null) : void
 		{
 			if (Log.isDebug())
 			{
-				getLogger(clazz).debug(resourceManager.getString(bundleName, resourceName, parameters, locale));
+				getLogger(clazz).debug(resourceManager.getString(resourceBundle, bundleKey, parameters, locale));
 			}
 		}// end function
 		
+		/**
+		 * Log a message at the FATAL level according to the specified message bundle message and parameters.
+		 * 
+		 * @param clazz
+		 * @param resourceManager
+		 * @param bundleName
+		 * @param resourceName
+		 * @param parameters
+		 * @param locale
+		 * 
+		 */
 		public static function fatal(clazz:Class, resourceManager:IResourceManager, 
-									 bundleName:String, resourceName:String, parameters:Array = null, 
+									 resourceBundle:String, bundleKey:String, parameters:Array = null, 
 									 locale:String = null) : void
 		{
 			if (Log.isFatal())
 			{
-				getLogger(clazz).fatal(resourceManager.getString(bundleName, resourceName, parameters, locale));
+				getLogger(clazz).fatal(resourceManager.getString(resourceBundle, bundleKey, parameters, locale));
 			}
 		}// end function
 		
+		/**
+		 * Log a message at the specified level according to the specified category, message message and parameters.
+		 * 
+		 * @param category
+		 * @param level
+		 * @param message
+		 * @param parameters
+		 * 
+		 */
 		public static function logCategory(category:String, level:int, message:String, 
 										   parameters:Array = null) : void
 		{
@@ -115,6 +218,14 @@ package net.fproject.utils
 			}
 		}// end function
 		
+		/**
+		 * Log a message at the specified level according to the specified message.
+		 * 
+		 * @param clazz
+		 * @param level
+		 * @param message
+		 * 
+		 */
 		public static function log(clazz:Class, level:int, message:String) : void
 		{
 			if (isLoggable(level))
@@ -164,43 +275,29 @@ package net.fproject.utils
 		}// end function
 		
 		public static function logInfo(clazz:Class, module:String, messageNumber:uint, 
-									   resourceManager:IResourceManager, bundleName:String, 
-									   resourceName:String, parameters:Array = null) : void
+									   resourceManager:IResourceManager, resourceBundle:String, 
+									   bundleKey:String, parameters:Array = null) : void
 		{
-			LoggingUtil.log(clazz, LogEventLevel.INFO, ResourceUtil.getInfo(
-				module, messageNumber, resourceManager, bundleName, resourceName, parameters));
+			log(clazz, LogEventLevel.INFO, ResourceUtil.getInfo(
+				module, messageNumber, resourceManager, resourceBundle, bundleKey, parameters));
 		}// end function
 		
 		public static function logWarning(clazz:Class, module:String, messageNumber:uint, 
-										  resourceManager:IResourceManager, bundleName:String, 
-										  resourceName:String, parameters:Array = null) : void
+										  resourceManager:IResourceManager, resourceBundle:String, 
+										  bundleKey:String, parameters:Array = null) : void
 		{
-			LoggingUtil.log(clazz, LogEventLevel.WARN, ResourceUtil.getWarning(
-				module, messageNumber, resourceManager, bundleName, resourceName, parameters));
+			log(clazz, LogEventLevel.WARN, ResourceUtil.getWarning(
+				module, messageNumber, resourceManager, resourceBundle, bundleKey, parameters));
 		}// end function
 		
 		public static function logAndThrowError(clazz:Class, module:String, messageNumber:uint, 
-												resourceManager:IResourceManager, bundleName:String, 
-												resourceName:String, parameters:Array = null) : void
+												resourceManager:IResourceManager, resourceBundle:String, 
+												bundleKey:String, parameters:Array = null) : void
 		{
 			var msgUid:String = ResourceUtil.getError(module, messageNumber, resourceManager, 
-				bundleName, resourceName, parameters);
-			LoggingUtil.log(clazz, LogEventLevel.ERROR, msgUid);
+				resourceBundle, bundleKey, parameters);
+			log(clazz, LogEventLevel.ERROR, msgUid);
 			throw new Error(msgUid);
 		}// end function
-		
-		fproject_internal static function warn(clazz:Class, messageNumber:int, 
-													 bundleKey:String, parameters:Array = null):void
-		{
-			logWarning(clazz, ResourceUtil.FPRJ_CORE, messageNumber, null, 
-				ResourceUtil.FPRJ_CORE_BUNDLE, bundleKey, parameters);
-		}
-		
-		fproject_internal static function error(clazz:Class, messageNumber:int, 
-														   bundleKey:String, parameters:Array = null):void
-		{
-			logAndThrowError(clazz, ResourceUtil.FPRJ_CORE, messageNumber, null, 
-				ResourceUtil.FPRJ_CORE_BUNDLE, bundleKey, parameters);
-		}
 	}
 }
