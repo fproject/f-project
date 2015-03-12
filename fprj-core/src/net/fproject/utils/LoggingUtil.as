@@ -117,7 +117,7 @@ package net.fproject.utils
 		fproject_internal static function warn(clazz:Class, messageNumber:int, 
 											   bundleKey:String, parameters:Array = null):void
 		{
-			logWarning(clazz, ResourceUtil.FPRJ_CORE, messageNumber, null, 
+			logWarn(clazz, ResourceUtil.FPRJ_CORE, messageNumber, null, 
 				ResourceUtil.FPRJ_CORE_BUNDLE, bundleKey, parameters);
 		}// end function
 		
@@ -274,6 +274,25 @@ package net.fproject.utils
 			return false;
 		}// end function
 		
+		/**
+		 * Log a message at the INFO level by a message from resource bundle.
+		 * The resource name is composed from message number, bundle key and "I" prefix.
+		 * For example, the call 
+		 * <code>logInfo(MyClass, "FPRJ0", 99, null, "fprjcore", "my.bundle.key")</code>
+		 * will search in resource bundle <code>fprjcore.properties</code> to find a resource
+		 * with name <code>my.bundle.key.FPRJ0099</code>
+		 * 
+		 * @param clazz The source class to log
+		 * @param module The source module to log
+		 * @param messageNumber The message number, this should be unique for each module scope
+		 * @param resourceManager an IResourceManager instance to handle resource bundle.
+		 * If <code>null<code> is passed to this argument, the logger will use  ResourceManager.getInstance() instead.
+		 * @param resourceBundle The resource bundle
+		 * @param bundleKey The bundle key that is used to find log message 
+		 * @param parameters An Array of parameters that are substituted for the "{0}", "{1}", and so on.
+		 * Each parameter is converted to a String with the toString() method before being substituted.
+		 * 
+		 */
 		public static function logInfo(clazz:Class, module:String, messageNumber:uint, 
 									   resourceManager:IResourceManager, resourceBundle:String, 
 									   bundleKey:String, parameters:Array = null) : void
@@ -282,7 +301,26 @@ package net.fproject.utils
 				module, messageNumber, resourceManager, resourceBundle, bundleKey, parameters));
 		}// end function
 		
-		public static function logWarning(clazz:Class, module:String, messageNumber:uint, 
+		/**
+		 * <p>Log a message at the WARN level by a message from resource bundle.
+		 * The resource name is composed from message number, bundle key and "W" prefix.</p>
+		 * <p>For example, the call 
+		 * <code>logInfo(MyClass, "FPRJ0", 99, null, "fprjcore", "my.bundle.key")</code>
+		 * will search in resource bundle <code>fprjcore.properties</code> to find a resource
+		 * with name <code>my.bundle.key.FPRJ0099</code></p>
+		 * 
+		 * @param clazz The source class to log
+		 * @param module The source module to log
+		 * @param messageNumber The message number, this should be unique for each module scope
+		 * @param resourceManager an IResourceManager instance to handle resource bundle.
+		 * If <code>null<code> is passed to this argument, the logger will use  ResourceManager.getInstance() instead.
+		 * @param resourceBundle The resource bundle
+		 * @param bundleKey The bundle key that is used to find log message 
+		 * @param parameters An Array of parameters that are substituted for the "{0}", "{1}", and so on.
+		 * Each parameter is converted to a String with the toString() method before being substituted.
+		 * 
+		 */
+		public static function logWarn(clazz:Class, module:String, messageNumber:uint, 
 										  resourceManager:IResourceManager, resourceBundle:String, 
 										  bundleKey:String, parameters:Array = null) : void
 		{
@@ -290,6 +328,25 @@ package net.fproject.utils
 				module, messageNumber, resourceManager, resourceBundle, bundleKey, parameters));
 		}// end function
 		
+		/**
+		 * <p>Log a message at the ERROR level by a message from resource bundle, and throw an Error after logging.
+		 * The resource name is composed from message number, bundle key and "E" prefix.</p>
+		 * <p>For example, the call 
+		 * <code>logInfo(MyClass, "FPRJ0", 99, null, "fprjcore", "my.bundle.key")</code>
+		 * will search in resource bundle <code>fprjcore.properties</code> to find a resource
+		 * with name <code>my.bundle.key.FPRJ0099</code></p>
+		 * 
+		 * @param clazz The source class to log
+		 * @param module The source module to log
+		 * @param messageNumber The message number, this should be unique for each module scope
+		 * @param resourceManager an IResourceManager instance to handle resource bundle.
+		 * If <code>null<code> is passed to this argument, the logger will use  ResourceManager.getInstance() instead.
+		 * @param resourceBundle The resource bundle
+		 * @param bundleKey The bundle key that is used to find log message 
+		 * @param parameters An Array of parameters that are substituted for the "{0}", "{1}", and so on.
+		 * Each parameter is converted to a String with the toString() method before being substituted.
+		 * 
+		 */
 		public static function logAndThrowError(clazz:Class, module:String, messageNumber:uint, 
 												resourceManager:IResourceManager, resourceBundle:String, 
 												bundleKey:String, parameters:Array = null) : void
