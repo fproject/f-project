@@ -332,6 +332,18 @@ package net.fproject.utils
 			return getString(key, defaultBundle);
 		}
 		
+		/**
+		 * Get a resource string for logging at INFO level according to the specified arguments
+		 * 
+		 * @param module
+		 * @param messageNumber
+		 * @param resourceManager
+		 * @param resourceBundle
+		 * @param bundleKey
+		 * @param parameters
+		 * @return The a resource string.
+		 * 
+		 */
 		public static function getInfo(module:String, messageNumber:uint, 
 									   resourceManager:IResourceManager, resourceBundle:String, 
 									   bundleKey:String, parameters:Array = null) : String
@@ -340,12 +352,33 @@ package net.fproject.utils
 			return msgUid + ": " + getMessage(resourceManager, resourceBundle, bundleKey + "." + msgUid, parameters);
 		}// end function
 		
+		/**
+		 * Get a resource string for logging at INFO level according to the specified arguments
+		 * 
+		 * @param messageNumber
+		 * @param bundleKey
+		 * @param parameters
+		 * @return 
+		 * 
+		 */
 		fproject_internal static function getInfo(messageNumber:uint, bundleKey:String, parameters:Array = null) : String
 		{
 			return getInfo(FPRJ_CORE, messageNumber, null, FPRJ_CORE_BUNDLE, bundleKey, parameters);
 		}// end function
 		
-		public static function getWarning(module:String, messageNumber:uint, 
+		/**
+		 * Get a resource string for logging at WARN level according to the specified arguments
+		 * 
+		 * @param module
+		 * @param messageNumber
+		 * @param resourceManager
+		 * @param resourceBundle
+		 * @param bundleKey
+		 * @param parameters
+		 * @return 
+		 * 
+		 */
+		public static function getWarn(module:String, messageNumber:uint, 
 										  resourceManager:IResourceManager, resourceBundle:String, 
 										  bundleKey:String, parameters:Array = null) : String
 		{
@@ -353,11 +386,32 @@ package net.fproject.utils
 			return msgUid + ": " + getMessage(resourceManager, resourceBundle, bundleKey + "." + msgUid, parameters);
 		}// end function
 		
-		fproject_internal static function getWarning(messageNumber:uint, bundleKey:String, parameters:Array = null) : String
+		/**
+		 * Get a resource string for logging at WARN level according to the specified arguments
+		 * 
+		 * @param messageNumber
+		 * @param bundleKey
+		 * @param parameters
+		 * @return 
+		 * 
+		 */
+		fproject_internal static function getWarn(messageNumber:uint, bundleKey:String, parameters:Array = null) : String
 		{
-			return getWarning(FPRJ_CORE, messageNumber, null, FPRJ_CORE_BUNDLE, bundleKey, parameters);
+			return getWarn(FPRJ_CORE, messageNumber, null, FPRJ_CORE_BUNDLE, bundleKey, parameters);
 		}// end function
 		
+		/**
+		 * Get a resource string for logging at ERROR level according to the specified arguments
+		 * 
+		 * @param module
+		 * @param messageNumber
+		 * @param resourceManager
+		 * @param resourceBundle
+		 * @param bundleKey
+		 * @param parameters
+		 * @return 
+		 * 
+		 */
 		public static function getError(module:String, messageNumber:uint, 
 										resourceManager:IResourceManager, resourceBundle:String, 
 										bundleKey:String, parameters:Array = null) : String
@@ -367,6 +421,15 @@ package net.fproject.utils
 			
 		}// end function
 		
+		/**
+		 * Get a resource string for logging at ERROR level according to the specified arguments
+		 * 
+		 * @param messageNumber
+		 * @param bundleKey
+		 * @param parameters
+		 * @return 
+		 * 
+		 */
 		fproject_internal static function getError(messageNumber:uint, bundleKey:String, parameters:Array = null) : String
 		{
 			return getError(FPRJ_CORE, messageNumber, null, FPRJ_CORE_BUNDLE, bundleKey, parameters);
@@ -393,7 +456,7 @@ package net.fproject.utils
 			return msgUid;
 		}// end function
 		
-		//bundle='abc', key='cde'
+		//Example: getLabelParam("bundle='abc', key='cde'")
 		private static function getLabelParam(s:String):String
 		{
 			var i:int = s.search('=');

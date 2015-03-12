@@ -286,7 +286,7 @@ package net.fproject.utils
 										  resourceManager:IResourceManager, resourceBundle:String, 
 										  bundleKey:String, parameters:Array = null) : void
 		{
-			log(clazz, LogEventLevel.WARN, ResourceUtil.getWarning(
+			log(clazz, LogEventLevel.WARN, ResourceUtil.getWarn(
 				module, messageNumber, resourceManager, resourceBundle, bundleKey, parameters));
 		}// end function
 		
