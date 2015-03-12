@@ -280,7 +280,7 @@ package net.fproject.utils
 		 * For example, the call 
 		 * <code>logInfo(MyClass, "FPRJ0", 99, null, "fprjcore", "my.bundle.key")</code>
 		 * will search in resource bundle <code>fprjcore.properties</code> to find a resource
-		 * with name <code>my.bundle.key.FPRJ0099</code>
+		 * with name <code>my.bundle.key.FPRJ0099I</code>
 		 * 
 		 * @param clazz The source class to log
 		 * @param module The source module to log
@@ -305,9 +305,9 @@ package net.fproject.utils
 		 * <p>Log a message at the WARN level by a message from resource bundle.
 		 * The resource name is composed from message number, bundle key and "W" prefix.</p>
 		 * <p>For example, the call 
-		 * <code>logInfo(MyClass, "FPRJ0", 99, null, "fprjcore", "my.bundle.key")</code>
+		 * <code>logWarn(MyClass, "FPRJ0", 99, null, "fprjcore", "my.bundle.key")</code>
 		 * will search in resource bundle <code>fprjcore.properties</code> to find a resource
-		 * with name <code>my.bundle.key.FPRJ0099</code></p>
+		 * with name <code>my.bundle.key.FPRJ0099W</code></p>
 		 * 
 		 * @param clazz The source class to log
 		 * @param module The source module to log
@@ -332,9 +332,9 @@ package net.fproject.utils
 		 * <p>Log a message at the ERROR level by a message from resource bundle, and throw an Error after logging.
 		 * The resource name is composed from message number, bundle key and "E" prefix.</p>
 		 * <p>For example, the call 
-		 * <code>logInfo(MyClass, "FPRJ0", 99, null, "fprjcore", "my.bundle.key")</code>
+		 * <code>logAndThrowError(MyClass, "FPRJ0", 99, null, "fprjcore", "my.bundle.key")</code>
 		 * will search in resource bundle <code>fprjcore.properties</code> to find a resource
-		 * with name <code>my.bundle.key.FPRJ0099</code></p>
+		 * with name <code>my.bundle.key.FPRJ0099E</code></p>
 		 * 
 		 * @param clazz The source class to log
 		 * @param module The source module to log
