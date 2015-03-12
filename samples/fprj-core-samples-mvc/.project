@@ -15,4 +15,11 @@
 		<nature>com.adobe.flexbuilder.project.flexnature</nature>
 		<nature>com.adobe.flexbuilder.project.actionscriptnature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>bin-debug</name>
+			<type>2</type>
+			<location>F:/GitRepo/yii2-flex-test-server/web/flexapps/apom</location>
+		</link>
+	</linkedResources>
 </projectDescription>
