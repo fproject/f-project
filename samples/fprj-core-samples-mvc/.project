@@ -19,7 +19,7 @@
 		<link>
 			<name>bin-debug</name>
 			<type>2</type>
-			<location>F:/GitRepo/yii2-flex-test-server/web/flexapps/apom</location>
+			<location>F:/GitRepo/yii2-flex-test-server/web/flexapps/myapp</location>
 		</link>
 	</linkedResources>
 </projectDescription>
