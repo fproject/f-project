@@ -996,7 +996,7 @@ package net.fproject.di
 					{
 						if(args[0] != "propertyChange")
 						{
-							LoggingUtil.fproject_internal::warn(Injector, 3, "property.binding.invalid.event");
+							LoggingUtil.fproject_internal::warn(Injector, 3, "property.binding.invalid.event", [meta]);
 							isBindable = false;
 						}
 					}
