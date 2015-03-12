@@ -13,7 +13,6 @@ package net.fproject.utils
 	
 	import net.fproject.fproject_internal;
 	
-	//[ResourceBundle("fprjcore")]	
 	/**
 	 *  Helper class of locale Strings and Images, such as <code>[ "en_US" ]</code>,
 	 *  which specifies one or more locales to be searched for resources.
@@ -148,7 +147,7 @@ package net.fproject.utils
 				s = null;
 			}
 			return s == null ? key : s;
-		}
+		}// end function
 		
 		/**
 		 *  Gets the value of a specified resource as an Array of Strings.
@@ -201,7 +200,7 @@ package net.fproject.utils
 				a = null;
 			}
 			return a;
-		}
+		}// end function
 		
 		/**
 		 *  Gets the value of a specified resource as a Boolean.
@@ -245,7 +244,7 @@ package net.fproject.utils
 				b = false;
 			}
 			return b;
-		}
+		}// end function
 		
 		
 		/**
@@ -294,7 +293,7 @@ package net.fproject.utils
 			{				
 			}
 			return image;
-		}
+		}// end function
 			
 		/**
 		 * Get a label, using resource bundle if need 
@@ -330,7 +329,7 @@ package net.fproject.utils
 				key = getLabelParam(a[0]);
 				
 			return getString(key, defaultBundle);
-		}
+		}// end function
 		
 		/**
 		 * Get a resource string for logging at INFO level according to the specified arguments
@@ -469,6 +468,6 @@ package net.fproject.utils
 				s = s.substr(0, s.length - 1);
 			
 			return s;
-		}
+		}// end function
 	}
 }

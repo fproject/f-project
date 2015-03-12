@@ -119,7 +119,7 @@ package net.fproject.utils
 		{
 			logWarning(clazz, ResourceUtil.FPRJ_CORE, messageNumber, null, 
 				ResourceUtil.FPRJ_CORE_BUNDLE, bundleKey, parameters);
-		}
+		}// end function
 		
 		/**
 		 * Log a message at the ERROR level according to the specified message bundle message and parameters. 
@@ -156,7 +156,7 @@ package net.fproject.utils
 		{
 			logAndThrowError(clazz, ResourceUtil.FPRJ_CORE, messageNumber, null, 
 				ResourceUtil.FPRJ_CORE_BUNDLE, bundleKey, parameters);
-		}
+		}// end function
 		
 		/**
 		 * Log a message at the DEBUG level according to the specified message bundle message and parameters.
