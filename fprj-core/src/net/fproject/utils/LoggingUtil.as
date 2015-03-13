@@ -144,6 +144,7 @@ package net.fproject.utils
 		
 		/**
 		 * Log a message at the ERROR level according to the specified message bundle message and parameters.
+		 * An Error is thrown after logging.
 		 *  
 		 * @param clazz
 		 * @param messageNumber
