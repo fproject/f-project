@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testrun name="" >
 <testsuite  name="Default Test Suite" project="fprj-core-test">
-<testsuite name="net.fproject.rpc:JSONRemoteObject_JSONRemoteObjectRESTful" type="testcaseclass">
-<testcase name="testCase102" classname="net.fproject.rpc:JSONRemoteObject_JSONRemoteObjectRESTful"/>
+<testsuite name="net.fproject.di:Injector_bindProperties" type="testcaseclass">
+<testcase name="testCase021" classname="net.fproject.di:Injector_bindProperties"/>
 </testsuite>
 </testsuite>
 <portNumber value="8765" />

@@ -22,6 +22,7 @@ package net.fproject.di
 	import testdata.di.Injector_bindProperties_018;
 	import testdata.di.Injector_bindProperties_019;
 	import testdata.di.Injector_bindProperties_020;
+	import testdata.di.Injector_bindProperties_021;
 	
 	[ResourceBundle("fprjcore")]
 	/**
@@ -537,6 +538,34 @@ package net.fproject.di
 			assertNotNull(container.adg.labelFunction);
 			assertEquals('1234567890', container.adg.dataTipFunction(null));
 			assertEquals('1234567890', container.adg.labelFunction(null));
+		}
+		
+		[Test (async, description="Bug: http://jira.f-project.net/browse/FPRJ-58")]
+		/**
+		 * Test Case Type: Normal<br/>
+		 * <br/>
+		 * INPUT VALUES:<br/>
+		 * <code>container = new Object()</code><br/>
+		 * <code>clazz = new Class()</code><br/>
+		 * <code>deferredBinding = false</code><br/>
+		 * <br/>
+		 * OUTPUT EXPECTED:<br/>
+		 * ---- expectations ----
+		 *
+		 */
+		public function testCase021():void
+		{
+			var container:Injector_bindProperties_021 = new Injector_bindProperties_021();
+			Injector.bindProperties(container);
+			container.show();
+			Async.proceedOnEvent(this, container, 'creationComplete', 10000);
+			//---- Place result assertion here ----
+			// You must replace this code by function specifications or 
+			// the test always returns false!
+			assertNotNull(container.idTextInput);
+			assertNotNull(container.nameTextInput);
+			assertEquals('Robin Hood', container.nameTextInput.text);
+			assertEquals('2', container.idTextInput.text);			
 		}
 	}
 }
