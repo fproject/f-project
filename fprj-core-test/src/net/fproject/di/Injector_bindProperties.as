@@ -556,7 +556,7 @@ package net.fproject.di
 		public function testCase021():void
 		{
 			var container:Injector_bindProperties_021 = new Injector_bindProperties_021();
-			Injector.bindProperties(container);
+			Injector.inject(container);
 			container.show();
 			Async.proceedOnEvent(this, container, 'creationComplete', 10000);
 			//---- Place result assertion here ----
