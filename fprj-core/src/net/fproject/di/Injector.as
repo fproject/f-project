@@ -994,9 +994,10 @@ package net.fproject.di
 					var args:Array = Metadata(meta[0]).arguments;
 					if(args != null && args.length > 0)
 					{
-						if(args[0] != "propertyChange")
+						var bindEvent:String = MetadataArgument(args[0]).value;
+						if(bindEvent != "propertyChange")
 						{
-							LoggingUtil.fproject_internal::warn(Injector, 3, "property.binding.invalid.event", [meta]);
+							LoggingUtil.fproject_internal::warn(Injector, 3, "property.binding.invalid.event", [bindEvent]);
 							isBindable = false;
 						}
 					}
