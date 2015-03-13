@@ -378,7 +378,7 @@ package net.fproject.di
 						IEventDispatcher(target).addEventListener(PropertyChangeEvent.PROPERTY_CHANGE,
 							function(e:PropertyChangeEvent):void
 							{
-								var id:String = UIDUtil.getUID(e.currentTarget) + "." + e.property;
+								var id:String = UIDUtil.getUID(e.source) + "." + e.property;
 								
 								//Free memory
 								if(idToListenerInfo[id] != undefined && e.oldValue != null)
@@ -607,7 +607,7 @@ package net.fproject.di
 					IEventDispatcher(object).addEventListener(PropertyChangeEvent.PROPERTY_CHANGE,
 						function(e:PropertyChangeEvent):void
 						{
-							var id:String = UIDUtil.getUID(e.currentTarget) + "." + e.property;
+							var id:String = UIDUtil.getUID(e.source) + "." + e.property;
 							
 							if(idToHostChainInfo[id] != undefined && e.oldValue != null)
 							{
@@ -773,6 +773,7 @@ package net.fproject.di
 			if(sourceObject is IEventDispatcher)
 			{
 				if(isSourceSkinPart)
+				{
 					IEventDispatcher(sourceObject).addEventListener(SkinPartEvent.PART_ADDED,
 						function(e:SkinPartEvent):void
 						{
@@ -786,28 +787,34 @@ package net.fproject.di
 									srcChain = o.srcChain;
 									
 									setDeferredSourceChain(e.instance, srcChain, targetObj, targetField);
-								}								
-							}							
-						});
-				else
-					IEventDispatcher(sourceObject).addEventListener(PropertyChangeEvent.PROPERTY_CHANGE,
-						function(e:PropertyChangeEvent):void
-						{
-							id = UIDUtil.getUID(e.currentTarget) + "." + e.property;
-							if(idToTarget[id] != undefined)
-							{
-								for each(var o:Object in idToTarget[id])
-								{
-									targetObj = o.target;
-									targetField = o.field;
-									srcChain = o.srcChain;
-									setDeferredSourceChain(e.newValue, srcChain, targetObj, targetField);
 								}
-							}							
+							}
 						});
+				}
+				else
+				{
+					var pceHandler:Function = function(e:PropertyChangeEvent):void
+					{
+						id = UIDUtil.getUID(e.source) + "." + e.property;
+						if(idToTarget[id] != undefined)
+						{
+							for each(var o:Object in idToTarget[id])
+							{
+								targetObj = o.target;
+								targetField = o.field;
+								srcChain = o.srcChain;
+								setDeferredSourceChain(e.newValue, srcChain, targetObj, targetField);
+							}
+						}							
+					};
+					IEventDispatcher(sourceObject).addEventListener(PropertyChangeEvent.PROPERTY_CHANGE, pceHandler);
+					//Bind the first-time value
+					pceHandler(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_CHANGE, 
+						false, false, null, srcField, null, sourceObject[srcField], sourceObject));
+				}
 				
 				//Bind the firt-time value
-				if(sourceObject != null)
+				/*if(sourceObject != null)
 					sourceObject = sourceObject[srcField];
 				for (i = 0; i < srcChain.length; i++)
 				{
@@ -816,7 +823,7 @@ package net.fproject.di
 					else
 						return;
 				}
-				targetObj[targetField] = sourceObject;
+				targetObj[targetField] = sourceObject;*/
 			}
 			else
 			{
@@ -832,31 +839,36 @@ package net.fproject.di
 			if(source is IEventDispatcher && srcChain.length > 1)
 			{
 				var id:String = UIDUtil.getUID(source) + "." + srcChain[0];
-				idToDeferredSourceChain[id] = {target:target, chain:srcChain.slice(1)};
+				idToDeferredSourceChain[id] = {target:target, targetField:targetField, chain:srcChain.slice(1)};
 				
 				if (deferredSourcePropertyChangeListenerMap[UIDUtil.getUID(source)] == undefined)
 				{
-					IEventDispatcher(source).addEventListener(PropertyChangeEvent.PROPERTY_CHANGE,
-						function(e:PropertyChangeEvent):void
+					var pceHandler:Function = function(e:PropertyChangeEvent):void
+					{
+						var id:String = UIDUtil.getUID(e.source) + "." + e.property;
+						
+						//Free memory
+						if(idToDeferredSourceChain[id] != undefined && e.oldValue != null)
 						{
-							var id:String = UIDUtil.getUID(e.currentTarget) + "." + e.property;
-							
-							//Free memory
-							if(idToDeferredSourceChain[id] != undefined && e.oldValue != null)
+							var childId:String = id;
+							for(var i:int = 0; i < idToDeferredSourceChain[id].chain.length; i++)
 							{
-								var childId:String = id;
-								for(var i:int = 0; i < idToDeferredSourceChain[id].chain.length; i++)
-								{
-									childId += "." + idToDeferredSourceChain[id].chain[i];
-									if(idToDeferredSourceChain[childId] != undefined)
-										delete idToDeferredSourceChain[childId];
-								}
+								childId += "." + idToDeferredSourceChain[id].chain[i];
+								if(idToDeferredSourceChain[childId] != undefined)
+									delete idToDeferredSourceChain[childId];
 							}
-							
-							var o:* = idToDeferredSourceChain[id];
-							if(o != undefined && e.newValue != null)
-								setDeferredSourceChain(e.newValue, o.chain, o.target, o.targetField);
-						});
+						}
+						
+						var o:* = idToDeferredSourceChain[id];
+						if(o != undefined && e.newValue != null)
+							setDeferredSourceChain(e.newValue, o.chain, o.target, o.targetField);
+					};
+					
+					IEventDispatcher(source).addEventListener(PropertyChangeEvent.PROPERTY_CHANGE, pceHandler);
+					
+					//Bind the first-time value
+					pceHandler(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_CHANGE, 
+						false, false, null, srcChain[0], null, source[srcChain[0]], source));
 					
 					deferredSourcePropertyChangeListenerMap[UIDUtil.getUID(source)] = true;
 				}
@@ -986,7 +998,7 @@ package net.fproject.di
 				{
 					if(meta != "propertyChange")
 					{
-						LoggingUtil.fproject_internal::warn(Injector, 3, "property.binding.invalid.event", [meta]);
+						LoggingUtil.fproject_internal::warn(Injector, 3, "property.binding.invalid.event", [chain[0], meta]);
 						isBindable = false;
 					}
 				}
@@ -998,7 +1010,7 @@ package net.fproject.di
 						var bindEvent:String = MetadataArgument(args[0]).value;
 						if(bindEvent != "propertyChange")
 						{
-							LoggingUtil.fproject_internal::warn(Injector, 3, "property.binding.invalid.event", [bindEvent]);
+							LoggingUtil.fproject_internal::warn(Injector, 3, "property.binding.invalid.event", [chain[0], bindEvent]);
 							isBindable = false;
 						}
 					}
@@ -1059,7 +1071,7 @@ package net.fproject.di
 					{
 						var propertyChangeHandler:Function = function(e:PropertyChangeEvent):void
 						{
-							var id:String = UIDUtil.getUID(e.currentTarget) + "." + e.property;
+							var id:String = UIDUtil.getUID(e.source) + "." + e.property;
 							
 							//Free memory
 							if(idToBindingInfo[id] != undefined && e.oldValue != null)
