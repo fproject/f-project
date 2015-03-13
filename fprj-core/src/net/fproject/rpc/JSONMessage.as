@@ -36,7 +36,7 @@ package net.fproject.rpc
 		
 		private function prepare(operation:JSONOperation, sendingArgs:Array, token:AsyncToken):Object
 		{
-			var ub:Object = parseUrlAndBody(operation.route, sendingArgs);
+			var ub:Object = parseUrlAndBody(operation.route, sendingArgs, operation.extraParams);
 			var url:String = JSONRemoteObject(operation.service).source + ub.url;
 			if (operation.method == HTTPRequestMessage.POST_METHOD ||
 				operation.method == HTTPRequestMessage.PUT_METHOD)
@@ -48,8 +48,22 @@ package net.fproject.rpc
 			return {url:url, body:body};
 		}
 		
-		private function parseUrlAndBody(route:String, sendingArgs:Array):Object
+		private function parseUrlAndBody(route:String, sendingArgs:Array, extraParams:String):Object
 		{
+			if(extraParams != null)
+			{
+				var extraParamIndex:int = int(extraParams.substr(1, extraParams.length - 2));
+				var extraParamArg:Array = sendingArgs[extraParamIndex];
+				if(extraParamArg != null && extraParamArg.length > 0)
+				{
+					var extraParamStr:String = extraParamArg.join("&");
+				}
+			}
+			else
+			{
+				extraParamIndex = -1;
+			}
+			
 			var remainingArgs:Array = [];
 			if(route != null)
 			{
@@ -57,12 +71,20 @@ package net.fproject.rpc
 				{
 					if(route.indexOf("{" + i + "}") == -1)
 					{
-						remainingArgs.push(sendingArgs[i]);
+						if(extraParamIndex != i)
+							remainingArgs.push(sendingArgs[i]);
 					}
 					else
 					{
 						route = replaceRoute(route, i, sendingArgs[i]);
 					}					
+				}
+				if(extraParamStr != null)
+				{
+					if(route.indexOf("?") != -1)
+						route += ("&" + extraParamStr);
+					else
+						route += ("?" + extraParamStr);
 				}
 			}
 			

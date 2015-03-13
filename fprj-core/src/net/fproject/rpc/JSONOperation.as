@@ -60,6 +60,12 @@ package net.fproject.rpc
 		public var returning:String;
 		
 		/**
+		 * Specify extra URL parameters for remote call. 
+		 * This must be in format {0}, {1}... ofwhich the number is index of extraParams in the operation parameter list
+		 */
+		public var extraParams:String;
+		
+		/**
 		 * Send a method invokation
 		 * 
 		 * Parameters can be passed or set
@@ -104,6 +110,8 @@ package net.fproject.rpc
 					this.route = meta["route"];
 				if(meta.hasOwnProperty("returning"))
 					this.returning = meta["returning"];
+				if(meta.hasOwnProperty("extraParams"))
+					this.extraParams = meta["extraParams"];
 			}
 			
 			var token:AsyncToken = new AsyncToken(rpcMessage);

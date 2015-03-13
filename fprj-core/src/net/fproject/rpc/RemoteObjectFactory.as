@@ -162,6 +162,7 @@ package net.fproject.rpc
 		private static const METHOD:String = "method";
 		private static const RETURNING:String = "returning";
 		private static const ROUTE:String = "route";
+		private static const EXTRA_PARAMS:String = "extraParams";
 		
 		private static function getOperationMetadata(type:Type):Object
 		{
@@ -204,6 +205,17 @@ package net.fproject.rpc
 						else if(meta.arguments.length > 2 && StringUtil.isBlank(MetadataArgument(meta.arguments[2]).key))
 						{
 							returnMeta.route = MetadataArgument(meta.arguments[2]).value;
+							found = true;
+						}
+						
+						if(meta.hasArgumentWithKey(EXTRA_PARAMS))
+						{
+							returnMeta.extraParams = meta.getArgument(EXTRA_PARAMS).value;
+							found = true;
+						}
+						else if(meta.arguments.length > 3 && StringUtil.isBlank(MetadataArgument(meta.arguments[3]).key))
+						{
+							returnMeta.extraParams = MetadataArgument(meta.arguments[3]).value;
 							found = true;
 						}
 						
