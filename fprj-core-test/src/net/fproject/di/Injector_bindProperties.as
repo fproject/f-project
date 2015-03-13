@@ -24,6 +24,7 @@ package net.fproject.di
 	import testdata.di.Injector_bindProperties_020;
 	import testdata.di.Injector_bindProperties_021;
 	import testdata.di.Injector_bindProperties_022;
+	import testdata.di.Injector_bindProperties_023;
 	
 	[ResourceBundle("fprjcore")]
 	/**
@@ -610,7 +611,7 @@ package net.fproject.di
 		 */
 		public function testCase023():void
 		{
-			var container:Injector_bindProperties_022 = new Injector_bindProperties_022();
+			var container:Injector_bindProperties_023 = new Injector_bindProperties_023();
 			Injector.inject(container);
 			container.show();
 			Async.proceedOnEvent(this, container, 'creationComplete', 10000);
