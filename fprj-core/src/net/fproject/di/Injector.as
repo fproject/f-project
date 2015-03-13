@@ -762,7 +762,9 @@ package net.fproject.di
 			}
 			
 			var id:String = UIDUtil.getUID(sourceObject) + "." + srcField;
-			idToTarget[id] = {target:targetObj, field:targetField, srcChain:srcChain};
+			if(idToTarget[id] == undefined)
+				idToTarget[id] = [];
+			(idToTarget[id] as Array).push({target:targetObj, field:targetField, srcChain:srcChain});
 			
 			if(skinPartMap[srcField] != undefined)
 				var isSourceSkinPart:Boolean = true;
@@ -776,11 +778,14 @@ package net.fproject.di
 							id = UIDUtil.getUID(e.currentTarget) + "." + e.partName;
 							if(idToTarget[id] != undefined)
 							{
-								targetObj = idToTarget[id].target;
-								targetField = idToTarget[id].field;
-								srcChain = idToTarget[id].srcChain;
-								
-								setDeferredSourceChain(e.instance, srcChain, targetObj, targetField);
+								for each(var o:Object in idToTarget[id])
+								{
+									targetObj = o.target;
+									targetField = o.field;
+									srcChain = o.srcChain;
+									
+									setDeferredSourceChain(e.instance, srcChain, targetObj, targetField);
+								}								
 							}							
 						});
 				else
@@ -790,10 +795,13 @@ package net.fproject.di
 							id = UIDUtil.getUID(e.currentTarget) + "." + e.property;
 							if(idToTarget[id] != undefined)
 							{
-								targetObj = idToTarget[id].target;
-								targetField = idToTarget[id].field;
-								srcChain = idToTarget[id].srcChain;
-								setDeferredSourceChain(e.newValue, srcChain, targetObj, targetField);
+								for each(var o:Object in idToTarget[id])
+								{
+									targetObj = o.target;
+									targetField = o.field;
+									srcChain = o.srcChain;
+									setDeferredSourceChain(e.newValue, srcChain, targetObj, targetField);
+								}
 							}							
 						});
 				
