@@ -2,7 +2,7 @@
 <testrun name="" >
 <testsuite  name="Default Test Suite" project="fprj-core-test">
 <testsuite name="net.fproject.di:Injector_bindProperties" type="testcaseclass">
-<testcase name="testCase021" classname="net.fproject.di:Injector_bindProperties"/>
+<testcase name="testCase022" classname="net.fproject.di:Injector_bindProperties"/>
 </testsuite>
 </testsuite>
 <portNumber value="8765" />

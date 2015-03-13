@@ -1,7 +1,6 @@
 package testdata.di
 {
 	import flash.display.DisplayObject;
-	import flash.events.Event;
 	
 	import mx.core.FlexGlobals;
 	import mx.managers.PopUpManager;
