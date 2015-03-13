@@ -1,4 +1,4 @@
-package testdata.rpc
+package testdata
 {
 	public class TestUser
 	{
@@ -19,5 +19,7 @@ package testdata.rpc
 		public var password:String;
 		public var authKey:String;
 		public var accessToken:String;
+		
+		public var profile:TestUserProfile
 	}
 }

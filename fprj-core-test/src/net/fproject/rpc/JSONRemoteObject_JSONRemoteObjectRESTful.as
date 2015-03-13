@@ -1,8 +1,6 @@
 package net.fproject.rpc
 {
-	import mx.rpc.AsyncToken;
 	import mx.rpc.CallResponder;
-	import mx.rpc.events.FaultEvent;
 	import mx.rpc.events.ResultEvent;
 	import mx.utils.UIDUtil;
 	
@@ -15,8 +13,8 @@ package net.fproject.rpc
 	import org.flexunit.async.Async;
 	import org.flexunit.async.TestResponder;
 	
+	import testdata.TestUser;
 	import testdata.rpc.JSONRemoteObject_JSONRemoteObjectRESTfulService;
-	import testdata.rpc.TestUser;
 
 	/**
 	 * FlexUnit test case class for method<br/>
@@ -28,8 +26,6 @@ package net.fproject.rpc
 	{
 		private var restService:JSONRemoteObject_JSONRemoteObjectRESTfulService;
 		
-		//Just for including the testdata.rpc.TestUser class in to current application domain
-		private var dummy:TestUser;
 		[Before(async)]
 		override public function runBeforeEveryTest():void
 		{
@@ -111,6 +107,32 @@ package net.fproject.rpc
 		}
 		
 		public function testCase102_checkResult(event:ResultEvent, passThroughData:Object):void
+		{
+			assertTrue(event.result is Array);
+			for each(var o:Object in event.result)
+			{
+				assertTrue(o is TestUser);
+				assertTrue(Number(TestUser(o).id) < 3);
+			}
+		}
+		
+		[Test (async, description="Normal case")]
+		/**
+		 * Test Case Type: Normal<br/>
+		 * <br/>
+		 * INPUT VALUES:<br/>
+		 * <br/>
+		 * OUTPUT EXPECTED:<br/>
+		 * ---- expectations ----
+		 *
+		 */
+		public function testCase103():void
+		{
+			var responder:CallResponder = restService.find({condition:"id < :id", params:{":id":5}}, NaN, NaN, null, null, null, "expand=profile");
+			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase103_checkResult, null), 2000, null));
+		}
+		
+		public function testCase103_checkResult(event:ResultEvent, passThroughData:Object):void
 		{
 			assertTrue(event.result is Array);
 			for each(var o:Object in event.result)

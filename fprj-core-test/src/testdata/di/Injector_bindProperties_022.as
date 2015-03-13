@@ -10,7 +10,7 @@ package testdata.di
 	import spark.components.SkinnableContainer;
 	import spark.components.TextInput;
 	
-	import testdata.rpc.TestUser;
+	import testdata.TestUser;
 	
 	[EventHandling(event="initialize",handler="view_initialize")]//Event handling of class instance
 	public class Injector_bindProperties_022 extends SkinnableContainer

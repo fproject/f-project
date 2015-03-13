@@ -25,6 +25,7 @@ package net.fproject.di
 	import testdata.di.Injector_bindProperties_021;
 	import testdata.di.Injector_bindProperties_022;
 	import testdata.di.Injector_bindProperties_023;
+	import testdata.di.Injector_bindProperties_024;
 	
 	[ResourceBundle("fprjcore")]
 	/**
@@ -619,6 +620,33 @@ package net.fproject.di
 			// You must replace this code by function specifications or 
 			// the test always returns false!
 			assertNotNull(container.nameTextInput);
+			assertEquals('Robin Hood', container.nameTextInput.text);
+		}
+		
+		[Test (async, description="Bug: http://jira.f-project.net/browse/FPRJ-59")]
+		/**
+		 * Test Case Type: Normal<br/>
+		 * <br/>
+		 * INPUT VALUES:<br/>
+		 * <code>container = new Object()</code><br/>
+		 * <code>clazz = new Class()</code><br/>
+		 * <code>deferredBinding = false</code><br/>
+		 * <br/>
+		 * OUTPUT EXPECTED:<br/>
+		 * ---- expectations ----
+		 *
+		 */
+		public function testCase024():void
+		{
+			var container:Injector_bindProperties_024 = new Injector_bindProperties_024();
+			Injector.inject(container);
+			container.show();
+			Async.proceedOnEvent(this, container, 'creationComplete', 10000);
+			//---- Place result assertion here ----
+			// You must replace this code by function specifications or 
+			// the test always returns false!
+			assertNotNull(container.nameTextInput);
+			assertEquals('2', container.idTextInput.text);
 			assertEquals('Robin Hood', container.nameTextInput.text);
 		}
 	}
