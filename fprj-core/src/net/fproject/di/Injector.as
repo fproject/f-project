@@ -1023,25 +1023,26 @@ package net.fproject.di
 					
 					if(deferredTargetPartAddedListenerMap[UIDUtil.getUID(target)] == undefined)
 					{
+						var partRemovedHandler:Function = function(e:SkinPartEvent):void
+						{
+							var id:String = UIDUtil.getUID(e.currentTarget) + "." + e.partName;
+							
+							//Free memory
+							if(idToBindingInfo[id] != undefined)
+							{
+								var childId:String = id;
+								for(var i:int = 0; i < idToBindingInfo[id].chain.length; i++)
+								{
+									childId += "." + idToBindingInfo[id].chain[i];
+									if(idToBindingInfo[childId] != undefined)
+										delete idToBindingInfo[childId];
+								}
+							}
+						};
+						
 						IEventDispatcher(target).addEventListener(SkinPartEvent.PART_ADDED, partAddedHandler);
 						
-						IEventDispatcher(target).addEventListener(SkinPartEvent.PART_REMOVED,
-							function(e:SkinPartEvent):void
-							{
-								var id:String = UIDUtil.getUID(e.currentTarget) + "." + e.partName;
-								
-								//Free memory
-								if(idToBindingInfo[id] != undefined)
-								{
-									var childId:String = id;
-									for(var i:int = 0; i < idToBindingInfo[id].chain.length; i++)
-									{
-										childId += "." + idToBindingInfo[id].chain[i];
-										if(idToBindingInfo[childId] != undefined)
-											delete idToBindingInfo[childId];
-									}
-								}
-							});
+						IEventDispatcher(target).addEventListener(SkinPartEvent.PART_REMOVED, partRemovedHandler);
 						
 						deferredTargetPartAddedListenerMap[UIDUtil.getUID(target)] = true;
 					}
@@ -1054,27 +1055,28 @@ package net.fproject.di
 				{
 					if (deferredTargetPropertyChangeListenerMap[UIDUtil.getUID(target)] == undefined)
 					{
-						IEventDispatcher(target).addEventListener(PropertyChangeEvent.PROPERTY_CHANGE,
-							function(e:PropertyChangeEvent):void
+						var propertyChangeHandler:Function = function(e:PropertyChangeEvent):void
+						{
+							var id:String = UIDUtil.getUID(e.currentTarget) + "." + e.property;
+							
+							//Free memory
+							if(idToBindingInfo[id] != undefined && e.oldValue != null)
 							{
-								var id:String = UIDUtil.getUID(e.currentTarget) + "." + e.property;
-								
-								//Free memory
-								if(idToBindingInfo[id] != undefined && e.oldValue != null)
+								var childId:String = id;
+								for(var i:int = 0; i < idToBindingInfo[id].chain.length; i++)
 								{
-									var childId:String = id;
-									for(var i:int = 0; i < idToBindingInfo[id].chain.length; i++)
-									{
-										childId += "." + idToBindingInfo[id].chain[i];
-										if(idToBindingInfo[childId] != undefined)
-											delete idToBindingInfo[childId];
-									}
+									childId += "." + idToBindingInfo[id].chain[i];
+									if(idToBindingInfo[childId] != undefined)
+										delete idToBindingInfo[childId];
 								}
-								
-								if(idToBindingInfo[id] != undefined && e.newValue != null)
-									setDeferredTargetChain(idToBindingInfo[id].source, e.newValue, idToBindingInfo[id].chain,
-										idToBindingInfo[id].isSkinPart);
-							});
+							}
+							
+							if(idToBindingInfo[id] != undefined && e.newValue != null)
+								setDeferredTargetChain(idToBindingInfo[id].source, e.newValue, idToBindingInfo[id].chain,
+									idToBindingInfo[id].isSkinPart);
+						};
+						
+						IEventDispatcher(target).addEventListener(PropertyChangeEvent.PROPERTY_CHANGE, propertyChangeHandler);
 						
 						deferredTargetPropertyChangeListenerMap[UIDUtil.getUID(target)] = true;
 						
