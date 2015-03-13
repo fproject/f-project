@@ -17,7 +17,7 @@
 			{
 				var testsToRun:Array = new Array();
 				
-				testsToRun.push(Request.methods(net.fproject.di.Injector_bindProperties,["testCase022"]));
+				testsToRun.push(Request.methods(net.fproject.di.Injector_bindProperties,["testCase023"]));
 				return testsToRun;
 			}
 			
