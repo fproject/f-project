@@ -35,8 +35,8 @@ package com.domain.gui.components
 		{
 			employees = new ArrayCollection([
 				new Employee({id:1,name:"Peter Pan",age:10,phone:"0123456789"}),
-				new Employee({id:1,name:"Jesus Christ",age:20,phone:"8888888888"}),
-				new Employee({id:1,name:"Robin Hood",age:30,phone:"1111111111"}),
+				new Employee({id:2,name:"Jesus Christ",age:20,phone:"8888888888"}),
+				new Employee({id:3,name:"Robin Hood",age:30,phone:"1111111111"}),
 			]);
 		}
 		
