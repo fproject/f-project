@@ -13,7 +13,7 @@ package testdata.di
 	import testdata.rpc.TestUser;
 	
 	[EventHandling(event="initialize",handler="view_initialize")]//Event handling of class instance
-	public class Injector_bindProperties_022 extends SkinnableContainer
+	public class Injector_bindProperties_023 extends SkinnableContainer
 	{
 		[Bindable]
 		public var object:Injector_bindProperties_022_Obj = 
@@ -24,14 +24,15 @@ package testdata.di
 		[PropertyBinding(text="object.selectedUser.username@")]
 		public var nameTextInput:TextInput;
 		
-		public function Injector_bindProperties_022()
+		public function Injector_bindProperties_023()
 		{
 			this.setStyle("skinClass", Injector_bindProperties_022Skin);
 		}
 		
 		public function view_initialize(e:Event):void
 		{
-			object.selectedUser = new TestUser({id:2,username:"Robin Hood"});
+			object = new Injector_bindProperties_022_Obj(
+				{selectedUser: new TestUser({id:2,username:"Robin Hood"})});
 		}
 		
 		public function show():void
