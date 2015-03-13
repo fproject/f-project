@@ -9,7 +9,7 @@
 			   minWidth="955" minHeight="600" creationComplete="onCreationComplete()">
 	<fx:Script>
 		<![CDATA[
-			import net.fproject.di.Injector_bindProperties;
+			import net.fproject.rpc.JSONRemoteObject_JSONRemoteObjectRESTful;
 			
 			import org.flexunit.runner.Request;
 			
@@ -17,7 +17,7 @@
 			{
 				var testsToRun:Array = new Array();
 				
-				testsToRun.push(Request.methods(net.fproject.di.Injector_bindProperties,["testCase023"]));
+				testsToRun.push(Request.methods(net.fproject.rpc.JSONRemoteObject_JSONRemoteObjectRESTful,["testCase103"]));
 				return testsToRun;
 			}
 			

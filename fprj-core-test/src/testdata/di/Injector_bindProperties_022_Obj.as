@@ -1,6 +1,6 @@
 package testdata.di
 {
-	import testdata.rpc.TestUser;
+	import testdata.TestUser;
 
 	public class Injector_bindProperties_022_Obj
 	{

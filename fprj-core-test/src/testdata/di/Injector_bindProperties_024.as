@@ -13,7 +13,7 @@ package testdata.di
 	import testdata.TestUser;
 	
 	[EventHandling(event="initialize",handler="view_initialize")]//Event handling of class instance
-	public class Injector_bindProperties_023 extends SkinnableContainer
+	public class Injector_bindProperties_024 extends SkinnableContainer
 	{
 		[Bindable]
 		public var object:Injector_bindProperties_022_Obj = 
@@ -21,12 +21,16 @@ package testdata.di
 				{selectedUser: new TestUser({id:1,username:"Peter Pan"})});
 		
 		[SkinPart(required="true")]
+		[PropertyBinding(text="object.selectedUser.id@")]
+		public var idTextInput:TextInput;
+		
+		[SkinPart(required="true")]
 		[PropertyBinding(text="object.selectedUser.username@")]
 		public var nameTextInput:TextInput;
 		
-		public function Injector_bindProperties_023()
+		public function Injector_bindProperties_024()
 		{
-			this.setStyle("skinClass", Injector_bindProperties_022Skin);
+			this.setStyle("skinClass", Injector_bindProperties_024Skin);
 		}
 		
 		public function view_initialize(e:Event):void
