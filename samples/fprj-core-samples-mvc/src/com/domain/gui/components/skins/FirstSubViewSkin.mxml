@@ -24,6 +24,14 @@
 			<s:DropDownList id="dropDownList"/>
 		</s:FormItem>
 		
+		<s:FormItem label="ID:">
+			<s:TextInput id="idTextInput"/>
+		</s:FormItem>
+		
+		<s:FormItem label="Name:">
+			<s:TextInput id="nameTextInput"/>
+		</s:FormItem>
+		
 		<s:FormItem label="Age:">
 			<s:TextInput id="ageTextInput"/>
 		</s:FormItem>
