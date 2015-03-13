@@ -573,27 +573,28 @@ package net.fproject.di
 					{	
 						IEventDispatcher(object).addEventListener(SkinPartEvent.PART_ADDED, addedHandler);
 						
-						IEventDispatcher(object).addEventListener(SkinPartEvent.PART_REMOVED,
-							function(e:SkinPartEvent):void
+						var removedHandler:Function = function(e:SkinPartEvent):void
+						{
+							var id:String = UIDUtil.getUID(e.currentTarget) + "." + e.partName;
+							
+							//Free memory
+							if(idToHostChainInfo[id] != undefined)
 							{
-								var id:String = UIDUtil.getUID(e.currentTarget) + "." + e.partName;
-								
-								//Free memory
-								if(idToHostChainInfo[id] != undefined)
+								for each (var o:Object in idToHostChainInfo[id])
 								{
-									for each (var o:Object in idToHostChainInfo[id])
+									var childId:String = id;
+									for(var i:int = 0; i < o.chain.length; i++)
 									{
-										var childId:String = id;
-										for(var i:int = 0; i < o.chain.length; i++)
-										{
-											childId += "." + o.chain[i];
-											if(idToHostChainInfo[childId] != undefined)
-												delete idToHostChainInfo[childId];
-										}
+										childId += "." + o.chain[i];
+										if(idToHostChainInfo[childId] != undefined)
+											delete idToHostChainInfo[childId];
 									}
-									delete idToHostChainInfo[id];
-								}							
-							});
+								}
+								delete idToHostChainInfo[id];
+							}							
+						};
+							
+						IEventDispatcher(object).addEventListener(SkinPartEvent.PART_REMOVED, removedHandler);
 						
 						objectPartAddedListenerMap[UIDUtil.getUID(object)] = true;
 					}
