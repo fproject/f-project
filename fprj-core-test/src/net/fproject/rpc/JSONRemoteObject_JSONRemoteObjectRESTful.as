@@ -14,6 +14,7 @@ package net.fproject.rpc
 	import org.flexunit.async.TestResponder;
 	
 	import testdata.TestUser;
+	import testdata.TestUserProfile;
 	import testdata.rpc.JSONRemoteObject_JSONRemoteObjectRESTfulService;
 
 	/**
@@ -112,7 +113,7 @@ package net.fproject.rpc
 			for each(var o:Object in event.result)
 			{
 				assertTrue(o is TestUser);
-				assertTrue(Number(TestUser(o).id) < 3);
+				assertTrue(Number(TestUser(o).id) < 5);
 			}
 		}
 		
@@ -128,7 +129,7 @@ package net.fproject.rpc
 		 */
 		public function testCase103():void
 		{
-			var responder:CallResponder = restService.find({condition:"id < :id", params:{":id":5}}, NaN, NaN, null, null, null, "expand=profile");
+			var responder:CallResponder = restService.find(null, NaN, NaN, null, null, null, "expand=profile");
 			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase103_checkResult, null), 2000, null));
 		}
 		
@@ -138,7 +139,8 @@ package net.fproject.rpc
 			for each(var o:Object in event.result)
 			{
 				assertTrue(o is TestUser);
-				assertTrue(Number(TestUser(o).id) < 3);
+				if(TestUser(o).profile != null)
+					assertTrue(TestUser(o).profile is TestUserProfile);
 			}
 		}
 		
