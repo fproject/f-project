@@ -25,7 +25,7 @@ package com.domain.gui.components
 		public var dropDownList:DropDownList;
 		
 		[SkinPart(required="true")]
-		[PropertyBinding(text="dropDownList.selectedItem.name@")]
+		[PropertyBinding(text="selectedEmployee.id@")]
 		public var idTextInput:TextInput;
 		
 		[SkinPart(required="true")]
