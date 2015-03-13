@@ -722,23 +722,15 @@ package net.fproject.di
 			
 			//Remove the '@' character at left most
 			targetChain = targetChain.substr(1);
-			/*if(targetChain.charAt(targetChain.length - 1) == "@")
+			var i:int = targetChain.lastIndexOf(".");
+			if(i > 0)
 			{
-				//Inverse deferred binding
-				bindInverseDeferredValue(sourceObj, sourceField, targetChain, container, isSkinPart, skinPartMap);
+				var targetClassName:String = targetChain.substring(0, i);
+				var c:Class = getDefinitionByName(targetClassName) as Class;
+				c[targetChain.substr(i + 1)] = srcValue;
 			}
 			else
-			{*/
-				var i:int = targetChain.lastIndexOf(".");
-				if(i > 0)
-				{
-					var targetClassName:String = targetChain.substring(0, i);
-					var c:Class = getDefinitionByName(targetClassName) as Class;
-					c[targetChain.substr(i + 1)] = srcValue;
-				}
-				else
-					container[targetChain] = srcValue;
-			/*}*/			
+				container[targetChain] = srcValue;
 		}
 		
 		private var idToTarget:Object = {};
@@ -881,7 +873,7 @@ package net.fproject.di
 		private var idToBindingInfo:Object = {};
 		
 		private function bindInverseDeferredArgs(sourceObj:Object, args:Array , 
-												  container:Object, isSkinPart:Boolean, skinPartMap:Object):void
+												 container:Object, isSkinPart:Boolean, skinPartMap:Object):void
 		{
 			if(sourceObj == null)
 				return;
