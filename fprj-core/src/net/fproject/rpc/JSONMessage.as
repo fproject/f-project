@@ -7,8 +7,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 package net.fproject.rpc
 {
-	import flash.utils.getQualifiedClassName;
-	
 	import mx.core.FlexGlobals;
 	import mx.messaging.messages.HTTPRequestMessage;
 	import mx.rpc.AsyncToken;
@@ -112,7 +110,7 @@ package net.fproject.rpc
 		
 		private function urlEncode(value:*):String
 		{
-			if(getQualifiedClassName(value) == "Object")
+			if((typeof value) == "object" && value != null)
 				var s:String = Serializer.getInstance().toJSON(value);
 			else
 				s = value;
