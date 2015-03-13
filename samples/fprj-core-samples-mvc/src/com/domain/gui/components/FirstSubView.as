@@ -25,6 +25,14 @@ package com.domain.gui.components
 		public var dropDownList:DropDownList;
 		
 		[SkinPart(required="true")]
+		[PropertyBinding(text="dropDownList.selectedItem.name@")]
+		public var idTextInput:TextInput;
+		
+		[SkinPart(required="true")]
+		[PropertyBinding(text="selectedEmployee.name@")]
+		public var nameTextInput:TextInput;
+		
+		[SkinPart(required="true")]
 		[PropertyBinding(text="selectedEmployee.age@")]
 		public var ageTextInput:TextInput;
 		
