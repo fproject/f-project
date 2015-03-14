@@ -87,7 +87,8 @@ package net.fproject.service
 		 * matching the condition, or null if nothing matches.
 		 */
 		public function findOne(id:String,
-								completeCallback:Function=null, failCallback:Function=null, ...extraParams):CallResponder
+								completeCallback:Function=null, failCallback:Function=null,
+								...extraParams):CallResponder
 		{
 			return createServiceCall(remoteObject.findOne(id, extraParams),
 				completeCallback, failCallback);
@@ -116,13 +117,16 @@ package net.fproject.service
 		 * the remote object call succesfully returned.
 		 * @param failCallback The call-back function that will be invoked after
 		 * the remote object call failed
+		 * @param extraParams An optional list of extra URL parameters used for service call.
+		 * For example you can pass <code>"expand=profile"</code> to make the additional URL parameter <code>&expand=profile</code>
 		 * 
 		 * @return a <code>CallResponder</code> responds for the call.
 		 * The <code>result</code> field of RESULT event will be an array of model instances
 		 * matching the condition, or null if nothing matches.
 		 */
 		public function find(criteria:Object=null, page:Number=NaN, perPage:Number=NaN, sort:String=null,
-							 completeCallback:Function=null, failCallback:Function=null, ...extraParams):CallResponder
+							 completeCallback:Function=null, failCallback:Function=null,
+							 ...extraParams):CallResponder
 		{
 			return createServiceCall(remoteObject.find(criteria, page, perPage, sort, extraParams),
 				completeCallback, failCallback);
