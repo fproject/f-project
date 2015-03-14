@@ -810,28 +810,6 @@ package net.fproject.di
 		{
 			if(newSource is IEventDispatcher && srcChain.length > 0)
 			{
-				var newSrcId:String = UIDUtil.getUID(newSource);
-				
-				var id:String = newSrcId + "." + srcChain[0];
-				var targetId:String =  UIDUtil.getUID(target);
-				if(idToDeferredSourceChain[id] == undefined)
-				{
-					if(oldSource != null)
-					{
-						var oldId:String = UIDUtil.getUID(oldSource) + "." + srcChain[0];
-						if(idToDeferredSourceChain[oldId] != undefined)
-						{
-							idToDeferredSourceChain[id] = idToDeferredSourceChain[oldId];
-							delete idToDeferredSourceChain[oldId];
-						}
-					}	
-					if(idToDeferredSourceChain[id] == undefined)
-						idToDeferredSourceChain[id] = {};
-				}
-				
-				if(idToDeferredSourceChain[id][targetId] == undefined)
-					idToDeferredSourceChain[id][targetId] = {target:target, targetField:targetField, chain:srcChain.slice(1)};
-				
 				var pceHandler:Function = function(e:PropertyChangeEvent):void
 				{
 					var id:String = UIDUtil.getUID(e.source) + "." + e.property;
@@ -846,17 +824,55 @@ package net.fproject.di
 					}
 				};
 				
-				if (deferredSourcePropertyChangeListenerMap[newSrcId] == undefined)
+				var targetId:String =  UIDUtil.getUID(target);
+				var i:int = 0;
+				var newSrc:Object = newSource;
+				var oldSrc:Object = oldSource;
+				
+				while(i < srcChain.length)
 				{
-					IEventDispatcher(newSource).addEventListener(PropertyChangeEvent.PROPERTY_CHANGE, pceHandler, false, 0, true);
-					deferredSourcePropertyChangeListenerMap[newSrcId] = true;
+					var oldDeferredSourceChain:Object = null;
+					if(oldSrc != null)
+					{
+						var oldId:String = UIDUtil.getUID(oldSrc) + "." + srcChain[i];
+						if(idToDeferredSourceChain[oldId] != undefined)
+						{
+							oldDeferredSourceChain = idToDeferredSourceChain[oldId];
+							delete idToDeferredSourceChain[oldId];
+						}
+						
+						oldSrc = oldSrc[srcChain[i]];
+					}
+					
+					if(newSrc != null)
+					{
+						var newSrcId:String = UIDUtil.getUID(newSrc);					
+						var id:String = newSrcId + "." + srcChain[i];
+						
+						if(idToDeferredSourceChain[id] == undefined)
+							idToDeferredSourceChain[id] = oldDeferredSourceChain != null ? oldDeferredSourceChain : {};
+						
+						if(idToDeferredSourceChain[id][targetId] == undefined)
+							idToDeferredSourceChain[id][targetId] = {target:target, targetField:targetField, chain:srcChain.slice(i + 1)};
+						
+						if (newSrc is IEventDispatcher && deferredSourcePropertyChangeListenerMap[newSrcId] == undefined)
+						{
+							IEventDispatcher(newSrc).addEventListener(PropertyChangeEvent.PROPERTY_CHANGE, pceHandler, false, 0, true);
+							deferredSourcePropertyChangeListenerMap[newSrcId] = true;
+						}
+						
+						newSrc = newSrc[srcChain[i]];
+					}					
+					
+					i++;
 				}
+				
 			}
 			
 			//Bind first-time value
 			if(srcChain.length > 0)
 			{
-				for(var i:int = 0; i < srcChain.length; i++)
+				for(i = 0; i < srcChain.length; i++)
 				{
 					if(newSource != null)
 						newSource = newSource[srcChain[i]];
