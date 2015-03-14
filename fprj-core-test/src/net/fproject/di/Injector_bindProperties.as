@@ -1,5 +1,7 @@
 package net.fproject.di
 {
+	import flash.events.Event;
+	
 	import org.flexunit.asserts.assertEquals;
 	import org.flexunit.asserts.assertNotNull;
 	import org.flexunit.asserts.assertTrue;
@@ -357,8 +359,12 @@ package net.fproject.di
 			// You must replace this code by function specifications or 
 			// the test always returns false!
 			container.show();
-			Async.proceedOnEvent(this, container, "creationComplete", 10000);
-			assertEquals("AAABBBCCC", container.label.text);
+			Async.handleEvent(this, container, "creationComplete",testCase013_check,10000, container);
+		}
+		
+		public function testCase013_check(e:Event, container:Injector_bindProperties_013):void
+		{
+			assertEquals("AAABBBCCC", container.label.text);	
 		}
 		
 		[Test (description="Method Binding")]
