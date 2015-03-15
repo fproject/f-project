@@ -1,5 +1,15 @@
 package net.fproject.utils
 {
+	import net.fproject.utils.StringUtil.StringUtil_endsWith;
+	import net.fproject.utils.StringUtil.StringUtil_get_defaultCharacterCompareMethod;
+	import net.fproject.utils.StringUtil.StringUtil_isBlank;
+	import net.fproject.utils.StringUtil.StringUtil_localeEquals;
+	import net.fproject.utils.StringUtil.StringUtil_localeIndexOf;
+	import net.fproject.utils.StringUtil.StringUtil_localeLastIndexOf;
+	import net.fproject.utils.StringUtil.StringUtil_set_defaultCharacterCompareMethod;
+	import net.fproject.utils.StringUtil.StringUtil_splitEx;
+	import net.fproject.utils.StringUtil.StringUtil_startsWith;
+
 	[Suite]
 	[RunWith("org.flexunit.runners.Suite")]
 	public class StringUtil_TestSuite

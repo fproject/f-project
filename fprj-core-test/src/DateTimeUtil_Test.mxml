@@ -10,15 +10,15 @@
 	<fx:Script>
 		<![CDATA[
 			import net.fproject.utils.DateTimeUtil_TestSuite;
-			import net.fproject.utils.DateTimeUtil_formatIsoDate;
-			import net.fproject.utils.DateTimeUtil_parseIsoDate;
+			import net.fproject.utils.DateTimeUtil.DateTimeUtil_formatIsoDate;
+			import net.fproject.utils.DateTimeUtil.DateTimeUtil_parseIsoDate;
 			
 			public function currentRunTestSuite():Array
 			{
 				var testsToRun:Array = new Array();
 				//testsToRun.push(net.fproject.utils.DateTimeUtil_TestSuite);
-				testsToRun.push(net.fproject.utils.DateTimeUtil_formatIsoDate);
-				testsToRun.push(net.fproject.utils.DateTimeUtil_parseIsoDate);
+				testsToRun.push(net.fproject.utils.DateTimeUtil.DateTimeUtil_formatIsoDate);
+				testsToRun.push(net.fproject.utils.DateTimeUtil.DateTimeUtil_parseIsoDate);
 				return testsToRun;
 			}
 			
