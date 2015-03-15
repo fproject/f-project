@@ -29,6 +29,8 @@ package net.fproject.di
 	import testdata.di.Injector_bindProperties_023;
 	import testdata.di.Injector_bindProperties_024;
 	import testdata.di.Injector_bindProperties_025;
+	import testdata.di.Injector_bindProperties_026;
+	import testdata.di.Injector_bindProperties_027;
 	
 	[ResourceBundle("fprjcore")]
 	/**
@@ -550,7 +552,7 @@ package net.fproject.di
 			assertEquals('1234567890', container.adg.labelFunction(null));
 		}
 		
-		[Test (async, description="Bug: http://jira.f-project.net/browse/FPRJ-58")]
+		[Test (async, description="Fix Bug: FPRJ-58")]
 		/**
 		 * Test Case Type: Normal<br/>
 		 * <br/>
@@ -578,7 +580,7 @@ package net.fproject.di
 			assertEquals('2', container.idTextInput.text);			
 		}
 		
-		[Test (async, description="Bug: http://jira.f-project.net/browse/FPRJ-59")]
+		[Test (async, description="Fix Bug: FPRJ-59")]
 		/**
 		 * Test Case Type: Normal<br/>
 		 * <br/>
@@ -604,7 +606,7 @@ package net.fproject.di
 			assertEquals('Robin Hood', container.nameTextInput.text);
 		}
 		
-		[Test (async, description="Bug: http://jira.f-project.net/browse/FPRJ-59")]
+		[Test (async, description="Fix Bug: FPRJ-59")]
 		/**
 		 * Test Case Type: Normal<br/>
 		 * <br/>
@@ -630,7 +632,7 @@ package net.fproject.di
 			assertEquals('Robin Hood', container.nameTextInput.text);
 		}
 		
-		[Test (async, description="Bug: http://jira.f-project.net/browse/FPRJ-59")]
+		[Test (async, description="Fix Bug: FPRJ-59")]
 		/**
 		 * Test Case Type: Normal<br/>
 		 * <br/>
@@ -657,7 +659,7 @@ package net.fproject.di
 			assertEquals('Robin Hood', container.nameTextInput.text);
 		}
 		
-		[Test (async, description="Bug: http://jira.f-project.net/browse/FPRJ-59")]
+		[Test (async, description="Fix Bug: FPRJ-59")]
 		/**
 		 * Test Case Type: Normal<br/>
 		 * <br/>
@@ -681,6 +683,59 @@ package net.fproject.di
 			// the test always returns false!
 			assertNotNull(container.nameTextInput);
 			assertEquals('Robin Hood', container.nameTextInput.text);
+		}
+		
+		[Test (async, description="Fix Bug: FPRJ-59")]
+		/**
+		 * Test Case Type: Normal<br/>
+		 * <br/>
+		 * INPUT VALUES:<br/>
+		 * <code>container = new Object()</code><br/>
+		 * <code>clazz = new Class()</code><br/>
+		 * <code>deferredBinding = false</code><br/>
+		 * <br/>
+		 * OUTPUT EXPECTED:<br/>
+		 * ---- expectations ----
+		 *
+		 */
+		public function testCase026():void
+		{
+			var container:Injector_bindProperties_026 = new Injector_bindProperties_026();
+			Injector.inject(container);
+			container.show();
+			Async.proceedOnEvent(this, container, 'creationComplete', 10000);
+			//---- Place result assertion here ----
+			// You must replace this code by function specifications or 
+			// the test always returns false!
+			assertNotNull(container.nameTextInput);
+			assertEquals('Robin Hood', container.nameTextInput.text);
+		}
+		
+		[Test (async, description="Implement: FPRJ-61")]
+		/**
+		 * Test Case Type: Normal<br/>
+		 * <br/>
+		 * INPUT VALUES:<br/>
+		 * <code>container = new Object()</code><br/>
+		 * <code>clazz = new Class()</code><br/>
+		 * <code>deferredBinding = false</code><br/>
+		 * <br/>
+		 * OUTPUT EXPECTED:<br/>
+		 * ---- expectations ----
+		 *
+		 */
+		public function testCase027():void
+		{
+			var container:Injector_bindProperties_027 = new Injector_bindProperties_027();
+			Injector.inject(container);
+			container.show();
+			Async.proceedOnEvent(this, container, 'creationComplete', 10000);
+			//---- Place result assertion here ----
+			// You must replace this code by function specifications or 
+			// the test always returns false!
+			assertNotNull(container.dropDownList);
+			assertNotNull(container.dropDownList.dataProvider);
+			assertTrue(container.dropDownList.dataProvider.length > 0);
 		}
 	}
 }
