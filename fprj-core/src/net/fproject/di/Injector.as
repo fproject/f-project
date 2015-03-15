@@ -35,15 +35,15 @@ package net.fproject.di
 	 */
 	public class Injector
 	{
-		private static const INSTANTIATOR:String = "instantiator";
+		public static const INSTANTIATOR:String = "instantiator";
 		
-		private static const EVENT_HANDLING:String = "eventhandling";
+		public static const EVENT_HANDLING:String = "eventhandling";
 		
-		private static const PROPERTY_BINDING:String = "propertybinding";
+		public static const PROPERTY_BINDING:String = "propertybinding";
 		
-		private static const SKIN_PART:String = "skinpart";
+		public static const SKIN_PART:String = "skinpart";
 		
-		private static const BINDABLE:String = "bindable";
+		public static const BINDABLE:String = "bindable";
 		
 		/**
 		 * Initialize dependency injection for a container object 
@@ -84,6 +84,9 @@ package net.fproject.di
 			injector.fproject_internal::instantiateMembers(container, constructorParam);
 		}
 		
+		public static const IMPL_KEY:String = "impl";
+		public static const DELEGATE_KEY:String = "delegate";
+		
 		/**
 		 * @private
 		 * 
@@ -93,9 +96,6 @@ package net.fproject.di
 			var type:Type = Type.forInstance(container);
 			
 			var members:Array = type.variables.concat(type.accessors);
-			
-			const IMPL_KEY:String = "impl";
-			const DELEGATE_KEY:String = "delegate";
 			
 			for each (var member:AbstractMember in members)
 			{ 
@@ -219,15 +219,15 @@ package net.fproject.di
 			}
 		}
 		
+		public static const EVENT_KEY:String = "event";
+		public static const HANDLER_KEY:String = "handler";
+		public static const DISPATCHER_KEY:String = "dispatcher";
+		
 		private function getMemberEventHandlingInfo(container:Object, member:Object):Object
 		{
 			var eventInfo:Array = [];
 			var isBindable:Boolean = false;
 			var isSkinPart:Boolean = false;
-			
-			const EVENT_KEY:String = "event";
-			const HANDLER_KEY:String = "handler";
-			const DISPATCHER_KEY:String = "dispatcher";
 			
 			for each (var metadata:Metadata in member.metadata)
 			{
@@ -261,57 +261,6 @@ package net.fproject.di
 			if(isBindable || isSkinPart || eventInfo.length > 0)
 				return {eventInfo:eventInfo, isBindable:isBindable, isSkinPart:isSkinPart};
 			return null;
-		}
-		
-		private function getEvaluatedValue(host:Object, mermberName:String):*
-		{
-			if(mermberName.charAt(mermberName.length - 2) == '(' && mermberName.charAt(mermberName.length - 1) == ')')
-			{
-				mermberName = mermberName.substr(0, mermberName.length - 2);
-				return host[mermberName]();
-			}
-			if(mermberName.charAt(0) == '{' && mermberName.charAt(mermberName.length - 1) == '}')
-			{
-				return mermberName.substring(1, mermberName.length - 1);
-			}
-			else
-				return host[mermberName];
-		}
-		
-		private function evaluateChainValue(chain:String, host:Object=null):*
-		{
-			if(chain == THIS)
-				return host;
-			else
-				chain = chain.replace(/[ \t]+/g, "");
-			
-			if((chain.charAt(0) == "'" && chain.charAt(chain.length - 1) == "'")
-				|| (chain.charAt(0) == '"' && chain.charAt(chain.length - 1) == '"'))
-			{
-				return chain.substring(1, chain.length - 1);
-			}
-			
-			if(chain.indexOf(THIS + ".") == 0)
-			{
-				var a:Array = chain.substr(5).split(".");
-				var x:* = host;
-				for each (var s:String in a)
-				{
-					x = getEvaluatedValue(x, s);
-				}
-				return x;
-			}
-			
-			var i:int = chain.lastIndexOf(".");
-			if(i > 0)
-			{
-				var className:String = chain.substring(0, i);
-				var c:Class = getDefinitionByName(className) as Class;
-				
-				return getEvaluatedValue(c, chain.substr(i + 1));
-			}
-			else
-				return host == null? chain : getEvaluatedValue(host, chain);
 		}
 		
 		private var idToListenerInfo:Object = {};
@@ -445,6 +394,9 @@ package net.fproject.di
 		}
 		
 		private static const THIS:String = "this";
+		private static const HOST_CHAIN:String = "hostChain";
+		private static const SOURCE_EVENT:String = "sourceEvent";
+		
 		/**
 		 * @private
 		 */
@@ -452,7 +404,6 @@ package net.fproject.di
 		{
 			if(container == null)
 				LoggingUtil.fproject_internal::error(Injector, 6, "property.binding.null.object");
-			const HOST_CHAIN:String = "hostChain";
 			
 			var type:Type = Type.forInstance(container);
 			
@@ -506,7 +457,6 @@ package net.fproject.di
 		
 		private function getMemberPropBindingInfo(member:Object):Object
 		{
-			const HOST_CHAIN:String = "hostChain";
 			var memberName:String = member.name;
 			var bindingMetaInfo:Object = {name:memberName, metaArray:[], isSkinPart:false, isBindable:false};
 			
@@ -520,7 +470,11 @@ package net.fproject.di
 					
 					for each (var metaArg:MetadataArgument in metadata.arguments)
 					{
-						if(metaArg.key == HOST_CHAIN)
+						if(metaArg.key == SOURCE_EVENT)
+						{
+							//Do nothing
+						}
+						else if(metaArg.key == HOST_CHAIN)
 							bindingMeta.hostChain = metaArg.value;
 						else
 							(bindingMeta.args as Array).push({key:metaArg.key, value:metaArg.value});
@@ -736,6 +690,8 @@ package net.fproject.di
 		
 		private var idToTarget:Object = {};
 		
+		private static const THIS_DOT:String = "this.";
+		
 		private function bindDeferredValue(targetObj:Object, targetField:String, sourceChain:String, 
 										   container:Object, skinPartMap:Object):void
 		{
@@ -744,7 +700,7 @@ package net.fproject.di
 			
 			//Remove the '@' character at right most
 			sourceChain = sourceChain.substring(0, sourceChain.length - 1);
-			if(sourceChain.substr(0,5) == "this.")
+			if(sourceChain.substr(0,5) == THIS_DOT)
 				sourceChain = sourceChain.substr(5);
 			
 			var i:int = sourceChain.indexOf(".");
@@ -803,27 +759,12 @@ package net.fproject.di
 			}
 		}
 		
-		private var idToDeferredSourceChain:Object = {};
 		private var deferredSourcePropertyChangeListenerMap:Object = {};
 		
 		private function setDeferredSourceChain(oldSource:Object, newSource:Object, srcChain:Array, target:Object, targetField:String):void
 		{
-			if(newSource is IEventDispatcher && srcChain.length > 0)
+			if(srcChain.length > 0)
 			{
-				var pceHandler:Function = function(e:PropertyChangeEvent):void
-				{
-					var id:String = UIDUtil.getUID(e.source) + "." + e.property;
-					
-					var o:* = idToDeferredSourceChain[id];
-					if(o != undefined && e.newValue != null)
-					{
-						for(var s:String in o)
-						{
-							setDeferredSourceChain(e.oldValue, e.newValue, o[s].chain, o[s].target, o[s].targetField);
-						}
-					}
-				};
-				
 				var targetId:String =  UIDUtil.getUID(target);
 				var i:int = 0;
 				var newSrc:Object = newSource;
@@ -831,34 +772,31 @@ package net.fproject.di
 				
 				while(i < srcChain.length)
 				{
-					var oldDeferredSourceChain:Object = null;
 					if(oldSrc != null)
 					{
-						var oldId:String = UIDUtil.getUID(oldSrc) + "." + srcChain[i];
-						if(idToDeferredSourceChain[oldId] != undefined)
-						{
-							oldDeferredSourceChain = idToDeferredSourceChain[oldId];
-							delete idToDeferredSourceChain[oldId];
-						}
-						
+						var oldSrcId:String = UIDUtil.getUID(oldSrc) + "." + srcChain[i];
+						var oldHandler:PropertyBindingHandler = deferredSourcePropertyChangeListenerMap[oldSrcId];
+						delete deferredSourcePropertyChangeListenerMap[oldSrcId];
 						oldSrc = oldSrc[srcChain[i]];
 					}
 					
 					if(newSrc != null)
 					{
-						var newSrcId:String = UIDUtil.getUID(newSrc);					
-						var id:String = newSrcId + "." + srcChain[i];
-						
-						if(idToDeferredSourceChain[id] == undefined)
-							idToDeferredSourceChain[id] = oldDeferredSourceChain != null ? oldDeferredSourceChain : {};
-						
-						if(idToDeferredSourceChain[id][targetId] == undefined)
-							idToDeferredSourceChain[id][targetId] = {target:target, targetField:targetField, chain:srcChain.slice(i + 1)};
-						
-						if (newSrc is IEventDispatcher && deferredSourcePropertyChangeListenerMap[newSrcId] == undefined)
+						if (newSrc is IEventDispatcher)
 						{
-							IEventDispatcher(newSrc).addEventListener(PropertyChangeEvent.PROPERTY_CHANGE, pceHandler, false, 0, true);
-							deferredSourcePropertyChangeListenerMap[newSrcId] = true;
+							var newSrcId:String = UIDUtil.getUID(newSrc) + "." + srcChain[i];
+							var handler:PropertyBindingHandler = deferredSourcePropertyChangeListenerMap[newSrcId];
+							if(handler == null)
+							{
+								if(oldHandler != null)
+									handler = oldHandler;
+								else
+									handler = new PropertyBindingHandler(srcChain[i], this.setDeferredSourceChain);
+								handler.start(IEventDispatcher(newSrc));
+								deferredSourcePropertyChangeListenerMap[newSrcId] = handler;
+							}
+							
+							handler.addBindingInfo(targetId, srcChain.slice(i + 1), target, targetField);
 						}
 						
 						newSrc = newSrc[srcChain[i]];
@@ -1133,7 +1071,7 @@ package net.fproject.di
 			}			
 		}
 		
-		private function getMetadataArgument(metadata:Metadata, key:String, 
+		private static function getMetadataArgument(metadata:Metadata, key:String, 
 											 defaultIndex:int=int.MAX_VALUE):String
 		{			
 			var arg:MetadataArgument = metadata.getArgument(key);
@@ -1141,6 +1079,57 @@ package net.fproject.di
 				return arg.value;
 			else
 				return defaultIndex < metadata.arguments.length? metadata.arguments[defaultIndex].value : null;
+		}
+		
+		private static function getEvaluatedValue(host:Object, mermberName:String):*
+		{
+			if(mermberName.charAt(mermberName.length - 2) == '(' && mermberName.charAt(mermberName.length - 1) == ')')
+			{
+				mermberName = mermberName.substr(0, mermberName.length - 2);
+				return host[mermberName]();
+			}
+			if(mermberName.charAt(0) == '{' && mermberName.charAt(mermberName.length - 1) == '}')
+			{
+				return mermberName.substring(1, mermberName.length - 1);
+			}
+			else
+				return host[mermberName];
+		}
+		
+		private static function evaluateChainValue(chain:String, host:Object=null):*
+		{
+			if(chain == THIS)
+				return host;
+			else
+				chain = chain.replace(/[ \t]+/g, "");
+			
+			if((chain.charAt(0) == "'" && chain.charAt(chain.length - 1) == "'")
+				|| (chain.charAt(0) == '"' && chain.charAt(chain.length - 1) == '"'))
+			{
+				return chain.substring(1, chain.length - 1);
+			}
+			
+			if(chain.indexOf(THIS + ".") == 0)
+			{
+				var a:Array = chain.substr(5).split(".");
+				var x:* = host;
+				for each (var s:String in a)
+				{
+					x = getEvaluatedValue(x, s);
+				}
+				return x;
+			}
+			
+			var i:int = chain.lastIndexOf(".");
+			if(i > 0)
+			{
+				var className:String = chain.substring(0, i);
+				var c:Class = getDefinitionByName(className) as Class;
+				
+				return getEvaluatedValue(c, chain.substr(i + 1));
+			}
+			else
+				return host == null? chain : getEvaluatedValue(host, chain);
 		}
 		
 		private static var instanceCache:Dictionary = new Dictionary;
@@ -1161,5 +1150,144 @@ package net.fproject.di
 			}
 			return null;
 		}
+	}
+}
+import flash.events.Event;
+import flash.events.IEventDispatcher;
+import flash.utils.getQualifiedClassName;
+
+import mx.events.PropertyChangeEvent;
+
+import net.fproject.di.InjectionUtil;
+import net.fproject.utils.StringUtil;
+
+import org.as3commons.reflect.Metadata;
+
+class PropertyBindingHandler
+{
+	private var property:String;
+	private var executor:Function;
+	private var host:IEventDispatcher;
+	private var bindings:Object;
+	private var bindingEvents:Vector.<String>;
+	
+	public function PropertyBindingHandler(property:String, executor:Function)
+	{
+		this.property = property;
+		this.host = host;
+		this.executor = executor;
+		this.bindings = {};		
+	}
+	
+	public function addBindingInfo(key:String, chain:Array, target:Object, targetField:String):void
+	{
+		if(this.bindings[key] == undefined)
+			this.bindings[key] = {chain:chain, target:target, targetField:targetField};
+	}
+	
+	public function start(newHost:IEventDispatcher=null):void
+	{
+		if(newHost != host)
+		{
+			stop();
+			host = newHost;
+		}
+		
+		if(host != null)
+		{
+			this.bindingEvents = extractBindingEvents();
+			if(this.bindingEvents != null)
+			{
+				for each(var s:String in bindingEvents)
+				{
+					var handler:Function = StringUtil.isBlank(s) || s==PropertyChangeEvent.PROPERTY_CHANGE ? propChangeHandler : changeEventHandler;
+					host.addEventListener(s, handler, false, 0, true);
+				}
+			}
+		}
+	}
+	
+	private function propChangeHandler(e:PropertyChangeEvent):void
+	{
+		if(property == e.property)
+		{
+			for(var s:String in bindings)
+			{
+				var info:Object = bindings[s];
+				executor(e.oldValue, e.newValue, info.chain, info.target, info.targetField);
+			}			
+		}		
+	};
+	
+	private function changeEventHandler(e:Event):void
+	{
+		for(var s:String in bindings)
+		{
+			var info:Object = bindings[s];
+			executor(null, host[property], info.chain, info.target, info.targetField);
+		}
+	};
+	
+	private function stop():void
+	{
+		if(host != null)
+		{
+			for each(var s:String in bindingEvents)
+			{
+				var handler:Function = s==PropertyChangeEvent.PROPERTY_CHANGE ? propChangeHandler : changeEventHandler;
+				host.removeEventListener(s, handler);
+			}
+		}
+	}
+	
+	private function extractBindingEvents():Vector.<String>
+	{
+		var clazz:String = getQualifiedClassName(this.host);
+		var cacheKey:String = clazz + "." + property;
+		if(bindingEventsCache[cacheKey] != undefined)
+		{
+			var evts:Vector.<String> = bindingEventsCache[cacheKey];
+		}
+		else
+		{			
+			var meta:Object = InjectionUtil.findMemberMetadataValue(host, property, net.fproject.di.Injector.BINDABLE);
+			if(meta != null)
+			{
+				evts = new Vector.<String>;
+				
+				if(meta is Array)
+				{
+					for each(var md:Metadata in meta)
+					{
+						if(md.arguments.length > 0)
+							var s:String = md.arguments[0].value;
+						if(StringUtil.isBlank(s))
+							s = PropertyChangeEvent.PROPERTY_CHANGE;
+						evts.push(s);
+					}
+				}
+				else if(StringUtil.isBlank(meta as String))
+				{
+					evts.push(PropertyChangeEvent.PROPERTY_CHANGE);
+				}
+				else
+				{
+					evts.push(meta);
+				}
+			}
+			
+			bindingEventsCache[cacheKey] = evts;
+		}
+		
+		return evts;
+	}
+	
+	private static var bindingEventsCache:Object = {};
+	
+	public static function cacheEvent(classOrInstance:*, property:String, events:Array):void
+	{
+		var clazz:String = getQualifiedClassName(classOrInstance);
+		var cacheKey:String = clazz + "." + property;
+		bindingEventsCache[cacheKey] = Vector.<String>(events);
 	}
 }

@@ -2,7 +2,6 @@ package net.fproject.di
 {
 	import org.as3commons.reflect.AbstractMember;
 	import org.as3commons.reflect.Metadata;
-	import org.as3commons.reflect.Method;
 	import org.as3commons.reflect.Type;
 
 	public class InjectionUtil
