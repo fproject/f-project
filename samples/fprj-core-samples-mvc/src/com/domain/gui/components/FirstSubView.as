@@ -15,25 +15,21 @@ package com.domain.gui.components
 		[Bindable]
 		public var employees:ArrayCollection;
 		
-		[Bindable]
-		[PropertyBinding(phone="@phoneTextInput.text@")]//Inverse deffered binding
-		public var selectedEmployee:Employee;
-		
 		[SkinPart(required="true")]
-		[PropertyBinding(dataProvider="employees@", labelField="{name}")]//dataProvider: defferd binding, labelField: literal binding
-		[EventHandling(event="change",handler="dropDownList_change")]//Event handling of member variable
+		[PropertyBinding(dataProvider="employees@", labelField="{name}")]//dataProvider: deffered binding, labelField: literal binding
+		[PropertyBinding(hostChain="selectedItem", phone="@phoneTextInput.text@")]//deffered inverse binding with hostChain specified
 		public var dropDownList:DropDownList;
 		
 		[SkinPart(required="true")]
-		[PropertyBinding(text="selectedEmployee.id@")]
+		[PropertyBinding(text="dropDownList.selectedItem.id@")]
 		public var idTextInput:TextInput;
 		
 		[SkinPart(required="true")]
-		[PropertyBinding(text="selectedEmployee.name@")]
+		[PropertyBinding(text="dropDownList.selectedItem.name@")]
 		public var nameTextInput:TextInput;
 		
 		[SkinPart(required="true")]
-		[PropertyBinding(text="selectedEmployee.age@")]
+		[PropertyBinding(text="dropDownList.selectedItem.age@")]
 		public var ageTextInput:TextInput;
 		
 		[SkinPart(required="true")]
@@ -41,16 +37,11 @@ package com.domain.gui.components
 		
 		public function view_initialize(e:Event):void
 		{
-			employees = new ArrayCollection([
+			this.employees = new ArrayCollection([
 				new Employee({id:1,name:"Peter Pan",age:10,phone:"0123456789"}),
 				new Employee({id:2,name:"Jesus Christ",age:20,phone:"8888888888"}),
 				new Employee({id:3,name:"Robin Hood",age:30,phone:"1111111111"}),
 			]);
-		}
-		
-		public function dropDownList_change(e:Event):void
-		{
-			selectedEmployee = dropDownList.selectedItem;
 		}
 	}
 }
