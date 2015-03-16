@@ -123,5 +123,30 @@ package net.fproject.utils.AdvancedDateFormatter
 				returnTestValue.minutes==0 && returnTestValue.seconds==0);
 			//-------------------------------------
 		}
+		
+		[Test (description="Normal case: [valueString = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789']")]
+		/**
+		 * Test Case Type: Normal<br/>
+		 * <br/>
+		 * INPUT VALUES:<br/>
+		 * <code>valueString = "ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789"</code><br/>
+		 * <br/>
+		 * OUTPUT EXPECTED:<br/>
+		 * ---- expectations ----
+		 *
+		 */
+		public function testCase005():void
+		{
+			var valueString:String = "2010-25-2 8:0:0";
+			advancedDateformatter.formatString = "yyyy-M-d h:m:s";
+			var returnTestValue:Date = advancedDateformatter.parse(valueString);
+			//---- Place result assertion here ----
+			// You must replace this code by function specifications or 
+			// the test always returns false!
+			assertTrue(returnTestValue.fullYear==2010 && returnTestValue.month==4 && 
+				returnTestValue.date==2 && returnTestValue.hours==8 && 
+				returnTestValue.minutes==0 && returnTestValue.seconds==0);
+			//-------------------------------------
+		}
 	}
 }
