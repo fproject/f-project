@@ -37,7 +37,7 @@ package net.fproject.gui.component
 		private var errorCallback:Function;
 		private var lastDeferredCallArgs:*;
 		
-		private var rslLoader:RslsLoader;
+		private var rslsLoader:RslsLoader;
 		
 		/**
 		 * 
@@ -46,12 +46,12 @@ package net.fproject.gui.component
 		 */
 		public function get rsls():Array
 		{
-			return rslLoader.rsls;
+			return rslsLoader.rsls;
 		}
 		
 		public function set rsls(value:*):void
 		{
-			rslLoader.rsls = value;		
+			rslsLoader.rsls = value;		
 		}
 		
 		public function set moduleUrl(value:String):void
@@ -157,7 +157,7 @@ package net.fproject.gui.component
 			if(pendingLoadParams != null || this.child != null)
 				return;
 			
-			if(this.rsls == null || this.rslLoader.allRslsLoaded())
+			if(this.rsls == null || this.rslsLoader.allRslsLoaded())
 			{
 				var msg:String = ResourceUtil.getString('loading.functional.module');
 				super.loadModule(url, bytes);
@@ -168,7 +168,7 @@ package net.fproject.gui.component
 				
 				pendingLoadParams = {url:url, bytes:bytes};
 				
-				rslLoader.load(onRslsLoaded);
+				rslsLoader.load(onRslsLoaded);
 			}
 			
 			if(AppContext.instance.hasEventListener(AppContextEvent.ENTER_BUSY_STATE))
@@ -226,7 +226,7 @@ package net.fproject.gui.component
 		public function AdvancedModuleLoader()
 		{
 			this.applicationDomain = ApplicationDomain.currentDomain;
-			rslLoader = new RslsLoader;
+			rslsLoader = new RslsLoader;
 			
 			Injector.inject(this);
 		}
