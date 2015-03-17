@@ -49,5 +49,15 @@ package net.fproject.event
 		 * Application exits busy state 
 		 */
 		public static const EXIT_BUSY_STATE:String = "exitBusyState";
+		
+		/**
+		 * Application error
+		 */
+		public static const APP_ERROR:String = "appError";
+		
+		/**
+		 * A module is loaded
+		 */
+		public static const MODULE_LOADED:String = "moduleLoaded";
 	}
 }
