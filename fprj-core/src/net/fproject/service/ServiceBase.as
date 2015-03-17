@@ -16,7 +16,6 @@ package net.fproject.service
 	
 	import net.fproject.fproject_internal;
 	import net.fproject.core.AppContext;
-	import net.fproject.di.InstanceFactory;
 	import net.fproject.event.AppContextEvent;
 	import net.fproject.rpc.IRemoteObject;
 	import net.fproject.rpc.RemoteObjectFactory;
@@ -175,7 +174,7 @@ package net.fproject.service
 		
 		private function get appContext():AppContext
 		{
-			return AppContext(InstanceFactory.getInstance(AppContext));
+			return AppContext.instance;
 		}
 		
 		private function changeNetworkAvailability(value:Boolean):void
