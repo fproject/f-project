@@ -81,14 +81,16 @@ package net.fproject.utils
 		}
 		
 		/**
-		 * Get the Vietnamese Solar term for a day.
+		 * Get the Solar term for a day.
 		 * @param d the Gregorian date
 		 * @return the Lunar Zodiac hours array.
 		 * Each element of this array has following attributes:
-		 * <ul><li>solarTerm: a number between 0 and 23 represents the sun segment.
+		 * <ul><li><code>solarTerm</code>: a number between 0 and 23 represents the sun segment.
 		 * From the day after March Equinox and the 1st major term after March Equinox, 0 is returned.
 		 * After that, return 1, 2, 3 ...</li>
-		 * <li>label: a string represent the name of Vietnamese Solar term</li></ul>
+		 * <li><code>label</code>: a text represents the name of Solar term. This text can be defined in resource
+		 * named <code>lunar.cal.solar.term.series</code> in resource bundle
+		 * <code>fprjutils.properties</code></li></ul>
 		 * 
 		 */
 		public function getSolarTerm(d:Date):Object
