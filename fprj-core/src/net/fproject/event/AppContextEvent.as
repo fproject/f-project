@@ -39,5 +39,15 @@ package net.fproject.event
 		public static const SERVICE_STARTED:String = "serviceStarted";
 		public static const SERVICE_COMPLETED:String = "serviceStart";
 		public static const SERVICE_FAILED:String = "serviceFailed";
+		
+		/**
+		 * Application enters busy state 
+		 * The <code>data<code> will contain a status message.
+		 */
+		public static const ENTER_BUSY_STATE:String = "enterBusyState";
+		/**
+		 * Application exits busy state 
+		 */
+		public static const EXIT_BUSY_STATE:String = "exitBusyState";
 	}
 }

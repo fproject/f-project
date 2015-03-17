@@ -16,11 +16,11 @@ package net.fproject.core
 	import net.fproject.di.ImplementationConfig;
 	import net.fproject.di.InstanceFactory;
 	import net.fproject.event.AppContextEvent;
+	import net.fproject.model.User;
 	import net.fproject.rpc.RemoteObjectFactory;
+	import net.fproject.service.IAppContextService;
 	import net.fproject.utils.LoggingUtil;
 	import net.fproject.utils.ResourceUtil;
-	import net.fproject.service.IAppContextService;
-	import net.fproject.model.User;
 	
 	/**
 	 * <p>AppContext class is used to bootstrap Flex application by
@@ -254,6 +254,18 @@ package net.fproject.core
 		}
 		
 		private static var _instance:AppContext;
+
+		/**
+		 * 
+		 * Get the singleton instance of app context.
+		 * This instace should be configured by <code>ImplementationConfig</code> component.
+		 * 
+		 */
+		public static function get instance():AppContext
+		{
+			return AppContext(InstanceFactory.getInstance(AppContext));
+		}
+
 		
 		/**
 		 * 
