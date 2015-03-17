@@ -1,8 +1,8 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// Licensed Source Code - Property of ProjectKit
+// Licensed Source Code - Property of f-project.net
 //
-// Copyright © 2014 ProjectKit. All Rights Reserved.
+// Copyright © 2015 f-project.net. All Rights Reserved.
 //
 ///////////////////////////////////////////////////////////////////////////////
 package net.fproject.gui.component
