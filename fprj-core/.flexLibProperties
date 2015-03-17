@@ -69,6 +69,7 @@
     <classEntry path="net.fproject.service.ServiceBase"/>
     <classEntry path="net.fproject.di.InjectionUtil"/>
     <classEntry path="net.fproject.di.supportClasses.PropertyBindingHandler"/>
+    <classEntry path="net.fproject.gui.component.supportClasses.RslsLoader"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="manifest.xml" sourcePath="manifest.xml"/>
