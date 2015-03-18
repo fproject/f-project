@@ -17,6 +17,7 @@ Hơn thế nữa, việc add event listener này được tự động thực hi
 		<context name="class"/>
 		<context name="variable"/>
 		<context name="getter"/>
+		<context name="method"/>
 		<attribute name="dispatcher" type="String" required="false" 
 			description="Đường dẫn tên trường (field chain) dẫn đến một đối tượng con cháu của đối tượng gốc mặc định"/>
 		<attribute name="event" type="String" required="false" 
@@ -33,29 +34,33 @@ Hơn thế nữa, việc add event listener này được tự động thực hi
 		<context name="method"/>
 		<attribute name="hostChain" type="String" required="false" 
 			description="Đường dẫn tên trường (field chain) dẫn đến một đối tượng con cháu của đối tượng gốc mặc định"/>
+		<attribute name="sourceEvent" type="String" required="false" 
+		description="Tên (type) của event sẽ trigger việc binding. Mặc định chỉ hỗ trợ &lt;code&gt;PropertyChangeEvent.PROPERTY_CHANGE&lt;/code&gt; và &lt;code&gt;SkinPartEvent.PART_ADDED&lt;/code&gt;, và &lt;code&gt;SkinPartEvent.PART_REMOVED&lt;/code&gt;"/>
 	</metadata>
 	
 	<metadata name="RemoteObject" 
-			description="Khai báo remote object">
+			description="Khai báo remote object truy cập đến một RESTful hoặc AMF endpoint">
 		<context name="class"/>
 		<attribute name="name" type="String" required="false" 
-			description="Tên của remote object"/>
-		<attribute name="uri" type="String" required="false" 
-			description="URI của endpoint"/>
+			description="Tên của remote service trong trường hợp AMF endpoint"/>
 		<attribute name="destination" type="String" required="false" 
-			description="Destination của endpoint"/>
+			description="Destination ID của endpoint, được định nghĩa trong file services-config.xml"/>
+		<attribute name="uri" type="String" required="false" 
+			description="URI của RESTful endpoint. Đây là base URI, khi kết hợp với tham số &lt;code&gt;route&lt;/code&gt; của &lt;code&gt;[RESTOperation]&lt;/code&gt; sẽ tạo ra URI đầy đủ&lt;/code&gt;"/>
+		<attribute name="modelClass" type="String" required="false" 
+			description="Tên của model class gắn với RESTful endpoint"/>
 	</metadata>
 	
 	<metadata name="RESTOperation" 
-			description="Khai báo REST operation">
+			description="Khai báo một operation truy cập đến một RESTful endpoint">
 		<context name="method"/>
 		<attribute name="method" type="String" required="false" 
-			description="HTTP Method, có thể dùng GET, POST, PUT, DELETE, OPTIONS, HEAD"/>
+			description="HTTP Method của operation, có thể nhận các giá trị GET, PUT, POST, DELETE, HEAD, OPTION"/>
 		<attribute name="returning" type="String" required="false" 
-			description="Kiểu của dữ liệu trả về. Sử dụng cú pháp ClassName cho kiểu đơn hoặc ClassName[] cho kiểu mảng"/>
-		<attribute name="namedParams" type="String" required="false" 
-			description="Sử dụng named parameter cho URI"/>
+			description="Khai báo kiểu trả về của lời gọi, giúp cho kết quả được deserialize thành strong-typed objects. Chẳng hạn 'MyModel[]' sẽ trả về mảng các đối tượng MyModel. Mặc định sẽ sử dụng modelClass được khai báo trong metadata của &lt;code&gt;[RemoteObject]&lt;/code&gt;"/>
 		<attribute name="route" type="String" required="false" 
-			description="Khai báo route của REST operation"/>
+			description="URI route của operation, chẳng hạn &lt;code&gt;'?criteria={0}&#38;page={1}&#38;per-page={2}&#38;sort={3}'&lt;/code&gt;"/>
+		<attribute name="extraParams" type="String" required="false" 
+			description="Các tham số URI bổ sung, chẳng hạn &lt;code&gt;'expand=profile'&lt;/code&gt;"/>
 	</metadata>
 </annotations>
