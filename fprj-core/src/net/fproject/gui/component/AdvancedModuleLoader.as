@@ -137,7 +137,8 @@ package net.fproject.gui.component
 			var loader:AdvancedModuleLoader = AdvancedModuleLoader.getLoaderByInterface(moduleInterface, false);
 			if(loader != null)
 			{
-				(loader.child[methodName] as Function).apply(loader.child, args);
+				if(loader.pendingLoadParams == null)
+					(loader.child[methodName] as Function).apply(loader.child, args);
 			}
 			else
 			{
