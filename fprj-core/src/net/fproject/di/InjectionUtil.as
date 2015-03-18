@@ -15,13 +15,18 @@ package net.fproject.di
 		 * If this value is the member itself, them member must have an <code>id</code> property.
 		 * @param metadataName the metadata name to search, should be in lower-case
 		 * @param argumentName the metadata argument name to search, should be in lower-case
-		 * @return If no metadata found, <code>null</code> is returned.<br/>
-		 * If only one metadata found and the metadata has only one argument,
-		 * the value of that argument is returned.<br/>
-		 * If several metadata found and <code>argumentName</code> is not specified,
-		 * an array of <code>org.as3commons.reflect.Metadata</code> objects is returned<br/>
-		 * If several metadata found and <code>argumentName</code> is specified,
-		 * an array of values associated with that argument is returned<br/>
+		 * @return The returned value follows this rule:
+		 * <ul>
+		 * <li>If no metadata found, <code>null</code> is returned.</li>
+		 * <li>If only one metadata found and the metadata has only one argument or <code>argumentName</code> is not null,
+		 * the value of that argument is returned.</li>
+		 * <li>If only one metadata found and the metadata has more than one argument,
+		 * an instance of <code>org.as3commons.reflect.Metadata</code> is returned.</li>
+		 * <li>If several metadata found and <code>argumentName</code> is not specified,
+		 * an array of <code>org.as3commons.reflect.Metadata</code> objects is returned</li>
+		 * <li>If several metadata found and <code>argumentName</code> is specified,
+		 * an array of values associated with that argument is returned
+		 * </ul>
 		 */
 		public static function findMemberMetadataValue(source:*, member:Object, 
 													   metadataName:String, argumentName:String=null):Object
@@ -77,7 +82,7 @@ package net.fproject.di
 		/**
 		 * Search metadata value for a class by its <code>id</code> property.
 		 * @param source the metadata source to search. This can be a class, an instance object of a class
-		 * or an instance of org.as3commons.reflect.Type
+		 * or an instance of <code>org.as3commons.reflect.Type</code>
 		 * @param metadataName the metadata name to search, should be in lower-case
 		 * @param argumentName the metadata argument name to search, should be in lower-case
 		 * @return The returned value follows this rule:
@@ -86,7 +91,7 @@ package net.fproject.di
 		 * <li>If only one metadata found and the metadata has only one argument or <code>argumentName</code> is not null,
 		 * the value of that argument is returned.</li>
 		 * <li>If only one metadata found and the metadata has more than one argument,
-		 * an instance of org.as3commons.reflect.Metadata is returned.</li>
+		 * an instance of <code>org.as3commons.reflect.Metadata</code> is returned.</li>
 		 * <li>If several metadata found and <code>argumentName</code> is not specified,
 		 * an array of <code>org.as3commons.reflect.Metadata</code> objects is returned</li>
 		 * <li>If several metadata found and <code>argumentName</code> is specified,
