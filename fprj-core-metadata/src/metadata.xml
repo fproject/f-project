@@ -5,7 +5,7 @@
 		<context name="class"/>
 		<context name="variable"/>
 		<context name="getter"/>
-		<attribute name="impl" type="Class" required="false" 
+		<attribute name="impl" type="Class" required="true" 
 			description="Class path trỏ đến implementation class"/>
 		<attribute name="delegate" type="Class" required="false" 
 			description="Class path chỉ định delegate class"/>
@@ -20,7 +20,7 @@ Hơn thế nữa, việc add event listener này được tự động thực hi
 		<context name="method"/>
 		<attribute name="dispatcher" type="String" required="false" 
 			description="Đường dẫn tên trường (field chain) dẫn đến một đối tượng con cháu của đối tượng gốc mặc định"/>
-		<attribute name="event" type="String" required="false" 
+		<attribute name="event" type="String" required="true" 
 			description="Tham số type của event, có thể nhận giá trị là một literal string của event type chẳng hạn như 'creationComplete', hoặc đường dẫn đến một hằng số static được định nghĩa trong một class, chẳng hạn như 'mx.events.CloseEvent.CLOSE'."/>
 		<attribute name="handler" type="Function" required="false" 
 			description="Class path chỉ định delegate class"/>
@@ -62,5 +62,27 @@ Hơn thế nữa, việc add event listener này được tự động thực hi
 			description="URI route của operation, chẳng hạn &lt;code&gt;'?criteria={0}&#38;page={1}&#38;per-page={2}&#38;sort={3}'&lt;/code&gt;"/>
 		<attribute name="extraParams" type="String" required="false" 
 			description="Các tham số URI bổ sung, chẳng hạn &lt;code&gt;'expand=profile'&lt;/code&gt;"/>
+	</metadata>
+	
+	<metadata name="ModuleImplementation" 
+			description="Implementation config cho module">
+		<context name="class"/>
+		<context name="variable"/>
+		<attribute name="relativeUrl" type="String" required="true"  
+			description="Đường dẫn tương đối đến file SWF của module, ví dụ 'task/TaskModule'"/>
+		<attribute name="rsls" type="String" required="false" 
+			description="Danh sách các thư viện RSLs cần phải load trước khi load module này. Có thể chỉ định thứ tự load các RSL bằng cách đánh trọng số vào sau tên file SWF. Ví dụ: 'abc.swf, xyz.swf{0}, def.swf{1}'"/>
+	</metadata>
+	
+	<metadata name="ComponentImplementation" 
+			description="Implementation config cho component">
+		<context name="class"/>
+		<context name="variable"/>
+		<attribute name="relativeUrl" type="String" required="true" 
+			description="Đường dẫn tương đối đến file SWF của component ví dụ 'task/TaskModule'"/>
+		<attribute name="implClass" type="String" required="false" 
+			description="Class path dẫn đến implementation class"/>
+		<attribute name="rsls" type="String" required="false" 
+			description="Danh sách các thư viện RSLs cần phải load trước khi load component này. Có thể chỉ định thứ tự load các RSL bằng cách đánh trọng số vào sau tên file SWF. Ví dụ: 'abc.swf, xyz.swf{0}, def.swf{1}'"/>
 	</metadata>
 </annotations>
