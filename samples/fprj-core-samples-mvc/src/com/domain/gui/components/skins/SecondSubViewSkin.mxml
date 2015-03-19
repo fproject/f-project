@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
-		xmlns:mx="library://ns.adobe.com/flex/mx">
+		xmlns:mx="library://ns.adobe.com/flex/mx"
+		xmlns:fprj="http://f-project.net/xmlns/fprj/2013">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.domain.gui.components.SecondSubView")]
@@ -16,5 +17,6 @@
 		<s:VerticalLayout paddingBottom="100"/>
 	</s:layout>
 	<s:Button id="showDialogButton" label="Show Dialog View"/>
+	<fprj:ComponentLoader componentClass="net.fproject.gui.component.AutoComplete" rsls="fprj-autocmp" width="200" height="50"/>
 	<s:TextArea id="theTextArea" width="100%" height="100%"/>	
 </s:Skin>
