@@ -52,15 +52,53 @@
             
         <script type="text/javascript" src="swfobject.js"></script>
         <script type="text/javascript">
+        	function getBaseUrl()
+        	{
+        		var url = document.URL;
+        		var p = url.indexOf('flexapps/myapp/');
+        		var hpos = url.indexOf(window.location.host);
+        		return encodeURIComponent(url.substring(hpos + window.location.host.length, p));
+        	}
+        	
+		    function isMSIE()
+		    {
+		        var ua = window.navigator.userAgent;
+		        var msie = ua.indexOf('MSIE ');
+		
+		        if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))
+		            return true;
+		
+		        return false;
+		    };
+		
+		    window.onbeforeunload = function() {
+		        var warning='';
+		        var fxControl = document.${application} || window.${application};
+		        if (typeof fxControl.onAppClosing=='function') {
+		            warning = fxControl.onAppClosing();
+		        }
+		        if (warning!='')
+		            return warning;
+		        else
+		            return;
+		    };
+		
+		    if(isMSIE())
+		        window.onload = function() {
+		            var fxControl = document.${application} || window.${application};
+		            fxControl.focus();
+		        };
+		</script>
+        <script type="text/javascript">
             // For version detection, set to min. required Flash Player version, or 0 (or 0.0.0), for no version detection. 
             var swfVersionStr = "${version_major}.${version_minor}.${version_revision}";
             // To use express install, set to playerProductInstall.swf, otherwise the empty string. 
             var xiSwfUrlStr = "${expressInstallSwf}";
-            var flashvars = {};
+            var flashvars = {loginUserId:"1",userToken:"7%2FzJ%2FE72IQGDTS3D3ExpVzQfXA5CzZWgMuGL0Aa4JthkQqGCHMzigGmc%2F2tpbr%2BJZ72o3hli8d8xz2WDILijwg%3D%3D",baseUrl:getBaseUrl()+"flexapps%2Fmyapp",moduleBaseUrl:getBaseUrl()+"flexapps%2Fmyapp%2Fmodules",rslBaseUrl:getBaseUrl()+"flexapps%2Frsls",locale:"vi_vn"};
             var params = {};
             params.quality = "high";
             params.bgcolor = "${bgcolor}";
-            params.allowscriptaccess = "sameDomain";
+            params.allowscriptaccess = "always";
             params.allowfullscreen = "true";
             var attributes = {};
             attributes.id = "${application}";
