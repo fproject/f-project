@@ -109,9 +109,9 @@ package net.fproject.gui.component
 		 * @param args method's argument
 		 * 
 		 */
-		public static function callDeferredModuleMethod(moduleInterface:Class, methodName:String, ...args):void
+		public static function callDeferredMethod(moduleInterface:Class, methodName:String, ...args):void
 		{
-			var loader:AdvancedModuleLoader = AdvancedModuleLoader.getLoaderByInterface(moduleInterface, false);
+			var loader:AdvancedModuleLoader = getLoaderByInterface(moduleInterface, false);
 			if(loader != null)
 			{
 				if(loader.pendingLoadParams == null)
@@ -119,7 +119,7 @@ package net.fproject.gui.component
 			}
 			else
 			{
-				AdvancedModuleLoader.getLoaderByInterface(moduleInterface, true, 
+				getLoaderByInterface(moduleInterface, true, 
 					function(e:ModuleEvent):void
 					{
 						loader = AdvancedModuleLoader(e.currentTarget);

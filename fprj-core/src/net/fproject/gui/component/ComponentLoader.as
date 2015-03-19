@@ -94,17 +94,17 @@ package net.fproject.gui.component
 		public var child:Object;
 		
 		/**
-		 * Make a deferred call to an instance-method of a module.
-		 * If the module is already loaded, the method is invoked instantly.
-		 * If the module is not loaded before, it will be load and the method will be
+		 * Make a deferred call to an instance-method of a component.
+		 * If the component is already loaded, the method is invoked instantly.
+		 * If the component is not loaded before, it will be load and the method will be
 		 * invoked right after the loading is finished.
 		 * @param componentInterface the interface of module that is using dependency injection 
-		 * with <code>[ModuleImplementation]</code>
+		 * with <code>[ComponentImplementation]</code>
 		 * @param methodName the method's name
 		 * @param args method's argument
 		 * 
 		 */
-		public static function callDeferredModuleMethod(componentInterface:Class, methodName:String, ...args):void
+		public static function callDeferredMethod(componentInterface:Class, methodName:String, ...args):void
 		{
 			var loader:ComponentLoader = getLoaderByInterface(componentInterface, false);
 			if(loader != null)
