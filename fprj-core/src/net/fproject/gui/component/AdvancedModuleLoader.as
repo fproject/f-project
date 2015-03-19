@@ -9,7 +9,6 @@ package net.fproject.gui.component
 {
 	import flash.system.ApplicationDomain;
 	import flash.utils.ByteArray;
-	import flash.utils.getQualifiedClassName;
 	
 	import mx.events.ModuleEvent;
 	
@@ -30,7 +29,8 @@ package net.fproject.gui.component
 	 */
 	public class AdvancedModuleLoader extends ModuleLoader
 	{
-		private static var interfaceToLoader:Object = {};
+		private static var urlToModuleLoader:Object = {};
+		private static var urlToRsl:Object = {};
 		
 		private var readyCallback:Function;
 		private var errorCallback:Function;
@@ -76,14 +76,14 @@ package net.fproject.gui.component
 													readyCallback:Function=null, errorCallback:Function=null,
 													defferredCallArgs:*=undefined):AdvancedModuleLoader
 		{
-			var loader:AdvancedModuleLoader = interfaceToLoader[getQualifiedClassName(moduleInterface)] as AdvancedModuleLoader;
-			if(loader == null)
+			var info:Object = RslsLoader.getMetaInfoFromInterface(moduleInterface, 
+				{metaName:"ModuleImplementation", args:["relativeUrl", "rsls"]});
+			if(info != null)
 			{
-				var info:Object = RslsLoader.getMetaInfoFromInterface(moduleInterface, 
-					{metaName:"ModuleImplementation", args:["relativeUrl", "rsls"]});
-				if(info != null)
+				var url:String = ApplicationUtil.getModuleUrl(info.relativeUrl);
+				var loader:AdvancedModuleLoader = urlToModuleLoader[url] as AdvancedModuleLoader;
+				if(loader == null && loadAsNeed)
 				{
-					var url:String = ApplicationUtil.getModuleUrl(info.relativeUrl);
 					loader = new AdvancedModuleLoader();
 					loader.lastDeferredCallArgs = defferredCallArgs;
 					loader.name = url;//temporary use property 'name' to store URL
@@ -91,9 +91,7 @@ package net.fproject.gui.component
 					loader.errorCallback = errorCallback;
 					loader.moduleInterface = moduleInterface;
 					loader.rsls = info.rsls;
-					
-					if(loadAsNeed)
-						loader.loadModule(url);
+					loader.loadModule(url);
 				}
 			}
 			
@@ -176,8 +174,7 @@ package net.fproject.gui.component
 			if(readyCallback != null)
 				readyCallback(e);
 			
-			if(moduleInterface != null)
-				interfaceToLoader[getQualifiedClassName(moduleInterface)] = this;
+			urlToModuleLoader[this.url] = this;
 			if(AppContext.instance.hasEventListener(AppContextEvent.MODULE_LOADED))
 				AppContext.instance.dispatchEvent(new AppContextEvent(AppContextEvent.MODULE_LOADED, 
 					{url:this.url, rsls:this.rsls}));

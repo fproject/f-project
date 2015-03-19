@@ -14,6 +14,7 @@ package net.fproject.gui.component.supportClasses
 	import flash.net.URLRequest;
 	import flash.system.ApplicationDomain;
 	import flash.system.LoaderContext;
+	import flash.utils.Dictionary;
 	
 	import mx.utils.StringUtil;
 	
@@ -239,6 +240,7 @@ package net.fproject.gui.component.supportClasses
 			return rslsArray;
 		}
 		
+		private static var metaInfoCache:Dictionary = new Dictionary;
 		
 		/**
 		 * Get metadata from interface 
@@ -249,20 +251,24 @@ package net.fproject.gui.component.supportClasses
 		 */
 		public static function getMetaInfoFromInterface(intface:Class, metaArg:Object):Object
 		{
-			var obj:Object = InjectionUtil.findClassMetadataValue(intface, metaArg.metaName);
-			if(obj is Array)
-				obj = obj[0];
-			if(obj is Metadata)
+			var info:Object = metaInfoCache[intface];
+			if(info == null)
 			{
-				var arg:Metadata = Metadata(obj);
-				var info:Object = {};
-				for each (var key:String in metaArg.args)
+				var obj:Object = InjectionUtil.findClassMetadataValue(intface, metaArg.metaName);
+				if(obj is Array)
+					obj = obj[0];
+				if(obj is Metadata)
 				{
-					info[key] = arg.hasArgumentWithKey(key) ? arg.getArgument(key).value : null;
+					var arg:Metadata = Metadata(obj);
+					info = {};
+					for each (var key:String in metaArg.args)
+					{
+						info[key] = arg.hasArgumentWithKey(key) ? arg.getArgument(key).value : null;
+					}
 				}
 			}
+			
 			return info;
-		}
-		
+		}		
 	}
 }
