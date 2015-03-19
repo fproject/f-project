@@ -78,11 +78,9 @@ Hơn thế nữa, việc add event listener này được tự động thực hi
 			description="Implementation config cho component">
 		<context name="class"/>
 		<context name="variable"/>
-		<attribute name="relativeUrl" type="String" required="true" 
-			description="Đường dẫn tương đối đến file SWF của component ví dụ 'task/TaskModule'"/>
 		<attribute name="implClass" type="String" required="false" 
 			description="Class path dẫn đến implementation class"/>
 		<attribute name="rsls" type="String" required="false" 
-			description="Danh sách các thư viện RSLs cần phải load trước khi load component này. Có thể chỉ định thứ tự load các RSL bằng cách đánh trọng số vào sau tên file SWF. Ví dụ: 'abc.swf, xyz.swf{0}, def.swf{1}'"/>
+			description="Danh sách các thư viện RSLs cần phải load để có thể khởi tạo component này. Có thể chỉ định thứ tự load các RSL bằng cách đánh trọng số vào sau tên file SWF. Ví dụ: 'abc.swf, xyz.swf{0}, def.swf{1}'"/>
 	</metadata>
 </annotations>
