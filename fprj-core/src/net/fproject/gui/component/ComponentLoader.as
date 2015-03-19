@@ -9,6 +9,7 @@ package net.fproject.gui.component
 {
 	import flash.display.DisplayObject;
 	import flash.system.ApplicationDomain;
+	import flash.utils.getQualifiedClassName;
 	
 	import mx.core.IVisualElement;
 	import mx.events.ModuleEvent;
@@ -70,12 +71,12 @@ package net.fproject.gui.component
 													readyCallback:Function=null, errorCallback:Function=null,
 													defferredCallArgs:*=undefined):ComponentLoader
 		{
-			var info:Object = RslsLoader.getLoadInfoFromInterface(componentInterface, 
-				{metaName:"ComponentImplementation", args:["implClass", "rsls"]});
-			if(info != null)
+			var loader:ComponentLoader = urlToLoader[getQualifiedClassName(componentInterface)] as ComponentLoader;
+			if(loader == null)
 			{
-				var loader:ComponentLoader = urlToLoader[info.url] as ComponentLoader;
-				if(loader == null && loadAsNeed)
+				var info:Object = RslsLoader.getMetaInfoFromInterface(componentInterface, 
+					{metaName:"ComponentImplementation", args:["implClass", "rsls"]});
+				if(info != null)
 				{
 					loader = new ComponentLoader();
 					loader.lastDeferredCallArgs = defferredCallArgs;
@@ -84,8 +85,9 @@ package net.fproject.gui.component
 					loader.componentInterface = componentInterface;
 					loader.rsls = info.rsls;
 					loader.load(info.implClass);
-				}
-			}			
+				}	
+			}
+					
 			return loader;
 		}
 		

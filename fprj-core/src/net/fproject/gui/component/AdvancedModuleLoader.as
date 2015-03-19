@@ -76,7 +76,7 @@ package net.fproject.gui.component
 													readyCallback:Function=null, errorCallback:Function=null,
 													defferredCallArgs:*=undefined):AdvancedModuleLoader
 		{
-			var info:Object = RslsLoader.getLoadInfoFromInterface(moduleInterface, 
+			var info:Object = RslsLoader.getMetaInfoFromInterface(moduleInterface, 
 				{metaName:"ModuleImplementation", args:["relativeUrl", "rsls"]});
 			if(info != null)
 			{
