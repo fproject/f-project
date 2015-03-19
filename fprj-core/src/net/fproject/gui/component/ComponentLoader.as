@@ -17,15 +17,12 @@ package net.fproject.gui.component
 	
 	import net.fproject.core.AppContext;
 	import net.fproject.di.InjectionUtil;
-	import net.fproject.di.Injector;
 	import net.fproject.event.AppContextEvent;
 	import net.fproject.gui.component.supportClasses.RslsLoader;
 	import net.fproject.utils.ResourceUtil;
 	
 	import org.as3commons.reflect.Metadata;
 	
-	[EventHandling(event="mx.events.ModuleEvent.READY","moduleLoader_ready")]
-	[EventHandling(event="mx.events.ModuleEvent.ERROR","moduleLoader_error")]
 	/**
 	 * The ComponentLoader extends Spark's ModuleLoader with convenience utility method for module loading, 
 	 * invoking module methods using dependency injection
@@ -199,15 +196,23 @@ package net.fproject.gui.component
 			}
 		}
 		
-		protected override function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
+		/**
+		 *  @private
+		 *  Create components that are children of this Container.
+		 */
+		override protected function createChildren():void
 		{
-			if(this.child is DisplayObject || this.child is IVisualElement)
+			if (pendingClass == null && this.componentClass != null)
 			{
-				child.x = 0;
-				child.y = 0;
-				child.width = this.width;
-				child.height = this.height;
+				if(this.child == null)
+					load(this.componentClass);
+				else if(this.child is IVisualElement)
+					this.addElement(IVisualElement(child));
+				else if(this.child is DisplayObject)
+					this.addChild(DisplayObject(child));					
 			}
+			
+			super.createChildren();
 		}
 		
 		private function onRslsLoaded():void
@@ -227,8 +232,6 @@ package net.fproject.gui.component
 		public function ComponentLoader()
 		{
 			rslsLoader = new RslsLoader;
-			
-			Injector.inject(this);
 		}
 	}
 }

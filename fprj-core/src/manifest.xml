@@ -11,4 +11,5 @@
 	<component id="HorizontalSeparator" class="net.fproject.gui.component.HorizontalSeparator"/>
 	<component id="VerticalSeparator" class="net.fproject.gui.component.VerticalSeparator"/>
 	<component id="SolidColorRect" class="net.fproject.gui.component.SolidColorRect"/>
+	<component id="ComponentLoader" class="net.fproject.gui.component.ComponentLoader"/>
 </componentPackage>
