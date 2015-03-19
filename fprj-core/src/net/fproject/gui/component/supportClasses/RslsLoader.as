@@ -241,22 +241,22 @@ package net.fproject.gui.component.supportClasses
 		
 		
 		/**
-		 * Get module's URL from module's interface 
-		 * @param componentInterface the interface of module that is using dependency injection 
-		 * with <code>[ModuleImplementation]</code>
-		 * @return The module's URL
+		 * Get metadata from interface 
+		 * @param intface the interface of module/component that is using dependency injection 
+		 * with <code>[ModuleImplementation]</code> or <code>[ComponentImplementation]</code>
+		 * @return The metadata information
 		 * 
 		 */
-		public static function getLoadInfoFromInterface(componentInterface:Class, metaInfo:Object):Object
+		public static function getMetaInfoFromInterface(intface:Class, metaArg:Object):Object
 		{
-			var obj:Object = InjectionUtil.findClassMetadataValue(componentInterface, metaInfo.metaName);
+			var obj:Object = InjectionUtil.findClassMetadataValue(intface, metaArg.metaName);
 			if(obj is Array)
 				obj = obj[0];
 			if(obj is Metadata)
 			{
 				var arg:Metadata = Metadata(obj);
 				var info:Object = {};
-				for each (var key:String in metaInfo.args)
+				for each (var key:String in metaArg.args)
 				{
 					info[key] = arg.hasArgumentWithKey(key) ? arg.getArgument(key).value : null;
 				}
