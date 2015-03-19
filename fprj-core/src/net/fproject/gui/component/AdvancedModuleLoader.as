@@ -15,7 +15,6 @@ package net.fproject.gui.component
 	import spark.modules.ModuleLoader;
 	
 	import net.fproject.core.AppContext;
-	import net.fproject.di.InjectionUtil;
 	import net.fproject.di.Injector;
 	import net.fproject.event.AppContextEvent;
 	import net.fproject.gui.component.supportClasses.RslsLoader;
@@ -77,48 +76,26 @@ package net.fproject.gui.component
 													readyCallback:Function=null, errorCallback:Function=null,
 													defferredCallArgs:*=undefined):AdvancedModuleLoader
 		{
-			var url:String = getUrlFromInterface(moduleInterface);
-			var loader:AdvancedModuleLoader = urlToModuleLoader[url] as AdvancedModuleLoader;
-			if(loader == null && loadAsNeed)
+			var info:Object = RslsLoader.getLoadInfoFromInterface(moduleInterface, 
+				{metaName:"ModuleImplementation", args:["relativeUrl", "rsls"]});
+			if(info != null)
 			{
-				loader = new AdvancedModuleLoader();
-				loader.lastDeferredCallArgs = defferredCallArgs;
-				loader.name = url;//temporary use property 'name' to store URL
-				loader.readyCallback = readyCallback;
-				loader.errorCallback = errorCallback;
-				loader.moduleInterface = moduleInterface;
-				loader.rsls = getRslsFromInterface(moduleInterface);
-				loader.loadModule(url);
+				var url:String = ApplicationUtil.getModuleUrl(info.relativeUrl);
+				var loader:AdvancedModuleLoader = urlToModuleLoader[url] as AdvancedModuleLoader;
+				if(loader == null && loadAsNeed)
+				{
+					loader = new AdvancedModuleLoader();
+					loader.lastDeferredCallArgs = defferredCallArgs;
+					loader.name = url;//temporary use property 'name' to store URL
+					loader.readyCallback = readyCallback;
+					loader.errorCallback = errorCallback;
+					loader.moduleInterface = moduleInterface;
+					loader.rsls = info.rsls;
+					loader.loadModule(url);
+				}
 			}
+			
 			return loader;
-		}
-		
-		/**
-		 * Get module's URL from module's interface 
-		 * @param moduleInterface the interface of module that is using dependency injection 
-		 * with <code>[ModuleImplementation]</code>
-		 * @return The module's URL
-		 * 
-		 */
-		private static function getUrlFromInterface(moduleInterface:Class):String
-		{
-			var relUrl:String = 
-				InjectionUtil.findClassMetadataValue(moduleInterface, "ModuleImplementation", "relativeUrl") as String;
-			return ApplicationUtil.getModuleUrl(relUrl);
-		}
-		
-		/**
-		 * Get module's RSLs from module's interface 
-		 * @param moduleInterface the interface of module that is using dependency injection 
-		 * with <code>[ModuleImplementation]</code>
-		 * @return The module's URL
-		 * 
-		 */
-		private static function getRslsFromInterface(moduleInterface:Class):Array
-		{
-			var rslsStr:String = 
-				InjectionUtil.findClassMetadataValue(moduleInterface, "ModuleImplementation", "rsls") as String;
-			return RslsLoader.parseRsls(rslsStr);
 		}
 		
 		/**
