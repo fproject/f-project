@@ -1,3 +1,10 @@
+///////////////////////////////////////////////////////////////////////////////
+//
+// Licensed Source Code - Property of f-project.net
+//
+// Copyright © 2015 f-project.net. All Rights Reserved.
+//
+///////////////////////////////////////////////////////////////////////////////
 package net.fproject.gui.component.supportClasses
 {
 	import flash.display.Loader;
@@ -14,6 +21,13 @@ package net.fproject.gui.component.supportClasses
 	import net.fproject.event.AppContextEvent;
 	import net.fproject.utils.ApplicationUtil;
 
+	/**
+	 * Utility component to load a list of RSLs.
+	 * The loading RSLs are divided tin to groups by loading priority.
+	 * 
+	 * @author Bui Sy Nguyen
+	 * 
+	 */
 	public class RslsLoader
 	{
 		private var _rsls:Array;
@@ -34,9 +48,9 @@ package net.fproject.gui.component.supportClasses
 				if(value is Array)
 					_rsls = value;
 				else
-					_rsls = rslsStringToArray(value);
+					_rsls = parseRsls(value);
 				createRslGroups();
-			}			
+			}
 		}
 		
 		public function allRslsLoaded():Boolean
@@ -49,6 +63,11 @@ package net.fproject.gui.component.supportClasses
 			return true;
 		}
 		
+		/**
+		 * Load all RSL files of this RSLs list
+		 * @param completeCallback
+		 * 
+		 */
 		public function load(completeCallback:Function):void
 		{
 			this.completeCallback = completeCallback;
@@ -172,7 +191,7 @@ package net.fproject.gui.component.supportClasses
 		
 		private static var urlToRsl:Object = {};
 		
-		public static function rslsStringToArray(rslsStr:String):Array
+		public static function parseRsls(rslsStr:String):Array
 		{
 			var rslsArray:Array = null;
 			if(rslsStr != null)

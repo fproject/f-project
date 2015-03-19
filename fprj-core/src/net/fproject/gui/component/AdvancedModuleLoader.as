@@ -118,7 +118,7 @@ package net.fproject.gui.component
 		{
 			var rslsStr:String = 
 				InjectionUtil.findClassMetadataValue(moduleInterface, "ModuleImplementation", "rsls") as String;
-			return RslsLoader.rslsStringToArray(rslsStr);
+			return RslsLoader.parseRsls(rslsStr);
 		}
 		
 		/**
