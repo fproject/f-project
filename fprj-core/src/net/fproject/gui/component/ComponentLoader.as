@@ -28,7 +28,7 @@ package net.fproject.gui.component
 	 */
 	public class ComponentLoader extends Group
 	{
-		private static var urlToLoader:Object = {};
+		private static var interfaceToLoader:Object = {};
 		
 		private var readyCallback:Function;
 		private var errorCallback:Function;
@@ -71,7 +71,7 @@ package net.fproject.gui.component
 													readyCallback:Function=null, errorCallback:Function=null,
 													defferredCallArgs:*=undefined):ComponentLoader
 		{
-			var loader:ComponentLoader = urlToLoader[getQualifiedClassName(componentInterface)] as ComponentLoader;
+			var loader:ComponentLoader = interfaceToLoader[getQualifiedClassName(componentInterface)] as ComponentLoader;
 			if(loader == null)
 			{
 				var info:Object = RslsLoader.getMetaInfoFromInterface(componentInterface, 
@@ -106,7 +106,7 @@ package net.fproject.gui.component
 		 */
 		public static function callDeferredModuleMethod(componentInterface:Class, methodName:String, ...args):void
 		{
-			var loader:ComponentLoader = ComponentLoader.getLoaderByInterface(componentInterface, false);
+			var loader:ComponentLoader = getLoaderByInterface(componentInterface, false);
 			if(loader != null)
 			{
 				if(loader.pendingClass == null)
@@ -114,7 +114,7 @@ package net.fproject.gui.component
 			}
 			else
 			{
-				ComponentLoader.getLoaderByInterface(componentInterface, true, 
+				getLoaderByInterface(componentInterface, true, 
 					function(e:ModuleEvent):void
 					{
 						loader = ComponentLoader(e.currentTarget);
@@ -134,6 +134,8 @@ package net.fproject.gui.component
 			{
 				var msg:String = ResourceUtil.getString('loading.dynamic.component');
 				createComponent(implClass);
+				if(componentInterface != null)
+					interfaceToLoader[getQualifiedClassName(componentInterface)] = this;
 			}
 			else
 			{
