@@ -132,14 +132,13 @@ package net.fproject.gui.component
 			
 			if(this.rsls == null || this.rslsLoader.allRslsLoaded())
 			{
-				var msg:String = ResourceUtil.getString('loading.dynamic.component');
 				createComponent(implClass);
 				if(componentInterface != null)
 					interfaceToLoader[getQualifiedClassName(componentInterface)] = this;
 			}
 			else
 			{
-				msg = ResourceUtil.getString('loading.rsl.dependencies');
+				var msg:String = ResourceUtil.getString('loading.rsl.dependencies');
 				
 				pendingClass = implClass;
 				
