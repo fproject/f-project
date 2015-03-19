@@ -18,8 +18,11 @@ package net.fproject.gui.component.supportClasses
 	import mx.utils.StringUtil;
 	
 	import net.fproject.core.AppContext;
+	import net.fproject.di.InjectionUtil;
 	import net.fproject.event.AppContextEvent;
 	import net.fproject.utils.ApplicationUtil;
+	
+	import org.as3commons.reflect.Metadata;
 
 	/**
 	 * Utility component to load a list of RSLs.
@@ -235,5 +238,31 @@ package net.fproject.gui.component.supportClasses
 			}
 			return rslsArray;
 		}
+		
+		
+		/**
+		 * Get module's URL from module's interface 
+		 * @param componentInterface the interface of module that is using dependency injection 
+		 * with <code>[ModuleImplementation]</code>
+		 * @return The module's URL
+		 * 
+		 */
+		public static function getLoadInfoFromInterface(componentInterface:Class, metaInfo:Object):Object
+		{
+			var obj:Object = InjectionUtil.findClassMetadataValue(componentInterface, metaInfo.metaName);
+			if(obj is Array)
+				obj = obj[0];
+			if(obj is Metadata)
+			{
+				var arg:Metadata = Metadata(obj);
+				var info:Object = {};
+				for each (var key:String in metaInfo.args)
+				{
+					info[key] = arg.hasArgumentWithKey(key) ? arg.getArgument(key).value : null;
+				}
+			}
+			return info;
+		}
+		
 	}
 }
