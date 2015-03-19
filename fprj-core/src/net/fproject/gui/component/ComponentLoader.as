@@ -16,12 +16,10 @@ package net.fproject.gui.component
 	import spark.components.Group;
 	
 	import net.fproject.core.AppContext;
-	import net.fproject.di.InjectionUtil;
 	import net.fproject.event.AppContextEvent;
 	import net.fproject.gui.component.supportClasses.RslsLoader;
 	import net.fproject.utils.ResourceUtil;
 	
-	import org.as3commons.reflect.Metadata;
 	
 	/**
 	 * The ComponentLoader extends Spark's ModuleLoader with convenience utility method for module loading, 
@@ -72,7 +70,8 @@ package net.fproject.gui.component
 													readyCallback:Function=null, errorCallback:Function=null,
 													defferredCallArgs:*=undefined):ComponentLoader
 		{
-			var info:Object = getLoadInfoFromInterface(componentInterface);
+			var info:Object = RslsLoader.getLoadInfoFromInterface(componentInterface, 
+				{metaName:"ComponentImplementation", args:["implClass", "rsls"]});
 			if(info != null)
 			{
 				var loader:ComponentLoader = urlToLoader[info.url] as ComponentLoader;
@@ -80,7 +79,6 @@ package net.fproject.gui.component
 				{
 					loader = new ComponentLoader();
 					loader.lastDeferredCallArgs = defferredCallArgs;
-					loader.name = info.url;//temporary use property 'name' to store URL
 					loader.readyCallback = readyCallback;
 					loader.errorCallback = errorCallback;
 					loader.componentInterface = componentInterface;
@@ -89,32 +87,6 @@ package net.fproject.gui.component
 				}
 			}			
 			return loader;
-		}
-		
-		/**
-		 * Get module's URL from module's interface 
-		 * @param componentInterface the interface of module that is using dependency injection 
-		 * with <code>[ModuleImplementation]</code>
-		 * @return The module's URL
-		 * 
-		 */
-		private static function getLoadInfoFromInterface(componentInterface:Class):Object
-		{
-			var obj:Object = InjectionUtil.findClassMetadataValue(componentInterface, "ComponentImplementation");
-			if(obj is Array)
-				obj = obj[0];
-			if(obj is Metadata)
-			{
-				var arg:Metadata = Metadata(obj);
-				if(arg.hasArgumentWithKey("implClass"))
-					var implClass:String = arg.getArgument("implClass").value;
-				if(arg.hasArgumentWithKey("relativeUrl"))
-					var relativeUrl:String = arg.getArgument("relativeUrl").value;
-				if(arg.hasArgumentWithKey("rsls"))
-					var rsls:String = arg.getArgument("rsls").value;
-				var info:Object = {implClass:implClass, relativeUrl:relativeUrl, rsls:rsls};
-			}
-			return info;
 		}
 		
 		public var child:Object;
