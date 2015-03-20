@@ -11,12 +11,14 @@ package net.fproject.gui.component
 	import flash.utils.ByteArray;
 	
 	import mx.events.ModuleEvent;
+	import mx.rpc.AsyncToken;
 	
 	import spark.modules.ModuleLoader;
 	
 	import net.fproject.core.AppContext;
 	import net.fproject.di.Injector;
 	import net.fproject.event.AppContextEvent;
+	import net.fproject.gui.component.supportClasses.DeferredCallHelper;
 	import net.fproject.gui.component.supportClasses.RslsLoader;
 	import net.fproject.utils.ApplicationUtil;
 	import net.fproject.utils.ResourceUtil;
@@ -60,6 +62,8 @@ package net.fproject.gui.component
 		
 		private var moduleInterface:Class;
 		
+		public var lastCallAsyncToken:AsyncToken;
+		
 		/**
 		 * Get module loader by a module interface. The module loader will use <code>[ModuleImplementation]</code>
 		 * dependency injections specified in module interface to load the actual module implementation later.
@@ -73,8 +77,7 @@ package net.fproject.gui.component
 		 * 
 		 */
 		public static function getLoaderByInterface(moduleInterface:Class, loadAsNeed:Boolean=false,
-													readyCallback:Function=null, errorCallback:Function=null,
-													defferredCallArgs:*=undefined):AdvancedModuleLoader
+													readyCallback:Function=null, errorCallback:Function=null):AdvancedModuleLoader
 		{
 			var info:Object = RslsLoader.getMetaInfoFromInterface(moduleInterface, 
 				{metaName:"ModuleImplementation", args:["relativeUrl", "rsls"]});
@@ -85,7 +88,6 @@ package net.fproject.gui.component
 				if(loader == null && loadAsNeed)
 				{
 					loader = new AdvancedModuleLoader();
-					loader.lastDeferredCallArgs = defferredCallArgs;
 					loader.name = url;//temporary use property 'name' to store URL
 					loader.readyCallback = readyCallback;
 					loader.errorCallback = errorCallback;
@@ -109,23 +111,33 @@ package net.fproject.gui.component
 		 * @param args method's argument
 		 * 
 		 */
-		public static function callDeferredMethod(moduleInterface:Class, methodName:String, ...args):void
+		public static function callDeferredMethod(moduleInterface:Class, methodName:String, ...args):AsyncToken
 		{
+			var token:AsyncToken = new AsyncToken;
 			var loader:AdvancedModuleLoader = getLoaderByInterface(moduleInterface, false);
 			if(loader != null)
-			{
+			{		
+				loader.lastCallAsyncToken = token;
 				if(loader.pendingLoadParams == null)
-					(loader.child[methodName] as Function).apply(loader.child, args);
+					DeferredCallHelper.invokeCall(loader.child, null, methodName, args, token, true);
 			}
 			else
 			{
-				getLoaderByInterface(moduleInterface, true, 
+				loader = getLoaderByInterface(moduleInterface, true, 
 					function(e:ModuleEvent):void
 					{
 						loader = AdvancedModuleLoader(e.currentTarget);
-						(loader.child[methodName] as Function).apply(loader.child, loader.lastDeferredCallArgs);
-					}, null, args);
+						DeferredCallHelper.invokeCall(loader.child, null, methodName, 
+							loader.lastDeferredCallArgs, loader.lastCallAsyncToken, true);
+					}, null);
+				if(loader != null)
+				{
+					loader.lastDeferredCallArgs = args;
+					loader.lastCallAsyncToken = token;
+				}
 			}
+			
+			return token;
 		}
 		
 		private var pendingLoadParams:Object;
