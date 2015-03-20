@@ -42,7 +42,7 @@ package net.fproject.event
 		
 		/**
 		 * Application enters busy state 
-		 * The <code>data<code> will contain a status message.
+		 * The <code>data</code> will contain a status message.
 		 */
 		public static const ENTER_BUSY_STATE:String = "enterBusyState";
 		/**

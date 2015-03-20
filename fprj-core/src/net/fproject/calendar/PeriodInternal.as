@@ -314,7 +314,7 @@ package net.fproject.calendar
 		 * Compare to another <code>PeriodInternal</code> object. 
 		 * @param p the <code>PeriodInternal</code> object to compare.
 		 * @return <code/>true</code> if the two periods have the same
-		 * value of <code>startDate</code>, <code>endDate<code>, isWorking and the same
+		 * value of <code>startDate</code>, <code>endDate</code>, isWorking and the same
 		 * work shifts. 
 		 * 
 		 */

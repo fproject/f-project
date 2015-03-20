@@ -44,7 +44,7 @@ package net.fproject.calendar
 		/**
 		 * Constructor
 		 * @param calendar The work calendar that owns this period.
-		 * @param createDefaultShifts If <code>true<code>, the default workshifts
+		 * @param createDefaultShifts If <code>true</code>, the default workshifts
 		 * will be created.
 		 *
 		 */

@@ -66,7 +66,7 @@ package net.fproject.calendar
 		 * Compare to another <code>WeekDayInternal</code> object.
 		 * @param dayPeriod the <code>WeekDayInternal</code> object to compare.
 		 * @return <code/>true</code> if the two periods have the same
-		 * value of <code>isWorking</code>, <code>dayOfWeek<code> and the same
+		 * value of <code>isWorking</code>, <code>dayOfWeek</code> and the same
 		 * work shifts.
 		 *
 		 */
