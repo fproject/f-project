@@ -72,8 +72,9 @@ package net.fproject.gui.component
 		 * @param loadAsNeed
 		 * @param readyCallback
 		 * @param errorCallback
-		 * @param defferredCallArgs Last deferred method call's arguments
 		 * @return An instance of <code>AdvancedModuleLoader</code>
+		 * If the param <code>loadAsNeed</code> value is false, and the module is not loaded before,
+		 * the return value is <code>null</code>
 		 * 
 		 */
 		public static function getLoaderByInterface(moduleInterface:Class, loadAsNeed:Boolean=false,
@@ -83,38 +84,61 @@ package net.fproject.gui.component
 				{metaName:"ModuleImplementation", args:["relativeUrl", "rsls"]});
 			if(info != null)
 			{
-				var url:String = ApplicationUtil.getModuleUrl(info.relativeUrl);
-				var loader:AdvancedModuleLoader = urlToModuleLoader[url] as AdvancedModuleLoader;
-				if(loader == null && loadAsNeed)
-				{
-					loader = new AdvancedModuleLoader();
-					loader.name = url;//temporary use property 'name' to store URL
-					loader.readyCallback = readyCallback;
-					loader.errorCallback = errorCallback;
+				var loader:AdvancedModuleLoader = getLoaderByUrl(info.relativeUrl,
+					info.rsls, loadAsNeed, readyCallback, errorCallback);
+				if(loader != null)
 					loader.moduleInterface = moduleInterface;
-					loader.rsls = info.rsls;
-					loader.loadModule(url);
-				}
 			}
 			
 			return loader;
 		}
 		
 		/**
-		 * Make a deferred call to an instance-method of a module.
+		 * Get module loader by its URL.
+		 * @param url the relative URL of module to load 
+		 * with <code>[ModuleImplementation]</code>
+		 * @param loadAsNeed
+		 * @param readyCallback
+		 * @param errorCallback
+		 * @return An instance of <code>AdvancedModuleLoader</code>
+		 * 
+		 */
+		public static function getLoaderByUrl(url:String, rsls:String, loadAsNeed:Boolean=false,
+											  readyCallback:Function=null, errorCallback:Function=null):AdvancedModuleLoader
+		{
+			url = ApplicationUtil.getModuleUrl(url);
+			var loader:AdvancedModuleLoader = urlToModuleLoader[url] as AdvancedModuleLoader;
+			if(loader == null && loadAsNeed)
+			{
+				loader = new AdvancedModuleLoader();
+				loader.name = url;//temporary use property 'name' to store URL
+				loader.readyCallback = readyCallback;
+				loader.errorCallback = errorCallback;
+				loader.rsls = rsls;
+				loader.loadModule(url);
+			}
+			
+			return loader;
+		}
+		
+		/**
+		 * Make a deferred call to an method of a module.
 		 * If the module is already loaded, the method is invoked instantly.
 		 * If the module is not loaded before, it will be load and the method will be
 		 * invoked right after the loading is finished.
-		 * @param moduleInterface the interface of module that is using dependency injection 
+		 * @param urlOrInterface the url or <code>Class</code> object of module inteface
+		 * of the module that is using dependency injection 
 		 * with <code>[ModuleImplementation]</code>
 		 * @param methodName the method's name
+		 * @param rsls the dependency RSLs for the module to load. This parameter is skipped if
+		 * value passed to <code>urlOrInterface</code> is a <code>Class</code> object
 		 * @param args method's argument
 		 * 
 		 */
-		public static function callDeferredMethod(moduleInterface:Class, methodName:String, ...args):AsyncToken
+		public static function callDeferredMethod(urlOrInterface:*, methodName:String, rsls:String, ...args):AsyncToken
 		{
 			var token:AsyncToken = new AsyncToken;
-			var loader:AdvancedModuleLoader = getLoaderByInterface(moduleInterface, false);
+			var loader:AdvancedModuleLoader = getLoader(urlOrInterface, rsls, false);
 			if(loader != null)
 			{		
 				loader.lastCallAsyncToken = token;
@@ -123,13 +147,13 @@ package net.fproject.gui.component
 			}
 			else
 			{
-				loader = getLoaderByInterface(moduleInterface, true, 
+				loader = getLoader(urlOrInterface, rsls, true,
 					function(e:ModuleEvent):void
 					{
 						loader = AdvancedModuleLoader(e.currentTarget);
 						DeferredCallHelper.invokeCall(loader.child, null, methodName, 
 							loader.lastDeferredCallArgs, loader.lastCallAsyncToken, true);
-					}, null);
+					});
 				if(loader != null)
 				{
 					loader.lastDeferredCallArgs = args;
@@ -138,6 +162,15 @@ package net.fproject.gui.component
 			}
 			
 			return token;
+		}
+		
+		private static function getLoader(urlOrInterface:*, rsls:String, loadAsNeed:Boolean=false,
+										  readyCallback:Function=null):AdvancedModuleLoader
+		{
+			if(urlOrInterface is String)
+				return getLoaderByUrl(urlOrInterface as String, rsls, loadAsNeed, readyCallback);
+			else
+				return getLoaderByInterface(urlOrInterface as Class, loadAsNeed, readyCallback);
 		}
 		
 		private var pendingLoadParams:Object;
