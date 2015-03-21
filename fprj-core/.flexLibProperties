@@ -72,6 +72,7 @@
     <classEntry path="net.fproject.gui.component.supportClasses.RslsLoader"/>
     <classEntry path="net.fproject.gui.component.ComponentLoader"/>
     <classEntry path="net.fproject.gui.component.supportClasses.DeferredCallHelper"/>
+    <classEntry path="net.fproject.gui.component.IComponentLoader"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="manifest.xml" sourcePath="manifest.xml"/>

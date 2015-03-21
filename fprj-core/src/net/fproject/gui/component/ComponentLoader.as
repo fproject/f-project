@@ -26,7 +26,7 @@ package net.fproject.gui.component
 	 * The ComponentLoader extends Spark's ModuleLoader with convenience utility method for module loading, 
 	 * invoking module methods using dependency injection
 	 */
-	public class ComponentLoader extends Group
+	public class ComponentLoader extends Group implements IComponentLoader
 	{
 		private static var interfaceToLoader:Object = {};
 		
@@ -91,7 +91,12 @@ package net.fproject.gui.component
 			return loader;
 		}
 		
-		public var child:Object;
+		private var child:Object;
+		
+		public function get component():Object
+		{
+			return child;
+		}
 		
 		/**
 		 * Make a deferred call to an instance-method of a component.
