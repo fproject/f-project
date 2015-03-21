@@ -29,7 +29,7 @@ package net.fproject.gui.component
 	 * The AdvancedModuleLoader extends Spark's ModuleLoader with convenience utility method for module loading, 
 	 * invoking module methods using dependency injection
 	 */
-	public class AdvancedModuleLoader extends ModuleLoader
+	public class AdvancedModuleLoader extends ModuleLoader implements IComponentLoader
 	{
 		private static var urlToModuleLoader:Object = {};
 		private static var urlToRsl:Object = {};
@@ -39,6 +39,11 @@ package net.fproject.gui.component
 		private var lastDeferredCallArgs:*;
 		
 		private var rslsLoader:RslsLoader;
+		
+		public function get component():Object
+		{
+			return child;
+		}
 		
 		/**
 		 * 
