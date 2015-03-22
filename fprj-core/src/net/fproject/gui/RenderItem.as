@@ -60,7 +60,7 @@ package net.fproject.gui
 			
 		/**
 		 * Returns the value of the data object field associated with this 
-		 * <code>ItemData</code> class.<br/><br/>
+		 * <code>RenderItem</code> class.<br/><br/>
 		 * If the <code>fieldFunction</code> is provided, it is used to compute 
 		 * the returned value. The <code>fieldFunction</code> must obey to the 
 		 * following signature:<br/><br/>
