@@ -45,23 +45,40 @@ package net.fproject.rpc
 		}
 		
 		/**
-		 * HTTP method to use when invoking rpc.
+		 * <p>HTTP method to use when invoking rpc.</p>
+		 * <p>To specify this value, use <code>method</code> argument in RESTOperation metadata for the service method.</p>
+		 * Example:<pre>
+		 * [RESTOperation(method="get")]
+		 * public function findOne(id:String):CallResponder
+		 * {...}</pre>
 		 */
 		public var method:String = HTTPRequestMessage.GET_METHOD;
 		
 		/**
-		 * HTTP URI route to use when invoking rpc.
+		 * <p>HTTP URI route to use when invoking rpc.</p>
+		 * <p>To specify this value, use RESTOperation metadata for the service method.</p>
+		 * <p>To specify this value, use <code>route</code> argument in RESTOperation metadata for the service method.</p>
+		 * Example:<pre>
+		 * [RESTOperation(route="?criteria={0}&page={1}&per-page={2}&sort={3}")]
+		 * public function find(criteria:Object=null, page:Number=NaN, perPage:Number=NaN, sort:String=null):CallResponder
+		 * {...}</pre>
 		 */
 		public var route:String;
 		
 		/**
-		 * Retuning type, used to deserialize JSON data to strong typing models
+		 * <p>Retuning type, used to deserialize JSON data to strong typing models.</p>
+		 * <p>To specify this value, use <code>returning</code> argument in RESTOperation metadata for the service method.</p>
+		 * Example:<pre>
+		 * [RESTOperation(returning="com.mypackage.User[]")]
+		 * public function find():CallResponder
+		 * {...}</pre>
 		 */
 		public var returning:String;
 		
 		/**
-		 * Specify extra URL parameters for remote call. 
-		 * This must be in format {0}, {1}... ofwhich the number is index of extraParams in the operation parameter list
+		 * <p>Specify extra URL parameters for remote call.
+		 * This must be in format {0}, {1}... ofwhich the number is index of extraParams in the operation parameter list.</p>
+		 * 
 		 */
 		public var extraParams:String;
 		
@@ -166,7 +183,7 @@ package net.fproject.rpc
 			}
 			
 			if (remoteObject.convertResultHandler != null)
-				_result = remoteObject.convertResultHandler(_result, this);
+				decodedResult = remoteObject.convertResultHandler(this, decodedResult, message);
 			
 			_result = decodedResult;
 			return true;
