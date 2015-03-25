@@ -36,14 +36,17 @@ package net.fproject.rpc
 		function setConvertParametersHandler(value:Function):void;
 		
 		/**
-		 * Set the convertResultHandler function.
-		 * This is an optional function, primarily intended for framework developers who need to install
-		 * a hook to process the results of an operation before notifying the result handlers.
+		 * <p>Set the convertResultHandler function</p>
+		 * 
+		 * <p>This is an optional function, primarily intended for framework developers who need to install
+		 * a hook to process the results of an operation before notifying the result handlers.</p>
 		 *
-		 * The function definition should look like:
+		 * <p>The function definition should look like:
 		 * <code>
-		 *   function myConvertResultsFunction(result:&#42;, operation:AbstractOperation):&#42;
-		 * </code>
+		 *   function myConvertResultsFunction(operation:JSONOperation, result:&#42;, message:IMessage):&#42;
+		 * </code>, wherea, <code>operation</code> is the currently invoking JSON operation,
+		 * <code>result</code> is the deserialized result returned by the operation and <code>message</code>
+		 * is the original HTTP message returned by the operation.</p>
 		 * 
 		 * It is passed the result just after the makeObjectsBindable conversion has been done
 		 * but before the result event is created.
