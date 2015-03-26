@@ -217,7 +217,34 @@ package net.fproject.rpc
 			assertEquals(3, event.result["insertCount"]);
 		}
 		
-		[Test (async, description="Normal case")]
+		[Test (async, description="Normal case",order=1)]
+		/**
+		 * Test Case Type: Normal<br/>
+		 * <br/>
+		 * INPUT VALUES:<br/>
+		 * <br/>
+		 * OUTPUT EXPECTED:<br/>
+		 * ---- expectations ----
+		 *
+		 */
+		public function testCase401():void
+		{
+			var id:String = UIDUtil.createUID();
+			var responder:CallResponder = restService.batchSave(
+				[
+					{"id":"3","username":"Batch User 01" + id,"password":"ABC123"},
+					{"id":"4","username":"Batch User 02" + id,"password":"ABC123"},
+					{"id":"5","username":"Batch User 03" + id,"password":"ABC123"}
+				]);
+			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase401_checkResult, null), 2000, null));
+		}
+		
+		public function testCase401_checkResult(event:ResultEvent, passThroughData:Object):void
+		{
+			assertNotNull(event.result);
+		}
+		
+		[Test (async, description="Normal case",order=2)]
 		/**
 		 * Test Case Type: Normal<br/>
 		 * <br/>
@@ -238,7 +265,7 @@ package net.fproject.rpc
 			assertEquals("", event.result);			
 		}
 		
-		[Test (async, description="Normal case")]
+		[Test (async, description="Normal case",order=3)]
 		/**
 		 * Test Case Type: Normal<br/>
 		 * <br/>
