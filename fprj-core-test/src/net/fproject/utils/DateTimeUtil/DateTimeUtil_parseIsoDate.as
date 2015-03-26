@@ -308,5 +308,27 @@ package net.fproject.utils.DateTimeUtil
 			assertTrue((new Date("1997-07-16 19:20:02 GMT+07")).time, returnTestValue.time);
 			//-------------------------------------
 		}
+		
+		[Test (description="Normal case: [value = '2015-03-24 05:58:30.739232-04']")]
+		/**
+		 * Test Case Type: Normal<br/>
+		 * <br/>
+		 * INPUT VALUES:<br/>
+		 * <code>value = "ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789"</code><br/>
+		 * <br/>
+		 * OUTPUT EXPECTED:<br/>
+		 * ---- expectations ----
+		 *
+		 */
+		public function testCase014():void
+		{
+			var value:String = "2015-03-24 05:58:30.739232-04";
+			var returnTestValue:Date = DateTimeUtil.parseIsoDate(value);
+			//---- Place result assertion here ----
+			// You must replace this code by function specifications or 
+			// the test always returns false!
+			assertTrue((new Date("2015-03-24 05:58:30.739232 GMT-04")).time, returnTestValue.time);
+			//-------------------------------------
+		}
 	}
 }
