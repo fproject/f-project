@@ -507,9 +507,10 @@ package net.fproject.utils
 		}
 		
 		/**
-		 * Parse an ISO date to Date type. This method is use to process Date data from MS Project
-		 * @param str the ISO date string.<br/>
-		 * The ISO formats are as follows.
+		 * Parse an ISO date to Date type.
+		 * This method support <code>ISO8601</code> and <code>Extended ISO8601</code> format.
+		 * @param str the ISO date string, which can be in ISO8601 or Extended ISO8601 format.<br/>
+		 * <p>The <code>ISO8601</code> formats are as follows:
 		 * <pre>
 		 * Complete date:
 		 * 	YYYY-MM-DD (eg 1997-07-16)
@@ -527,7 +528,9 @@ package net.fproject.utils
 		 * 	YYYY-MM-DDThh:mm:ss.sTZD (eg 1997-07-16T19:20:30.45+01:00)
 		 * Complete date plus hours, minutes, seconds with Zero time zone
 		 * 	YYYY-MM-DDThh:mm:ss.sTZD (eg 1997-07-16T19:20:30Z)
-		 * </pre>
+		 * </pre></p>
+		 * <p>The <code>Extended ISO8601</code> formats is the same as <code>ISO8601</code>,
+		 * excepts for the <code>"T"</code> character is replaced by whitespace <code>" "</code>.</p>
 		 * @return The new date if no error.
 		 * If there's an error in parsing, the returned date will be an invalid Date instance.
 		 * 
@@ -537,7 +540,10 @@ package net.fproject.utils
 			var finalDate:Date;
 			try
 			{
-				var i:int = str.indexOf("T");
+				if(str.charAt(10) == " ")
+					var i:int = 10;
+				else
+					i = str.indexOf("T");
 				if(i != -1)
 				{
 					var dateStr:String = str.substring(0, i);
