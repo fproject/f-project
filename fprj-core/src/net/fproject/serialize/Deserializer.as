@@ -268,7 +268,7 @@ package net.fproject.serialize
 		{
 			for each (var field : Field in fields) {
 				if (!field.hasMetadata(Metadata.TRANSIENT) && canAccess(field)) {
-                    			const fieldMetadataEntries : Array = field.getMetadata(METADATA_TAG);
+					const fieldMetadataEntries : Array = field.getMetadata(METADATA_TAG);
 					const fieldMetadata : Metadata = (fieldMetadataEntries) ? fieldMetadataEntries[0] : null;
 					const arrayTypeHint : Class = extractArrayTypeHint(field.type, fieldMetadata);
 					const sourceFieldName : String = extractFieldName(field, fieldMetadata);

@@ -14,6 +14,8 @@ package net.fproject.rpc
 	import mx.messaging.messages.*;
 	import net.fproject.fproject_internal;
 	import net.fproject.serialize.Deserializer;
+	import net.fproject.utils.StringUtil;
+	import net.fproject.model.Pagination;
 	
 	/**
 	 * A JSONOperation used specifically by JSONRemoteObject. A JSONOperation is an individual method on a service.
@@ -162,8 +164,28 @@ package net.fproject.rpc
 						retn = this.returning
 					}
 				}
-				
-				var decodedResult:Object = Deserializer.getInstance().fromJSON(String(message.body), retn);
+				var jsonBody:String = String(message.body);
+				if(!StringUtil.isBlank(jsonBody))
+					var body:Object = JSON.parse(jsonBody);
+				if(body != null)
+				{
+					if(body.hasOwnProperty("items") && body.hasOwnProperty("_links") && body.hasOwnProperty("_meta"))
+					{
+						var pagination:Pagination = new Pagination;
+						pagination.items = Deserializer.getInstance().fromJSON(body.items, retn) as Array;
+						pagination.links = body._links;
+						pagination.meta = body._meta;
+						var decodedResult:Object = pagination;
+					}
+					else
+					{
+						decodedResult = Deserializer.getInstance().fromJSON(body, retn);
+					}
+				}
+				else
+				{
+					decodedResult = message.body;
+				}
 			} 
 			catch (e:Error) 
 			{
