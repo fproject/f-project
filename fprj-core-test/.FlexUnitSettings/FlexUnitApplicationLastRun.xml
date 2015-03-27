@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testrun name="" >
 <testsuite  name="Default Test Suite" project="fprj-core-test">
-<testsuite name="net.fproject.utils.AdvancedDateFormatter:AdvancedDateFormatter_parse" type="testcaseclass"/>
+<testsuite name="net.fproject.rpc:JSONRemoteObject_JSONRemoteObjectRESTful" type="testcaseclass"/>
 </testsuite>
 <portNumber value="8765" />
 </testrun>

@@ -6,6 +6,7 @@ package net.fproject.rpc
 	
 	import net.fproject.ServiceTestCaseBase;
 	import net.fproject.di.InstanceFactory;
+	import net.fproject.model.Pagination;
 	
 	import org.flexunit.asserts.assertEquals;
 	import org.flexunit.asserts.assertNotNull;
@@ -40,6 +41,11 @@ package net.fproject.rpc
 			//Your test data cleaning
 		}
 
+		public function onFault(data:Object, passThroughData:Object ):void 
+		{
+			throw new Error("Test was failed: data = " + data + ", passThroughData = " + passThroughData);
+		}
+		
 		[Test (async, description="Normal case")]
 		/**
 		 * Test Case Type: Normal<br/>
@@ -58,8 +64,9 @@ package net.fproject.rpc
 		
 		public function testCase100_checkResult(event:ResultEvent, passThroughData:Object):void
 		{
-			assertTrue(event.result is Array);
-			for each(var o:Object in event.result)
+			assertTrue(event.result is Pagination);
+			var p:Pagination = event.result as Pagination;
+			for each(var o:Object in p.items)
 			{
 				assertTrue(o is TestUser);
 			}
@@ -83,8 +90,9 @@ package net.fproject.rpc
 		
 		public function testCase101_checkResult(event:ResultEvent, passThroughData:Object):void
 		{
-			assertTrue(event.result is Array);
-			for each(var o:Object in event.result)
+			assertTrue(event.result is Pagination);
+			var p:Pagination = event.result as Pagination;
+			for each(var o:Object in p.items)
 			{
 				assertTrue(o is TestUser);
 				assertTrue(TestUser(o).username.indexOf("Batch") != -1);
@@ -109,8 +117,9 @@ package net.fproject.rpc
 		
 		public function testCase102_checkResult(event:ResultEvent, passThroughData:Object):void
 		{
-			assertTrue(event.result is Array);
-			for each(var o:Object in event.result)
+			assertTrue(event.result is Pagination);
+			var p:Pagination = event.result as Pagination;
+			for each(var o:Object in p.items)
 			{
 				assertTrue(o is TestUser);
 				assertTrue(Number(TestUser(o).id) < 5);
@@ -135,8 +144,9 @@ package net.fproject.rpc
 		
 		public function testCase103_checkResult(event:ResultEvent, passThroughData:Object):void
 		{
-			assertTrue(event.result is Array);
-			for each(var o:Object in event.result)
+			assertTrue(event.result is Pagination);
+			var p:Pagination = event.result as Pagination;
+			for each(var o:Object in p.items)
 			{
 				assertTrue(o is TestUser);
 				if(TestUser(o).profile != null)
@@ -232,9 +242,9 @@ package net.fproject.rpc
 			var id:String = UIDUtil.createUID();
 			var responder:CallResponder = restService.batchSave(
 				[
-					{"id":"3","username":"Batch User 01" + id,"password":"ABC123"},
-					{"id":"4","username":"Batch User 02" + id,"password":"ABC123"},
-					{"id":"5","username":"Batch User 03" + id,"password":"ABC123"}
+					{"id":"6","username":"Batch User 01" + id,"password":"ABC123"},
+					{"id":"7","username":"Batch User 02" + id,"password":"ABC123"},
+					{"id":"8","username":"Batch User 03" + id,"password":"ABC123"}
 				]);
 			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase401_checkResult, null), 2000, null));
 		}
@@ -242,6 +252,8 @@ package net.fproject.rpc
 		public function testCase401_checkResult(event:ResultEvent, passThroughData:Object):void
 		{
 			assertNotNull(event.result);
+			assertTrue(event.result.hasOwnProperty("updateCount"));
+			assertEquals(3, event.result["updateCount"]);
 		}
 		
 		[Test (async, description="Normal case",order=2)]
@@ -257,7 +269,7 @@ package net.fproject.rpc
 		public function testCase500():void
 		{
 			var responder:CallResponder = restService.remove("3");
-			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase500_checkResult, null), 2000, null));
+			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase500_checkResult, null), 2000));
 		}
 		
 		public function testCase500_checkResult(event:ResultEvent, passThroughData:Object):void
