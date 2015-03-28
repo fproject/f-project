@@ -59,7 +59,7 @@ package net.fproject.rpc
 		public function testCase100():void
 		{
 			var responder:CallResponder = restService.find();
-			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase100_checkResult, null), 2000, null));
+			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase100_checkResult, onFault), 2000));
 		}
 		
 		public function testCase100_checkResult(event:ResultEvent, passThroughData:Object):void
@@ -85,7 +85,7 @@ package net.fproject.rpc
 		public function testCase101():void
 		{
 			var responder:CallResponder = restService.find({condition:"username like :name", params:{":name":"%Batch%"}});
-			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase101_checkResult, null), 2000, null));
+			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase101_checkResult, onFault), 2000));
 		}
 		
 		public function testCase101_checkResult(event:ResultEvent, passThroughData:Object):void
@@ -112,7 +112,7 @@ package net.fproject.rpc
 		public function testCase102():void
 		{
 			var responder:CallResponder = restService.find({condition:"id < :id", params:{":id":5}});
-			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase102_checkResult, null), 2000, null));
+			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase102_checkResult, onFault), 2000));
 		}
 		
 		public function testCase102_checkResult(event:ResultEvent, passThroughData:Object):void
@@ -139,7 +139,7 @@ package net.fproject.rpc
 		public function testCase103():void
 		{
 			var responder:CallResponder = restService.find(null, NaN, NaN, null, null, null, "expand=profile");
-			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase103_checkResult, null), 2000, null));
+			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase103_checkResult, onFault), 2000));
 		}
 		
 		public function testCase103_checkResult(event:ResultEvent, passThroughData:Object):void
@@ -167,7 +167,7 @@ package net.fproject.rpc
 		public function testCase200():void
 		{
 			var responder:CallResponder = restService.findOne("1");
-			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase200_checkResult, null), 2000, null));
+			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase200_checkResult, onFault), 2000));
 		}
 		
 		public function testCase200_checkResult(event:ResultEvent, passThroughData:Object):void
@@ -189,7 +189,7 @@ package net.fproject.rpc
 		public function testCase300():void
 		{
 			var responder:CallResponder = restService.save({"id":null,"username":"User 04"+UIDUtil.createUID(),"password":"ABC123"});
-			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase300_checkResult, null), 2000, null));
+			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase300_checkResult, onFault), 2000));
 		}
 		
 		public function testCase300_checkResult(event:ResultEvent, passThroughData:Object):void
@@ -216,7 +216,7 @@ package net.fproject.rpc
 					{"id":null,"username":"Batch User 02" + id,"password":"ABC123"},
 					{"id":null,"username":"Batch User 03" + id,"password":"ABC123"}
 				]);
-			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase400_checkResult, null), 2000, null));
+			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase400_checkResult, onFault), 2000));
 		}
 		
 		public function testCase400_checkResult(event:ResultEvent, passThroughData:Object):void
@@ -246,7 +246,7 @@ package net.fproject.rpc
 					{"id":"7","username":"Batch User 02" + id,"password":"ABC123"},
 					{"id":"8","username":"Batch User 03" + id,"password":"ABC123"}
 				]);
-			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase401_checkResult, null), 2000, null));
+			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase401_checkResult, onFault), 2000));
 		}
 		
 		public function testCase401_checkResult(event:ResultEvent, passThroughData:Object):void
@@ -269,7 +269,7 @@ package net.fproject.rpc
 		public function testCase500():void
 		{
 			var responder:CallResponder = restService.remove("3");
-			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase500_checkResult, null), 2000));
+			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase500_checkResult, onFault), 2000));
 		}
 		
 		public function testCase500_checkResult(event:ResultEvent, passThroughData:Object):void
@@ -290,7 +290,7 @@ package net.fproject.rpc
 		public function testCase600():void
 		{
 			var responder:CallResponder = restService.batchRemove([4,5]);
-			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase600_checkResult, null), 2000, null));
+			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase600_checkResult, onFault), 2000));
 		}
 		
 		public function testCase600_checkResult(event:ResultEvent, passThroughData:Object):void
