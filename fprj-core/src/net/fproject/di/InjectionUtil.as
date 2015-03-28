@@ -4,6 +4,13 @@ package net.fproject.di
 	import org.as3commons.reflect.Metadata;
 	import org.as3commons.reflect.Type;
 
+	/**
+	 * 
+	 * Dependency Injection utility class.
+	 * 
+	 * @author Bui Sy Nguyen
+	 * 
+	 */
 	public class InjectionUtil
 	{
 		

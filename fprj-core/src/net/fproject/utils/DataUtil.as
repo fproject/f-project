@@ -7,7 +7,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 package net.fproject.utils
 {
+	import flash.system.ApplicationDomain;
+	import flash.utils.getDefinitionByName;
+	
 	import mx.binding.utils.BindingUtils;
+	
+	import net.fproject.di.Injector;
 	
 	/**
 	 * Data utility static functions.
@@ -207,6 +212,88 @@ package net.fproject.utils
 				else
 					dest[s] = srcFieldValue;
 			}
+		}
+		
+		
+		/**
+		 * Evaluate value of a field of a host object by name 
+		 * @param host the host object
+		 * @param mermberName the field name
+		 * 
+		 */
+		public static function evaluateHostMember(host:Object, mermberName:String):*
+		{
+			if(mermberName.charAt(mermberName.length - 2) == '(' && mermberName.charAt(mermberName.length - 1) == ')')
+			{
+				mermberName = mermberName.substr(0, mermberName.length - 2);
+				return host[mermberName]();
+			}
+			if(mermberName.charAt(0) == '{' && mermberName.charAt(mermberName.length - 1) == '}')
+			{
+				return mermberName.substring(1, mermberName.length - 1);
+			}
+			else
+				return host[mermberName];
+		}
+		
+		/**
+		 * 
+		 * Evaluate value of a chain
+		 * @param chain a string that specify the value path. Eg: <code>net.fproject.di.Injector.THIS</code>
+		 * @param host the host object
+		 * 
+		 */
+		public static function evaluateChainValue(chain:String, host:Object=null):*
+		{
+			if(chain == Injector.THIS)
+				return host;
+			else
+				chain = chain.replace(/[ \t]+/g, "");
+			
+			if((chain.charAt(0) == "'" && chain.charAt(chain.length - 1) == "'")
+				|| (chain.charAt(0) == '"' && chain.charAt(chain.length - 1) == '"'))
+			{
+				return chain.substring(1, chain.length - 1);
+			}
+			
+			if(chain.indexOf(Injector.THIS + ".") == 0 || host is Class)
+			{
+				var s:String = chain.indexOf(Injector.THIS + ".") == 0 ? chain.substr(5) : chain;
+				var a:Array = s.split(".");
+				var x:* = host;
+				for each (s in a)
+				{
+					if(x == null)
+						return undefined;
+					x = evaluateHostMember(x, s);
+				}
+				return x;
+			}
+			
+			var i:int = chain.lastIndexOf(".");
+			if(i > 0)
+			{
+				var j:int = chain.indexOf("::");
+				if(j == -1)
+				{
+					j = i;
+					i = 0;
+				}
+				else
+				{
+					i = j == 0 ? 2 : 0;
+					j = chain.indexOf(".", j + 2);
+				}
+				var className:String = chain.substring(i, j);
+				if(ApplicationDomain.currentDomain.hasDefinition(className))
+					var c:Class = ApplicationDomain.currentDomain.getDefinition(className) as Class;
+				else
+					c = getDefinitionByName(className) as Class;
+				
+				return evaluateChainValue(chain.substr(j + 1), c);
+			}
+			else
+				return host == null? chain : evaluateHostMember(host, chain);
 		}
 	}
 }

@@ -20,6 +20,7 @@ package net.fproject.di
 	
 	import net.fproject.fproject_internal;
 	import net.fproject.di.supportClasses.PropertyBindingHandler;
+	import net.fproject.utils.DataUtil;
 	import net.fproject.utils.LoggingUtil;
 	
 	import org.as3commons.reflect.AbstractMember;
@@ -252,9 +253,9 @@ package net.fproject.di
 					var i:int = metadata.arguments.length == 2 ? 0 : 1;
 					
 					var event:String = getMetadataArgument(metadata, EVENT_KEY, i);
-					event = evaluateChainValue(event);
+					event = DataUtil.evaluateChainValue(event);
 					var handlerName:String = getMetadataArgument(metadata, HANDLER_KEY, i + 1);
-					var handler:Function = evaluateChainValue(handlerName, container);
+					var handler:Function = DataUtil.evaluateChainValue(handlerName, container);
 					eventInfo.push({listenerInfo:{event:event, handler:handler}, chain:chain});
 				}
 			}
@@ -394,7 +395,7 @@ package net.fproject.di
 			injector.fproject_internal::bindProperties(container);
 		}
 		
-		private static const THIS:String = "this";
+		public static const THIS:String = "this";
 		private static const HOST_CHAIN:String = "hostChain";
 		private static const SOURCE_EVENT:String = "sourceEvent";
 		
@@ -668,7 +669,7 @@ package net.fproject.di
 		private function bindDirectValue(targetObj:Object, targetField:String, sourceChain:String, container:Object):void
 		{
 			if(targetObj != null)
-				targetObj[targetField] = evaluateChainValue(sourceChain, container);
+				targetObj[targetField] = DataUtil.evaluateChainValue(sourceChain, container);
 		}
 		
 		private function bindInverseValue(sourceObj:Object, sourceField:String, targetChain:String, 
@@ -1061,56 +1062,7 @@ package net.fproject.di
 				return defaultIndex < metadata.arguments.length? metadata.arguments[defaultIndex].value : null;
 		}
 		
-		private static function getEvaluatedValue(host:Object, mermberName:String):*
-		{
-			if(mermberName.charAt(mermberName.length - 2) == '(' && mermberName.charAt(mermberName.length - 1) == ')')
-			{
-				mermberName = mermberName.substr(0, mermberName.length - 2);
-				return host[mermberName]();
-			}
-			if(mermberName.charAt(0) == '{' && mermberName.charAt(mermberName.length - 1) == '}')
-			{
-				return mermberName.substring(1, mermberName.length - 1);
-			}
-			else
-				return host[mermberName];
-		}
 		
-		private static function evaluateChainValue(chain:String, host:Object=null):*
-		{
-			if(chain == THIS)
-				return host;
-			else
-				chain = chain.replace(/[ \t]+/g, "");
-			
-			if((chain.charAt(0) == "'" && chain.charAt(chain.length - 1) == "'")
-				|| (chain.charAt(0) == '"' && chain.charAt(chain.length - 1) == '"'))
-			{
-				return chain.substring(1, chain.length - 1);
-			}
-			
-			if(chain.indexOf(THIS + ".") == 0)
-			{
-				var a:Array = chain.substr(5).split(".");
-				var x:* = host;
-				for each (var s:String in a)
-				{
-					x = getEvaluatedValue(x, s);
-				}
-				return x;
-			}
-			
-			var i:int = chain.lastIndexOf(".");
-			if(i > 0)
-			{
-				var className:String = chain.substring(0, i);
-				var c:Class = getDefinitionByName(className) as Class;
-				
-				return getEvaluatedValue(c, chain.substr(i + 1));
-			}
-			else
-				return host == null? chain : getEvaluatedValue(host, chain);
-		}
 		
 		private static var instanceCache:Dictionary = new Dictionary;
 		private static function getInstance(container:Object):Injector
