@@ -322,14 +322,37 @@ package net.fproject.utils
 			var a:Array = s.split(",");
 			if(a.length > 1)
 			{
-				defaultBundle = getLabelParam(a[0]);
-				var key:String = getLabelParam(a[1]);
+				var i:int = a.length - 1;
+				var key:String = getLabelParam(a[i]);
+				if(key.charAt(0) == '[' && key.charAt(key.length - 1) == ']')
+				{
+					var params:Array = evaluateParams(key);
+					i--;
+					key = getLabelParam(a[i]);					
+				}
+				i--;
+				if(i >= 0)
+					defaultBundle = getLabelParam(a[i]);
 			}
 			else
+			{
 				key = getLabelParam(a[0]);
+			}
 				
-			return getString(key, defaultBundle);
+			return getString(key, defaultBundle, params);
 		}// end function
+		
+		private static function evaluateParams(sParams:String):Array
+		{
+			sParams = sParams.substring(1, sParams.length - 1);
+			var sarr:Array = sParams.split(",");
+			var params:Array = [];
+			for each (var s:String in sarr)
+			{
+				params.push(DataUtil.evaluateChainValue(s));
+			}
+			return params;
+		}
 		
 		/**
 		 * Get a resource string for logging at INFO level according to the specified arguments
