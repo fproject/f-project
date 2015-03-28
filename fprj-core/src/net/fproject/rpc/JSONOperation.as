@@ -169,15 +169,8 @@ package net.fproject.rpc
 					var body:Object = JSON.parse(jsonBody);
 				if(body != null)
 				{
-					if(body.hasOwnProperty("items") && body.hasOwnProperty("_links") && body.hasOwnProperty("_meta"))
-					{
-						var pagination:Pagination = new Pagination;
-						pagination.items = Deserializer.getInstance().fromJSON(body.items, retn) as Array;
-						pagination.links = body._links;
-						pagination.meta = body._meta;
-						var decodedResult:Object = pagination;
-					}
-					else
+					var decodedResult:Object = Pagination.fromJSON(body, retn);
+					if(decodedResult == null)
 					{
 						decodedResult = Deserializer.getInstance().fromJSON(body, retn);
 					}
