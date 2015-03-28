@@ -17,7 +17,7 @@ package com.domain.gui.components
 		
 		[SkinPart(required="true")]
 		[PropertyBinding(dataProvider="employees@", labelField="{name}")]//dataProvider: deffered binding, labelField: literal binding
-		[PropertyBinding(hostChain="selectedItem", phone="@phoneTextInput.text@")]//deffered inverse binding with hostChain specified
+		[PropertyBinding(hostChain="selectedItem", selectedItem="@phoneTextInput.text@")]//deffered inverse binding with hostChain specified
 		public var dropDownList:DropDownList;
 		
 		[SkinPart(required="true")]
