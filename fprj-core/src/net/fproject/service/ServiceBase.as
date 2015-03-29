@@ -113,8 +113,6 @@ package net.fproject.service
 			}
 			
 			trace("Service failed: " + e.currentTarget.source + "\n" + e.message);
-			if(appContext.hasEventListener(AppContextEvent.SERVICE_FAILED))
-				appContext.dispatchEvent(new AppContextEvent(AppContextEvent.SERVICE_FAILED, e.fault));
 		}
 		
 		protected function onCallFailed(e:FaultEvent):void
@@ -125,6 +123,9 @@ package net.fproject.service
 			trace("Service call failed: " + e.toString());
 			
 			deleteServiceCall(CallResponder(e.currentTarget));
+			
+			if(appContext.hasEventListener(AppContextEvent.SERVICE_CALL_FAILED))
+				appContext.dispatchEvent(new AppContextEvent(AppContextEvent.SERVICE_CALL_FAILED, e.fault));
 		}
 		
 		protected function onCallComplete(e:ResultEvent):void
@@ -133,8 +134,8 @@ package net.fproject.service
 			
 			if (responderToCallbackInfo[e.currentTarget]["completeCallback"] != undefined)
 				responderToCallbackInfo[e.currentTarget].completeCallback(e.result);
-			if(appContext.hasEventListener(AppContextEvent.SERVICE_COMPLETED))
-				appContext.dispatchEvent(new AppContextEvent(AppContextEvent.SERVICE_COMPLETED));
+			if(appContext.hasEventListener(AppContextEvent.SERVICE_CALL_COMPLETED))
+				appContext.dispatchEvent(new AppContextEvent(AppContextEvent.SERVICE_CALL_COMPLETED));
 			deleteServiceCall(CallResponder(e.currentTarget));
 		}
 		
@@ -154,13 +155,13 @@ package net.fproject.service
 											 completeCallback:Function, failCallback:Function = null):CallResponder
 		{
 			_lastCallResponder = new CallResponder();
-			_lastCallResponder.token = callToken;
-			
-			if(appContext.hasEventListener(AppContextEvent.SERVICE_STARTED))
-				appContext.dispatchEvent(new AppContextEvent(AppContextEvent.SERVICE_STARTED));
+			callToken.addResponder(_lastCallResponder);
 			
 			_lastCallResponder.addEventListener(ResultEvent.RESULT, onCallComplete);	
 			_lastCallResponder.addEventListener(FaultEvent.FAULT, onCallFailed);	
+			
+			if(appContext.hasEventListener(AppContextEvent.SERVICE_CALL_STARTED))
+				appContext.dispatchEvent(new AppContextEvent(AppContextEvent.SERVICE_CALL_STARTED));
 			
 			responderToCallbackInfo[_lastCallResponder] = {};
 			
