@@ -185,9 +185,13 @@ package net.fproject.gui.component
 			if(pendingLoadParams != null || this.child != null)
 				return;
 			
+			if(url == null)
+				url = this.url;
+			
 			if(this.rsls == null || this.rslsLoader.allRslsLoaded())
 			{
 				var msg:String = ResourceUtil.getString('loading.functional.module');
+				trace("Loading module:" + url);
 				super.loadModule(url, bytes);
 			}
 			else
@@ -223,7 +227,7 @@ package net.fproject.gui.component
 		{
 			if(readyCallback != null)
 				readyCallback(e);
-			
+			trace("Module ready:" + e.module.url);
 			urlToModuleLoader[this.url] = this;
 			if(AppContext.instance.hasEventListener(AppContextEvent.MODULE_LOADED))
 				AppContext.instance.dispatchEvent(new AppContextEvent(AppContextEvent.MODULE_LOADED, 
