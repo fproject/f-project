@@ -36,9 +36,9 @@ package net.fproject.event
 		public static const LOGIN_FAILED:String = "loginFailed";
 		public static const LOGGED_OUT:String = "loggedOut";
 		
-		public static const SERVICE_STARTED:String = "serviceStarted";
-		public static const SERVICE_COMPLETED:String = "serviceStart";
-		public static const SERVICE_FAILED:String = "serviceFailed";
+		public static const SERVICE_CALL_STARTED:String = "serviceCallStarted";
+		public static const SERVICE_CALL_COMPLETED:String = "serviceCallCompleted";
+		public static const SERVICE_CALL_FAILED:String = "serviceCallFailed";
 		
 		/**
 		 * Application enters busy state 

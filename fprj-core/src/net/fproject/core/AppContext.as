@@ -132,8 +132,8 @@ package net.fproject.core
 				function(fault:Fault):void
 				{
 					_initialized = false;
-					if(hasEventListener(AppContextEvent.SERVICE_FAILED))
-						dispatchEvent(new AppContextEvent(AppContextEvent.SERVICE_FAILED, fault));
+					if(hasEventListener(AppContextEvent.SERVICE_CALL_FAILED))
+						dispatchEvent(new AppContextEvent(AppContextEvent.SERVICE_CALL_FAILED, fault));
 				});
 		}
 		
@@ -174,8 +174,8 @@ package net.fproject.core
 				},
 				function(fault:Fault):void
 				{
-					if(hasEventListener(AppContextEvent.SERVICE_FAILED))
-						dispatchEvent(new AppContextEvent(AppContextEvent.SERVICE_FAILED, fault));
+					if(hasEventListener(AppContextEvent.SERVICE_CALL_FAILED))
+						dispatchEvent(new AppContextEvent(AppContextEvent.SERVICE_CALL_FAILED, fault));
 				});
 		}
 		
@@ -248,8 +248,8 @@ package net.fproject.core
 				}, 
 				function(fault:Fault):void
 				{
-					if(hasEventListener(AppContextEvent.SERVICE_FAILED))
-						dispatchEvent(new AppContextEvent(AppContextEvent.SERVICE_FAILED, fault));
+					if(hasEventListener(AppContextEvent.SERVICE_CALL_FAILED))
+						dispatchEvent(new AppContextEvent(AppContextEvent.SERVICE_CALL_FAILED, fault));
 				});
 		}
 		
