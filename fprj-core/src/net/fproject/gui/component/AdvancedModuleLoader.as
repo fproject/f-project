@@ -16,15 +16,12 @@ package net.fproject.gui.component
 	import spark.modules.ModuleLoader;
 	
 	import net.fproject.core.AppContext;
-	import net.fproject.di.Injector;
 	import net.fproject.event.AppContextEvent;
 	import net.fproject.gui.component.supportClasses.DeferredCallHelper;
 	import net.fproject.gui.component.supportClasses.RslsLoader;
 	import net.fproject.utils.ApplicationUtil;
 	import net.fproject.utils.ResourceUtil;
 	
-	[EventHandling(event="mx.events.ModuleEvent.READY","moduleLoader_ready")]
-	[EventHandling(event="mx.events.ModuleEvent.ERROR","moduleLoader_error")]
 	/**
 	 * The AdvancedModuleLoader extends Spark's ModuleLoader with convenience utility method for module loading, 
 	 * invoking module methods using dependency injection
@@ -32,7 +29,6 @@ package net.fproject.gui.component
 	public class AdvancedModuleLoader extends ModuleLoader implements IComponentLoader
 	{
 		private static var urlToModuleLoader:Object = {};
-		private static var urlToRsl:Object = {};
 		
 		private var readyCallback:Function;
 		private var errorCallback:Function;
@@ -222,7 +218,7 @@ package net.fproject.gui.component
 		 * Event handler. Internal use only.
 		 * 
 		 */
-		public function moduleLoader_ready(e:ModuleEvent):void
+		protected function moduleLoader_ready(e:ModuleEvent):void
 		{
 			if(readyCallback != null)
 				readyCallback(e);
@@ -242,7 +238,7 @@ package net.fproject.gui.component
 		 * Event handler. Internal use only.
 		 * 
 		 */
-		public function moduleLoader_error(e:ModuleEvent):void
+		protected function moduleLoader_error(e:ModuleEvent):void
 		{
 			if(errorCallback != null)
 				errorCallback(e);
@@ -260,8 +256,8 @@ package net.fproject.gui.component
 		{
 			this.applicationDomain = ApplicationDomain.currentDomain;
 			rslsLoader = new RslsLoader;
-			
-			Injector.inject(this);
+			this.addEventListener(ModuleEvent.READY, moduleLoader_ready, false, 0, true);
+			this.addEventListener(ModuleEvent.ERROR, moduleLoader_error, false, 0, true);
 		}
 	}
 }
