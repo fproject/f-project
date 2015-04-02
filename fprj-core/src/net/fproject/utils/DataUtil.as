@@ -337,5 +337,40 @@ package net.fproject.utils
 				return a.equals(b);
 			return a === b;
 		}
+		
+		public static function getFieldChainValue(sourceObject:Object, fieldChain:String, valueIfNull:*=undefined):*
+		{
+			var fields:Array = fieldChain.split(".");
+			
+			var obj:Object = sourceObject;
+			
+			for (var i:int = 0; i < fields.length; i++)
+			{
+				if(obj == null)
+					return valueIfNull;
+				obj = obj[fields[i]];
+			}
+			
+			return obj;
+		}
+		
+		public static function setFieldChainValue(sourceObject:Object, fieldChain:String, value:*):*
+		{
+			var fields:Array = fieldChain.split(".");
+			
+			if(sourceObject == null)
+				sourceObject = {};
+			var obj:Object = sourceObject;
+			for (var i:int = 0; i < fields.length - 1; i++)
+			{
+				if(obj[fields[i]] == null)
+					obj[fields[i]] = {};
+				obj = obj[fields[i]];
+			}
+			
+			obj[fields[fields.length - 1]] = value;
+			
+			return sourceObject;
+		}
 	}
 }
