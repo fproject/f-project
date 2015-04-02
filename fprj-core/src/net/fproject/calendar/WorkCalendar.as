@@ -557,12 +557,12 @@ package net.fproject.calendar
 		 * @return <code>true</code> if the calendar is the same as the specified calendar; Otherwise, <code>false</code>.
 		 *
 		 */
-		public function equals(obj:Object):Boolean
+		public function equals(obj:WorkCalendar):Boolean
 		{
 			if (obj == this)
-			{
 				return true;
-			}
+			if(obj == null || obj.id !== this.id)
+				return false;
 			return obj._baseCalendar == this._baseCalendar && obj._name == this._name && 
 				sameWorkingDays(obj._weekDays, this._weekDays) && samePeriods(obj._periods, this._periods);
 		} // end function
