@@ -76,6 +76,7 @@
     <classEntry path="net.fproject.model.Pagination"/>
     <classEntry path="net.fproject.collection.HierarchicalCollectionViewCursor"/>
     <classEntry path="net.fproject.collection.HierarchicalCollectionView"/>
+    <classEntry path="net.fproject.collection.AdvancedArrayList"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="manifest.xml" sourcePath="manifest.xml"/>
