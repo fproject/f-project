@@ -155,7 +155,7 @@ package net.fproject.service
 											 completeCallback:Function, failCallback:Function = null):CallResponder
 		{
 			_lastCallResponder = new CallResponder();
-			callToken.addResponder(_lastCallResponder);
+			_lastCallResponder.token = callToken;
 			
 			_lastCallResponder.addEventListener(ResultEvent.RESULT, onCallComplete);	
 			_lastCallResponder.addEventListener(FaultEvent.FAULT, onCallFailed);	
