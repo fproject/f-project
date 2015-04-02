@@ -17,6 +17,7 @@ package net.fproject.calendar
 	import net.fproject.core.Time;
 	import net.fproject.core.TimeRange;
 	import net.fproject.core.TimeUnit;
+	import net.fproject.utils.DataUtil;
 	import net.fproject.utils.DateTimeUtil;
 	import net.fproject.utils.GregorianCalendar;
 	import net.fproject.utils.LoggingUtil;
@@ -563,7 +564,7 @@ package net.fproject.calendar
 				return true;
 			if(obj == null || obj.id !== this.id)
 				return false;
-			return obj._baseCalendar == this._baseCalendar && obj._name == this._name && 
+			return DataUtil.equals(obj._baseCalendar, this._baseCalendar) && obj._name == this._name && 
 				sameWorkingDays(obj._weekDays, this._weekDays) && samePeriods(obj._periods, this._periods);
 		} // end function
 		
