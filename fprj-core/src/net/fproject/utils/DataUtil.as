@@ -330,5 +330,12 @@ package net.fproject.utils
 			else
 				return host == null? chain : evaluateHostMember(host, chain);
 		}
+		
+		public static function equals(a:Object, b:Object):Boolean
+		{
+			if(a != null && a.hasOwnProperty("equals") && a["equals"] is Function)
+				return a.equals(b);
+			return a === b;
+		}
 	}
 }

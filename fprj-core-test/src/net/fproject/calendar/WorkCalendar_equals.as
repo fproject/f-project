@@ -1,8 +1,5 @@
 package net.fproject.calendar
 {
-	import org.flexunit.Assert;
-	import org.flexunit.asserts.assertEquals;
-	import org.flexunit.asserts.assertFalse;
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
 	
@@ -11,15 +8,19 @@ package net.fproject.calendar
 	import mx.resources.ResourceManager;
 	
 	import net.fproject.fproject_internal;
+	import net.fproject.core.Time;
+	import net.fproject.core.TimeRange;
+	import net.fproject.core.TimeUnit;
 	import net.fproject.utils.DateTimeUtil;
 	import net.fproject.utils.GregorianCalendar;
 	import net.fproject.utils.LoggingUtil;
 	import net.fproject.utils.LruCache;
 	import net.fproject.utils.MessageUtil;
 	import net.fproject.utils.ResourceUtil;
-	import net.fproject.core.Time;
-	import net.fproject.core.TimeRange;
-	import net.fproject.core.TimeUnit;
+	
+	import org.flexunit.Assert;
+	import org.flexunit.asserts.assertEquals;
+	import org.flexunit.asserts.assertFalse;
 
 	/**
 	 * FlexUnit test case class for method<br/>
@@ -58,7 +59,7 @@ package net.fproject.calendar
 		 */
 		public function testCase001():void
 		{
-			var obj:Object = new Object();
+			var obj:WorkCalendar = new WorkCalendar();
 			var returnTestValue:Boolean = workcalendar.equals(obj);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
@@ -80,7 +81,7 @@ package net.fproject.calendar
 		 */
 		public function testCase002():void
 		{
-			var obj:Object = null;
+			var obj:WorkCalendar = null;
 			var returnTestValue:Boolean = workcalendar.equals(obj);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 

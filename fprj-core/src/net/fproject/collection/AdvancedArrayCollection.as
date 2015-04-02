@@ -5,6 +5,9 @@ package net.fproject.collection
 	import mx.collections.errors.SortError;
 	import mx.core.mx_internal;
 	
+	import net.fproject.utils.DataUtil;
+	
+	use namespace mx_internal;
 	public class AdvancedArrayCollection extends ArrayCollection
 	{
 		/**
@@ -33,7 +36,7 @@ package net.fproject.collection
 		 */
 		public function AdvancedArrayCollection(source:Array=null, itemEqualFunction:Function=null)
 		{
-			this.itemEqualFunction = itemEqualFunction;
+			this.itemEqualFunction = itemEqualFunction != null ? DataUtil.equals : itemEqualFunction;
 			super(source);
 		}
 		
@@ -59,11 +62,11 @@ package net.fproject.collection
 			}
 			else if (localIndex && sort)
 			{
-				var startIndex:int = mx_internal::findItem(item, Sort.FIRST_INDEX_MODE);
+				var startIndex:int = findItem(item, Sort.FIRST_INDEX_MODE);
 				if (startIndex == -1)
 					return -1;
 				
-				var endIndex:int = mx_internal::findItem(item, Sort.LAST_INDEX_MODE);
+				var endIndex:int = findItem(item, Sort.LAST_INDEX_MODE);
 				for (i = startIndex; i <= endIndex; i++)
 				{
 					if (itemEqualFunction(localIndex[i], item))
@@ -92,10 +95,10 @@ package net.fproject.collection
 		/**
 		 *  @inheritDoc
 		 */
-		mx_internal function findItem(values:Object, mode:String, insertIndex:Boolean = false):int
+		override mx_internal function findItem(values:Object, mode:String, insertIndex:Boolean = false):int
 		{
 			if(itemEqualFunction == null || !sort || !localIndex || localIndex.length == 0)
-				return super.mx_internal::findItem(values, mode, insertIndex);
+				return super.findItem(values, mode, insertIndex);
 			
 			try
 			{

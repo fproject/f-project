@@ -2,6 +2,8 @@ package net.fproject.collection
 {
 	import mx.collections.ArrayList;
 	
+	import net.fproject.utils.DataUtil;
+	
 	public class AdvancedArrayList extends ArrayList
 	{
 		/**
@@ -30,7 +32,7 @@ package net.fproject.collection
 		 */
 		public function AdvancedArrayList(source:Array=null, itemEqualFunction:Function=null)
 		{
-			this.itemEqualFunction = itemEqualFunction;
+			this.itemEqualFunction = itemEqualFunction != null ? DataUtil.equals : itemEqualFunction;
 			super(source);
 		}
 		
