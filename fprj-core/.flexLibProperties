@@ -74,6 +74,8 @@
     <classEntry path="net.fproject.gui.component.supportClasses.DeferredCallHelper"/>
     <classEntry path="net.fproject.gui.component.IComponentLoader"/>
     <classEntry path="net.fproject.model.Pagination"/>
+    <classEntry path="net.fproject.collection.HierarchicalCollectionViewCursor"/>
+    <classEntry path="net.fproject.collection.HierarchicalCollectionView"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="manifest.xml" sourcePath="manifest.xml"/>
