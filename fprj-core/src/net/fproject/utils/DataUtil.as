@@ -11,6 +11,7 @@ package net.fproject.utils
 	import flash.utils.getDefinitionByName;
 	
 	import mx.binding.utils.BindingUtils;
+	import mx.utils.ObjectUtil;
 	
 	import net.fproject.di.Injector;
 	
@@ -196,14 +197,48 @@ package net.fproject.utils
 		}
 		
 		/**
-		 * Clone an object by a list of attributes 
+		 * Copy an object by a list of attributes 
 		 * @param src the source object
 		 * @param dest the destination object
 		 * @param attributes attributes to be cloned
-		 * 
+		 * @param options An Object containing one or more properties 
+		 *  that control the information returned by this method. 
+		 *  The properties include the following:
+		 *
+		 *  <ul>
+		 * 	  <li><code>attributes</code> Array of Strings specifying the property names that should be 
+		 *  	included to the returned result. For example: <code>["id", "name"]</code>
+		 * 		By default, all attributes will be considered.</li>
+		 * 	  <li><code>excludeAttributes</code> Array of Strings specifying the property names that should be 
+		 *  	excluded from the returned result. For example, you could specify 
+		 *  	<code>["currentTarget", "target"]</code> for an Event object since these properties 
+		 *  	can cause the returned result to become large.</li>
+		 *    <li><code>includeReadOnly</code>: If <code>false</code>, 
+		 *      exclude Object properties that are read-only. 
+		 *      The default value is <code>true</code>.</li>
+		 *    <li><code>includeTransient</code>: If <code>false</code>, 
+		 *      exclude Object properties and variables that have <code>[Transient]</code> metadata.
+		 *      The default value is <code>true</code>.</li>
+		 *    <li><code>uris</code>: Array of Strings of all namespaces that should be included in the output.
+		 *      It does allow for a wildcard of "~~". 
+		 *      By default, it is null, meaning no namespaces should be included. 
+		 *      For example, you could specify <code>["mx_internal", "mx_object"]</code> 
+		 *      or <code>["~~"]</code>.</li>
+		 *  </ul>
 		 */
-		public static function cloneObject(src:Object, dest:Object, attributes:Array):void
+		public static function copyObject(src:Object, dest:Object, options:Object = null):void
 		{
+			if(options != null && options.hasOwnProperty("attributes"))
+			{
+				var attributes:Array = options["attributes"];
+			}
+			else
+			{
+				if(options != null && options.hasOwnProperty("excludeAttributes"))
+					var excludeAttributes:Array = options["excludeAttributes"];
+				attributes = ObjectUtil.getClassInfo(src, excludeAttributes, options)['properties'];
+			}
+			
 			for each (var s:String in attributes)
 			{
 				var srcFieldValue:Object = src[s];
