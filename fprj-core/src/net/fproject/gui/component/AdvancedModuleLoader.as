@@ -135,6 +135,8 @@ package net.fproject.gui.component
 		 * value passed to <code>urlOrInterface</code> is a <code>Class</code> object
 		 * @param args method's argument
 		 * 
+		 * @return an AsyncToken to get the asynchronous returning result.
+		 * 
 		 */
 		public static function callDeferredMethod(urlOrInterface:*, methodName:String, rsls:String, ...args):AsyncToken
 		{
@@ -176,6 +178,11 @@ package net.fproject.gui.component
 		
 		private var pendingLoadParams:Object;
 		
+		/**
+		 * 
+		 * @inheritDoc
+		 * 
+		 */
 		override public function loadModule(url:String=null, bytes:ByteArray=null):void
 		{
 			if(pendingLoadParams != null || this.child != null)
