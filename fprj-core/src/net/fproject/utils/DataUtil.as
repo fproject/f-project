@@ -331,6 +331,14 @@ package net.fproject.utils
 				return host == null? chain : evaluateHostMember(host, chain);
 		}
 		
+		/**
+		 * Check if two objects are equal.
+		 * If the first object has own an <code>equals</code> method, it will be used in comparison. 
+		 * @param a the first object to compare
+		 * @param b the second object to compare
+		 * @return true if the two objects are equal.
+		 * 
+		 */
 		public static function equals(a:Object, b:Object):Boolean
 		{
 			if(a != null && a.hasOwnProperty("equals") && a["equals"] is Function)
@@ -338,6 +346,14 @@ package net.fproject.utils
 			return a === b;
 		}
 		
+		/**
+		 * Get value from a fields chain of a source object.
+		 * @param sourceObject The source object
+		 * @param fieldChain The field chain, this is a chain of fields separated by the spot ".".
+		 * @param valueIfNull The value returned if there's one field value in the chain is null.
+		 * @return Value from the fields chain of source object.
+		 * 
+		 */
 		public static function getFieldChainValue(sourceObject:Object, fieldChain:String, valueIfNull:*=undefined):*
 		{
 			var fields:Array = fieldChain.split(".");
@@ -354,6 +370,15 @@ package net.fproject.utils
 			return obj;
 		}
 		
+		/**
+		 * Set value for a fields chain of a source object.
+		 * @param sourceObject The source object
+		 * @param fieldChain The field chain, this is a chain of fields separated by the spot ".".
+		 * @param value The value to set
+		 * @return the source object it self. If the source object is <code>null<code>, a
+		 * dynamic untyped object that has the field chain set will be returned.
+		 * 
+		 */
 		public static function setFieldChainValue(sourceObject:Object, fieldChain:String, value:*):*
 		{
 			var fields:Array = fieldChain.split(".");
