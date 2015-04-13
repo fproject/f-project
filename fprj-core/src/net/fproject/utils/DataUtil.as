@@ -11,6 +11,7 @@ package net.fproject.utils
 	import flash.utils.getDefinitionByName;
 	
 	import mx.binding.utils.BindingUtils;
+	import mx.collections.IList;
 	import mx.utils.ObjectUtil;
 	
 	import net.fproject.di.Injector;
@@ -396,6 +397,39 @@ package net.fproject.utils
 			obj[fields[fields.length - 1]] = value;
 			
 			return sourceObject;
+		}
+		
+		public static function getFieldValues(collection:Object, fieldName:String):Array
+		{
+			if(collection == null)
+				return null;
+			var a:Array = [];
+			var push:Function = function(o:Object):void
+			{
+				if(o != null && o.hasOwnProperty(fieldName))
+				{
+					a.push(o[fieldName]);
+				}
+			};
+			if(collection is IList)
+			{
+				var l:IList = collection as IList;
+				for(var i:int=0; i<l.length; i++)
+				{
+					push(l.getItemAt(i));					
+				}
+			}
+			else if(collection is Array)
+			{
+				for each (var o:Object in collection)
+				{
+					push(o);
+				}
+			}
+			else
+				return null;
+			
+			return a;
 		}
 	}
 }

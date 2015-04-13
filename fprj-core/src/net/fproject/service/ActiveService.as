@@ -73,7 +73,7 @@ package net.fproject.service
 		 * // find a single customer whose composite primary key value is "11,20"
 		 * customer = customerService.findOne("11,20");</pre>
 		 *
-		 * @param id primary key value or a compsite value of primary key 
+		 * @param id primary key value or a composite value of primary key 
 		 * 
 		 * @param completeCallback The call-back function that will be invoked after
 		 * the remote object call succesfully returned.
@@ -86,7 +86,7 @@ package net.fproject.service
 		 * The <code>result</code> field of RESULT event will be a model instance 
 		 * matching the condition, or null if nothing matches.
 		 */
-		public function findOne(id:String,
+		public function findOne(id:Object,
 								completeCallback:Function=null, failCallback:Function=null,
 								...extraParams):CallResponder
 		{
@@ -142,15 +142,18 @@ package net.fproject.service
 		 * the remote object call succesfully returned.
 		 * @param failCallback The call-back function that will be invoked after
 		 * the remote object call failed
+		 * @param attributes an array of attributes that need to be saved.
+		 * If this parameter is null, all attributes that are loaded from DB excepts for relations, will be saved.
 		 * 
 		 * @return a <code>CallResponder</code> responds for the call.
 		 * The <code>result</code> field of RESULT event will be the the saved model
 		 * with all auto-increment fields populated.
 		 */
 		public function save(model:Object,
-							 completeCallback:Function=null, failCallback:Function=null):CallResponder
+							 completeCallback:Function=null, failCallback:Function=null,
+							 attributes:Array=null):CallResponder
 		{
-			return createServiceCall(remoteObject.save(model),
+			return createServiceCall(remoteObject.save(model, attributes),
 				completeCallback, failCallback);
 		}
 		
@@ -186,6 +189,8 @@ package net.fproject.service
 		 * the remote object call succesfully returned.
 		 * @param failCallback The call-back function that will be invoked after
 		 * the remote object call failed
+		 * @param attributes an array of attributes that need to be saved.
+		 * If this parameter is null, all attributes that are loaded from DB excepts for relations, will be saved.
 		 * 
 		 * @return a <code>CallResponder</code> responds for the call.
 		 * If the models have auto-increment fields, the <code>result</code> 
@@ -193,17 +198,18 @@ package net.fproject.service
 		 * auto-increment fields.
 		 */
 		public function batchSave(models:Array,
-								  completeCallback:Function=null, failCallback:Function=null):CallResponder
+								  completeCallback:Function=null, failCallback:Function=null,
+								  attributes:Array=null):CallResponder
 		{
-			return createServiceCall(remoteObject.batchSave(models),
+			return createServiceCall(remoteObject.batchSave(models, attributes),
 				completeCallback, failCallback);
 		}
 		
 		[RESTOperation(method='POST', route="/batch-remove")]
 		/**
-		 * Remove a set of models by IDs
+		 * Remove a set of models
 		 *
-		 * @param model an array of model IDs to remove
+		 * @param items an array of models or model IDs to remove
 		 * 
 		 * @param completeCallback The call-back function that will be invoked after
 		 * the remote object call succesfully returned.
@@ -214,10 +220,10 @@ package net.fproject.service
 		 * The <code>result</code> field of RESULT event is a boolean value
 		 * indicates whether the remove action is success or failed.
 		 */
-		public function batchRemove(ids:Array,
+		public function batchRemove(items:Array,
 									completeCallback:Function=null, failCallback:Function=null):CallResponder
 		{
-			return createServiceCall(remoteObject.batchRemove(ids),
+			return createServiceCall(remoteObject.batchRemove(items),
 				completeCallback, failCallback);
 		}
 	}

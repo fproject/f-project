@@ -46,7 +46,8 @@ package net.fproject.service
 		 * @return a <code>CallResponder</code> responds for the call.
 		 */
 		function save(data:Object,
-					  completeCallback:Function=null, failCallback:Function=null):CallResponder;
+					  completeCallback:Function=null, failCallback:Function=null,
+					  attributes:Array=null):CallResponder;
 		
 		/**
 		 * Authenticate a user by username and password. 
