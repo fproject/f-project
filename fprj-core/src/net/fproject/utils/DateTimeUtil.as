@@ -634,11 +634,14 @@ package net.fproject.utils
 		 * @param value The ISO date string.
 		 * @param includeMilliseconds Determines whether to include the
 		 * milliseconds value (if any) in the formatted string.
+		 * @param useZsign whether include "Z" sign to the end of output string or not
+		 * @param useTsign whether use "T" sign to to seperate date part and time part or not
 		 * 
 		 * @return The ISO date formatted string if no error.
 		 * 
 		 */		
-		public static function formatIsoDate(d:Date, includeMilliseconds:Boolean=false, useZsign:Boolean=false):String
+		public static function formatIsoDate(d:Date, includeMilliseconds:Boolean=false,
+											 useZsign:Boolean=false, useTsign:Boolean=true):String
 		{
 			var date:Number = d.getUTCDate();
 			var month:Number = d.getUTCMonth();
@@ -662,7 +665,7 @@ package net.fproject.utils
 				sb += "0";
 			}
 			sb += date;
-			sb += "T";
+			sb += useTsign ? "T" : " ";
 			if (hours < 10)
 			{
 				sb += "0";

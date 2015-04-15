@@ -172,7 +172,7 @@ package net.fproject.service
 		 * The <code>result</code> field of RESULT event is a boolean value
 		 * indicates whether the remove action is success or failed.
 		 */
-		public function remove(id:String,
+		public function remove(id:Object,
 							   completeCallback:Function=null, failCallback:Function=null):CallResponder
 		{
 			return createServiceCall(remoteObject.remove(id),
