@@ -11,10 +11,11 @@ package net.fproject.db
 	 * DbCriteria represents a DB query criteria, such as conditions, ordering by, limit/offset.
 	 *
 	 * criteria=new DbCriteria();
-	 * criteria.compare('status', Post.STATUS_ACTIVE);
-	 * criteria.addInCondition('id',[1,2,3,4,5,6]);
+	 * criteria.condition = '@findActiveUsersByProjects';
+	 * criteria.params[':status'] = Post.STATUS_ACTIVE;
+	 * criteria.params[':projectIds'] = [1,2,3,4,5,6];
 	 *
-	 * posts = PostService.getInstance().findAll(criteria);
+	 * posts = UserService.getInstance().find(criteria);
 	 *
 	 * @author Bui Sy Nguyen
 	 * 
