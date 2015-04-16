@@ -109,9 +109,10 @@ package net.fproject.service
 		 * customer = customerService.find({condition:"name LIKE :name",params:{":name":"%ABC"}}, page:2, perPage:10);</pre>
 		 *
 		 * @param criteria the criteria contains searching condition and params to bind
-		 * @param page the page to load
-		 * @param page the page-size of pagination
-		 * @param sort the sort parameter
+		 * @param page the page to load, the first page is 1, second is 2 and so on...
+		 * @param page the page-size of pagination. If this value is less than 0, the default page size is used.
+		 * @param sort the sort parameter. For example: <code>'userName,-birthDay'</code> 
+		 * will sort by <code>userName</code> as ASC and <code>birthDay</code> as DESC
 		 * 
 		 * @param completeCallback The call-back function that will be invoked after
 		 * the remote object call succesfully returned.
