@@ -62,5 +62,12 @@ package net.fproject.db
 		 * For example, 'userName,-birthDay' will sort by userName ASC and then birthDay DESC
 		 */
 		public var sort:String='';
+		
+		/**
+		 * List of relations that neet to load together with result.
+		 * This can be an array or a string of relations separated by ','
+		 * For example, <code>['userProfile','tasks']</code> or <code>'userProfile,tasks'</code>.
+		 */
+		public var expand:Object;
 	}
 }
