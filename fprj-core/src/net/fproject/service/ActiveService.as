@@ -135,16 +135,37 @@ package net.fproject.service
 		
 		[RESTOperation(method='POST', route="/save")]
 		/**
+		 * <p>
 		 * Save a model object
-		 *
+		 * The model is inserted as a row into the database table if its primary key field
+		 * is null (usually the case when the model is created using the <code>new</code>
+		 * operator). Otherwise, it will be used to update the corresponding row in the table
+		 * (usually the case if the model is obtained using one of those <code>find</code> methods.)
+		 * </p><p>
+		 * If the record is saved via insertion, and if its primary key is auto-incremental,
+		 * the primary key will be returned and passed to <code>completeCallback</code> function.
+		 * 
 		 * @param model the model to save
 		 * 
 		 * @param completeCallback The call-back function that will be invoked after
 		 * the remote object call succesfully returned.
 		 * @param failCallback The call-back function that will be invoked after
 		 * the remote object call failed
-		 * @param attributes an array of attributes that need to be saved.
-		 * If this parameter is null, all attributes that are loaded from DB excepts for relations, will be saved.
+		 * 
+		 * @param attributes a list of attributes that need to be saved.
+		 * If this parameter is <code>null</code>, all attributes that are loaded from DB excepts
+		 * for relations, will be saved.
+		 *
+		 * <p>If value of first element of this array equals to '&#42;', then all attributes of the model
+		 * that are not relation-attribute will be saved, and all attributes from the
+		 * second element will be considered as relation names to be saved.
+		 * For example:<pre>userService.save(model, ['&#42;', 'userProfile', 'resources'])</pre>
+		 * </p>
+		 *
+		 * <p>If value of first element does not equal to '&#42;', then all attributes in the list
+		 * will be saved regardless they are relation or not.
+		 * For example:<pre>userService.save(model, ['name', 'birthDay', 'age'])</pre>
+		 * </p>
 		 * 
 		 * @return a <code>CallResponder</code> responds for the call.
 		 * The <code>result</code> field of RESULT event will be the the saved model
