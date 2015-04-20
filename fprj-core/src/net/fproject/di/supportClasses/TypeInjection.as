@@ -30,41 +30,11 @@ package net.fproject.di.supportClasses
 			_fields[fieldName] = injectionDetails;
 		}
 		
-		public function getFieldNames():Array
-		{
-			const result:Array = [];
-			for (var fieldName:String in _fields)
-			{
-				result.push(fieldName);
-			}
-			return result;
-		}
-		
-		public function getField(fieldName:String):FieldInjection
-		{
-			return _fields[fieldName];
-		}
-
 		public function addMethod(methodName:String, injectionDetails:FieldInjection):void
 		{
 			_methods[methodName] ||= [];
 			(_methods[methodName] as Array).push(injectionDetails);
 		}		
-		
-		public function getMethodsNames():Array
-		{
-			const result:Array = [];
-			for (var methodName:String in _methods)
-			{
-				result.push(methodName);
-			}
-			return result;
-		}
-		
-		public function getMethod(methodName:String):Array
-		{
-			return _methods[methodName];
-		}
 		
 		public function injectFields(source:Object, target:*, fieldInjectionToValueFunction:Function):void
 		{
@@ -84,7 +54,7 @@ package net.fproject.di.supportClasses
 				{
 					values.push(fieldInjectionToValueFunction(source, injection));
 				}
-				(target[methodName] as Function).apply(null, values);
+				target[methodName](values);
 			}
 		}
 		
