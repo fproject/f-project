@@ -54,9 +54,9 @@ package net.fproject.serialize
 			return _instance;
 		}
 		
-		private static const MARSHALL : String = "Marshall";
-		private static const FIELD_KEY : String = "field";
-		private static const TYPE_KEY : String = "type";
+		private static const MARSHALL:String = "Marshall";
+		private static const FIELD_KEY:String = "field";
+		private static const TYPE_KEY:String = "type";
 		
 		private var typeInjectionCache:Dictionary = new Dictionary;
 		
@@ -75,78 +75,29 @@ package net.fproject.serialize
 		 * @param source		Object which contains properties that you wish to transfer to a new instance of the 
 		 * 						supplied targetType Class.
 		 * @param targetType	The target Class of which an instance will be returned.
-		 * 
 		 * @return				An instance of the supplied targetType containing all the properties extracted from
 		 * 						the supplied source object.
 		 */
-		private function extract(source : Object, targetType : Class) : *
-		{
-			return extractImpl(source, targetType);
-		}
-		
-		/**
-		 * Attempts to extract properties from the supplied source object into an instance of the supplied targetType.
-		 * 
-		 * @param source		Object which contains properties that you wish to transfer to a new instance of the 
-		 * 						supplied targetType Class.
-		 * @param targetType	The target Class of which an instance will be returned.
-		 * @return				An instance of the supplied targetType containing all the properties extracted from
-		 * 						the supplied source object.
-		 */
-		private function extractImpl(source : Object, targetType : Class) : *
+		private function extract(source:Object, targetType:Class):*
 		{
 			// Catch the case where we've been asked to extract a value which is already of the intended targetType;
 			// this can often happen when Vanilla is recursing, in which case there is nothing to do.
 			if (source is targetType)
 				return source;
+			var typeInjection:TypeInjection;
 			
-			if (!typeInjectionCache[targetType]) 
+			if (!(typeInjection = typeInjectionCache[targetType]))
 			{
-				typeInjectionCache[targetType] = new TypeInjection();
-				addReflectedRules(typeInjectionCache[targetType], targetType, Type.forClass(targetType));
+				typeInjection = typeInjectionCache[targetType] = new TypeInjection;
+				addReflectedRules(typeInjection, targetType, Type.forClass(targetType));
 			}
-			
-			const typeInjection:TypeInjection = typeInjectionCache[targetType];
 			
 			// Create a new isntance of the targetType; and then inject the values from the source object into it
-			const target : * = instantiate(targetType, fetchConstructorArgs(source, typeInjection.getConstructorFields()));
-			injectFields(source, target, typeInjection);
-			injectMethods(source, target, typeInjection);
+			const target:* = typeInjection.instantiate(source, targetType, extractValue);
+			typeInjection.injectFields(source, target, extractValue);
+			typeInjection.injectMethods(source, target, extractValue);
 			
 			return target;
-		}
-
-		private function fetchConstructorArgs(source : Object, constructorFields : Array) : Array
-		{
-			const result : Array = [];
-			for (var i : uint = 0; i < constructorFields.length; i++)
-			{
-				result.push(extractValue(source, constructorFields[i]));
-			}
-			return result;
-		}
-
-		private function injectFields(source : Object, target : *, injectionMap : TypeInjection) : void
-		{
-			const fieldNames : Array = injectionMap.getFieldNames();
-			for each (var fieldName : String in fieldNames)
-			{
-				target[fieldName] = extractValue(source, injectionMap.getField(fieldName));
-			}
-		}
-		
-		private function injectMethods(source : Object, target : *, injectionMap : TypeInjection) : void
-		{
-			const methodNames : Array = injectionMap.getMethodsNames();
-			for each (var methodName : String in methodNames)
-			{
-				const values : Array = [];
-				for each (var injectionDetail : FieldInjection in injectionMap.getMethod(methodName))
-				{
-					values.push(extractValue(source, injectionDetail));
-				}
-				(target[methodName] as Function).apply(null, values);
-			}
 		}
 
 		private function isSimple(object:Object):Boolean
@@ -164,7 +115,7 @@ package net.fproject.serialize
 			return false;
 		}
 		
-		private function extractValue(source : Object, injectionDetail : FieldInjection) : *
+		private function extractValue(source:Object, injectionDetail:FieldInjection):*
 		{
 			// Is this a required injection?
 			if (injectionDetail.isRequired && !source.hasOwnProperty(injectionDetail.name))
@@ -174,14 +125,14 @@ package net.fproject.serialize
 					SerializeError.MISSING_REQUIRED_FIELD);
 			}
 			
-			var value : * = source[injectionDetail.name];
+			var value:* = source[injectionDetail.name];
 			
 			if (value) 
 			{
 				// automatically coerce simple types.
 				if (!isSimple(value))
 				{
-					value = extractImpl(value, injectionDetail.type);
+					value = extract(value, injectionDetail.type);
 				}
 				
 				// Collections are harder, we need to coerce the contents.
@@ -212,105 +163,99 @@ package net.fproject.serialize
 			return value;
 		}
 
-		private function extractTypedArray(source : Array, targetClassType : Class) : Array
+		private function extractTypedArray(source:Array, targetClassType:Class):Array
 		{
-			const result : Array = new Array(source.length);
-			for (var i : uint = 0; i < source.length; i++)
+			const result:Array = new Array(source.length);
+			for (var i:uint = 0; i < source.length; i++)
 			{
-				result[i] = extractImpl(source[i], targetClassType);
+				result[i] = extract(source[i], targetClassType);
 			}
 			return result;
 		}
 
-		private function extractVector(source : Array, targetVectorClass : Class, targetClassType : Class) : *
+		private function extractVector(source:Array, targetVectorClass:Class, targetClassType:Class):*
 		{
-			const result : * = ClassUtils.newInstance(targetVectorClass);
-			for (var i : uint = 0; i < source.length; i++)
+			const result:* = ClassUtils.newInstance(targetVectorClass);
+			for (var i:uint = 0; i < source.length; i++)
 			{
 				if (isVector(targetClassType))
 				{
-					const type : Type = Type.forClass(targetClassType);
+					const type:Type = Type.forClass(targetClassType);
 					result[i] = extractVector(source[i], targetClassType, type.parameters[0]);
 				} 
 				else
 				{
-					result[i] = extractImpl(source[i], targetClassType);
+					result[i] = extract(source[i], targetClassType);
 				}
 			}
 			return result;
 		}
 		
-
-		private function instantiate(targetType : Class, ctorArgs : Array) : *
-		{
-			return ClassUtils.newInstance(targetType, ctorArgs);
-		}
-
-		private function addReflectedRules(injectionMap : TypeInjection, targetType : Class, reflectionMap : Type) : void
+		private function addReflectedRules(injectionMap:TypeInjection, targetType:Class, reflectionMap:Type):void
 		{
 			addReflectedConstructorRules(injectionMap, reflectionMap);
 			addReflectedFieldRules(injectionMap, reflectionMap.fields);
 			addReflectedSetterRules(injectionMap, reflectionMap.methods);
 		}
 
-		private function addReflectedConstructorRules(injectionMap : TypeInjection, type : Type) : void
+		private function addReflectedConstructorRules(injectionMap:TypeInjection, type:Type):void
 		{
-			const clazzMarshallingMetadata : Array = type.getMetadata(MARSHALL);
+			const clazzMarshallingMetadata:Array = type.getMetadata(MARSHALL);
 			if (!clazzMarshallingMetadata)
 				return;
 			
-			const marshallingMetadata : Metadata = clazzMarshallingMetadata[0];
-			const numArgs : uint = marshallingMetadata.arguments.length;
+			const marshallingMetadata:Metadata = clazzMarshallingMetadata[0];
+			const numArgs:uint = marshallingMetadata.arguments.length;
 			
-			for (var i : uint = 0; i < numArgs; i++)
+			for (var i:uint = 0; i < numArgs; i++)
 			{
-				var argument : MetadataArgument = marshallingMetadata.arguments[i];
+				var argument:MetadataArgument = marshallingMetadata.arguments[i];
 				if (argument.key == FIELD_KEY)
 				{
-					const param : Parameter = type.constructor.parameters[i];
-					const arrayTypeHint : Class = extractArrayTypeHint(param.type);
+					const param:Parameter = type.constructor.parameters[i];
+					const arrayTypeHint:Class = extractArrayTypeHint(param.type);
 					injectionMap.addConstructorField(new FieldInjection(argument.value, param.type.clazz, true, arrayTypeHint));
 				}
 			}
 		}
 
-		private function addReflectedFieldRules(injectionMap : TypeInjection, fields : Array) : void
+		private function addReflectedFieldRules(injectionMap:TypeInjection, fields:Array):void
 		{
-			for each (var field : Field in fields)
+			for each (var field:Field in fields)
 			{
 				if (!field.hasMetadata(Metadata.TRANSIENT) && canAccess(field))
 				{
-					const fieldMetadataEntries : Array = field.getMetadata(MARSHALL);
-					const fieldMetadata : Metadata = (fieldMetadataEntries) ? fieldMetadataEntries[0] : null;
-					const arrayTypeHint : Class = extractArrayTypeHint(field.type, fieldMetadata);
-					const sourceFieldName : String = extractFieldName(field, fieldMetadata);
+					const fieldMetadataEntries:Array = field.getMetadata(MARSHALL);
+					const fieldMetadata:Metadata = (fieldMetadataEntries) ? fieldMetadataEntries[0] : null;
+					const arrayTypeHint:Class = extractArrayTypeHint(field.type, fieldMetadata);
+					const sourceFieldName:String = extractFieldName(field, fieldMetadata);
 					
 					injectionMap.addField(field.name, new FieldInjection(sourceFieldName, field.type.clazz, false, arrayTypeHint));
 				}
 			}
 		}
 
-		private function addReflectedSetterRules(injectionMap : TypeInjection, methods : Array) : void
+		private function addReflectedSetterRules(injectionMap:TypeInjection, methods:Array):void
 		{
-			for each (var method : Method in methods)
+			for each (var method:Method in methods)
 			{
 
-				const methodMarshallingMetadata : Array = method.getMetadata(MARSHALL);
+				const methodMarshallingMetadata:Array = method.getMetadata(MARSHALL);
 				if (methodMarshallingMetadata == null)
 				{
 					continue;
 				}
 				
-				const metadata : Metadata = methodMarshallingMetadata[0];
-				const numArgs : uint = metadata.arguments.length;
+				const metadata:Metadata = methodMarshallingMetadata[0];
+				const numArgs:uint = metadata.arguments.length;
 				
-				for (var i : uint = 0; i < numArgs; i++)
+				for (var i:uint = 0; i < numArgs; i++)
 				{
-					var argument : MetadataArgument = metadata.arguments[i];
+					var argument:MetadataArgument = metadata.arguments[i];
 					if (argument.key == FIELD_KEY)
 					{
-						const param : Parameter = method.parameters[i];
-						const arrayTypeHint : Class = extractArrayTypeHint(param.type, metadata);
+						const param:Parameter = method.parameters[i];
+						const arrayTypeHint:Class = extractArrayTypeHint(param.type, metadata);
 						injectionMap.addMethod(method.name, 
 							new FieldInjection(argument.value, param.type.clazz, false, arrayTypeHint));
 					}
@@ -318,15 +263,15 @@ package net.fproject.serialize
 			}
 		}		
 
-		private function extractFieldName(field : Field, metadata : Metadata) : String
+		private function extractFieldName(field:Field, metadata:Metadata):String
 		{
 			// See if a taget fieldName has been defined in the Metadata.
 			if (metadata)
 			{
-				const numArgs : uint = metadata.arguments.length;
-				for (var i : uint = 0; i < numArgs; i++)
+				const numArgs:uint = metadata.arguments.length;
+				for (var i:uint = 0; i < numArgs; i++)
 				{
-					var argument : MetadataArgument = metadata.arguments[i];
+					var argument:MetadataArgument = metadata.arguments[i];
 					if (argument.key == FIELD_KEY)
 						return argument.value;
 				}
@@ -336,7 +281,7 @@ package net.fproject.serialize
 			return field.name;
 		}
 
-		private function extractArrayTypeHint(type : Type, metadata : Metadata = null) : Class
+		private function extractArrayTypeHint(type:Type, metadata:Metadata = null):Class
 		{
 			// Vectors carry their own type hint.
 			if (type.parameters && type.parameters[0] is Class)
@@ -345,13 +290,13 @@ package net.fproject.serialize
 			// Otherwise we will look for some "type" metadata, if it was defined.
 			else if (metadata)
 			{
-				const numArgs : uint = metadata.arguments.length;
-				for (var i : uint = 0; i < numArgs; i++)
+				const numArgs:uint = metadata.arguments.length;
+				for (var i:uint = 0; i < numArgs; i++)
 				{
-					var argument : MetadataArgument = metadata.arguments[i];
+					var argument:MetadataArgument = metadata.arguments[i];
 					if (argument.key == TYPE_KEY)
 					{
-						const clazz : Class = ClassUtils.forName(argument.value);
+						const clazz:Class = ClassUtils.forName(argument.value);
 						return clazz;
 					}
 				}
@@ -361,7 +306,7 @@ package net.fproject.serialize
 			return null;
 		}		
 
-		private function canAccess(field : Field) : Boolean
+		private function canAccess(field:Field):Boolean
 		{
 			if (field is Variable)
 				return true;
@@ -370,7 +315,7 @@ package net.fproject.serialize
 			return false;
 		}
 		
-		private function isVector(obj : *) : Boolean 
+		private function isVector(obj:*):Boolean 
 		{
 			return (getQualifiedClassName(obj).indexOf('__AS3__.vec::Vector') == 0);
 		}

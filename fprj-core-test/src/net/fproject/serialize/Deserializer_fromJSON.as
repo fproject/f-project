@@ -38,7 +38,7 @@ package net.fproject.serialize
 			//Your test data cleaning
 		}
 		
-		[Test (expected="ReferenceError",description="Boundary case: [json = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789', returning = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789']")]
+		[Test (order="16",expected="SyntaxError",description="Boundary case: [json = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789', returning = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789']")]
 		/**
 		 * Boundary Case Type: Normal<br/>
 		 * <br/>
@@ -61,7 +61,7 @@ package net.fproject.serialize
 			//-------------------------------------
 		}
 		
-		[Test (expected="ReferenceError",description="Boundary case: [json = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789', returning = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789']")]
+		[Test (order="2",description="Boundary case: [json = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789', returning = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789']")]
 		/**
 		 * Test Case Type: Boundary<br/>
 		 * <br/>
@@ -81,11 +81,11 @@ package net.fproject.serialize
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertFalse(true);
+			assertEquals(json, returnTestValue);
 			//-------------------------------------
 		}
 		
-		[Test (expected="ReferenceError",description="Boundary case: [json = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789', returning = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789']")]
+		[Test (order="3",description="Boundary case: [json = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789', returning = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789']")]
 		/**
 		 * Test Case Type: Boundary<br/>
 		 * <br/>
@@ -105,11 +105,11 @@ package net.fproject.serialize
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertFalse(true);
+			assertEquals(null, returnTestValue);
 			//-------------------------------------
 		}
 		
-		[Test (expected="ArgumentError",description="Boundary case: [json = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789', returning = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789']")]
+		[Test (order="4",expected="SyntaxError",description="Boundary case: [json = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789', returning = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789']")]
 		/**
 		 * Test Case Type: Boundary<br/>
 		 * <br/>
@@ -133,7 +133,7 @@ package net.fproject.serialize
 			//-------------------------------------
 		}
 		
-		[Test (expected="ArgumentError",description="Boundary case: [json = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789', returning = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789']")]
+		[Test (order="5",description="Boundary case: [json = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789', returning = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789']")]
 		/**
 		 * Test Case Type: Boundary<br/>
 		 * <br/>
@@ -153,11 +153,11 @@ package net.fproject.serialize
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertFalse(true);
+			assertEquals(json, returnTestValue);
 			//-------------------------------------
 		}
 		
-		[Test (expected="ArgumentError",description="Boundary case: [json = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789', returning = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789']")]
+		[Test (order="6",description="Boundary case: [json = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789', returning = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789']")]
 		/**
 		 * Test Case Type: Boundary<br/>
 		 * <br/>
@@ -177,11 +177,11 @@ package net.fproject.serialize
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertFalse(true);
+			assertEquals(json, returnTestValue);
 			//-------------------------------------
 		}
 		
-		[Test (expected="SyntaxError",description="Boundary case: [json = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789', returning = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789']")]
+		[Test (order="7",expected="SyntaxError",description="Boundary case: [json = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789', returning = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789']")]
 		/**
 		 * Test Case Type: Boundary<br/>
 		 * <br/>
@@ -205,7 +205,7 @@ package net.fproject.serialize
 			//-------------------------------------
 		}
 		
-		[Test (expected="SyntaxError",description="Boundary case: [json = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789', returning = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789']")]
+		[Test (order="8",description="Boundary case: [json = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789', returning = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789']")]
 		/**
 		 * Test Case Type: Boundary<br/>
 		 * <br/>
@@ -225,11 +225,11 @@ package net.fproject.serialize
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertFalse(true);
+			assertEquals(json, returnTestValue);
 			//-------------------------------------
 		}
 		
-		[Test (expected="SyntaxError",description="Boundary case: [json = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789', returning = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789']")]
+		[Test (order="9",description="Boundary case: [json = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789', returning = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789']")]
 		/**
 		 * Test Case Type: Boundary<br/>
 		 * <br/>
@@ -249,11 +249,11 @@ package net.fproject.serialize
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertFalse(true);
+			assertEquals(json, returnTestValue);
 			//-------------------------------------
 		}
 		
-		[Test (description="Normal case")]
+		[Test (order="10",description="Normal case")]
 		/**
 		 * Test Case Type: Normal<br/>
 		 * <br/>
@@ -288,7 +288,7 @@ package net.fproject.serialize
 			return isEmpty;
 		}
 		
-		[Test (expected="ReferenceError",description="Normal case")]
+		[Test (order="11",description="Normal case")]
 		/**
 		 * Test Case Type: Normal<br/>
 		 * <br/>
@@ -309,9 +309,10 @@ package net.fproject.serialize
 			// You must replace this code by function specifications or 
 			// the test always returns false!
 			//-------------------------------------
+			assertEquals(0, ObjectUtil.compare({}, returnTestValue));
 		}
 		
-		[Test (description="Normal case")]
+		[Test (order="12",description="Normal case")]
 		/**
 		 * Test Case Type: Normal<br/>
 		 * <br/>
@@ -336,7 +337,7 @@ package net.fproject.serialize
 			//-------------------------------------
 		}
 		
-		[Test (description="Normal case")]
+		[Test (order="13",description="Normal case")]
 		/**
 		 * Test Case Type: Normal<br/>
 		 * <br/>
@@ -360,7 +361,7 @@ package net.fproject.serialize
 			//-------------------------------------
 		}
 		
-		[Test (description="Normal case")]
+		[Test (order="14",description="Normal case")]
 		/**
 		 * Test Case Type: Normal<br/>
 		 * <br/>
@@ -387,7 +388,7 @@ package net.fproject.serialize
 			//-------------------------------------
 		}
 		
-		[Test (description="Normal case")]
+		[Test (order="15",description="Normal case")]
 		/**
 		 * Test Case Type: Normal<br/>
 		 * <br/>
@@ -421,7 +422,7 @@ package net.fproject.serialize
 			//-------------------------------------
 		}
 		
-		[Test (description="Normal case")]
+		[Test (order="1",description="Normal case")]
 		/**
 		 * Test Case Type: Normal<br/>
 		 * <br/>
@@ -439,12 +440,14 @@ package net.fproject.serialize
 				'"field4":"<elt x=\'abc\'><name>AAA</name></elt>",' +
 				'"field5":{"field1":"ABC","field2":123,"field3":true}' +
 				'}';
+			
 			registerClassAlias("Vanilla_objectFromJSON_14", Deserializer_fromJSON_14);
 			registerClassAlias("Vanilla_objectFromJSON_16", Deserializer_fromJSON_16);
 			var returnTestValue:Object = deserializer.fromJSON(json, "Vanilla_objectFromJSON_16");
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
+			
 			assertTrue(returnTestValue is Deserializer_fromJSON_16);
 			var retObj:Deserializer_fromJSON_16 = Deserializer_fromJSON_16(returnTestValue);
 			
@@ -461,7 +464,7 @@ package net.fproject.serialize
 			//-------------------------------------
 		}
 		
-		[Test (description="Normal case")]
+		[Test (order="17",description="Normal case")]
 		/**
 		 * Test Case Type: Performance Test.
 		 * Deserialize 20000 objects in object graph.
