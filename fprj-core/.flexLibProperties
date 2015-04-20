@@ -28,9 +28,9 @@
     <classEntry path="net.fproject.rpc.JSONRemoteObject"/>
     <classEntry path="net.fproject.rpc.RemoteObjectFactory"/>
     <classEntry path="net.fproject.serialize.Deserializer"/>
-    <classEntry path="net.fproject.serialize.InjectionDetail"/>
-    <classEntry path="net.fproject.serialize.InjectionMap"/>
-    <classEntry path="net.fproject.serialize.MarshallingError"/>
+    <classEntry path="net.fproject.di.supportClasses.FieldInjection"/>
+    <classEntry path="net.fproject.di.supportClasses.TypeInjection"/>
+    <classEntry path="net.fproject.serialize.SerializeError"/>
     <classEntry path="net.fproject.serialize.Serializer"/>
     <classEntry path="net.fproject.utils.AdvancedDateFormatter"/>
     <classEntry path="net.fproject.utils.ApplicationUtil"/>
