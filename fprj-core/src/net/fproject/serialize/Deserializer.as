@@ -115,37 +115,37 @@ package net.fproject.serialize
 			return false;
 		}
 		
-		private function extractValue(source:Object, injectionDetail:FieldInjection):*
+		private function extractValue(source:Object, fieldInjection:FieldInjection):*
 		{
 			// Is this a required injection?
-			if (injectionDetail.isRequired && !source.hasOwnProperty(injectionDetail.name))
+			if (fieldInjection.isRequired && !source.hasOwnProperty(fieldInjection.name))
 			{
 				throw new SerializeError(
-					ResourceUtil.fproject_internal::getError(10, "require.value.not.found", [injectionDetail]), 
+					ResourceUtil.fproject_internal::getError(10, "require.value.not.found", [fieldInjection]), 
 					SerializeError.MISSING_REQUIRED_FIELD);
 			}
 			
-			var value:* = source[injectionDetail.name];
+			var value:* = source[fieldInjection.name];
 			
 			if (value) 
 			{
 				// automatically coerce simple types.
 				if (!isSimple(value))
 				{
-					value = extract(value, injectionDetail.type);
+					value = extract(value, fieldInjection.type);
 				}
 				
 				// Collections are harder, we need to coerce the contents.
 				else if (value is Array)
 				{
-					if(isVector(injectionDetail.type))
-						value = extractVector(value, injectionDetail.type, injectionDetail.arrayTypeHint);
-					else if (injectionDetail.arrayTypeHint)
-						value = extractTypedArray(value, injectionDetail.arrayTypeHint);
+					if(isVector(fieldInjection.type))
+						value = extractVector(value, fieldInjection.type, fieldInjection.arrayTypeHint);
+					else if (fieldInjection.arrayTypeHint)
+						value = extractTypedArray(value, fieldInjection.arrayTypeHint);
 				}
 				
 				// We need to coerce the contents from miliseconds or date-time serial to Date type.
-				else if (injectionDetail.type == Date)
+				else if (fieldInjection.type == Date)
 				{
 					if(!(value is Number) && dateParseFunction != null)
 						value = dateParseFunction(value);
@@ -154,7 +154,7 @@ package net.fproject.serialize
 				}
 				
 				// We need to coerce the contents from String to XML if possible
-				else if (value is String && injectionDetail.type == XML)
+				else if (value is String && fieldInjection.type == XML)
 				{
 					value = new XML(value);
 				}
@@ -198,7 +198,7 @@ package net.fproject.serialize
 			addReflectedSetterRules(injectionMap, reflectionMap.methods);
 		}
 
-		private function addReflectedConstructorRules(injectionMap:TypeInjection, type:Type):void
+		private function addReflectedConstructorRules(typeInjection:TypeInjection, type:Type):void
 		{
 			const clazzMarshallingMetadata:Array = type.getMetadata(MARSHALL);
 			if (!clazzMarshallingMetadata)
@@ -214,12 +214,12 @@ package net.fproject.serialize
 				{
 					const param:Parameter = type.constructor.parameters[i];
 					const arrayTypeHint:Class = extractArrayTypeHint(param.type);
-					injectionMap.addConstructorField(new FieldInjection(argument.value, param.type.clazz, true, arrayTypeHint));
+					typeInjection.addConstructorField(new FieldInjection(argument.value, param.type.clazz, true, arrayTypeHint));
 				}
 			}
 		}
 
-		private function addReflectedFieldRules(injectionMap:TypeInjection, fields:Array):void
+		private function addReflectedFieldRules(typeInjection:TypeInjection, fields:Array):void
 		{
 			for each (var field:Field in fields)
 			{
@@ -230,12 +230,12 @@ package net.fproject.serialize
 					const arrayTypeHint:Class = extractArrayTypeHint(field.type, fieldMetadata);
 					const sourceFieldName:String = extractFieldName(field, fieldMetadata);
 					
-					injectionMap.addField(field.name, new FieldInjection(sourceFieldName, field.type.clazz, false, arrayTypeHint));
+					typeInjection.addField(field.name, new FieldInjection(sourceFieldName, field.type.clazz, false, arrayTypeHint));
 				}
 			}
 		}
 
-		private function addReflectedSetterRules(injectionMap:TypeInjection, methods:Array):void
+		private function addReflectedSetterRules(typeInjection:TypeInjection, methods:Array):void
 		{
 			for each (var method:Method in methods)
 			{
@@ -256,7 +256,7 @@ package net.fproject.serialize
 					{
 						const param:Parameter = method.parameters[i];
 						const arrayTypeHint:Class = extractArrayTypeHint(param.type, metadata);
-						injectionMap.addMethod(method.name, 
+						typeInjection.addMethod(method.name, 
 							new FieldInjection(argument.value, param.type.clazz, false, arrayTypeHint));
 					}
 				}
