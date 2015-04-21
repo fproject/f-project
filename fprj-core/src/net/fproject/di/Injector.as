@@ -37,7 +37,7 @@ package net.fproject.di
 	 */
 	public class Injector
 	{
-		public static const INSTANTIATOR:String = "instantiator";
+		public static const AUTO_INSTANCE:String = "autoinstance";
 		
 		public static const EVENT_HANDLING:String = "eventhandling";
 		
@@ -66,12 +66,12 @@ package net.fproject.di
 		
 		/**
 		 * <p>Instantiate member variables of an container object by dependency injection.</p>
-		 * In order to inject, the member must be declared by [Instantiator] metatdata, follows
+		 * In order to inject, the member must be declared by [AutoInstance] metatdata, follows
 		 * this syntax:
-		 * <pre>[Instantiator("interface implementation class", "delegate class")]</pre>
+		 * <pre>[AutoInstance(factory="interface implementation class")]</pre>
 		 * Examples:<br/>
 		 * <pre>
-		 * [Instantiator("net.projectkit.service.TaskService", "net.projectkit.delegate.MockTaskServiceDelegate")]
+		 * [AutoInstance("net.projectkit.service.TaskService")]
 		 * public var taskService:ITaskService;
 		 * </pre>
 		 * @param container the object that contains member variables to instantiate.
@@ -86,7 +86,7 @@ package net.fproject.di
 			injector.fproject_internal::instantiateMembers(container, constructorParam);
 		}
 		
-		public static const IMPL_KEY:String = "impl";
+		public static const FACTORY_KEY:String = "factory";
 		public static const DELEGATE_KEY:String = "delegate";
 		
 		/**
@@ -103,9 +103,9 @@ package net.fproject.di
 			{ 
 				for each (var metadata:Metadata in member.metadata)
 				{
-					if (metadata.name == INSTANTIATOR && metadata.arguments.length > 0)
+					if (metadata.name == AUTO_INSTANCE && metadata.arguments.length > 0)
 					{
-						var implClassName:String = getMetadataArgument(metadata, IMPL_KEY, 0);
+						var implClassName:String = getMetadataArgument(metadata, FACTORY_KEY, 0);
 						var delegateClassName:String = getMetadataArgument(metadata, DELEGATE_KEY, 1);
 						
 						//Instantiation
