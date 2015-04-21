@@ -58,7 +58,7 @@ package net.fproject.di
 		public static function inject(container:Object):void
 		{
 			var injector:Injector = getInstance(container);
-			injector.fproject_internal::instantiateMembers(container);
+			injector.fproject_internal::instantiateMembers(container, true);
 			injector.fproject_internal::attachEventListeners(container);
 			injector.fproject_internal::bindProperties(container);
 		}
@@ -79,20 +79,26 @@ package net.fproject.di
 		 * will be created and passed to the constructor.
 		 * 
 		 */
-		public static function instantiateMembers(container:Object):void
+		public static function instantiateMembers(container:Object, recursive:Boolean=true):void
 		{
 			var injector:Injector = getInstance(container);
-			injector.fproject_internal::instantiateMembers(container);
+			injector.fproject_internal::instantiateMembers(container, recursive);
 		}
 		
 		public static const FACTORY_KEY:String = "factory";
+		
+		private static var instantiatedContainer:Dictionary = new Dictionary;
 		
 		/**
 		 * @private
 		 * 
 		 */
-		fproject_internal function instantiateMembers(container:Object):void
+		fproject_internal function instantiateMembers(container:Object, recursive:Boolean):void
 		{
+			if(instantiatedContainer[container] != undefined)
+				return;
+			instantiatedContainer[container] = true;
+			
 			var type:Type = Type.forInstance(container);
 			
 			var members:Array = type.variables.concat(type.accessors);
@@ -112,7 +118,8 @@ package net.fproject.di
 						if(cls != null)
 						{
 							var instance:Object = container[member.name] = InstanceFactory.getInstance(cls);
-							this.fproject_internal::instantiateMembers(instance);
+							if(recursive)
+								this.fproject_internal::instantiateMembers(instance, recursive);
 						}
 						
 						break;
