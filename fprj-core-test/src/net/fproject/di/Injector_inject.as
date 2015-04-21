@@ -1,7 +1,5 @@
 package net.fproject.di
 {
-	import org.flexunit.asserts.assertFalse;
-
 	[ResourceBundle("fprjcore")]
 	/**
 	 * FlexUnit test case class for method<br/>
@@ -62,8 +60,7 @@ package net.fproject.di
 		public function testCase002():void
 		{
 			var container:Object = null;
-			var constructorParam:* = {};
-			Injector.inject(container, constructorParam);
+			Injector.inject(container);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -86,80 +83,7 @@ package net.fproject.di
 		public function testCase003():void
 		{
 			var container:Object = {};
-			var constructorParam:* = undefined;
-			Injector.inject(container, constructorParam);
-			//---- Place result assertion here ----
-			// You must replace this code by function specifications or 
-			// the test always returns false!
-			//-------------------------------------
-		}
-
-		[Test (expected="Error",description="Boundary case: [container = null, deferredBinding = false, constructorParam = undefined]")]
-		/**
-		 * Test Case Type: Boundary<br/>
-		 * <br/>
-		 * INPUT VALUES:<br/>
-		 * <code>container = null</code><br/>
-		 * <code>deferredBinding = false</code><br/>
-		 * <code>constructorParam = undefined</code><br/>
-		 * <br/>
-		 * OUTPUT EXPECTED:<br/>
-		 * ---- expectations ----
-		 *
-		 */
-		public function testCase004():void
-		{
-			var container:Object = null;
-			var constructorParam:* = undefined;
-			Injector.inject(container, constructorParam);
-			//---- Place result assertion here ----
-			// You must replace this code by function specifications or 
-			// the test always returns false!
-			//-------------------------------------
-		}
-
-		[Test (description="Boundary case: [container = {}, deferredBinding = false, constructorParam = null]")]
-		/**
-		 * Test Case Type: Boundary<br/>
-		 * <br/>
-		 * INPUT VALUES:<br/>
-		 * <code>container = {}</code><br/>
-		 * <code>deferredBinding = false</code><br/>
-		 * <code>constructorParam = null</code><br/>
-		 * <br/>
-		 * OUTPUT EXPECTED:<br/>
-		 * ---- expectations ----
-		 *
-		 */
-		public function testCase005():void
-		{
-			var container:Object = {};
-			var constructorParam:* = null;
-			Injector.inject(container, constructorParam);
-			//---- Place result assertion here ----
-			// You must replace this code by function specifications or 
-			// the test always returns false!
-			//-------------------------------------
-		}
-
-		[Test (expected="Error",description="Boundary case: [container = null, deferredBinding = false, constructorParam = null]")]
-		/**
-		 * Test Case Type: Boundary<br/>
-		 * <br/>
-		 * INPUT VALUES:<br/>
-		 * <code>container = null</code><br/>
-		 * <code>deferredBinding = false</code><br/>
-		 * <code>constructorParam = null</code><br/>
-		 * <br/>
-		 * OUTPUT EXPECTED:<br/>
-		 * ---- expectations ----
-		 *
-		 */
-		public function testCase006():void
-		{
-			var container:Object = null;
-			var constructorParam:* = null;
-			Injector.inject(container, constructorParam);
+			Injector.inject(container);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!

@@ -9,7 +9,7 @@ package testdata.di
 			return _param;
 		}
 
-		public function Injector_instantiateMembers_001_impl(param:Object)
+		public function Injector_instantiateMembers_001_impl(param:Object=null)
 		{
 			this._param = param;
 		}
