@@ -14,8 +14,8 @@ package net.fproject.di
 	
 	public class InstanceFactory
 	{
-		private static var classToImpl:Dictionary = new Dictionary();
-		private static var implToInstance:Dictionary = new Dictionary();
+		private static var classToImpl:Dictionary = new Dictionary;
+		private static var implToInstance:Dictionary = new Dictionary;
 		
 		private static var factoryConfig:XML
 		/**
@@ -43,6 +43,9 @@ package net.fproject.di
 		 */
 		public static function getInstance(clazz:Class):Object
 		{
+			if(implToInstance[clazz] != undefined)
+				return implToInstance[clazz];
+			
 			if(classToImpl[clazz] != undefined)
 			{
 				var impl:Class = classToImpl[clazz];
@@ -88,10 +91,10 @@ package net.fproject.di
 			
 			if(impl != null)
 			{
+				implToInstance[impl] = new impl;
+				if(impl !== clazz)
+					implToInstance[clazz] == implToInstance[impl];
 				classToImpl[clazz] = impl;
-				
-				implToInstance[impl] = new impl();
-				
 				return implToInstance[impl];
 			}
 			else
