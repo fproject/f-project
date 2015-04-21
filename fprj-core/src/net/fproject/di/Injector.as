@@ -55,11 +55,10 @@ package net.fproject.di
 		 * will be created and passed to the constructor.
 		 * 
 		 */
-		public static function inject(container:Object,
-									  constructorParam:*=undefined):void
+		public static function inject(container:Object):void
 		{
 			var injector:Injector = getInstance(container);
-			injector.fproject_internal::instantiateMembers(container, constructorParam);
+			injector.fproject_internal::instantiateMembers(container);
 			injector.fproject_internal::attachEventListeners(container);
 			injector.fproject_internal::bindProperties(container);
 		}
@@ -80,20 +79,19 @@ package net.fproject.di
 		 * will be created and passed to the constructor.
 		 * 
 		 */
-		public static function instantiateMembers(container:Object, constructorParam:*=undefined):void
+		public static function instantiateMembers(container:Object):void
 		{
 			var injector:Injector = getInstance(container);
-			injector.fproject_internal::instantiateMembers(container, constructorParam);
+			injector.fproject_internal::instantiateMembers(container);
 		}
 		
 		public static const FACTORY_KEY:String = "factory";
-		public static const DELEGATE_KEY:String = "delegate";
 		
 		/**
 		 * @private
 		 * 
 		 */
-		fproject_internal function instantiateMembers(container:Object, constructorParam:*):void
+		fproject_internal function instantiateMembers(container:Object):void
 		{
 			var type:Type = Type.forInstance(container);
 			
@@ -103,24 +101,19 @@ package net.fproject.di
 			{ 
 				for each (var metadata:Metadata in member.metadata)
 				{
-					if (metadata.name == AUTO_INSTANCE && metadata.arguments.length > 0)
+					if (metadata.name == AUTO_INSTANCE)
 					{
 						var implClassName:String = getMetadataArgument(metadata, FACTORY_KEY, 0);
-						var delegateClassName:String = getMetadataArgument(metadata, DELEGATE_KEY, 1);
-						
-						//Instantiation
-						
-						if(delegateClassName != null)
-							var param:* = new (getDefinitionByName(delegateClassName) as Class);
+						if(implClassName == null)
+							var cls:Class = member.type.clazz as Class;
 						else
-							param = constructorParam;
+							cls = getDefinitionByName(implClassName) as Class;
 						
-						var cls:Class = getDefinitionByName(implClassName) as Class;
-						
-						if(param != undefined)
-							container[member.name] = new cls(param);
-						else
-							container[member.name] = new cls();
+						if(cls != null)
+						{
+							var instance:Object = container[member.name] = InstanceFactory.getInstance(cls);
+							this.fproject_internal::instantiateMembers(instance);
+						}
 						
 						break;
 					}
