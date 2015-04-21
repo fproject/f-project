@@ -238,9 +238,9 @@ package net.fproject.core
 		 * Log the current user out 
 		 * 
 		 */
-		public function logout():void
+		public function logout():CallResponder
 		{
-			appContextService.logout(
+			return appContextService.logout(
 				function():void
 				{
 					if(hasEventListener(AppContextEvent.LOGGED_OUT))
