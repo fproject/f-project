@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testrun name="" >
 <testsuite  name="Default Test Suite" project="fprj-core-test">
-<testsuite name="net.fproject.serialize:Deserializer_fromJSON" type="testcaseclass">
-<testcase name="testCase004" classname="net.fproject.serialize:Deserializer_fromJSON"/>
+<testsuite name="net.fproject.di:Injector_instantiateMembers" type="testcaseclass">
+<testcase name="testCase005" classname="net.fproject.di:Injector_instantiateMembers"/>
 </testsuite>
 </testsuite>
 <portNumber value="8765" />
