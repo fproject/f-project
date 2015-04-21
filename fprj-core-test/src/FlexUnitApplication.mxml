@@ -9,7 +9,7 @@
 			   minWidth="955" minHeight="600" creationComplete="onCreationComplete()">
 	<fx:Script>
 		<![CDATA[
-			import net.fproject.serialize.Deserializer_fromJSON;
+			import net.fproject.di.Injector_instantiateMembers;
 			
 			import org.flexunit.runner.Request;
 			
@@ -17,7 +17,7 @@
 			{
 				var testsToRun:Array = new Array();
 				
-				testsToRun.push(Request.methods(net.fproject.serialize.Deserializer_fromJSON,["testCase016"]));
+				testsToRun.push(Request.methods(net.fproject.di.Injector_instantiateMembers,["testCase005"]));
 				return testsToRun;
 			}
 			

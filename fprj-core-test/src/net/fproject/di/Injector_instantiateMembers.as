@@ -2,7 +2,6 @@ package net.fproject.di
 {
 	
 	import org.flexunit.asserts.assertEquals;
-	import org.flexunit.asserts.assertFalse;
 	import org.flexunit.asserts.assertNotNull;
 	import org.flexunit.asserts.assertTrue;
 	
@@ -10,6 +9,8 @@ package net.fproject.di
 	import testdata.di.Injector_instantiateMembers_001_impl;
 	import testdata.di.Injector_instantiateMembers_003_container;
 	import testdata.di.Injector_instantiateMembers_003_impl;
+	import testdata.di.Injector_instantiateMembers_005_container;
+	import testdata.di.Injector_instantiateMembers_005_impl;
 	
 	[ResourceBundle("fprjcore")]
 	/**
@@ -129,5 +130,19 @@ package net.fproject.di
 			Injector.instantiateMembers(container, constructorParam);
 		}
 
+		
+		[Test (description="Normal case: [container = new Object(), constructorParam = null]")]
+		public function testCase005():void
+		{
+			var container:Injector_instantiateMembers_005_container = new Injector_instantiateMembers_005_container();
+			var constructorParam:* = null;
+			Injector.instantiateMembers(container, constructorParam);
+			//---- Place result assertion here ----
+			// You must replace this code by function specifications or 
+			// the test always returns false!
+			assertNotNull(container.impl);
+			assertTrue(container.impl is Injector_instantiateMembers_005_impl);
+			//-------------------------------------
+		}
 	}
 }
