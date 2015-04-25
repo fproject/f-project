@@ -77,7 +77,8 @@
     <classEntry path="net.fproject.collection.HierarchicalCollectionViewCursor"/>
     <classEntry path="net.fproject.collection.HierarchicalCollectionView"/>
     <classEntry path="net.fproject.collection.AdvancedArrayList"/>
-    <classEntry path="net.fproject.db.DbCriteria"/>
+    <classEntry path="net.fproject.active.DbCriteria"/>
+    <classEntry path="net.fproject.active.ActiveCallResponder"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="manifest.xml" sourcePath="manifest.xml"/>

@@ -5,9 +5,10 @@
 // Copyright © 2015 f-project.net. All Rights Reserved.
 //
 ///////////////////////////////////////////////////////////////////////////////
-package net.fproject.service
+package net.fproject.active
 {
 	import mx.rpc.CallResponder;
+	import net.fproject.service.ServiceBase;
 	
 	/**
 	 * <p>ActiveService implements a common set of operations for supporting remote access 

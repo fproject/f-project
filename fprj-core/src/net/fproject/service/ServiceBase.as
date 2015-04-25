@@ -152,9 +152,10 @@ package net.fproject.service
 		 * @return A call responder object
 		 */
 		protected function createServiceCall(callToken:AsyncToken,
-											 completeCallback:Function, failCallback:Function = null):CallResponder
+											 completeCallback:Function, failCallback:Function,
+											 responder:CallResponder=null):CallResponder
 		{
-			_lastCallResponder = new CallResponder();
+			_lastCallResponder = responder != null ? responder : new CallResponder();
 			_lastCallResponder.token = callToken;
 			
 			_lastCallResponder.addEventListener(ResultEvent.RESULT, onCallComplete);	

@@ -5,7 +5,7 @@
 // Copyright © 2015 f-project.net. All Rights Reserved.
 //
 ///////////////////////////////////////////////////////////////////////////////
-package net.fproject.db
+package net.fproject.active
 {
 	/**
 	 * DbCriteria represents a DB query criteria, such as conditions, ordering by, limit/offset.
