@@ -61,7 +61,7 @@ package net.fproject.rpc
 			assertEquals(url, jsonRemote.source);
 			
 			var meta:Object = jsonRemote.fproject_internal::operationNameToMetadata["method01"];
-			assertEquals(0, ObjectUtil.compare({method:"POST", returning:"MyModel", namedParams:true}, meta));
+			assertEquals(0, ObjectUtil.compare({method:"POST", returning:"MyModel"}, meta));
 			//-------------------------------------
 		}
 

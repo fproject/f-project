@@ -9,7 +9,6 @@
 			   minWidth="955" minHeight="600" creationComplete="onCreationComplete()">
 	<fx:Script>
 		<![CDATA[
-			import net.fproject.utils.DateTimeUtil_TestSuite;
 			import net.fproject.utils.DateTimeUtil.DateTimeUtil_formatIsoDate;
 			import net.fproject.utils.DateTimeUtil.DateTimeUtil_parseIsoDate;
 			

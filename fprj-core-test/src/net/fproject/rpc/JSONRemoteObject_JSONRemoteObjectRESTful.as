@@ -5,8 +5,8 @@ package net.fproject.rpc
 	import mx.utils.UIDUtil;
 	
 	import net.fproject.ServiceTestCaseBase;
+	import net.fproject.active.PaginationResult;
 	import net.fproject.di.InstanceFactory;
-	import net.fproject.model.Pagination;
 	
 	import org.flexunit.asserts.assertEquals;
 	import org.flexunit.asserts.assertNotNull;
@@ -64,8 +64,8 @@ package net.fproject.rpc
 		
 		public function testCase100_checkResult(event:ResultEvent, passThroughData:Object):void
 		{
-			assertTrue(event.result is Pagination);
-			var p:Pagination = event.result as Pagination;
+			assertTrue(event.result is PaginationResult);
+			var p:PaginationResult = event.result as PaginationResult;
 			for each(var o:Object in p.items)
 			{
 				assertTrue(o is TestUser);
@@ -90,8 +90,8 @@ package net.fproject.rpc
 		
 		public function testCase101_checkResult(event:ResultEvent, passThroughData:Object):void
 		{
-			assertTrue(event.result is Pagination);
-			var p:Pagination = event.result as Pagination;
+			assertTrue(event.result is PaginationResult);
+			var p:PaginationResult = event.result as PaginationResult;
 			for each(var o:Object in p.items)
 			{
 				assertTrue(o is TestUser);
@@ -117,8 +117,8 @@ package net.fproject.rpc
 		
 		public function testCase102_checkResult(event:ResultEvent, passThroughData:Object):void
 		{
-			assertTrue(event.result is Pagination);
-			var p:Pagination = event.result as Pagination;
+			assertTrue(event.result is PaginationResult);
+			var p:PaginationResult = event.result as PaginationResult;
 			for each(var o:Object in p.items)
 			{
 				assertTrue(o is TestUser);
@@ -144,8 +144,8 @@ package net.fproject.rpc
 		
 		public function testCase103_checkResult(event:ResultEvent, passThroughData:Object):void
 		{
-			assertTrue(event.result is Pagination);
-			var p:Pagination = event.result as Pagination;
+			assertTrue(event.result is PaginationResult);
+			var p:PaginationResult = event.result as PaginationResult;
 			for each(var o:Object in p.items)
 			{
 				assertTrue(o is TestUser);
@@ -173,7 +173,33 @@ package net.fproject.rpc
 		public function testCase200_checkResult(event:ResultEvent, passThroughData:Object):void
 		{
 			assertTrue(event.result is TestUser);
-			assertEquals("1", TestUser(event.result).id)
+			assertEquals("1", TestUser(event.result).id);
+			assertEquals(null, TestUser(event.result).profile);
+			assertEquals(null, TestUser(event.result).password);	
+			assertEquals(null, TestUser(event.result).authKey);
+		}
+		
+		[Test (async, description="Normal case")]
+		/**
+		 * Test Case Type: Normal<br/>
+		 * <br/>
+		 * INPUT VALUES:<br/>
+		 * <br/>
+		 * OUTPUT EXPECTED:<br/>
+		 * ---- expectations ----
+		 *
+		 */
+		public function testCase201():void
+		{
+			var responder:CallResponder = restService.findOne("1",null,null,{expand:"profile"});
+			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase201_checkResult, onFault), 2000));
+		}
+		
+		public function testCase201_checkResult(event:ResultEvent, passThroughData:Object):void
+		{
+			assertTrue(event.result is TestUser);
+			assertEquals("1", TestUser(event.result).id)			
+			assertTrue(TestUser(event.result).profile is TestUserProfile);
 		}
 		
 		[Test (async, description="Normal case")]
@@ -195,6 +221,57 @@ package net.fproject.rpc
 		public function testCase300_checkResult(event:ResultEvent, passThroughData:Object):void
 		{
 			assertNotNull(event.result);
+		}
+		
+		[Test (async, description="Normal case",order=3)]
+		/**
+		 * Test Case Type: Normal<br/>
+		 * <br/>
+		 * INPUT VALUES:<br/>
+		 * <br/>
+		 * OUTPUT EXPECTED:<br/>
+		 * ---- expectations ----
+		 *
+		 */
+		public function testCase301():void
+		{
+			var name:String = "Save User " + UIDUtil.createUID();
+			var user:Object = {"id":null,"username":name,"password":"ABC123"};
+			var responder:CallResponder = restService.save(user);
+			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase301_added, onFault), 2000, user));
+		}
+		
+		public function testCase301_added(event:ResultEvent, user:Object):void
+		{
+			var id:Object = event.result;
+			user.id = id;
+			var responder:CallResponder = restService.findOne(id);
+			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase301_checkAndSaveAgain, onFault), 2000, user));	
+		}
+		
+		public function testCase301_checkAndSaveAgain(event:ResultEvent, user:Object):void
+		{
+			var u:TestUser = TestUser(event.result);
+			assertEquals(user.username, u.username);		
+			u.username = "aaa";
+			u.password = "newpassword"
+			var responder:CallResponder = restService.save(u, null, null, ['id','password']);
+			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase301_findAgain, onFault), 2000, user));
+		}
+		
+		public function testCase301_findAgain(event:ResultEvent, user:Object):void
+		{
+			var id:Object = event.result;
+			var responder:CallResponder = restService.findOne(id);
+			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase301_checkFinalResult, onFault), 2000, user));	
+		}
+		
+		public function testCase301_checkFinalResult(event:ResultEvent, user:Object):void
+		{
+			assertNotNull(event.result);
+			assertEquals(user.id, TestUser(event.result).id);
+			assertEquals(user.username, TestUser(event.result).username);
+			assertEquals(null, TestUser(event.result).password);	
 		}
 		
 		[Test (async, description="Normal case")]
@@ -268,8 +345,15 @@ package net.fproject.rpc
 		 */
 		public function testCase500():void
 		{
-			var responder:CallResponder = restService.remove("3");
-			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase500_checkResult, onFault), 2000));
+			var id:String = UIDUtil.createUID();
+			var responder:CallResponder = restService.save({"id":null,"username":"Batch User " + id,"password":"ABC123"});
+			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase500_added, onFault), 2000));
+		}
+		
+		public function testCase500_added(event:ResultEvent, passThroughData:Object):void
+		{
+			var responder:CallResponder = restService.remove(event.result);
+			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase500_checkResult, onFault), 2000));	
 		}
 		
 		public function testCase500_checkResult(event:ResultEvent, passThroughData:Object):void
@@ -289,8 +373,23 @@ package net.fproject.rpc
 		 */
 		public function testCase600():void
 		{
-			var responder:CallResponder = restService.batchRemove([4,5]);
-			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase600_checkResult, onFault), 2000));
+			var id:String = UIDUtil.createUID();
+			var responder:CallResponder = restService.batchSave(
+				[{"id":null,"username":"Batch User " + id,"password":"ABC123"},
+				{"id":null,"username":"Batch User " + id,"password":"ABC123"}]);
+			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase600_added, onFault), 2000));
+		}
+		
+		public function testCase600_added(event:ResultEvent, passThroughData:Object):void
+		{
+			var batchSaveReturn:Object = event.result;
+			var a:Array = [];
+			for(var i:int = int(batchSaveReturn.insertCount); i > 0; i--)
+			{
+				a.push(int(batchSaveReturn.lastId) - i + 1);
+			}
+			var responder:CallResponder = restService.batchRemove(a);
+			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase600_checkResult, onFault), 2000));	
 		}
 		
 		public function testCase600_checkResult(event:ResultEvent, passThroughData:Object):void

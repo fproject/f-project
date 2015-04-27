@@ -7,7 +7,7 @@ package net.fproject.rpc
 	import org.flexunit.asserts.assertEquals;
 	import org.flexunit.asserts.assertNull;
 	import org.flexunit.asserts.assertTrue;
-
+	
 	/**
 	 * FlexUnit test case class for method<br/>
 	 * <code>public function JSONMessage(operation:JSONOperation, sendingArgs:Array, token:AsyncToken)</code><br/>
@@ -24,13 +24,13 @@ package net.fproject.rpc
 			service = new JSONRemoteObject("TestService", null, new Channel, null, null, null, null);
 			service.source = BASE_URL;
 		}
-
+		
 		[After]
 		public function runAfterEveryTest():void
 		{
 			//Your test data cleaning
 		}
-
+		
 		[Test (description="Normal case: [operation = new JSONOperation(), sendingArgs = [new Object()], token = new AsyncToken()]")]
 		/**
 		 * Test Case Type: Normal<br/>
@@ -55,7 +55,7 @@ package net.fproject.rpc
 			var returnTestValue:JSONMessage = new JSONMessage(operation, sendingArgs, token);
 			assertEquals(BASE_URL + "?per-page=10", returnTestValue.url);
 		}
-
+		
 		[Test (description="Boundary case: [operation = null, sendingArgs = [new Object()], token = new AsyncToken()]")]
 		/**
 		 * Test Case Type: Boundary<br/>
@@ -79,10 +79,12 @@ package net.fproject.rpc
 			var sendingArgs:Array = [obj, NaN, NaN, null];
 			var token:AsyncToken = new AsyncToken();
 			var returnTestValue:JSONMessage = new JSONMessage(operation, sendingArgs, token);
-			var b:Boolean = (BASE_URL + "?criteria={\"a\":\"A\",\"b\":\"B\"}" == returnTestValue.url) || (BASE_URL + "?criteria={\"b\":\"B\",\"a\":\"A\"}" == returnTestValue.url);
+			var b:Boolean = (BASE_URL + "?criteria="+ 
+				encodeURIComponent("{\"a\":\"A\",\"b\":\"B\"}") == returnTestValue.url) 
+				|| (BASE_URL + "?criteria="+encodeURIComponent("{\"b\":\"B\",\"a\":\"A\"}") == returnTestValue.url);
 			assertTrue(b);
 		}
-
+		
 		[Test (description="Boundary case: [operation = new JSONOperation(), sendingArgs = [], token = new AsyncToken()]")]
 		/**
 		 * Test Case Type: Boundary<br/>
@@ -109,7 +111,7 @@ package net.fproject.rpc
 			assertEquals(BASE_URL, returnTestValue.url);
 			assertNull(returnTestValue.body);
 		}
-
+		
 		[Test (description="Boundary case: [operation = null, sendingArgs = [], token = new AsyncToken()]")]
 		/**
 		 * Test Case Type: Boundary<br/>
@@ -137,7 +139,7 @@ package net.fproject.rpc
 			var b:Boolean = "{\"a\":\"A\",\"b\":\"B\"}" == returnTestValue.body || "{\"b\":\"B\",\"a\":\"A\"}" == returnTestValue.body;
 			assertTrue(b);
 		}
-
+		
 		[Test (description="Boundary case: [operation = new JSONOperation(), sendingArgs = null, token = new AsyncToken()]")]
 		/**
 		 * Test Case Type: Boundary<br/>
@@ -162,7 +164,7 @@ package net.fproject.rpc
 			var returnTestValue:JSONMessage = new JSONMessage(operation, sendingArgs, token);
 			assertEquals(BASE_URL + "?page=5&per-page=10&sort=ABC", returnTestValue.url);
 		}
-
+		
 		[Test (description="Boundary case: [operation = null, sendingArgs = null, token = new AsyncToken()]")]
 		/**
 		 * Test Case Type: Boundary<br/>
@@ -187,7 +189,7 @@ package net.fproject.rpc
 			var returnTestValue:JSONMessage = new JSONMessage(operation, sendingArgs, token);
 			assertEquals(BASE_URL + "?sort=ABC", returnTestValue.url);
 		}
-
+		
 		[Test (description="Boundary case: [operation = new JSONOperation(), sendingArgs = [new Object()], token = null]")]
 		/**
 		 * Test Case Type: Boundary<br/>
@@ -211,8 +213,8 @@ package net.fproject.rpc
 			var sendingArgs:Array = [obj, 5, 10, "XYZ"];
 			var token:AsyncToken = new AsyncToken();
 			var returnTestValue:JSONMessage = new JSONMessage(operation, sendingArgs, token);
-			var s1:String = BASE_URL + "?criteria={\"a\":\"A\",\"b\":\"B\"}&page=5&per-page=10&sort=XYZ";
-			var s2:String = BASE_URL + "?criteria={\"b\":\"B\",\"a\":\"A\"}&page=5&per-page=10&sort=XYZ";
+			var s1:String = BASE_URL + "?criteria=" + encodeURIComponent("{\"a\":\"A\",\"b\":\"B\"}") + "&page=5&per-page=10&sort=XYZ";
+			var s2:String = BASE_URL + "?criteria=" + encodeURIComponent("{\"b\":\"B\",\"a\":\"A\"}") + "&page=5&per-page=10&sort=XYZ";
 			assertTrue(returnTestValue.url == s1 || returnTestValue.url == s2);
 		}
 	}
