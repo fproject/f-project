@@ -56,7 +56,43 @@ package net.fproject.rpc
 				var extraParamArg:Array = sendingArgs[extraParamIndex];
 				if(extraParamArg != null && extraParamArg.length > 0)
 				{
-					var extraParamStr:String = extraParamArg.join("&");
+					var extraParamStr:String = null;
+					if(extraParamArg.length == 1 && typeof(extraParamArg[0]) == "object")
+					{
+						var extraArgValue:Object = extraParamArg[0];
+						for(var s:String in extraArgValue)
+						{
+							if(!(extraArgValue[s] is Function))
+							{
+								if(extraParamStr != null)
+									extraParamStr = "&" + extraParamStr;
+								else
+									extraParamStr = "";
+								extraParamStr += encodeURIComponent(s) + "=" + urlEncode(extraArgValue[s]);
+							}
+						}
+					}
+					else
+					{
+						for each(extraArgValue in extraParamArg)
+						{
+							if(extraArgValue != null)
+							{
+								s = extraArgValue.toString();
+								var i:int = s.indexOf('=');
+								if(i > 0)
+								{
+									if(extraParamStr != null)
+										extraParamStr = "&" + extraParamStr;
+									else
+										extraParamStr = "";
+									extraParamStr += encodeURIComponent(s.substr(0, i)) + 
+										"=" + encodeURIComponent(s.substr(i + 1));
+								}
+							}
+							
+						}
+					}
 				}
 			}
 			else
@@ -67,7 +103,7 @@ package net.fproject.rpc
 			var remainingArgs:Array = [];
 			if(route != null)
 			{
-				for (var i:int = sendingArgs.length - 1; i > -1 ; i--)
+				for (i = sendingArgs.length - 1; i > -1 ; i--)
 				{
 					if(route.indexOf("{" + i + "}") == -1)
 					{
