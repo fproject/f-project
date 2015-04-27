@@ -15,7 +15,7 @@ package net.fproject.rpc
 	import net.fproject.fproject_internal;
 	import net.fproject.serialize.Deserializer;
 	import net.fproject.utils.StringUtil;
-	import net.fproject.model.Pagination;
+	import net.fproject.active.PaginationResult;
 	
 	/**
 	 * A JSONOperation used specifically by JSONRemoteObject. A JSONOperation is an individual method on a service.
@@ -169,7 +169,7 @@ package net.fproject.rpc
 					var body:Object = JSON.parse(jsonBody);
 				if(body != null)
 				{
-					var decodedResult:Object = Pagination.fromJSON(body, retn);
+					var decodedResult:Object = PaginationResult.fromJSON(body, retn);
 					if(decodedResult == null)
 					{
 						decodedResult = Deserializer.getInstance().fromJSON(body, retn);

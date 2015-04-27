@@ -28,7 +28,8 @@ package net.fproject.active
 			{
 				for(var s:String in source)
 				{
-					this[s] = source[s];
+					if(this.hasOwnProperty(s))
+						this[s] = source[s];
 				}
 			}			
 		}
@@ -38,25 +39,25 @@ package net.fproject.active
 		 * the SELECT clause would be changed to SELECT DISTINCT.
 		 */
 		public var distinct:Boolean=false;
+		
 		/**
 		 * The key to get query condition.
 		 * In server side, this key is used to retrieve the WHERE clause in an SQL statement.
 		 * For example, '@findByUserExpand'.
 		 */
 		public var condition:String='';
+		
 		/**
 		 * List of query parameter values indexed by parameter placeholders.
-		 * For example, <code>{':name'=>'Dan', ':age'=>31}</code>.
+		 * For example, <code>{':name' : 'Dan', ':age' : 31}</code>.
 		 */
 		public var params:Object={};
+		
 		/**
-		 * Maximum number of records to be returned. If less than 0, it means no limit.
+		 * The pagination information, for example: <code>{page : 3, perPage : 10}</code>.
 		 */
-		public var limit:Number=-1;
-		/**
-		 * Zero-based offset from where the records are to be returned. If less than 0, it means starting from the beginning.
-		 */
-		public var offset:Number=-1;
+		public var pagination:Object = null;
+		
 		/**
 		 * How to sort the query results. This field is used to generate the ORDER BY clause in an SQL statement.
 		 * For example, 'userName,-birthDay' will sort by userName ASC and then birthDay DESC
