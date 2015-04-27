@@ -1,7 +1,8 @@
-package net.fproject.model
+package net.fproject.active
 {
 	import net.fproject.serialize.Deserializer;
 
+	[RemoteClass(alias="FPaginationResult")]
 	/**
 	 * 
 	 * The Pagination class represents the model for receiving RPC result with pagination.
@@ -9,7 +10,7 @@ package net.fproject.model
 	 * @author Bui Sy Nguyen
 	 * 
 	 */
-	public class Pagination
+	public class PaginationResult
 	{
 		/**
 		 * Current page items
@@ -38,11 +39,11 @@ package net.fproject.model
 		 */
 		public var meta:Object;
 		
-		public static function fromJSON(json:Object, modelClass:*):Pagination
+		public static function fromJSON(json:Object, modelClass:*):PaginationResult
 		{
 			if(json.hasOwnProperty("items") && json.hasOwnProperty("_links") && json.hasOwnProperty("_meta"))
 			{
-				var pagination:Pagination = new Pagination;
+				var pagination:PaginationResult = new PaginationResult;
 				pagination.items = Deserializer.getInstance().fromJSON(json.items, modelClass) as Array;
 				pagination.links = json._links;
 				pagination.meta = json._meta;
