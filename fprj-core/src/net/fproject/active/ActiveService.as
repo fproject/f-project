@@ -8,6 +8,7 @@
 package net.fproject.active
 {
 	import mx.rpc.CallResponder;
+	
 	import net.fproject.service.ServiceBase;
 	
 	/**
@@ -134,7 +135,7 @@ package net.fproject.active
 				completeCallback, failCallback);
 		}
 		
-		[RESTOperation(method='POST', route="/save")]
+		[RESTOperation(method='POST', route="/save?fields={1}")]
 		/**
 		 * <p>
 		 * Save a model object
@@ -202,7 +203,7 @@ package net.fproject.active
 				completeCallback, failCallback);
 		}
 		
-		[RESTOperation(method='POST', route="/batch-save")]
+		[RESTOperation(method='POST', route="/batch-save?fields={1}")]
 		/**
 		 * Batch save an array of models
 		 *
@@ -248,6 +249,20 @@ package net.fproject.active
 		{
 			return createServiceCall(remoteObject.batchRemove(items),
 				completeCallback, failCallback);
+		}
+		
+		/**
+		 * Execute an active query 
+		 * @param dataProvider the output data provider
+		 * @return a <code>ActiveCallResponder</code> responds for the call.
+		 * The <code>result</code> array of RESULT event will be merged into the
+		 * data provider.
+		 */
+		public function activeQuery(dataProvider:ActiveDataProvider):ActiveCallResponder
+		{
+			var responder:ActiveCallResponder = new ActiveCallResponder(dataProvider);
+			createServiceCall(remoteObject.find(dataProvider.criteria), null, null, responder);
+			return responder;
 		}
 	}
 }
