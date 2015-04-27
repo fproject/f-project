@@ -21,7 +21,8 @@ package net.fproject.rpc
 		[Before]
 		public function runBeforeEveryTest():void
 		{
-			jsonRemoteObject = new JSONRemoteObject("","",null,null,"","",null);
+			var chanel:HTTPChannel = new HTTPChannel("myChannel","http://abc.com");
+			jsonRemoteObject = new JSONRemoteObject("","",chanel,null,"","",null);
 			//Your test data initialization
 		}
 
