@@ -1,15 +1,7 @@
 package net.fproject.active
 {
-	import org.flexunit.Assert;
 	import org.flexunit.asserts.assertEquals;
-	import org.flexunit.asserts.assertFalse;
-	import flash.events.IEventDispatcher;
-	
-	import mx.collections.ArrayCollection;
-	import mx.collections.CursorBookmark;
-	import mx.collections.IViewCursor;
-	import mx.events.FlexEvent;
-	import mx.rpc.events.ResultEvent;
+	import org.flexunit.asserts.assertTrue;
 
 	/**
 	 * FlexUnit test case class for method<br/>
@@ -51,7 +43,8 @@ package net.fproject.active
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertFalse(true);
+			assertEquals(service, returnTestValue.service);
+			assertTrue(returnTestValue.criteria is DbCriteria);
 			//-------------------------------------
 		}
 
@@ -75,7 +68,8 @@ package net.fproject.active
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertFalse(true);
+			assertEquals(service, returnTestValue.service);
+			assertTrue(returnTestValue.criteria is DbCriteria);
 			//-------------------------------------
 		}
 
@@ -99,7 +93,8 @@ package net.fproject.active
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertFalse(true);
+			assertEquals(service, returnTestValue.service);
+			assertEquals(criteria, returnTestValue.criteria);
 			//-------------------------------------
 		}
 
@@ -123,7 +118,8 @@ package net.fproject.active
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertFalse(true);
+			assertEquals(service, returnTestValue.service);
+			assertEquals(criteria, returnTestValue.criteria);
 			//-------------------------------------
 		}
 
