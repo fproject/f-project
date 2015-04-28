@@ -29,6 +29,7 @@
     <application path="DateTimeUtil_Test.mxml"/>
     <application path="StringUtil_Test.mxml"/>
     <application path="FlexUnitApplication.mxml"/>
+    <application path="ActiveDataProvider_Test.mxml"/>
   </applications>
   <modules/>
   <workers/>
