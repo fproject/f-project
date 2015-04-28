@@ -1,4 +1,4 @@
-package testdata.rpc
+package testdata.active
 {
 	import net.fproject.active.ActiveService;
 

@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testrun name="" >
 <testsuite  name="Default Test Suite" project="fprj-core-test">
-<testsuite name="net.fproject.di:Injector_instantiateMembers" type="testcaseclass">
-<testcase name="testCase005" classname="net.fproject.di:Injector_instantiateMembers"/>
-</testsuite>
+<testsuite name="net.fproject.active:ActiveDataProvider_TestSuite" type="testsuiteclass"/>
 </testsuite>
 <portNumber value="8765" />
 </testrun>

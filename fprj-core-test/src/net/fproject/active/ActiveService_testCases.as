@@ -1,11 +1,10 @@
-package net.fproject.rpc
+package net.fproject.active
 {
 	import mx.rpc.CallResponder;
 	import mx.rpc.events.ResultEvent;
 	import mx.utils.UIDUtil;
 	
 	import net.fproject.ServiceTestCaseBase;
-	import net.fproject.active.PaginationResult;
 	import net.fproject.di.InstanceFactory;
 	
 	import org.flexunit.asserts.assertEquals;
@@ -16,7 +15,7 @@ package net.fproject.rpc
 	
 	import testdata.TestUser;
 	import testdata.TestUserProfile;
-	import testdata.rpc.JSONRemoteObject_JSONRemoteObjectRESTfulService;
+	import testdata.active.JSONRemoteObject_JSONRemoteObjectRESTfulService;
 
 	/**
 	 * FlexUnit test case class for method<br/>
@@ -24,7 +23,7 @@ package net.fproject.rpc
 	 * of class<br/>
 	 * net.fproject.rpc.JSONRemoteObject
 	 */
-	public class JSONRemoteObject_JSONRemoteObjectRESTful extends ServiceTestCaseBase
+	public class ActiveService_testCases extends ServiceTestCaseBase
 	{
 		private var restService:JSONRemoteObject_JSONRemoteObjectRESTfulService;
 		
