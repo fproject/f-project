@@ -9,16 +9,10 @@
 			   minWidth="955" minHeight="600" creationComplete="onCreationComplete()">
 	<fx:Script>
 		<![CDATA[
-			import net.fproject.rpc.RemoteObjectFactory_getInstance;
-			
-			import org.flexunit.runner.Request;
 			
 			public function currentRunTestSuite():Array
 			{
 				var testsToRun:Array = new Array();
-				
-				testsToRun.push(Request.methods(RemoteObjectFactory_getInstance,
-					["testCase001"]));
 				return testsToRun;
 			}
 			

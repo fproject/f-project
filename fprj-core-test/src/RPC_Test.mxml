@@ -9,13 +9,14 @@
 			   minWidth="955" minHeight="600" creationComplete="onCreationComplete()">
 	<fx:Script>
 		<![CDATA[
+			import net.fproject.active.ActiveService_TestSuite;
 			import net.fproject.rpc.AMFRemoteObject_TestSuite;
 			import net.fproject.rpc.JSONChannel_TestSuite;
-			import net.fproject.serialize.Serialize_TestSuite;
 			import net.fproject.rpc.JSONMessage_TestSuite;
 			import net.fproject.rpc.JSONOperation_TestSuite;
 			import net.fproject.rpc.JSONRemoteObject_TestSuite;
 			import net.fproject.rpc.RemoteObjectFactory_TestSuite;
+			import net.fproject.serialize.Serialize_TestSuite;
 			
 			public function currentRunTestSuite():Array
 			{
@@ -27,6 +28,8 @@
 				testsToRun.push(JSONOperation_TestSuite);
 				testsToRun.push(Serialize_TestSuite);
 				testsToRun.push(RemoteObjectFactory_TestSuite);
+				testsToRun.push(ActiveService_TestSuite);
+				
 				return testsToRun;
 			}
 			

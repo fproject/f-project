@@ -7,6 +7,5 @@ package net.fproject.rpc
 		public var jsonremoteobjectJsonremoteobject:JSONRemoteObject_JSONRemoteObject;
 		public var jsonremoteobjectGetoperation:JSONRemoteObject_getOperation;
 		public var jsonremoteobjectInitendpoint:JSONRemoteObject_initEndpoint;
-		public var jsonremoteobjectRESTful:JSONRemoteObject_JSONRemoteObjectRESTful;
 	}
 }
