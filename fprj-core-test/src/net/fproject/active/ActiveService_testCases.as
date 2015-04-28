@@ -15,7 +15,7 @@ package net.fproject.active
 	
 	import testdata.TestUser;
 	import testdata.TestUserProfile;
-	import testdata.active.JSONRemoteObject_JSONRemoteObjectRESTfulService;
+	import testdata.active.JSONRemoteObject_RESTfulService;
 
 	/**
 	 * FlexUnit test case class for method<br/>
@@ -25,13 +25,13 @@ package net.fproject.active
 	 */
 	public class ActiveService_testCases extends ServiceTestCaseBase
 	{
-		private var restService:JSONRemoteObject_JSONRemoteObjectRESTfulService;
+		private var restService:JSONRemoteObject_RESTfulService;
 		
 		[Before(async)]
 		override public function runBeforeEveryTest():void
 		{
 			super.runBeforeEveryTest();
-			restService = InstanceFactory.getInstance(JSONRemoteObject_JSONRemoteObjectRESTfulService) as JSONRemoteObject_JSONRemoteObjectRESTfulService;
+			restService = InstanceFactory.getInstance(JSONRemoteObject_RESTfulService) as JSONRemoteObject_RESTfulService;
 		}
 
 		[After]
