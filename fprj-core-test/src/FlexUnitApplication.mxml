@@ -9,10 +9,12 @@
 			   minWidth="955" minHeight="600" creationComplete="onCreationComplete()">
 	<fx:Script>
 		<![CDATA[
+			import net.fproject.active.ActiveDataProvider_ActiveDataProvider;
 			
 			public function currentRunTestSuite():Array
 			{
 				var testsToRun:Array = new Array();
+				testsToRun.push(net.fproject.active.ActiveDataProvider_ActiveDataProvider);
 				return testsToRun;
 			}
 			

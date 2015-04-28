@@ -1,15 +1,6 @@
 package net.fproject.active
 {
-	import org.flexunit.Assert;
 	import org.flexunit.asserts.assertEquals;
-	import org.flexunit.asserts.assertFalse;
-	import flash.events.IEventDispatcher;
-	
-	import mx.collections.ArrayCollection;
-	import mx.collections.CursorBookmark;
-	import mx.collections.IViewCursor;
-	import mx.events.FlexEvent;
-	import mx.rpc.events.ResultEvent;
 
 	/**
 	 * FlexUnit test case class for method<br/>
@@ -24,7 +15,8 @@ package net.fproject.active
 		[Before]
 		public function runBeforeEveryTest():void
 		{
-			activedataprovider = new ActiveDataProvider();
+			activedataprovider = new ActiveDataProvider(new ActiveService,
+				{criteria:"ccc", pagination:{page:10,perPage:100}});
 			//Your test data initialization
 		}
 
@@ -51,7 +43,8 @@ package net.fproject.active
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertFalse(true);
+			assertEquals(10, returnTestValue.page);
+			assertEquals(100, returnTestValue.perPage);
 			//-------------------------------------
 		}
 
