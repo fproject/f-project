@@ -1,7 +1,9 @@
 package com.domain.gui.components
 {
+	import flash.display.DisplayObject;
 	import flash.events.Event;
 	
+	import mx.core.FlexGlobals;
 	import mx.managers.PopUpManager;
 	
 	import spark.components.Button;
@@ -22,7 +24,7 @@ package com.domain.gui.components
 		public function showDialogButton_click(e:Event):void
 		{
 			var dlg:DialogView = new DialogView;
-			PopUpManager.addPopUp(dlg, this);
+			PopUpManager.addPopUp(dlg, FlexGlobals.topLevelApplication as DisplayObject);
 			PopUpManager.centerPopUp(dlg);
 		}
 	}
