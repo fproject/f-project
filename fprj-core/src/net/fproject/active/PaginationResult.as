@@ -39,6 +39,42 @@ package net.fproject.active
 		 */
 		public var meta:Object;
 		
+		[Transient]
+		public function get totalCount():Number
+		{
+			return getPagingResult('totalCount');
+		}
+		
+		[Transient]
+		public function get currentPage():Number
+		{
+			return getPagingResult('currentPage');
+		}
+		
+		[Transient]
+		public function get pageCount():Number
+		{
+			return getPagingResult('pageCount');
+		}
+		
+		[Transient]
+		public function get perPage():Number
+		{
+			return getPagingResult('perPage');
+		}
+		
+		private function getPagingResult(key:String):Number
+		{
+			return meta != null && meta.hasOwnProperty(key) ? meta[key] : NaN;
+		}
+		
+		/**
+		 * Instantiate from JSON data of remote call result.
+		 * @param json the JSON data of remote call result.
+		 * @param modelClass the model class for strong typed deserialization
+		 * @return a new instance of PaginationResult from JSON remote result
+		 * 
+		 */
 		public static function fromJSON(json:Object, modelClass:*):PaginationResult
 		{
 			if(json.hasOwnProperty("items") && json.hasOwnProperty("_links") && json.hasOwnProperty("_meta"))
