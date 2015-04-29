@@ -1,15 +1,16 @@
 package net.fproject.active
 {
-	import org.flexunit.Assert;
-	import org.flexunit.asserts.assertEquals;
-	import org.flexunit.asserts.assertFalse;
-	import flash.events.IEventDispatcher;
-	
-	import mx.collections.ArrayCollection;
-	import mx.collections.CursorBookmark;
-	import mx.collections.IViewCursor;
-	import mx.events.FlexEvent;
 	import mx.rpc.events.ResultEvent;
+	
+	import net.fproject.ServiceTestCaseBase;
+	import net.fproject.di.InstanceFactory;
+	
+	import org.flexunit.asserts.assertTrue;
+	import org.flexunit.async.Async;
+	import org.flexunit.async.TestResponder;
+	
+	import testdata.TestUser;
+	import testdata.active.JSONRemoteObject_RESTfulService;
 
 	/**
 	 * FlexUnit test case class for method<br/>
@@ -17,25 +18,33 @@ package net.fproject.active
 	 * of class<br/>
 	 * net.fproject.active.ActiveDataProvider
 	 */
-	public class ActiveDataProvider_queryNextPage
+	public class ActiveDataProvider_queryNextPage extends ServiceTestCaseBase
 	{
-		private var activedataprovider:ActiveDataProvider;
+		private var restService:JSONRemoteObject_RESTfulService;
+		
+		private var activedataProvider:ActiveDataProvider;
 
-		[Before]
-		public function runBeforeEveryTest():void
+		[Before(async)]
+		override public function runBeforeEveryTest():void
 		{
-			activedataprovider = new ActiveDataProvider();
+			restService = InstanceFactory.getInstance(JSONRemoteObject_RESTfulService) as JSONRemoteObject_RESTfulService;
 			//Your test data initialization
 		}
 
 		[After]
 		public function runAfterEveryTest():void
 		{
-			activedataprovider = null;
+			activedataProvider = null;
+			restService = null;
 			//Your test data cleaning
 		}
 
-		[Test (description="Normal case: []")]
+		public function onFault(data:Object, passThroughData:Object ):void 
+		{
+			throw new Error("Test was failed: data = " + data + ", passThroughData = " + passThroughData);
+		}
+		
+		[Test (async,description="Normal case: []")]
 		/**
 		 * Test Case Type: Normal<br/>
 		 * <br/>
@@ -47,12 +56,19 @@ package net.fproject.active
 		 */
 		public function testCase001():void
 		{
-			activedataprovider.queryNextPage();
-			//---- Place result assertion here ----
-			// You must replace this code by function specifications or 
-			// the test always returns false!
-			assertFalse(true);
-			//-------------------------------------
+			activedataProvider = new ActiveDataProvider({}, restService);
+			var resp:ActiveCallResponder = activedataProvider.queryNextPage();
+			resp.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase001_checkResult, onFault), 2000));
+		}
+		
+		public function testCase001_checkResult(event:ResultEvent, passThroughData:Object):void
+		{
+			assertTrue(event.result is PaginationResult);
+			var p:PaginationResult = event.result as PaginationResult;
+			for each(var o:Object in p.items)
+			{
+				assertTrue(o is TestUser);
+			}
 		}
 
 	}

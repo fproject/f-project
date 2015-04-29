@@ -39,7 +39,7 @@ package net.fproject.active
 		{
 			var service:ActiveService = new ActiveService();
 			var criteria:Object = new Object();
-			var returnTestValue:ActiveDataProvider = new ActiveDataProvider(service, criteria);
+			var returnTestValue:ActiveDataProvider = new ActiveDataProvider(criteria, service);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -64,7 +64,7 @@ package net.fproject.active
 		{
 			var service:ActiveService = null;
 			var criteria:Object = new Object();
-			var returnTestValue:ActiveDataProvider = new ActiveDataProvider(service, criteria);
+			var returnTestValue:ActiveDataProvider = new ActiveDataProvider(criteria, service);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -89,7 +89,7 @@ package net.fproject.active
 		{
 			var service:ActiveService = new ActiveService();
 			var criteria:Object = null;
-			var returnTestValue:ActiveDataProvider = new ActiveDataProvider(service, criteria);
+			var returnTestValue:ActiveDataProvider = new ActiveDataProvider(criteria, service);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -114,7 +114,7 @@ package net.fproject.active
 		{
 			var service:ActiveService = null;
 			var criteria:Object = null;
-			var returnTestValue:ActiveDataProvider = new ActiveDataProvider(service, criteria);
+			var returnTestValue:ActiveDataProvider = new ActiveDataProvider(criteria, service);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
