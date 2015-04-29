@@ -42,13 +42,13 @@ package net.fproject.active
 			return _criteria;
 		}
 		
-		private var _pagination:Object;
+		private var _paginationResult:PaginationResult;
 
-		public function get pagination():Object
+		public function get paginationResult():PaginationResult
 		{
-			return _pagination;
+			return _paginationResult;
 		}
-		
+
 		private var _service:ActiveService;
 
 		public function get service():ActiveService
@@ -72,10 +72,10 @@ package net.fproject.active
 		private function defaultQueryTrigger(cursor:IViewCursor):Boolean
 		{
 			var bookmark:CursorBookmark = cursor.bookmark;
-			if(bookmark != null && this.length > 0)
+			if(bookmark != null && cursor.view.length > 0)
 			{
 				var i:int = bookmark.getViewIndex();
-				if(0.9 < i/this.length)
+				if(0.9 < i/cursor.view.length)
 					return true;
 			}
 			return false;
@@ -103,13 +103,11 @@ package net.fproject.active
 		{
 			if(_criteria == null)
 				_criteria = new DbCriteria;
-			if(_pagination != null)
+			if(_paginationResult != null)
 			{
-				_criteria.pagination = {};
-				if(_pagination.hasOwnProperty('perPage'))
-					_criteria.pagination['perPage'] = _pagination['perPage'];
-				if(_pagination.hasOwnProperty('currentPage'))
-					_criteria.pagination['page'] = int(_pagination['currentPage']) + 1;
+				_criteria.pagination = {
+					page: _paginationResult.currentPage + 1, perPage: _paginationResult.perPage
+				};
 			}
 			
 			_queryNextPagePending = true;
@@ -124,11 +122,15 @@ package net.fproject.active
 			if(data is ResultEvent)
 			{
 				var pr:PaginationResult = ResultEvent(data).result as PaginationResult;
-				for each(var o:Object in pr.items)
+				if(_paginationResult == null || 
+					_paginationResult.currentPage != pr.currentPage)
 				{
-					this.addItem(o);
-				}
-				_pagination = pr.meta;
+					for each(var o:Object in pr.items)
+					{
+						this.addItem(o);
+					}
+				}				
+				_paginationResult = pr;
 			}
 		}
 		
@@ -152,13 +154,12 @@ package net.fproject.active
 			}
 			else if(criteria != null)
 			{
-				if(criteria.hasOwnProperty('pagination'))
-					_pagination = criteria['pagination'];
 				if(criteria.hasOwnProperty('criteria'))
 					_criteria = new DbCriteria(criteria['criteria']);
 				else
 					_criteria = new DbCriteria(criteria);
-				_criteria.pagination = _pagination;
+				if(criteria.hasOwnProperty('pagination'))
+					_criteria.pagination = criteria['pagination'];
 			}
 		}
 	}
