@@ -13,8 +13,7 @@
 		<s:State name="normal" />
 	</s:states>
 	
-	<s:Label x="10" y="34" 
-			 width="690" height="40" 
+	<s:Label x="10" y="34" height="40" 
 			 text="Employee Portal: Vehicle Request Form"
 			 styleName="titleHeader"/>
 	

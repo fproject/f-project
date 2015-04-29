@@ -21,7 +21,8 @@
 		<s:layout>
 			<s:HorizontalLayout/>
 		</s:layout>
-		<c:FirstSubView id="firstSubView" height="100%" width="50%"/>
-		<c:SecondSubView id="secondSubView" height="100%" width="50%"/>
+		<c:FirstSubView id="firstSubView" height="100%" width="25%"/>
+		<mx:AdvancedDataGrid id="userDataGrid" width="30%" height="100%"/>
+		<c:SecondSubView id="secondSubView" height="100%" width="45%"/>
 	</s:Panel>
 </s:Skin>

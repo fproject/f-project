@@ -10,6 +10,8 @@ package com.domain.gui.components
 	
 	import spark.components.TextArea;
 	
+	import net.fproject.active.PaginationResult;
+	
 	[EventHandling(event="initialize",handler="view_initialize")]//Event handling of class instance
 	[EventHandling(event="close", handler="view_close")]
 	public class DialogView extends DialogViewBase
@@ -29,10 +31,10 @@ package com.domain.gui.components
 			PopUpManager.removePopUp(this);
 		}
 		
-		private function userFindCompleteHandler(users:Array):void
+		private function userFindCompleteHandler(result:PaginationResult):void
 		{
 			theTextArea.text = "User searching result:\n\n"
-			for each(var user:User in users)
+			for each(var user:User in result.items)
 			{
 				theTextArea.appendText(StringUtil.substitute("ID: {0}, Name: {1}\n",user.id, user.username));
 			}
