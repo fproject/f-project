@@ -21,7 +21,7 @@ package net.fproject.active
 		 *  This method is called by a remote service when the return value has been 
 		 *  received.
 		 *
-		 *  @param data Object containing the information about the error that occured. .
+		 *  @param data Object containing the information about the result. .
 		 *  While <code>data</code> is typed as Object, it is often (but not always) 
 		 *  an mx.rpc.events.ResultEvent.
 		 */
@@ -29,6 +29,21 @@ package net.fproject.active
 		{
 			if(_activeDataProvider != null)
 				_activeDataProvider.result(data);
+			super.result(data);
+		}
+		
+		/**
+		 *  This method is called by a remote service when the failed result has been
+		 *  received.
+		 *
+		 *  @param data Object containing the information about the error that occured. .
+		 *  While <code>data</code> is typed as Object, it is often (but not always) 
+		 *  an mx.rpc.events.ResultEvent.
+		 */
+		override public function fault(data:Object):void
+		{
+			if(_activeDataProvider != null)
+				_activeDataProvider.fault(data);
 			super.result(data);
 		}
 	}
