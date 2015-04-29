@@ -18,7 +18,7 @@ package net.fproject.active
 	 * The <code>pagination</code> property can be used to specify query result pagination.
 	 * ActiveDataProvider may be used in the following way:
 	 * <pre>
-	 * userDataProvider=new ActiveDataProvider(UserService, {
+	 * userDataProvider=new ActiveDataProvider({
 	 *     criteria : {
 	 * 		condition : '&#64;findSomeUsers',
 	 * 		sort : 'name,-createTime',
@@ -29,6 +29,7 @@ package net.fproject.active
 	 *     },
 	 * });
 	 * userDataGrid.dataProvider = userDataProvider;
+	 * UserService.instance.fetchData(userDataProvider);
 	 * </pre>
 	 *
 	 * @author Bui Sy Nguyen
@@ -115,7 +116,7 @@ package net.fproject.active
 			
 			_queryNextPagePending = true;
 			
-			return service.activeQuery(this);
+			return service.fetchData(this);
 		}
 		
 		public function result(data:Object):void

@@ -252,13 +252,13 @@ package net.fproject.active
 		}
 		
 		/**
-		 * Execute an active query 
+		 * Execute an active query and fetch data to an ActiveDataProvider.
 		 * @param dataProvider the output data provider
 		 * @return a <code>ActiveCallResponder</code> responds for the call.
 		 * The <code>result</code> array of RESULT event will be merged into the
 		 * data provider.
 		 */
-		public function activeQuery(dataProvider:ActiveDataProvider):ActiveCallResponder
+		public function fetchData(dataProvider:ActiveDataProvider):ActiveCallResponder
 		{
 			dataProvider.setService(this);
 			var responder:ActiveCallResponder = new ActiveCallResponder(dataProvider);
