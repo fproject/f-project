@@ -1,8 +1,6 @@
 package net.fproject.active
 {
 	import flash.events.IEventDispatcher;
-	
-	import mx.collections.IViewCursor;
 	import mx.events.FlexEvent;
 	
 	import org.flexunit.asserts.assertTrue;
@@ -20,7 +18,7 @@ package net.fproject.active
 		[Before]
 		public function runBeforeEveryTest():void
 		{
-			activedataprovider = new ActiveDataProvider(new ActiveService, {});
+			activedataprovider = new ActiveDataProvider({}, new ActiveService);
 			//Your test data initialization
 		}
 

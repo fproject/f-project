@@ -15,8 +15,9 @@ package net.fproject.active
 		[Before]
 		public function runBeforeEveryTest():void
 		{
-			activedataprovider = new ActiveDataProvider(activeService,
-				{criteria:"ccc", pagination:{page:10,perPage:100}});
+			activedataprovider = new ActiveDataProvider(
+				{criteria:"ccc", pagination:{page:10,perPage:100}},
+				activeService);
 		}
 
 		[After]
