@@ -13,11 +13,55 @@ package net.fproject.rpc
 
 	public interface IRemoteObject extends IEventDispatcher
 	{
+		/**
+		 * 
+		 * The name or ID of remote object (the source object)
+		 * 
+		 */
 		function set source(value:String):void;
-		function set destination(value:String):void;
-		function set channelSet(value:ChannelSet):void;
-		function get channelSet():ChannelSet;
 		
+		/**
+		 * The destination of the service. This value should match a destination
+		 * entry in the services-config.xml file.
+		 *
+		 */
+		function set destination(value:String):void;
+		
+		/**
+		 *  Provides access to the ChannelSet used by the service. The
+		 *  ChannelSet can be manually constructed and assigned, or it will be 
+		 *  dynamically created to use the configured Channels for the
+		 *  <code>destination</code> for this service.
+		 *
+		 */
+		function get channelSet():ChannelSet;
+		/**
+		 * 
+		 * @private
+		 * 
+		 */
+		function set channelSet(value:ChannelSet):void;
+		
+		/**
+		 *  Provides access to the request timeout in seconds for sent messages. 
+		 *  A value less than or equal to zero prevents request timeout.
+		 *
+		 */
+		function set requestTimeout(value:int):void;
+		
+		/**
+		 * Sets the credentials for the destination accessed by the service when using Data Services on the server side.
+		 * The credentials are applied to all services connected over the same
+		 * ChannelSet. Note that services that use a proxy or a third-party adapter
+		 * to a remote endpoint will need to setRemoteCredentials instead.
+		 * 
+		 * @param username The username for the destination.
+		 * @param password The password for the destination.
+		 * @param charset The character set encoding to use while encoding the
+		 * credentials. The default is null, which implies the legacy charset of
+		 * ISO-Latin-1. The only other supported charset is &quot;UTF-8&quot;.
+		 *
+		 */
 		function setCredentials(username:String, password:String, charset:String=null):void;
 		
 		/**

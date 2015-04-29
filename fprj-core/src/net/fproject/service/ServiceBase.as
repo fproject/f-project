@@ -86,6 +86,9 @@ package net.fproject.service
 		{
 			var ro:IRemoteObject = RemoteObjectFactory.getInstance(this);
 			
+			//Set default request timeout to 1 minute.
+			ro.requestTimeout = 60;
+			
 			//Set credentials if needed
 			if(ro.channelSet.authenticated == false && appContext.loginUser != null)
 			{
