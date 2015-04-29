@@ -72,11 +72,14 @@ package net.fproject.active
 		private function defaultQueryTrigger(cursor:IViewCursor):Boolean
 		{
 			var bookmark:CursorBookmark = cursor.bookmark;
-			if(bookmark != null && cursor.view.length > 0)
+			var l:int = cursor.view.length;
+			if(bookmark != null && l > 0)
 			{
 				var i:int = bookmark.getViewIndex();
-				if(0.9 < i/cursor.view.length)
-					return true;
+				if(l < 20)
+					return i > 0.9*l;
+				else
+					return l - i < 3;
 			}
 			return false;
 		}
