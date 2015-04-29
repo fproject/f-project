@@ -40,11 +40,11 @@ package net.fproject.active
 		 */
 		public function testCase001():void
 		{
-			var returnTestValue:Object = activedataprovider.pagination;
+			var returnTestValue:PaginationResult = activedataprovider.paginationResult;
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertEquals(10, returnTestValue.page);
+			assertEquals(10, returnTestValue.currentPage);
 			assertEquals(100, returnTestValue.perPage);
 			//-------------------------------------
 		}
