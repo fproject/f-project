@@ -260,8 +260,9 @@ package net.fproject.active
 		 */
 		public function activeQuery(dataProvider:ActiveDataProvider):ActiveCallResponder
 		{
+			dataProvider.setService(this);
 			var responder:ActiveCallResponder = new ActiveCallResponder(dataProvider);
-			createServiceCall(remoteObject.find(dataProvider.criteria), null, null, responder);
+			createServiceCall(remoteObject.find(dataProvider.criteria, NaN, NaN, null), null, null, responder);
 			return responder;
 		}
 	}

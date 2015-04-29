@@ -55,6 +55,11 @@ package net.fproject.active
 		{
 			return _service;
 		}
+		
+		internal function setService(value:ActiveService):void
+		{
+			_service = value;
+		}
 
 		/**
 		 * A function that return a Boolean indicates whether we need to query next page.
@@ -86,13 +91,15 @@ package net.fproject.active
 		private function onCursorUpdate(e:FlexEvent):void
 		{
 			var cursor:IViewCursor = e.target as IViewCursor;
-			var b:Boolean = queryTrigger != null? 
+			var b:Boolean = queryTrigger != null ? 
 				queryTrigger(cursor) : defaultQueryTrigger(cursor);
-			if(b)
+			if(b && !_queryNextPagePending)
 				queryNextPage();
 		}
 		
-		public function queryNextPage():void
+		private var _queryNextPagePending:Boolean;
+		
+		public function queryNextPage():ActiveCallResponder
 		{
 			if(_criteria == null)
 				_criteria = new DbCriteria;
@@ -104,15 +111,19 @@ package net.fproject.active
 				if(_pagination.hasOwnProperty('currentPage'))
 					_criteria.pagination['page'] = int(_pagination['currentPage']) + 1;
 			}
-			service.activeQuery(this);
+			
+			_queryNextPagePending = true;
+			
+			return service.activeQuery(this);
 		}
 		
 		public function result(data:Object):void
 		{
+			_queryNextPagePending = false;
+			
 			if(data is ResultEvent)
 			{
-				var r:Object = ResultEvent(data).result;
-				var pr:PaginationResult = data as PaginationResult;
+				var pr:PaginationResult = ResultEvent(data).result as PaginationResult;
 				for each(var o:Object in pr.items)
 				{
 					this.addItem(o);
@@ -121,17 +132,25 @@ package net.fproject.active
 			}
 		}
 		
+		public function fault(data:Object):void
+		{
+			_queryNextPagePending = false;
+		}
+		
 		/**
 		 * Constructor 
 		 * @param service
 		 * 
 		 */
-		public function ActiveDataProvider(service:ActiveService,
-										   criteria:Object)
+		public function ActiveDataProvider(criteria:Object, service:ActiveService=null)
 		{
 			super(source);
 			_service = service;
-			if(criteria != null)
+			if(criteria is DbCriteria)
+			{
+				_criteria = DbCriteria(criteria);
+			}
+			else if(criteria != null)
 			{
 				if(criteria.hasOwnProperty('pagination'))
 					_pagination = criteria['pagination'];
@@ -139,6 +158,7 @@ package net.fproject.active
 					_criteria = new DbCriteria(criteria['criteria']);
 				else
 					_criteria = new DbCriteria(criteria);
+				_criteria.pagination = _pagination;
 			}
 		}
 	}
