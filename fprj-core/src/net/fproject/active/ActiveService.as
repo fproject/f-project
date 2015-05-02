@@ -278,6 +278,7 @@ package net.fproject.active
 			var adp:ActiveDataProvider = new ActiveDataProvider(criteria, this);
 			if(fetchFirstPage)
 				adp.fetchFirstPage();
+			return adp;
 		}
 	}
 }
