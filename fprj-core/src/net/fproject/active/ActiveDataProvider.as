@@ -7,12 +7,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 package net.fproject.active
 {
-	import flash.events.Event;
 	import flash.events.IEventDispatcher;
 	
 	import mx.collections.CursorBookmark;
 	import mx.collections.IViewCursor;
 	import mx.events.FlexEvent;
+	import mx.events.PropertyChangeEvent;
 	import mx.rpc.events.ResultEvent;
 	
 	import net.fproject.collection.AdvancedArrayCollection;
@@ -73,7 +73,7 @@ package net.fproject.active
 		
 		private var _paginationResult:PaginationResult;
 
-		[Bindable('resultChanged')]
+		[Bindable('propertyChange')]
 		/**
 		 * 
 		 * The last pagination result
@@ -111,10 +111,22 @@ package net.fproject.active
 		 * This function is called every time the IViewCursor of this collection is updated.
 		 * It must have only one parameter that is the IViewCursor itself,
 		 * <pre>function myQueryTrigger(cursor:IViewCursor):Boolean</pre>
+		 * 
+		 * By default, the <code>defaultQueryTrigger</code> method will be used.
+		 * 
+		 * @see #defaultQueryTrigger()
 		 */
 		public var queryTrigger:Function;
 		
-		private function defaultQueryTrigger(cursor:IViewCursor):Boolean
+		/**
+		 * This method is used as default value of <code>queryTrigger</code>
+		 * @param cursor the IViewCursor contains current view cursor information
+		 * @return a Boolean indicates whether we need to query next page.
+		 * 
+		 * @see #queryTrigger
+		 * 
+		 */
+		public function defaultQueryTrigger(cursor:IViewCursor):Boolean
 		{
 			var bookmark:CursorBookmark = cursor.bookmark;
 			var l:int = cursor.view.length;
@@ -199,6 +211,40 @@ package net.fproject.active
 		}
 		
 		/**
+		 * The call back function that called when new page is received after last 
+		 * service method invocation.
+		 * This must have following signature:
+		 * <pre>function myPaginationResultHandler(p:PaginationResult):void</pre>
+		 * 
+		 * By default, the <code>defaultPaginationResultHandler</code> method will be used.
+		 * 
+		 * @see #defaultPaginationResultHandler()
+		 */
+		public var paginationResultHandler:Function;
+		
+		/**
+		 * This method is used as default value of <code>paginationResultHandler</code>
+		 * @param p the pagination result of last service call
+		 * @return a Boolean indicates whether we need to query next page.
+		 * 
+		 * @see #paginationResultHandler
+		 * 
+		 */
+		public function defaultPaginationResultHandler(p:PaginationResult):void
+		{
+			for each(var o:Object in p.items)
+			{
+				this.addItem(o);
+			}
+			
+			var oldValue:PaginationResult = _paginationResult;
+			_paginationResult = p;
+			
+			if(this.hasEventListener(PropertyChangeEvent.PROPERTY_CHANGE))
+				dispatchEvent(PropertyChangeEvent.createUpdateEvent(this,'paginationResult', oldValue, p));
+		}
+		
+		/**
 		 * Process success result from remote call 
 		 * @param data the result, normally a ResultEvent instance
 		 * 
@@ -213,16 +259,12 @@ package net.fproject.active
 				if(_paginationResult == null || 
 					_paginationResult.currentPage != pr.currentPage)
 				{
-					for each(var o:Object in pr.items)
-					{
-						this.addItem(o);
-					}
-				}				
-				_paginationResult = pr;
+					if(paginationResultHandler != null)
+						paginationResultHandler(pr);
+					else
+						defaultPaginationResultHandler(pr);
+				}			
 			}
-			
-			if(this.hasEventListener('resultChanged'))
-				dispatchEvent(new Event('resultChanged'));
 		}
 		
 		/**
