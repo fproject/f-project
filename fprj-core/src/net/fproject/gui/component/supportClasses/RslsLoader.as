@@ -75,6 +75,7 @@ package net.fproject.gui.component.supportClasses
 		public function load(completeCallback:Function):void
 		{
 			this.completeCallback = completeCallback;
+			loaderToGroupInfo = new Dictionary(true);
 			recusiveLoadPriorityGroups(0);
 		}
 		
@@ -129,6 +130,7 @@ package net.fproject.gui.component.supportClasses
 			}			
 		}
 		
+		private var loaderToGroupInfo:Dictionary;
 		
 		/**
 		 * Load all RSLs in a group of same priority 
@@ -147,30 +149,9 @@ package net.fproject.gui.component.supportClasses
 					var rslLoader:Loader = new Loader();
 					var urlRequest:URLRequest = new URLRequest(ApplicationUtil.getRslBaseUrl() + "/" + rsl.url);
 					var context:LoaderContext = new LoaderContext(false, ApplicationDomain.currentDomain);
-					rslLoader.contentLoaderInfo.addEventListener(Event.COMPLETE,
-						function(e:Event):void
-						{
-							var allLoaded:Boolean = true;
-							for each (var rsl:Object in rslGroups[groupIndex])
-							{
-								if(!rsl.loaded)
-								{
-									var li:LoaderInfo = LoaderInfo(e.currentTarget);
-									var rslUrl:String = ApplicationUtil.getRslAbsoluteUrl(rsl.url);
-									if(rslUrl.toLowerCase() == String(li.url).toLowerCase())
-									{
-										rsl.loaded = true;
-										rsl.loading = false;
-									}
-									else
-										allLoaded = false;
-								}								
-							}
-							if(allLoaded)
-							{
-								completeCallback(groupIndex);									
-							}
-						});
+					loaderToGroupInfo[rslLoader.contentLoaderInfo] = 
+						{index: groupIndex, callback: completeCallback};
+					rslLoader.contentLoaderInfo.addEventListener(Event.COMPLETE, rslLoadedHandler);
 					rslLoader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, 
 						function(e:IOErrorEvent):void
 						{
@@ -191,6 +172,31 @@ package net.fproject.gui.component.supportClasses
 			
 			if(groupLoaded)
 				completeCallback(groupIndex);
+		}
+		
+		private function rslLoadedHandler(e:Event):void
+		{
+			var groupInfo:Object = loaderToGroupInfo[e.target];
+			var allLoaded:Boolean = true;
+			for each (var rsl:Object in rslGroups[groupInfo.index])
+			{
+				if(!rsl.loaded)
+				{
+					var li:LoaderInfo = LoaderInfo(e.currentTarget);
+					var rslUrl:String = ApplicationUtil.getRslAbsoluteUrl(rsl.url);
+					if(rslUrl.toLowerCase() == String(li.url).toLowerCase())
+					{
+						rsl.loaded = true;
+						rsl.loading = false;
+					}
+					else
+						allLoaded = false;
+				}								
+			}
+			if(allLoaded)
+			{
+				groupInfo.callback(groupInfo.index);									
+			}
 		}
 		
 		private static var urlToRsl:Object = {};
@@ -240,7 +246,7 @@ package net.fproject.gui.component.supportClasses
 			return rslsArray;
 		}
 		
-		private static var metaInfoCache:Dictionary = new Dictionary;
+		private static var metaInfoCache:Dictionary = new Dictionary(true);
 		
 		/**
 		 * Get metadata from interface 
