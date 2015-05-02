@@ -3,11 +3,12 @@ package net.fproject.active
 	import flash.events.Event;
 	import flash.events.IEventDispatcher;
 	
-	import mx.collections.ArrayCollection;
 	import mx.collections.CursorBookmark;
 	import mx.collections.IViewCursor;
 	import mx.events.FlexEvent;
 	import mx.rpc.events.ResultEvent;
+	
+	import net.fproject.collection.AdvancedArrayCollection;
 	
 	/**
 	 * ActiveDataProvider class implements a data provider based on ActiveService.
@@ -47,7 +48,7 @@ package net.fproject.active
 	 * @author Bui Sy Nguyen
 	 * 
 	 */
-	public class ActiveDataProvider extends ArrayCollection
+	public class ActiveDataProvider extends AdvancedArrayCollection
 	{
 		private var _criteria:DbCriteria;
 
