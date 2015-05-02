@@ -42,7 +42,10 @@ package net.fproject.active
 	 * UserService.instance.fetchData(userDataProvider);
 	 * </pre>
 	 *
+	 * @see net.fproject.active.ActiveService.createDataProvider()
+	 * 
 	 * @author Bui Sy Nguyen
+	 * 
 	 */
 	public class ActiveDataProvider extends ArrayCollection
 	{
