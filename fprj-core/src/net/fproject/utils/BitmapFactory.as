@@ -46,7 +46,7 @@ package net.fproject.utils
 		{
 			if(targetToSourceInfo == null) 
 			{
-				targetToSourceInfo = new Dictionary();
+				targetToSourceInfo = new Dictionary(true);
 				bitmapCache = {};
 			}
 			
