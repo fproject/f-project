@@ -9,7 +9,6 @@
 			   minWidth="955" minHeight="600" creationComplete="onCreationComplete()">
 	<fx:Script>
 		<![CDATA[
-			import net.fproject.active.ActiveService_TestSuite;
 			import net.fproject.rpc.AMFRemoteObject_TestSuite;
 			import net.fproject.rpc.JSONChannel_TestSuite;
 			import net.fproject.rpc.JSONMessage_TestSuite;
@@ -28,7 +27,6 @@
 				testsToRun.push(JSONOperation_TestSuite);
 				testsToRun.push(Serialize_TestSuite);
 				testsToRun.push(RemoteObjectFactory_TestSuite);
-				testsToRun.push(ActiveService_TestSuite);
 				
 				return testsToRun;
 			}

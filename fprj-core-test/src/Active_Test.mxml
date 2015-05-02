@@ -10,11 +10,12 @@
 	<fx:Script>
 		<![CDATA[
 			import net.fproject.active.ActiveDataProvider_TestSuite;
+			import net.fproject.active.ActiveService_TestSuite;
 			public function currentRunTestSuite():Array
 			{
 				var testsToRun:Array = new Array();
 				testsToRun.push(ActiveDataProvider_TestSuite);
-				
+				testsToRun.push(ActiveService_TestSuite);
 				return testsToRun;
 			}
 			

@@ -9,7 +9,7 @@
 			   minWidth="955" minHeight="600" creationComplete="onCreationComplete()">
 	<fx:Script>
 		<![CDATA[
-			import net.fproject.utils.StringUtil.StringUtil_localeEquals;
+			import net.fproject.active.ActiveService_testCases;
 			
 			import org.flexunit.runner.Request;
 			
@@ -17,8 +17,7 @@
 			{
 				var testsToRun:Array = new Array();
 				
-				testsToRun.push(Request.methods(StringUtil_localeEquals,["testCase021",
-					"testCase019"]));
+				testsToRun.push(Request.methods(net.fproject.active.ActiveService_testCases,["testCase700"]));
 				return testsToRun;
 			}
 			
