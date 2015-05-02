@@ -27,7 +27,7 @@ package net.fproject.utils
 		 */
         public function LruCache(size:uint = DEFAULT_CACHE_SIZE)
         {
-            this._dictionary = new Dictionary();
+            this._dictionary = new Dictionary(true);
             this._list = new LinkedList();
             this._size = size;
         }// end function

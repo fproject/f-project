@@ -63,7 +63,7 @@ package net.fproject.service
 			if(_remoteObject == null)
 			{
 				//Initialize callback dictionary
-				responderToCallbackInfo = new Dictionary();
+				responderToCallbackInfo = new Dictionary(true);
 				
 				_remoteObject = createRemoteObject();
 			}

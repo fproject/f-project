@@ -58,7 +58,7 @@ package net.fproject.serialize
 		private static const FIELD_KEY:String = "field";
 		private static const TYPE_KEY:String = "type";
 		
-		private var typeInjectionCache:Dictionary = new Dictionary;
+		private var typeInjectionCache:Dictionary = new Dictionary(true);
 		
 		/**
 		 * The callback function to parse date-time string.
