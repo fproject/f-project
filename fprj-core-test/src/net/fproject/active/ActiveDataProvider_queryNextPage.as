@@ -57,7 +57,7 @@ package net.fproject.active
 		public function testCase001():void
 		{
 			activedataProvider = new ActiveDataProvider({}, restService);
-			var resp:ActiveCallResponder = activedataProvider.queryNextPage();
+			var resp:ActiveCallResponder = activedataProvider.fetchNextPage();
 			resp.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase001_checkResult, onFault), 2000));
 		}
 		

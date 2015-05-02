@@ -252,7 +252,7 @@ package net.fproject.active
 		}
 		
 		/**
-		 * Execute an active query and fetch data to an ActiveDataProvider.
+		 * Fetch data to an ActiveDataProvider by its current specified page.
 		 * @param dataProvider the output data provider
 		 * @return a <code>ActiveCallResponder</code> responds for the call.
 		 * The <code>result</code> array of RESULT event will be merged into the
@@ -264,6 +264,20 @@ package net.fproject.active
 			var responder:ActiveCallResponder = new ActiveCallResponder(dataProvider);
 			createServiceCall(remoteObject.find(dataProvider.criteria, NaN, NaN, null), null, null, responder);
 			return responder;
+		}
+		
+		/**
+		 * Execute an active query and fetch data of first page to an ActiveDataProvider.
+		 * @param dataProvider the output data provider
+		 * @param fetchFirstPage if <code>true</code>, the first page query will be called and
+		 * the first page result will be merged in to the data provider.
+		 * @return a <code>ActiveDataProvider</code> created for the call.
+		 */
+		public function createDataProvider(criteria:Object, fetchFirstPage:Boolean=true):ActiveDataProvider
+		{
+			var adp:ActiveDataProvider = new ActiveDataProvider(criteria, this);
+			if(fetchFirstPage)
+				adp.fetchFirstPage();
 		}
 	}
 }
