@@ -1,5 +1,7 @@
 package net.fproject.active
 {
+	import flash.events.Event;
+	
 	import mx.rpc.CallResponder;
 	import mx.rpc.events.ResultEvent;
 	import mx.utils.UIDUtil;
@@ -40,11 +42,6 @@ package net.fproject.active
 			//Your test data cleaning
 		}
 
-		public function onFault(data:Object, passThroughData:Object ):void 
-		{
-			throw new Error("Test was failed: data = " + data + ", passThroughData = " + passThroughData);
-		}
-		
 		[Test (async, description="Normal case")]
 		/**
 		 * Test Case Type: Normal<br/>
@@ -395,5 +392,33 @@ package net.fproject.active
 		{
 			assertEquals(2, event.result);			
 		}
+		
+		[Test (async,description="Normal case: []")]
+		/**
+		 * Test Case Type: Normal<br/>
+		 * <br/>
+		 * INPUT VALUES:<br/>
+		 * <br/>
+		 * OUTPUT EXPECTED:<br/>
+		 * ---- expectations ----
+		 *
+		 */
+		public function testCase700():void
+		{
+			var activedataProvider:ActiveDataProvider = restService.createDataProvider({pagination:{perPage:11}});
+			Async.handleEvent(this, activedataProvider, 'resultChanged', testCase700_checkResult, 2000, activedataProvider);
+		}
+		
+		public function testCase700_checkResult(event:Event, activedataProvider:ActiveDataProvider):void
+		{
+			assertNotNull(activedataProvider.paginationResult);
+			assertEquals(11, activedataProvider.paginationResult.perPage);
+			for each(var o:Object in activedataProvider)
+			{
+				assertTrue(o is TestUser);
+			}
+		}
+		
+		
 	}
 }

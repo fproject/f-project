@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testrun name="" >
 <testsuite  name="Default Test Suite" project="fprj-core-test">
-<testsuite name="net.fproject.active:ActiveDataProvider_queryNextPage" type="testcaseclass"/>
+<testsuite name="net.fproject.active:ActiveService_testCases" type="testcaseclass">
+<testcase name="testCase700" classname="net.fproject.active:ActiveService_testCases"/>
+</testsuite>
 </testsuite>
 <portNumber value="8765" />
 </testrun>

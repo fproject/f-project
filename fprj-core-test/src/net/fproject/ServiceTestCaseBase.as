@@ -1,17 +1,17 @@
 package net.fproject
 {
-	import mx.rpc.CallResponder;
-	import mx.rpc.events.FaultEvent;
-	
-	import net.fproject.core.AppContext;
-	import net.fproject.di.Implementation;
-	import net.fproject.di.ImplementationConfig;
-	import net.fproject.di.InstanceFactory;
-	import net.fproject.event.AppContextEvent;
-	import net.fproject.rpc.RemoteObjectFactory;
-	import net.fproject.service.IAppContextService;
-	
-	import org.flexunit.async.Async;
+//	import mx.rpc.CallResponder;
+//	import mx.rpc.events.FaultEvent;
+//	
+//	import net.fproject.core.AppContext;
+//	import net.fproject.di.Implementation;
+//	import net.fproject.di.ImplementationConfig;
+//	import net.fproject.di.InstanceFactory;
+//	import net.fproject.event.AppContextEvent;
+//	import net.fproject.rpc.RemoteObjectFactory;
+//	import net.fproject.service.IAppContextService;
+//	
+//	import org.flexunit.async.Async;
 
 	public class ServiceTestCaseBase
 	{
@@ -40,6 +40,11 @@ package net.fproject
 			}*/
 			
 			//Your test data initialization
+		}
+		
+		public function onFault(data:Object, passThroughData:Object ):void 
+		{
+			throw new Error("Test was failed: data = " + data + ", passThroughData = " + passThroughData);
 		}
 	}
 }

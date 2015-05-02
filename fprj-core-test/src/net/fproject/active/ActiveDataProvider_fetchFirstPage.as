@@ -5,6 +5,7 @@ package net.fproject.active
 	import net.fproject.ServiceTestCaseBase;
 	import net.fproject.di.InstanceFactory;
 	
+	import org.flexunit.asserts.assertEquals;
 	import org.flexunit.asserts.assertTrue;
 	import org.flexunit.async.Async;
 	import org.flexunit.async.TestResponder;
@@ -18,7 +19,7 @@ package net.fproject.active
 	 * of class<br/>
 	 * net.fproject.active.ActiveDataProvider
 	 */
-	public class ActiveDataProvider_queryNextPage extends ServiceTestCaseBase
+	public class ActiveDataProvider_fetchFirstPage extends ServiceTestCaseBase
 	{
 		private var restService:JSONRemoteObject_RESTfulService;
 		
@@ -39,11 +40,6 @@ package net.fproject.active
 			//Your test data cleaning
 		}
 
-		public function onFault(data:Object, passThroughData:Object ):void 
-		{
-			throw new Error("Test was failed: data = " + data + ", passThroughData = " + passThroughData);
-		}
-		
 		[Test (async,description="Normal case: []")]
 		/**
 		 * Test Case Type: Normal<br/>
@@ -57,14 +53,20 @@ package net.fproject.active
 		public function testCase001():void
 		{
 			activedataProvider = new ActiveDataProvider({}, restService);
-			var resp:ActiveCallResponder = activedataProvider.fetchNextPage();
+			var resp:ActiveCallResponder = activedataProvider.fetchFirstPage();
 			resp.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase001_checkResult, onFault), 2000));
 		}
 		
 		public function testCase001_checkResult(event:ResultEvent, passThroughData:Object):void
 		{
+			checkResult(event, passThroughData, 1);
+		}
+		
+		private function checkResult(event:ResultEvent, passThroughData:Object, page:Number):void
+		{
 			assertTrue(event.result is PaginationResult);
 			var p:PaginationResult = event.result as PaginationResult;
+			assertEquals(page, p.currentPage);
 			for each(var o:Object in p.items)
 			{
 				assertTrue(o is TestUser);
