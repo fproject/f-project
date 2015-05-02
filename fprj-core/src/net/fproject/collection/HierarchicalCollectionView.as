@@ -28,6 +28,9 @@ package net.fproject.collection
 			super(hierarchicalData, argOpenNodes);
 		}
 		
+		/**
+		 *  @inheritDoc
+		 */
 		override public function createCursor() : IViewCursor
 		{
 			return new HierarchicalCollectionViewCursor(this, treeData, this.source);

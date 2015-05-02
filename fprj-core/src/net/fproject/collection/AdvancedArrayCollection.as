@@ -57,7 +57,7 @@ package net.fproject.collection
 		 * used for comparing items.
 		 * If no source is specified an empty array will be used.
 		 * 
-		 * @param source The Array to use as a source for the ArrayList.
+		 * @param source The Array to use as a source for the AdvancedArrayCollection.
 		 * @param itemEqualFunction The function used to compare two items, return true if and only if they are equals.
 		 * Should have following signature:
 		 * <pre>
