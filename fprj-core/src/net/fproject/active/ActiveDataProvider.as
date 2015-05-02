@@ -9,11 +9,11 @@ package net.fproject.active
 	import mx.rpc.events.ResultEvent;
 	
 	/**
-	 * ActiveDataProvider implements a data provider based on ActiveService.
+	 * ActiveDataProvider class implements a data provider based on ActiveService.
 	 *
 	 * ActiveDataProvider provides data in terms of model objects which are
 	 * of class <code>modelClass</code> from a ActiveService.
-	 * It uses the ActiveService <code>find</code> method to retrieve the remote data.
+	 * It uses the ActiveService <code>find</code> method to retrieve remote data.
 	 * The <code>criteria</code> property can be used to specify remote service query options.
 	 * The <code>pagination</code> property can be used to specify query result pagination.
 	 * ActiveDataProvider may be used in the following ways:
@@ -22,8 +22,7 @@ package net.fproject.active
 	 * userDataGrid.dataProvider = UserService.instance.createDataProvider({
 	 * 		condition : '&#64;findSomeUsers',
 	 * 		sort : 'name,-createTime',
-	 * 		expand : '&#64;userProfile',
-	 *     });
+	 * 		expand : '&#64;userProfile'});
 	 * 
 	 * <br>//Example 2:
 	 * 
@@ -34,8 +33,8 @@ package net.fproject.active
 	 * 		expand : '&#64;userProfile',
 	 *     },
 	 *     pagination : {
-	 * 		perPage : 20,
-	 *     },
+	 * 		perPage : 20, page: 3
+	 *     }
 	 * });
 	 * 
 	 * userDataGrid.dataProvider = userDataProvider;
@@ -219,8 +218,11 @@ package net.fproject.active
 		}
 		
 		/**
-		 * Constructor 
-		 * @param service
+		 * Constructor.
+		 * 
+		 * @param criteria The criteria that is passed to <code>find</code> method
+		 * of ActiveService
+		 * @param service the ActiveService instance
 		 * 
 		 */
 		public function ActiveDataProvider(criteria:Object, service:ActiveService=null)
