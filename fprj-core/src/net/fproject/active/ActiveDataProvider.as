@@ -16,9 +16,18 @@ package net.fproject.active
 	 * It uses the ActiveService <code>find</code> method to retrieve the remote data.
 	 * The <code>criteria</code> property can be used to specify remote service query options.
 	 * The <code>pagination</code> property can be used to specify query result pagination.
-	 * ActiveDataProvider may be used in the following way:
-	 * <pre>
-	 * userDataProvider=new ActiveDataProvider({
+	 * ActiveDataProvider may be used in the following ways:
+	 * <pre>//Example 1:
+	 * 
+	 * userDataGrid.dataProvider = UserService.instance.createDataProvider({
+	 * 		condition : '&#64;findSomeUsers',
+	 * 		sort : 'name,-createTime',
+	 * 		expand : '&#64;userProfile',
+	 *     });
+	 * 
+	 * <br>//Example 2:
+	 * 
+	 * userDataProvider = new ActiveDataProvider({
 	 *     criteria : {
 	 * 		condition : '&#64;findSomeUsers',
 	 * 		sort : 'name,-createTime',
@@ -28,6 +37,7 @@ package net.fproject.active
 	 * 		perPage : 20,
 	 *     },
 	 * });
+	 * 
 	 * userDataGrid.dataProvider = userDataProvider;
 	 * UserService.instance.fetchData(userDataProvider);
 	 * </pre>
@@ -38,6 +48,11 @@ package net.fproject.active
 	{
 		private var _criteria:DbCriteria;
 
+		/**
+		 * 
+		 * The current querying criteria
+		 * 
+		 */
 		public function get criteria():DbCriteria
 		{
 			return _criteria;
@@ -45,6 +60,11 @@ package net.fproject.active
 		
 		private var _paginationResult:PaginationResult;
 
+		/**
+		 * 
+		 * The last pagination result
+		 * 
+		 */
 		public function get paginationResult():PaginationResult
 		{
 			return _paginationResult;
@@ -52,11 +72,21 @@ package net.fproject.active
 
 		private var _service:ActiveService;
 
+		/**
+		 * 
+		 * The active service used to retreive remote data
+		 * 
+		 */
 		public function get service():ActiveService
 		{
 			return _service;
 		}
 		
+		/**
+		 * 
+		 * @private
+		 * 
+		 */
 		internal function setService(value:ActiveService):void
 		{
 			_service = value;
@@ -85,6 +115,11 @@ package net.fproject.active
 			return false;
 		}
 		
+		/**
+		 * 
+		 * @inheritDoc
+		 * 
+		 */
 		override public function createCursor():IViewCursor
 		{
 			var cursor:IEventDispatcher = IEventDispatcher(super.createCursor());
@@ -97,13 +132,20 @@ package net.fproject.active
 			var cursor:IViewCursor = e.target as IViewCursor;
 			var b:Boolean = queryTrigger != null ? 
 				queryTrigger(cursor) : defaultQueryTrigger(cursor);
-			if(b && !_queryNextPagePending)
-				queryNextPage();
+			if(b && !_fetchPending)
+				fetchNextPage();
 		}
 		
-		private var _queryNextPagePending:Boolean;
+		private var _fetchPending:Boolean;
 		
-		public function queryNextPage():ActiveCallResponder
+		/**
+		 * 
+		 * Fetch data of next page and merge result in to current result set.
+		 * 
+		 * @return an ActiveCallResponder instance
+		 * 
+		 */
+		public function fetchNextPage():ActiveCallResponder
 		{
 			if(_criteria == null)
 				_criteria = new DbCriteria;
@@ -114,14 +156,42 @@ package net.fproject.active
 				};
 			}
 			
-			_queryNextPagePending = true;
+			_fetchPending = true;
 			
 			return service.fetchData(this);
 		}
 		
+		/**
+		 * 
+		 * Fetch data of first page and reset result set to first page data.
+		 * 
+		 * @return an ActiveCallResponder instance
+		 * 
+		 */
+		public function fetchFirstPage():ActiveCallResponder
+		{
+			if(_criteria == null)
+				_criteria = new DbCriteria;
+			if(_criteria.pagination == null)
+				_criteria.pagination = {page:1};
+			else
+				_criteria.pagination["page"] = 1;
+				
+			_fetchPending = true;
+			
+			this.source = null;
+			
+			return service.fetchData(this);
+		}
+		
+		/**
+		 * Process success result from remote call 
+		 * @param data the result, normally a ResultEvent instance
+		 * 
+		 */
 		public function result(data:Object):void
 		{
-			_queryNextPagePending = false;
+			_fetchPending = false;
 			
 			if(data is ResultEvent)
 			{
@@ -138,9 +208,14 @@ package net.fproject.active
 			}
 		}
 		
+		/**
+		 * Process failure return data from remote call 
+		 * @param data the result, normally a FaultEvent instance
+		 * 
+		 */
 		public function fault(data:Object):void
 		{
-			_queryNextPagePending = false;
+			_fetchPending = false;
 		}
 		
 		/**
