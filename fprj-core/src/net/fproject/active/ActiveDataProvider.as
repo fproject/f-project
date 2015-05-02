@@ -203,7 +203,7 @@ package net.fproject.active
 		 * @param data the result, normally a ResultEvent instance
 		 * 
 		 */
-		public function result(data:Object):void
+		internal function result(data:Object):void
 		{
 			_fetchPending = false;
 			
@@ -230,7 +230,7 @@ package net.fproject.active
 		 * @param data the result, normally a FaultEvent instance
 		 * 
 		 */
-		public function fault(data:Object):void
+		internal function fault(data:Object):void
 		{
 			_fetchPending = false;
 		}
