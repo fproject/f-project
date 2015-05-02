@@ -1,3 +1,10 @@
+///////////////////////////////////////////////////////////////////////////////
+//
+// Licensed Source Code - Property of f-project.net
+//
+// Copyright © 2015 f-project.net. All Rights Reserved.
+//
+///////////////////////////////////////////////////////////////////////////////
 package net.fproject.collection
 {
 	import mx.collections.ArrayCollection;
@@ -8,6 +15,11 @@ package net.fproject.collection
 	import net.fproject.utils.DataUtil;
 	
 	use namespace mx_internal;
+	/**
+	 * 
+	 * @author Bui
+	 * 
+	 */
 	public class AdvancedArrayCollection extends ArrayCollection
 	{
 		/**
