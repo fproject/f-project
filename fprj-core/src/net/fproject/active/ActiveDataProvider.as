@@ -18,7 +18,8 @@ package net.fproject.active
 	import net.fproject.collection.AdvancedArrayCollection;
 	
 	/**
-	 * ActiveDataProvider class implements a data provider based on ActiveService.
+	 * ActiveDataProvider class extends <code>AdvancedArrayCollection</code> class
+	 * and implements a data provider based on ActiveService.
 	 *
 	 * ActiveDataProvider provides data in terms of model objects which are
 	 * of class <code>modelClass</code> from a ActiveService.
@@ -51,6 +52,7 @@ package net.fproject.active
 	 * </pre>
 	 *
 	 * @see net.fproject.active.ActiveService.createDataProvider()
+	 * @see net.fproject.collection.AdvancedArrayCollection
 	 * 
 	 * @author Bui Sy Nguyen
 	 * 
