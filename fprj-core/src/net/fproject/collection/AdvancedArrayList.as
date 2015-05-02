@@ -11,6 +11,30 @@ package net.fproject.collection
 	
 	import net.fproject.utils.DataUtil;
 	
+	/**
+	 * 
+	 * <p>The AdvancedArrayList class extends <code>mx.collections.ArrayList</code> class
+	 * and provides <code>itemEqualFunction</code> property that used to specify
+	 * the method to compare two items that used for <code>getItemIndex()</code>.</p>
+	 * 
+	 * <p>For example, if you want the <code>getItemIndex()</code> return index of the item
+	 * with the same value in 'id' fields, you can use this:
+	 * <pre>
+	 * c = new AdvancedArrayList(usersArray);
+	 * c.itemEqualFunction = function(a:User, b:User):Boolean
+	 * {
+	 * 	if(ObjectUtil.compare(a,b) == 0)
+	 * 		return true;
+	 * 	else
+	 * 		return a.id == b.id;
+	 * };
+	 * </pre></p>
+	 * 
+	 * @see mx.collections.ArrayList
+	 * 
+	 * @author Bui Sy Nguyen
+	 * 
+	 */
 	public class AdvancedArrayList extends ArrayList
 	{
 		/**
@@ -43,6 +67,9 @@ package net.fproject.collection
 			super(source);
 		}
 		
+		/**
+		 *  @inheritDoc
+		 */
 		override public function getItemIndex(item:Object):int
 		{
 			if(itemEqualFunction == null)
