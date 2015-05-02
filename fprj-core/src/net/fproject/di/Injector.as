@@ -87,7 +87,7 @@ package net.fproject.di
 		
 		public static const FACTORY_KEY:String = "factory";
 		
-		private static var instantiatedContainer:Dictionary = new Dictionary;
+		private static var instantiatedContainer:Dictionary = new Dictionary(true);
 		
 		/**
 		 * @private
@@ -1064,7 +1064,7 @@ package net.fproject.di
 		
 		
 		
-		private static var instanceCache:Dictionary = new Dictionary;
+		private static var instanceCache:Dictionary = new Dictionary(true);
 		private static function getInstance(container:Object):Injector
 		{
 			if(container == null)
