@@ -17,7 +17,7 @@ package net.fproject.collection
 	use namespace mx_internal;
 	/**
 	 * 
-	 * <p>The AdvancedArrayCollection class extends <code>AdvancedArrayCollection</code> class
+	 * <p>The AdvancedArrayCollection class extends <code>mx.collections.ArrayCollection</code> class
 	 * and provides <code>itemEqualFunction</code> property that used to specify
 	 * the method to compare two items that used for <code>getItemIndex()</code>.</p>
 	 * 
