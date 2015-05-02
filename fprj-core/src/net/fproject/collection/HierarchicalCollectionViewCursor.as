@@ -23,7 +23,8 @@ package net.fproject.collection
 	 */
 	public class HierarchicalCollectionViewCursor extends mx.collections.HierarchicalCollectionViewCursor
 	{
-		public function HierarchicalCollectionViewCursor(collection:mx.collections.HierarchicalCollectionView, model:ICollectionView, hierarchicalData:IHierarchicalData)
+		public function HierarchicalCollectionViewCursor(collection:mx.collections.HierarchicalCollectionView, 
+														 model:ICollectionView, hierarchicalData:IHierarchicalData)
 		{
 			super(collection, model, hierarchicalData);
 		}
