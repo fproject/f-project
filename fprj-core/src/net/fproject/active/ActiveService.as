@@ -272,6 +272,8 @@ package net.fproject.active
 		 * @param fetchFirstPage if <code>true</code>, the first page query will be called and
 		 * the first page result will be merged in to the data provider.
 		 * @return a <code>ActiveDataProvider</code> created for the call.
+		 * 
+		 * @see net.fproject.active.ActiveDataProvider
 		 */
 		public function createDataProvider(criteria:Object, fetchFirstPage:Boolean=true):ActiveDataProvider
 		{
