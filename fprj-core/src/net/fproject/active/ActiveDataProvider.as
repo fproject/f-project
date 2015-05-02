@@ -1,5 +1,6 @@
 package net.fproject.active
 {
+	import flash.events.Event;
 	import flash.events.IEventDispatcher;
 	
 	import mx.collections.ArrayCollection;
@@ -59,6 +60,7 @@ package net.fproject.active
 		
 		private var _paginationResult:PaginationResult;
 
+		[Bindable('resultChanged')]
 		/**
 		 * 
 		 * The last pagination result
@@ -205,6 +207,9 @@ package net.fproject.active
 				}				
 				_paginationResult = pr;
 			}
+			
+			if(this.hasEventListener('resultChanged'))
+				dispatchEvent(new Event('resultChanged'));
 		}
 		
 		/**
