@@ -17,7 +17,26 @@ package net.fproject.collection
 	use namespace mx_internal;
 	/**
 	 * 
-	 * @author Bui
+	 * <p>The AdvancedArrayCollection class extends <code>AdvancedArrayCollection</code> class
+	 * and provides <code>itemEqualFunction</code> property that used to specify
+	 * the method to compare two items that used for <code>getItemIndex()</code>.</p>
+	 * 
+	 * <p>For example, if you want the <code>getItemIndex()</code> return index of the item
+	 * with the same value in 'id' fields, you can use this:
+	 * <pre>
+	 * c = new AdvancedArrayCollection(usersArray);
+	 * c.itemEqualFunction = function(a:User, b:User):Boolean
+	 * {
+	 * 	if(ObjectUtil.compare(a,b) == 0)
+	 * 		return true;
+	 * 	else
+	 * 		return a.id == b.id;
+	 * };
+	 * </pre></p>
+	 * 
+	 * @see mx.collections.ArrayCollection
+	 * 
+	 * @author Bui Sy Nguyen
 	 * 
 	 */
 	public class AdvancedArrayCollection extends ArrayCollection
