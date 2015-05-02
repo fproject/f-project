@@ -14,8 +14,8 @@ package net.fproject.di
 	
 	public class InstanceFactory
 	{
-		private static var classToImpl:Dictionary = new Dictionary;
-		private static var implToInstance:Dictionary = new Dictionary;
+		private static var classToImpl:Dictionary = new Dictionary(true);
+		private static var implToInstance:Dictionary = new Dictionary(true);
 		
 		private static var factoryConfig:XML
 		/**
