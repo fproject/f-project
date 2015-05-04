@@ -1,66 +1,20 @@
-///////////////////////////////////////////////////////////////////////////////
-//
-// Licensed Source Code - Property of f-project.net
-//
-// Copyright © 2015 f-project.net. All Rights Reserved.
-//
-///////////////////////////////////////////////////////////////////////////////
 package net.fproject.active
 {
 	import flash.events.IEventDispatcher;
 	
 	import mx.collections.CursorBookmark;
+	import mx.collections.IHierarchicalData;
 	import mx.collections.IViewCursor;
 	import mx.events.FlexEvent;
 	import mx.events.PropertyChangeEvent;
 	import mx.rpc.events.ResultEvent;
 	
-	import net.fproject.collection.AdvancedArrayCollection;
+	import net.fproject.collection.HierarchicalCollectionView;
 	
-	/**
-	 * ActiveDataProvider class extends <code>AdvancedArrayCollection</code> class
-	 * and implements a data provider based on ActiveService.
-	 *
-	 * ActiveDataProvider provides data in terms of model objects which are
-	 * of class <code>modelClass</code> from a ActiveService.
-	 * It uses the ActiveService <code>find</code> method to retrieve remote data.
-	 * The <code>criteria</code> property can be used to specify remote service query options.
-	 * The <code>pagination</code> property can be used to specify query result pagination.
-	 * ActiveDataProvider may be used in the following ways:
-	 * <pre>//Example 1:
-	 * 
-	 * userDataGrid.dataProvider = UserService.instance.createDataProvider({
-	 * 		condition : '&#64;findSomeUsers',
-	 * 		sort : 'name,-createTime',
-	 * 		expand : '&#64;userProfile'});
-	 * 
-	 * <br>//Example 2:
-	 * 
-	 * userDataProvider = new ActiveDataProvider({
-	 *     criteria : {
-	 * 		condition : '&#64;findSomeUsers',
-	 * 		sort : 'name,-createTime',
-	 * 		expand : '&#64;userProfile',
-	 *     },
-	 *     pagination : {
-	 * 		perPage : 20, page: 3
-	 *     }
-	 * });
-	 * 
-	 * userDataGrid.dataProvider = userDataProvider;
-	 * UserService.instance.fetchData(userDataProvider);
-	 * </pre>
-	 *
-	 * @see net.fproject.active.ActiveService.createDataProvider()
-	 * @see net.fproject.collection.AdvancedArrayCollection
-	 * 
-	 * @author Bui Sy Nguyen
-	 * 
-	 */
-	public class ActiveDataProvider extends AdvancedArrayCollection implements IActiveDataProvider
+	public class ActiveHierarchicalDataProvider extends HierarchicalCollectionView implements IActiveDataProvider
 	{
 		private var _criteria:DbCriteria;
-
+		
 		/**
 		 * 
 		 * @inheritDoc
@@ -72,7 +26,7 @@ package net.fproject.active
 		}
 		
 		private var _paginationResult:PaginationResult;
-
+		
 		[Bindable('propertyChange')]
 		/**
 		 * 
@@ -83,12 +37,11 @@ package net.fproject.active
 		{
 			return _paginationResult;
 		}
-
+		
 		private var _service:ActiveService;
-
+		
 		/**
-		 * 
-		 * The active service used to retreive remote data
+		 * @inheritDoc
 		 * 
 		 */
 		public function get service():ActiveService
@@ -105,7 +58,7 @@ package net.fproject.active
 		{
 			_service = value;
 		}
-
+		
 		/**
 		 * A function that return a Boolean indicates whether we need to query next page.
 		 * This function is called every time the IViewCursor of this collection is updated.
@@ -202,7 +155,7 @@ package net.fproject.active
 				_criteria.pagination = {page:1};
 			else
 				_criteria.pagination["page"] = 1;
-				
+			
 			_fetchPending = true;
 			
 			this.source = null;
@@ -234,7 +187,7 @@ package net.fproject.active
 		{
 			for each(var o:Object in p.items)
 			{
-				this.addItem(o);
+				//this.addParentMapping((o);
 			}
 			
 			var oldValue:PaginationResult = _paginationResult;
@@ -275,17 +228,10 @@ package net.fproject.active
 			_fetchPending = false;
 		}
 		
-		/**
-		 * Constructor.
-		 * 
-		 * @param criteria The criteria that is passed to <code>find</code> method
-		 * of ActiveService
-		 * @param service the ActiveService instance
-		 * 
-		 */
-		public function ActiveDataProvider(criteria:Object, service:ActiveService=null)
+		public function ActiveHierarchicalDataProvider(criteria:Object, service:ActiveService=null,
+													   hierarchicalData:IHierarchicalData=null, argOpenNodes:Object=null)
 		{
-			super(source);
+			super(hierarchicalData, argOpenNodes);
 			_service = service;
 			if(criteria is DbCriteria)
 			{

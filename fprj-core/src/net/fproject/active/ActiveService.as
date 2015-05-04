@@ -258,7 +258,7 @@ package net.fproject.active
 		 * The <code>result</code> array of RESULT event will be merged into the
 		 * data provider.
 		 */
-		public function fetchData(dataProvider:ActiveDataProvider):ActiveCallResponder
+		public function fetchData(dataProvider:IActiveDataProvider):ActiveCallResponder
 		{
 			dataProvider.setService(this);
 			var responder:ActiveCallResponder = new ActiveCallResponder(dataProvider);

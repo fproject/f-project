@@ -11,14 +11,14 @@ package net.fproject.active
 	
 	public class ActiveCallResponder extends CallResponder
 	{
-		private var _activeDataProvider:ActiveDataProvider;
+		private var _activeDataProvider:IActiveDataProvider;
 
-		public function get activeDataProvider():ActiveDataProvider
+		public function get activeDataProvider():IActiveDataProvider
 		{
 			return _activeDataProvider;
 		}
 		
-		public function ActiveCallResponder(activeDataProvider:ActiveDataProvider)
+		public function ActiveCallResponder(activeDataProvider:IActiveDataProvider)
 		{
 			super();
 			_activeDataProvider = activeDataProvider;

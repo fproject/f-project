@@ -79,6 +79,9 @@
     <classEntry path="net.fproject.collection.AdvancedArrayList"/>
     <classEntry path="net.fproject.active.DbCriteria"/>
     <classEntry path="net.fproject.active.ActiveCallResponder"/>
+    <classEntry path="net.fproject.active.ActiveHierarchicalDataProvider"/>
+    <classEntry path="net.fproject.model.LocalUID"/>
+    <classEntry path="net.fproject.active.IActiveDataProvider"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="manifest.xml" sourcePath="manifest.xml"/>
