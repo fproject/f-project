@@ -1,6 +1,8 @@
 package net.fproject.active
 {
-	public interface IActiveDataProvider
+	import flash.events.IEventDispatcher;
+
+	public interface IActiveDataProvider extends IEventDispatcher
 	{
 		/**
 		 * 
@@ -29,5 +31,23 @@ package net.fproject.active
 		 * 
 		 */
 		function fault(data:Object):void;
+		
+		/**
+		 * 
+		 * Fetch data of first page and reset result set to first page data.
+		 * 
+		 * @return an ActiveCallResponder instance
+		 * 
+		 */
+		function fetchFirstPage():ActiveCallResponder;
+			
+		/**
+		 * 
+		 * Fetch data of next page and merge result in to current result set.
+		 * 
+		 * @return an ActiveCallResponder instance
+		 * 
+		 */
+		function fetchNextPage():ActiveCallResponder;
 	}
 }

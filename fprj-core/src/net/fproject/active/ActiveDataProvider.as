@@ -166,9 +166,7 @@ package net.fproject.active
 		
 		/**
 		 * 
-		 * Fetch data of next page and merge result in to current result set.
-		 * 
-		 * @return an ActiveCallResponder instance
+		 * @inheritDoc
 		 * 
 		 */
 		public function fetchNextPage():ActiveCallResponder
@@ -189,9 +187,7 @@ package net.fproject.active
 		
 		/**
 		 * 
-		 * Fetch data of first page and reset result set to first page data.
-		 * 
-		 * @return an ActiveCallResponder instance
+		 * @inheritDoc
 		 * 
 		 */
 		public function fetchFirstPage():ActiveCallResponder
