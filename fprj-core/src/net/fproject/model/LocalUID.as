@@ -5,6 +5,14 @@ package net.fproject.model
 	import mx.core.IUID;
 	import mx.events.PropertyChangeEvent;
 	
+	/**
+	 * 
+	 * LocalUID class is abstract class for all model classes that have 'uid' field.
+	 * By default, if the model has an 'id' field, then the 'uid' value always the same as 'id'.
+	 * 
+	 * @author Bui Sy Nguyen
+	 * 
+	 */
 	public class LocalUID extends EventDispatcher implements IUID
 	{
 		private var _uid:String;
