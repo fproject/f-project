@@ -405,7 +405,7 @@ package net.fproject.active
 		 */
 		public function testCase700():void
 		{
-			var activedataProvider:ActiveDataProvider = restService.createDataProvider({pagination:{perPage:11}});
+			var activedataProvider:IActiveDataProvider = restService.createDataProvider({pagination:{perPage:11}});
 			Async.handleEvent(this, activedataProvider, 'resultChanged', testCase700_checkResult, 2000, activedataProvider);
 		}
 		
