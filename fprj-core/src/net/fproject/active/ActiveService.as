@@ -267,17 +267,24 @@ package net.fproject.active
 		}
 		
 		/**
-		 * Execute an active query and fetch data of first page to an ActiveDataProvider.
+		 * Execute an active query and fetch data of first page to an IActiveDataProvider instance.
 		 * @param dataProvider the output data provider
 		 * @param fetchFirstPage if <code>true</code>, the first page query will be called and
 		 * the first page result will be merged in to the data provider.
+		 * @param factory The class used to generate IActiveDataProvider.
+		 * This class must has constructor that accepts two parameters:
+		 * <pre>public function ActiveDataProvider(criteria:Object, service:ActiveService) {...}</pre>
+		 * Default value is <code>net.fproject.active.ActiveDataProvider</code>
+		 * 
 		 * @return a <code>ActiveDataProvider</code> created for the call.
 		 * 
-		 * @see net.fproject.active.ActiveDataProvider
+		 * @see net.fproject.active.IActiveDataProvider
 		 */
-		public function createDataProvider(criteria:Object, fetchFirstPage:Boolean=true):ActiveDataProvider
+		public function createDataProvider(criteria:Object, fetchFirstPage:Boolean=true, factory:Class=null):IActiveDataProvider
 		{
-			var adp:ActiveDataProvider = new ActiveDataProvider(criteria, this);
+			if(factory == null)
+				factory = ActiveDataProvider;
+			var adp:IActiveDataProvider = new factory(criteria, this);
 			if(fetchFirstPage)
 				adp.fetchFirstPage();
 			return adp;
