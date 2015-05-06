@@ -23,7 +23,8 @@ package net.fproject.active
 	 *
 	 * ActiveDataProvider provides data in terms of model objects which are
 	 * of class <code>modelClass</code> from a ActiveService.
-	 * It uses the ActiveService <code>find</code> method to retrieve remote data.
+	 * It uses the ActiveService <code>find</code> method to retrieve remote data
+	 * with automatic pagination.
 	 * The <code>criteria</code> property can be used to specify remote service query options.
 	 * The <code>pagination</code> property can be used to specify query result pagination.
 	 * ActiveDataProvider may be used in the following ways:
