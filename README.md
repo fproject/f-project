@@ -17,6 +17,8 @@ We planned to release first stable version in head of Feb-2015.
 * **Strong Typing RESTfull**: A beautiful solution for working with RESTfull services ofwhich data can be deserialized directly to typed object.
 * **Advanced Data Binding**: Advanced data binding using AS3 Metadata.
 * **Advanced Module & RSLs Manager**: Advanced Module & RSLs management using dependency injection.
+* **Active Service**: Implements a common set of operations for supporting remote access to RESTful or AMF service.
+* **Active Data Provider**: Provides a collection of model objects, using ActiveService's `find` method to retrieve remote data with automatic pagination.
 * **Lightweight MVC Template**: The F-Project MVC template especially designed for Flex AIR project.
 * *And much more...*
 
