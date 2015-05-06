@@ -2,6 +2,15 @@ package net.fproject.active
 {
 	import flash.events.IEventDispatcher;
 
+	/**
+	 * IActiveDataProvider interface dedines a common set of methods used for active data providers.
+	 *  
+	 * @author Bui Sy Nguyen
+	 * 
+	 * @see net.fproject.active.ActiveDataProvider
+	 * @see net.fproject.active.ActiveHierarchicalDataProvider
+	 * 
+	 */
 	public interface IActiveDataProvider extends IEventDispatcher
 	{
 		/**
