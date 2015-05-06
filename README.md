@@ -24,7 +24,7 @@ We planned to release first stable version in head of Feb-2015.
 
 ##F-Project Tools
 
-* **fprj-tool**: This GUI tool is written in Java Swing, and have these following features:
+* **fprj-tool**: This GUI tool is written in Java Swing, and has these following features:
   * FlexUnit Auto Wire: Automatically generate FlexUnit test scripts based on analysing the AS3 source code's methods.
   * Flex Code Analyser: Flex source Line of Code counter, Source code statistics...
   * [Under Development] Flex Code Auto Wire: Automatically generate AS3 model and service classes from server code written in PHP, Java, Scala
