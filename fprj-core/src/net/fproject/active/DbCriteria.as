@@ -44,7 +44,7 @@ package net.fproject.active
 		
 		/**
 		 * The key to get query condition.
-		 * In server side, this key is used to retrieve the WHERE clause in an SQL statement.
+		 * At server side, this key is used to retrieve the WHERE clause in an SQL statement.
 		 * For example, '&#64;findByUserExpand'.
 		 */
 		public var condition:String='';
