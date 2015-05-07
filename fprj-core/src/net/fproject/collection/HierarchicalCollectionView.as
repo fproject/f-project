@@ -19,6 +19,7 @@ package net.fproject.collection
 	 * 
 	 * @see http://stackoverflow.com/questions/4320678/advanced-data-grid-error-bookmark-no-longer-valid
 	 * @see https://issues.apache.org/jira/browse/FLEX-32249
+	 * @see https://issues.apache.org/jira/browse/FLEX-34119
 	 * 
 	 */
 	public class HierarchicalCollectionView extends mx.collections.HierarchicalCollectionView

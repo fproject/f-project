@@ -45,7 +45,7 @@ package net.fproject.active.supportClasses
 			{
 				var i:int = bookmark.getViewIndex();
 				if(l < 20)
-					return i > 0.9*l;
+					return l - i < 2;
 				else
 					return l - i < 3;
 			}
