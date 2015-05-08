@@ -34,7 +34,7 @@ package net.fproject.active.supportClasses
 		 * @param cursor the IViewCursor contains current view cursor information
 		 * @return a Boolean indicates whether we need to query next page.
 		 * 
-		 * @see #queryTrigger
+		 * @see net.fproject.active.IActiveDataProvider.queryTrigger
 		 * 
 		 */
 		public function defaultQueryTrigger(cursor:IViewCursor):Boolean
@@ -70,7 +70,7 @@ package net.fproject.active.supportClasses
 		
 		/**
 		 * 
-		 * @inheritDoc
+		 * @copy net.fproject.active.IActiveDataProvider.fetchNextPage()
 		 * 
 		 */
 		public function fetchNextPage():ActiveCallResponder
@@ -91,7 +91,7 @@ package net.fproject.active.supportClasses
 		
 		/**
 		 * 
-		 * @inheritDoc
+		 * @copy net.fproject.active.IActiveDataProvider.fetchFirstPage()
 		 * 
 		 */
 		public function fetchFirstPage():ActiveCallResponder
@@ -105,7 +105,7 @@ package net.fproject.active.supportClasses
 			
 			_fetchPending = true;
 			
-			parent.source = null;
+			parent.setSource(null);
 			
 			return parent.service.fetchData(parent);
 		}
@@ -115,7 +115,7 @@ package net.fproject.active.supportClasses
 		 * @param p the pagination result of last service call
 		 * @return a Boolean indicates whether we need to query next page.
 		 * 
-		 * @see #paginationResultHandler
+		 * @see net.fproject.active.IActiveDataProvider.paginationResultHandler
 		 * 
 		 */
 		public function defaultPaginationResultHandler(p:PaginationResult):void
@@ -133,7 +133,8 @@ package net.fproject.active.supportClasses
 		}
 		
 		/**
-		 * @inheritDoc
+		 * 
+		 * @copy net.fproject.active.IActiveDataProvider.result()
 		 * 
 		 */
 		public function result(data:Object):void
@@ -155,7 +156,8 @@ package net.fproject.active.supportClasses
 		}
 		
 		/**
-		 * @inheritDoc
+		 * 
+		 * @copy net.fproject.active.IActiveDataProvider.fault()
 		 * 
 		 */
 		public function fault(data:Object):void
@@ -163,6 +165,14 @@ package net.fproject.active.supportClasses
 			_fetchPending = false;
 		}
 		
+		/**
+		 * Create an instance of DbCriteria from an input object.
+		 * @param criteria the input object.
+		 * @return an instance of DbCriteria from an input object.
+		 * If the value of <code>criteria</code> is DbCriteria already, this method
+		 * returns the <code>criteria</code> itself, else, it returns a new instance
+		 * 
+		 */
 		public function parseCriteria(criteria:Object):DbCriteria
 		{
 			if(criteria is DbCriteria)
@@ -181,6 +191,11 @@ package net.fproject.active.supportClasses
 			return _criteria;
 		}
 		
+		/**
+		 * Constructor 
+		 * @param parent the IActiveDataProvider that owns this handler.
+		 * 
+		 */
 		public function ActiveDataProviderHandler(parent:IActiveDataProvider)
 		{
 			this.parent = parent;

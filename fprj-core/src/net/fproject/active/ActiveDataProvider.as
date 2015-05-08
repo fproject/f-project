@@ -227,6 +227,15 @@ package net.fproject.active
 		}
 		
 		/**
+		 * @inheritDoc
+		 * 
+		 */
+		public function setSource(value:Object):void
+		{
+			this.source = value as Array;
+		}
+		
+		/**
 		 * Constructor.
 		 * 
 		 * @param criteria The criteria that is passed to <code>find</code> method
