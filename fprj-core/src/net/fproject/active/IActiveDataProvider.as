@@ -14,18 +14,16 @@ package net.fproject.active
 	public interface IActiveDataProvider extends IEventDispatcher
 	{
 		/**
-		 *  The source of data.
-		 *  The IActiveDataProvider object does not represent any changes that you make
-		 *  directly to the source array. Always use
-		 *  the ICollectionView, IHierarchicalCollectionView or IList methods to modify the collection.
-		 *  
+		 * Set the source data.
+		 * 
+		 * The IActiveDataProvider object does not represent any changes that you make
+		 * directly to the source object. Always use
+		 * the ICollectionView, IHierarchicalCollectionView or IList methods to modify the collection.
+		 * 
+		 * @see net.fproject.active.IActiveDataProvider.source
+		 * @see net.fproject.active.IActiveDataProvider.source
 		 */
-		function get source():Array;
-		
-		/**
-		 *  @private
-		 */
-		function set source(value:Array):void;
+		function setSource(value:Object):void;
 			
 		/**
 		 * 
