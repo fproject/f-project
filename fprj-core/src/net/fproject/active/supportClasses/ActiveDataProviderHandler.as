@@ -177,18 +177,24 @@ package net.fproject.active.supportClasses
 		{
 			if(criteria is DbCriteria)
 			{
-				var _criteria:DbCriteria = DbCriteria(criteria);
+				var c:DbCriteria = DbCriteria(criteria);
 			}
 			else if(criteria != null)
 			{
 				if(criteria.hasOwnProperty('criteria'))
-					_criteria = new DbCriteria(criteria['criteria']);
+				{
+					c = new DbCriteria(criteria['criteria']);
+					if(criteria.hasOwnProperty('pagination'))
+						c.pagination = criteria['pagination'];
+					if(criteria.hasOwnProperty('sort'))
+						c.sort = criteria['sort'];
+				}
 				else
-					_criteria = new DbCriteria(criteria);
-				if(criteria.hasOwnProperty('pagination'))
-					_criteria.pagination = criteria['pagination'];
+				{
+					c = new DbCriteria(criteria);
+				}
 			}
-			return _criteria;
+			return c;
 		}
 		
 		/**

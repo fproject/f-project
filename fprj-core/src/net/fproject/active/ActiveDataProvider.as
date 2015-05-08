@@ -245,7 +245,7 @@ package net.fproject.active
 		 */
 		public function ActiveDataProvider(criteria:Object, service:ActiveService=null)
 		{
-			super(source);
+			super();
 			_service = service;
 			
 			handler = new ActiveDataProviderHandler(this);
