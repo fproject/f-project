@@ -31,25 +31,44 @@ package net.fproject.active.supportClasses
 		
 		/**
 		 * This method is used as default value of <code>queryTrigger</code>
-		 * @param cursor the IViewCursor contains current view cursor information
+		 * @param index the current view index
+		 * @param index the current view length
 		 * @return a Boolean indicates whether we need to query next page.
 		 * 
 		 * @see net.fproject.active.IActiveDataProvider.queryTrigger
 		 * 
 		 */
-		public function defaultQueryTrigger(cursor:IViewCursor):Boolean
+		public function defaultQueryTrigger(index:int, length:int):Boolean
 		{
-			var bookmark:CursorBookmark = cursor.bookmark;
-			var l:int = cursor.view.length;
-			if(bookmark != null && l > 0)
+			if(length > 0)
 			{
-				var i:int = bookmark.getViewIndex();
-				if(l < 20)
-					return l - i < 2;
+				if(length < 20)
+					return length - index < 2;
 				else
-					return l - i < 3;
+					return length - index < 3;
 			}
 			return false;
+		}
+		
+		private var lastCheckCursorIndex:Array = [-1, -1];
+		
+		public function checkCursorByIndex(index:int, length:int):void
+		{
+			if(!viewCursorAttached &&
+				(index != lastCheckCursorIndex[0] || length != lastCheckCursorIndex[1]))
+			{
+				triggerQuery(index, length);
+				lastCheckCursorIndex = [index, length];
+			}
+		}
+		
+		private var viewCursorAttached:Boolean;
+		
+		public function attachViewCursor(cursor:IViewCursor):IViewCursor
+		{
+			cursor.addEventListener(FlexEvent.CURSOR_UPDATE, onCursorUpdate, false, 0, true);
+			viewCursorAttached = true;
+			return cursor;
 		}
 		
 		/**
@@ -57,11 +76,28 @@ package net.fproject.active.supportClasses
 		 * Event handler for FlexEvent.CURSOR_UPDATE event of parent active data provider
 		 * 
 		 */
-		public function onCursorUpdate(e:FlexEvent):void
+		private function onCursorUpdate(e:FlexEvent):void
 		{
 			var cursor:IViewCursor = e.target as IViewCursor;
+			var bookmark:CursorBookmark = cursor.bookmark;
+			var l:int = cursor.view.length;
+			if(bookmark != null && l > 0)
+			{
+				var i:int = bookmark.getViewIndex();
+				triggerQuery(i, l);
+			}
+		}
+		
+		/**
+		 * Trigger the next-page query by checking the current view index reached the view length.
+		 * @param index
+		 * @param length
+		 * 
+		 */
+		private function triggerQuery(index:int, length:int):void
+		{
 			var b:Boolean = parent.queryTrigger != null ? 
-				parent.queryTrigger(cursor) : defaultQueryTrigger(cursor);
+				parent.queryTrigger(index, length) : defaultQueryTrigger(index, length);
 			if(b && !_fetchPending)
 				fetchNextPage();
 		}

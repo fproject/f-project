@@ -1,6 +1,6 @@
 package net.fproject.active
 {
-	import flash.events.IEventDispatcher;
+	import mx.collections.ICollectionView;
 
 	/**
 	 * IActiveDataProvider interface dedines a common set of methods used for active data providers.
@@ -11,7 +11,7 @@ package net.fproject.active
 	 * @see net.fproject.active.ActiveHierarchicalDataProvider
 	 * 
 	 */
-	public interface IActiveDataProvider extends IEventDispatcher
+	public interface IActiveDataProvider extends ICollectionView
 	{
 		/**
 		 * Set the source data.
@@ -41,9 +41,9 @@ package net.fproject.active
 			
 		/**
 		 * A function that return a Boolean indicates whether we need to query next page.
-		 * This function is called every time the IViewCursor of this collection is updated.
-		 * It must have only one parameter that is the IViewCursor itself,
-		 * <pre>function myQueryTrigger(cursor:IViewCursor):Boolean</pre>
+		 * This function is called every time the maximum working index of this collection is updated.
+		 * It must have only two parameters that is the index and length of current view:
+		 * <pre>defaultQueryTrigger(index:int, length:int):Boolean</pre>
 		 * 
 		 */
 		function get queryTrigger():Function;
