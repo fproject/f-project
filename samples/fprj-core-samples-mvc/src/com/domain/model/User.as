@@ -7,5 +7,7 @@ package com.domain.model
 		public var password:String;
 		public var authKey:String;
 		public var accessToken:String;
+		public var profile:Profile;
+		public var department:Department;
 	}
 }

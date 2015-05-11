@@ -128,9 +128,11 @@
 			more about it here: http://bugs.adobe.com/jira/browse/SDK-21143
 			-->
 			<!--- @copy spark.components.SkinnableContainer#contentGroup -->
-			<s:Group id="contentGroup" width="100%" height="100%" minWidth="0" minHeight="0">
-				<s:TextArea id="theTextArea" width="100%" height="100%"/>
-			</s:Group>
+			<s:HGroup id="contentGroup" width="100%" height="100%" minWidth="0" minHeight="0">
+				<s:TextArea id="theTextArea" width="50%" height="100%"/>
+				<s:DataGrid id="theSparkDataGrid" width="50%" height="100%"
+							verticalScrollPolicy="auto"/>
+			</s:HGroup>
 			
 			<!--- @private -->
 			<s:Group id="bottomGroup" minWidth="0" minHeight="0" 
