@@ -262,7 +262,9 @@ package net.fproject.active
 		{
 			dataProvider.setService(this);
 			var responder:ActiveCallResponder = new ActiveCallResponder(dataProvider);
-			createServiceCall(remoteObject.find(dataProvider.criteria, NaN, NaN, null), null, null, responder);
+			if(dataProvider.criteria != null && dataProvider.criteria.expand != null)
+				var extraParams:Object = {expand:dataProvider.criteria.expand};
+			createServiceCall(remoteObject.find(dataProvider.criteria, NaN, NaN, null, extraParams), null, null, responder);
 			return responder;
 		}
 		

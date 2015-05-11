@@ -53,7 +53,12 @@ package net.fproject.rpc
 			if(extraParams != null)
 			{
 				var extraParamIndex:int = int(extraParams.substr(1, extraParams.length - 2));
-				var extraParamArg:Array = sendingArgs[extraParamIndex];
+				
+				if(sendingArgs[extraParamIndex] is Array)
+					var extraParamArg:Array = sendingArgs[extraParamIndex];
+				else
+					extraParamArg = [sendingArgs[extraParamIndex]];
+				
 				if(extraParamArg != null && extraParamArg.length > 0)
 				{
 					var extraParamStr:String = null;
