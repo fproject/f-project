@@ -26,7 +26,7 @@ package com.domain.gui.components
 		
 		public function view_creationComplete(e:Event):void
 		{
-			userDataProvider = UserService.instance.createDataProvider({}) as ActiveDataProvider;
+			userDataProvider = UserService.instance.createDataProvider({expand:'profile,department'}) as ActiveDataProvider;
 		}
 	}
 }

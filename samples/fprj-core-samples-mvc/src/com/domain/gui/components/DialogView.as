@@ -8,8 +8,10 @@ package com.domain.gui.components
 	import mx.managers.PopUpManager;
 	import mx.utils.StringUtil;
 	
+	import spark.components.DataGrid;
 	import spark.components.TextArea;
 	
+	import net.fproject.active.ActiveDataProvider;
 	import net.fproject.active.PaginationResult;
 	
 	[EventHandling(event="initialize",handler="view_initialize")]//Event handling of class instance
@@ -19,11 +21,19 @@ package com.domain.gui.components
 		[SkinPart(required="true")]
 		public var theTextArea:TextArea;
 		
+		[SkinPart(required="true")]
+		[PropertyBinding(dataProvider="gridDataProvider@")]
+		public var theSparkDataGrid:DataGrid;
+		
+		[Bindable]
+		public var gridDataProvider:ActiveDataProvider;
+		
 		public function view_initialize(e:Event):void
 		{
-			UserService.instance.find(
-				{condition:"username LIKE :name",params:{":name":"%Batch%"}},
-				2, 5, "-name", userFindCompleteHandler);
+			var criteria:Object = {condition:"username LIKE :name",params:{":name":"%demo_no_%"}};
+			UserService.instance.find(criteria, 2, 5, "-name", userFindCompleteHandler);
+			
+			gridDataProvider = UserService.instance.createDataProvider(criteria) as ActiveDataProvider;
 		}
 		
 		public function view_close(e:Event):void
