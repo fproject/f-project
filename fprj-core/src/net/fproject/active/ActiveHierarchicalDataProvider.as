@@ -7,9 +7,9 @@
 ///////////////////////////////////////////////////////////////////////////////
 package net.fproject.active
 {
+	import mx.collections.HierarchicalData;
 	import mx.collections.IHierarchicalData;
 	import mx.collections.IViewCursor;
-	import mx.events.FlexEvent;
 	
 	import net.fproject.active.supportClasses.ActiveDataProviderHandler;
 	import net.fproject.collection.HierarchicalCollectionView;
@@ -157,9 +157,7 @@ package net.fproject.active
 		 */
 		override public function createCursor():IViewCursor
 		{
-			var cursor:IViewCursor = IViewCursor(super.createCursor());
-			cursor.addEventListener(FlexEvent.CURSOR_UPDATE, handler.onCursorUpdate, false, 0, true);
-			return cursor;
+			return handler.attachViewCursor(super.createCursor());
 		}
 		
 		/**
@@ -231,7 +229,8 @@ package net.fproject.active
 		 */
 		public function setSource(value:Object):void
 		{
-			this.source = value as IHierarchicalData;
+			if(value != null)
+				this.source = value as IHierarchicalData;
 		}
 		
 		/**
@@ -244,7 +243,7 @@ package net.fproject.active
 		 */
 		public function ActiveHierarchicalDataProvider(criteria:Object, service:ActiveService=null)
 		{
-			super();
+			super(new HierarchicalData());
 			_service = service;
 			
 			handler = new ActiveDataProviderHandler(this);

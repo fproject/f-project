@@ -7,10 +7,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 package net.fproject.active
 {
-	import flash.events.IEventDispatcher;
-	
 	import mx.collections.IViewCursor;
-	import mx.events.FlexEvent;
 	
 	import net.fproject.active.supportClasses.ActiveDataProviderHandler;
 	import net.fproject.collection.AdvancedArrayCollection;
@@ -158,9 +155,19 @@ package net.fproject.active
 		 */
 		override public function createCursor():IViewCursor
 		{
-			var cursor:IEventDispatcher = IEventDispatcher(super.createCursor());
-			cursor.addEventListener(FlexEvent.CURSOR_UPDATE, handler.onCursorUpdate, false, 0, true);
-			return IViewCursor(cursor);
+			return handler.attachViewCursor(super.createCursor());
+		}
+		
+		/**
+		 * 
+		 * @inheritDoc
+		 * 
+		 */
+		override public function getItemAt(index:int, prefetch:int = 0):Object
+		{
+			var o:Object = super.getItemAt(index, prefetch);
+			handler.checkCursorByIndex(index, this.length);
+			return o;
 		}
 		
 		/**
