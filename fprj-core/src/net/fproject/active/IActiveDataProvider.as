@@ -117,5 +117,14 @@ package net.fproject.active
 		 * 
 		 */
 		function fetchNextPage():ActiveCallResponder;
+		
+		/**
+		 *  Adds the specified item to the end of the list.
+		 *  Equivalent to <code>addItemAt(item, length)</code>.
+		 *
+		 *  @param item The item to add.
+		 *  
+		 */
+		function addItem(item:Object):void;
 	}
 }
