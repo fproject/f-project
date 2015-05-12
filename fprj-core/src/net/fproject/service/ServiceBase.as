@@ -92,8 +92,7 @@ package net.fproject.service
 			//Set credentials if needed
 			if(ro.channelSet.authenticated == false && appContext.loginUser != null)
 			{
-				ro.setCredentials(appContext.loginUser.id,
-					appContext.loginUser.token);
+				ro.setAuthToken(appContext.loginUser.token);
 			}				
 			
 			ro.addEventListener(FaultEvent.FAULT, onServiceFailed, false, 0, true);

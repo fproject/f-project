@@ -216,6 +216,13 @@ package net.fproject.rpc
 				result.requestHeaders = requestHeaders;
 			}
 			
+			if(this.credentials != null)
+			{
+				if(result.requestHeaders == null)
+					result.requestHeaders = [];
+				result.requestHeaders.push(new URLRequestHeader('Authorization', 'Bearer ' + this.credentials));
+			}
+			
 			if (!contentTypeIsXML)
 			{
 				var urlVariables:URLVariables = new URLVariables();
@@ -260,12 +267,17 @@ package net.fproject.rpc
 			return result;
 		}
 		
-		/*override public function setCredentials(credentials:String, agent:MessageAgent=null, charset:String=null):void
+		/**
+		 * Set OAuth 2.0 token 
+		 * @param credentials the OAuth 2.0 token 
+		 * @param agent this parameter is ignored
+		 * @param charset this parameter is ignored
+		 * 
+		 */
+		override public function setCredentials(credentials:String, agent:MessageAgent=null, charset:String=null):void
 		{
-			var message:String = resourceManager.getString(
-				"messaging", "authenticationNotSupported");
-			throw new ChannelError(message);
-		}*/
+			this.credentials = credentials;			
+		}
 		
 		/**
 		 * @private

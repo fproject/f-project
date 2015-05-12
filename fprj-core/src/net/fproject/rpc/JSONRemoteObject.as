@@ -48,6 +48,9 @@ package net.fproject.rpc
 										 proxy:Object)
 		{
 			super(dest);
+			
+			this.channel = channel;
+			
 			_source = channel.url;
 			if(!StringUtil.endsWith(_source, "/"))
 				_source += "/";			
@@ -69,6 +72,8 @@ package net.fproject.rpc
 			
 			this.proxy = proxy;
 		}
+		
+		private var channel:Channel;
 		
 		private var _source:String
 		
@@ -239,6 +244,20 @@ package net.fproject.rpc
 			convertResultHandler = value;
 		}
 		
+		/**
+		 * 
+		 * @inheritDoc
+		 * 
+		 */
+		public function setAuthToken(token:String):void
+		{
+			channel.setCredentials(token);
+		}
+		
+		/**
+		 * Init endpoint 
+		 * 
+		 */
 		fproject_internal function initEndpoint():void
 		{
 			if (endpoint != null)

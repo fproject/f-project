@@ -16,6 +16,16 @@ package net.fproject.rpc
 		 * @inheritDoc
 		 * 
 		 */
+		public function setAuthToken(token:String):void
+		{
+			this.setCredentials('', token);
+		}
+		
+		/**
+		 * 
+		 * @inheritDoc
+		 * 
+		 */
 		public function setConvertParametersHandler(value:Function):void
 		{
 			convertParametersHandler = value;

@@ -50,19 +50,14 @@ package net.fproject.rpc
 		function set requestTimeout(value:int):void;
 		
 		/**
-		 * Sets the credentials for the destination accessed by the service when using Data Services on the server side.
+		 * Sets the authentication/authorization token for the destination accessed by the
+		 * service when using Data Services on the server side.
 		 * The credentials are applied to all services connected over the same
-		 * ChannelSet. Note that services that use a proxy or a third-party adapter
-		 * to a remote endpoint will need to setRemoteCredentials instead.
 		 * 
-		 * @param username The username for the destination.
-		 * @param password The password for the destination.
-		 * @param charset The character set encoding to use while encoding the
-		 * credentials. The default is null, which implies the legacy charset of
-		 * ISO-Latin-1. The only other supported charset is &quot;UTF-8&quot;.
+		 * @param token The authentication/authorization token.
 		 *
 		 */
-		function setCredentials(username:String, password:String, charset:String=null):void;
+		function setAuthToken(token:String):void;
 		
 		/**
 		 * Set the convertParametersHandler function.
