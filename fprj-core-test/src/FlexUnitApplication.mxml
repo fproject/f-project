@@ -9,15 +9,12 @@
 			   minWidth="955" minHeight="600" creationComplete="onCreationComplete()">
 	<fx:Script>
 		<![CDATA[
-			import net.fproject.active.ActiveService_testCases;
-			
-			import org.flexunit.runner.Request;
+			import net.fproject.active.ActiveDataProvider_fetchFirstPage;
 			
 			public function currentRunTestSuite():Array
 			{
 				var testsToRun:Array = new Array();
-				
-				testsToRun.push(Request.methods(net.fproject.active.ActiveService_testCases,["testCase700"]));
+				testsToRun.push(net.fproject.active.ActiveDataProvider_fetchFirstPage);
 				return testsToRun;
 			}
 			
