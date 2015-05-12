@@ -83,6 +83,7 @@
     <classEntry path="net.fproject.active.IActiveDataProvider"/>
     <classEntry path="net.fproject.active.supportClasses.ActiveDataProviderHandler"/>
     <classEntry path="net.fproject.active.ActiveHierarchicalDataProvider"/>
+    <classEntry path="net.fproject.model.HierarchicalItem"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="manifest.xml" sourcePath="manifest.xml"/>

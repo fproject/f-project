@@ -10,6 +10,7 @@ package net.fproject.active
 	import mx.collections.HierarchicalData;
 	import mx.collections.IHierarchicalData;
 	import mx.collections.IViewCursor;
+	import mx.utils.UIDUtil;
 	
 	import net.fproject.active.supportClasses.ActiveDataProviderHandler;
 	import net.fproject.collection.HierarchicalCollectionView;
@@ -231,6 +232,48 @@ package net.fproject.active
 		{
 			if(value != null)
 				this.source = value as IHierarchicalData;
+		}
+		
+		/**
+		 * The function used to get parent item of an given item:
+		 * <pre>
+		 * 	function itemToParentFunction(item:Object):Object
+		 * </pre>
+		 * By default method <code>defaultToParentFunction()</code> will be used.
+		 */
+		public var toParentFunction:Function;
+		
+		/**
+		 * The function used to get hierarchical item of an given item:
+		 * <pre>
+		 * 	function toHierarchicalItemFunction(item:Object):Object
+		 * </pre>
+		 * If no value specified, the item itself will be used as hierarchical item
+		 */
+		public var toHierarchicalItemFunction:Function;
+		
+		public function defaultToParentFunction(item:Object):Object
+		{
+			return item != null && item.hasOwnProperty("parent") ? item["parent"] : null;
+		}
+		
+		private var parentIdToParent:Object = {};
+		
+		public function addItem(item:Object):void
+		{
+			var parent:Object = toParentFunction != null ? 
+				toParentFunction(item) : defaultToParentFunction(item);
+			if(parent != null)
+			{
+				var uid:String = UIDUtil.getUID(parent);
+				if(parentIdToParent[uid] != undefined)
+					parent = parentIdToParent[uid];
+				else
+					parentIdToParent[uid] = parent;
+			}
+			if(toHierarchicalItemFunction != null)
+				item = toHierarchicalItemFunction(item);
+			this.addChild(parent, item);
 		}
 		
 		/**
