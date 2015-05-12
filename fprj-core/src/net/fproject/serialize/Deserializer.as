@@ -191,11 +191,11 @@ package net.fproject.serialize
 			return result;
 		}
 		
-		private function addReflectedRules(injectionMap:TypeInjection, targetType:Class, reflectionMap:Type):void
+		private function addReflectedRules(ti:TypeInjection, targetType:Class, type:Type):void
 		{
-			addReflectedConstructorRules(injectionMap, reflectionMap);
-			addReflectedFieldRules(injectionMap, reflectionMap.fields);
-			addReflectedSetterRules(injectionMap, reflectionMap.methods);
+			addReflectedConstructorRules(ti, type);
+			addReflectedFieldRules(ti, type.fields);
+			addReflectedSetterRules(ti, type.methods);
 		}
 
 		private function addReflectedConstructorRules(typeInjection:TypeInjection, type:Type):void
