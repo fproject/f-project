@@ -264,7 +264,9 @@ package net.fproject.utils
 				mermberName = mermberName.substr(0, mermberName.length - 2);
 				return host[mermberName]();
 			}
-			if(mermberName.charAt(0) == '{' && mermberName.charAt(mermberName.length - 1) == '}')
+			if((mermberName.charAt(0) == '{' && mermberName.charAt(mermberName.length - 1) == '}') ||
+				(mermberName.charAt(0) == '"' && mermberName.charAt(mermberName.length - 1) == '"') ||
+				(mermberName.charAt(0) == "'" && mermberName.charAt(mermberName.length - 1) == "'"))
 			{
 				return mermberName.substring(1, mermberName.length - 1);
 			}
