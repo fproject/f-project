@@ -84,6 +84,7 @@ package net.fproject.active
 		
 		private var _paginationResult:PaginationResult;
 		
+		[Bindable('propertyChange')]
 		/**
 		 * 
 		 * @inheritDoc

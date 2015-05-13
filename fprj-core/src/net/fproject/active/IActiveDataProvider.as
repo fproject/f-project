@@ -62,7 +62,6 @@ package net.fproject.active
 		 */
 		function setService(value:ActiveService):void;
 		
-		[Bindable('propertyChange')]
 		/**
 		 * 
 		 * The last pagination result
