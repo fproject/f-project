@@ -21,8 +21,18 @@ package net.fproject.rpc
 	import org.as3commons.reflect.Method;
 	import org.as3commons.reflect.Type;
 	
+	/**
+	 * The RemoteObjectFactory provides factory method for instantiating
+	 * remote objects in both AMF and JSON channels.
+	 * 
+	 * @author Bui Sy Nguyen
+	 * 
+	 */
 	public class RemoteObjectFactory
 	{
+		/**
+		 * @private 
+		 */
 		private static var nameToRemoteObject:Object = {};
 		
 		private static var serverConfig:XML
@@ -51,6 +61,12 @@ package net.fproject.rpc
 		private static const URI:String = "uri";
 		private static const MODEL_CLASS:String = "modelClass";
 		
+		/**
+		 * Get a singleton instance of a remote object type. 
+		 * @param proxy the proxy object that contains metadata for DI reflection
+		 * @return a singleton instance of the remote object type.
+		 * 
+		 */
 		public static function getInstance(proxy:Object):IRemoteObject
 		{
 			var type:Type = Type.forInstance(proxy);
@@ -164,6 +180,12 @@ package net.fproject.rpc
 		private static const ROUTE:String = "route";
 		private static const EXTRA_PARAMS:String = "extraParams";
 		
+		/**
+		 * Get operation metadata from type
+		 * @param type
+		 * @return operation metadata
+		 * 
+		 */
 		private static function getOperationMetadata(type:Type):Object
 		{
 			var opMeta:Object = {};

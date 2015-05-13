@@ -38,8 +38,9 @@ package net.fproject.rpc
 	[ResourceBundle("messaging")]
 	
 	/**
-	 *  The JSONChannel class is used to turn an HTTPRequestMessage object into an HTTP request.
-	 *  This Channel does not connect to a Flex endpoint.
+	 * The JSONChannel class is used to turn an HTTPRequestMessage object into an HTTP request.
+	 * This channel is generally used to connect to REST web services.
+	 * This channel does not connect to a AMF endpoint.
 	 */
 	public class JSONChannel extends Channel
 	{
@@ -47,11 +48,6 @@ package net.fproject.rpc
 		 *  Constructs an instance of a JSONChannel.
 		 *  The parameters are not used.
 		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 9
-		 *  @playerversion AIR 1.1
-		 *  @productversion BlazeDS 4
-		 *  @productversion LCDS 3 
 		 */
 		public function JSONChannel(id:String, uri:String="")
 		{
@@ -75,11 +71,6 @@ package net.fproject.rpc
 		/**
 		 *  Indicates if this channel is connected.
 		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 9
-		 *  @playerversion AIR 1.1
-		 *  @productversion BlazeDS 4
-		 *  @productversion LCDS 3 
 		 */
 		override public function get connected():Boolean
 		{
@@ -89,11 +80,6 @@ package net.fproject.rpc
 		/**
 		 *  Indicates the protocol used by this channel.
 		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 9
-		 *  @playerversion AIR 1.1
-		 *  @productversion BlazeDS 4
-		 *  @productversion LCDS 3 
 		 */
 		override public function get protocol():String
 		{
@@ -132,11 +118,6 @@ package net.fproject.rpc
 		 * 
 		 *  @return The MessageResponder to handle the send result or fault.
 		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 9
-		 *  @playerversion AIR 1.1
-		 *  @productversion BlazeDS 4
-		 *  @productversion LCDS 3 
 		 */
 		override protected function getMessageResponder(agent:MessageAgent, 
 														message:IMessage):MessageResponder
@@ -324,11 +305,6 @@ class JSONMessageResponder extends MessageResponder
 	/**
 	 *  Constructs a JSONMessageResponder.
 	 *  
-	 *  @langversion 3.0
-	 *  @playerversion Flash 9
-	 *  @playerversion AIR 1.1
-	 *  @productversion BlazeDS 4
-	 *  @productversion LCDS 3 
 	 */
 	public function JSONMessageResponder(agent:MessageAgent, msg:IMessage, 
 											   channel:net.fproject.rpc.JSONChannel, urlLoader:URLLoader)
@@ -362,11 +338,6 @@ class JSONMessageResponder extends MessageResponder
 	/**
 	 *  The URLLoader associated with this responder.
 	 *  
-	 *  @langversion 3.0
-	 *  @playerversion Flash 9
-	 *  @playerversion AIR 1.1
-	 *  @productversion BlazeDS 4
-	 *  @productversion LCDS 3 
 	 */
 	public var urlLoader:URLLoader;
 	

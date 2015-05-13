@@ -280,6 +280,9 @@ package net.fproject.rpc
 			}
 		}
 		
+		/**
+		 * @private 
+		 */
 		fproject_internal var operationNameToMetadata:Object;
 	}
 }
