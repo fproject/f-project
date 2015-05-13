@@ -8,7 +8,6 @@
 package net.fproject.active.supportClasses
 {
 	import mx.collections.CursorBookmark;
-	import mx.collections.IList;
 	import mx.collections.IViewCursor;
 	import mx.events.FlexEvent;
 	import mx.events.PropertyChangeEvent;
