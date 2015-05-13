@@ -15,10 +15,24 @@ package net.fproject.rpc
 	import net.fproject.serialize.Serializer;
 	import net.fproject.utils.StringUtil;
 	
+	/**
+	 * REST service calls are sent to the HTTP endpoint using this message type.
+	 * 
+	 * @author Bui Sy Nguyen
+	 * 
+	 */
 	public class JSONMessage extends HTTPRequestMessage
 	{
 		public static const CONTENT_TYPE_JSON:String = "application/json";    
 		
+		/**
+		 * Constructor
+		 *  
+		 * @param operation
+		 * @param sendingArgs
+		 * @param token
+		 * 
+		 */
 		public function JSONMessage(operation:JSONOperation, sendingArgs:Array, token:AsyncToken)
 		{
 			super();
@@ -34,6 +48,15 @@ package net.fproject.rpc
 			this.body = preparedMsg.body;
 		}   
 		
+		/**
+		 * Prepare message content before sending.
+		 *  
+		 * @param operation
+		 * @param sendingArgs
+		 * @param token
+		 * @return the prepared message content
+		 * 
+		 */
 		private function prepare(operation:JSONOperation, sendingArgs:Array, token:AsyncToken):Object
 		{
 			var ub:Object = parseUrlAndBody(operation.route, sendingArgs, operation.extraParams);
@@ -48,6 +71,14 @@ package net.fproject.rpc
 			return {url:url, body:body};
 		}
 		
+		/**
+		 * Parse URL and HTTP body 
+		 * @param route
+		 * @param sendingArgs
+		 * @param extraParams
+		 * @return an object contains URL and HTTP body of sending message
+		 * 
+		 */
 		private function parseUrlAndBody(route:String, sendingArgs:Array, extraParams:String):Object
 		{
 			if(extraParams != null)
@@ -136,6 +167,14 @@ package net.fproject.rpc
 			return routeData;
 		}
 		
+		/**
+		 * Replace route by arguments passed by user's method call 
+		 * @param route
+		 * @param i
+		 * @param argValue
+		 * @return the route after replacing arguments
+		 * 
+		 */
 		private function replaceRoute(route:String, i:int, argValue:*):String
 		{
 			if(argValue === null || (argValue is Number && isNaN(argValue)))
@@ -171,6 +210,12 @@ package net.fproject.rpc
 			return route;
 		}
 		
+		/**
+		 * End code URL 
+		 * @param value
+		 * @return 
+		 * 
+		 */
 		private function urlEncode(value:*):String
 		{
 			if((typeof value) == "object" && value != null)
