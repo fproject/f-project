@@ -15,6 +15,13 @@ package net.fproject.utils
 	import net.fproject.core.TimeUnit;
 	
 	use namespace mx_internal;
+	/**
+	 * 
+	 * DateTimeUtil class provides a set of common static methods for date-time handling
+	 * 
+	 * @author Bui Sy Nguyen
+	 * 
+	 */
 	public class DateTimeUtil
 	{
 		//--------------------------------------------------------------------------
@@ -72,6 +79,11 @@ package net.fproject.utils
 		
 		private static var _dateFormatter:AdvancedDateFormatter;
 
+		/**
+		 * 
+		 * Singleton of AdvancedDateFormatter
+		 * 
+		 */
 		public static function get dateFormatter():AdvancedDateFormatter
 		{
 			if(_dateFormatter == null)
