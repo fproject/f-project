@@ -22,7 +22,7 @@ package net.fproject.di
 	{
 		
 		/**
-		 * Search metadata value for a member of a class by its <code>id</code> property.
+		 * Search metadata value for a member of a class by its <code>name</code> or <code>argument key</code>.
 		 * @param source the metadata source to search. This can be a class, an instance object of a class
 		 * or an instance of org.as3commons.reflect.Type
 		 * @param member the member name/id or the member object.
@@ -94,7 +94,7 @@ package net.fproject.di
 		}
 		
 		/**
-		 * Search metadata value for a class by its <code>id</code> property.
+		 * Search metadata value for a class by its <code>name</code> or <code>argument key</code>.
 		 * @param source the metadata source to search. This can be a class, an instance object of a class
 		 * or an instance of <code>org.as3commons.reflect.Type</code>
 		 * @param metadataName the metadata name to search, should be in lower-case
@@ -149,7 +149,7 @@ package net.fproject.di
 		}
 		
 		/**
-		 * Get all metadata declare in a class and its parent classes 
+		 * Get all metadata declared in a class and its parent classes 
 		 * @param type the type of the class
 		 * @return an array of all metadata
 		 * 
