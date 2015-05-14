@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <annotations version="1.0">
-	<metadata name="Instantiator" 
+	<metadata name="AutoInstance" 
 			description="Khởi tạo một instance cho một interface bằng cách chỉ định implementation class cho interface đó.">
 		<context name="class"/>
 		<context name="variable"/>
 		<context name="getter"/>
-		<attribute name="impl" type="Class" required="true" 
-			description="Class path trỏ đến implementation class"/>
-		<attribute name="delegate" type="Class" required="false" 
-			description="Class path chỉ định delegate class"/>
+		<context name="setter"/>
+		<attribute name="factory" type="Class" required="true" 
+			description="Implementation class"/>
 	</metadata>
 	
 	<metadata name="EventHandling" 
@@ -17,13 +16,14 @@ Hơn thế nữa, việc add event listener này được tự động thực hi
 		<context name="class"/>
 		<context name="variable"/>
 		<context name="getter"/>
+		<context name="setter"/>
 		<context name="method"/>
 		<attribute name="dispatcher" type="String" required="false" 
 			description="Đường dẫn tên trường (field chain) dẫn đến một đối tượng con cháu của đối tượng gốc mặc định"/>
 		<attribute name="event" type="String" required="true" 
 			description="Tham số type của event, có thể nhận giá trị là một literal string của event type chẳng hạn như 'creationComplete', hoặc đường dẫn đến một hằng số static được định nghĩa trong một class, chẳng hạn như 'mx.events.CloseEvent.CLOSE'."/>
 		<attribute name="handler" type="Function" required="false" 
-			description="Class path chỉ định delegate class"/>
+			description="Event handler"/>
 	</metadata>
 	
 	<metadata name="PropertyBinding" 
@@ -31,6 +31,7 @@ Hơn thế nữa, việc add event listener này được tự động thực hi
 		<context name="class"/>
 		<context name="variable"/>
 		<context name="getter"/>
+		<context name="setter"/>
 		<context name="method"/>
 		<attribute name="hostChain" type="String" required="false" 
 			description="Đường dẫn tên trường (field chain) dẫn đến một đối tượng con cháu của đối tượng gốc mặc định"/>
@@ -47,11 +48,11 @@ Hơn thế nữa, việc add event listener này được tự động thực hi
 			description="Destination ID của endpoint, được định nghĩa trong file services-config.xml"/>
 		<attribute name="uri" type="String" required="false" 
 			description="URI của RESTful endpoint. Đây là base URI, khi kết hợp với tham số &lt;code&gt;route&lt;/code&gt; của &lt;code&gt;[RESTOperation]&lt;/code&gt; sẽ tạo ra URI đầy đủ&lt;/code&gt;"/>
-		<attribute name="modelClass" type="String" required="false" 
-			description="Tên của model class gắn với RESTful endpoint"/>
+		<attribute name="modelClass" type="Class" required="false" 
+			description="Model class gắn với RESTful endpoint"/>
 	</metadata>
 	
-	<metadata name="RESTOperation" 
+	<metadata name="RESTOperation"
 			description="Khai báo một operation truy cập đến một RESTful endpoint">
 		<context name="method"/>
 		<attribute name="method" type="String" required="false" 
@@ -67,6 +68,8 @@ Hơn thế nữa, việc add event listener này được tự động thực hi
 	<metadata name="ModuleImplementation" 
 			description="Implementation config cho module">
 		<context name="class"/>
+		<context name="getter"/>
+		<context name="setter"/>
 		<context name="variable"/>
 		<attribute name="relativeUrl" type="String" required="true"  
 			description="Đường dẫn tương đối đến file SWF của module, ví dụ 'task/TaskModule'"/>
@@ -77,10 +80,25 @@ Hơn thế nữa, việc add event listener này được tự động thực hi
 	<metadata name="ComponentImplementation" 
 			description="Implementation config cho component">
 		<context name="class"/>
+		<context name="getter"/>
+		<context name="setter"/>
 		<context name="variable"/>
-		<attribute name="implClass" type="String" required="false" 
+		<attribute name="implClass" type="Class" required="false" 
 			description="Class path dẫn đến implementation class"/>
 		<attribute name="rsls" type="String" required="false" 
 			description="Danh sách các thư viện RSLs cần phải load để có thể khởi tạo component này. Có thể chỉ định thứ tự load các RSL bằng cách đánh trọng số vào sau tên file SWF. Ví dụ: 'abc.swf, xyz.swf{0}, def.swf{1}'"/>
+	</metadata>
+	
+	<metadata name="Marshall" 
+			description="Thông tin giúp Deserializer nhận biết sử dụng cách inject giá trị cho các trường của 1 class. Chú ý: trong trường hợp muốn inject bằng constructor thì [Marshall] phải được khai báo cho class">
+		<context name="class"/>
+		<context name="method"/>
+		<context name="getter"/>
+		<context name="setter"/>
+		<context name="variable"/>
+		<attribute name="field" type="String" required="false" 
+			description="Tên của trường được inject"/>
+		<attribute name="type" type="Class" required="false" 
+			description="Trường hợp [Marshall] khai báo trước 1 trường kiểu Array, 'type' cho phép chỉ định kiểu cho phần tử của array này"/>
 	</metadata>
 </annotations>
