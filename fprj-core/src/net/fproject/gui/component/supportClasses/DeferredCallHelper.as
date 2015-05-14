@@ -14,8 +14,25 @@ package net.fproject.gui.component.supportClasses
 	import mx.rpc.AsyncToken;
 	import mx.rpc.events.ResultEvent;
 
+	/**
+	 * Helper class for deferred method call .
+	 * 
+	 * @author Bui Sy Nguyen
+	 * 
+	 */
 	public class DeferredCallHelper
 	{
+		/**
+		 * Invoke call by method name and host class or host object 
+		 * @param hostObj
+		 * @param hostClass
+		 * @param methodName
+		 * @param args
+		 * @param token
+		 * @param classFromInstance
+		 * @return method call result
+		 * 
+		 */
 		public static function invokeCall(hostObj:Object, hostClass:Class, methodName:String, args:Array,
 										  token:AsyncToken, classFromInstance:Boolean=false):Function
 		{
@@ -29,6 +46,11 @@ package net.fproject.gui.component.supportClasses
 			return f;
 		}
 		
+		/**
+		 * 
+		 * @private
+		 * 
+		 */
 		private static function applyFunction(thisArg:Object, methodName:String, args:Array, token:AsyncToken):Function
 		{
 			if(thisArg != null && thisArg.hasOwnProperty(methodName))

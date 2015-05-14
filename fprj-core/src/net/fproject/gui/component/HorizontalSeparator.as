@@ -7,6 +7,13 @@
 ///////////////////////////////////////////////////////////////////////////////
 package net.fproject.gui.component
 {
+	/**
+	 * HorizontalSeparator is a line separator graphic element used to decorated GUI components
+	 * with a horizontal line.
+	 * 
+	 * @author Bui Sy Nguyen
+	 * 
+	 */
 	public class HorizontalSeparator extends LineSeparatorBase
 	{		
 		public function HorizontalSeparator()

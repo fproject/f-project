@@ -7,6 +7,13 @@
 ///////////////////////////////////////////////////////////////////////////////
 package net.fproject.gui.component
 {
+	/**
+	 * VerticalSeparator is a line separator graphic element used to decorated GUI components
+	 * with a vertical line.
+	 * 
+	 * @author Bui Sy Nguyen
+	 * 
+	 */
 	public class VerticalSeparator extends LineSeparatorBase
 	{		
 		public function VerticalSeparator()

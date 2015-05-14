@@ -13,6 +13,13 @@ package net.fproject.gui.component
 	
 	import spark.primitives.Line;
 	
+	/**
+	 * 
+	 * Base class for separator using spark.primitives.Line.
+	 * 
+	 * @author Bui Sy Nguyen
+	 * 
+	 */
 	public class LineSeparatorBase extends Line
 	{
 		[Bindable]

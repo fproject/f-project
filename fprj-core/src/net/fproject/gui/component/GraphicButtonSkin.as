@@ -12,6 +12,12 @@ package net.fproject.gui.component
 	
 	import spark.skins.spark.ButtonSkin;
 	
+	/**
+	 * Graphic button skin.
+	 *  
+	 * @author Bui Sy Nguyen
+	 * 
+	 */
 	public class GraphicButtonSkin extends ButtonSkin
 	{
 		public function GraphicButtonSkin()
