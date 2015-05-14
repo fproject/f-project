@@ -7,6 +7,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 package net.fproject.gui.component
 {
+	/**
+	 * Base interface for ComponentLoader and AdvancedModuleLoader.
+	 * 
+	 * @author Bui Sy Nguyen
+	 * 
+	 */
 	public interface IComponentLoader
 	{
 		function get component():Object;

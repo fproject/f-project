@@ -8,6 +8,11 @@
 package net.fproject.gui
 {
 
+	/**
+	 * 
+	 * Orientation constants
+	 * 
+	 */
     final public class Orientation
     {
         public static const LTR:String = "ltr";

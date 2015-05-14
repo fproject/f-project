@@ -16,6 +16,12 @@ package net.fproject.gui.component
 	import spark.filters.GlowFilter;
 	import spark.primitives.Rect;
 	
+	/**
+	 * A spark.primitives.Rect that is filled with a solid color specified by styles
+	 * 
+	 * @author Bui Sy Nguyen
+	 * 
+	 */
 	public class SolidColorRect extends Rect
 	{
 		private var _styleName:String;
