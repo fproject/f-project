@@ -185,24 +185,23 @@ package net.fproject.rpc
 				|| result.contentType == HTTPRequestMessage.CONTENT_TYPE_SOAP_XML;
 			
 			var headers:Object = httpMsg.httpHeaders;
+			var requestHeaders:Array = [];
+			
 			if (headers)
-			{
-				var requestHeaders:Array = [];
-				var header:URLRequestHeader;
+			{				
 				for (var h:String in headers)
 				{
-					header = new URLRequestHeader(h, headers[h]);
-					requestHeaders.push(header);
-				}
-				result.requestHeaders = requestHeaders;
+					requestHeaders.push(new URLRequestHeader(h, headers[h]));
+				}				
 			}
 			
-			if(this.credentials != null)
-			{
-				if(result.requestHeaders == null)
-					result.requestHeaders = [];
-				result.requestHeaders.push(new URLRequestHeader('Authorization', 'Bearer ' + this.credentials));
-			}
+			if(this.credentials != null && (headers == null || !headers.hasOwnProperty('Authorization')))
+				requestHeaders.push(new URLRequestHeader('Authorization', 'Bearer ' + this.credentials));
+			
+			if(headers == null || !headers.hasOwnProperty('Accept'))
+				requestHeaders.push(new URLRequestHeader('Accept', JSONMessage.CONTENT_TYPE_JSON));
+			
+			result.requestHeaders = requestHeaders;
 			
 			if (!contentTypeIsXML)
 			{
