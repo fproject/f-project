@@ -8,7 +8,6 @@
 package net.fproject.calendar
 {
 	import flash.events.Event;
-	import flash.events.EventDispatcher;
 	
 	import mx.events.FlexEvent;
 	import mx.resources.IResourceManager;
@@ -17,6 +16,7 @@ package net.fproject.calendar
 	import net.fproject.core.Time;
 	import net.fproject.core.TimeRange;
 	import net.fproject.core.TimeUnit;
+	import net.fproject.model.LocalUID;
 	import net.fproject.utils.DataUtil;
 	import net.fproject.utils.DateTimeUtil;
 	import net.fproject.utils.GregorianCalendar;
@@ -119,7 +119,7 @@ package net.fproject.calendar
 	 * @includeExample ResourceChartDefiningWorkCalendar.mxml
 	 * @includeExample WorkCalendarBaseCalendar.mxml
 	 * 	 */
-	public class WorkCalendar extends EventDispatcher
+	public class WorkCalendar extends LocalUID
 	{
 		private var _subCalendars:Vector.<WorkCalendar>;
 		private var _disableEvents:Boolean;
