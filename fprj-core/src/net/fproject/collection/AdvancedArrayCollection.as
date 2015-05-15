@@ -67,7 +67,7 @@ package net.fproject.collection
 		 */
 		public function AdvancedArrayCollection(source:Array=null, itemEqualFunction:Function=null)
 		{
-			this.itemEqualFunction = itemEqualFunction == null ? DataUtil.equals : itemEqualFunction;
+			this.itemEqualFunction = itemEqualFunction == null ? DataUtil.equalsByUid : itemEqualFunction;
 			super(source);
 		}
 		
@@ -88,8 +88,6 @@ package net.fproject.collection
 					if (itemEqualFunction(localIndex[i], item))
 						return i;
 				}
-				
-				return -1;
 			}
 			else if (localIndex && sort)
 			{
@@ -103,10 +101,8 @@ package net.fproject.collection
 					if (itemEqualFunction(localIndex[i], item))
 						return i;
 				}
-				
-				return -1;
 			}
-				// List is sorted or filtered but refresh has not been called
+			// List is sorted or filtered but refresh has not been called
 			else if (localIndex)
 			{
 				len = localIndex.length;
@@ -115,12 +111,19 @@ package net.fproject.collection
 					if (itemEqualFunction(localIndex[i], item))
 						return i;
 				}
-				
-				return -1;
+			}
+			else
+			{
+				len = source.length;
+				for (i = 0; i < len; i++)
+				{
+					if (itemEqualFunction(source[i], item))
+						return i;
+				}
 			}
 			
 			// fallback
-			return list.getItemIndex(item);   
+			return -1;
 		}
 		
 		/**

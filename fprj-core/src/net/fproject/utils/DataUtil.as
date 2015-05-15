@@ -12,6 +12,7 @@ package net.fproject.utils
 	
 	import mx.binding.utils.BindingUtils;
 	import mx.collections.IList;
+	import mx.core.IUID;
 	import mx.utils.ObjectUtil;
 	
 	import net.fproject.di.Injector;
@@ -346,6 +347,24 @@ package net.fproject.utils
 		{
 			if(a != null && a.hasOwnProperty("equals") && a["equals"] is Function)
 				return a.equals(b);
+			return a === b;
+		}
+		
+		/**
+		 * Check if two objects are equal by comparing the <code>id</code> property.
+		 * If the first object has own an <code>equals</code> method, it will be used in comparison.
+		 * If the two objects have <code>id</code> property, it will be used in comparison.
+		 * @param a the first object to compare
+		 * @param b the second object to compare
+		 * @return true if the two objects are equal, or the <code>id</code> property
+		 * 
+		 */
+		public static function equalsByUid(a:Object, b:Object):Boolean
+		{
+			if(a != null && a.hasOwnProperty("equals") && a["equals"] is Function)
+				return a.equals(b);
+			else if(a is IUID && b is IUID)
+				return IUID(a).uid == IUID(b).uid;	
 			return a === b;
 		}
 		

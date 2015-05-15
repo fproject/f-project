@@ -157,7 +157,8 @@ package net.fproject.active.supportClasses
 		{
 			for each(var o:Object in p.items)
 			{
-				parent.addItem(o);
+				if(!parent.contains(o))
+					parent.addItem(o);
 			}
 			
 			var oldValue:PaginationResult = parent.paginationResult;
