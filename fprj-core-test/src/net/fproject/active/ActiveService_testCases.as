@@ -2,6 +2,7 @@ package net.fproject.active
 {
 	import flash.events.Event;
 	
+	import mx.events.PropertyChangeEvent;
 	import mx.rpc.CallResponder;
 	import mx.rpc.events.ResultEvent;
 	import mx.utils.UIDUtil;
@@ -406,17 +407,20 @@ package net.fproject.active
 		public function testCase700():void
 		{
 			var activedataProvider:IActiveDataProvider = restService.createDataProvider({pagination:{perPage:11}});
-			Async.handleEvent(this, activedataProvider, 'resultChanged', testCase700_checkResult, 2000, activedataProvider);
+			Async.handleEvent(this, activedataProvider, 'propertyChange', testCase700_checkResult, 2000, activedataProvider);
 		}
 		
-		public function testCase700_checkResult(event:Event, activedataProvider:ActiveDataProvider):void
+		public function testCase700_checkResult(event:PropertyChangeEvent, activedataProvider:ActiveDataProvider):void
 		{
-			assertNotNull(activedataProvider.paginationResult);
-			assertEquals(11, activedataProvider.paginationResult.perPage);
-			for each(var o:Object in activedataProvider)
+			if(event.property == "paginationResult")
 			{
-				assertTrue(o is TestUser);
-			}
+				assertNotNull(activedataProvider.paginationResult);
+				assertEquals(11, activedataProvider.paginationResult.perPage);
+				for each(var o:Object in activedataProvider)
+				{
+					assertTrue(o is TestUser);
+				}
+			}			
 		}
 		
 		

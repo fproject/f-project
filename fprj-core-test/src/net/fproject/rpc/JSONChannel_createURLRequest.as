@@ -62,7 +62,7 @@ package net.fproject.rpc
 			assertEquals(null,returnTestValue.data);
 			assertEquals(null,returnTestValue.digest);
 			assertEquals(message.method,returnTestValue.method);
-			assertEquals(0,returnTestValue.requestHeaders.length);
+			assertEquals(1,returnTestValue.requestHeaders.length);
 			assertTrue(StringUtil.startsWith(returnTestValue.url,"http://abc.com.vn/?r=abc&p1=1&p2=2&"))
 			assertTrue(StringUtil.endsWith(returnTestValue.url,"&name=ABC&id=12345")
 				||StringUtil.endsWith(returnTestValue.url,"&id=12345&name=ABC"));
@@ -113,7 +113,7 @@ package net.fproject.rpc
 			assertEquals(message.body,returnTestValue.data);
 			assertEquals(null,returnTestValue.digest);
 			assertEquals(message.method,returnTestValue.method);
-			assertEquals(0,returnTestValue.requestHeaders.length);
+			assertEquals(1,returnTestValue.requestHeaders.length);
 			assertEquals("http://abc.com.vn/?r=abc&p1=1&p2=2",returnTestValue.url);
 			//-------------------------------------
 		}
