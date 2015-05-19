@@ -12,7 +12,7 @@
 
 	<properties >
 		<flex.sdk.version >4.9.1</flex.sdk.version >
-		<flexmojos.version >5.0-beta</flexmojos.version >
+		<flexmojos.version >4.2-beta</flexmojos.version >
 		<flexunit.version >4.1.0</flexunit.version >
 	</properties >
 
