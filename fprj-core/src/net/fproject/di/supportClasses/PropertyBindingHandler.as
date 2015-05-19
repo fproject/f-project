@@ -21,6 +21,13 @@ package net.fproject.di.supportClasses
 	
 	import org.as3commons.reflect.Metadata;
 	
+	/**
+	 * 
+	 * PropertyBindingHandler define a set of methods for handling [PropertyBinding]
+	 * 
+	 * @author Bui Sy Nguyen
+	 * 
+	 */
 	public class PropertyBindingHandler
 	{
 		private var property:String;
@@ -29,6 +36,14 @@ package net.fproject.di.supportClasses
 		private var bindings:Object;
 		private var bindingEvents:Vector.<String>;
 		
+		/**
+		 * 
+		 * Constructor.
+		 *  
+		 * @param property
+		 * @param executor
+		 * 
+		 */
 		public function PropertyBindingHandler(property:String, executor:Function)
 		{
 			this.property = property;
@@ -37,12 +52,27 @@ package net.fproject.di.supportClasses
 			this.bindings = {};		
 		}
 		
+		/**
+		 * Add binding information 
+		 * @param key
+		 * @param chain
+		 * @param target
+		 * @param targetField
+		 * 
+		 */
 		public function addBindingInfo(key:String, chain:Array, target:Object, targetField:String):void
 		{
 			if(this.bindings[key] == undefined)
 				this.bindings[key] = {chain:chain, target:target, targetField:targetField};
 		}
 		
+		/**
+		 * 
+		 * Start applying handlers to a host. 
+		 * 
+		 * @param newHost
+		 * 
+		 */
 		public function start(newHost:IEventDispatcher=null):void
 		{
 			if(newHost != host)
@@ -68,6 +98,11 @@ package net.fproject.di.supportClasses
 			}
 		}
 		
+		/**
+		 * 
+		 * @private
+		 * 
+		 */
 		private function propChangeHandler(e:PropertyChangeEvent):void
 		{
 			if(property == e.property)
@@ -80,6 +115,11 @@ package net.fproject.di.supportClasses
 			}		
 		};
 		
+		/**
+		 * 
+		 * @private
+		 * 
+		 */
 		private function changeEventHandler(e:Event):void
 		{
 			for(var s:String in bindings)
@@ -89,6 +129,11 @@ package net.fproject.di.supportClasses
 			}
 		};
 		
+		/**
+		 * 
+		 * @private
+		 * 
+		 */
 		private function partRemovedHandler(e:SkinPartEvent):void
 		{
 			for(var s:String in bindings)
@@ -98,6 +143,11 @@ package net.fproject.di.supportClasses
 			}
 		}
 		
+		/**
+		 * 
+		 * @private
+		 * 
+		 */
 		private function stop():void
 		{
 			if(host != null)
@@ -110,6 +160,11 @@ package net.fproject.di.supportClasses
 			}
 		}
 		
+		/**
+		 * 
+		 * @private
+		 * 
+		 */
 		private function extractBindingEvents():Vector.<String>
 		{
 			var clazz:String = getQualifiedClassName(this.host);
@@ -154,6 +209,11 @@ package net.fproject.di.supportClasses
 		
 		private static var bindingEventsCache:Object = {};
 		
+		/**
+		 * 
+		 * Caching events
+		 * 
+		 */
 		public static function addCacheEvents(classOrInstance:*, property:String, events:Array):void
 		{
 			var clazz:String = getQualifiedClassName(classOrInstance);

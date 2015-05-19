@@ -7,7 +7,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 package net.fproject.core
 {
-
 	/**
 	 * 
 	 * Represents a node of linked list.
@@ -15,10 +14,28 @@ package net.fproject.core
 	 */
     public class LinkedListNode
     {
+		/**
+		 * The data item dedicated to the node 
+		 */
         public var value:Object;
+		
+		/**
+		 * The next node.
+		 */
         public var next:LinkedListNode;
+		
+		/**
+		 * The previuos node.
+		 */
         public var previous:LinkedListNode;
 
+		/**
+		 *
+		 * Constructor
+		 *  
+		 * @param value
+		 * 
+		 */
         public function LinkedListNode(value:Object)
         {
             this.next = null;

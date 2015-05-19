@@ -21,7 +21,7 @@ package net.fproject.core
 
 		/**
 		 *
-		 * Gets the number of nodes actually contained in the LinkedList
+		 * Get the number of nodes actually contained in the LinkedList
 		 *
 		 */
 		public function get count():uint
@@ -32,7 +32,7 @@ package net.fproject.core
 		
 		/**
 		 * 
-		 * Gets the first node of the LinkedList<br/> 
+		 * Get the first node of the LinkedList<br/> 
 		 * Retrieving the value of this property is an O(1) operation.
 		 */
 		public function get first():LinkedListNode
@@ -43,7 +43,7 @@ package net.fproject.core
 		
 		/**
 		 * 
-		 * Gets the last node of the LinkedList 
+		 * Get the last node of the LinkedList 
 		 * 
 		 */
 		public function get last():LinkedListNode
@@ -53,7 +53,7 @@ package net.fproject.core
 
 		/**
 		 * 
-		 * Appends a new node containing the specified value at the end of the LinkedList 
+		 * Append a new node containing the specified value at the end of the LinkedList 
 		 * 
 		 */
 		public function append(value:Object):LinkedListNode
@@ -65,7 +65,7 @@ package net.fproject.core
 
 		/**
 		 * 
-		 * Adds the specified new node at the end of the LinkedList
+		 * Add the specified new node at the end of the LinkedList
 		 * 
 		 */
 		public function appendNode(node:LinkedListNode):void
@@ -84,6 +84,11 @@ package net.fproject.core
 			this._count++;
 		} // end function
 
+		/**
+		 * 
+		 * Remove the specified node from the LinkedList
+		 * 
+		 */
 		public function removeNode(node:LinkedListNode):void
 		{
 			var previousNode:LinkedListNode=node.previous;

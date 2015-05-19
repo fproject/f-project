@@ -49,7 +49,7 @@ package net.fproject.utils
 	 * startOfYear="<i>A Date</i>"
 	 * /&gt;
 	 *
-	 * @see net.FPROJECT_CORE.view.component.AdvancedDateField
+	 * @see net.projectkit.gui.component.WorkCalendarDateField
 	 * @see #formatString
 	 * 
 	 * @author Bui Sy Nguyen
