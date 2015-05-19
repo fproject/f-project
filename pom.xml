@@ -11,7 +11,8 @@
 	<name >F-Project Core Library</name >
 
 	<properties >
-		<flex.sdk.version >4.9.1</flex.sdk.version >
+		<flex.framework.version >4.6.b.23201</flex.framework.version >
+		<flex.compiler.version >4.6.b.23201</flex.compiler.version >
 		<flexmojos.version >4.2-beta</flexmojos.version >
 		<flexunit.version >4.1.0</flexunit.version >
 	</properties >
@@ -42,7 +43,7 @@
 					<dependency >
 						<groupId >com.adobe.flex</groupId >
 						<artifactId >compiler</artifactId >
-						<version >${flex.sdk.version}</version >
+						<version >${flex.compiler.version}</version >
 						<type >pom</type >
 					</dependency >
 				</dependencies >
@@ -55,7 +56,7 @@
 		<dependency >
 			<groupId >com.adobe.flex.framework</groupId >
 			<artifactId >flex-framework</artifactId >
-			<version >${flex.sdk.version}</version >
+			<version >${flex.framework.version}</version >
 			<type >pom</type >
 		</dependency >
 		<!-- Based on testing library dependency specified, FlexMojos will know how to test your application -->
