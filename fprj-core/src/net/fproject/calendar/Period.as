@@ -149,52 +149,6 @@ package net.fproject.calendar
 		}// end function
 		
 		/**
-		 * 
-		 * Get/set the string representation of the start date of the period.
-		 * <p>The date is formatted using the <code>yyyy/MM/dd</code> pattern.</p>
-		 * 
-		 */
-		/*public function get sStart() : String
-		{
-			var formatter:AdvancedDateFormatter = new AdvancedDateFormatter();
-			formatter.formatString = "yyyy/MM/dd";
-			return formatter.format(this._start);
-		}*/// end function
-		
-		/**
-		 * 
-		 * @private
-		 * 
-		 */
-		/*public function set sStart(value:String) : void
-		{
-			this.start = new Date(value);
-		}*/// end function
-		
-		/**
-		 * 
-		 * Get/set the string representation of the end date of the period.
-		 * <p>The date is formatted using the <code>yyyy/MM/dd</code> pattern.</p>
-		 * 
-		 */
-		/*public function get sEnd() : String
-		{
-			var formatter:AdvancedDateFormatter = new AdvancedDateFormatter();
-			formatter.formatString = "yyyy/MM/dd";
-			return formatter.format(this._end);
-		}*/// end function
-		
-		/**
-		 * 
-		 * @private
-		 * 
-		 */
-		/*public function set sEnd(value:String) : void
-		{
-			this.end = new Date(value);
-		}*/// end function
-		
-		/**
 		 * Create a Period object from an PeriodInternal object 
 		 * @param calendar the parent WorkCalendar
 		 * @param period

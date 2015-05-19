@@ -21,27 +21,55 @@ package net.fproject.core
 		protected var _start:Time;
 		protected var _end:Time;
 		
+		/**
+		 * 
+		 * Constructor.
+		 *  
+		 * @param start
+		 * @param end
+		 * 
+		 */
 		public function TimeRange(start:Time = null, end:Time = null)
 		{
 			_start = start;
 			_end = end;
 		}
 		
+		/**
+		 * 
+		 * The end time of time range
+		 * 
+		 */
 		public function get end():Time
 		{
 			return _end;
 		}
 
+		/**
+		 * 
+		 * @private
+		 * 
+		 */
 		public function set end(value:Time):void
 		{
 			_end = value;
 		}
 
+		/**
+		 * 
+		 * The start time of time range
+		 * 
+		 */
 		public function get start():Time
 		{
 			return _start;
 		}
 
+		/**
+		 * 
+		 * @private
+		 * 
+		 */
 		public function set start(value:Time):void
 		{
 			_start = value;

@@ -7,32 +7,67 @@
 ///////////////////////////////////////////////////////////////////////////////
 package net.fproject.core
 {
+	/**
+	 * 
+	 * A DateRange represents a range of dates from a start to an end date.
+	 * 
+	 * @author Bui Sy Nguyen
+	 * 
+	 */
 	public class DateRange
 	{
 		protected var _start:Date;
 		protected var _end:Date;
 		
+		/**
+		 * 
+		 * Constructor.
+		 *  
+		 * @param start
+		 * @param end
+		 * 
+		 */
 		public function DateRange(start:Date = null, end:Date = null)
 		{
 			_start = start;
 			_end = end;
 		}
 		
+		/**
+		 * 
+		 * The end date
+		 * 
+		 */
 		public function get end():Date
 		{
 			return _end;
 		}
 
+		/**
+		 * 
+		 * @private
+		 * 
+		 */
 		public function set end(value:Date):void
 		{
 			_end = value;
 		}
 
+		/**
+		 * 
+		 * The start date
+		 * 
+		 */
 		public function get start():Date
 		{
 			return _start;
 		}
 
+		/**
+		 * 
+		 * @private
+		 * 
+		 */
 		public function set start(value:Date):void
 		{
 			_start = value;
@@ -61,6 +96,11 @@ package net.fproject.core
 			return false;
 		}
 		
+		/**
+		 * Clone the date range.
+		 * @return the cloned date range object. 
+		 * 
+		 */
 		public function clone():DateRange
 		{			
 			return new DateRange(_start != null ? new Date(_start.time) : null,

@@ -9,33 +9,74 @@ package net.fproject.di.supportClasses
 {
 	import org.as3commons.lang.ClassUtils;
 
+	/**
+	 * TypeInjection is used to inject property of a class.
+	 * 
+	 * @author Bui Sy Nguyen
+	 * 
+	 */
 	public class TypeInjection
 	{
 		private var _constructorFields:Array = [];
 		private var _fields:Object = {};
 		private var _methods:Object = {};
 
+		/**
+		 * Add fields used for parameters of constructor of injecting class
+		 * @param injectionDetails
+		 * 
+		 */
 		public function addConstructorField(injectionDetails:FieldInjection):void
 		{
 			_constructorFields.push(injectionDetails);
 		}
 
+		/**
+		 * 
+		 * Get fields used for parameters of constructor of injecting class
+		 * 
+		 */
 		public function getConstructorFields():Array
 		{
 			return _constructorFields;
 		}
 
-		public function addField(fieldName:String, injectionDetails:FieldInjection):void
+		/**
+		 * 
+		 * Add a field.
+		 * 
+		 * @param fieldName
+		 * @param fieldInjection
+		 * 
+		 */
+		public function addField(fieldName:String, fieldInjection:FieldInjection):void
 		{
-			_fields[fieldName] = injectionDetails;
+			_fields[fieldName] = fieldInjection;
 		}
 		
-		public function addMethod(methodName:String, injectionDetails:FieldInjection):void
+		/**
+		 * 
+		 * Add a method.
+		 * 
+		 * @param methodName
+		 * @param fieldInjection
+		 * 
+		 */
+		public function addMethod(methodName:String, fieldInjection:FieldInjection):void
 		{
 			_methods[methodName] ||= [];
-			(_methods[methodName] as Array).push(injectionDetails);
+			(_methods[methodName] as Array).push(fieldInjection);
 		}		
 		
+		/**
+		 * 
+		 * Inject fields
+		 * 
+		 * @param source
+		 * @param target
+		 * @param fieldInjectionToValueFunction
+		 * 
+		 */
 		public function injectFields(source:Object, target:*, fieldInjectionToValueFunction:Function):void
 		{
 			for (var fieldName:String in _fields)
@@ -44,6 +85,15 @@ package net.fproject.di.supportClasses
 			}
 		}
 
+		/**
+		 * 
+		 * Inject methods.
+		 * 
+		 * @param source
+		 * @param target
+		 * @param fieldInjectionToValueFunction
+		 * 
+		 */
 		public function injectMethods(source:Object, target:*, fieldInjectionToValueFunction:Function):void
 		{
 			for (var methodName:String in _methods)
@@ -58,6 +108,16 @@ package net.fproject.di.supportClasses
 			}
 		}
 		
+		/**
+		 * 
+		 * Fetch constructor arguments.
+		 * 
+		 * @param source
+		 * @param fieldInjectionToValueFunction
+		 * 
+		 * @return an array of constructor arguments
+		 * 
+		 */
 		public function fetchConstructorArgs(source:Object, fieldInjectionToValueFunction:Function):Array
 		{
 			const result:Array = [];
@@ -68,6 +128,14 @@ package net.fproject.di.supportClasses
 			return result;
 		}
 		
+		/**
+		 * Instantiate a class 
+		 * @param source
+		 * @param targetType
+		 * @param fieldInjectionToValueFunction
+		 * @return 
+		 * 
+		 */
 		public function instantiate(source:Object, targetType:Class, fieldInjectionToValueFunction:Function):*
 		{
 			return ClassUtils.newInstance(targetType, this.fetchConstructorArgs(source, fieldInjectionToValueFunction));

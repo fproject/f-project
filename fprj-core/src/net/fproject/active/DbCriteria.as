@@ -24,6 +24,13 @@ package net.fproject.active
 	 */
 	public class DbCriteria
 	{
+		/**
+		 * 
+		 * Constructor.
+		 * 
+		 * @param source the source object that contains values to construct the new DbCriteria object
+		 * 
+		 */
 		public function DbCriteria(source:Object=null)
 		{
 			if(source != null)

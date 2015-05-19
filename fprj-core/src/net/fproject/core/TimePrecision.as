@@ -90,6 +90,13 @@ package net.fproject.core
 		protected var _steps:Number;
 		protected var _referenceDate:Date;
 
+		/**
+		 * Constructor 
+		 * @param unit
+		 * @param steps
+		 * @param referenceDate
+		 * 
+		 */
 		public function TimePrecision(unit:TimeUnit, steps:Number = 1, referenceDate:Date = null)
 		{
 			this._unit = unit;

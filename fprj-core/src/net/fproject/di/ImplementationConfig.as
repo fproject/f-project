@@ -43,6 +43,10 @@ package net.fproject.di
 			return _instance;
 		}
 		
+		/**
+		 * Constrcutror 
+		 * 
+		 */
 		public function ImplementationConfig()
 		{
 			if(_instance != null)

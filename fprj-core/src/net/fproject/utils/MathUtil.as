@@ -13,30 +13,44 @@ package net.fproject.utils
 
 	public class MathUtil
 	{
-		public static function xor(arr1:ArrayCollection,arr2:ArrayCollection):ArrayCollection
+		public static function xor(arr1:ArrayCollection, arr2:ArrayCollection):ArrayCollection
 		{
-			if 	(arr2 == null) return null;
-			if 	(arr1 == null) {
+			if (arr2 == null) 
+				return null;
+			
+			if (arr1 == null)
+			{
 				arr1 = new ArrayCollection();
-				for each (var bit:Boolean in arr2){
+				for each (var bit:Boolean in arr2)
+				{
 					arr1.addItem(bit);
 				}
-			}else{
+			}
+			else
+			{
 			
 				var bit1:Boolean;
 				var bit2:Boolean;
 				
-				for (var index:int =0;index< Math.max(arr2.length,arr1.length);index++){
+				for (var index:int =0;index< Math.max(arr2.length,arr1.length);index++)
+				{
 				
-					if (index < arr2.length){
+					if (index < arr2.length)
+					{
 						bit2 = arr2.getItemAt(index);
-					}else{
+					}
+					else
+					{
 						bit2 = false;
 					}
-					if (index < arr1.length){
+					
+					if (index < arr1.length)
+					{
 						bit1 = arr1.getItemAt(index);
 						arr1.setItemAt(bit1 || bit2,index);
-					}else{
+					}
+					else
+					{
 						bit1 = false;
 						arr1.addItem(bit1 || bit2);
 					}
@@ -45,6 +59,7 @@ package net.fproject.utils
 			}
 			return arr1;
 		}
+		
 		public static function byArrayToArrayCollection(byteArray:ByteArray):ArrayCollection
 		{
 			if 	(byteArray == null) return null;
@@ -58,6 +73,7 @@ package net.fproject.utils
 			}
 			return ret;
 		}
+		
 /*		public static function setBit(data:ByteArray , pos:int ,val:int):ByteArray
 		{
 			var posByte:int = pos/8; 
@@ -73,13 +89,13 @@ package net.fproject.utils
 			return data;
 		}*/
 		
-		public static function sign(param1:Number) : int
+		public static function sign(n:Number) : int
 		{
-			if (param1 < 0)
+			if (n < 0)
 			{
 				return -1;
 			}
-			if (param1 > 0)
+			if (n > 0)
 			{
 				return 1;
 			}

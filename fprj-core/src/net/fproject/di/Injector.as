@@ -225,6 +225,11 @@ package net.fproject.di
 		public static const HANDLER_KEY:String = "handler";
 		public static const DISPATCHER_KEY:String = "dispatcher";
 		
+		/**
+		 * 
+		 * @private
+		 * 
+		 */
 		private function getMemberEventHandlingInfo(container:Object, member:Object):Object
 		{
 			var eventInfo:Array = [];
@@ -269,6 +274,11 @@ package net.fproject.di
 		private var targetPartAddedListenerMap:Object = {};
 		private var targetPropertyChangeListenerMap:Object = {};
 		
+		/**
+		 * 
+		 * @private
+		 * 
+		 */
 		private function addEventListerner(listenerInfo:Object, target:Object, chain:Array, 
 										   isSkinPart:Boolean, deferred:Boolean):void
 		{
@@ -457,6 +467,11 @@ package net.fproject.di
 			}
 		}
 		
+		/**
+		 * 
+		 * @private
+		 * 
+		 */
 		private function getMemberPropBindingInfo(member:Object):Object
 		{
 			var memberName:String = member.name;
@@ -497,6 +512,11 @@ package net.fproject.di
 		private var objectPartAddedListenerMap:Object = {};
 		private var objectPropertyChangeListenerMap:Object = {};
 		
+		/**
+		 * 
+		 * @private
+		 * 
+		 */
 		private function executeBinding(object:Object, metadataArgs:Array, container:Object, chain:Array,
 										isSkinPart:Boolean, isBindable:Boolean, skinPartMap:Object):void
 		{
@@ -632,6 +652,11 @@ package net.fproject.di
 				bindMetadataArgs(object, metadataArgs, container, isSkinPart, skinPartMap);
 		}
 		
+		/**
+		 * 
+		 * @private
+		 * 
+		 */
 		private function bindMetadataArgs(object:Object, metadataArgs:Array, container:Object, 
 										  isSkinPart:Boolean, skinPartMap:Object):void
 		{
@@ -666,12 +691,22 @@ package net.fproject.di
 				bindInverseDeferredArgs(object, inverseDeferredArgs, container, isSkinPart, skinPartMap);
 		}
 		
+		/**
+		 * 
+		 * @private
+		 * 
+		 */
 		private function bindDirectValue(targetObj:Object, targetField:String, sourceChain:String, container:Object):void
 		{
 			if(targetObj != null)
 				targetObj[targetField] = DataUtil.evaluateChainValue(sourceChain, container);
 		}
 		
+		/**
+		 * 
+		 * @private
+		 * 
+		 */
 		private function bindInverseValue(sourceObj:Object, sourceField:String, targetChain:String, 
 										  container:Object, isSkinPart:Boolean, skinPartMap:Object):void
 		{
@@ -694,6 +729,11 @@ package net.fproject.di
 		
 		private static const THIS_DOT:String = "this.";
 		
+		/**
+		 * 
+		 * @private
+		 * 
+		 */
 		private function bindDeferredValue(targetObj:Object, targetField:String, sourceChain:String, 
 										   container:Object, skinPartMap:Object):void
 		{
@@ -742,6 +782,11 @@ package net.fproject.di
 		
 		private var deferredSourcePropertyChangeListenerMap:Object = {};
 		
+		/**
+		 * 
+		 * @private
+		 * 
+		 */
 		private function setDeferredSourceChain(oldSource:Object, newSource:Object, srcChain:Array, target:Object, targetField:String):void
 		{
 			if(srcChain.length > 0)
@@ -805,6 +850,11 @@ package net.fproject.di
 		
 		private var idToBindingInfo:Object = {};
 		
+		/**
+		 * 
+		 * @private
+		 * 
+		 */
 		private function bindInverseDeferredArgs(sourceObj:Object, args:Array , 
 												 container:Object, isSkinPart:Boolean, skinPartMap:Object):void
 		{
@@ -889,6 +939,11 @@ package net.fproject.di
 		private var deferredTargetPartAddedListenerMap:Object = {};
 		private var deferredTargetPropertyChangeListenerMap:Object = {};
 		
+		/**
+		 * 
+		 * @private
+		 * 
+		 */
 		private function setDeferredTargetChain(source:Object, target:Object, chainObj:Object, isSkinPart:Boolean):void
 		{
 			if(!(chainObj is Array))
@@ -1052,6 +1107,11 @@ package net.fproject.di
 			}			
 		}
 		
+		/**
+		 * 
+		 * @private
+		 * 
+		 */
 		private static function getMetadataArgument(metadata:Metadata, key:String, 
 											 defaultIndex:int=int.MAX_VALUE):String
 		{			
@@ -1065,6 +1125,12 @@ package net.fproject.di
 		
 		
 		private static var instanceCache:Dictionary = new Dictionary(true);
+		
+		/**
+		 * 
+		 * @private
+		 * 
+		 */
 		private static function getInstance(container:Object):Injector
 		{
 			if(container == null)

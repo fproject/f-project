@@ -13,6 +13,13 @@ package net.fproject.utils
 	import mx.managers.BrowserManager;
 	import mx.managers.IBrowserManager;
 	
+	/**
+	 * 
+	 * A set of application utility methods
+	 * 
+	 * @author Bui Sy Nguyen
+	 * 
+	 */
 	public class ApplicationUtil
 	{
 		public static function getModuleBaseUrl() : String
