@@ -57,6 +57,11 @@ package net.fproject.gui.component.supportClasses
 			}
 		}
 		
+		/**
+		 * Check if all RSLs are loaded. 
+		 * @return true if all RSLs are loaded.
+		 * 
+		 */
 		public function allRslsLoaded():Boolean
 		{
 			for each (var rsl:Object in this.rsls)
@@ -79,10 +84,17 @@ package net.fproject.gui.component.supportClasses
 			recusiveLoadPriorityGroups(0);
 		}
 		
+		/**
+		 * A call back function that will be invoked when loading is completed.
+		 */
 		public var completeCallback:Function
 		
 		private var rslGroups:Array;
 		
+		/**
+		 * @private 
+		 * 
+		 */
 		private function createRslGroups():void
 		{
 			var priorityToGroup:Object = {};
@@ -174,6 +186,10 @@ package net.fproject.gui.component.supportClasses
 				completeCallback(groupIndex);
 		}
 		
+		/**
+		 * @private 
+		 * 
+		 */
 		private function rslLoadedHandler(e:Event):void
 		{
 			var groupInfo:Object = loaderToGroupInfo[e.target];
@@ -201,6 +217,12 @@ package net.fproject.gui.component.supportClasses
 		
 		private static var urlToRsl:Object = {};
 		
+		/**
+		 * Parse RSLs loader information objects from a definition string
+		 * @param rslsStr
+		 * @return an array of loader information objects.
+		 * 
+		 */
 		public static function parseRsls(rslsStr:String):Array
 		{
 			var rslsArray:Array = null;
