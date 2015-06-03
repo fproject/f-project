@@ -9,12 +9,14 @@
 			   minWidth="955" minHeight="600" creationComplete="onCreationComplete()">
 	<fx:Script>
 		<![CDATA[
+			import net.fproject.utils.AdvancedDateFormatter_TestSuite;
 			import net.fproject.utils.DateTimeUtil_TestSuite;
 			
 			public function currentRunTestSuite():Array
 			{
 				var testsToRun:Array = new Array();
 				testsToRun.push(DateTimeUtil_TestSuite);
+				testsToRun.push(AdvancedDateFormatter_TestSuite);
 				return testsToRun;
 			}
 			
