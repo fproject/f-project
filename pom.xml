@@ -26,11 +26,19 @@
 				<artifactId >flexmojos-maven-plugin</artifactId >
 				<version >${flexmojos.version}</version >
 				<extensions >true</extensions >
-				<configuration >
+				<configuration >					
 					<compilerWarnings>
                         <warn-no-constructor>false</warn-no-constructor>
                     </compilerWarnings>
-
+					
+					<allowSourcePathOverlap>true</allowSourcePathOverlap>
+					<resourceBundlePath>${basedir}/fprj-core/locales/{locale}</resourceBundlePath>
+					<mergeResourceBundle>true</mergeResourceBundle>
+					<locales>
+                        <locale>en_US</locale>
+						<locale>vi_VN</locale>
+                    </locales>
+					
 					<configurationReport>true</configurationReport>
 					<headlessServer >true</headlessServer >
 					<verboseStacktraces >true</verboseStacktraces >
