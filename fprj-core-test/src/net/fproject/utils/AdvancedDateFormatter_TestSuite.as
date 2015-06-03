@@ -7,7 +7,6 @@ package net.fproject.utils
 	import net.fproject.utils.AdvancedDateFormatter.AdvancedDateFormatter_get_monthNamesNarrow;
 	import net.fproject.utils.AdvancedDateFormatter.AdvancedDateFormatter_get_referenceDate;
 	import net.fproject.utils.AdvancedDateFormatter.AdvancedDateFormatter_get_startOfYear;
-	import net.fproject.utils.AdvancedDateFormatter.AdvancedDateFormatter_padNumberWithLeadingZeros;
 	import net.fproject.utils.AdvancedDateFormatter.AdvancedDateFormatter_parse;
 	import net.fproject.utils.AdvancedDateFormatter.AdvancedDateFormatter_set_dayNamesNarrow;
 	import net.fproject.utils.AdvancedDateFormatter.AdvancedDateFormatter_set_formatString;
@@ -33,7 +32,6 @@ package net.fproject.utils
 		public var advanceddateformatterGetStartofyear:AdvancedDateFormatter_get_startOfYear;
 		public var advanceddateformatterSetStartofyear:AdvancedDateFormatter_set_startOfYear;
 		public var advanceddateformatterFormat:AdvancedDateFormatter_format;
-		public var advanceddateformatterPadnumberwithleadingzeros:AdvancedDateFormatter_padNumberWithLeadingZeros;
 		public var advanceddateformatterParse:AdvancedDateFormatter_parse;
 	}
 }
