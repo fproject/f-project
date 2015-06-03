@@ -1,14 +1,5 @@
 package net.fproject.active
 {
-	import org.flexunit.Assert;
-	import org.flexunit.asserts.assertEquals;
-	import org.flexunit.asserts.assertFalse;
-	import flash.events.IEventDispatcher;
-	
-	import mx.collections.ArrayCollection;
-	import mx.collections.CursorBookmark;
-	import mx.collections.IViewCursor;
-	import mx.events.FlexEvent;
 	import mx.rpc.events.ResultEvent;
 
 	/**
@@ -19,19 +10,19 @@ package net.fproject.active
 	 */
 	public class ActiveDataProvider_result
 	{
-		private var activedataprovider:ActiveDataProvider;
+		private var activeDataProvider:ActiveDataProvider;
 
 		[Before]
 		public function runBeforeEveryTest():void
 		{
-			activedataprovider = new ActiveDataProvider();
+			activeDataProvider = new ActiveDataProvider(null);
 			//Your test data initialization
 		}
 
 		[After]
 		public function runAfterEveryTest():void
 		{
-			activedataprovider = null;
+			activeDataProvider = null;
 			//Your test data cleaning
 		}
 
@@ -49,12 +40,7 @@ package net.fproject.active
 		public function testCase001():void
 		{
 			var data:Object = new Object();
-			activedataprovider.result(data);
-			//---- Place result assertion here ----
-			// You must replace this code by function specifications or 
-			// the test always returns false!
-			assertFalse(true);
-			//-------------------------------------
+			activeDataProvider.result(data);
 		}
 
 		[Test (description="Boundary case: [data = null]")]
@@ -71,13 +57,20 @@ package net.fproject.active
 		public function testCase002():void
 		{
 			var data:Object = null;
-			activedataprovider.result(data);
+			activeDataProvider.result(data);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertFalse(true);
-			//-------------------------------------
 		}
 
+		[Test (description="Normal case")]
+		public function testCase003():void
+		{
+			var pr:PaginationResult = new PaginationResult();
+			pr.items = [];
+			pr.meta = {totalCount:0, currentPage:1,pageCount:0};
+			var data:Object = new ResultEvent(ResultEvent.RESULT, false, true, pr);
+			activeDataProvider.result(data);
+		}
 	}
 }
