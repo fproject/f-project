@@ -3,7 +3,6 @@ package net.fproject.utils.StringUtil
 	import flash.events.Event;
 	
 	import mx.resources.ResourceManager;
-	import mx.rpc.events.FaultEvent;
 	
 	import org.flexunit.asserts.assertFalse;
 	import org.flexunit.asserts.assertTrue;

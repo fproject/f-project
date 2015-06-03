@@ -14,7 +14,7 @@
 		<flex.framework.version >4.6.b.23201</flex.framework.version >
 		<flex.compiler.version >4.6.b.23201</flex.compiler.version >
 		<flexmojos.version >4.2-beta</flexmojos.version >
-		<flexunit.version >4.0-rc-1</flexunit.version >
+		<flexunit.version >4.1.0</flexunit.version >
 	</properties >
 
 	<build >
