@@ -1,14 +1,9 @@
 package net.fproject.utils.DateTimeUtil
 {
-	import org.flexunit.Assert;
-	import org.flexunit.asserts.assertEquals;
-	import org.flexunit.asserts.assertFalse;
-	import mx.core.mx_internal;
-	import mx.formatters.DateBase;
-	import mx.formatters.NumberFormatter;
-	
-	import net.fproject.fproject_internal;
 	import net.fproject.utils.DateTimeUtil;
+	
+	import org.flexunit.asserts.assertEquals;
+	import org.flexunit.asserts.assertNull;
 
 	/**
 	 * FlexUnit test case class for method<br/>
@@ -43,12 +38,12 @@ package net.fproject.utils.DateTimeUtil
 		 */
 		public function testCase001():void
 		{
-			var s:String = "ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789";
-			var returnTestValue:Date = DateTimeUtil.parseStandardDate(s);
+			var returnTestValue:Date = DateTimeUtil.parseStandardDate('2014-12-11 20:11:39.123');
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertFalse(true);
+			var d:Date = new Date(2014, 12, 11, 20, 11, 39, 123);
+			assertEquals(d.time, returnTestValue.time);
 			//-------------------------------------
 		}
 
@@ -70,7 +65,7 @@ package net.fproject.utils.DateTimeUtil
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertFalse(true);
+			assertNull(returnTestValue);
 			//-------------------------------------
 		}
 
@@ -92,7 +87,7 @@ package net.fproject.utils.DateTimeUtil
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertFalse(true);
+			assertNull(returnTestValue);
 			//-------------------------------------
 		}
 

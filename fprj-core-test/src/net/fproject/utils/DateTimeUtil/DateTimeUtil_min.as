@@ -1,14 +1,9 @@
 package net.fproject.utils.DateTimeUtil
 {
-	import org.flexunit.Assert;
-	import org.flexunit.asserts.assertEquals;
-	import org.flexunit.asserts.assertFalse;
-	import mx.core.mx_internal;
-	import mx.formatters.DateBase;
-	import mx.formatters.NumberFormatter;
-	
 	import net.fproject.fproject_internal;
 	import net.fproject.utils.DateTimeUtil;
+	
+	import org.flexunit.asserts.assertEquals;
 
 	use namespace fproject_internal;
 	/**
@@ -46,12 +41,12 @@ package net.fproject.utils.DateTimeUtil
 		public function testCase001():void
 		{
 			var date1:Date = new Date();
-			var date2:Date = new Date();
+			var date2:Date = new Date(date1.time + 10);
 			var returnTestValue:Date = DateTimeUtil.min(date1, date2);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertFalse(true);
+			assertEquals(date1.time, returnTestValue);
 			//-------------------------------------
 		}
 
@@ -75,7 +70,7 @@ package net.fproject.utils.DateTimeUtil
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertFalse(true);
+			assertEquals(date1, returnTestValue);
 			//-------------------------------------
 		}
 
@@ -99,7 +94,7 @@ package net.fproject.utils.DateTimeUtil
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertFalse(true);
+			assertEquals(date2, returnTestValue);
 			//-------------------------------------
 		}
 
@@ -123,7 +118,7 @@ package net.fproject.utils.DateTimeUtil
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertFalse(true);
+			assertEquals(date1, returnTestValue);
 			//-------------------------------------
 		}
 
