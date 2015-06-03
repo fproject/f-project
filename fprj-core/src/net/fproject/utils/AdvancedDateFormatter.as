@@ -1524,7 +1524,8 @@ package net.fproject.utils
 		 *  <pre>
 		 * var myDate:Date = advDateFormatter.parse("2010-12-02 12:34:56");
 		 * var myDate1:Date = advDateFormatter.parse("02-Dec-2010 12:34:56");
-		 * var myDate2:Date = advDateFormatter.parse("20101227215959UTC");
+		 * var myDate2:Date = advDateFormatter.parse("02-Dec-2010 12:34:56.789");
+		 * var myDate3:Date = advDateFormatter.parse("20101227215959UTC");
 		 *  </pre>
 		 *
 		 *  @see mx.formatters.DateBase
@@ -1545,7 +1546,8 @@ package net.fproject.utils
 			var hour:int = -1;
 			var min:int = -1;
 			var sec:int = -1;
-
+			var ms:int = -1;
+			
 			var letter:String = "";
 			var marker:Object = 0;
 
@@ -1637,13 +1639,13 @@ package net.fproject.utils
 
 				else if ("0" <= letter && letter <= "9")
 				{
-					// Scan for groups of numbers
-					var numbers:String = letter;
+					// Scan for groups of digits
+					var digits:String = letter;
 
 					var midBreak:Boolean = false;
 
-					while ("0" <= (letter = valueString.charAt(count)) &&
-						letter <= "9" && count < len)
+					while (count < len && "0" <= (letter = valueString.charAt(count)) &&
+						letter <= "9")
 					{
 						if (count >= formatString.length ||
 							(formatString.charAt(count - 1) != formatString.charAt(count)))
@@ -1652,13 +1654,14 @@ package net.fproject.utils
 							break;
 						}
 
-						numbers += letter;
+						digits += letter;
 						count++;
 					}
-					var num:int = int(numbers);
-
-					// If num is a number greater than 70, assign num to year.
-					if (num >= 70)
+					var num:int = int(digits);
+					var formatLetter:String = count < formatString.length + 1 ? formatString.charAt(count - 1) : "";
+					
+					// If num is a number greater than 70 and current letter is not at millisecond part, assign num to year.
+					if (num >= 70 && formatLetter != "b")
 					{
 						if (year != -1)
 						{
@@ -1675,19 +1678,18 @@ package net.fproject.utils
 							break; //error
 						}
 					}
-
+					
+					// If current letter is at millisecond part, assign num to ms
+					else if (formatLetter == "b" && ms < 0)
+					{
+						ms = int(1000 * Number("0." + digits));
+						break;
+					}
 					// If the current letter is a slash or a dash,
 					// assign num to month or day.
 					else if (midBreak || letter == "/" || letter == "-" ||
 						letter == ".")
 					{
-						var formatLetter:String;
-//						if (midBreak)
-						formatLetter =
-							count < formatString.length + 1 ? formatString.charAt(count - 1) : "";
-//						else
-//							formatLetter = "";
-
 						if (mon < 0 &&
 							(formatLetter == "M" || formatLetter == ""))
 							mon = num - 1;
@@ -1703,6 +1705,9 @@ package net.fproject.utils
 						else if (sec < 0 &&
 							(formatLetter == "s" || formatLetter == ""))
 							sec = num;
+						else if (sec < 0 &&
+							(formatLetter == "b" || formatLetter == ""))
+							ms = num;
 						else
 							break; //error
 					}
@@ -1760,6 +1765,8 @@ package net.fproject.utils
 				return null; // error - needs to be a date
 
 			// Time is set to 0 if null.
+			if (ms < 0)
+				ms = 0;
 			if (sec < 0)
 				sec = 0;
 			if (min < 0)
@@ -1769,7 +1776,7 @@ package net.fproject.utils
 
 			// create a date object and check the validity of the input date
 			// by comparing the result with input values.
-			var newDate:Date = new Date(year, mon, day, hour, min, sec);
+			var newDate:Date = new Date(year, mon, day, hour, min, sec, ms);
 			if (day != newDate.getDate() || mon != newDate.getMonth())
 				return null;
 
