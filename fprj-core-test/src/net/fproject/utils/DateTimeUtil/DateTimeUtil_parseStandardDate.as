@@ -38,11 +38,11 @@ package net.fproject.utils.DateTimeUtil
 		 */
 		public function testCase001():void
 		{
-			var returnTestValue:Date = DateTimeUtil.parseStandardDate('2014-12-11 20:11:39.123');
+			var returnTestValue:Date = DateTimeUtil.parseStandardDate('2014-12-11 20:17:39.123');
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			var d:Date = new Date(2014, 12, 11, 20, 11, 39, 123);
+			var d:Date = new Date(2014, 11, 11, 20, 17, 39, 123);
 			assertEquals(d.time, returnTestValue.time);
 			//-------------------------------------
 		}
@@ -90,6 +90,29 @@ package net.fproject.utils.DateTimeUtil
 			assertNull(returnTestValue);
 			//-------------------------------------
 		}
-
+		
+		[Test (description="Normal case")]
+		public function testCase004():void
+		{
+			var returnTestValue:Date = DateTimeUtil.parseStandardDate('2014-12-11 20:17:39.12');
+			//---- Place result assertion here ----
+			// You must replace this code by function specifications or 
+			// the test always returns false!
+			var d:Date = new Date(2014, 11, 11, 20, 17, 39, 120);
+			assertEquals(d.time, returnTestValue.time);
+			//-------------------------------------
+		}
+		
+		[Test (description="Normal case")]
+		public function testCase005():void
+		{
+			var returnTestValue:Date = DateTimeUtil.parseStandardDate('2014-12-11 20:17:39.012');
+			//---- Place result assertion here ----
+			// You must replace this code by function specifications or 
+			// the test always returns false!
+			var d:Date = new Date(2014, 11, 11, 20, 17, 39, 12);
+			assertEquals(d.time, returnTestValue.time);
+			//-------------------------------------
+		}
 	}
 }
