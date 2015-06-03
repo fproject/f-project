@@ -1,9 +1,7 @@
 package net.fproject.active
 {
-	import org.flexunit.Assert;
 	import org.flexunit.asserts.assertEquals;
-	import org.flexunit.asserts.assertFalse;
-	import mx.rpc.CallResponder;
+	import org.flexunit.asserts.assertNull;
 
 	/**
 	 * FlexUnit test case class for method<br/>
@@ -38,12 +36,13 @@ package net.fproject.active
 		 */
 		public function testCase001():void
 		{
-			var activeDataProvider:ActiveDataProvider = new ActiveDataProvider();
+			var activeDataProvider:ActiveDataProvider = new ActiveDataProvider(null);
 			var returnTestValue:ActiveCallResponder = new ActiveCallResponder(activeDataProvider);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertFalse(true);
+			assertNull(activeDataProvider.criteria);
+			assertEquals(activeDataProvider, returnTestValue.activeDataProvider);
 			//-------------------------------------
 		}
 
@@ -65,7 +64,7 @@ package net.fproject.active
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertFalse(true);
+			assertNull(returnTestValue.activeDataProvider);
 			//-------------------------------------
 		}
 

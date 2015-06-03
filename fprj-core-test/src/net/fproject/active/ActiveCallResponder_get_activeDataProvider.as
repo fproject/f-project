@@ -1,9 +1,6 @@
 package net.fproject.active
 {
-	import org.flexunit.Assert;
 	import org.flexunit.asserts.assertEquals;
-	import org.flexunit.asserts.assertFalse;
-	import mx.rpc.CallResponder;
 
 	/**
 	 * FlexUnit test case class for method<br/>
@@ -13,19 +10,21 @@ package net.fproject.active
 	 */
 	public class ActiveCallResponder_get_activeDataProvider
 	{
-		private var activecallresponder:ActiveCallResponder;
+		private var activeDp:ActiveDataProvider;
+		private var activeCallResponder:ActiveCallResponder;
 
 		[Before]
 		public function runBeforeEveryTest():void
 		{
-			activecallresponder = new ActiveCallResponder();
+			activeDp = new ActiveDataProvider(null);
+			activeCallResponder = new ActiveCallResponder(activeDp);
 			//Your test data initialization
 		}
 
 		[After]
 		public function runAfterEveryTest():void
 		{
-			activecallresponder = null;
+			activeCallResponder = null;
 			//Your test data cleaning
 		}
 
@@ -41,11 +40,11 @@ package net.fproject.active
 		 */
 		public function testCase001():void
 		{
-			var returnTestValue:ActiveDataProvider = activecallresponder.activeDataProvider;
+			var returnTestValue:IActiveDataProvider = activeCallResponder.activeDataProvider;
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertFalse(true);
+			assertEquals(activeDp, returnTestValue);
 			//-------------------------------------
 		}
 
