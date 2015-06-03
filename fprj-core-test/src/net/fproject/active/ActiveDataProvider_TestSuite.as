@@ -10,7 +10,7 @@ package net.fproject.active
 		public var activedataproviderCreatecursor:ActiveDataProvider_createCursor;
 		public var activedataproviderQuerynextpage:ActiveDataProvider_fetchNextPage;
 		public var activedataproviderQueryfirstpage:ActiveDataProvider_fetchFirstPage;
-		//public var activedataproviderResult:ActiveDataProvider_result;
+		public var activedataproviderResult:ActiveDataProvider_result;
 		public var activedataproviderActivedataprovider:ActiveDataProvider_ActiveDataProvider;
 	}
 }
