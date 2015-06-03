@@ -9,6 +9,7 @@
 			   minWidth="955" minHeight="600" creationComplete="onCreationComplete()">
 	<fx:Script>
 		<![CDATA[
+			import net.fproject.active.ActiveCallResponder_TestSuite;
 			import net.fproject.active.ActiveDataProvider_TestSuite;
 			import net.fproject.active.ActiveService_TestSuite;
 			public function currentRunTestSuite():Array
@@ -16,6 +17,7 @@
 				var testsToRun:Array = new Array();
 				testsToRun.push(ActiveDataProvider_TestSuite);
 				testsToRun.push(ActiveService_TestSuite);
+				testsToRun.push(ActiveCallResponder_TestSuite);
 				return testsToRun;
 			}
 			

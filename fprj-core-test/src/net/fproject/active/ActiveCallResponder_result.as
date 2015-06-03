@@ -1,9 +1,6 @@
 package net.fproject.active
 {
-	import org.flexunit.Assert;
-	import org.flexunit.asserts.assertEquals;
-	import org.flexunit.asserts.assertFalse;
-	import mx.rpc.CallResponder;
+	import mx.rpc.events.ResultEvent;
 
 	/**
 	 * FlexUnit test case class for method<br/>
@@ -13,23 +10,25 @@ package net.fproject.active
 	 */
 	public class ActiveCallResponder_result
 	{
-		private var activecallresponder:ActiveCallResponder;
+		private var activeDp:ActiveDataProvider;
+		private var activeCallResponder:ActiveCallResponder;
 
 		[Before]
 		public function runBeforeEveryTest():void
 		{
-			activecallresponder = new ActiveCallResponder();
+			activeDp = new ActiveDataProvider(null);
+			activeCallResponder = new ActiveCallResponder(activeDp);
 			//Your test data initialization
 		}
 
 		[After]
 		public function runAfterEveryTest():void
 		{
-			activecallresponder = null;
+			activeCallResponder = null;
 			//Your test data cleaning
 		}
 
-		[Test (description="Normal case: [data = new Object()]")]
+		[Test (expected="TypeError",description="Normal case: [data = new Object()]")]
 		/**
 		 * Test Case Type: Normal<br/>
 		 * <br/>
@@ -43,15 +42,10 @@ package net.fproject.active
 		public function testCase001():void
 		{
 			var data:Object = new Object();
-			activecallresponder.result(data);
-			//---- Place result assertion here ----
-			// You must replace this code by function specifications or 
-			// the test always returns false!
-			assertFalse(true);
-			//-------------------------------------
+			activeCallResponder.result(data);
 		}
 
-		[Test (description="Boundary case: [data = null]")]
+		[Test (expected="TypeError",description="Boundary case: [data = null]")]
 		/**
 		 * Test Case Type: Boundary<br/>
 		 * <br/>
@@ -65,12 +59,17 @@ package net.fproject.active
 		public function testCase002():void
 		{
 			var data:Object = null;
-			activecallresponder.result(data);
-			//---- Place result assertion here ----
-			// You must replace this code by function specifications or 
-			// the test always returns false!
-			assertFalse(true);
-			//-------------------------------------
+			activeCallResponder.result(data);
+		}
+
+		[Test (description="Normal case")]
+		public function testCase003():void
+		{
+			var pr:PaginationResult = new PaginationResult();
+			pr.items = [];
+			pr.meta = {totalCount:0, currentPage:1,pageCount:0};
+			var data:Object = new ResultEvent(ResultEvent.RESULT, false, true, pr);
+			activeCallResponder.result(data);
 		}
 
 	}
