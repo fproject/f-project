@@ -1,15 +1,10 @@
 package net.fproject.utils.DateTimeUtil
 {
-	import org.flexunit.Assert;
-	import org.flexunit.asserts.assertEquals;
-	import org.flexunit.asserts.assertFalse;
-	import mx.core.mx_internal;
-	import mx.formatters.DateBase;
-	import mx.formatters.NumberFormatter;
-	
-	import net.fproject.fproject_internal;
 	import net.fproject.utils.AdvancedDateFormatter;
 	import net.fproject.utils.DateTimeUtil;
+	
+	import org.flexunit.asserts.assertEquals;
+	import org.flexunit.asserts.assertNotNull;
 
 	/**
 	 * FlexUnit test case class for method<br/>
@@ -47,8 +42,9 @@ package net.fproject.utils.DateTimeUtil
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertFalse(true);
-			//-------------------------------------
+			assertNotNull(returnTestValue);
+			var returnTestValue1:AdvancedDateFormatter = DateTimeUtil.dateFormatter;
+			assertEquals(returnTestValue, returnTestValue1);
 		}
 
 	}

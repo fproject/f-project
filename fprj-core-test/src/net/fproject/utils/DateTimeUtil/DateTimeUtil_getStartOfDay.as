@@ -1,14 +1,9 @@
 package net.fproject.utils.DateTimeUtil
 {
-	import org.flexunit.Assert;
-	import org.flexunit.asserts.assertEquals;
-	import org.flexunit.asserts.assertFalse;
-	import mx.core.mx_internal;
-	import mx.formatters.DateBase;
-	import mx.formatters.NumberFormatter;
-	
 	import net.fproject.fproject_internal;
 	import net.fproject.utils.DateTimeUtil;
+	
+	import org.flexunit.asserts.assertEquals;
 
 	use namespace fproject_internal;
 	/**
@@ -44,16 +39,13 @@ package net.fproject.utils.DateTimeUtil
 		 */
 		public function testCase001():void
 		{
-			var date:Date = new Date();
-			var returnTestValue:Date = DateTimeUtil.getStartOfDay(date);
-			//---- Place result assertion here ----
-			// You must replace this code by function specifications or 
-			// the test always returns false!
-			assertFalse(true);
-			//-------------------------------------
+			var time:Date = new Date(2014, 11, 11, 20, 17, 39, 123);
+			var returnTestValue:Date = DateTimeUtil.getStartOfDay(time);
+			var expect:Date = new Date(2014, 11, 11);
+			assertEquals(expect.time, returnTestValue.time);
 		}
 
-		[Test (description="Boundary case: [date = null]")]
+		[Test (expected="TypeError",description="Boundary case: [date = null]")]
 		/**
 		 * Test Case Type: Boundary<br/>
 		 * <br/>
@@ -68,11 +60,6 @@ package net.fproject.utils.DateTimeUtil
 		{
 			var date:Date = null;
 			var returnTestValue:Date = DateTimeUtil.getStartOfDay(date);
-			//---- Place result assertion here ----
-			// You must replace this code by function specifications or 
-			// the test always returns false!
-			assertFalse(true);
-			//-------------------------------------
 		}
 
 	}
