@@ -91,7 +91,7 @@
 		</repository >
         <repository >
             <id >flex-unit-repository</id >
-            <url >https://maven-repository.com</url >
+            <url >http://maven-repository.com</url >
             <releases >
                 <enabled >true</enabled >
             </releases >
