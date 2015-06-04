@@ -1,32 +1,32 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd" >
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-	<modelVersion >4.0.0</modelVersion >
+	<modelVersion>4.0.0</modelVersion>
 
-	<groupId >net.fproject</groupId >
-	<artifactId >fprj-core</artifactId >
-	<version >0.9.5</version >
-	<packaging >swf</packaging >
-	<name >F-Project Core Library</name >
+	<groupId>net.fproject</groupId>
+	<artifactId>fprj-core</artifactId>
+	<version>0.9.5</version>
+	<packaging>swf</packaging>
+	<name>F-Project Core Library</name>
 
-	<properties >
-		<flex.framework.version >4.6.b.23201</flex.framework.version >
-		<flex.compiler.version >4.6.b.23201</flex.compiler.version >
-		<flexmojos.version >4.2-beta</flexmojos.version >
-		<flexunit.version >4.1.0</flexunit.version >
-	</properties >
+	<properties>
+		<flex.framework.version>4.6.b.23201</flex.framework.version>
+		<flex.compiler.version>4.6.b.23201</flex.compiler.version>
+		<flexmojos.version>7.0.1</flexmojos.version>
+		<flexunit.version>4.1.0</flexunit.version>
+	</properties>
 
-	<build >
-		<sourceDirectory >fprj-core/src</sourceDirectory >
-		<testSourceDirectory >fprj-core-test/src</testSourceDirectory >
-		<plugins >
-			<plugin >
-				<groupId >org.sonatype.flexmojos</groupId >
-				<artifactId >flexmojos-maven-plugin</artifactId >
-				<version >${flexmojos.version}</version >
-				<extensions >true</extensions >
-				<configuration >					
+	<build>
+		<sourceDirectory>fprj-core/src</sourceDirectory>
+		<testSourceDirectory>fprj-core-test/src</testSourceDirectory>
+		<plugins>
+			<plugin>
+				<groupId>net.flexmojos.oss</groupId>
+				<artifactId>flexmojos-maven-plugin</artifactId>
+				<version>${flexmojos.version}</version>
+				<extensions>true</extensions>
+				<configuration>					
 					<compilerWarnings>
                         <warn-no-constructor>false</warn-no-constructor>
                     </compilerWarnings>
@@ -40,76 +40,76 @@
                     </locales>
 					
 					<configurationReport>true</configurationReport>
-					<headlessServer >true</headlessServer >
-					<verboseStacktraces >true</verboseStacktraces >
-					<includeTestFiles >
-						<includeTestFile >*.as</includeTestFile >
-					</includeTestFiles >
-				</configuration >
-				<dependencies >
+					<headlessServer>true</headlessServer>
+					<verboseStacktraces>true</verboseStacktraces>
+					<includeTestFiles>
+						<includeTestFile>*.as</includeTestFile>
+					</includeTestFiles>
+				</configuration>
+				<dependencies>
 					<!-- Nice POM bundle available per SDK on Sonatype thanks to Flex-Mojos -->
-					<dependency >
-						<groupId >com.adobe.flex</groupId >
-						<artifactId >compiler</artifactId >
-						<version >${flex.compiler.version}</version >
-						<type >pom</type >
-					</dependency >
-				</dependencies >
-			</plugin >
-		</plugins >
-	</build >
+					<dependency>
+						<groupId>com.adobe.flex</groupId>
+						<artifactId>compiler</artifactId>
+						<version>${flex.compiler.version}</version>
+						<type>pom</type>
+					</dependency>
+				</dependencies>
+			</plugin>
+		</plugins>
+	</build>
 
-	<dependencies >
+	<dependencies>
 		<!-- Nice POM bundle available per SDK on Sonatype thanks to Flex-Mojos -->
-		<dependency >
-			<groupId >com.adobe.flex.framework</groupId >
-			<artifactId >flex-framework</artifactId >
-			<version >${flex.framework.version}</version >
-			<type >pom</type >
-		</dependency >
+		<dependency>
+			<groupId>com.adobe.flex.framework</groupId>
+			<artifactId>flex-framework</artifactId>
+			<version>${flex.framework.version}</version>
+			<type>pom</type>
+		</dependency>
 		<!-- Based on testing library dependency specified, FlexMojos will know how to test your application -->
-		<dependency >
-			<groupId >org.flexunit</groupId >
-			<artifactId >flexunit</artifactId >
-			<version >${flexunit.version}</version >
+		<dependency>
+			<groupId>org.flexunit</groupId>
+			<artifactId>flexunit</artifactId>
+			<version>${flexunit.version}</version>
             <classifier>flex4</classifier>
-			<type >swc</type >
-		</dependency >
-	</dependencies >
+			<type>swc</type>
+		</dependency>
+	</dependencies>
 
 	<!-- Ideally this would go into your ~/.m2/settings.xml file -->
-	<repositories >
-		<repository >
-			<id >flex-mojos-repository</id >
-			<url >http://repository.sonatype.org/content/groups/flexgroup</url >
-			<releases >
-				<enabled >true</enabled >
-			</releases >
-			<snapshots >
-				<enabled >false</enabled >
-			</snapshots >
-		</repository >
-        <repository >
+	<repositories>
+		<repository>
+			<id>flex-mojos-repository</id>
+			<url>http://repository.sonatype.org/content/groups/flexgroup</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+        <repository>
             <id>sonatype-releases</id>
             <url>https://oss.sonatype.org/content/repositories/releases/</url>
-            <releases >
-                <enabled >true</enabled >
-            </releases >
-            <snapshots >
-                <enabled >false</enabled >
-            </snapshots >
-        </repository >
-	</repositories >
-	<pluginRepositories >
-		<pluginRepository >
-			<id >flex-mojos-plugin-repository</id >
-			<url >http://repository.sonatype.org/content/groups/flexgroup</url >
-			<releases >
-				<enabled >true</enabled >
-			</releases >
-			<snapshots >
-				<enabled >false</enabled >
-			</snapshots >
-		</pluginRepository >
-	</pluginRepositories >
-</project >
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>flex-mojos-plugin-repository</id>
+			<url>http://repository.sonatype.org/content/groups/flexgroup</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+</project>
