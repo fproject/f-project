@@ -67,14 +67,6 @@
 			<version>${flex.framework.version}</version>
 			<type>pom</type>
 		</dependency>
-		<!-- Based on testing library dependency specified, FlexMojos will know how to test your application -->
-		<dependency>
-			<groupId>org.flexunit</groupId>
-			<artifactId>flexunit</artifactId>
-			<version>${flexunit.version}</version>
-            <classifier>flex4</classifier>
-			<type>swc</type>
-		</dependency>
         <dependency>
             <groupId>net.fproject.as3commons</groupId>
             <artifactId>as3commons-reflect</artifactId>
@@ -83,6 +75,14 @@
             <scope>system</scope>
             <systemPath>${basedir}/fprj-core/libs/as3commons-reflect.swc</systemPath>
         </dependency>
+		<!-- Based on testing library dependency specified, FlexMojos will know how to test your application -->
+		<dependency>
+			<groupId>org.flexunit</groupId>
+			<artifactId>flexunit</artifactId>
+			<version>${flexunit.version}</version>
+            <classifier>flex4</classifier>
+			<type>swc</type>
+		</dependency>
 	</dependencies>
 
 	<!-- Ideally this would go into your ~/.m2/settings.xml file -->
