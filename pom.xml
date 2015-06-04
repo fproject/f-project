@@ -43,7 +43,7 @@
 					<headlessServer>true</headlessServer>
 					<verboseStacktraces>true</verboseStacktraces>
 					<includeTestFiles>
-						<includeTestFile>*.as</includeTestFile>
+						<includeTestFile>*TestSuite.as</includeTestFile>
 					</includeTestFiles>
 				</configuration>
 				<dependencies>
