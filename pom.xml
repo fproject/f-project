@@ -90,8 +90,8 @@
 			</snapshots >
 		</repository >
         <repository >
-            <id >flex-unit-repository</id >
-            <url >http://maven-repository.com</url >
+            <id>sonatype-releases</id>
+            <url>https://oss.sonatype.org/content/repositories/releases/</url>
             <releases >
                 <enabled >true</enabled >
             </releases >
