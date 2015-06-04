@@ -38,7 +38,12 @@
                         <locale>en_US</locale>
 						<locale>vi_VN</locale>
                     </compiledLocales>
-					
+
+                    <includeResourceBundles>
+                        <rb>fprjcore</rb>
+                        <rb>fprjutils</rb>
+                    </includeResourceBundles>
+
 					<configurationReport>true</configurationReport>
 					<headlessServer>true</headlessServer>
 					<verboseStacktraces>true</verboseStacktraces>
