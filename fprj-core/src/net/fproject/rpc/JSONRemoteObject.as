@@ -103,7 +103,7 @@ package net.fproject.rpc
 				op = new JSONOperation(this, name);
 				mx_internal::_operations[name] = op;
 				op.mx_internal::asyncRequest = mx_internal::asyncRequest;
-				op.mx_internal::setKeepLastResultIfNotSet(_keepLastResult);
+				op.mx_internal::setKeepLastResultIfNotSet(this.keepLastResult);
 			}
 			
 			return op;
