@@ -8,7 +8,7 @@ before_script:
   - sh getFpFromArchive.sh 'http://download.macromedia.com/pub/flashplayer/installers/archive/fp_11.7.700.225_archive.zip'
   # add the Flash Player path to $PATH so that Java can find the Flash Player.  This is required by Flex-Mojos 4.x
   - export PATH="Flash Player Debugger.app/Contents/MacOS":$PATH
-  # Flex-Mojo is expecting the "Flash Player" command so copy "Flash Player Debug" to "Flash Player"
+  # Flex-Mojos is expecting the "Flash Player" command so copy "Flash Player Debug" to "Flash Player"
   - cp Flash\ Player\ Debugger.app/Contents/MacOS/Flash\ Player\ Debugger Flash\ Player\ Debugger.app/Contents/MacOS/Flash\ Player
 
 script: mvn test
