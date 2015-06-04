@@ -32,12 +32,12 @@
                     </compilerWarnings>
 					
 					<allowSourcePathOverlap>true</allowSourcePathOverlap>
-					<resourceBundlePath>${basedir}/fprj-core/locales/{locale}</resourceBundlePath>
+					<resourceBundlePath>${basedir}/fprj-core/locale/{locale}</resourceBundlePath>
 					<mergeResourceBundle>true</mergeResourceBundle>
-					<locales>
+					<compiledLocales>
                         <locale>en_US</locale>
 						<locale>vi_VN</locale>
-                    </locales>
+                    </compiledLocales>
 					
 					<configurationReport>true</configurationReport>
 					<headlessServer>true</headlessServer>
