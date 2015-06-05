@@ -533,19 +533,11 @@ package net.fproject.utils.StringUtil
 		
 		private function testCase019_resultHandler(e:Event,o:Object=null):void
 		{
-			Async.delayCall(this, 
-				function():void
-				{
-					var s1:String = "Tôi yêu em đến nay chừng có thể";
-					var s2:String = "Toi yeu em den nay chung co the";
-					var characterCompareMethod:Function = null;
-					var returnTestValue:Boolean = StringUtil.localeEquals(s1, s2, characterCompareMethod);
-					//---- Place result assertion here ----
-					// You must replace this code by function specifications or 
-					// the test always returns false!
-					assertTrue(returnTestValue);
-					//-------------------------------------
-				}, 1000);			
+			var s1:String = "Tôi yêu em đến nay chừng có thể";
+			var s2:String = "Toi yeu em den nay chung co the";
+			var characterCompareMethod:Function = null;
+			var returnTestValue:Boolean = StringUtil.localeEquals(s1, s2, characterCompareMethod);
+			assertTrue(returnTestValue);			
 		}
 		
 		[Test (description="Normal case: [s1 = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789', s2 = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789', characterCompareMethod = function():Boolean]")]
