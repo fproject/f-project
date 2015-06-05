@@ -38,7 +38,6 @@
                     </locales>
                     <localesRuntime>
                         <locale>en_US</locale>
-                        <!--<locale>vi_VN</locale>-->
                     </localesRuntime>
 					<configurationReport>true</configurationReport>
 					<headlessServer>true</headlessServer>
@@ -73,8 +72,6 @@
             <artifactId>as3commons-reflect</artifactId>
             <version>1.0</version>
             <type>swc</type>
-            <!--<scope>system</scope>
-            <systemPath>${basedir}/fprj-core/libs/as3commons-reflect.swc</systemPath>-->
         </dependency>
 		<!-- Based on testing library dependency specified, FlexMojos will know how to test your application -->
 		<dependency>
