@@ -7,7 +7,7 @@
 	<groupId>net.fproject</groupId>
 	<artifactId>fprj-core</artifactId>
 	<version>0.9.5</version>
-	<packaging>swf</packaging>
+	<packaging>swc</packaging>
 	<name>F-Project Core Library</name>
 
 	<properties>
