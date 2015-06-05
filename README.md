@@ -20,6 +20,7 @@ We planned to release first stable version in head of Feb-2015.
 * **Active Service**: Implements a common set of operations for supporting remote access to RESTful or AMF service.
 * **Active Data Provider**: Provides a collection of model objects, using ActiveService's `find` method to retrieve remote data with automatic pagination.
 * **Lightweight MVC Template**: The F-Project MVC template especially designed for Flex AIR project.
+* **Useful UI components set**: F-Project provides many useful UI components.
 * *And much more...*
 
 ##F-Project Tools
