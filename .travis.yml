@@ -10,6 +10,7 @@ before_script:
   - export PATH="Flash Player Debugger.app/Contents/MacOS":$PATH
   # Flex-Mojos is expecting the "Flash Player" command so copy "Flash Player Debug" to "Flash Player"
   - cp Flash\ Player\ Debugger.app/Contents/MacOS/Flash\ Player\ Debugger Flash\ Player\ Debugger.app/Contents/MacOS/Flash\ Player
+  - ls Flash\ Player\ Debugger.app/Contents/MacOS/Flash\ Player
   # Install local dependency artifacts
   - mvn install:install-file -Dfile=./fprj-core/libs/as3commons-reflect.swc -DgroupId=net.fproject.as3commons -DartifactId=as3commons-reflect -Dversion=1.0 -Dpackaging=swc
 script: mvn test -DflashPlayer.command=Flash\ Player\ Debugger.app/Contents/MacOS
