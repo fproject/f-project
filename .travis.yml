@@ -5,7 +5,7 @@ before_script:
   - export "JAVA_HOME=`/usr/libexec/java_home`"
   # Download and install a specific Flash Player from the Adobe Archives:
   # http://helpx.adobe.com/flash-player/kb/archived-flash-player-versions.html
-  - sh getFpFromArchive.sh 'http://download.macromedia.com/pub/flashplayer/installers/archive/fp_17.0.0.169_archive.zip'
+  - sh getFpFromArchive.sh 'http://download.macromedia.com/pub/flashplayer/installers/archive/fp_11.7.700.225_archive.zip'
   # add the Flash Player path to $PATH so that Java can find the Flash Player.  This is required by Flex-Mojos 4.x
   - export PATH="Flash Player Debugger.app/Contents/MacOS":$PATH
   # Flex-Mojos is expecting the "Flash Player" command so copy "Flash Player Debug" to "Flash Player"
