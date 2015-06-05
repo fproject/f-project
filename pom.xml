@@ -34,10 +34,10 @@
 					<allowSourcePathOverlap>true</allowSourcePathOverlap>
 					<resourceBundlePath>${basedir}/fprj-core/locale/{locale}</resourceBundlePath>
 					<mergeResourceBundle>true</mergeResourceBundle>
-					<compiledLocales>
+					<runtimeLocales>
                         <locale>en_US</locale>
 						<locale>vi_VN</locale>
-                    </compiledLocales>
+                    </runtimeLocales>
 
                     <includeResourceBundles>
                         <rb>fprjcore</rb>
