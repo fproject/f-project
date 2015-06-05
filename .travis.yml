@@ -1,10 +1,15 @@
 language: objective-c
 
 before_script:
-  # set the JAVA_HOME which is not set by default for OSX Travis-CI workers
+# set the JAVA_HOME which is not set by default for OSX Travis-CI workers
   - export "JAVA_HOME=`/usr/libexec/java_home`"
   # Download and install a specific Flash Player from the Adobe Archives:
   # http://helpx.adobe.com/flash-player/kb/archived-flash-player-versions.html
   - sh getFpFromArchive.sh 'http://download.macromedia.com/pub/flashplayer/installers/archive/fp_11.7.700.225_archive.zip'
+  # add the Flash Player path to $PATH so that Java can find the Flash Player.  This is required by Flex-Mojos 4.x
+  - export PATH="Flash Player Debugger.app/Contents/MacOS":$PATH
+  # Flex-Mojos is expecting the "Flash Player" command so copy "Flash Player Debug" to "Flash Player"
+  - cp Flash\ Player\ Debugger.app/Contents/MacOS/Flash\ Player\ Debugger Flash\ Player\ Debugger.app/Contents/MacOS/Flash\ Player
+  # Install local dependency artifacts
   - mvn install:install-file -Dfile=./fprj-core/libs/as3commons-reflect.swc -DgroupId=net.fproject.as3commons -DartifactId=as3commons-reflect -Dversion=1.0 -Dpackaging=swc
-script: mvn test -DflashPlayer.command=Flash\ Player\ Debugger.app/Contents/MacOS/Flash\ Player\ Debugger
+script: mvn test
