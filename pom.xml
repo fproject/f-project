@@ -27,7 +27,12 @@
                 <artifactId>flexmojos-maven-plugin</artifactId>
 				<version>${flexmojos.version}</version>
 				<extensions>true</extensions>
-				<configuration>					
+				<configuration>
+                    <testRunner >
+                        <launcher >
+                            <flashplayerCommand >${flashPlayer.command}</flashplayerCommand >
+                        </launcher >
+                    </testRunner >
 					<compilerWarnings>
                         <warn-no-constructor>false</warn-no-constructor>
                     </compilerWarnings>
