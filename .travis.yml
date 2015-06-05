@@ -12,4 +12,4 @@ before_script:
   - cp Flash\ Player\ Debugger.app/Contents/MacOS/Flash\ Player\ Debugger Flash\ Player\ Debugger.app/Contents/MacOS/Flash\ Player
   # Install local dependency artifacts
   - mvn install:install-file -Dfile=./fprj-core/libs/as3commons-reflect.swc -DgroupId=net.fproject.as3commons -DartifactId=as3commons-reflect -Dversion=1.0 -Dpackaging=swc
-script: mvn test -DflashPlayer.command=Flash\ Player\ Debugger.app/Contents/MacOS/Flash\ Player\ Debugger
+script: mvn test -DflashPlayer.command=Flash\ Player\ Debugger.app/Contents/MacOS/Flash\ Player
