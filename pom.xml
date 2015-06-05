@@ -15,7 +15,7 @@
 		<flex.compiler.version>4.6.b.23201</flex.compiler.version>
 		<flexmojos.version>4.2-beta</flexmojos.version>
 		<flexunit.version>4.1.0</flexunit.version>
-        <flex.compiler.locale>en_US,vi_VN</flex.compiler.locale>
+        <flex.compiler.locale>en_US</flex.compiler.locale>
 	</properties>
 
 	<build>
@@ -38,7 +38,7 @@
                     </locales>
                     <localesRuntime>
                         <locale>en_US</locale>
-                        <locale>vi_VN</locale>
+                        <!--<locale>vi_VN</locale>-->
                     </localesRuntime>
 					<configurationReport>true</configurationReport>
 					<headlessServer>true</headlessServer>
