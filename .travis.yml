@@ -1,4 +1,5 @@
-language: c
+language: java
+os: osx
 
 before_script:
   # set the JAVA_HOME which is not set by default for OSX Travis-CI workers
