@@ -13,6 +13,7 @@ before_script:
 
   # add the Flash Player path to $PATH so that Java can find the Flash Player.  This is required by Flex-Mojos 4.x
   - export PATH="Flash Player.app/Contents/MacOS":$PATH
+  - pwd
 
   # Install local dependency artifacts
   - mvn install:install-file -Dfile=./fprj-core/libs/as3commons-reflect.swc -DgroupId=net.fproject.as3commons -DartifactId=as3commons-reflect -Dversion=1.0 -Dpackaging=swc
