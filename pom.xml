@@ -26,13 +26,6 @@
 				<artifactId >flexmojos-maven-plugin</artifactId >
 				<version >${flexmojos.version}</version >
 				<extensions >true</extensions >
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>test-swc</goal>
-                        </goals>
-                    </execution>
-                </executions>
 				<configuration >
 					<compilerWarnings>
                         <warn-no-constructor>false</warn-no-constructor>
@@ -44,10 +37,6 @@
 					<includeTestFiles >
 						<includeTestFile >*TestSuite.as</includeTestFile >
 					</includeTestFiles >
-					<!--<compilerWarnings>
-                        <warn-no-constructor>false</warn-no-constructor>
-                    </compilerWarnings>
-					<allowSourcePathOverlap>true</allowSourcePathOverlap>-->
                     <localesSourcePath>${basedir}/fprj-core/locale/{locale}</localesSourcePath>
                     <locales>
                         <param>${flex.compiler.locale}</param>
