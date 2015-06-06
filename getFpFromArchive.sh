@@ -68,10 +68,11 @@ unzip ${FP_ARCHIVE_ZIP} -d ${FP_ARCHIVE_PATH}
 
 if [ "$2" != "" ]; then
     MAC_SA_APP_ZIP=`find . -type f \( -iname "*mac_sa_debug*.zip" ! -iname ".*" \)`
-fi
-if [ "$2" = "" ]; then
-    MAC_SA_APP_ZIP=`find . -type f \( -iname "*mac_sa*.zip" ! -iname ".*" \)`
 else
+    MAC_SA_APP_ZIP=`find . -type f \( -iname "*mac_sa*.zip" ! -iname ".*" \)`
+fi
+
+if [ "${MAC_SA_APP_ZIP}" = "" ]; then
 	echo "[ERROR] Can not find required Mac SA Player ZIP."
 	exit 1
 fi
