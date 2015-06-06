@@ -28,11 +28,16 @@
 				<version>${flexmojos.version}</version>
 				<extensions>true</extensions>
 				<configuration>
-                    <testRunner>
-                        <launcher>
-                            <flashplayerCommand>${flashPlayer.command}</flashplayerCommand>
-                        </launcher>
-                    </testRunner>
+                    <testRunner >
+                        <launcher >
+                            <flashplayerCommand >${flashPlayer.command}</flashplayerCommand >
+                        </launcher >
+                    </testRunner >
+                    <headlessServer>true</headlessServer>
+                    <verboseStacktraces>true</verboseStacktraces>
+                    <includeTestFiles>
+                        <includeTestFile>*TestSuite.as</includeTestFile>
+                    </includeTestFiles>
 					<compilerWarnings>
                         <warn-no-constructor>false</warn-no-constructor>
                     </compilerWarnings>
@@ -45,14 +50,8 @@
                         <locale>en_US</locale>
                     </localesRuntime>
 					<configurationReport>true</configurationReport>
-					<headlessServer>true</headlessServer>
-					<verboseStacktraces>true</verboseStacktraces>
-					<includeTestFiles>
-						<includeTestFile>*TestSuite.as</includeTestFile>
-					</includeTestFiles>
 				</configuration>
 				<dependencies>
-					<!-- Nice POM bundle available per SDK on Sonatype thanks to Flex-Mojos -->
 					<dependency>
 						<groupId>com.adobe.flex</groupId>
 						<artifactId>compiler</artifactId>
@@ -65,7 +64,6 @@
 	</build>
 
 	<dependencies>
-		<!-- Nice POM bundle available per SDK on Sonatype thanks to Flex-Mojos -->
 		<dependency>
 			<groupId>com.adobe.flex.framework</groupId>
 			<artifactId>flex-framework</artifactId>
@@ -83,7 +81,6 @@
 			<groupId>org.flexunit</groupId>
 			<artifactId>flexunit</artifactId>
 			<version>${flexunit.version}</version>
-            <classifier>flex4</classifier>
 			<type>swc</type>
             <scope>test</scope>
 		</dependency>
