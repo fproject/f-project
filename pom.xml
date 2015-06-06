@@ -81,6 +81,7 @@
 			<groupId>org.flexunit</groupId>
 			<artifactId>flexunit</artifactId>
 			<version>${flexunit.version}</version>
+            <classifier>flex4</classifier>
 			<type>swc</type>
             <scope>test</scope>
 		</dependency>
