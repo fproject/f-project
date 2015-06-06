@@ -38,10 +38,10 @@
                     <includeTestFiles>
                         <includeTestFile>*TestSuite.as</includeTestFile>
                     </includeTestFiles>
-					<compilerWarnings>
+					<!--<compilerWarnings>
                         <warn-no-constructor>false</warn-no-constructor>
                     </compilerWarnings>
-					<allowSourcePathOverlap>true</allowSourcePathOverlap>
+					<allowSourcePathOverlap>true</allowSourcePathOverlap>-->
                     <localesSourcePath>${basedir}/fprj-core/locale/{locale}</localesSourcePath>
                     <locales>
                         <param>${flex.compiler.locale}</param>
