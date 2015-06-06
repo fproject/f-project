@@ -27,6 +27,7 @@
 				<version >${flexmojos.version}</version >
 				<extensions >true</extensions >
 				<configuration >
+                    <sourceFile>TestMain.as</sourceFile>
 					<compilerWarnings>
                         <warn-no-constructor>false</warn-no-constructor>
                     </compilerWarnings>
