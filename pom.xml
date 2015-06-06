@@ -85,6 +85,7 @@
 			<version>${flexunit.version}</version>
             <classifier>flex4</classifier>
 			<type>swc</type>
+            <scope>test</scope>
 		</dependency>
 	</dependencies>
 
