@@ -35,7 +35,7 @@
 					<headlessServer >true</headlessServer >
 					<verboseStacktraces >true</verboseStacktraces >
 					<includeTestFiles >
-						<includeTestFile >*TestSuit.as</includeTestFile >
+						<includeTestFile >*TestSuite.as</includeTestFile >
 					</includeTestFiles >
 					<!--<compilerWarnings>
                         <warn-no-constructor>false</warn-no-constructor>
