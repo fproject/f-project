@@ -79,13 +79,14 @@
             <type>swc</type>
         </dependency>
 		<!-- Based on testing library dependency specified, FlexMojos will know how to test your application -->
-        <dependency>
-            <groupId >com.adobe.flexunit</groupId>
-            <artifactId >flexunit</artifactId>
-            <version >4.0-rc-1</version>
-            <type >swc</type>
-            <scope >test</scope>
-        </dependency>
+		<dependency>
+			<groupId>org.flexunit</groupId>
+			<artifactId>flexunit</artifactId>
+			<version>${flexunit.version}</version>
+            <classifier>flex4</classifier>
+			<type>swc</type>
+            <scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<!-- Ideally this would go into your ~/.m2/settings.xml file -->
