@@ -34,10 +34,10 @@
 
 FP_ARCHIVE_PATH="fp_archive"
 FP_ARCHIVE_ZIP="fp_archive.zip"
-EXPECTED_ARG="<FlashPlayer Archile Url>"
+EXPECTED_ARG="<FlashPlayer Archile Url> [TRUE|FALSE]"
 VERSION="1.0"
 
-if [ "$#" -gt 1 ]; then
+if [ "$#" -gt 2 ]; then
   echo "Too many arguments."
   echo "Usage: $0 ${EXPECTED_ARG}"
   exit 1
@@ -65,16 +65,24 @@ unzip ${FP_ARCHIVE_ZIP} -d ${FP_ARCHIVE_PATH}
 # locate the mac_sa_debug.app.zip file and ignore any .* files
 # these seem to be inconsistent, "*mac_sa_debug.app.zip" and
 # "*mac_sa_debug.zip" have been notedr,
-MAC_SA_DEBUG_APP_ZIP=`find . -type f \( -iname "*mac_sa_debug*.zip" ! -iname ".*" \)`
-if [ "${MAC_SA_DEBUG_APP_ZIP}" = "" ]; then
-	echo "[ERROR] Can not find required Mac SA Debug Player ZIP."
+
+if [ "$2" != "" ]; then
+    MAC_SA_APP_ZIP=`find . -type f \( -iname "*mac_sa_debug*.zip" ! -iname ".*" \)`
+fi
+if [ "$2" = "" ]; then
+    MAC_SA_APP_ZIP=`find . -type f \( -iname "*mac_sa*.zip" ! -iname ".*" \)`
+fi
+
+if [ "${MAC_SA_APP_ZIP}" = "" ]; then
+	echo "[ERROR] Can not find required Mac SA Player ZIP."
 	exit 1
 fi
-echo "[INFO] Found Mac SA Debug Player Zip: ${MAC_SA_DEBUG_APP_ZIP}"
 
-# Unzip mac_sa_debug.app.zip
+echo "[INFO] Found Mac SA Debug Player Zip: ${MAC_SA_APP_ZIP}"
+
+# Unzip mac_sa*.app.zip
 echo "[INFO] Unzipping player"
-unzip ${MAC_SA_DEBUG_APP_ZIP}
+unzip ${MAC_SA_APP_ZIP}
 
 # cleanup
 echo "[INFO] cleaning up temp files."
