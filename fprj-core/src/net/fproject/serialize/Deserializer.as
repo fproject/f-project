@@ -14,6 +14,8 @@ package net.fproject.serialize
 	import flash.utils.getQualifiedClassName;
 	
 	import net.fproject.fproject_internal;
+	import net.fproject.di.supportClasses.FieldInjection;
+	import net.fproject.di.supportClasses.TypeInjection;
 	import net.fproject.utils.DateTimeUtil;
 	import net.fproject.utils.ResourceUtil;
 	import net.fproject.utils.StringUtil;
@@ -27,8 +29,6 @@ package net.fproject.serialize
 	import org.as3commons.reflect.Parameter;
 	import org.as3commons.reflect.Type;
 	import org.as3commons.reflect.Variable;
-	import net.fproject.di.supportClasses.TypeInjection;
-	import net.fproject.di.supportClasses.FieldInjection;
 	
 	/**
 	 * 
@@ -88,8 +88,8 @@ package net.fproject.serialize
 			
 			if (!(typeInjection = typeInjectionCache[targetType]))
 			{
-				typeInjection = typeInjectionCache[targetType] = new TypeInjection;
-				addReflectedRules(typeInjection, targetType, Type.forClass(targetType));
+				typeInjection = typeInjectionCache[targetType] = 
+					createTypeInjection(targetType, Type.forClass(targetType));
 			}
 			
 			// Create a new isntance of the targetType; and then inject the values from the source object into it
@@ -100,7 +100,7 @@ package net.fproject.serialize
 			return target;
 		}
 
-		private function isSimple(object:Object):Boolean
+		private function isSimpleType(object:Object):Boolean
 		{
 			switch (typeof(object))
 			{
@@ -115,6 +115,13 @@ package net.fproject.serialize
 			return false;
 		}
 		
+		/**
+		 * Extract value of a field with injection information specified 
+		 * @param source the source object
+		 * @param fieldInjection field injection information
+		 * @return the extracted value
+		 * 
+		 */
 		private function extractValue(source:Object, fieldInjection:FieldInjection):*
 		{
 			// Is this a required injection?
@@ -130,7 +137,7 @@ package net.fproject.serialize
 			if (value) 
 			{
 				// automatically coerce simple types.
-				if (!isSimple(value))
+				if (!isSimpleType(value))
 				{
 					value = extract(value, fieldInjection.type);
 				}
@@ -163,6 +170,13 @@ package net.fproject.serialize
 			return value;
 		}
 
+		/**
+		 * Extract a typed array. The source array will be modified and returned.
+		 * @param source
+		 * @param targetClassType
+		 * @return the source array itself
+		 * 
+		 */
 		private function extractTypedArray(source:Array, targetClassType:Class):Array
 		{
 			const result:Array = new Array(source.length);
@@ -173,6 +187,14 @@ package net.fproject.serialize
 			return result;
 		}
 
+		/**
+		 * Extract a vector
+		 * @param source
+		 * @param targetVectorClass
+		 * @param targetClassType
+		 * @return 
+		 * 
+		 */
 		private function extractVector(source:Array, targetVectorClass:Class, targetClassType:Class):*
 		{
 			const result:* = ClassUtils.newInstance(targetVectorClass);
@@ -191,14 +213,29 @@ package net.fproject.serialize
 			return result;
 		}
 		
-		private function addReflectedRules(ti:TypeInjection, targetType:Class, type:Type):void
+		/**
+		 * Create type injection information 
+		 * @param targetType
+		 * @param type
+		 * @return 
+		 * 
+		 */
+		private function createTypeInjection(targetType:Class, type:Type):TypeInjection
 		{
-			addReflectedConstructorRules(ti, type);
-			addReflectedFieldRules(ti, type.fields);
-			addReflectedSetterRules(ti, type.methods);
+			var ti:TypeInjection = new TypeInjection;
+			addConstructorInjectionInfo(ti, type);
+			addFieldInjectionInfo(ti, type.fields);
+			addSetterInjectionInfo(ti, type.methods);
+			return ti;
 		}
 
-		private function addReflectedConstructorRules(typeInjection:TypeInjection, type:Type):void
+		/**
+		 * Add injection information for constructor 
+		 * @param typeInjection
+		 * @param type
+		 * 
+		 */
+		private function addConstructorInjectionInfo(typeInjection:TypeInjection, type:Type):void
 		{
 			const clazzMarshallingMetadata:Array = type.getMetadata(MARSHALL);
 			if (!clazzMarshallingMetadata)
@@ -219,7 +256,13 @@ package net.fproject.serialize
 			}
 		}
 
-		private function addReflectedFieldRules(typeInjection:TypeInjection, fields:Array):void
+		/**
+		 * Add injection information for fields 
+		 * @param typeInjection
+		 * @param fields
+		 * 
+		 */
+		private function addFieldInjectionInfo(typeInjection:TypeInjection, fields:Array):void
 		{
 			for each (var field:Field in fields)
 			{
@@ -235,7 +278,13 @@ package net.fproject.serialize
 			}
 		}
 
-		private function addReflectedSetterRules(typeInjection:TypeInjection, methods:Array):void
+		/**
+		 * Add setter injection information 
+		 * @param typeInjection
+		 * @param methods
+		 * 
+		 */
+		private function addSetterInjectionInfo(typeInjection:TypeInjection, methods:Array):void
 		{
 			for each (var method:Method in methods)
 			{
