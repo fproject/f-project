@@ -1,7 +1,6 @@
 # F-Project Framework for Flex
 [![Stories in Ready](https://badge.waffle.io/fproject/f-project.png?label=1%20-%20Ready)](https://waffle.io/fproject/f-project)
 [![Build Status](https://travis-ci.org/fproject/f-project.svg?branch=master)](https://travis-ci.org/fproject/f-project)
-[![License](https://poser.pugx.org/fproject/f-project/license)](https://packagist.org/packages/fproject/f-project)
 
 **F-Project** is a lightweight framework for Flex applications.
 The original is a proprietary framework developed by F-Project Team in Hanoi, Vietnam.
