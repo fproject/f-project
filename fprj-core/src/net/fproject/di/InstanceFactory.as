@@ -12,6 +12,8 @@ package net.fproject.di
 	import flash.utils.getQualifiedClassName;
 	import flash.utils.getQualifiedSuperclassName;
 	
+	import org.as3commons.lang.ClassUtils;
+	
 	public class InstanceFactory
 	{
 		private static var classToImpl:Dictionary = new Dictionary(true);
@@ -38,10 +40,11 @@ package net.fproject.di
 		/**
 		 * Instantiate a class using singleton and dependency injection.
 		 * @param clazz the class or interface name to instantiate
+		 * @param constructorArgs constructor argument (if any)
 		 * @return the service instance
 		 * 
 		 */
-		public static function getInstance(clazz:Class):Object
+		public static function getInstance(clazz:Class, constructorArgs:*=undefined):Object
 		{
 			if(implToInstance[clazz] != undefined)
 				return implToInstance[clazz];
@@ -91,7 +94,9 @@ package net.fproject.di
 			
 			if(impl != null)
 			{
-				implToInstance[impl] = new impl;
+				if(constructorArgs != undefined && !(constructorArgs is Array))
+					constructorArgs = [constructorArgs];
+				implToInstance[impl] = ClassUtils.newInstance(impl, constructorArgs);
 				if(impl !== clazz)
 					implToInstance[clazz] == implToInstance[impl];
 				classToImpl[clazz] = impl;
