@@ -39,9 +39,9 @@ package net.fproject.di
 		
 		/**
 		 * Instantiate a class using singleton and dependency injection.
-		 * @param clazz the class or interface name to instantiate
-		 * @param constructorArgs constructor argument (if any)
-		 * @return the service instance
+		 * @param clazz The class or interface name to instantiate
+		 * @param constructorArgs The constructor argument list (if any)
+		 * @return The singleton instance
 		 * 
 		 */
 		public static function getInstance(clazz:Class, constructorArgs:*=undefined):Object
