@@ -40,7 +40,7 @@ package net.fproject.serialize
 		
 		[Test (order="16",expected="SyntaxError",description="Boundary case: [json = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789', returning = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789']")]
 		/**
-		 * Boundary Case Type: Normal<br/>
+		 * Boundary Case<br/>
 		 * <br/>
 		 * INPUT VALUES:<br/>
 		 * <code>json = "ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789"</code><br/>
@@ -508,6 +508,45 @@ package net.fproject.serialize
 			var duration:Number = finish.time - start.time;
 			assertTrue(duration < 1000);
 			//-------------------------------------
+		}
+		
+		[Test (order="10",description="Boundary case")]
+		/**
+		 * Test Case Type: Boundary<br/>
+		 * <br/>
+		 * INPUT VALUES:<br/>
+		 * <code>json = null</code><br/>
+		 * <code>returning = null</code><br/>
+		 * <br/>
+		 * OUTPUT EXPECTED:<br/>
+		 * ---- expectations ----
+		 *
+		 */
+		public function testCase018():void
+		{
+			var json:String = "null";
+			var returning:String = null;
+			var returnTestValue:Object = deserializer.fromJSON(json, returning);
+			assertNull(returnTestValue);
+		}
+		
+		[Test (order="10",description="Boundary case")]
+		/**
+		 * Test Case Type: Boundary<br/>
+		 * <br/>
+		 * INPUT VALUES:<br/>
+		 * <code>json = null</code><br/>
+		 * <code>returning = null</code><br/>
+		 * <br/>
+		 * OUTPUT EXPECTED:<br/>
+		 * ---- expectations ----
+		 *
+		 */
+		public function testCase019():void
+		{
+			var json:String = "[]";
+			var returnTestValue:Object = deserializer.fromJSON(json);
+			assertEquals([], returnTestValue);
 		}
 	}
 }
