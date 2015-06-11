@@ -112,7 +112,7 @@ package net.fproject.collection
 		
 		public function resetCollectionChange(collection:Object):void
 		{
-			_collectionToChangeItems[collection] = {deleteItems:[], insertItems:[], updateItems:[]};
+			_collectionToChangeItems[collection] = {deleteItems:[], insertItems:[], updateItems:[], paused: false};
 		}
 		
 		/**
@@ -147,16 +147,16 @@ package net.fproject.collection
 			}
 		}	
 		
-		private var _paused:Boolean;
 		/**
 		 * Temporarily stop listening to COLLECTION_CHANGE event
 		 * 
 		 * @see #resume()
 		 * 
 		 */
-		public function pause():void
+		public function pause(collection:ICollectionView):void
 		{
-			_paused = true;
+			if (_collectionToChangeItems[collection]!== undefined)
+				_collectionToChangeItems[collection].paused = true;
 		}
 		
 		/**
@@ -164,17 +164,19 @@ package net.fproject.collection
 		 * 
 		 * @see #pause()
 		 */
-		public function resume():void
+		public function resume(collection:ICollectionView):void
 		{
-			_paused = false;
+			if (_collectionToChangeItems[collection] !== undefined)
+				_collectionToChangeItems[collection].paused = false;
 		}
 		
 		private function collection_collectionChangeHandler(event:Event):void
 		{
-			if(_paused)
+			var ce:CollectionEvent = event as CollectionEvent;
+			
+			if(_collectionToChangeItems[ce.currentTarget].paused)
 				return;
 			
-			var ce:CollectionEvent = event as CollectionEvent;
 			if (ce == null || _collectionToChangeItems[ce.currentTarget] == undefined)
 			{
 				return;

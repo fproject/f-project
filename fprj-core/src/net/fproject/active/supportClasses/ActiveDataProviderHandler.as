@@ -17,6 +17,7 @@ package net.fproject.active.supportClasses
 	import net.fproject.active.DbCriteria;
 	import net.fproject.active.IActiveDataProvider;
 	import net.fproject.active.PaginationResult;
+	import net.fproject.collection.CollectionChangeManager;
 
 	/**
 	 * Helper class for IActiveDataProvider's implementations
@@ -183,10 +184,14 @@ package net.fproject.active.supportClasses
 				if(parent.paginationResult == null || 
 					parent.paginationResult.currentPage != pr.currentPage)
 				{
+					CollectionChangeManager.getInstance().pause(parent);
+					
 					if(parent.paginationResultHandler != null)
 						parent.paginationResultHandler(pr);
 					else
 						defaultPaginationResultHandler(pr);
+					
+					CollectionChangeManager.getInstance().resume(parent);
 				}
 			}
 		}
