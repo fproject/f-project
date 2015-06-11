@@ -546,7 +546,8 @@ package net.fproject.serialize
 		{
 			var json:String = "[]";
 			var returnTestValue:Object = deserializer.fromJSON(json);
-			assertEquals([], returnTestValue);
+			assertTrue(returnTestValue is Array);
+			assertEquals(0, (returnTestValue as Array).length);
 		}
 	}
 }

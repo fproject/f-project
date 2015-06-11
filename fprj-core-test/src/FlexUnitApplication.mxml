@@ -9,7 +9,7 @@
 			   minWidth="955" minHeight="600" creationComplete="onCreationComplete()">
 	<fx:Script>
 		<![CDATA[
-			import net.fproject.utils.DateTimeUtil.DateTimeUtil_parseStandardDate;
+			import net.fproject.serialize.Deserializer_fromJSON;
 			
 			import org.flexunit.runner.Request;
 			
@@ -17,7 +17,8 @@
 			{
 				var testsToRun:Array = new Array();
 				
-				testsToRun.push(Request.methods(DateTimeUtil_parseStandardDate,["testCase001"]));
+				testsToRun.push(Request.methods(net.fproject.serialize.Deserializer_fromJSON,["testCase019"]));
+				
 				return testsToRun;
 			}
 			
