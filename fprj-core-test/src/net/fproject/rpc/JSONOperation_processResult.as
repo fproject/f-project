@@ -11,6 +11,7 @@ package net.fproject.rpc
 	
 	import org.flexunit.asserts.assertEquals;
 	import org.flexunit.asserts.assertFalse;
+	import org.flexunit.asserts.assertNull;
 	import org.flexunit.asserts.assertTrue;
 	import org.flexunit.async.Async;
 	
@@ -212,5 +213,29 @@ package net.fproject.rpc
 			//-------------------------------------
 		}
 		
+		[Test (async,description="Boundary case")]
+		/**
+		 * Test Case Type: Boundary<br/>
+		 * <br/>
+		 * INPUT VALUES:<br/>
+		 * <code>message = new IMessage()</code><br/>
+		 * <code>token = new AsyncToken()</code><br/>
+		 * <br/>
+		 * OUTPUT EXPECTED:<br/>
+		 * ---- expectations ----
+		 *
+		 */
+		public function testCase006():void
+		{
+			jsonOperation.returning = null;
+			var message:IMessage = new HTTPRequestMessage();
+			message.body = 'null';
+			var token:AsyncToken = new AsyncToken();
+			var returnTestValue:Boolean = jsonOperation.processResult(message, token);
+			
+			assertTrue(returnTestValue);
+			var reslt:Object = jsonOperation.mx_internal::_result;
+			assertNull(reslt);
+		}		
 	}
 }
