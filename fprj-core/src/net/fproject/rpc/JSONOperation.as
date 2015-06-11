@@ -175,10 +175,6 @@ package net.fproject.rpc
 						decodedResult = Deserializer.getInstance().fromJSON(body, retn);
 					}
 				}
-				else
-				{
-					decodedResult = message.body;
-				}
 			} 
 			catch (e:Error) 
 			{
@@ -210,7 +206,7 @@ package net.fproject.rpc
 		 */
 		private function resultHasError(result:Object):Boolean
 		{
-			if (result.hasOwnProperty("error") && result.error != null) 
+			if (result != null && result.hasOwnProperty("error") && result.error != null) 
 			{
 				return true;
 			}
