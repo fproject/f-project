@@ -1,7 +1,5 @@
 package net.fproject.active
 {
-	import flash.events.Event;
-	
 	import mx.events.PropertyChangeEvent;
 	import mx.rpc.CallResponder;
 	import mx.rpc.events.ResultEvent;
@@ -12,6 +10,7 @@ package net.fproject.active
 	
 	import org.flexunit.asserts.assertEquals;
 	import org.flexunit.asserts.assertNotNull;
+	import org.flexunit.asserts.assertNull;
 	import org.flexunit.asserts.assertTrue;
 	import org.flexunit.async.Async;
 	import org.flexunit.async.TestResponder;
@@ -355,7 +354,7 @@ package net.fproject.active
 		
 		public function testCase500_checkResult(event:ResultEvent, passThroughData:Object):void
 		{
-			assertEquals("", event.result);			
+			assertNull(event.result);			
 		}
 		
 		[Test (async, description="Normal case",order=3)]
@@ -423,6 +422,39 @@ package net.fproject.active
 			}			
 		}
 		
+		[Test (async,description="Normal case: []")]
+		/**
+		 * Test Case Type: Normal<br/>
+		 * <br/>
+		 * INPUT VALUES:<br/>
+		 * <br/>
+		 * OUTPUT EXPECTED:<br/>
+		 * ---- expectations ----
+		 *
+		 */
+		public function testCase701():void
+		{
+			var activedataProvider:IActiveDataProvider = restService.createDataProvider(
+				{
+					criteria : {condition : "@findAllCondition"},
+					pagination:{perPage:10}
+				}
+			);
+			Async.handleEvent(this, activedataProvider, 'propertyChange', testCase701_checkResult, 2000, activedataProvider);
+		}
+		
+		public function testCase701_checkResult(event:PropertyChangeEvent, activedataProvider:ActiveDataProvider):void
+		{
+			if(event.property == "paginationResult")
+			{
+				assertNotNull(activedataProvider.paginationResult);
+				assertEquals(10, activedataProvider.paginationResult.perPage);
+				for each(var o:Object in activedataProvider)
+				{
+					assertTrue(o is TestUser);
+				}
+			}			
+		}
 		
 	}
 }
