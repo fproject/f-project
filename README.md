@@ -45,4 +45,4 @@ The minimum requirement by F-Project:
 ##Links
 
 - [GitHub](https://github.com/fproject/f-project)
-- [Packagist](https://packagist.org/packages/fproject/f-project)
+- [F-Project](http://f-project.net)
