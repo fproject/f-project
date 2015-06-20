@@ -11,6 +11,7 @@ package net.fproject.rpc
 	import flash.utils.getDefinitionByName;
 	import flash.utils.getQualifiedClassName;
 	
+	import mx.core.FlexVersion;
 	import mx.core.mx_internal;
 	import mx.messaging.Channel;
 	import mx.messaging.ChannelSet;
@@ -103,7 +104,11 @@ package net.fproject.rpc
 				op = new JSONOperation(this, name);
 				mx_internal::_operations[name] = op;
 				op.mx_internal::asyncRequest = mx_internal::asyncRequest;
-				op.mx_internal::setKeepLastResultIfNotSet(this.keepLastResult);
+				if(FlexVersion.CURRENT_VERSION >= 0x040B0000)
+				{
+					var n:QName = new QName(mx_internal, "setKeepLastResultIfNotSet");
+					op[n](this.keepLastResult);
+				}
 			}
 			
 			return op;
