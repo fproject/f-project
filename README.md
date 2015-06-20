@@ -32,3 +32,17 @@ We will release first stable version soon.
   * Flex Code Analyser: Flex source Line of Code counter, Source code statistics...
   * [Under Development] Flex Code Auto Wire: Automatically generate AS3 model and service classes from server code written in PHP, Java, Scala
 * **fproject/pinta**: A fork from [dunamis/pinta](https://github.com/dunamis/pinta) with many new features for testing AMF Server and RESTful Webservices
+
+## Installation
+
+Clone or download the repository and import the fprj-core Flex Library project to your workspace, add it to dependencies of your Flex application project.
+
+## Requirements
+
+The minimum requirement by F-Project:
+- Flex SDK 4.9.1 or later
+
+##Links
+
+- [GitHub](https://github.com/fproject/f-project)
+- [Packagist](https://packagist.org/packages/fproject/f-project)
