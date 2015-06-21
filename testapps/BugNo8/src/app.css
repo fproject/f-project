@@ -1,0 +1,6 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace views "views.*";
+views|BugNo8HomeView{
+	skinClass:ClassReference("views.BugNo8HomeViewSkin")
+}
