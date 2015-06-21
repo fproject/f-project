@@ -12,5 +12,5 @@
 		<s:State name="normal" />
 	</s:states>
 	
-	<s:TextInput text="{hostComponent.someText}"/>
+	<s:TextInput id="someTextInput" text="{hostComponent.someText}"/>
 </s:Skin>

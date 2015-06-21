@@ -55,6 +55,7 @@
       <actionScriptSettings version="1"/>
     </buildTarget>
     <buildTarget buildTargetName="device" extraPackagingOptions="" isCurrent="true" platformId="com.qnx.flexide.multiplatform.qnx.platform" signBarFile="true" version="version">
+      <multiPlatformSettings enabled="true" hideAneLibSymbols="0" includePlatformLibs="false" platformID="com.qnx.flexide.multiplatform.qnx.platform" reducedSizePackaging="false" version="1"/>
       <airSettings airCertificatePath="" airTimestamp="true" anePathSet="true" version="1">
         <airExcludes/>
         <anePaths/>
@@ -63,7 +64,6 @@
         <newPackagingParams/>
         <modifiedPackagingParams/>
       </airSettings>
-      <multiPlatformSettings enabled="true" hideAneLibSymbols="0" includePlatformLibs="false" platformID="com.qnx.flexide.multiplatform.qnx.platform" reducedSizePackaging="false" version="1"/>
       <actionScriptSettings version="1"/>
     </buildTarget>
     <buildTarget airDownloadURL="" androidSettingsVersion="2" buildTargetName="device" isCurrent="true" platformId="com.adobe.flexide.multiplatform.android.platform">
