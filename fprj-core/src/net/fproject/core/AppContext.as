@@ -118,23 +118,35 @@ package net.fproject.core
 		{
 			if(_initialized)
 				return;
+			
 			initContextData();
-			appContextService.initialize(
-				function(info:Object):void
-				{
-					loginUser.id = dataDescriptor.initInfoToLoginUserId(info);
-					loginUser.fproject_internal::setToken(dataDescriptor.initInfoToLoginUserToken(info));
-					if(hasEventListener(AppContextEvent.INITIALIZED))
-						dispatchEvent(new AppContextEvent(AppContextEvent.INITIALIZED, info));
-					_initialized = true;
-					load();
-				}, 
-				function(fault:Fault):void
-				{
-					_initialized = false;
-					if(hasEventListener(AppContextEvent.SERVICE_CALL_FAILED))
-						dispatchEvent(new AppContextEvent(AppContextEvent.SERVICE_CALL_FAILED, fault));
-				});
+			try
+			{
+				appContextService.initialize(
+					function(info:Object):void
+					{
+						loginUser.id = dataDescriptor.initInfoToLoginUserId(info);
+						loginUser.fproject_internal::setToken(dataDescriptor.initInfoToLoginUserToken(info));
+						if(hasEventListener(AppContextEvent.INITIALIZED))
+							dispatchEvent(new AppContextEvent(AppContextEvent.INITIALIZED, info));
+						_initialized = true;
+						load();
+					}, 
+					function(fault:Fault):void
+					{
+						_initialized = false;
+						if(hasEventListener(AppContextEvent.SERVICE_CALL_FAILED))
+							dispatchEvent(new AppContextEvent(AppContextEvent.SERVICE_CALL_FAILED, fault));
+						if(hasEventListener(AppContextEvent.INITIALIZE_FAILED))
+							dispatchEvent(new AppContextEvent(AppContextEvent.INITIALIZE_FAILED, fault));
+					});
+			}
+			catch (e:Error)
+			{
+				e.message
+				dispatchEvent(new AppContextEvent(AppContextEvent.INITIALIZE_FAILED));
+				trace(e.getStackTrace());
+			}
 		}
 		
 		/**

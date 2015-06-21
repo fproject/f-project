@@ -72,6 +72,34 @@ package net.fproject.event
 		public static const INITIALIZED:String = "initialized";
 		
 		/**
+		 *  The <code>AppContextEvent.INITIALIZE_FAILED</code> constant defines the value of the
+		 *  <code>type</code> property of the event object for an <code>initializeFailed</code> event.
+		 *
+		 * <p>This event is dispatched from the current AppContext when
+		 * the context information initialization is failed.</p>
+		 * 
+		 *  <p>The properties of the event object have the following values:</p>
+		 *  <table class="innertable">
+		 *     <tr><th>Property</th><th>Value</th></tr>
+		 *     <tr><td><code>bubbles</code></td><td>false</td></tr>
+		 *     <tr><td><code>cancelable</code></td><td>false</td></tr>
+		 *     <tr><td><code>currentTarget</code></td><td>The Object that defines the
+		 *       event listener that handles the event. For example, if you use
+		 *       <code>myButton.addEventListener()</code> to register an event listener,
+		 *       myButton is the value of the <code>currentTarget</code>. </td></tr>
+		 *     <tr><td><code>target</code></td><td>The Object that dispatched the event;
+		 *       it is not always the Object listening for the event.
+		 *       Use the <code>currentTarget</code> property to always access the
+		 *       Object listening for the event.</td></tr>
+		 *     <tr><td><code>data</code></td><td>The data attached to this event.</td></tr>
+		 *  </table>
+		 *
+		 *  @eventType initializeFailed
+		 *  
+		 */
+		public static const INITIALIZE_FAILED:String = "initializeFailed";
+		
+		/**
 		 *  The <code>AppContextEvent.LOADED</code> constant defines the value of the
 		 *  <code>type</code> property of the event object for an <code>loaded</code> event.
 		 *
