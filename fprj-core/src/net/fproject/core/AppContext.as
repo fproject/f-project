@@ -23,6 +23,54 @@ package net.fproject.core
 	import net.fproject.utils.ResourceUtil;
 	
 	/**
+	 * Dispatched when the app context initialization is completed.
+	 *
+	 * @eventType net.fproject.event.AppContextEvent.INITIALIZED
+	 * 
+	 */
+	[Event(name="initialized", type="net.fproject.event.AppContextEvent")]
+	
+	/**
+	 * Dispatched when the app context initialization is failed.
+	 *
+	 * @eventType net.fproject.event.AppContextEvent.INITIALIZE_FAILED
+	 * 
+	 */
+	[Event(name="initializeFailed", type="net.fproject.event.AppContextEvent")]
+	
+	/**
+	 * Dispatched when the app context is loaded successfully.
+	 *
+	 * @eventType net.fproject.event.AppContextEvent.LOADED
+	 * 
+	 */
+	[Event(name="loaded", type="net.fproject.event.AppContextEvent")]
+	
+	/**
+	 * Dispatched when the app context is failed to load.
+	 *
+	 * @eventType net.fproject.event.AppContextEvent.LOAD_FAILED
+	 * 
+	 */
+	[Event(name="loadFailed", type="net.fproject.event.AppContextEvent")]
+	
+	/**
+	 * Dispatched when the app context is saved successfully.
+	 *
+	 * @eventType net.fproject.event.AppContextEvent.SAVED
+	 * 
+	 */
+	[Event(name="saved", type="net.fproject.event.AppContextEvent")]
+	
+	/**
+	 * Dispatched when a call to AppContextService is failed.
+	 *
+	 * @eventType net.fproject.event.AppContextEvent.SERVICE_CALL_FAILED
+	 * 
+	 */
+	[Event(name="serviceCallFailed", type="net.fproject.event.AppContextEvent")]
+	
+	/**
 	 * <p>AppContext class is used to bootstrap Flex application by
 	 * supplying properties and methods to store application context 
 	 * data and application states.
