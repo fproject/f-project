@@ -16,6 +16,14 @@ package net.fproject.active
 	import net.fproject.collection.HierarchicalCollectionView;
 	
 	/**
+	 * Dispatched when the paginationResult has changed.
+	 *
+	 * @eventType flash.events.Event.CHANGE
+	 * 
+	 */
+	[Event(name="change", type="flash.events.Event")]
+	
+	/**
 	 * ActiveDataProvider class extends <code>AdvancedArrayCollection</code> class
 	 * and implements a data provider based on ActiveService.
 	 *

@@ -7,6 +7,8 @@
 ///////////////////////////////////////////////////////////////////////////////
 package net.fproject.active.supportClasses
 {
+	import flash.events.Event;
+	
 	import mx.collections.CursorBookmark;
 	import mx.collections.IViewCursor;
 	import mx.events.FlexEvent;
@@ -161,12 +163,7 @@ package net.fproject.active.supportClasses
 				if(!parent.contains(o))
 					parent.addItem(o);
 			}
-			
-			var oldValue:PaginationResult = parent.paginationResult;
 			parent.setPaginationResult(p);
-			
-			if(parent.hasEventListener(PropertyChangeEvent.PROPERTY_CHANGE))
-				parent.dispatchEvent(PropertyChangeEvent.createUpdateEvent(parent,'paginationResult', oldValue, p));
 		}
 		
 		/**
@@ -190,6 +187,12 @@ package net.fproject.active.supportClasses
 						parent.paginationResultHandler(pr);
 					else
 						defaultPaginationResultHandler(pr);
+					
+					if(parent.hasEventListener(PropertyChangeEvent.PROPERTY_CHANGE))
+						parent.dispatchEvent(PropertyChangeEvent.createUpdateEvent(
+							parent,'paginationResult', parent.paginationResult, pr));
+					if(parent.hasEventListener(Event.CHANGE))
+						parent.dispatchEvent(new Event(Event.CHANGE));
 					
 					CollectionChangeManager.getInstance().resume(parent);
 				}
