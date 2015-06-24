@@ -1,0 +1,7 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+
+.flextrasAutoCompleteTextInput {
+	textInputSkinClass:ClassReference("spark.skins.mobile.TextInputSkin");
+}
