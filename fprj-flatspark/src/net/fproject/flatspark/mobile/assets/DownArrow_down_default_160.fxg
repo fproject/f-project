@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Graphic version="2.0" xmlns="http://ns.adobe.com/fxg/2008" xmlns:d="http://ns.adobe.com/fxg/2008/dt" xmlns:fc="http://ns.adobe.com/flashcatalyst/2009"  viewHeight= "24" viewWidth= "24">
+<Graphic version="2.0" xmlns="http://ns.adobe.com/fxg/2008" xmlns:d="http://ns.adobe.com/fxg/2008/dt" viewHeight= "24" viewWidth= "24">
 	<Group d:userLabel="down" d:type="layer">
 		<Group d:userLabel="arrow">
 			<Path winding="evenOdd" data="M 6 10 L 18 10 L 12 18 L 6 10 Z " blendMode="normal" alpha="1" d:userLabel="Arrow">
