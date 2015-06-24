@@ -55,6 +55,11 @@ package net.fproject.active.supportClasses
 					b = length - index == 3;
 				maxReachedIndex = index;
 			}
+			else if(index == maxReachedIndex)
+			{
+				b = (index != length - 1);
+				maxReachedIndex = -1;
+			}
 				
 			return b;
 		}
