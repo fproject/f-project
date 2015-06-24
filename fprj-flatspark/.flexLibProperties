@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
+  <includeClasses>
+    <classEntry path="net.fproject.flatspark.mobile.ButtonSkin"/>
+    <classEntry path="net.fproject.flatspark.mobile.FlextrasAutoCompleteComboBoxSkin"/>
+    <classEntry path="net.fproject.flatspark.mobile.FlextrasDownArrowSkin"/>
+    <classEntry path="net.fproject.flatspark.mobile.FlextrasDropDownListSkin"/>
+    <classEntry path="net.fproject.flatspark.mobile.assets.DownArrow_down_default_160"/>
+    <classEntry path="net.fproject.flatspark.mobile.assets.DownArrow_down_default_240"/>
+    <classEntry path="net.fproject.flatspark.mobile.assets.DownArrow_down_default_320"/>
+    <classEntry path="net.fproject.flatspark.mobile.assets.DownArrow_up_default_160"/>
+    <classEntry path="net.fproject.flatspark.mobile.assets.DownArrow_up_default_240"/>
+    <classEntry path="net.fproject.flatspark.mobile.assets.DownArrow_up_default_320"/>
+    <classEntry path="net.fproject.flatspark.mobile.assets.PlusSign32"/>
+  </includeClasses>
+  <includeResources>
+    <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>
+  </includeResources>
+  <namespaceManifests/>
+</flexLibProperties>
