@@ -31,6 +31,8 @@ package net.fproject.active.supportClasses
 	{
 		private var parent:IActiveDataProvider;
 		
+		private var maxReachedIndex:int = -1;
+		
 		/**
 		 * This method is used as default value of <code>queryTrigger</code>
 		 * @param index the current view index
@@ -42,16 +44,19 @@ package net.fproject.active.supportClasses
 		 */
 		public function defaultQueryTrigger(index:int, length:int):Boolean
 		{
-			if(length > 0)
+			var b:Boolean = false;
+			if(index > maxReachedIndex && length > 0)
 			{
 				if(length < 5)
-					return length - index == 1;
+					b = length - index == 1;
 				else if(length < 20)
-					return length - index == 2;
+					b = length - index == 2;
 				else
-					return length - index == 3;
+					b = length - index == 3;
+				maxReachedIndex = index;
 			}
-			return false;
+				
+			return b;
 		}
 		
 		private var lastCheckCursorIndex:Array = [-1, -1];
