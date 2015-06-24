@@ -44,10 +44,12 @@ package net.fproject.active.supportClasses
 		{
 			if(length > 0)
 			{
-				if(length < 20)
-					return length - index < 2;
+				if(length < 5)
+					return length - index == 1;
+				else if(length < 20)
+					return length - index == 2;
 				else
-					return length - index < 3;
+					return length - index == 3;
 			}
 			return false;
 		}
@@ -117,9 +119,9 @@ package net.fproject.active.supportClasses
 				parent.setCriteria(new DbCriteria);
 			if(parent.paginationResult != null)
 			{
-				parent.criteria.pagination = {
-					page: parent.paginationResult.currentPage + 1, perPage: parent.paginationResult.perPage
-				};
+				parent.criteria.pagination = { perPage: parent.paginationResult.perPage };
+				parent.criteria.pagination['page'] = parent.paginationResult.currentPage >= parent.paginationResult.pageCount ?
+					parent.paginationResult.pageCount : parent.paginationResult.currentPage + 1;
 			}
 			
 			_fetchPending = true;
