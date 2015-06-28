@@ -111,13 +111,8 @@ package net.fproject.rpc
 				args = this.arguments as Array;
 			}
 			
-			// We delay endpoint initialization until now because MXML codegen may set 
-			// the destination attribute after the endpoint and will clear out the 
-			// channelSet.
-			if (asyncRequest.channelSet == null && remoteObject.endpoint != null)
-			{
-				remoteObject.fproject_internal::initEndpoint();
-			}
+			if(!remoteObject.endpointInitialized)
+				remoteObject.fproject_internal::initEndpoint(asyncRequest.channelSet);
 			
 			if(remoteObject.fproject_internal::operationNameToMetadata != null &&
 				remoteObject.fproject_internal::operationNameToMetadata.hasOwnProperty(this.name))

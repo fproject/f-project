@@ -152,6 +152,7 @@ package net.fproject.rpc
 					var remoteObj:IRemoteObject = 
 						new JSONRemoteObject(name, dest, channel,
 							getOperationMetadata(type), uri, modelClass, proxy);
+					remoteObj.channelSet = cs;
 				}
 				else
 				{
