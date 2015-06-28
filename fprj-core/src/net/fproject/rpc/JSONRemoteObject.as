@@ -256,16 +256,24 @@ package net.fproject.rpc
 		 */
 		public function setAuthToken(token:String):void
 		{
+			channelSet.setCredentials(token, null);
 			channel.setCredentials(token);
+		}
+		
+		private var _endpointInitialized:Boolean;
+		
+		public function get endpointInitialized():Boolean
+		{
+			return _endpointInitialized;
 		}
 		
 		/**
 		 * Init endpoint 
 		 * 
 		 */
-		fproject_internal function initEndpoint():void
+		fproject_internal function initEndpoint(channelSet:ChannelSet):void
 		{
-			if (endpoint != null)
+			if (endpoint != null && !_endpointInitialized)
 			{
 				var chan:Channel;
 				if (endpoint.indexOf("https") == 0)
@@ -279,9 +287,18 @@ package net.fproject.rpc
 				
 				// Propagate requestTimeout.
 				chan.requestTimeout = requestTimeout;
+				if(this.channelSet == null)
+				{
+					if(channelSet == null)
+						channelSet = new ChannelSet();
+					this.channelSet = channelSet;
+				}
 				
-				channelSet = new ChannelSet();
-				channelSet.addChannel(chan);
+				this.channelSet.addChannel(chan);
+				if(chan.channelSets.indexOf(channelSet) == -1)
+					chan.channelSets.push(channelSet);
+				
+				_endpointInitialized = true;
 			}
 		}
 		
