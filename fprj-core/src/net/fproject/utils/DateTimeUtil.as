@@ -150,18 +150,26 @@ package net.fproject.utils
 		 * Sets a <code>Date</code> to the first instant in the day for this time.
 		 * @param time The time of interest. Note that this parameter will be modified
 		 * when the function returned.
+		 * @param recycle Recycle the input date/time object. Default is true.
 		 * @return <code>time</code> modified so that is corresponds to the 
 		 * first time of the day.
 		 * 
 		 */
-		public static function startOfDay(time:Date) : Date
+		public static function startOfDay(time:Date, recycle:Boolean=true) : Date
 		{
 			if (time != null) 
 			{
-				time.hours = 0;
-				time.minutes = 0;
-				time.seconds = 0;
-				time.milliseconds = 0;
+				if(recycle)
+				{
+					time.hours = 0;
+					time.minutes = 0;
+					time.seconds = 0;
+					time.milliseconds = 0;
+				}
+				else
+				{
+					time = fproject_internal::getStartOfDay(time);
+				}
 			}
 			
 			return time;
@@ -174,14 +182,21 @@ package net.fproject.utils
 		 * @return <code>time</code> modified so that is corresponds to the latest time of the day. 
 		 * 
 		 */
-		public static function endOfDay(time:Date) : Date
+		public static function endOfDay(time:Date, recycle:Boolean=true) : Date
 		{
 			if (time != null)
 			{
-				time.hours = 23;
-				time.minutes = 59;
-				time.seconds = 59;
-				time.milliseconds = 999;
+				if(recycle)
+				{
+					time.hours = 23;
+					time.minutes = 59;
+					time.seconds = 59;
+					time.milliseconds = 999;
+				}
+				else
+				{
+					time = fproject_internal::getEndOfDay(time);
+				}
 			}
 			return time;
 		}// end function
