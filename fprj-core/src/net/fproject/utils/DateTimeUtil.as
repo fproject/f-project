@@ -148,7 +148,8 @@ package net.fproject.utils
 		
 		/**
 		 * Sets a <code>Date</code> to the first instant in the day for this time.
-		 * @param time The time of interest. Note that this parameter will be modified
+		 * @param time The time of interest. Note that if <code>recycle</code> is <code>true</code> then
+		 *  this parameter will be modified
 		 * when the function returned.
 		 * @param recycle Recycle the input date/time object. Default is true.
 		 * @return <code>time</code> modified so that is corresponds to the 
@@ -177,8 +178,10 @@ package net.fproject.utils
 		
 		/**
 		 * Sets a <code>Date</code> to the last instant in the day for this time.          
-		 * @param time The time of interest. Note that this parameter will be modified
+		 * @param time The time of interest. Note that if <code>recycle</code> is <code>true</code> then
+		 * this parameter will be modified
 		 * when the function returned.
+		 * @param recycle Recycle the input date/time object. Default is true.
 		 * @return <code>time</code> modified so that is corresponds to the latest time of the day. 
 		 * 
 		 */
