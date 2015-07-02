@@ -7,6 +7,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 package net.fproject.calendar
 {    
+	import net.fproject.fproject_internal;
 	
 	/**
 	 * Represents a working or nonworking day of week in a <code>WorkCalendar</code>.
@@ -57,6 +58,14 @@ package net.fproject.calendar
 	 * */
 	public class WeekDay
 	{
+		public static const SUNDAY:int = 0;
+		public static const MONDAY:int = 1;
+		public static const TUESDAY:int = 2;
+		public static const WEDNESDAY:int = 3;
+		public static const THURSDAY:int = 4;
+		public static const FRIDAY:int = 5;
+		public static const SATURDAY:int = 6;
+		
 		private var _workShifts:Vector.<WorkShift>;
 		/**
 		 * <p>The day of the week. <code>0</code> represents Sunday, 
