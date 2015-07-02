@@ -2796,22 +2796,22 @@ package net.fproject.calendar
 			
 			var workCalendar:WorkCalendar = new WorkCalendar(CALRENDAR_NAME_NIGHT_SHIFT);
 			
-			workCalendar.setWeekDayToNonWorking(DateTimeUtil.SUNDAY);
+			workCalendar.setWeekDayToNonWorking(WeekDay.SUNDAY);
 			
 			var wts:Vector.<WorkShift> = new Vector.<WorkShift>(3);
 			wts[0] = WorkShift.create(DateTimeUtil.getTime(0), DateTimeUtil.getTime(3));
 			wts[1] = WorkShift.create(DateTimeUtil.getTime(4), DateTimeUtil.getTime(8));
 			wts[2] = WorkShift.create(DateTimeUtil.getTime(23), DateTimeUtil.getTime(24));
-			workCalendar.setWeekDayWorkShifts(DateTimeUtil.MONDAY, wts);
-			workCalendar.setWeekDayWorkShifts(DateTimeUtil.TUESDAY, wts);
-			workCalendar.setWeekDayWorkShifts(DateTimeUtil.WEDNESDAY, wts);
-			workCalendar.setWeekDayWorkShifts(DateTimeUtil.THURSDAY, wts);
-			workCalendar.setWeekDayWorkShifts(DateTimeUtil.FRIDAY, wts);
+			workCalendar.setWeekDayWorkShifts(WeekDay.MONDAY, wts);
+			workCalendar.setWeekDayWorkShifts(WeekDay.TUESDAY, wts);
+			workCalendar.setWeekDayWorkShifts(WeekDay.WEDNESDAY, wts);
+			workCalendar.setWeekDayWorkShifts(WeekDay.THURSDAY, wts);
+			workCalendar.setWeekDayWorkShifts(WeekDay.FRIDAY, wts);
 			
 			wts = new Vector.<WorkShift>(2);
 			wts[0] = WorkShift.create(DateTimeUtil.getTime(0), DateTimeUtil.getTime(3));
 			wts[1] = WorkShift.create(DateTimeUtil.getTime(4), DateTimeUtil.getTime(8));
-			workCalendar.setWeekDayWorkShifts(DateTimeUtil.SATURDAY, wts);
+			workCalendar.setWeekDayWorkShifts(WeekDay.SATURDAY, wts);
 			
 			return workCalendar;
 		} // end function

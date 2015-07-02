@@ -55,14 +55,6 @@ package net.fproject.utils
 		 */
 		public static const MAXIMUM_DATE:Date = new Date(10000, 0);
 		
-		fproject_internal static const SUNDAY:int = 0;
-		fproject_internal static const MONDAY:int = 1;
-		fproject_internal static const TUESDAY:int = 2;
-		fproject_internal static const WEDNESDAY:int = 3;
-		fproject_internal static const THURSDAY:int = 4;
-		fproject_internal static const FRIDAY:int = 5;
-		fproject_internal static const SATURDAY:int = 6;
-		
 		private static const DAY_MILLIS:Number = TimeUnit.DAY.milliseconds;
 		private static const HOUR_MILLIS:Number = TimeUnit.HOUR.milliseconds;
 		private static const MINUTE_MILLIS:Number = TimeUnit.MINUTE.milliseconds;
