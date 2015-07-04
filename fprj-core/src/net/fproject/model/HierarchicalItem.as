@@ -181,10 +181,10 @@ package net.fproject.model
 				{
 					_children.setItemAt(item, idx);
 				}
+				else if(index == -1)
+					_children.addItem(item); 
 				else
-				{
-					_children.addItemAt(item, index);
-				}
+					_children.addItemAt(item, index)
 			}
 			dispatchChildrenChanged();
 		}
