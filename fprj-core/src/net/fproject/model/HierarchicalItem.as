@@ -12,6 +12,8 @@ package net.fproject.model
 	import mx.collections.IList;
 	import mx.events.PropertyChangeEvent;
 	
+	import net.fproject.collection.AdvancedArrayCollection;
+	
 	
 	/**
 	 * A hierarchical object, that is base class for all hierarchical model classes
@@ -96,7 +98,7 @@ package net.fproject.model
 		/**
 		 * Storage for the children property
 		 */
-		protected var _children:ArrayCollection = new ArrayCollection();
+		protected var _children:AdvancedArrayCollection = new AdvancedArrayCollection();
 		
 		[Transient]
 		[Bindable("propertyChange")]
