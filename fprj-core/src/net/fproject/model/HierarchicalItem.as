@@ -145,30 +145,47 @@ package net.fproject.model
 		/**
 		 * Add a child to children collection.
 		 */
-		public function addChild(element:HierarchicalItem, index:int=-1):void
+		public function addChild(element:HierarchicalItem, index:int=-1, replaceIfExist:Boolean=true):void
 		{
-			if(index == -1)
-				_children.addItem(element); 
+			var i:int = _children.getItemIndex(element);
+			if(i != -1)
+			{
+				_children.setItemAt(element, i);
+			}
 			else
-				_children.addItemAt(element, index)
-			dispatchChildrenChanged();
+			{
+				if(index == -1)
+					_children.addItem(element); 
+				else
+					_children.addItemAt(element, index)
+				dispatchChildrenChanged();
+			}			
 		}
 		
 		/**
 		 * Add an multiple childs to children collection.
 		 * @param children an array of childs or a IList instance that contains childs
 		 */
-		public function addChildren(children:Object, index:int=-1):void
+		public function addChildren(children:Object, index:int=-1, replaceIfExist:Boolean=true):void
 		{
 			if(children is Array)
 				var list:IList = new ArrayList(children as Array);
 			else
 				list = IList(children);
 				
-			if(index == -1)
-				_children.addAll(list); 
-			else
-				_children.addAllAt(list, index);
+			for(var i:int=0; i<list.length; i++)
+			{
+				var item:Object = list.getItemAt(i);
+				var idx:int = _children.getItemIndex(item);
+				if(idx != -1)
+				{
+					_children.setItemAt(item, idx);
+				}
+				else
+				{
+					_children.addItemAt(item, index);
+				}
+			}
 			dispatchChildrenChanged();
 		}
 		
