@@ -8,6 +8,7 @@
 package net.fproject.model
 {
 	import mx.collections.ArrayCollection;
+	import mx.collections.ArrayList;
 	import mx.collections.IList;
 	import mx.events.PropertyChangeEvent;
 	
@@ -140,7 +141,7 @@ package net.fproject.model
 		}
 		
 		/**
-		 * Called when a child is added.
+		 * Add a child to children collection.
 		 */
 		public function addChild(element:HierarchicalItem, index:int=-1):void
 		{
@@ -148,6 +149,24 @@ package net.fproject.model
 				_children.addItem(element); 
 			else
 				_children.addItemAt(element, index)
+			dispatchChildrenChanged();
+		}
+		
+		/**
+		 * Add an multiple childs to children collection.
+		 * @param childs an array of childs or a IList instance that contains childs
+		 */
+		public function addAll(childs:Object, index:int=-1):void
+		{
+			if(childs is Array)
+				var list:IList = new ArrayList(childs as Array);
+			else
+				list = IList(childs);
+				
+			if(index == -1)
+				_children.addAll(list); 
+			else
+				_children.addAllAt(list, index);
 			dispatchChildrenChanged();
 		}
 		
