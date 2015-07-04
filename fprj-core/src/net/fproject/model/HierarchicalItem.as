@@ -154,14 +154,14 @@ package net.fproject.model
 		
 		/**
 		 * Add an multiple childs to children collection.
-		 * @param childs an array of childs or a IList instance that contains childs
+		 * @param children an array of childs or a IList instance that contains childs
 		 */
-		public function addAll(childs:Object, index:int=-1):void
+		public function addChildren(children:Object, index:int=-1):void
 		{
-			if(childs is Array)
-				var list:IList = new ArrayList(childs as Array);
+			if(children is Array)
+				var list:IList = new ArrayList(children as Array);
 			else
-				list = IList(childs);
+				list = IList(children);
 				
 			if(index == -1)
 				_children.addAll(list); 
