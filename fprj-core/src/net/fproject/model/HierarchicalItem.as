@@ -158,8 +158,8 @@ package net.fproject.model
 					_children.addItem(element); 
 				else
 					_children.addItemAt(element, index)
-				dispatchChildrenChanged();
-			}			
+			}
+			dispatchChildrenChanged();
 		}
 		
 		/**
@@ -178,15 +178,14 @@ package net.fproject.model
 				var item:Object = list.getItemAt(i);
 				var idx:int = _children.getItemIndex(item);
 				if(idx != -1)
-				{
 					_children.setItemAt(item, idx);
-				}
 				else if(index == -1)
 					_children.addItem(item); 
 				else
 					_children.addItemAt(item, index)
 			}
-			dispatchChildrenChanged();
+			if(list.length > 0)
+				dispatchChildrenChanged();
 		}
 		
 		/**
