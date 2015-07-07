@@ -7,6 +7,8 @@
 ///////////////////////////////////////////////////////////////////////////////
 package net.fproject.utils
 {
+	import mx.utils.StringUtil;
+	
 	import net.fproject.core.TimeUnit;
 
 	[ResourceBundle("fprjcore")]
@@ -516,5 +518,39 @@ package net.fproject.utils
 			}
 			return s;
 		} // end function
+		
+		/**
+		 *  Removes all whitespace characters from the beginning and end
+		 *  of the specified string.
+		 *
+		 *  @param str The String whose whitespace should be trimmed. 
+		 *  @param removingChars the string contains removing character
+		 *
+		 *  @return Updated String where whitespace was removed from the 
+		 *  beginning and end. 
+		 *  
+		 */
+		public static function trim(str:String, removingChars:String=null):String
+		{
+			if (removingChars == null) return mx.utils.StringUtil.trim(str);
+			
+			var startIndex:int = 0;
+			while (isRemovingChar(str.charAt(startIndex), removingChars))
+				++startIndex;
+			
+			var endIndex:int = str.length - 1;
+			while (isRemovingChar(str.charAt(endIndex), removingChars))
+				--endIndex;
+			
+			if (endIndex >= startIndex)
+				return str.slice(startIndex, endIndex + 1);
+			else
+				return "";
+		}
+		
+		private static function isRemovingChar(character:String, removingChars:String):Boolean
+		{
+			return removingChars.indexOf(character) != -1;
+		}
 	}
 }
