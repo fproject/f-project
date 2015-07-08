@@ -86,7 +86,7 @@ package net.fproject.model
 				b = false;
 			
 			if(firePropertyChange)
-				dispatchEvent(PropertyChangeEvent.createUpdateEvent(this, "parent", oldParent, _parent));
+				dispatchParentChanged(oldParent, _parent);
 			
 			return b;
 		}
@@ -145,7 +145,9 @@ package net.fproject.model
 		/**
 		 * Add a child to children collection.
 		 */
-		public function addChild(element:HierarchicalItem, index:int=-1, replaceIfExist:Boolean=true):void
+		public function addChild(element:HierarchicalItem, index:int=-1, 
+								 replaceIfExist:Boolean=true, updateParent:Boolean=false,
+								 firePropertyChange:Boolean=true):void
 		{
 			var i:int = _children.getItemIndex(element);
 			if(i != -1)
@@ -159,6 +161,17 @@ package net.fproject.model
 				else
 					_children.addItemAt(element, index)
 			}
+			
+			if(updateParent && element.parent !== this)
+			{
+				var oldParent:HierarchicalItem = element.parent;
+				if (oldParent != null)
+					oldParent.removeChild(element);
+				element._parent = this;
+				if(firePropertyChange)
+					element.dispatchParentChanged(oldParent, this);
+			}
+			
 			dispatchChildrenChanged();
 		}
 		
@@ -166,7 +179,9 @@ package net.fproject.model
 		 * Add an multiple childs to children collection.
 		 * @param children an array of childs or a IList instance that contains childs
 		 */
-		public function addChildren(children:Object, index:int=-1, replaceIfExist:Boolean=true):void
+		public function addChildren(children:Object, index:int=-1,
+									replaceIfExist:Boolean=true, updateParent:Boolean=false,
+									firePropertyChange:Boolean=true):void
 		{
 			if(children is Array)
 				var list:IList = new ArrayList(children as Array);
@@ -177,12 +192,27 @@ package net.fproject.model
 			{
 				var item:Object = list.getItemAt(i);
 				var idx:int = _children.getItemIndex(item);
+				
 				if(idx != -1)
 					_children.setItemAt(item, idx);
 				else if(index == -1)
 					_children.addItem(item); 
 				else
-					_children.addItemAt(item, index)
+					_children.addItemAt(item, index);
+				
+				if(updateParent && item is HierarchicalItem)
+				{
+					var element:HierarchicalItem = item as HierarchicalItem;
+					if(element._parent !== this)
+					{
+						var oldParent:HierarchicalItem = element.parent;
+						if (oldParent != null)
+							oldParent.removeChild(element);
+						element._parent = this;
+						if(firePropertyChange)
+							element.dispatchParentChanged(oldParent, this);
+					}
+				}						
 			}
 			if(list.length > 0)
 				dispatchChildrenChanged();
@@ -206,6 +236,16 @@ package net.fproject.model
 		private function dispatchChildrenChanged():void
 		{
 			dispatchEvent(PropertyChangeEvent.createUpdateEvent(this, "children", null, children));   
+		}
+		
+		/**
+		 * @private
+		 */
+		private function dispatchParentChanged(oldParent:HierarchicalItem=null, newParent:HierarchicalItem=null):void
+		{
+			if(newParent == null)
+				newParent = _parent;
+			dispatchEvent(PropertyChangeEvent.createUpdateEvent(this, "parent", oldParent, newParent));   
 		}
 		
 		/**
