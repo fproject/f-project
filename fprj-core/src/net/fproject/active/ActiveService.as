@@ -131,8 +131,21 @@ package net.fproject.active
 							 completeCallback:Function=null, failCallback:Function=null,
 							 ...extraParams):CallResponder
 		{
-			return createServiceCall(remoteObject.find(criteria, page, perPage, sort, extraParams),
-				completeCallback, failCallback);
+			if(criteria != null && criteria.hasOwnProperty('expand'))
+			{
+				if(extraParams != null && extraParams.length > 0)
+					var extra:Object = extraParams[0];
+				
+				if(extra == null)
+					extra = {expand:criteria.expand};
+				else
+					extra.expand = criteria.expand;
+			}
+			else
+				extra = extraParams;
+			
+			return createServiceCall(remoteObject.find(criteria, page, perPage, sort, extra),
+				completeCallback, failCallback) ;
 		}
 		
 		[RESTOperation(method='POST', route="/save?fields={1}")]
