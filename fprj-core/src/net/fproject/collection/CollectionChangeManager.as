@@ -148,6 +148,20 @@ package net.fproject.collection
 		}	
 		
 		/**
+		 * Check for register a collection from this change manager. 
+		 * @param collection the collection want to check.
+		 * return true if the collection had registed
+		 * return false if the collection hadn't registed
+		 * 
+		 */
+		public function isRegister(collection:ICollectionView):Boolean
+		{
+			if(collection && _collectionToChangeItems[collection] !== undefined)
+				return true;
+			return false;
+		}
+		
+		/**
 		 * Temporarily stop listening to COLLECTION_CHANGE event
 		 * 
 		 * @see #resume()
