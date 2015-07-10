@@ -154,11 +154,9 @@ package net.fproject.collection
 		 * return false if the collection hadn't registed
 		 * 
 		 */
-		public function isRegister(collection:ICollectionView):Boolean
+		public function isRegistered(collection:ICollectionView):Boolean
 		{
-			if(collection && _collectionToChangeItems[collection] !== undefined)
-				return true;
-			return false;
+			return collection != null && _collectionToChangeItems[collection] !== undefined;
 		}
 		
 		/**
