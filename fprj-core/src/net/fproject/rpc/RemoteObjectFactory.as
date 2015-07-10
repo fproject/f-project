@@ -75,6 +75,8 @@ package net.fproject.rpc
 				return nameToRemoteObject[type.fullName];
 			
 			var meta:Object = InjectionUtil.findClassMetadataValue(type, REMOTE_OBJECT);
+			if ((meta is Array) && meta.length > 0 && (meta[0] is Metadata))
+				meta = meta[0];
 			if (meta is Metadata)
 			{
 				var m:Metadata = Metadata(meta);
