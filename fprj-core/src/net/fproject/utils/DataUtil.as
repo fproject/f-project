@@ -7,12 +7,14 @@
 ///////////////////////////////////////////////////////////////////////////////
 package net.fproject.utils
 {
+	import flash.events.IEventDispatcher;
 	import flash.system.ApplicationDomain;
 	import flash.utils.getDefinitionByName;
 	
 	import mx.binding.utils.BindingUtils;
 	import mx.collections.IList;
 	import mx.core.IUID;
+	import mx.events.PropertyChangeEvent;
 	import mx.utils.ObjectUtil;
 	
 	import net.fproject.di.Injector;
@@ -397,16 +399,22 @@ package net.fproject.utils
 		 * @param sourceObject The source object
 		 * @param fieldChain The field chain, this is a chain of fields separated by the spot ".".
 		 * @param value The value to set
+		 * @param propertyChangeDispatcher the parent object implemented IEventDispatcher that will dispatch
+		 * PropertyChangeEvent when field value is set.
 		 * @return the source object it self. If the source object is <code>null<code>, a
 		 * dynamic untyped object that has the field chain set will be returned.
 		 * 
 		 */
-		public static function setFieldChainValue(sourceObject:Object, fieldChain:String, value:*):*
+		public static function setFieldChainValue(sourceObject:Object, fieldChain:String,
+												  value:*, propertyChangeDispatcher:IEventDispatcher=null):*
 		{
 			var fields:Array = fieldChain.split(".");
 			
 			if(sourceObject == null)
+			{
 				sourceObject = {};
+				propertyChangeDispatcher = null;
+			}
 			var obj:Object = sourceObject;
 			for (var i:int = 0; i < fields.length - 1; i++)
 			{
@@ -417,6 +425,9 @@ package net.fproject.utils
 			
 			obj[fields[fields.length - 1]] = value;
 			
+			if(propertyChangeDispatcher != null)
+				propertyChangeDispatcher.dispatchEvent(
+					PropertyChangeEvent.createUpdateEvent(propertyChangeDispatcher, fields[0], null, sourceObject));
 			return sourceObject;
 		}
 		
