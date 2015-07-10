@@ -16,8 +16,10 @@ package net.fproject.active
 	import org.flexunit.async.TestResponder;
 	
 	import testdata.TestUser;
+	import testdata.TestUserExt;
 	import testdata.TestUserProfile;
 	import testdata.active.JSONRemoteObject_RESTfulService;
+	import testdata.active.JSONRemoteObject_RESTfulService_ext;
 
 	/**
 	 * FlexUnit test case class for method<br/>
@@ -196,6 +198,34 @@ package net.fproject.active
 			assertTrue(event.result is TestUser);
 			assertEquals("1", TestUser(event.result).id)			
 			assertTrue(TestUser(event.result).profile is TestUserProfile);
+		}
+		
+		[Test (async, description="Normal case")]
+		/**
+		 * Test Case Type: Normal<br/>
+		 * <br/>
+		 * INPUT VALUES:<br/>
+		 * <br/>
+		 * OUTPUT EXPECTED:<br/>
+		 * ---- expectations ----
+		 *
+		 */
+		public function testCase202():void
+		{
+			var restServiceExt:JSONRemoteObject_RESTfulService_ext = 
+				InstanceFactory.getInstance(JSONRemoteObject_RESTfulService_ext) as JSONRemoteObject_RESTfulService_ext;
+			var responder:CallResponder = restServiceExt.findOne("1");
+			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase202_checkResult, onFault), 2000));
+		}
+		
+		public function testCase202_checkResult(event:ResultEvent, passThroughData:Object):void
+		{
+			assertTrue(event.result is TestUserExt);
+			assertEquals("1", TestUserExt(event.result).id);
+			assertEquals(null, TestUserExt(event.result).profile);
+			assertEquals(null, TestUserExt(event.result).password);	
+			assertEquals(null, TestUserExt(event.result).authKey);
+			assertEquals(null, TestUserExt(event.result).abc);
 		}
 		
 		[Test (async, description="Normal case")]
@@ -454,7 +484,6 @@ package net.fproject.active
 					assertTrue(o is TestUser);
 				}
 			}			
-		}
-		
+		}		
 	}
 }

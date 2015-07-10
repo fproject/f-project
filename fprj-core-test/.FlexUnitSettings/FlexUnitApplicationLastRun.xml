@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testrun name="" >
 <testsuite  name="Default Test Suite" project="fprj-core-test">
-<testsuite name="net.fproject.serialize:Deserializer_fromJSON" type="testcaseclass">
-<testcase name="testCase019" classname="net.fproject.serialize:Deserializer_fromJSON"/>
+<testsuite name="net.fproject.active:ActiveService_testCases" type="testcaseclass">
+<testcase name="testCase701" classname="net.fproject.active:ActiveService_testCases"/>
 </testsuite>
 <testsuite name="net.fproject.utils.DateTimeUtil:DateTimeUtil_parseStandardDate" type="testcaseclass">
 <testcase name="testCase001" classname="net.fproject.utils.DateTimeUtil:DateTimeUtil_parseStandardDate"/>

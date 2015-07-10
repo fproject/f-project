@@ -16,9 +16,7 @@
 			public function currentRunTestSuite():Array
 			{
 				var testsToRun:Array = new Array();
-				
-				testsToRun.push(Request.methods(ActiveService_testCases,["testCase700"]));
-				
+				testsToRun.push(Request.methods(ActiveService_testCases,["testCase202"]));
 				return testsToRun;
 			}
 			
