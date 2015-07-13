@@ -629,30 +629,30 @@ package net.fproject.calendar
 		 * from the specified calendar. Only the name is not changed.</p>
 		 *
 		 * */
-		public function clone():WorkCalendar
+		public function clone(target:WorkCalendar=null):WorkCalendar
 		{
-			var workCalendar:WorkCalendar =
-				new WorkCalendar(this.name, this.baseCalendar);
-			workCalendar._gregorianCalendar = this.gregorianCalendar;
-			workCalendar._periods = this._periods.slice(0);
+			if(target == null)
+				target = new WorkCalendar(this.name, this.baseCalendar);
+			target._gregorianCalendar = this.gregorianCalendar;
+			target._periods = this._periods.slice(0);
 			var i:int;
 			for (i = 0; i < this._periods.length; i++)
 			{
-				if (workCalendar._periods[i] != null)
+				if (target._periods[i] != null)
 				{
-					workCalendar._periods[i] =
-						PeriodInternal(workCalendar._periods[i].clone());
+					target._periods[i] =
+						PeriodInternal(target._periods[i].clone());
 				}
 			}
-			workCalendar._weekDays = this._weekDays.slice(0);
+			target._weekDays = this._weekDays.slice(0);
 			for (i = 0; i < 7; i++)
 			{
-				if (workCalendar._weekDays[i] != null)
+				if (target._weekDays[i] != null)
 				{
-					workCalendar._weekDays[i] = WeekDayInternal(this._weekDays[i].clone());
+					target._weekDays[i] = WeekDayInternal(this._weekDays[i].clone());
 				}
 			}
-			return workCalendar;
+			return target;
 		} // end function
 		
 		/**
