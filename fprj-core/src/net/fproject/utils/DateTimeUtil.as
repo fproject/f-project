@@ -13,6 +13,7 @@ package net.fproject.utils
 	
 	import net.fproject.fproject_internal;
 	import net.fproject.core.TimeUnit;
+	import net.fproject.di.InstanceFactory;
 	
 	use namespace mx_internal;
 	/**
@@ -67,7 +68,7 @@ package net.fproject.utils
 		//
 		//--------------------------------------------------------------------------
 		
-		private static var _defaultGregorianCalendar:GregorianCalendar = new GregorianCalendar();
+		private static var _defaultGregorianCalendar:GregorianCalendar = InstanceFactory.getInstance(GregorianCalendar) as GregorianCalendar;
 		
 		private static var _dateFormatter:AdvancedDateFormatter;
 
