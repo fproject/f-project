@@ -15,6 +15,7 @@ package net.fproject.utils
 	
 	import net.fproject.fproject_internal;
 	import net.fproject.core.TimeUnit;
+	import net.fproject.di.InstanceFactory;
 
 	use namespace mx_internal;
 
@@ -85,7 +86,7 @@ package net.fproject.utils
 		{
 			if (!this._calendar)
 			{
-				this._calendar = new GregorianCalendar();
+				this._calendar = InstanceFactory.getInstance(GregorianCalendar) as GregorianCalendar;
 			}
 			return this._calendar;
 		} // end function
