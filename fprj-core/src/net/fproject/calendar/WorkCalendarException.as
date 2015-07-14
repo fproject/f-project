@@ -13,8 +13,6 @@ package net.fproject.calendar
 	import net.fproject.utils.LoggingUtil;
 	import net.fproject.utils.ResourceUtil;
 	
-	use namespace fproject_internal;
-	
 	/**
 	 * Represents a single calendar exception in a <code>WorkCalendar</code>.
 	 * <p>A Calendar exception is a period of time in which we define special
@@ -217,7 +215,7 @@ package net.fproject.calendar
 			var year:Number = fromDate.fullYear;			
 			while (true)
 			{
-				if (_monthDay <= calendar.gregorianCalendar.getDaysInMonth(month,year))
+				if (_monthDay <= calendar.gregorianCalendar.fproject_internal::getDaysInMonth(month,year))
 				{
 					var d:Date = new Date(year, month, _monthDay);
 					if (fromDate <= d && d <= toDate)
@@ -268,7 +266,7 @@ package net.fproject.calendar
 			var year:Number = fromDate.fullYear;	
 			while (true)
 			{
-				if (_monthDay <= calendar.gregorianCalendar.getDaysInMonth(_monthIndex, year))
+				if (_monthDay <= calendar.gregorianCalendar.fproject_internal::getDaysInMonth(_monthIndex, year))
 				{
 					var d:Date = new Date(year, _monthIndex, _monthDay);
 					if (fromDate <= d && d <= toDate)
@@ -854,7 +852,7 @@ package net.fproject.calendar
 			occurrences = occurrences + (toDate.month - fromDate.month) - 1;
 			
 			if(_monthDay >= fromDate.date 
-				&& _monthDay <= gregorianCalendar.getDaysInMonth(fromDate.month, fromDate.fullYear))
+				&& _monthDay <= gregorianCalendar.fproject_internal::getDaysInMonth(fromDate.month, fromDate.fullYear))
 			{
 				occurrences++;
 			}
@@ -889,7 +887,7 @@ package net.fproject.calendar
 			
 			var occurrences:Number = toDate.fullYear - fromDate.fullYear - 1;
 			var exceptionDate:Date;
-			if(_monthDay <= gregorianCalendar.getDaysInMonth(_monthIndex, fromDate.fullYear))
+			if(_monthDay <= gregorianCalendar.fproject_internal::getDaysInMonth(_monthIndex, fromDate.fullYear))
 			{
 				exceptionDate = new Date(fromDate.fullYear, _monthIndex, _monthDay);
 				if (gregorianCalendar.getDayOfYear(fromDate) <= 
@@ -899,7 +897,7 @@ package net.fproject.calendar
 				}
 			}
 			
-			if(_monthDay <= gregorianCalendar.getDaysInMonth(_monthIndex, toDate.fullYear))
+			if(_monthDay <= gregorianCalendar.fproject_internal::getDaysInMonth(_monthIndex, toDate.fullYear))
 			{
 				exceptionDate = new Date(toDate.fullYear, _monthIndex, _monthDay);
 				if (gregorianCalendar.getDayOfYear(toDate) >= 
@@ -988,7 +986,7 @@ package net.fproject.calendar
 			}
 			
 			var d:Date = new Date(year, month, 1);
-			var maxDate:uint = gregorianCalendar.getDaysInMonth(month, year);
+			var maxDate:uint = gregorianCalendar.fproject_internal::getDaysInMonth(month, year);
 			var position:int = -1;
 			var dowToMonthItem:Array = dayOfWeekToMonthItem;
 			while (d.date <= maxDate)
