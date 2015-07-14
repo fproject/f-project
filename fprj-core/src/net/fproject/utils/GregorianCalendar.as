@@ -7,9 +7,11 @@
 ///////////////////////////////////////////////////////////////////////////////
 package net.fproject.utils
 {
-	import flash.events.*;
+	import flash.events.Event;
+	import flash.events.EventDispatcher;
 	
-	import mx.resources.*;
+	import mx.resources.IResourceManager;
+	import mx.resources.ResourceManager;
 	
 	import net.fproject.fproject_internal;
 	import net.fproject.core.TimePrecision;
@@ -796,7 +798,7 @@ package net.fproject.utils
 		/**
 		 * Add a times of day to a <code>Date</code> object.<br/>
 		 */
-		private function addDays(time:Date, count:Number, reuse:Boolean) : Date
+		public function addDays(time:Date, count:Number, reuse:Boolean=false) : Date
 		{
 		/*	var d:Date = null;
 			var h:Number = time.hours;
@@ -828,7 +830,7 @@ package net.fproject.utils
 		/**
 		 * Add a times of month to a <code>Date</code> object.<br/>
 		 */
-		private function addMonths(time:Date, count:Number, reuse:Boolean) : Date
+		public function addMonths(time:Date, count:Number, reuse:Boolean=false) : Date
 		{
 			/*var d:Date = null;
 			var h:Number = time.hours;
@@ -853,7 +855,7 @@ package net.fproject.utils
 		 * Add a times of year to a <code>Date</code> object.<br/>
 		 */
 		//private function addYears(time:Date, count:Number, reuse:Boolean):Date
-		private function addYears(time:Date, count:Number, reuse:Boolean) : Date
+		public function addYears(time:Date, count:Number, reuse:Boolean=false) : Date
 		{
 			/*var d:Date = null;
 			var h:Number = time.hours;
@@ -1028,6 +1030,15 @@ package net.fproject.utils
 			return dim;
 		} // end function
 
+		/**
+		 * Get days in month by date instance.
+		 * @see #getDaysInMonth()
+		 *  */
+		fproject_internal function getDaysInMonth(d:Date):Number
+		{
+			return this.getDaysInMonth(d.month, d.fullYear);
+		}
+		
 		/**
 		 * Returns the number of days between two dates, not considering the hour components.
 		 *
