@@ -7,8 +7,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 package net.fproject.calendar
 {    
-	import net.fproject.fproject_internal;
-	
 	/**
 	 * Represents a working or nonworking day of week in a <code>WorkCalendar</code>.
 	 * 
