@@ -215,7 +215,7 @@ package net.fproject.calendar
 			var year:Number = fromDate.fullYear;			
 			while (true)
 			{
-				if (_monthDay <= calendar.gregorianCalendar.fproject_internal::getDaysInMonth(month,year))
+				if (_monthDay <= calendar.gregorianCalendar.getDaysInMonth(month,year))
 				{
 					var d:Date = new Date(year, month, _monthDay);
 					if (fromDate <= d && d <= toDate)
@@ -266,7 +266,7 @@ package net.fproject.calendar
 			var year:Number = fromDate.fullYear;	
 			while (true)
 			{
-				if (_monthDay <= calendar.gregorianCalendar.fproject_internal::getDaysInMonth(_monthIndex, year))
+				if (_monthDay <= calendar.gregorianCalendar.getDaysInMonth(_monthIndex, year))
 				{
 					var d:Date = new Date(year, _monthIndex, _monthDay);
 					if (fromDate <= d && d <= toDate)
@@ -599,30 +599,42 @@ package net.fproject.calendar
 		 * @see #type
 		 */
 		public static const DAILY:int = 1;
+		
 		/**
 		 * Defines the type of Calendar exception that reccurs yealy at a 
 		 * specified day and month.
 		 * @see #type
 		 */
 		public static const YEARLY_MONTH_DAY:int = 2;
+		
+		/**
+		 * Defines the type of Calendar exception that reccurs yealy at a 
+		 * specified day of the year.
+		 * @see #type
+		 */
+		public static const YEARLY_YEAR_DAY:int = 7;
+		
 		/**
 		 * Defines the type of Calendar exception that reccurs yealy at
 		 * a specified day of week and a specified week position in a month.
 		 * @see #type
 		 */
 		public static const YEARLY_POSITIONAL:int = 3;
+		
 		/**
 		 * Defines the type of Calendar exception that reccurs monthly at a 
 		 * specified day of month.
 		 * @see #type
 		 */
 		public static const MONTHLY_MONTH_DAY:int = 4;
+		
 		/**
 		 * Defines the type of Calendar exception that reccurs monthly at
 		 * a specified day of week at a specified position in a month.
 		 * @see #type
 		 */
 		public static const MONTHLY_POSITIONAL:int = 5;
+		
 		/**
 		 * Defines the type of Calendar exception that reccurs weekly.
 		 * @see #type
@@ -852,7 +864,7 @@ package net.fproject.calendar
 			occurrences = occurrences + (toDate.month - fromDate.month) - 1;
 			
 			if(_monthDay >= fromDate.date 
-				&& _monthDay <= gregorianCalendar.fproject_internal::getDaysInMonth(fromDate.month, fromDate.fullYear))
+				&& _monthDay <= gregorianCalendar.getDaysInMonth(fromDate.month, fromDate.fullYear))
 			{
 				occurrences++;
 			}
@@ -887,7 +899,7 @@ package net.fproject.calendar
 			
 			var occurrences:Number = toDate.fullYear - fromDate.fullYear - 1;
 			var exceptionDate:Date;
-			if(_monthDay <= gregorianCalendar.fproject_internal::getDaysInMonth(_monthIndex, fromDate.fullYear))
+			if(_monthDay <= gregorianCalendar.getDaysInMonth(_monthIndex, fromDate.fullYear))
 			{
 				exceptionDate = new Date(fromDate.fullYear, _monthIndex, _monthDay);
 				if (gregorianCalendar.getDayOfYear(fromDate) <= 
@@ -897,7 +909,7 @@ package net.fproject.calendar
 				}
 			}
 			
-			if(_monthDay <= gregorianCalendar.fproject_internal::getDaysInMonth(_monthIndex, toDate.fullYear))
+			if(_monthDay <= gregorianCalendar.getDaysInMonth(_monthIndex, toDate.fullYear))
 			{
 				exceptionDate = new Date(toDate.fullYear, _monthIndex, _monthDay);
 				if (gregorianCalendar.getDayOfYear(toDate) >= 
@@ -986,7 +998,7 @@ package net.fproject.calendar
 			}
 			
 			var d:Date = new Date(year, month, 1);
-			var maxDate:uint = gregorianCalendar.fproject_internal::getDaysInMonth(month, year);
+			var maxDate:uint = gregorianCalendar.getDaysInMonth(month, year);
 			var position:int = -1;
 			var dowToMonthItem:Array = dayOfWeekToMonthItem;
 			while (d.date <= maxDate)
