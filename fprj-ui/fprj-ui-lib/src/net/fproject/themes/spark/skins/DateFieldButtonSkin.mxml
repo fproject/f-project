@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:SparkSkin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" 
+			 xmlns:fb="http://ns.adobe.com/flashbuilder/2009" minWidth="21" minHeight="21">
+	
+	<fx:Metadata>
+		<![CDATA[ 
+		[HostComponent("spark.components.Button")]  
+		]]>
+	</fx:Metadata> 
+	
+		<fx:Script fb:purpose="styling">
+		/* Define the skin elements that should not be colorized. 
+		For dropDownList buttons, the graphics are colorized but the arrow is not. */
+		static private const exclusions:Array = ["icon"];
+		
+		override public function get colorizeExclusions():Array {return exclusions;}
+		
+		override protected function initializationComplete():void {
+			useChromeColor = true;
+			super.initializationComplete();
+		}
+		
+		/**
+		 *  @private
+		 */
+		override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number) : void {
+			super.updateDisplayList(unscaledWidth, unscaledHeight);
+		}
+		
+		private var cornerRadius:Number = 0;
+	</fx:Script>
+	
+	<!-- states -->
+	<s:states>
+		<s:State name="up" />
+		<s:State name="over" />
+		<s:State name="down" />
+		<s:State name="disabled" />
+	</s:states>
+	
+	<!--- @private -->
+	<s:Rect id="border" left="0" right="24" top="0" bottom="0" width="50" height="20">
+		<s:stroke>
+			<s:LinearGradientStroke rotation="90" weight="1">
+				<s:GradientEntry color="0x000000" 
+								 alpha="0.5625"
+								 alpha.down="0.6375" />
+				<s:GradientEntry color="0x000000" 
+								 alpha="0.75" 
+								 alpha.down="0.85" />
+			</s:LinearGradientStroke>
+		</s:stroke>
+	</s:Rect>
+	
+	<s:BitmapImage source="@Embed('CalendarIcon.png')" right="1" verticalCenter="0" id="icon" />
+</s:SparkSkin>

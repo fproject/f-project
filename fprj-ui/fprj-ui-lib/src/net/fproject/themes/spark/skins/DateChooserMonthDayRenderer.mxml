@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				xmlns:s="library://ns.adobe.com/flex/spark" 
+				xmlns:mx="library://ns.adobe.com/flex/mx" 
+				autoDrawBackground="false">
+	<fx:Script>
+		<![CDATA[
+			import net.fproject.ui.dateControls.supportClasses.MonthDay;
+		]]>
+	</fx:Script>
+	
+	<s:states>
+		<s:State name="normal" />
+		<s:State name="hovered" />
+		<s:State name="selected" />
+		<s:State name="dragging" />
+		<s:State name="normalAndShowCaret" />
+		<s:State name="hoveredAndShowCaret" />
+		<s:State name="selectedAndShowCaret" />
+	</s:states>
+	
+	<s:Rect width="100%" height="100%" 
+			visible="false" visible.hovered="true" visible.selected="true">
+		<s:fill><s:SolidColor color="0xCEDBEF" color.selected="0xA8C6EE" /></s:fill>
+		<s:stroke>
+			<s:SolidColorStroke color="0xA1AEC2" color.selected="0x7B99C1" />
+		</s:stroke>
+	</s:Rect>
+	
+	<s:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"
+			 text="{MonthDay(data).dateLabel}" 
+			 color="{MonthDay(data).isInCurrentMonth ? 0 : 0x808080}" />
+	
+</s:ItemRenderer>

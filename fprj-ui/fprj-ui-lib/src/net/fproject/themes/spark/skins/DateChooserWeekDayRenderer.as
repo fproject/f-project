@@ -1,0 +1,74 @@
+package net.fproject.themes.spark.skins
+{
+	import spark.components.IItemRenderer;
+	import spark.components.Label;
+	
+	public class DateChooserWeekDayRenderer extends Label implements IItemRenderer
+	{
+		public function DateChooserWeekDayRenderer()
+		{
+			horizontalCenter = 0;
+			verticalCenter = 0;
+		}
+		
+		private var _itemIndex:int;
+		public function get itemIndex():int
+		{
+			return _itemIndex;
+		}
+		
+		public function set itemIndex(value:int):void
+		{
+			_itemIndex = value;
+		}
+		
+		public function get dragging():Boolean
+		{
+			return false;
+		}
+		
+		public function set dragging(value:Boolean):void
+		{
+		}
+		
+		public function get label():String
+		{
+			return null;
+		}
+		
+		public function set label(value:String):void
+		{
+		}
+		
+		public function get selected():Boolean
+		{
+			return false;
+		}
+		
+		public function set selected(value:Boolean):void
+		{
+		}
+		
+		public function get showsCaret():Boolean
+		{
+			return false;
+		}
+		
+		public function set showsCaret(value:Boolean):void
+		{
+		}
+		
+		private var _data:Object;
+		
+		public function get data():Object
+		{
+			return _data;
+		}
+		
+		public function set data(value:Object):void
+		{
+			_data = value;
+			this.text = value as String;
+		}
+	}
+}

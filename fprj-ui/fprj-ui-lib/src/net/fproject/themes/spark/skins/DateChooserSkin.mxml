@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:fb="http://ns.adobe.com/flashbuilder/2009" 
+		alpha.disabled="0.5" > 
+	<fx:Metadata>
+		<![CDATA[ 
+		[HostComponent("net.fproject.ui.dateControls.DateChooser")]  
+		]]>
+	</fx:Metadata> 
+	
+	<s:states>
+		<s:State name="normal"/>
+		<s:State name="disabled"/>
+		<s:State name="yearButtonDisplayed"/>
+	</s:states>
+	
+	<s:Rect left="0" right="0" top="0" bottom="0">
+		<s:stroke><s:SolidColorStroke weight="1" color="0x696969"/></s:stroke>
+		<s:fill><s:SolidColor color="0xFFFFFF" /></s:fill>
+	</s:Rect>
+	
+	<s:Rect width="100%" height="30" >
+		<s:fill>
+			<s:LinearGradient rotation="90">
+				<s:entries>
+					<s:GradientEntry color="0xFFFFFF" ratio="0" alpha="1"/>
+					<s:GradientEntry color="0xD8D8D8" ratio="1" alpha="1"/>
+				</s:entries>
+			</s:LinearGradient>
+		</s:fill>
+		<s:stroke><s:SolidColorStroke color="0x696969" /></s:stroke>
+	</s:Rect>
+	
+	<s:ButtonBase id="prevMonthButton" 
+				  skinClass="mx.skins.spark.DateChooserPrevMonthSkin" x="5" y="11"/>
+	
+	<s:Label id="monthLabel" left="33" y="11"/>
+	<s:Label id="yearLabel" right="33" right.yearButtonDisplayed="45" y="11" textAlign="right"/>
+	<s:ButtonBase id="nextYearButton" includeIn="yearButtonDisplayed"
+				  skinClass="mx.skins.spark.DateChooserNextYearSkin" right="30" y="9"/>
+	<s:ButtonBase id="prevYearButton" includeIn="yearButtonDisplayed"
+				  skinClass="mx.skins.spark.DateChooserPrevYearSkin" right="30" y="16"/>
+	
+	<s:ButtonBase id="nextMonthButton" 
+				  skinClass="mx.skins.spark.DateChooserNextMonthSkin" right="5" y="11"/>
+	
+	<s:DataGroup id="weekDayHeaderDataGroup" top="42" left="6" right="6"
+				 itemRenderer="net.fproject.themes.spark.skins.DateChooserWeekDayRenderer" >
+		<s:layout>
+			<s:TileLayout requestedColumnCount="7" requestedRowCount="1" columnWidth="24"
+						  rowHeight="23" horizontalGap="0"/>
+		</s:layout>
+	</s:DataGroup>
+	
+	<s:DataGroup id="dataGroup" top="60" left="6" right="6" bottom="6"
+				 itemRenderer="net.fproject.themes.spark.skins.DateChooserMonthDayRenderer" >
+		<s:layout>
+			<s:TileLayout requestedColumnCount="7" requestedRowCount="6" 
+						  columnWidth="24" rowHeight="23"
+						  horizontalGap="0" verticalGap="0"/>
+		</s:layout>
+	</s:DataGroup>
+</s:Skin>
