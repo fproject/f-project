@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:ui="http://f-project.net/xmlns/fprj-ui/2015"
+			   xmlns:mx="library://ns.adobe.com/flex/mx">
+	<s:layout>
+		<s:HorizontalLayout paddingLeft="100" paddingTop="100" gap="100"/>
+	</s:layout>
+	<s:VGroup>
+		<ui:DateField id="dateField" left="50" top="50"/>
+		<s:Label text="{dateField.selectedDate}"/>
+		<ui:DateField left="50" top="50" yearNavigationEnabled="true"/>
+	</s:VGroup>
+	<s:VGroup>
+		<ui:DateChooser id="dateChooser" left="50" top="50"/>
+		<s:Label text="{dateChooser.selectedDate}"/>
+		<ui:DateChooser left="50" top="50" yearNavigationEnabled="true"/>
+	</s:VGroup>
+	
+	<s:FormItem label="mx:DateField">
+		<mx:DateField/>
+		<mx:DateField yearNavigationEnabled="true"/>
+	</s:FormItem>
+</s:Application>
