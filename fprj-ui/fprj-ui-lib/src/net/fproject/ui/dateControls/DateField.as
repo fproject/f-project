@@ -48,13 +48,8 @@ package net.fproject.ui.dateControls
 	 *    monthNames="["January", "February", "March", "April", "May",
 	 *    "June", "July", "August", "September", "October", "November",
 	 *    "December"]"
-	 *    monthSymbol=""
-	 *    parseFunction="<i>Internal parser</i>"
-	 *    selectableRange="<i>No default</i>"
 	 *    selectedDate="<i>No default</i>"
-	 *    showToday="true|false"
 	 *    yearNavigationEnabled="false|true"
-	 *    yearSymbol=""
 	 *  
 	 *   <strong>Styles</strong>
 	 *    borderColor="0xAAB3B3"
