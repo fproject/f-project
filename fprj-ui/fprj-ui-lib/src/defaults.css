@@ -1,0 +1,39 @@
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+@namespace ui "http://f-project.net/xmlns/fprj-ui/2015";
+
+ui|SeparatorBase {
+	secondaryStrokeThickness:1;
+	secondaryStrokeAlpha:1;
+	primaryStrokeThickness:1;
+	primaryStrokeColor:0;
+	secondaryStrokeColor:16777215;
+	primaryStrokeAlpha:0.15;
+}
+
+ui|HSeparator {
+	paddingTop:20;
+	paddingLeft:0;
+	paddingBottom:20;
+	paddingRight:0;
+}
+
+ui|VSeparator {
+	paddingTop:0;
+	paddingLeft:20;
+	paddingBottom:0;
+	paddingRight:20;
+}
+
+ui|DateField {
+	skinClass:ClassReference("net.fproject.themes.spark.skins.DateFieldSkin");
+}
+
+ui|DateChooser {
+	skinClass:ClassReference("net.fproject.themes.spark.skins.DateChooserSkin");
+}
+
+ui|DateChooserWeekDayRenderer {
+	fontWeight:bold;
+	textAlign:center;
+}
