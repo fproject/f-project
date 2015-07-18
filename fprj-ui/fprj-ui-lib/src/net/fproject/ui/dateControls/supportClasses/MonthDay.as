@@ -4,7 +4,7 @@ package net.fproject.ui.dateControls.supportClasses
 	import mx.core.IUID;
 	
 	/**
-	 *  Data object that will be element type for DayList
+	 *  Data object that will be element type for MonthDayList
 	 */
 	public class MonthDay extends EventDispatcher implements IUID
 	{
@@ -35,7 +35,7 @@ package net.fproject.ui.dateControls.supportClasses
 			// do nothing
 		}
 		
-		[Bindable("__NoChangeEvent__")]
+		[Bindable("_none_")]
 		public function get dateLabel():String
 		{
 			return date.date.toString();
