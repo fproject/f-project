@@ -9,7 +9,12 @@
 	<s:VGroup>
 		<ui:DateField id="dateField" left="50" top="50"/>
 		<s:Label text="{dateField.selectedDate}"/>
-		<ui:DateField left="50" top="50" yearNavigationEnabled="true"/>
+		<ui:DateField left="50" top="50"
+					  yearNavigationEnabled="true"
+					  formatString="{formatString.text}"/>
+		<s:FormItem label="formatString:">
+			<s:TextInput id="formatString" text="MM/dd/yyyy"/>
+		</s:FormItem>
 	</s:VGroup>
 	<s:VGroup>
 		<ui:DateChooser id="dateChooser" left="50" top="50"/>
