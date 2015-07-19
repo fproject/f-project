@@ -9,6 +9,8 @@ We will release first stable version soon.
 
 **fprj-core** library is the core component set of F-Project.
 
+**fprj-ui** library is the UI component set of F-Project.
+
 **fprj-tool** is a tool provides useful featues that helps you in developing Flex projects.
 
 ##F-Project Framework features
