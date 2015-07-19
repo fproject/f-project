@@ -7,6 +7,14 @@
 		<![CDATA[
 			import net.fproject.ui.dateControls.supportClasses.MonthDay;
 			import net.fproject.utils.DateTimeUtil;
+			
+			public override function set data(value:Object):void
+			{
+				super.data = value;
+				if(labelDisplay)
+					labelDisplay.setStyle('color', getColor());
+			}
+			
 			private function isCurrentDay(data:Object):Boolean
 			{
 				if(data == null) return false;
