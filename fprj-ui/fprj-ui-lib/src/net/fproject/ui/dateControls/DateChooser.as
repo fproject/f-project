@@ -330,19 +330,25 @@ package net.fproject.ui.dateControls
 		}
 		
 		// called, if the selected month changes
-		private function onDataCollectionChange(e:CollectionEvent):void{
+		private function onDataCollectionChange(e:CollectionEvent):void
+		{
+			var found:Boolean = false;
 			if (_selectedDate)
-			{// if there is a selected date, try to find it on the display
+			{
+				// if there is a selected date, try to find it on the display
 				var n:int = dayList.length;
+				
 				for (var i:int = 0; i<n; i++)
 				{
 					if (DateTimeUtil.compareDatePart(MonthDay(dayList.getItemAt(i)).date,_selectedDate) == 0) 
 					{
 						selectedItem = dayList.getItemAt(i);
+						found = true;
 					}
 				}
 			}
-			else
+			
+			if(!found)
 			{
 				selectedItem = null;
 			}
