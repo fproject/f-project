@@ -258,12 +258,11 @@ package net.fproject.ui.dateControls
 		// user changes the selection in the datechooser
 		protected function onSelectionChange(e:IndexChangeEvent):void
 		{
-			var md:MonthDay = MonthDay(selectedItem);
+			var md:MonthDay = e.newIndex > -1 ? dayList.getItemAt(e.newIndex) as MonthDay : null;
 			_selectedDate = md.date;
 			if(!md.isInCurrentMonth)
 			{
-				var curDate:Date = new Date;
-				if(ObjectUtil.dateCompare(_selectedDate, curDate) < 0)
+				if(_selectedDate.month < dayList.month)
 					callLater(goPrevMonth);
 				else
 					callLater(goNextMonth);
