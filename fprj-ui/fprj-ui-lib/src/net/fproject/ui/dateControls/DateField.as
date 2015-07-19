@@ -10,6 +10,7 @@ package net.fproject.ui.dateControls
 	import spark.components.PopUpAnchor;
 	import spark.events.IndexChangeEvent;
 	
+	import net.fproject.ui.events.DateControlEvent;
 	import net.fproject.utils.DateTimeUtil;
 
 	/**
@@ -59,23 +60,17 @@ package net.fproject.ui.dateControls
 	 *    todayColor="0x2B333C"
 	 * 
 	 *    <strong>Events</strong>
-	 *    change="<i>No default</i>"
+	 *    selectedDateChange="<i>No default</i>"
+	 * 	  monthChange="<i>No default</i>"
+	 *    yearChange="<i>No default</i>"
 	 *    close="<i>No default</i>"
-	 *    dataChange="<i>No default</i>"
 	 *    open="<i>No default</i>"
-	 *    scroll="<i>No default</i>"
 	 *  /&gt;
 	 *  </pre>
 	 *
-	 *  @see mx.controls.DateChooser
-	 *  @includeExample examples/DateFieldExample.mxml
+	 *  @see net.fproject.ui.dateControls.DateChooser
+	 *  @includeExample examples/DateControlsDemo.mxml
 	 *
-	 *  @helpid 3617
-	 *  
-	 *  @langversion 3.0
-	 *  @playerversion Flash 9
-	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
 	 */
 	public class DateField extends DateChooser
 	{
@@ -175,16 +170,22 @@ package net.fproject.ui.dateControls
 		
 		protected function onDropDownMouseDownOutside(e:FlexMouseEvent):void
 		{
+			if(popUpAnchor != null && popUpAnchor.isPopUp)
+				dispatchEvent(new DateControlEvent(DateControlEvent.CLOSE));
 			this.skin.setCurrentState('normal');
 		}
 		
 		protected function onOpenButtonMouseDown(e:MouseEvent):void
 		{
+			if(popUpAnchor != null && !popUpAnchor.isPopUp)
+				dispatchEvent(new DateControlEvent(DateControlEvent.OPEN));
 			this.skin.setCurrentState('open');
 		}
 		
 		protected function onDataGroupClick(e:MouseEvent):void
 		{
+			if(popUpAnchor != null && popUpAnchor.isPopUp)
+				dispatchEvent(new DateControlEvent(DateControlEvent.CLOSE));
 			this.skin.setCurrentState('normal');
 		}
 	}

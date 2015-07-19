@@ -1,12 +1,11 @@
 package net.fproject.ui.dateControls.supportClasses
 {
-	import flash.events.EventDispatcher;
-	import mx.core.IUID;
+	import net.fproject.model.LocalUID;
 	
 	/**
 	 *  Data object that will be element type for MonthDayList
 	 */
-	public class MonthDay extends EventDispatcher implements IUID
+	public class MonthDay extends LocalUID
 	{
 		// the date to display
 		[Bindable]
@@ -16,14 +15,9 @@ package net.fproject.ui.dateControls.supportClasses
 		public var isInCurrentMonth:Boolean;
 		
 		
-		public function get uid():String
+		override public function get uid():String
 		{
 			return date.fullYear.toString() + date.month.toString() + date.date.toString();
-		}
-		
-		public function set uid(value:String):void
-		{
-			// do nothing
 		}
 		
 		[Bindable("_none_")]

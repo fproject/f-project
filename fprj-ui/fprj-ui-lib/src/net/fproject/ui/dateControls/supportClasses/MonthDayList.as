@@ -1,27 +1,22 @@
 package net.fproject.ui.dateControls.supportClasses
 {
-	import mx.collections.ArrayList;
-	
+	import net.fproject.collection.AdvancedArrayList;
+	import net.fproject.core.TimeUnit;
+
 	/**
-	 *  Given a month and year, generates 35 items that
+	 *  Given a month and year, generates 42 items that
 	 *  correspond to how the month would appear in 
 	 *  a calendar if index 0 is the first Sunday
 	 *  in a week view
 	 */
-	public class MonthDayList extends ArrayList
+	public class MonthDayList extends AdvancedArrayList
 	{
-		// a full implementation would disable most of the IList modification
-		// methods like addItem, removeItem
-		
-		// number of milliseconds in a day
-		public static const dayOfMS:Number = 1000 * 60 * 60 * 24;
-		
 		/**
 		 *  Set the month and year.
 		 *  @param month 0-based index of month (0 = January)
-		 *  @param year The year to display (2009)
+		 *  @param year The year to display (2015)
 		 */
-		public function setMonthAndYear(month:int, year:int):void
+		public function resetFromMonthAndYear(month:int, year:int):void
 		{
 			_month = month;
 			_year = year;
@@ -34,7 +29,7 @@ package net.fproject.ui.dateControls.supportClasses
 			var value:Number = d.time;
 			while (dofw > 0)
 			{
-				value -= dayOfMS;
+				value -= TimeUnit.DAY.milliseconds;
 				dofw--;
 			}
 			
@@ -47,7 +42,7 @@ package net.fproject.ui.dateControls.supportClasses
 				data.date = dt;
 				data.isInCurrentMonth = dt.month == month;
 				arr.push(data);
-				value += dayOfMS;
+				value += TimeUnit.DAY.milliseconds;
 			}
 			source = arr;
 		}
