@@ -90,6 +90,11 @@ package net.fproject.ui.dateControls
 	 */
 	public class DateField extends DateChooser
 	{
+		public function DateField()
+		{
+			_formatString = 'MM/dd/yyyy';
+		}
+		
 		[SkinPart(required="false",type="static")] 
 		public var popUpAnchor:PopUpAnchor;
 		
@@ -105,6 +110,24 @@ package net.fproject.ui.dateControls
 		[SkinPart(required="false",type="static")] 
 		public var labelDisplay:Label; // only used by DateField
 		
+		private var _formatString:String;
+		
+		public function get formatString():String
+		{
+			return _formatString;
+		}
+		
+		public function set formatString(value:String):void
+		{
+			if( _formatString !== value)
+			{
+				var oldValue:String = _formatString;
+				_formatString = value;
+				if (labelDisplay != null && _formatString != null)
+					labelDisplay.text = DateTimeUtil.formatDate(selectedDate, _formatString);
+			}
+		}
+		
 		/**
 		 *  @private
 		 */
@@ -118,7 +141,7 @@ package net.fproject.ui.dateControls
 		{
 			super.onSelectionChange(e);
 			if (labelDisplay)
-				labelDisplay.text = DateTimeUtil.formatDate(selectedDate, 'MM/dd/yyyy');
+				labelDisplay.text = DateTimeUtil.formatDate(selectedDate, _formatString);
 		}
 		
 		// selectedDate changes externally
