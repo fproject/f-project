@@ -69,29 +69,9 @@ package net.fproject.ui.dateControls
 	 *  You can let users select multiple dates, disable the selection
 	 *  of certain dates, and limit the display to a range of dates.
 	 *
-	 *  <p>The DateChooser control has the following default characteristics:</p>
-	 *     <table class="innertable">
-	 *        <tr>
-	 *           <th>Characteristic</th>
-	 *           <th>Description</th>
-	 *        </tr>
-	 *        <tr>
-	 *           <td>Default size</td>
-	 *           <td>A size large enough to hold the calendar, and wide enough to display the day names</td>
-	 *        </tr>
-	 *        <tr>
-	 *           <td>Minimum size</td>
-	 *           <td>0 pixels</td>
-	 *        </tr>
-	 *        <tr>
-	 *           <td>Maximum size</td>
-	 *           <td>No limit</td>
-	 *        </tr>
-	 *     </table>
-	 *
 	 *  @mxml
 	 *
-	 *  <p>The <code>&lt;mx:DateChooser&gt;</code> tag inherits all of the tag attributes
+	 *  <p>The <code>&lt;ui:DateChooser&gt;</code> tag inherits all of the tag attributes
 	 *  of its superclass, and adds the following tag attributes:</p>
 	 *
 	 *  <pre>
@@ -100,7 +80,6 @@ package net.fproject.ui.dateControls
 	 *    dayNames="["S", "M", "T", "W", "T", "F", "S"]"
 	 *    displayedYear="<i>Current year</i>"
 	 * 	  displayedMonth="<i>Current month</i>"
-	 *    formatString="MM/dd/yyyy"
 	 *    labelFunction="<i>Internal formatter</i>"
 	 *    monthNames="["January", "February", "March", "April", "May",
 	 *    "June", "July", "August", "September", "October", "November",
@@ -289,7 +268,6 @@ package net.fproject.ui.dateControls
 			}
 		}
 
-		
 		private var _selectedDate:Date;
 		
 		[Bindable(event="selectedDateChange")]
@@ -357,13 +335,6 @@ package net.fproject.ui.dateControls
 			
 			if (yearLabel) 
 				yearLabel.text = dayList.year.toString(); 
-		}
-		
-		override public function styleChanged(styleName:String):void
-		{
-			super.styleChanged(styleName);
-			if(styleName == 'color')
-				invalidateDisplayList();
 		}
 		
 		override protected function getCurrentSkinState():String
