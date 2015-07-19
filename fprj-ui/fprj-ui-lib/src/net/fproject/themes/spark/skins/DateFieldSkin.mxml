@@ -6,9 +6,21 @@
 	
 	<fx:Metadata>
 		<![CDATA[ 
-		[HostComponent("net.fproject.ui.dateControls.DateField")]  
+		[HostComponent("net.fproject.ui.dateControls.DateField")] 
 		]]>
 	</fx:Metadata> 
+	
+	<fx:Script>
+		<![CDATA[
+			protected override function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
+			{
+				if(yearLabel && hostComponent.yearNavigationEnabled)
+					yearLabel.right = 45;
+				super.updateDisplayList(unscaledWidth, unscaledHeight);
+			}
+		]]>
+	</fx:Script>
+	
 	<fx:Declarations>
 		<s:ButtonBase id="nextYearButton"
 					  skinClass="mx.skins.spark.DateChooserNextYearSkin" right="30" y="9"/>
