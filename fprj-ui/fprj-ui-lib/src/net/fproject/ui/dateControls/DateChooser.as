@@ -6,6 +6,7 @@ package net.fproject.ui.dateControls
 	import mx.collections.ArrayList;
 	import mx.collections.IList;
 	import mx.events.CollectionEvent;
+	import mx.utils.ObjectUtil;
 	
 	import spark.components.DataGroup;
 	import spark.components.Label;
@@ -16,7 +17,32 @@ package net.fproject.ui.dateControls
 	import net.fproject.ui.dateControls.supportClasses.MonthDay;
 	import net.fproject.ui.dateControls.supportClasses.MonthDayList;
 	import net.fproject.ui.events.DateControlEvent;
+	import net.fproject.utils.DateTimeUtil;
 	import net.fproject.utils.ResourceUtil;
+	
+	/**
+	 * Dispatched when a date is selected or changed.
+	 * 
+	 * @eventType net.fproject.ui.events.DateControlEvent.SELECTED_DATE_CHANGE
+	 * 
+	 */	
+	[Event(name="selectedDateChange", type="net.fproject.ui.events.DateControlEvent")]
+	
+	/**
+	 * Dispatched when a currently displayed month is changed.
+	 * 
+	 * @eventType net.fproject.ui.events.DateControlEvent.MONTH_CHANGE
+	 * 
+	 */	
+	[Event(name="monthChange", type="net.fproject.ui.events.DateControlEvent")]
+	
+	/**
+	 * Dispatched when a currently displayed year is changed.
+	 * 
+	 * @eventType net.fproject.ui.events.DateControlEvent.YEAR_CHANGE
+	 * 
+	 */	
+	[Event(name="yearChange", type="net.fproject.ui.events.DateControlEvent")]
 	
 	/**
 	 * 
@@ -35,12 +61,74 @@ package net.fproject.ui.dateControls
 	[SkinState("yearButtonDisplayed")]
 	[ResourceBundle("fprjui")]
 	/**
-	 * Spark only component for displaying and selecting dates.
-	 * @author Bui Sy Nguyen
-	 * This component is based on idea of Alex Harui:
-	 * http://blogs.adobe.com/aharui/2010/01/spark_datefield_and_colorpicke.html
+	 *  The DateChooser control displays the name of a month, the year,
+	 *  and a grid of the days of the month, with columns labeled
+	 *  for the day of the week.
+	 *  The user can select a date, a range of dates, or multiple dates.
+	 *  The control contains forward and back arrow buttons
+	 *  for changing the month and year.
+	 *  You can let users select multiple dates, disable the selection
+	 *  of certain dates, and limit the display to a range of dates.
+	 *
+	 *  <p>The DateChooser control has the following default characteristics:</p>
+	 *     <table class="innertable">
+	 *        <tr>
+	 *           <th>Characteristic</th>
+	 *           <th>Description</th>
+	 *        </tr>
+	 *        <tr>
+	 *           <td>Default size</td>
+	 *           <td>A size large enough to hold the calendar, and wide enough to display the day names</td>
+	 *        </tr>
+	 *        <tr>
+	 *           <td>Minimum size</td>
+	 *           <td>0 pixels</td>
+	 *        </tr>
+	 *        <tr>
+	 *           <td>Maximum size</td>
+	 *           <td>No limit</td>
+	 *        </tr>
+	 *     </table>
+	 *
+	 *  @mxml
+	 *
+	 *  <p>The <code>&lt;mx:DateChooser&gt;</code> tag inherits all of the tag attributes
+	 *  of its superclass, and adds the following tag attributes:</p>
+	 *
+	 *  <pre>
+	 *  &lt;ui:DateChooser
+	 *    <strong>Properties</strong>
+	 *    dayNames="["S", "M", "T", "W", "T", "F", "S"]"
+	 *    displayedYear="<i>Current year</i>"
+	 * 	  displayedMonth="<i>Current month</i>"
+	 *    formatString="MM/dd/yyyy"
+	 *    labelFunction="<i>Internal formatter</i>"
+	 *    monthNames="["January", "February", "March", "April", "May",
+	 *    "June", "July", "August", "September", "October", "November",
+	 *    "December"]"
+	 *    selectedDate="<i>No default</i>"
+	 *    yearNavigationEnabled="false|true"
+	 *  
+	 *   <strong>Styles</strong>
+	 *    color="0"
+	 *    otherMonthDayColor="0x808080"
+	 *    todayColor="0"
 	 * 
-	 * */
+	 *    <strong>Events</strong>
+	 *    selectedDateChange="<i>No default</i>"
+	 * 	  monthChange="<i>No default</i>"
+	 *    yearChange="<i>No default</i>"
+	 *  /&gt;
+	 *  </pre>
+	 *
+	 *  @see net.fproject.ui.dateControls.DateField
+	 *
+	 *  @includeExample examples/DateChooserExample.mxml
+	 *  
+	 *  @author Bui Sy Nguyen
+	 *  This component is based on idea of Alex Harui:
+	 *  http://blogs.adobe.com/aharui/2010/01/spark_datefield_and_colorpicke.html
+	 */
 	public class DateChooser extends List
 	{
 		[SkinPart(required="false",type="static")] 
@@ -71,10 +159,10 @@ package net.fproject.ui.dateControls
 			super();
 			dayList = new MonthDayList();
 			super.dataProvider = dayList;
-			super.dataProvider.addEventListener(CollectionEvent.COLLECTION_CHANGE, collectionChangeHandler);
+			dayList.addEventListener(CollectionEvent.COLLECTION_CHANGE, onDataCollectionChange);
 			addEventListener(IndexChangeEvent.CHANGE,onSelectionChange);
 			var d:Date = new Date();
-			dayList.setMonthAndYear(d.month, d.fullYear);
+			dayList.resetFromMonthAndYear(d.month, d.fullYear);
 		}
 		
 		override protected function focusInHandler(event:FocusEvent):void
@@ -106,7 +194,7 @@ package net.fproject.ui.dateControls
 				yearLabel.text = dayList.year.toString(); 
 			
 			if(instance === weekDayHeaderDataGroup)
-				weekDayHeaderDataGroup.dataProvider = dayNames;
+				weekDayHeaderDataGroup.dataProvider = new ArrayList(dayNames);
 			
 			if(instance === prevMonthButton)
 				prevMonthButton.addEventListener(MouseEvent.CLICK, onPrevMonth);
@@ -118,47 +206,68 @@ package net.fproject.ui.dateControls
 				nextYearButton.addEventListener(MouseEvent.CLICK, onNextYear);
 		}
 		
-		protected function onPrevMonth(e:MouseEvent):void
+		private function onPrevMonth(e:MouseEvent):void
+		{
+			goPrevMonth();
+		}
+		
+		protected function goPrevMonth():void
 		{
 			// updates its dataprovider
-			var dayList:MonthDayList = dataGroup.dataProvider as MonthDayList;
 			if (dayList.month == 0)
-				dayList.setMonthAndYear(11, dayList.year - 1);
+			{
+				dayList.resetFromMonthAndYear(11, dayList.year - 1);
+				dispatchEvent(new DateControlEvent(DateControlEvent.YEAR_CHANGE));
+			}
 			else 
-				dayList.setMonthAndYear(dayList.month - 1, dayList.year);
+				dayList.resetFromMonthAndYear(dayList.month - 1, dayList.year);
 			dispatchEvent(new DateControlEvent(DateControlEvent.MONTH_CHANGE));
 		}
 		
 		private function onNextMonth(e:MouseEvent):void
 		{
-			var dayList:MonthDayList = dataGroup.dataProvider as MonthDayList;
+			goNextMonth();
+		}
+		
+		protected function goNextMonth():void
+		{
 			if (dayList.month == 11)
-				dayList.setMonthAndYear(0, dayList.year+1);
+			{
+				dayList.resetFromMonthAndYear(0, dayList.year + 1);
+				dispatchEvent(new DateControlEvent(DateControlEvent.YEAR_CHANGE));
+			}
 			else 
-				dayList.setMonthAndYear(dayList.month+1, dayList.year);
+				dayList.resetFromMonthAndYear(dayList.month + 1, dayList.year);
 			dispatchEvent(new DateControlEvent(DateControlEvent.MONTH_CHANGE));
 		}
 		
 		protected function onPrevYear(e:MouseEvent):void
 		{
 			// updates its dataprovider
-			var dayList:MonthDayList = dataGroup.dataProvider as MonthDayList;
-			dayList.setMonthAndYear(dayList.month, dayList.year - 1);
+			dayList.resetFromMonthAndYear(dayList.month, dayList.year - 1);
 			dispatchEvent(new DateControlEvent(DateControlEvent.YEAR_CHANGE));
 		}
 		
 		protected function onNextYear(e:MouseEvent):void
 		{
 			// updates its dataprovider
-			var dayList:MonthDayList = dataGroup.dataProvider as MonthDayList;
-			dayList.setMonthAndYear(dayList.month, dayList.year + 1);
+			dayList.resetFromMonthAndYear(dayList.month, dayList.year + 1);
 			dispatchEvent(new DateControlEvent(DateControlEvent.YEAR_CHANGE));
 		}
 		
 		// user changes the selection in the datechooser
 		protected function onSelectionChange(e:IndexChangeEvent):void
 		{
-			_selectedDate = MonthDay(selectedItem).date;
+			var md:MonthDay = MonthDay(selectedItem);
+			_selectedDate = md.date;
+			if(!md.isInCurrentMonth)
+			{
+				var curDate:Date = new Date;
+				if(ObjectUtil.dateCompare(_selectedDate, curDate) < 0)
+					callLater(goPrevMonth);
+				else
+					callLater(goNextMonth);
+			}
 			dispatchEvent(new DateControlEvent(DateControlEvent.SELECTED_DATE_CHANGE));
 		}
 		
@@ -200,11 +309,11 @@ package net.fproject.ui.dateControls
 				if (value == null) 
 				{
 					var d:Date = new Date();
-					dayList.setMonthAndYear(d.month, d.fullYear);
+					dayList.resetFromMonthAndYear(d.month, d.fullYear);
 				}
 				else
 				{
-					dayList.setMonthAndYear(value.month, value.fullYear);
+					dayList.resetFromMonthAndYear(value.month, value.fullYear);
 					// select the date
 					var n:int = dataProvider.length;
 					for (var i:int = 0; i<n; i++) 
@@ -221,19 +330,21 @@ package net.fproject.ui.dateControls
 		}
 		
 		// called, if the selected month changes
-		private function collectionChangeHandler(e:CollectionEvent):void{
-			selectedItem = null;
-			if (_selectedDate) {// if there is a selected date, try to find it on the display
-				var n:int = dataProvider.length;
+		private function onDataCollectionChange(e:CollectionEvent):void{
+			if (_selectedDate)
+			{// if there is a selected date, try to find it on the display
+				var n:int = dayList.length;
 				for (var i:int = 0; i<n; i++)
 				{
-					if (MonthDay(dataProvider.getItemAt(i)).date.date == _selectedDate.date && 
-						MonthDay(dataProvider.getItemAt(i)).date.month == _selectedDate.month &&
-						MonthDay(dataProvider.getItemAt(i)).date.fullYear == _selectedDate.fullYear ) 
+					if (DateTimeUtil.compareDatePart(MonthDay(dayList.getItemAt(i)).date,_selectedDate) == 0) 
 					{
-						selectedItem = dataProvider.getItemAt(i);
+						selectedItem = dayList.getItemAt(i);
 					}
 				}
+			}
+			else
+			{
+				selectedItem = null;
 			}
 			
 			if (monthLabel) 
@@ -265,20 +376,42 @@ package net.fproject.ui.dateControls
 		
 		private var _monthNames:Array;
 		
-		private function get monthNames():Array
+		public function get monthNames():Array
 		{
 			if(_monthNames == null)
 				_monthNames = ResourceUtil.getStringArray('month.long.names', 'fprjui');
 			return _monthNames;
 		}
 		
-		private var _dayNames:ArrayList;
+		public function set monthNames(value:Array):void
+		{
+			if(_monthNames != value)
+			{
+				var oldValue:Array = _monthNames;
+				_monthNames = value;
+				dispatchPropertyChangeEvent('monthNames', oldValue, value);
+				invalidateSkinState();
+			}
+		}
 		
-		private function get dayNames():ArrayList
+		private var _dayNames:Array;
+		
+		public function get dayNames():Array
 		{
 			if(_dayNames == null)
-				_dayNames = new ArrayList(ResourceUtil.getStringArray('weekday.short.names', 'fprjui'));
+				_dayNames = ResourceUtil.getStringArray('weekday.short.names', 'fprjui');
 			return _dayNames;
+		}
+		
+		public function set dayNames(value:Array):void
+		{
+			if(_dayNames != value)
+			{
+				var oldValue:Array = _dayNames;
+				_dayNames = value;
+				dispatchPropertyChangeEvent('dayNames', oldValue, value);
+				invalidateSkinState();
+			}
 		}
 	}
 	

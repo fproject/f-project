@@ -14,6 +14,12 @@ package net.fproject.ui.events
 		public static const OPEN:String = "open";
 		
 		/**
+		 *  Dispatched when a user close the DateChooser popup of a DateField.
+		 *
+		 */
+		public static const CLOSE:String = "close";
+		
+		/**
 		 * Dispatched when the currently displayed year on a DateChooser or DateField control is changed.
 		 */
 		public static const YEAR_CHANGE:String = "yearChange";
