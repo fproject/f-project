@@ -14,7 +14,27 @@
 	<s:VGroup>
 		<ui:DateChooser id="dateChooser" left="50" top="50"/>
 		<s:Label text="{dateChooser.selectedDate}"/>
-		<ui:DateChooser left="50" top="50" yearNavigationEnabled="true"/>
+		<ui:DateChooser left="50" top="50"
+						borderVisible="{borderVisible.selected}"
+						yearNavigationEnabled="{yearNavigationEnabled.selected}"
+						color="{color.selectedColor}"
+						todayColor="{todayColor.selectedColor}"
+						otherMonthDayColor="{otherMonthDayColor.selectedColor}"/>
+		<s:FormItem label="color:">
+			<mx:ColorPicker selectedColor="0" id="color"/>
+		</s:FormItem>
+		<s:FormItem label="todayColor:">
+			<mx:ColorPicker selectedColor="0" id="todayColor"/>
+		</s:FormItem>
+		<s:FormItem label="otherMonthDayColor:">
+			<mx:ColorPicker selectedColor="#808080" id="otherMonthDayColor"/>
+		</s:FormItem>
+		<s:FormItem label="borderVisible:">
+			<s:CheckBox id="borderVisible" selected="true"/>
+		</s:FormItem>
+		<s:FormItem label="yearNavigationEnabled:">
+			<s:CheckBox id="yearNavigationEnabled" selected="true"/>
+		</s:FormItem>
 	</s:VGroup>
 	
 	<s:FormItem label="mx:DateField">
