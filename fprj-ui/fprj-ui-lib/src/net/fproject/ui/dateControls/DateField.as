@@ -14,6 +14,22 @@ package net.fproject.ui.dateControls
 	import net.fproject.utils.DateTimeUtil;
 
 	/**
+	 * Dispatched when user opens the the DateChooser pop-up
+	 * 
+	 * @eventType net.fproject.ui.events.DateControlEvent.OPEN
+	 * 
+	 */	
+	[Event(name="open", type="net.fproject.ui.events.DateControlEvent")]
+	
+	/**
+	 * Dispatched when user closes the the DateChooser pop-up
+	 * 
+	 * @eventType net.fproject.ui.events.DateControlEvent.CLOSE
+	 * 
+	 */	
+	[Event(name="close", type="net.fproject.ui.events.DateControlEvent")]
+	
+	/**
 	 *  The DateField control is a control that shows a date
 	 *  with a calendar icon on its right side.
 	 *  When the user clicks anywhere inside the bounding box
