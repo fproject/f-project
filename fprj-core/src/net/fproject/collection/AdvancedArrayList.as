@@ -63,7 +63,7 @@ package net.fproject.collection
 		 */
 		public function AdvancedArrayList(source:Array=null, itemEqualFunction:Function=null)
 		{
-			this.itemEqualFunction = itemEqualFunction == null ? DataUtil.equals : itemEqualFunction;
+			this.itemEqualFunction = itemEqualFunction == null ? DataUtil.equalsByUid : itemEqualFunction;
 			super(source);
 		}
 		
