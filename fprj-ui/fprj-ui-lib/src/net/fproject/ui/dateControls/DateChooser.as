@@ -267,6 +267,7 @@ package net.fproject.ui.dateControls
 					callLater(goPrevMonth);
 				else
 					callLater(goNextMonth);
+				callLater(invalidateSkinState);
 			}
 			dispatchEvent(new DateControlEvent(DateControlEvent.SELECTED_DATE_CHANGE));
 		}
