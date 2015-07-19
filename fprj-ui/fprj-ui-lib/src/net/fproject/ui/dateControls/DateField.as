@@ -164,10 +164,6 @@ package net.fproject.ui.dateControls
 			
 			if(instance === dropDownGroup || instance === nextYearButton || instance === prevYearButton)
 				checkToAddYearButtons();
-			
-			if(instance === yearLabel && yearNavigationEnabled)
-				yearLabel.right = 45;
-			
 		}
 		
 		protected function checkToAddYearButtons():void
