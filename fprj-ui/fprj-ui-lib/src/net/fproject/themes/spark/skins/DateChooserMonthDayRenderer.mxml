@@ -9,18 +9,54 @@
 			import net.fproject.utils.DateTimeUtil;
 			private function isCurrentDay(data:Object):Boolean
 			{
+				if(data == null) return false;
+				
 				var currentDate:Date = new Date;
 				return DateTimeUtil.compareDatePart(MonthDay(data).date, currentDate) == 0 ? true : false;
 			}
 			
 			private function getStrokeColor(data:Object):uint
 			{
+				if(data == null) return 0;
 				return isCurrentDay(data) ? 0x99A3AE:0xA1AEC2;
 			}
 			
 			private function getFillColor(data:Object):uint
 			{
+				if(data == null) return 0;
 				return isCurrentDay(data) ? 0xC6D0DB:0xCEDBEF;
+			}
+			
+			private function getColor():uint
+			{
+				if(data == null) return 0;
+				if(isCurrentDay(data))
+				{
+					var color:* = getStyle('todayColor');
+					return color != undefined ? color : 0;
+				}
+				else
+				{
+					color = getStyle('color');
+					if(color == undefined)
+						color = 0;
+					if(MonthDay(data).isInCurrentMonth)
+					{
+						return color;
+					}
+					else
+					{
+						var otherMonthColor:* = getStyle('otherMonthDayColor');
+						return otherMonthColor != undefined ? otherMonthColor : 0x808080;
+					}
+				}
+			}
+			
+			protected override function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
+			{
+				if(labelDisplay)
+					labelDisplay.setStyle('color', getColor());
+				super.updateDisplayList(unscaledWidth, unscaledHeight);
 			}
 		]]>
 	</fx:Script>
@@ -44,7 +80,6 @@
 	</s:Rect>
 	
 	<s:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"
-			 text="{MonthDay(data).dateLabel}" 
-			 color="{MonthDay(data).isInCurrentMonth ? 0 : 0x808080}" />
+			 text="{MonthDay(data).dateLabel}"/>
 	
 </s:ItemRenderer>

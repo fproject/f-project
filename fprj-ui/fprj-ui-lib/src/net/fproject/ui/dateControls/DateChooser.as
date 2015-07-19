@@ -18,6 +18,20 @@ package net.fproject.ui.dateControls
 	import net.fproject.ui.events.DateControlEvent;
 	import net.fproject.utils.ResourceUtil;
 	
+	/**
+	 * 
+	 * The text color for today's cell in the displayed date chooser.
+	 * 
+	 */	
+	[Style(name="todayColor", inherit="yes", type="uint", format="Color")]
+	
+	/**
+	 * 
+	 * The text color for the cells in the displayed date chooser that not in current month.
+	 * 
+	 */	
+	[Style(name="otherMonthDayColor", inherit="yes", type="uint", format="Color")]
+	
 	[SkinState("yearButtonDisplayed")]
 	[ResourceBundle("fprjui")]
 	/**
@@ -163,6 +177,7 @@ package net.fproject.ui.dateControls
 				var oldValue:Boolean = _yearNavigationEnabled;
 				_yearNavigationEnabled = value;
 				dispatchPropertyChangeEvent('yearNavigationEnabled', oldValue, value);
+				invalidateSkinState();
 			}
 		}
 
@@ -226,6 +241,13 @@ package net.fproject.ui.dateControls
 			
 			if (yearLabel) 
 				yearLabel.text = dayList.year.toString(); 
+		}
+		
+		override public function styleChanged(styleName:String):void
+		{
+			super.styleChanged(styleName);
+			if(styleName == 'color')
+				invalidateDisplayList();
 		}
 		
 		override protected function getCurrentSkinState():String

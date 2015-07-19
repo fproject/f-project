@@ -9,21 +9,12 @@ package net.fproject.ui.dateControls.supportClasses
 	public class MonthDay extends EventDispatcher implements IUID
 	{
 		// the date to display
-		[Bindable("_none_")]
+		[Bindable]
 		public var date:Date;
 		
-		private var _isInCurrentMonth:Boolean;
+		[Bindable]
+		public var isInCurrentMonth:Boolean;
 		
-		[Bindable("_none_")]
-		// whether that date is in the current month;
-		public function get isInCurrentMonth():Boolean
-		{
-			return _isInCurrentMonth;
-		}
-		public function set isInCurrentMonth(value:Boolean):void
-		{
-			_isInCurrentMonth = value;
-		}
 		
 		public function get uid():String
 		{
