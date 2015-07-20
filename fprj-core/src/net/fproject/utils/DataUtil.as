@@ -284,7 +284,7 @@ package net.fproject.utils
 		 * @param host the host object
 		 * 
 		 */
-		public static function evaluateChainValue(chain:String, host:Object=null):*
+		public static function evaluateChainValue(chain:String, host:Object=null, expectedType:String=null):*
 		{
 			if(chain == Injector.THIS)
 				return host;
@@ -292,9 +292,10 @@ package net.fproject.utils
 				chain = chain.replace(/[ \t]+/g, "");
 			
 			if((chain.charAt(0) == "'" && chain.charAt(chain.length - 1) == "'")
-				|| (chain.charAt(0) == '"' && chain.charAt(chain.length - 1) == '"'))
+				|| (chain.charAt(0) == '"' && chain.charAt(chain.length - 1) == '"')
+				|| (chain.charAt(0) == '{' && chain.charAt(chain.length - 1) == '}'))
 			{
-				return chain.substring(1, chain.length - 1);
+				return getLiteralValue(chain.substring(1, chain.length - 1), expectedType);
 			}
 			
 			if(chain.indexOf(Injector.THIS + ".") == 0 || host is Class)
@@ -335,6 +336,30 @@ package net.fproject.utils
 			}
 			else
 				return host == null? chain : evaluateHostMember(host, chain);
+		}
+		
+		public static function getLiteralValue(s:String, expectedType:String=null):*
+		{
+			if(expectedType == null)
+				return s;
+			switch(expectedType.toLowerCase())
+			{
+				case "number":
+					return Number(s);
+				case "boolean":
+					return toBoolean(s);
+				case 'array':
+					s = StringUtil.trim(s);
+					if(s.charAt(0) == '[')
+						s = s.substr(1);
+					if(s.charAt(s.length - 1) == ']')
+						s = s.substr(0, s.length - 1);
+					return s.split(',');
+				case "boolean":
+				case "string":
+				default:
+					return s;
+			}
 		}
 		
 		/**
