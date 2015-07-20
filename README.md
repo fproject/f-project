@@ -48,3 +48,4 @@ The minimum requirement by F-Project:
 
 - [GitHub](https://github.com/fproject/f-project)
 - [F-Project](http://f-project.net)
+- [F-Project Wiki](http://wiki.f-project.net)
