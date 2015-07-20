@@ -24,6 +24,7 @@ package net.fproject.di
 	import net.fproject.utils.LoggingUtil;
 	
 	import org.as3commons.reflect.AbstractMember;
+	import org.as3commons.reflect.Field;
 	import org.as3commons.reflect.Metadata;
 	import org.as3commons.reflect.MetadataArgument;
 	import org.as3commons.reflect.Type;
@@ -494,7 +495,20 @@ package net.fproject.di
 						else if(metaArg.key == HOST_CHAIN)
 							bindingMeta.hostChain = metaArg.value;
 						else
-							(bindingMeta.args as Array).push({key:metaArg.key, value:metaArg.value});
+						{
+							var arg:Object = {key:metaArg.key, value:metaArg.value};
+							if(member.hasOwnProperty('type'))
+							{
+								var t:Type = member['type'] as Type;
+								if(t != null)
+								{
+									var f:Field = t.getField(arg.key);
+									if(f != null)
+										arg['fieldType'] = f.type.fullName;
+								}
+							}
+							(bindingMeta.args as Array).push(arg);
+						}
 					}
 				}
 				
@@ -683,7 +697,7 @@ package net.fproject.di
 				else
 				{
 					//Direct binding
-					bindDirectValue(object, ma.key, ma.value, container);
+					bindDirectValue(object, ma, container);
 				}										
 			}
 			
@@ -696,10 +710,11 @@ package net.fproject.di
 		 * @private
 		 * 
 		 */
-		private function bindDirectValue(targetObj:Object, targetField:String, sourceChain:String, container:Object):void
+		private function bindDirectValue(targetObj:Object, metaArg:Object, container:Object):void
 		{
+			var targetFieldType:String = metaArg.hasOwnProperty('fieldType') ?  metaArg['fieldType'] : null;
 			if(targetObj != null)
-				targetObj[targetField] = DataUtil.evaluateChainValue(sourceChain, container);
+				targetObj[metaArg.key] = DataUtil.evaluateChainValue(metaArg.value, container, targetFieldType);
 		}
 		
 		/**
