@@ -34,12 +34,12 @@ package net.fproject.utils
 			this._offsetStyleProperty = offsetStyleProperty;
 			this._isValid = false;
 			this._class = cursorClass;
-		}// end function
+		}
 		
 		public function get isInstalled() : Boolean
 		{
 			return this._id != -1;
-		}// end function
+		}
 		
 		public function setCursor(priority:int = 2) : void
 		{
@@ -52,7 +52,7 @@ package net.fproject.utils
 			{
 				this._id = this._target.cursorManager.setCursor(this._class, priority, this._xOffset, this._yOffset);
 			}
-		}// end function
+		}
 		
 		public function removeCursor() : void
 		{
@@ -62,7 +62,7 @@ package net.fproject.utils
 			}
 			this._target.cursorManager.removeCursor(this._id);
 			this._id = -1;
-		}// end function
+		}
 		
 		public function styleChanged(styleProp:String, allStyles:Boolean = false) : void
 		{
@@ -71,7 +71,7 @@ package net.fproject.utils
 			{
 				this._isValid = false;
 			}
-		}// end function
+		}
 		
 		private function validate() : void
 		{
@@ -109,7 +109,7 @@ package net.fproject.utils
 					this._yOffset = (-dispObj.height) / 2;
 				}
 			}
-		}// end function
+		}
 		
 	}
 }

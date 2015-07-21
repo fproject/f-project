@@ -46,12 +46,12 @@
 			{
 				this._recycledItemRendererPool = [];
 			}
-		}// end function
+		}
 		
 		public function get itemRenderers() : Array
 		{
 			return this._itemRenderers;
-		}// end function
+		}
 		
 		public function getItemRenderer(item:Object, create:Boolean = true, visibleOnCreation:Boolean = true, 
 										fromRecycledDataCache:Boolean = true, subIndex:int = -1) : Object
@@ -122,7 +122,7 @@
 				this.addToCollisionMap(this._itemRenderers, renderer, itemUid);
 			}
 			return renderer;
-		}// end function
+		}
 		
 		private function addItemRendererBatchToPool() : void
 		{
@@ -133,12 +133,12 @@
 				this._itemRendererPool.push(r);
 				this.configureOnCreation(this._container, r);
 			}
-		}// end function
+		}
 		
 		protected function createItemRenderer() : Object
 		{
 			return this._itemRendererFactory.newInstance();
-		}// end function
+		}
 		
 		protected function setItemRendererData(itemRenderer:IDataRenderer, data:Object) : void
 		{
@@ -150,7 +150,7 @@
 			{
 				itemRenderer.data = data;
 			}
-		}// end function
+		}
 		
 		public function clearItemRenderers() : void
 		{
@@ -173,7 +173,7 @@
 			{
 				this._recycledItemRendererPool = [];
 			}
-		}// end function
+		}
 		
 		public function recycleAllItemRenderers(clearRecycleMap:Boolean = false) : void
 		{
@@ -194,7 +194,7 @@
 			{
 				this._recycledItemRendererPool = [];
 			}
-		}// end function
+		}
 		
 		private function configureOnDeletion(container:Object, itemRenderer:Object) : void
 		{
@@ -221,7 +221,7 @@
 					}
 				}
 			}
-		}// end function
+		}
 		
 		private function configureOnCreation(container:Object, itemRenderer:Object) : void
 		{
@@ -229,7 +229,7 @@
 			{
 				this._creationFunction(itemRenderer);
 			}
-		}// end function
+		}
 		
 		private function configureOnRecycling(container:Object, itemRenderer:Object) : void
 		{
@@ -241,7 +241,7 @@
 			{
 				IUIComponent(itemRenderer).visible = false;
 			}
-		}// end function
+		}
 		
 		public function recycleItemRenderer(itemRenderer:Object) : void
 		{
@@ -250,7 +250,7 @@
 			this.addToCollisionMap(this._recycledItemRendererPool, itemRenderer, itemUid);
 			this.removeFromCollisionMap(this._itemRenderers, itemRenderer, itemUid);
 			this.configureOnRecycling(this._container, itemRenderer);
-		}// end function
+		}
 		
 		public function recycleItemRenderersForItem(item:Object, subIndex:int = -1) : void
 		{
@@ -264,7 +264,7 @@
 				this.configureOnRecycling(this._container, r);
 				r = subIndex == -1 ? this.getFromCollisionMap(this._itemRenderers, itemUid) : null;
 			}
-		}// end function
+		}
 		
 		public function getRendererCount(item:Object) : int
 		{
@@ -279,7 +279,7 @@
 				return (r as Array).length;
 			}
 			return 1;
-		}// end function
+		}
 		
 		public function getRenderersInUseForItem(item:Object) : Array
 		{
@@ -294,7 +294,7 @@
 				return a as Array;
 			}
 			return [a];
-		}// end function
+		}
 		
 		private function addToCollisionMap(collisionMap:Object, value:Object, key:String) : void
 		{
@@ -311,7 +311,7 @@
 			{
 				collisionMap[key] = [v, value];
 			}
-		}// end function
+		}
 		
 		private function removeFromCollisionMap(collisionMap:Object, value:Object, key:String) : Object
 		{
@@ -345,7 +345,7 @@
 				delete collisionMap[key];
 			}
 			return value;
-		}// end function
+		}
 		
 		private function getFromCollisionMap(collisionMap:Object, key:String, subIndex:int = -1) : Object
 		{
@@ -376,13 +376,13 @@
 				item = null;
 			}
 			return item;
-		}// end function
+		}
 		
 		public function setFactory(factory:IFactory) : void
 		{
 			this._itemRendererFactory = factory;
 			this.clearItemRenderers();
-		}// end function
+		}
 		
 		protected function itemToUID(item:Object) : String
 		{
@@ -400,7 +400,7 @@
 				return null;
 			}
 			return UIDUtil.getUID(item);
-		}// end function
+		}
 		
 	}
 }

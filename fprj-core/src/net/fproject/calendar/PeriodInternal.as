@@ -57,7 +57,7 @@ package net.fproject.calendar
 				this._workShifts = WorkShift.copyWorkShifts(workShifts);
 			}
 			
-		}// end function
+		}
 		
 		/**
 		 * 
@@ -67,7 +67,7 @@ package net.fproject.calendar
 		internal function getTotalWork() : Number
 		{
 			return isWorking ? numberOfDays * totalWorkInOneDay : 0;
-		}// end function
+		}
 		
 		/**
 		 * 
@@ -77,7 +77,7 @@ package net.fproject.calendar
 		internal function get numberOfDays() : int
 		{
 			return DateTimeUtil.millisecondToDay(endDate.time - startDate.time) + 1;
-		}// end function
+		}
 		
 		/**
 		 * 
@@ -87,7 +87,7 @@ package net.fproject.calendar
 		internal function get startDate() : Date
 		{
 			return new Date(_startDate.time);
-		}// end function
+		}
 		
 		/**
 		 * 
@@ -97,7 +97,7 @@ package net.fproject.calendar
 		internal function set startDate(value:Date) : void
 		{
 			_startDate = gregorianCalendar.fproject_internal::floor(value, TimeUnit.DAY, 1);
-		}// end function
+		}
 		
 		/**
 		 * 
@@ -107,7 +107,7 @@ package net.fproject.calendar
 		internal function get endDate() : Date
 		{
 			return new Date(_endDate.time);
-		}// end function
+		}
 		
 		/**
 		 * 
@@ -117,7 +117,7 @@ package net.fproject.calendar
 		internal function set endDate(value:Date) : void
 		{
 			_endDate = gregorianCalendar.fproject_internal::floor(value, TimeUnit.DAY, 1);			
-		}// end function
+		}
 		
 		/**
 		 * 
@@ -134,7 +134,7 @@ package net.fproject.calendar
 					gregorianCalendar.fproject_internal::floor(this._endOfEndDate, TimeUnit.DAY, 1);
 			}
 			return _endOfEndDate;
-		}// end function
+		}
 		
 		/**
 		 * @inheritDoc
@@ -177,7 +177,7 @@ package net.fproject.calendar
 				totalWork = totalWork + getTotalWorkBetweenHours(endBegin, end);
 			}
 			return totalWork;
-		}// end function
+		}
 		
 		/**
 		 * 
@@ -234,7 +234,7 @@ package net.fproject.calendar
 				}
 			}
 			return duration;
-		}// end function
+		}
 		
 		/**
 		 * 
@@ -285,7 +285,7 @@ package net.fproject.calendar
 				}
 			}
 			return duration;
-		}// end function
+		}
 		
 		/**
 		 * Check whether a period is intersected with this period. 
@@ -297,7 +297,7 @@ package net.fproject.calendar
 		internal function intersects(start:Date, end:Date) : Boolean
 		{
 			return start < this._endOfEndDate && end >= this._startDate;
-		}// end function
+		}
 		
 		/**
 		 * @inheritDoc
@@ -308,7 +308,7 @@ package net.fproject.calendar
 			var period:PeriodInternal = new PeriodInternal(_workCalendar, isWorking, _startDate, _endDate);
 			copyPeriodTo(period);
 			return period;
-		}// end function
+		}
 		
 		/**
 		 * Compare to another <code>PeriodInternal</code> object. 
@@ -322,7 +322,7 @@ package net.fproject.calendar
 		{
 			return p.isWorking == isWorking && p._endDate.time == _endDate.time
 				&& p._startDate.time == _startDate.time && p.compareWorkShifts(this);
-		}// end function
+		}
 		
 		/**
 		 * Create a PeriodInternal object from a Period object 
@@ -337,7 +337,7 @@ package net.fproject.calendar
 				calendar, period.isWorking, period.start, period.end);
 			p._workShifts = period.workShifts;
 			return p;
-		}// end function
+		}
 		
 	}
 }

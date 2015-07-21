@@ -37,7 +37,7 @@ package net.fproject.calendar
 			{
 				isInherited = true;
 			}
-		} // end function
+		}
 
 		/**
 		 *
@@ -47,7 +47,7 @@ package net.fproject.calendar
 		internal function get dayOfWeek():int
 		{
 			return this._dayOfWeek;
-		} // end function
+		}
 
 		/**
 		 *
@@ -60,7 +60,7 @@ package net.fproject.calendar
 				new WeekDayInternal(_workCalendar, isWorking, this._dayOfWeek);
 			copyPeriodTo(period);
 			return period;
-		} // end function
+		}
 
 		/**
 		 * Compare to another <code>WeekDayInternal</code> object.
@@ -74,7 +74,7 @@ package net.fproject.calendar
 		{
 			return weekDay.isWorking == isWorking &&
 				weekDay._dayOfWeek == this._dayOfWeek && compareWorkShifts(weekDay);
-		} // end function
+		}
 
 		/**
 		 *
@@ -84,7 +84,7 @@ package net.fproject.calendar
 		internal override function getTotalWorkBetween(start:Date, end:Date):Number
 		{
 			return getTotalWorkBetweenHours(start, end);
-		} // end function
+		}
 
 		/**
 		 * Create an instance of WeekDayInternal from a WeekDay object
@@ -98,15 +98,9 @@ package net.fproject.calendar
 			var wt:WorkShift = null;
 			var dayPeriod:WeekDayInternal =
 				new WeekDayInternal(calendar, wd.isWorking, wd.dayOfWeek);
-			/*var wts:Vector.<WorkShift> = wd.workShifts;
-			dayPeriod.workShifts.splice(0, dayPeriod.workShifts.length);
-			for each (wt in wts)
-			{
-				dayPeriod.workShifts.push(wt);
-			}*/
 			dayPeriod._workShifts = wd.workShifts;
 			return dayPeriod;
-		} // end function
+		}
 
 	}
 }

@@ -1,25 +1,6 @@
 package net.fproject.calendar
 {
-	import org.flexunit.Assert;
-	import org.flexunit.asserts.assertEquals;
 	import org.flexunit.asserts.assertFalse;
-	import flash.events.Event;
-	import flash.events.EventDispatcher;
-	
-	import mx.events.FlexEvent;
-	import mx.resources.IResourceManager;
-	import mx.resources.ResourceManager;
-	
-	import net.fproject.fproject_internal;
-	import net.fproject.utils.DateTimeUtil;
-	import net.fproject.utils.GregorianCalendar;
-	import net.fproject.utils.LoggingUtil;
-	import net.fproject.utils.LruCache;
-	import net.fproject.utils.MessageUtil;
-	import net.fproject.utils.ResourceUtil;
-	import net.fproject.core.Time;
-	import net.fproject.core.TimeRange;
-	import net.fproject.core.TimeUnit;
 
 	/**
 	 * FlexUnit test case class for method<br/>
@@ -59,7 +40,7 @@ package net.fproject.calendar
 		public function testCase001():void
 		{
 			var wsStrings:Array = [new Object()];
-			workcalendar.setDefaultWorkShifts(wsStrings);
+			WorkCalendar.setDefaultWorkShifts(wsStrings);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -81,7 +62,7 @@ package net.fproject.calendar
 		public function testCase002():void
 		{
 			var wsStrings:Array = [];
-			workcalendar.setDefaultWorkShifts(wsStrings);
+			WorkCalendar.setDefaultWorkShifts(wsStrings);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -103,7 +84,7 @@ package net.fproject.calendar
 		public function testCase003():void
 		{
 			var wsStrings:Array = null;
-			workcalendar.setDefaultWorkShifts(wsStrings);
+			WorkCalendar.setDefaultWorkShifts(wsStrings);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!

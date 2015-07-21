@@ -94,7 +94,7 @@ package net.fproject.calendar
 			this._workShifts = new Vector.<WorkShift>;
 			this.isWorking = true;
 			this.dayOfWeek = -1;
-		}// end function
+		}
 				
 		/**
 		 * 
@@ -106,7 +106,7 @@ package net.fproject.calendar
 		public function get workShifts() : Vector.<WorkShift>
 		{
 			return WorkShift.copyWorkShifts(this._workShifts);
-		}// end function
+		}
 		
 		/**
 		 * 
@@ -116,7 +116,7 @@ package net.fproject.calendar
 		public function set workShifts(value:Vector.<WorkShift>) : void
 		{
 			this._workShifts = WorkShift.copyWorkShifts(value);			
-		}// end function
+		}
 		
 		internal static function createWeekDay(p:WeekDayInternal) : WeekDay
 		{
@@ -125,6 +125,6 @@ package net.fproject.calendar
 			wcdow.isWorking = p.isWorking;
 			wcdow.workShifts = p.workShifts;
 			return wcdow;
-		}// end function		
+		}
 	}
 }

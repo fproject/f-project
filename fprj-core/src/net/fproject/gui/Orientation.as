@@ -23,16 +23,16 @@ package net.fproject.gui
         public static function isValid(orientation:String) : Boolean
         {
             return orientation == LTR || orientation == RTL || orientation == TTB || orientation == BTT;
-        }// end function
+        }
 
         public static function isHorizontal(orientation:String) : Boolean
         {
             return orientation == LTR || orientation == RTL;
-        }// end function
+        }
 
         public static function isVertical(orientation:String) : Boolean
         {
             return orientation == TTB || orientation == BTT;
-        }// end function
+        }
     }
 }

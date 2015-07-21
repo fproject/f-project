@@ -60,7 +60,7 @@ package net.fproject.utils
 			var qualifiedClassName:String = getQualifiedClassName(clazz);
 			qualifiedClassName = qualifiedClassName.replace("::", ".");
 			return Log.getLogger(qualifiedClassName);
-		}// end function
+		}
 		
 		/**
 		 * Log a message at the INFO level according to the specified message bundle message and parameters.
@@ -81,7 +81,7 @@ package net.fproject.utils
 			{
 				getLogger(clazz).info(resourceManager.getString(resourceBundle, bundleKey, parameters, locale));
 			}
-		}// end function
+		}
 		
 		/**
 		 * Log a message at the WARN level according to the specified message bundle message and parameters. 
@@ -102,7 +102,7 @@ package net.fproject.utils
 			{
 				getLogger(clazz).warn(resourceManager.getString(resourceBundle, bundleKey, parameters, locale));
 			}
-		}// end function
+		}
 		
 		
 		/**
@@ -119,7 +119,7 @@ package net.fproject.utils
 		{
 			logWarn(clazz, ResourceUtil.FPRJ_CORE, messageNumber, null, 
 				ResourceUtil.FPRJ_CORE_BUNDLE, bundleKey, parameters);
-		}// end function
+		}
 		
 		/**
 		 * Log a message at the ERROR level according to the specified message bundle message and parameters. 
@@ -140,7 +140,7 @@ package net.fproject.utils
 			{
 				getLogger(clazz).error(resourceManager.getString(resourceBundle, bundleKey, parameters, locale));
 			}
-		}// end function
+		}
 		
 		/**
 		 * Log a message at the ERROR level according to the specified message bundle message and parameters.
@@ -157,7 +157,7 @@ package net.fproject.utils
 		{
 			logAndThrowError(clazz, ResourceUtil.FPRJ_CORE, messageNumber, null, 
 				ResourceUtil.FPRJ_CORE_BUNDLE, bundleKey, parameters);
-		}// end function
+		}
 		
 		/**
 		 * Log a message at the DEBUG level according to the specified message bundle message and parameters.
@@ -178,7 +178,7 @@ package net.fproject.utils
 			{
 				getLogger(clazz).debug(resourceManager.getString(resourceBundle, bundleKey, parameters, locale));
 			}
-		}// end function
+		}
 		
 		/**
 		 * Log a message at the FATAL level according to the specified message bundle message and parameters.
@@ -199,7 +199,7 @@ package net.fproject.utils
 			{
 				getLogger(clazz).fatal(resourceManager.getString(resourceBundle, bundleKey, parameters, locale));
 			}
-		}// end function
+		}
 		
 		/**
 		 * Log a message at the specified level according to the specified category, message message and parameters.
@@ -217,7 +217,7 @@ package net.fproject.utils
 			{
 				Log.getLogger(category).log(level, message, parameters);
 			}
-		}// end function
+		}
 		
 		/**
 		 * Log a message at the specified level according to the specified message.
@@ -233,7 +233,7 @@ package net.fproject.utils
 			{
 				getLogger(clazz).log(level, message);
 			}
-		}// end function
+		}
 		
 		private static function isLoggable(level:int) : Boolean
 		{
@@ -273,7 +273,7 @@ package net.fproject.utils
 				}
 			}
 			return false;
-		}// end function
+		}
 		
 		/**
 		 * Log a message at the INFO level by a message from resource bundle.
@@ -300,7 +300,7 @@ package net.fproject.utils
 		{
 			log(clazz, LogEventLevel.INFO, ResourceUtil.getInfo(
 				module, messageNumber, resourceManager, resourceBundle, bundleKey, parameters));
-		}// end function
+		}
 		
 		/**
 		 * <p>Log a message at the WARN level by a message from resource bundle.
@@ -327,7 +327,7 @@ package net.fproject.utils
 		{
 			log(clazz, LogEventLevel.WARN, ResourceUtil.getWarn(
 				module, messageNumber, resourceManager, resourceBundle, bundleKey, parameters));
-		}// end function
+		}
 		
 		/**
 		 * <p>Log a message at the ERROR level by a message from resource bundle, and throw an Error after logging.
@@ -356,6 +356,6 @@ package net.fproject.utils
 				resourceBundle, bundleKey, parameters);
 			log(clazz, LogEventLevel.ERROR, msgUid);
 			throw new Error(msgUid);
-		}// end function
+		}
 	}
 }

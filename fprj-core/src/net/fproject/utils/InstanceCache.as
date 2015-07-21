@@ -35,12 +35,12 @@ package net.fproject.utils
                 this._class = Class(factoryOrClass);
                 this._factory = new ContextualClassFactory(Class(factoryOrClass));
             }
-        }// end function
+        }
 
         public function get count() : int
         {
             return this._instanceCount;
-        }// end function
+        }
 
         public function set count(value:int) : void
         {
@@ -103,12 +103,12 @@ package net.fproject.utils
                 }
             }
             this._instanceCount = value;
-        }// end function
+        }
 
         public function get factory() : IFactory
         {
             return this._factory;
-        }// end function
+        }
 
         public function set factory(value:IFactory) : void
         {
@@ -121,12 +121,12 @@ package net.fproject.utils
             this._factory = value;
             this._class = null;
             this.count = instCnt;
-        }// end function
+        }
 
         public function get format() : TextFormat
         {
             return this._format;
-        }// end function
+        }
 
         public function set format(value:TextFormat) : void
         {
@@ -135,12 +135,12 @@ package net.fproject.utils
             {
                 this.applyFormat(0, this._instances.length);
             }
-        }// end function
+        }
 
         public function get instances() : Array
         {
             return this._instances;
-        }// end function
+        }
 
         public function discard() : void
         {
@@ -165,7 +165,7 @@ package net.fproject.utils
             }
             this._instanceCount = 0;
             this._instances = [];
-        }// end function
+        }
 
         private function applyFormat(from:int, to:int) : void
         {
@@ -175,7 +175,7 @@ package net.fproject.utils
                 instance.setTextFormat(this._format);
                 instance.defaultTextFormat = this._format;
             }
-        }// end function
+        }
 
     }
 }

@@ -77,27 +77,27 @@ package net.fproject.utils
                 }
             }
             return r << 16 | g << 8 | b;
-        }// end function
+        }
 
         public static function uintToRGB(color:uint) : Object
         {
             return {r:(color & 16711680) >> 16, g:(color & 65280) >> 8, b:color & 255};
-        }// end function
+        }
 
 		public static function uintToRGBArray(color:uint) : Array
 		{
 			return [(color & 16711680) >> 16, (color & 65280) >> 8, color & 255];
-		}// end function
+		}
 		
         public static function RGBToUint(color:Object) : uint
         {
             return color.r << 16 | color.g << 8 | color.b;
-        }// end function
+        }
 
 		public static function RGBValuesToUint(r:uint, g:uint, b:uint) : uint
 		{
 			return r << 16 | g << 8 | b;
-		}// end function
+		}
 		
 		public static function uintToHex(color:uint) : String
 		{
@@ -123,6 +123,6 @@ package net.fproject.utils
         {
             color = color | (alpha * 255 & 255) << 24;
             return color;
-        }// end function
+        }
     }
 }

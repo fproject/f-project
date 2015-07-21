@@ -100,6 +100,6 @@ package net.fproject.utils
 				return 1;
 			}
 			return 0;
-		}// end function
+		}
 	}
 }

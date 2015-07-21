@@ -81,7 +81,7 @@ package net.fproject.utils
 				fieldValue = defaultValue;
 			}
 			return fieldValue;
-		}// end function
+		}
 		
 		/**
 		 * Set (insert or replace) a child element to a XML object. 
@@ -134,7 +134,7 @@ package net.fproject.utils
 				else
 					data[field] = value;
 			}
-		}// end function
+		}
 		
 		private static function setFieldValueSkipError(data:Object, field:*, value:*):void
 		{
@@ -168,7 +168,7 @@ package net.fproject.utils
 			}
 			BindingUtils.bindProperty(obj1, prop1, obj2, prop2);
 			BindingUtils.bindProperty(obj2, prop2, obj1, prop1);
-		}// end function
+		}
 		
 		/**
 		 * Coerce to Boolean. 

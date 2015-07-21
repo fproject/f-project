@@ -1601,6 +1601,6 @@ package net.fproject.utils
 				_oldDefaultReferenceTimezoneOffset = _defaultReferenceDate.timezoneOffset;
 			}
 			return _defaultReferenceDate;
-		}// end function
+		}
 	}
 }
