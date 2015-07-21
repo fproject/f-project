@@ -4,6 +4,7 @@ package net.fproject.utils.StringUtil
 	import org.flexunit.asserts.assertNotNull;
 	import net.fproject.utils.StringUtil;
 
+	[ResourceBundle("fprjcore")]
 	/**
 	 * FlexUnit test case class for method<br/>
 	 * <code>public static function set defaultCharacterCompareMethod(value:Function):void</code><br/>
