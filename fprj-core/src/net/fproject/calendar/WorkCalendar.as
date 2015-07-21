@@ -211,8 +211,7 @@ package net.fproject.calendar
 			if (this._baseCalendar != null)
 			{
 				this._baseCalendar.addSubcalendar(this);
-				createPeriods();
-				createWeekdays();
+				createPeriodAndWeekDays();
 			}
 			else
 			{
@@ -349,8 +348,7 @@ package net.fproject.calendar
 					_baseCalendar.addSubcalendar(this);									
 				}
 				
-				createPeriods();
-				createWeekdays();	
+				createPeriodAndWeekDays();
 				
 				this.onChanged();
 			}
@@ -613,8 +611,7 @@ package net.fproject.calendar
 			}
 			if (cal.baseCalendar != this.baseCalendar)
 			{
-				createPeriods();
-				createWeekdays();
+				createPeriodAndWeekDays();
 			}
 			this.onChanged();
 		} // end function
@@ -2383,10 +2380,17 @@ package net.fproject.calendar
 		 */
 		private function onBaseCalendarChanged():void
 		{
-			createPeriods();
-			createWeekdays();
+			createPeriodAndWeekDays();
 			this.onChanged();
 		} // end function
+		
+		private function createPeriodAndWeekDays():void
+		{
+			if(this._baseCalendar == null)
+				return;
+			createPeriods();
+			createWeekdays();
+		}
 		
 		/**
 		 * Create periods for this calendar from base calendar's periods
