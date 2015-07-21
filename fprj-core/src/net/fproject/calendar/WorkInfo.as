@@ -25,7 +25,7 @@ package net.fproject.calendar
 	 * @see PeriodInternal
 	 * @see WeekDayInternal
 	 */
-	internal class PeriodInternalBase
+	internal class WorkInfo
 	{
 		protected var _workCalendar:WorkCalendar;
 		protected var _workShifts:Vector.<WorkShift>;
@@ -48,7 +48,7 @@ package net.fproject.calendar
 		 * will be created.
 		 *
 		 */
-		function PeriodInternalBase(calendar:WorkCalendar, working:Boolean)
+		function WorkInfo(calendar:WorkCalendar, working:Boolean)
 		{
 			this._workCalendar = calendar;
 			this.isWorking = working;
@@ -169,7 +169,7 @@ package net.fproject.calendar
 			}
 			if (t1 > t2)
 			{
-				throw MessageUtil.wrongArgument(PeriodInternalBase,
+				throw MessageUtil.wrongArgument(WorkInfo,
 					"PeriodInternalBase.getTotalWorkBetweenHours", "t1 > t2");
 			}
 			var todStart:Number = DateTimeUtil.fproject_internal::getTimeOfDayInMillis(t1);
@@ -502,7 +502,7 @@ package net.fproject.calendar
 		 * shifts with this period, <code>false</code> if otherwise
 		 *
 		 */
-		internal function compareWorkShifts(p:PeriodInternalBase):Boolean
+		internal function compareWorkShifts(p:WorkInfo):Boolean
 		{
 			return WorkShift.compareWorkShifts(this._workShifts, p._workShifts);
 		}
@@ -512,7 +512,7 @@ package net.fproject.calendar
 		 * @param copy The output destination period.
 		 *
 		 */
-		internal function copyPeriodTo(copy:PeriodInternalBase):void
+		internal function copyPeriodTo(copy:WorkInfo):void
 		{
 			copy._workShifts = WorkShift.copyWorkShifts(this._workShifts);
 			copy.isInherited = this.isInherited;
@@ -526,7 +526,7 @@ package net.fproject.calendar
 		 *
 		 */
 		// Must inherit
-		internal function clone():PeriodInternalBase
+		internal function clone():WorkInfo
 		{
 			throw new Error();
 		}

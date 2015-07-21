@@ -16,7 +16,7 @@ package net.fproject.calendar
 	 * @see PeriodInternalBase
 	 * @see PeriodInternal
 	 */
-	internal class WeekDayInternal extends PeriodInternalBase
+	internal class WeekDayInternal extends WorkInfo
 	{
 		/**
 		 * @copy #dayOfWeek
@@ -54,7 +54,7 @@ package net.fproject.calendar
 		 * @inheritDoc
 		 *
 		 */
-		internal override function clone():PeriodInternalBase
+		internal override function clone():WorkInfo
 		{
 			var period:WeekDayInternal =
 				new WeekDayInternal(_workCalendar, isWorking, this._dayOfWeek);

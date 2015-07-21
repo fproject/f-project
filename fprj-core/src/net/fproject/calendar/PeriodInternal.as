@@ -22,7 +22,7 @@ package net.fproject.calendar
 	 * @see PeriodInternalBase
 	 * @see WeekDayInternal
 	 */
-	internal class PeriodInternal extends PeriodInternalBase
+	internal class PeriodInternal extends WorkInfo
 	{
 		private var _endDate:Date;
 		private var _startDate:Date;
@@ -303,7 +303,7 @@ package net.fproject.calendar
 		 * @inheritDoc
 		 * 
 		 */
-		internal override function clone() : PeriodInternalBase
+		internal override function clone() : WorkInfo
 		{
 			var period:PeriodInternal = new PeriodInternal(_workCalendar, isWorking, _startDate, _endDate);
 			copyPeriodTo(period);

@@ -722,7 +722,7 @@ package net.fproject.calendar
 			
 			if (DateTimeUtil.fproject_internal::areOnSameDay(startTime, endTime))
 			{
-				var calendarPeriodBase:PeriodInternalBase = this.getPeriodAt(startTime);
+				var calendarPeriodBase:WorkInfo = this.getPeriodAt(startTime);
 				/*if (!calendarPeriodBase.isWorking)
 				{
 				return 0;
@@ -812,7 +812,7 @@ package net.fproject.calendar
 		{
 			if (startDate == null || endDate == null || startDate > endDate)
 				return NaN;
-			var p:PeriodInternalBase = this.getPeriodAt(startDate);
+			var p:WorkInfo = this.getPeriodAt(startDate);
 			var n:Number = getTotalWorkAtDay(startDate);
 			
 			if (DateTimeUtil.areOnSameDay(startDate, endDate))
@@ -848,7 +848,7 @@ package net.fproject.calendar
 		 */
 		public function getTotalWorkAtDay(d:Date):Number
 		{
-			var calendarPeriodBase:PeriodInternalBase = this.getPeriodAt(d);
+			var calendarPeriodBase:WorkInfo = this.getPeriodAt(d);
 			return calendarPeriodBase != null ? calendarPeriodBase.getTotalWorkAtDay(d) :
 				0;
 		}
@@ -1749,7 +1749,7 @@ package net.fproject.calendar
 		 */
 		public function isModifiedPeriodAt(date:Date):Boolean
 		{
-			var period:PeriodInternalBase = this.getPeriodAt(date);
+			var period:WorkInfo = this.getPeriodAt(date);
 			return this.isRootCalendar ? (!(period is PeriodInternal)) :
 				(period is PeriodInternal ? (period.isInherited) : (true));
 		}
@@ -1764,7 +1764,7 @@ package net.fproject.calendar
 		 */
 		public function isDefaultWorkingDate(date:Date):Boolean
 		{
-			var period:PeriodInternalBase = this.getPeriodAt(date);
+			var period:WorkInfo = this.getPeriodAt(date);
 			if (!this.isRootCalendar)
 			{
 				return period.isInherited;
@@ -1810,7 +1810,7 @@ package net.fproject.calendar
 		 */
 		public function getWorkShiftsAt(date:Date):Vector.<WorkShift>
 		{
-			var calPeriod:PeriodInternalBase = this.getPeriodAt(date);
+			var calPeriod:WorkInfo = this.getPeriodAt(date);
 			return calPeriod != null && calPeriod.isWorking ?
 				(calPeriod.getClonedWorkShifts()) : (new Vector.<WorkShift>);
 			
@@ -2607,7 +2607,7 @@ package net.fproject.calendar
 		 * @return The PeriodInternalBase object at a time value.
 		 *
 		 */
-		internal function getPeriodAt(time:Date):PeriodInternalBase
+		internal function getPeriodAt(time:Date):WorkInfo
 		{
 			var period:PeriodInternal = this.getInternalPeriodAt(time);
 			return period == null ? this.getWeekDayPeriodAtDow(time.day) : period;
@@ -2826,7 +2826,7 @@ package net.fproject.calendar
 		 * false if otherwise.
 		 *
 		 */
-		internal static function periodHasStandardWorkShifts(p:PeriodInternalBase):Boolean
+		internal static function periodHasStandardWorkShifts(p:WorkInfo):Boolean
 		{
 			var defaultWts:Vector.<WorkShift> = getDefaultWorkShiftsInternal();
 			if (p.workShifts.length != defaultWts.length)
@@ -2912,7 +2912,7 @@ package net.fproject.calendar
 		 */
 		public function getNonWorkingTimesAt(date:Date):Vector.<TimeRange>
 		{
-			var period:PeriodInternalBase = getPeriodAt(date);
+			var period:WorkInfo = getPeriodAt(date);
 			if(period.isWorking)
 				return period.getNonWorkingTimes();
 			else
@@ -3032,7 +3032,7 @@ package net.fproject.calendar
 					|| (sign < 0 && !this.hasPreviousWorkingTime(time)))
 					break;
 				time = sign > 0 ? DateTimeUtil.getEndOfNextDay(time) : DateTimeUtil.getStartOfPreviousDay(time);
-				var p:PeriodInternalBase = this.getPeriodAt(time);
+				var p:WorkInfo = this.getPeriodAt(time);
 				if (p.isWorking)
 				{
 					days = days - 1;					

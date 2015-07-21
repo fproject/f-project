@@ -3,9 +3,8 @@
   <includeClasses>
     <classEntry path="net.fproject.calendar.Period"/>
     <classEntry path="net.fproject.calendar.PeriodInternal"/>
-    <classEntry path="net.fproject.calendar.PeriodInternalBase"/>
+    <classEntry path="net.fproject.calendar.WorkInfo"/>
     <classEntry path="net.fproject.calendar.WeekDay"/>
-    <classEntry path="net.fproject.calendar.WeekDayInternal"/>
     <classEntry path="net.fproject.calendar.WorkCalendar"/>
     <classEntry path="net.fproject.calendar.WorkCalendarException"/>
     <classEntry path="net.fproject.calendar.WorkShift"/>
