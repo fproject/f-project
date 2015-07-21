@@ -41,6 +41,6 @@ package net.fproject.core
             this.next = null;
 			this.previous = null;
             this.value = value;
-        }// end function
+        }
     }
 }

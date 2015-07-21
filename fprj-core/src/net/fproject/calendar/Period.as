@@ -85,7 +85,7 @@ package net.fproject.calendar
 			super(startTime, endTime);
 			this._workShifts = new Vector.<WorkShift>;
 			this.isWorking = true;
-		}// end function
+		}
 		
 		/**
 		 * 
@@ -97,7 +97,7 @@ package net.fproject.calendar
 		public function get workShifts() : Vector.<WorkShift>
 		{
 			return WorkShift.copyWorkShifts(this._workShifts);
-		}// end function
+		}
 		
 		/**
 		 * 
@@ -107,7 +107,7 @@ package net.fproject.calendar
 		public function set workShifts(value:Vector.<WorkShift>) : void
 		{
 			this._workShifts = WorkShift.copyWorkShifts(value);
-		}// end function
+		}
 		
 		/**
 		 * Gets or sets the end date of the period. 
@@ -116,7 +116,7 @@ package net.fproject.calendar
 		override public function get end() : Date
 		{
 			return _end != null ? new Date(_end.time) : null;
-		}// end function
+		}
 		
 		/**
 		 * 
@@ -126,7 +126,7 @@ package net.fproject.calendar
 		override public function set end(value:Date) : void
 		{
 			this._end = (value != null ? DateTimeUtil.getStartOfDay(value) : null);
-		}// end function
+		}
 		
 		/**
 		 * Gets or sets the start date of the period. 
@@ -135,7 +135,7 @@ package net.fproject.calendar
 		override public function get start() : Date
 		{
 			return _start != null ? new Date(_start.time) : null;
-		}// end function
+		}
 		
 		/**
 		 * 
@@ -146,7 +146,7 @@ package net.fproject.calendar
 		{
 			this._start = (value != null ? DateTimeUtil.getStartOfDay(value) : null);
 			
-		}// end function
+		}
 		
 		/**
 		 * Create a Period object from an PeriodInternal object 
@@ -163,6 +163,6 @@ package net.fproject.calendar
 			period.isWorking = p.isWorking;
 			period.workShifts = p.workShifts;
 			return period;
-		}// end function
+		}
 	}
 }

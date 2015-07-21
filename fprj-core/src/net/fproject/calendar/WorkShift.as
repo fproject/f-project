@@ -53,7 +53,7 @@ package net.fproject.calendar
 		{
 			this.startTime = 0;
 			this.endTime = TimeUnit.DAY.milliseconds;			
-		}// end function
+		}
 		
 		[Transient]
 		/**
@@ -129,7 +129,7 @@ package net.fproject.calendar
 				throw MessageUtil.wrongArgument(
 					WorkShift, "WorkShift.checkWorkingTime", "startTime >= endTime");
 			}
-		}// end function
+		}
 		
 		[Transient]
 		/**
@@ -140,7 +140,7 @@ package net.fproject.calendar
 		fproject_internal function get duration() : Number
 		{
 			return this.endTime - this.startTime;
-		}// end function
+		}
 		
 		/**
 		 * 
@@ -154,7 +154,7 @@ package net.fproject.calendar
 		public function get start() : String
 		{
 			return _start.toString();
-		}// end function
+		}
 		
 		/**
 		 * 
@@ -167,7 +167,7 @@ package net.fproject.calendar
 			if(time == null)
 				throw MessageUtil.wrongArgument(WorkShift, "WorkShift.start", "value");
 			_start = time;
-		}// end function
+		}
 		
 		/**
 		 * Gets or sets a string representation of the end time of the period.
@@ -180,7 +180,7 @@ package net.fproject.calendar
 		public function get end() : String
 		{
 			return _end.toString();
-		}// end function
+		}
 		
 		
 		/**
@@ -194,7 +194,7 @@ package net.fproject.calendar
 			if(time == null)
 				throw MessageUtil.wrongArgument(WorkShift, "WorkShift.end", "value");
 			this.endTime = Time.parseTime(value).millisecondsFromMidnight;			
-		}// end function
+		}
 		
 		/**
 		 * Clone the object
@@ -203,7 +203,7 @@ package net.fproject.calendar
 		public function clone() : WorkShift
 		{
 			return create(this.startTime, this.endTime);
-		}// end function
+		}
 		
 		
 		/**
@@ -221,7 +221,7 @@ package net.fproject.calendar
 			shift.endTime = end == 0 ? TimeUnit.DAY.milliseconds : end;
 			shift.validate();
 			return shift;
-		}// end function	
+		}
 		
 		public static function createFromTimeSerials(start:String, end:String):WorkShift
 		{

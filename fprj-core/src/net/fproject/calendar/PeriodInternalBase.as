@@ -57,7 +57,7 @@ package net.fproject.calendar
 			{
 				this._workShifts = WorkShift.copyWorkShifts(calendar.defaultWorkShifts);
 			}
-		} // end function
+		}
 		
 		/**
 		 * The Gregorian Calendar of associated with the work calendar
@@ -67,7 +67,7 @@ package net.fproject.calendar
 		internal function get gregorianCalendar():GregorianCalendar
 		{
 			return this._workCalendar._gregorianCalendar;
-		} // end function
+		}
 		
 		/**
 		 *
@@ -76,7 +76,7 @@ package net.fproject.calendar
 		internal function get workCalendar():WorkCalendar
 		{
 			return this._workCalendar;
-		} // end function
+		}
 		
 		/**
 		 * The work shifts of this period.
@@ -85,7 +85,7 @@ package net.fproject.calendar
 		internal function get workShifts():Vector.<WorkShift>
 		{
 			return this._workShifts;
-		} // end function
+		}
 		
 		/**
 		 *
@@ -94,7 +94,7 @@ package net.fproject.calendar
 		internal function getClonedWorkShifts():Vector.<WorkShift>
 		{
 			return WorkShift.copyWorkShifts(this._workShifts);
-		} // end function
+		}
 		
 		/**
 		 *
@@ -110,7 +110,7 @@ package net.fproject.calendar
 			}
 			return false;
 			
-		} // end function
+		}
 		
 		/**
 		 *
@@ -130,7 +130,7 @@ package net.fproject.calendar
 				wrkInOneDay = wrkInOneDay + this._workShifts[i].duration;
 			}
 			return wrkInOneDay;
-		} // end function
+		}
 		
 		/**
 		 * Get total work at a day.
@@ -205,7 +205,7 @@ package net.fproject.calendar
 				}
 			}
 			return n;
-		} // end function
+		}
 		
 		/**
 		 * Add a work duration begin from a given time to this period.
@@ -285,7 +285,7 @@ package net.fproject.calendar
 			//time.time = startTimeOfDay.time + t2;
 			DateTimeUtil.setTimeOfDayInMillis(time, t2);
 			return duration
-		} // end function
+		}
 		
 		/**
 		 * Remove a work duration value from a time belongs to this period.
@@ -372,7 +372,7 @@ package net.fproject.calendar
 			//time.time = dayStart.time + dt;
 			DateTimeUtil.setTimeOfDayInMillis(time, dt);
 			return duration;
-		} // end function
+		}
 		
 		/**
 		 * Get total working time between two specified dates.
@@ -386,7 +386,7 @@ package net.fproject.calendar
 		internal function getTotalWorkBetween(start:Date, end:Date):Number
 		{
 			throw new Error();
-		} // end function
+		}
 		
 		/**
 		 * Compute next WT and fill in to the time that input as from time
@@ -415,7 +415,7 @@ package net.fproject.calendar
 			}
 			time.time = this.gregorianCalendar.dateAddByTimeUnit(d, TimeUnit.DAY, 1, true).time;
 			return false;
-		} // end function
+		}
 		
 		/**
 		 * Compute next non-working time and fill in to the time that input as from time
@@ -455,7 +455,7 @@ package net.fproject.calendar
 			}
 			time.time = this.gregorianCalendar.dateAddByTimeUnit(d, TimeUnit.DAY, 1, true).time;
 			return false;
-		} // end function
+		}
 		
 		/**
 		 * Fill previuos working time in to the time that input as from time
@@ -493,7 +493,7 @@ package net.fproject.calendar
 			}
 			time.time = d.time;
 			return false;
-		} // end function
+		}
 		
 		/**
 		 * Check whether the specified period has the same work shifts with this period or not.
@@ -505,7 +505,7 @@ package net.fproject.calendar
 		internal function compareWorkShifts(p:PeriodInternalBase):Boolean
 		{
 			return WorkShift.compareWorkShifts(this._workShifts, p._workShifts);
-		} // end function
+		}
 		
 		/**
 		 * Copy this period to a destination period.
@@ -517,7 +517,7 @@ package net.fproject.calendar
 			copy._workShifts = WorkShift.copyWorkShifts(this._workShifts);
 			copy.isInherited = this.isInherited;
 			copy.isWorking = this.isWorking;
-		} // end function
+		}
 		
 		/**
 		 *
@@ -529,7 +529,7 @@ package net.fproject.calendar
 		internal function clone():PeriodInternalBase
 		{
 			throw new Error();
-		} // end function
+		}
 		
 		/**
 		 * Copy a vector of work shifts to another.
@@ -576,6 +576,6 @@ package net.fproject.calendar
 			}
 			
 			return v;
-		} // end function
+		}
 	}
 }

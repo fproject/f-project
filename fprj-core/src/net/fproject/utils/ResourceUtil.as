@@ -147,7 +147,7 @@ package net.fproject.utils
 				s = null;
 			}
 			return s == null ? key : s;
-		}// end function
+		}
 		
 		/**
 		 *  Gets the value of a specified resource as an Array of Strings.
@@ -200,7 +200,7 @@ package net.fproject.utils
 				a = null;
 			}
 			return a;
-		}// end function
+		}
 		
 		/**
 		 *  Gets the value of a specified resource as a Boolean.
@@ -244,7 +244,7 @@ package net.fproject.utils
 				b = false;
 			}
 			return b;
-		}// end function
+		}
 		
 		
 		/**
@@ -293,7 +293,7 @@ package net.fproject.utils
 			{				
 			}
 			return image;
-		}// end function
+		}
 			
 		/**
 		 * Get a label, using resource bundle if need 
@@ -340,7 +340,7 @@ package net.fproject.utils
 			}
 				
 			return getString(key, defaultBundle, params);
-		}// end function
+		}
 		
 		private static function evaluateParams(sParams:String):Array
 		{
@@ -372,7 +372,7 @@ package net.fproject.utils
 		{
 			var msgUid:String = getMessageUniqueID(module, messageNumber, "I");
 			return msgUid + ": " + getMessage(resourceManager, resourceBundle, bundleKey + "." + msgUid, parameters);
-		}// end function
+		}
 		
 		/**
 		 * Get a resource string for logging at INFO level according to the specified arguments
@@ -386,7 +386,7 @@ package net.fproject.utils
 		fproject_internal static function getInfo(messageNumber:uint, bundleKey:String, parameters:Array = null) : String
 		{
 			return getInfo(FPRJ_CORE, messageNumber, null, FPRJ_CORE_BUNDLE, bundleKey, parameters);
-		}// end function
+		}
 		
 		/**
 		 * Get a resource string for logging at WARN level according to the specified arguments
@@ -406,7 +406,7 @@ package net.fproject.utils
 		{
 			var msgUid:String = getMessageUniqueID(module, messageNumber, "W");
 			return msgUid + ": " + getMessage(resourceManager, resourceBundle, bundleKey + "." + msgUid, parameters);
-		}// end function
+		}
 		
 		/**
 		 * Get a resource string for logging at WARN level according to the specified arguments
@@ -420,7 +420,7 @@ package net.fproject.utils
 		fproject_internal static function getWarn(messageNumber:uint, bundleKey:String, parameters:Array = null) : String
 		{
 			return getWarn(FPRJ_CORE, messageNumber, null, FPRJ_CORE_BUNDLE, bundleKey, parameters);
-		}// end function
+		}
 		
 		/**
 		 * Get a resource string for logging at ERROR level according to the specified arguments
@@ -441,7 +441,7 @@ package net.fproject.utils
 			var msgUid:String = getMessageUniqueID(module, messageNumber, "E");
 			return msgUid + ": " + getMessage(resourceManager, resourceBundle, bundleKey + "." + msgUid, parameters);
 			
-		}// end function
+		}
 		
 		/**
 		 * Get a resource string for logging at ERROR level according to the specified arguments
@@ -455,7 +455,7 @@ package net.fproject.utils
 		fproject_internal static function getError(messageNumber:uint, bundleKey:String, parameters:Array = null) : String
 		{
 			return getError(FPRJ_CORE, messageNumber, null, FPRJ_CORE_BUNDLE, bundleKey, parameters);
-		}// end function
+		}
 		
 		private static function getMessage(resourceManager:IResourceManager, resourceBundle:String, 
 										   bundleKey:String, parameters:Array = null) : String
@@ -463,12 +463,12 @@ package net.fproject.utils
 			if (resourceManager == null)
 				resourceManager = ResourceManager.getInstance();
 			return resourceManager.getString(resourceBundle, bundleKey, parameters);
-		}// end function
+		}
 		
 		private static function getMessageUniqueID(module:String, messageNumber:uint, type:String) : String
 		{
 			return module + paddingZero(messageNumber) + type;
-		}// end function
+		}
 		
 		private static function paddingZero(messageNumber:uint) : String
 		{
@@ -476,7 +476,7 @@ package net.fproject.utils
 			while (msgUid.length < 3)
 				msgUid = "0" + msgUid;
 			return msgUid;
-		}// end function
+		}
 		
 		//Example: getLabelParam("bundle='abc', key='cde'")
 		private static function getLabelParam(s:String):String
@@ -491,6 +491,6 @@ package net.fproject.utils
 				s = s.substr(0, s.length - 1);
 			
 			return s;
-		}// end function
+		}
 	}
 }

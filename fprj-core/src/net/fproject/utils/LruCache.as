@@ -30,7 +30,7 @@ package net.fproject.utils
             this._dictionary = new Dictionary(true);
             this._list = new LinkedList();
             this._size = size;
-        }// end function
+        }
 
         public function getData(key:Object) : Object
         {
@@ -42,7 +42,7 @@ package net.fproject.utils
             this._list.removeNode(node);
             this._list.appendNode(node);
             return node.value.value;
-        }// end function
+        }
 
         public function add(key:Object, value:Object) : void
         {
@@ -52,7 +52,7 @@ package net.fproject.utils
                 this._list.removeNode(this._list.first);
             }
             this._dictionary[key] = this._list.append({key:key, value:value});
-        }// end function
+        }
 
     }
 }

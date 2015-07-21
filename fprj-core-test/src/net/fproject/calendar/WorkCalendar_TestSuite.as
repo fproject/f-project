@@ -64,7 +64,6 @@ package net.fproject.calendar
 		public var workcalendarGetDefaultworkshifts:WorkCalendar_get_defaultWorkShifts;
 		public var workcalendarSetDefaultworkshifts:WorkCalendar_set_defaultWorkShifts;
 		public var workcalendarSetdefaultworkshifts:WorkCalendar_setDefaultWorkShifts;
-		public var workcalendarSetdefaultworkshiftsinternal:WorkCalendar_setDefaultWorkShiftsInternal;
 		public var workcalendarGetdefaultworkshiftsinternal:WorkCalendar_getDefaultWorkShiftsInternal;
 		public var workcalendarGetdefaultnonworkingdays:WorkCalendar_getDefaultNonWorkingDays;
 		public var workcalendarPeriodhasstandardworkshifts:WorkCalendar_periodHasStandardWorkShifts;

@@ -23,7 +23,7 @@ package net.fproject.utils
             target.moveTo(x0, y0);
             var context:Object = {drawing:true, index:0, offset:0, styleInited:false};
             drawDashedLineImpl(target, stroke, x0, y0, x1, y1, pattern, context);
-            }// end function
+            }
 
         private static function drawDashedLineImpl(target:Graphics, stroke:IStroke, x0:Number, y0:Number, x1:Number, y1:Number, pattern:Array, context:Object = null) : void
         {
@@ -66,7 +66,7 @@ package net.fproject.utils
                 drawing = !drawing;
                 i = (i + 1) % pattern.length;
             }
-            }// end function
+            }
 
         public static function drawVerticalDottedLine(g:Graphics, x:Number, y0:Number, y1:Number, width:Number = 1) : void
         {
@@ -77,7 +77,7 @@ package net.fproject.utils
                 g.lineTo(x, i + width);
                 i = i + 2 * width;
             }
-            }// end function
+            }
 
         public static function drawHorizontalDottedLine(g:Graphics, x0:Number, x1:Number, y:Number, width:Number = 1) : void
         {
@@ -88,7 +88,7 @@ package net.fproject.utils
                 g.lineTo(i + width, y);
                 i = i + 2 * width;
             }
-		}// end function
+		}
 
     }
 }

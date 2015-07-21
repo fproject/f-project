@@ -114,7 +114,7 @@ package net.fproject.utils
 				return -1;
 			else // if (timeDate > maxDate)
 				return 1;
-		}// end function
+		}
 		
 		/**
 		 * Ensures a time is within a time range. The bounded value
@@ -137,7 +137,7 @@ package net.fproject.utils
 				return maxValue;
 			}
 			return time;
-		}// end function
+		}
 		
 		/**
 		 * Sets a <code>Date</code> to the first instant in the day for this time.
@@ -167,7 +167,7 @@ package net.fproject.utils
 			}
 			
 			return time;
-		}// end function
+		}
 		
 		/**
 		 * Sets a <code>Date</code> to the last instant in the day for this time.          
@@ -195,7 +195,7 @@ package net.fproject.utils
 				}
 			}
 			return time;
-		}// end function
+		}
 		
 		
 		/**
@@ -222,7 +222,7 @@ package net.fproject.utils
 				return new Date(String(value));
 			}
 			return null;
-		}// end function
+		}
 		
 		/**
 		 * Returns the number of milliseconds for the specified parameters  
@@ -238,7 +238,7 @@ package net.fproject.utils
 		{
 			return hours * HOUR_MILLIS + minutes * MINUTE_MILLIS + 
 				seconds * SECOND_MILLIS + milliseconds;
-		}// end function
+		}
 		
 		/**
 		 * Returns the number of milliseconds for the specified date  
@@ -731,32 +731,32 @@ package net.fproject.utils
 		fproject_internal static function getStartOfDay(date:Date) : Date
 		{
 			return new Date(date.fullYear, date.month, date.date, 0, 0, 0, 0);
-		}// end function
+		}
 		
 		fproject_internal static function getEndOfDay(date:Date) : Date
 		{
 			return new Date(date.fullYear, date.month, date.date, 23, 59, 59, 999);
-		}// end function
+		}
 		
 		fproject_internal static function getStartOfNextDay(date:Date) : Date
 		{
 			return new Date(date.fullYear, date.month, (date.date + 1), 0, 0, 0, 0);
-		}// end function
+		}
 		
 		fproject_internal static function getEndOfNextDay(date:Date) : Date
 		{
 			return new Date(date.fullYear, date.month, (date.date + 1), 23, 59, 59, 999);
-		}// end function
+		}
 		
 		fproject_internal static function getStartOfPreviousDay(date:Date) : Date
 		{
 			return new Date(date.fullYear, date.month, (date.date - 1), 0, 0, 0, 0);
-		}// end function
+		}
 		
 		fproject_internal static function getEndOfPreviousDay(date:Date) : Date
 		{
 			return new Date(date.fullYear, date.month, (date.date - 1), 23, 59, 59, 999);
-		}// end function
+		}
 		
 		/*[Deprecated(replacement="getTimeOfDayInMillis")]
 		fproject_internal static function getTimeOfDay(date:Date) : Number
@@ -773,7 +773,7 @@ package net.fproject.utils
 				todMillis = todMillis + TimeUnit.DAY.milliseconds;
 			}
 			return todMillis;
-		}// end function
+		}
 		
 		fproject_internal static function setTimeOfDayInMillis(date:Date, millis:Number) : Date
 		{
@@ -786,12 +786,12 @@ package net.fproject.utils
 				date.time = date.time + (tzo2 - tzo1) * TimeUnit.MINUTE.milliseconds;
 			}
 			return date;
-		}// end function
+		}
 		
 		fproject_internal static function millisecondToDay(millis:Number) : Number
 		{
 			return Math.floor(millis / DAY_MILLIS);
-		}// end function
+		}
 		
 		/*[Deprecated(replacement="millisecondToDay")]
 		fproject_internal static function getDayMilliseconds(ticks:Number) : int
@@ -802,19 +802,19 @@ package net.fproject.utils
 		fproject_internal static function min(date1:Date, date2:Date) : Date
 		{
 			return date1 < date2 ? (date1) : (date2);
-		}// end function
+		}
 		
 		fproject_internal static function max(date1:Date, date2:Date) : Date
 		{
 			return date1 > date2 ? (date1) : (date2);
-		}// end function
+		}
 		
 		fproject_internal static function areOnSameDay(date1:Date, date2:Date) : Boolean
 		{
 			var d:Date = new Date(date1.fullYear, date1.month, date1.date);
 			var d1:Date = new Date(date1.fullYear, date1.month, date1.date, 24);
 			return date2 >= d && date2 <= d1;
-		}// end function
+		}
 		
 		//--------------------------------------------------------------------------
 		//

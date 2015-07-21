@@ -27,7 +27,7 @@ package net.fproject.utils
             }            
             return getMessageUniqueID(resourceName) + ": " + 
 				resourceManager.getString(bundleName, resourceName, parameters);
-        }// end function
+        }
 
         /*public static function log(clazz:Class, level:int, bundleName:String, resourceName:String, 
 								   parameters:Array = null, resourceManager:IResourceManager = null) : String
@@ -43,13 +43,13 @@ package net.fproject.utils
             var msg:String = ResourceUtil.getError(ResourceUtil.FPRJ_CORE, 1, resourceManager,
 				"invalid.argument.message", ResourceUtil.FPRJ_CORE_BUNDLE, [method, argument]);
             return new ArgumentError(msg);
-        }// end function
+        }
 
         private static function getMessageUniqueID(resourceName:String) : String
         {
             var i:int = resourceName.lastIndexOf(".");
             return i != -1 ? resourceName.substr(i + 1) : "";
-        }// end function
+        }
 
     }
 }

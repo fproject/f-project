@@ -195,14 +195,6 @@ package net.fproject.calendar
 		public function WorkCalendar(name:String = CALRENDAR_NAME_DEFAULT,
 									 baseCalendar:WorkCalendar = null)
 		{
-			// NguyenBS 20101102 removed
-			// Any calendar can be a base calendar, so we do
-			// not have to check this.
-			/*if (baseCalendar != null && !baseCalendar.isRootCalendar)
-			{
-			throw MessageUtil.wrongArgument(WorkCalendar, "WorkCalendar.WorkCalendar", "baseCalendar");
-			}*/
-			
 			this._gregorianCalendar = new GregorianCalendar();
 			this._name = name;
 			this._periods = new Vector.<PeriodInternal>();
@@ -218,7 +210,7 @@ package net.fproject.calendar
 				initDefaultWeekDays();
 			}
 			dispatchEvent(new FlexEvent(FlexEvent.INITIALIZE));
-		} // end function
+		}
 		
 		[Transient]
 		/**
@@ -234,7 +226,7 @@ package net.fproject.calendar
 				this._gregorianCalendar = new GregorianCalendar();
 			}
 			return this._gregorianCalendar;
-		} // end function
+		}
 		
 		/**
 		 *
@@ -249,7 +241,7 @@ package net.fproject.calendar
 				this._gregorianCalendar = value;
 				this.onChanged();
 			}
-		} // end function
+		}
 		
 		/**
 		 * The unique ID of this calendar using for serialization/deserialization
@@ -265,7 +257,7 @@ package net.fproject.calendar
 		public function get name():String
 		{
 			return this._name == null ? ("") : (this._name);
-		} // end function
+		}
 		
 		/**
 		 *
@@ -280,7 +272,7 @@ package net.fproject.calendar
 				this._name = value;
 				this.onChanged();
 			}
-		} // end function
+		}
 		
 		/**
 		 *
@@ -295,7 +287,7 @@ package net.fproject.calendar
 		public function get baseCalendar():WorkCalendar
 		{
 			return this._baseCalendar;
-		} // end function
+		}
 		
 		/**
 		 *
@@ -338,13 +330,6 @@ package net.fproject.calendar
 				
 				if (_baseCalendar != null)
 				{
-					/*for each (wdp in _weekDays)
-					{
-						if (wdp.isInherited)
-							_weekDays[wdp.dayOfWeek] =
-								_baseCalendar._weekDays[wdp.dayOfWeek].clone() as
-								WeekDayPeriod;
-					}*/
 					_baseCalendar.addSubcalendar(this);									
 				}
 				
@@ -352,7 +337,7 @@ package net.fproject.calendar
 				
 				this.onChanged();
 			}
-		} // end function
+		}
 		
 		[Transient]
 		/**
@@ -390,7 +375,7 @@ package net.fproject.calendar
 				}
 			}
 			return returnPeriods;
-		} // end function
+		}
 		
 		/**
 		 *
@@ -416,7 +401,7 @@ package net.fproject.calendar
 				}
 			}
 			this.onChanged();
-		} // end function
+		}
 		
 		
 		/**
@@ -520,7 +505,7 @@ package net.fproject.calendar
 				}
 			}
 			return weekDay;
-		} // end function
+		}
 		
 		/**
 		 *
@@ -548,7 +533,7 @@ package net.fproject.calendar
 				}
 			}
 			this.onChanged();
-		} // end function
+		}
 		
 		/**
 		 * Tests if the calendar is the same as another calendar.
@@ -564,7 +549,7 @@ package net.fproject.calendar
 				return false;
 			return DataUtil.equals(obj._baseCalendar, this._baseCalendar) && obj._name == this._name && 
 				sameWorkingDays(obj._weekDays, this._weekDays) && samePeriods(obj._periods, this._periods);
-		} // end function
+		}
 		
 		[Transient]
 		/**
@@ -582,7 +567,7 @@ package net.fproject.calendar
 		public function get isPredefinedCalendar():Boolean
 		{
 			return NIGHT_SHIFT == this || STANDARD == this || TWENTY_FOUR_HOURS == this;
-		} // end function
+		}
 		
 		
 		/**
@@ -614,7 +599,7 @@ package net.fproject.calendar
 				createPeriodAndWeekDays();
 			}
 			this.onChanged();
-		} // end function
+		}
 		
 		
 		/**
@@ -650,7 +635,7 @@ package net.fproject.calendar
 				}
 			}
 			return target;
-		} // end function
+		}
 		
 		/**
 		 * Converts the object to a string representation.
@@ -661,7 +646,7 @@ package net.fproject.calendar
 		{
 			return this.isRootCalendar ? (this.name) :
 				(this.name + " based on " + this.baseCalendar.name);
-		} // end function
+		}
 		
 		[Transient]
 		/**
@@ -676,7 +661,7 @@ package net.fproject.calendar
 		public function get isRootCalendar():Boolean
 		{
 			return this._baseCalendar == null;
-		} // end function
+		}
 		
 		/**
 		 * <p>Get the root work calendar in the inheritance chain of this work calendar.</p>
@@ -691,7 +676,7 @@ package net.fproject.calendar
 				cal = cal.baseCalendar;
 			
 			return cal;
-		} // end function
+		}
 		
 		/**
 		 * <p>Computes the amount of working time between the two specified date-times.
@@ -809,7 +794,7 @@ package net.fproject.calendar
 			//20130429 Added (End)
 			
 			return totalWork;
-		} // end function
+		}
 		
 		/**
 		 * This method get total duration in working days based on this calendar
@@ -1061,7 +1046,7 @@ package net.fproject.calendar
 				this._previousWorkingTimeCache.add(time.time, returnDate.time);
 			}
 			return returnDate;
-		} // end function
+		}
 		
 		/**
 		 * <p>Computes the previous working date and time from the specified date.</p>
@@ -1124,7 +1109,7 @@ package net.fproject.calendar
 			//	time.time = DateTimeUtil.MINIMUM_DATE.time;
 			//}
 			return time;
-		} // end function
+		}
 		
 		/**
 		 * Computes the first working date time of the specified date.
@@ -1184,7 +1169,7 @@ package net.fproject.calendar
 				}
 			}
 			return returnDate;
-		} // end function
+		}
 		
 		
 		/**
@@ -1267,7 +1252,7 @@ package net.fproject.calendar
 			//	time.time = DateTimeUtil.MAXIMUM_DATE.time;
 			//}
 			return time;
-		} // end function
+		}
 		
 		/**
 		 * Computes the next non-working date-time from the specified date.
@@ -1295,7 +1280,7 @@ package net.fproject.calendar
 				this._nextNonWorkingTimeCache.add(time.time, nextNonWtInternal.time);
 			}
 			return nextNonWtInternal;
-		} // end function
+		}
 		
 		/**
 		 * Computes the next non-working date-time from the specified date.
@@ -1338,7 +1323,7 @@ package net.fproject.calendar
 			//	time.time = DateTimeUtil.MAXIMUM_DATE.time;
 			//}
 			return time;
-		} // end function
+		}
 		
 		private function hasWorkingWeekDayInBase() : Boolean
 		{
@@ -1410,7 +1395,7 @@ package net.fproject.calendar
 			//{
 			//}
 			return false;
-		} // end function
+		}
 		
 		/**
 		 * Checks if there is a working time before the specified date.
@@ -1467,7 +1452,7 @@ package net.fproject.calendar
 			{
 			}*/
 			return false;
-		} // end function
+		}
 		
 		/**
 		 * Checks if there is a nonworking period time following the specified date.
@@ -1539,7 +1524,7 @@ package net.fproject.calendar
 			{
 			}*/
 			return false;
-		} // end function
+		}
 		
 		/**
 		 * Resets the specified period to default working/nonworking times.
@@ -1614,7 +1599,7 @@ package net.fproject.calendar
 				}
 			}
 			this.onChanged();
-		} // end function
+		}
 		
 		/**
 		 * Changes the work shifts on the specified period.
@@ -1642,7 +1627,7 @@ package net.fproject.calendar
 			
 			this.addWorkingPeriod(period);
 			this.onChanged();
-		} // end function
+		}
 		
 		/**
 		 * Sets the specified period as a non-working period.
@@ -1657,7 +1642,7 @@ package net.fproject.calendar
 			toDate = DateTimeUtil.getStartOfDay(toDate);
 			this.addNonWorkingPeriod(new PeriodInternal(this, false, fromDate, toDate));
 			this.onChanged();
-		} // end function
+		}
 		
 		/**
 		 * Sets the specified day of week as a non-working day.
@@ -1669,7 +1654,7 @@ package net.fproject.calendar
 			this.assertNotReadOnly();
 			this._weekDays[wd] = new WeekDayInternal(this, false, wd);
 			this.onChanged();
-		} // end function
+		}
 		
 		/**
 		 * Sets the working times for the specified day of the week.
@@ -1696,7 +1681,7 @@ package net.fproject.calendar
 			
 			this._weekDays[wd] = dayPeriod;
 			this.onChanged();
-		} // end function
+		}
 		
 		/**
 		 * Indicates if the specified day of week is a working day.
@@ -1707,7 +1692,7 @@ package net.fproject.calendar
 		public function isWorkingDayOfWeek(wd:int):Boolean
 		{
 			return this.getWeekDayPeriodAtDow(wd).isWorking;
-		} // end function
+		}
 		
 		/**
 		 * Indicates if the specified date is a working date.
@@ -1718,7 +1703,7 @@ package net.fproject.calendar
 		public function isWorkingDate(date:Date):Boolean
 		{
 			return this.getPeriodAt(date).isWorking;
-		} // end function
+		}
 		
 		/**
 		 * Checks if the calendar is modified from its base calendar.<br/>
@@ -1754,7 +1739,7 @@ package net.fproject.calendar
 				}
 			}
 			return false;
-		} // end function
+		}
 		
 		/**
 		 * Indicates if the specified date is in a period modified from the base calendar.
@@ -1767,7 +1752,7 @@ package net.fproject.calendar
 			var period:PeriodInternalBase = this.getPeriodAt(date);
 			return this.isRootCalendar ? (!(period is PeriodInternal)) :
 				(period is PeriodInternal ? (period.isInherited) : (true));
-		} // end function
+		}
 		
 		
 		/**
@@ -1789,7 +1774,7 @@ package net.fproject.calendar
 				return this.isStandardWeekDay(WeekDayInternal(period).dayOfWeek);
 			}
 			return periodHasStandardWorkShifts(period);
-		} // end function
+		}
 		
 		/**
 		 * Indicates if the specified working day of week has default (base calendar) specification.
@@ -1802,7 +1787,7 @@ package net.fproject.calendar
 		{
 			return this.isRootCalendar ? (this.isStandardWeekDay(wd)) :
 				(this.getWeekDayPeriodAtDow(wd).isInherited);
-		} // end function
+		}
 		
 		/**
 		 * Indicates if the specified day of week uses default specification.
@@ -1814,7 +1799,7 @@ package net.fproject.calendar
 		{
 			return this.isRootCalendar ? (this._weekDays[wd].isInherited) :
 				(this._weekDays[wd] == null);
-		} // end function
+		}
 		
 		/**
 		 * Gets the shifts for the specified date.
@@ -1829,7 +1814,7 @@ package net.fproject.calendar
 			return calPeriod != null && calPeriod.isWorking ?
 				(calPeriod.getClonedWorkShifts()) : (new Vector.<WorkShift>);
 			
-		} // end function
+		}
 		
 		/**
 		 * Gets the work shifts for the specified day of week.
@@ -1844,7 +1829,7 @@ package net.fproject.calendar
 			var wdFromWeek:WeekDayInternal = this.getWeekDayPeriodAtDow(wd);
 			return wdFromWeek != null && wdFromWeek.isWorking ?
 				(wdFromWeek.getClonedWorkShifts()) : (new Vector.<WorkShift>);
-		} // end function
+		}
 		
 		/**
 		 * Indicates if the specified date has standard working times.
@@ -1856,7 +1841,7 @@ package net.fproject.calendar
 		public function isStandardWorkingDate(date:Date):Boolean
 		{
 			return periodHasStandardWorkShifts(this.getPeriodAt(date));
-		} // end function
+		}
 		
 		/**
 		 * Indicates if the specified day of week has standard working times.
@@ -1869,7 +1854,7 @@ package net.fproject.calendar
 		public function isStandardWorkingDay(wd:int):Boolean
 		{
 			return periodHasStandardWorkShifts(this.getWeekDayPeriodAtDow(wd));
-		} // end function
+		}
 		
 		/**
 		 * Specifies that the week day uses default specification from the base calendar.
@@ -1885,7 +1870,7 @@ package net.fproject.calendar
 					this.isRootCalendar ? (this.createDefaultWeekDay(wd)) : (null);
 				this.onChanged();
 			}
-		} // end function
+		}
 		
 		/**
 		 * Create a default working day for a weekday
@@ -1900,7 +1885,7 @@ package net.fproject.calendar
 			var period:WeekDayInternal = new WeekDayInternal(this, isWorkingDay, wd);
 			period.isInherited = true;
 			return period;
-		} // end function
+		}
 		
 		/**
 		 * Create default working day for all week days of this calendar.
@@ -1931,7 +1916,7 @@ package net.fproject.calendar
 			{
 				this._subCalendars.splice(idx, 1);
 			}
-		} // end function
+		}
 		
 		/**
 		 * Add a sub calendar to sub calendars collection.
@@ -1949,7 +1934,7 @@ package net.fproject.calendar
 				this._subCalendars = new Vector.<WorkCalendar>;
 			}
 			this._subCalendars.push(cal);
-		} // end function
+		}
 		
 		/**
 		 * Add a non-working period to this calendar.
@@ -2065,7 +2050,7 @@ package net.fproject.calendar
 					this._periods.push(period);
 				}
 			}
-		} // end function
+		}
 		
 		/**
 		 * Add a working period to <code>periods</code> vector.<br/><br/>
@@ -2185,7 +2170,7 @@ package net.fproject.calendar
 					this._periods.push(period);
 				}
 			}
-		} // end function
+		}
 		
 		/**
 		 * Get total standard work beetween two date-times.
@@ -2206,7 +2191,7 @@ package net.fproject.calendar
 			else
 				workBeetween = stdWorkBetweenDiffDates(start, end);
 			return workBeetween;
-		} // end function
+		}
 		
 		private function stdWorkBetweenDiffDates(start:Date, end:Date) : Number
 		{			
@@ -2239,7 +2224,7 @@ package net.fproject.calendar
 				work = work + wdp.getTotalWorkBetween(d, end);
 			}
 			return work;
-		}// end function
+		}
 		
 		/**
 		 * The total work of this calendar in one week based on weekday periods.
@@ -2254,7 +2239,7 @@ package net.fproject.calendar
 					workCount + this.getWeekDayPeriodAtDow(idx).totalWorkInOneDay;
 			}
 			return workCount;
-		} // end function
+		}
 		
 		/**
 		 * The average work of this calendar in one week based on weekday's working periods.
@@ -2292,7 +2277,7 @@ package net.fproject.calendar
 				}
 			}
 			return null;
-		} // end function
+		}
 		
 		/**
 		 *
@@ -2317,7 +2302,7 @@ package net.fproject.calendar
 				len--;
 			}
 			return null;
-		} // end function
+		}
 		
 		/**
 		 * Check if a day of week is standard<br/>
@@ -2333,7 +2318,7 @@ package net.fproject.calendar
 				getDefaultNonWorkingDays().indexOf(dayOfWeek) != -1;
 			return isNonWorkingDay ? (!dayPeriod.isWorking) :
 				(dayPeriod.isWorking ? periodHasStandardWorkShifts(dayPeriod) : false);
-		} // end function
+		}
 		
 		/**
 		 *
@@ -2371,7 +2356,7 @@ package net.fproject.calendar
 			}
 			
 			dispatchEvent(new Event(Event.CHANGE));
-		} // end function
+		}
 		
 		/**
 		 *
@@ -2382,7 +2367,7 @@ package net.fproject.calendar
 		{
 			createPeriodAndWeekDays();
 			this.onChanged();
-		} // end function
+		}
 		
 		private function createPeriodAndWeekDays():void
 		{
@@ -2442,7 +2427,7 @@ package net.fproject.calendar
 			{
 				this._disableEvents = false;
 			}
-		} // end function
+		}
 		
 		/**
 		 * Create week days for this calendar from base calendar's week days
@@ -2484,7 +2469,7 @@ package net.fproject.calendar
 			{
 				this._disableEvents = false;
 			}
-		} // end function
+		}
 		
 		/**
 		 *
@@ -2495,14 +2480,11 @@ package net.fproject.calendar
 		{
 			if (this.isPredefinedCalendar)
 			{
-				/*throw new Error(MessageUtil.log(WorkCalendar, LogEventLevel.ERROR,
-					ResourceUtil.PROJECT_GANTT_BUNDLE,
-					MessageUtil.CANNOT_MODIFY_READONLY_CALENDAR_MESSAGE));*/
 				LoggingUtil.logAndThrowError(WorkCalendar, ResourceUtil.FPRJ_UTILITIES, 2, null, 
 					ResourceUtil.FPRJ_UTILS_BUNDLE, "cannot.modify.readonly.calendar.message");					
 				
 			}
-		} // end function
+		}
 		
 		/**
 		 *
@@ -2512,7 +2494,7 @@ package net.fproject.calendar
 		private function getWeekDayPeriodAt(time:Date):WeekDayInternal
 		{
 			return this.getWeekDayPeriodAtDow(time.day);
-		} // end function
+		}
 		
 		/**
 		 *
@@ -2535,7 +2517,7 @@ package net.fproject.calendar
 			{
 				return this.getWeekDayPeriodAtDow(time.day);
 			}
-		} // end function
+		}
 		
 		/**
 		 *
@@ -2552,7 +2534,7 @@ package net.fproject.calendar
 				dayPeriod = cal._weekDays[dow];
 			}
 			return dayPeriod;
-		} // end function
+		}
 		
 		/**
 		 *
@@ -2584,7 +2566,7 @@ package net.fproject.calendar
 				}
 			}
 			return null;
-		} // end function
+		}
 		
 		/**
 		 *
@@ -2617,7 +2599,7 @@ package net.fproject.calendar
 				}
 			}
 			return null;
-		} // end function
+		}
 		
 		/**
 		 * Get the PeriodInternalBase object at a time value.
@@ -2629,7 +2611,7 @@ package net.fproject.calendar
 		{
 			var period:PeriodInternal = this.getInternalPeriodAt(time);
 			return period == null ? this.getWeekDayPeriodAtDow(time.day) : period;
-		} // end function
+		}
 		
 		/**
 		 * Gets/sets default work shifts for the calendar.
@@ -2646,7 +2628,7 @@ package net.fproject.calendar
 		public function get defaultWorkShifts():Vector.<WorkShift>
 		{
 			return getDefaultWorkShiftsInternal();
-		} // end function
+		}
 		
 		/**
 		 *
@@ -2679,17 +2661,7 @@ package net.fproject.calendar
 		 * the length is not an even number, the <code>defaultWorkShifts</code>
 		 * will be set to <code>{08:00-12:00, 13:00-17:00}</code>
 		 */
-		public function setDefaultWorkShifts(wsStrings:Array):void
-		{
-			setDefaultWorkShiftsInternal(wsStrings);
-		}
-		
-		/**
-		 *
-		 * @copy #setDefaultWorkShifts()
-		 *
-		 */
-		internal static function setDefaultWorkShiftsInternal(wsStrings:Array):void
+		public static function setDefaultWorkShifts(wsStrings:Array):void
 		{
 			_defaultWorkShifts = new Vector.<WorkShift>();
 			if (wsStrings == null || wsStrings.length < 2 || wsStrings.length % 2 != 0)
@@ -2711,8 +2683,7 @@ package net.fproject.calendar
 					i = i + 2;
 				}
 			}
-			
-		} // end function
+		}
 		
 		/**
 		 *
@@ -2726,10 +2697,10 @@ package net.fproject.calendar
 				var defaultWorkingTimesArr:Array =
 					ResourceUtil.getStringArray("default.workshifts");
 				//"08:30,12:00,13:00,17:30".split(",");
-				setDefaultWorkShiftsInternal(defaultWorkingTimesArr);
+				setDefaultWorkShifts(defaultWorkingTimesArr);
 			}
 			return _defaultWorkShifts;
-		} // end function
+		}
 		
 		/**
 		 *
@@ -2760,7 +2731,7 @@ package net.fproject.calendar
 				}
 			}
 			return _defaultNonWorkingDays;
-		} // end function
+		}
 		
 		/**
 		 *
@@ -2770,7 +2741,7 @@ package net.fproject.calendar
 		private static function createStandardCalendar():WorkCalendar
 		{
 			return new WorkCalendar(CALRENDAR_NAME_STANDARD);
-		} // end function
+		}
 		
 		/**
 		 *
@@ -2788,7 +2759,7 @@ package net.fproject.calendar
 				workCalendar.setWeekDayWorkShifts(i, workingTimes);
 			}
 			return workCalendar;
-		} // end function
+		}
 		
 		/**
 		 *
@@ -2818,7 +2789,7 @@ package net.fproject.calendar
 			workCalendar.setWeekDayWorkShifts(WeekDay.SATURDAY, wts);
 			
 			return workCalendar;
-		} // end function
+		}
 		
 		/**
 		 *
@@ -2846,7 +2817,7 @@ package net.fproject.calendar
 				}
 				timeIdx++;
 			}
-		} // end function
+		}
 		
 		/**
 		 * Check if all work shifts of a period are the standard working time.
@@ -2872,7 +2843,7 @@ package net.fproject.calendar
 				}
 			}
 			return true;
-		} // end function
+		}
 		
 		/**
 		 * Check if the two vectors of WeekDayPeriod are the same.
@@ -2906,7 +2877,7 @@ package net.fproject.calendar
 				dayIdx++;
 			}
 			return true;
-		} // end function
+		}
 		
 		/**
 		 * Check if the two vectors of periods are the same.
@@ -2930,7 +2901,7 @@ package net.fproject.calendar
 				}
 			}
 			return true;
-		} // end function
+		}
 		
 		/**
 		 * Gets the non-working times for the specified date.
@@ -3007,7 +2978,7 @@ package net.fproject.calendar
 				}
 			}
 			return time;
-		}// end function
+		}
 		//20130502 Added (End)
 		
 		//20130702 Added (Start)
@@ -3084,7 +3055,7 @@ package net.fproject.calendar
 			}
 			
 			return time;
-		}// end function
+		}
 		//20130702 Added (End)
 		
 		//20130516 Added (Start) : May Migration
@@ -3146,7 +3117,7 @@ package net.fproject.calendar
 				}
 			}
 			return time;
-		}// end function
+		}
 		
 		/**
 		 * <p>
@@ -3195,7 +3166,7 @@ package net.fproject.calendar
 				}
 			}
 			return 0;
-		}// end function
+		}
 		
 		/**
 		 * 
@@ -3219,7 +3190,7 @@ package net.fproject.calendar
 				}
 			}
 			return n;
-		}// end function
+		}
 		
 		//20130516 Added (End)
 	}

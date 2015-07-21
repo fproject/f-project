@@ -29,7 +29,7 @@ package net.fproject.gui
         {
             this._owner = owner;
             this._data = data;
-        }// end function
+        }
 
         /**
 		 * The <code>IUIComponent</code> instance that is in charge of rendering 
@@ -38,7 +38,7 @@ package net.fproject.gui
 		public function get owner() : IUIComponent
         {
             return this._owner;
-        }// end function
+        }
 				
 		/**
 		 * The raw data coming from the <code>dataProvider</code>.
@@ -47,7 +47,7 @@ package net.fproject.gui
         public function get data() : Object
         {
             return this._data;
-        }// end function
+        }
 		
 		public function set data(value:Object):void
 		{
@@ -83,7 +83,7 @@ package net.fproject.gui
         public function getFieldValue(field:Object, defaultValue:Object = null, fieldFunction:Function = null) : Object
         {
             return DataUtil.getFieldValue(this._data, field, defaultValue, fieldFunction);
-        }// end function
+        }
 
     }
 }
