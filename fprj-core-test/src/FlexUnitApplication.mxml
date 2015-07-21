@@ -9,14 +9,17 @@
 			   minWidth="955" minHeight="600" creationComplete="onCreationComplete()">
 	<fx:Script>
 		<![CDATA[
-			import net.fproject.active.ActiveService_testCases;
+			import net.fproject.di.Injector_TestSuite;
+			import net.fproject.utils.DateTimeUtil.DateTimeUtil_parseStandardDate;
 			
 			import org.flexunit.runner.Request;
 			
 			public function currentRunTestSuite():Array
 			{
 				var testsToRun:Array = new Array();
-				testsToRun.push(Request.methods(ActiveService_testCases,["testCase202"]));
+				testsToRun.push(net.fproject.di.Injector_TestSuite);
+				
+				testsToRun.push(Request.methods(DateTimeUtil_parseStandardDate,["testCase001"]));
 				return testsToRun;
 			}
 			

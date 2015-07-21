@@ -9,6 +9,7 @@ package net.fproject.utils.StringUtil
 	import org.flexunit.async.Async;
 	import net.fproject.utils.StringUtil;
 	
+	[ResourceBundle("fprjcore")]
 	/**
 	 * FlexUnit test case class for method<br/>
 	 * <code>public static function localeEquals(s1:String, s2:String, characterCompareMethod:Function = null):Boolean</code><br/>
