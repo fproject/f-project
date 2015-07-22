@@ -55,7 +55,7 @@ package net.fproject.calendar
 		 */
 		public function testCase001():void
 		{
-			var p:PeriodInternalBase = new PeriodInternalBase(WorkCalendar.STANDARD,true);
+			var p:WorkInfo = new WorkInfo(WorkCalendar.STANDARD,true);
 			var returnTestValue:Boolean = WorkCalendar.periodHasStandardWorkShifts(p);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
@@ -77,7 +77,7 @@ package net.fproject.calendar
 		 */
 		public function testCase002():void
 		{
-			var p:PeriodInternalBase = null;
+			var p:WorkInfo = null;
 			var returnTestValue:Boolean = WorkCalendar.periodHasStandardWorkShifts(p);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 

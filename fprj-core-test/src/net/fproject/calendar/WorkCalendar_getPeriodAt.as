@@ -59,7 +59,7 @@ package net.fproject.calendar
 		public function testCase001():void
 		{
 			var time:Date = new Date();
-			var returnTestValue:PeriodInternalBase = workcalendar.getPeriodAt(time);
+			var returnTestValue:WorkInfo = workcalendar.getPeriodAt(time);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -81,7 +81,7 @@ package net.fproject.calendar
 		public function testCase002():void
 		{
 			var time:Date = null;
-			var returnTestValue:PeriodInternalBase = workcalendar.getPeriodAt(time);
+			var returnTestValue:WorkInfo = workcalendar.getPeriodAt(time);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
