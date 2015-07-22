@@ -223,7 +223,15 @@ package net.fproject.calendar
 			return shift;
 		}
 		
-		public static function createFromTimeSerials(start:String, end:String):WorkShift
+		/**
+		 * Create a workshift from time serial strings, for example:
+		 * <pre>ws = WorkShift.fromTimeSerials('13:00pm', '8:00pm')</pre> 
+		 * @param start the start time serial
+		 * @param end the end time serial
+		 * @return a new instance of WorkShift that contains given input information
+		 * 
+		 */
+		public static function fromTimeSerials(start:String, end:String):WorkShift
 		{
 			var shift:WorkShift = new WorkShift;
 			shift.start = start;
@@ -252,7 +260,7 @@ package net.fproject.calendar
 		 * is <code>null</code>, an empty vector is returned.
 		 *
 		 */
-		public static function copyWorkShifts(shifts:Vector.<WorkShift>) : Vector.<WorkShift>
+		public static function copy(shifts:Vector.<WorkShift>) : Vector.<WorkShift>
 		{					
 			var len:uint = shifts == null? 0 : shifts.length;
 			
@@ -273,7 +281,7 @@ package net.fproject.calendar
 		 * <code>false</code> if otherwise.
 		 *
 		 */
-		public static function compareWorkShifts(shifts1:Vector.<WorkShift>, shifts2:Vector.<WorkShift>):Boolean
+		public static function compare(shifts1:Vector.<WorkShift>, shifts2:Vector.<WorkShift>):Boolean
 		{
 			if (shifts1 == shifts2)
 				return true;

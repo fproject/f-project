@@ -371,7 +371,7 @@ package net.fproject.calendar
 			{
 				if (!period.isInherited)
 				{
-					returnPeriods.push(Period.createPeriod(period));
+					returnPeriods.push(Period.fromPeriodInternal(period));
 				}
 			}
 			return returnPeriods;
@@ -389,7 +389,7 @@ package net.fproject.calendar
 			for each (var workCalendarPeriod:Period in value)
 			{
 				var period:PeriodInternal =
-					PeriodInternal.create(this, workCalendarPeriod);
+					PeriodInternal.fromCalendarPeriod(this, workCalendarPeriod);
 				if (workCalendarPeriod.isWorking)
 				{
 					checkWorkShifts(period.workShifts);
@@ -501,7 +501,7 @@ package net.fproject.calendar
 			{
 				if (dayPeriod != null)
 				{
-					weekDay.push(WeekDay.createWeekDay(dayPeriod));
+					weekDay.push(WeekDay.fromWeekDayInternal(dayPeriod));
 				}
 			}
 			return weekDay;
@@ -519,7 +519,7 @@ package net.fproject.calendar
 			for each (var weekDay:WeekDay in value)
 			{
 				this._weekDays[weekDay.dayOfWeek] =
-					WeekDayInternal.create(this, weekDay);
+					WeekDayInternal.fromCalendarWeekDay(this, weekDay);
 				_weekDays[weekDay.dayOfWeek].isInherited = false;
 			}
 			if (this.isRootCalendar)

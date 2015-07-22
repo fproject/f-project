@@ -96,7 +96,7 @@ package net.fproject.calendar
 		 */
 		public function get workShifts() : Vector.<WorkShift>
 		{
-			return WorkShift.copyWorkShifts(this._workShifts);
+			return WorkShift.copy(this._workShifts);
 		}
 		
 		/**
@@ -106,7 +106,7 @@ package net.fproject.calendar
 		 */
 		public function set workShifts(value:Vector.<WorkShift>) : void
 		{
-			this._workShifts = WorkShift.copyWorkShifts(value);
+			this._workShifts = WorkShift.copy(value);
 		}
 		
 		/**
@@ -155,7 +155,7 @@ package net.fproject.calendar
 		 * @return The created new Period object
 		 * 
 		 */
-		fproject_internal static function createPeriod(p:PeriodInternal) : Period
+		fproject_internal static function fromPeriodInternal(p:PeriodInternal) : Period
 		{
 			var period:Period = new Period;
 			period.start = p.startDate;
