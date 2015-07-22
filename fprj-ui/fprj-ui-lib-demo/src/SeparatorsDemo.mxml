@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:ui="http://f-project.net/xmlns/fprj-ui/2015"
+			   xmlns:mx="library://ns.adobe.com/flex/mx">
+	<s:layout>
+		<s:VerticalLayout/>
+	</s:layout>
+	<s:HGroup>
+		<s:Form>
+			<s:FormHeading label="Primary Stroke:"/>
+			<s:FormItem label="Color:">
+				<mx:ColorPicker id="primaryColorSelect" selectedColor="#000000"/>
+			</s:FormItem>
+			<s:FormItem label="Alpha:">
+				<s:HSlider id="primaryAlphaSelect" 
+						   width="100"
+						   minimum="0" maximum="1" snapInterval="0.05" stepSize="0.05" 
+						   value="0.15"/>
+			</s:FormItem>
+			<s:FormItem label="Thickness:">
+				<s:HSlider id="primaryThicknessSelect" 
+						   width="100"
+						   minimum="0" maximum="10" snapInterval="1" stepSize="1" 
+						   value="1"/>
+			</s:FormItem>
+			
+			<ui:HSeparator width="100%"
+								   paddingBottom="6" paddingTop="6"/>
+			
+			<s:FormHeading label="Secondary Stroke:"/>
+			<s:FormItem label="Color:">
+				<mx:ColorPicker id="secondaryColorSelect" 
+										 selectedColor="#FFFFFF"/>
+			</s:FormItem>
+			<s:FormItem label="Alpha:">
+				<s:HSlider id="secondaryAlphaSelect" 
+						   width="100"
+						   minimum="0" maximum="1" 
+						   snapInterval="0.1" stepSize="0.1" 
+						   value="1"/>
+			</s:FormItem>
+			<s:FormItem label="Thickness:">
+				<s:HSlider id="secondaryThicknessSelect" 
+						   width="100"
+						   minimum="0" maximum="10" 
+						   snapInterval="1" stepSize="1" 
+						   value="1"/>
+			</s:FormItem>
+		</s:Form>
+		
+		<s:Form>
+			<s:FormHeading label="Padding:"/>
+			<s:FormItem label="top:">
+				<s:HSlider id="topPaddingSelect1" 
+						   width="100"
+						   minimum="-10" maximum="50" value="0" />
+			</s:FormItem>
+			<s:FormItem label="right:">
+				<s:HSlider id="rightPaddingSelect1" 
+						   width="100"
+						   minimum="-10" maximum="50" value="20"/>
+			</s:FormItem>
+			<s:FormItem label="bottom:">
+				<s:HSlider id="bottomPaddingSelect1" 
+						   width="100"
+						   minimum="-10" maximum="50" value="0" />
+			</s:FormItem>
+			<s:FormItem label="left:">
+				<s:HSlider id="leftPaddingSelect1" 
+						   width="100"
+						   minimum="-10" maximum="50" value="20" />
+			</s:FormItem>
+		</s:Form>
+	</s:HGroup>
+	
+	<s:BorderContainer horizontalCenter="0" verticalCenter="0"
+					   backgroundColor="{getStyle('contentBackgroundColor')}">
+		<s:HGroup top="20" right="20" bottom="20" left="20" 
+				  verticalAlign="justify"
+				  gap="0">
+			<s:VGroup verticalAlign="middle"
+					  horizontalAlign="justify">
+				<s:Label text="Lorem Ipsum"
+						 fontWeight="bold"/>
+				<s:HGroup verticalAlign="middle">
+					<s:Label width="75" 
+							 text="sit amet"/>
+					<s:TextInput width="100"/>
+				</s:HGroup>
+				<s:HGroup verticalAlign="middle">
+					<s:Label width="75" 
+							 text="consectetur"/>
+					<s:TextInput width="100"/>
+				</s:HGroup>
+				<s:HGroup verticalAlign="middle">
+					<s:Label width="75" 
+							 text="adipisicing"/>
+					<s:TextInput width="100"/>
+				</s:HGroup>
+				<s:HGroup verticalAlign="middle">
+					<s:Label width="75" 
+							 text="sed do"/>
+					<s:TextInput width="100"/>
+				</s:HGroup>
+			</s:VGroup>
+			<ui:VSeparator depth="1" 
+								   primaryStrokeColor="{primaryColorSelect.selectedColor}"
+								   primaryStrokeAlpha="{primaryAlphaSelect.value}"
+								   primaryStrokeThickness="{primaryThicknessSelect.value}"
+								   secondaryStrokeAlpha="{secondaryAlphaSelect.value}"
+								   secondaryStrokeColor="{secondaryColorSelect.selectedColor}"
+								   secondaryStrokeThickness="{secondaryThicknessSelect.value}"
+								   paddingTop="{topPaddingSelect1.value}"
+								   paddingRight="{rightPaddingSelect1.value}"
+								   paddingBottom="{bottomPaddingSelect1.value}"
+								   paddingLeft="{leftPaddingSelect1.value}"/>
+			<s:VGroup verticalAlign="middle"
+					  horizontalAlign="justify">
+				<s:Label text="Lorem Ipsum"
+						 fontWeight="bold"/>
+				<s:HGroup verticalAlign="middle">
+					<s:Label width="75" 
+							 text="sit amet"/>
+					<s:TextInput width="100"/>
+				</s:HGroup>
+				<s:HGroup verticalAlign="middle">
+					<s:Label width="75" 
+							 text="consectetur"/>
+					<s:TextInput width="100"/>
+				</s:HGroup>
+				<s:HGroup verticalAlign="middle">
+					<s:Label width="75" 
+							 text="adipisicing"/>
+					<s:TextInput width="100"/>
+				</s:HGroup>
+				<s:HGroup verticalAlign="middle">
+					<s:Label width="75" 
+							 text="sed do"/>
+					<s:TextInput width="100"/>
+				</s:HGroup>
+			</s:VGroup>
+			<ui:VSeparator depth="1" 
+								   primaryStrokeColor="{primaryColorSelect.selectedColor}"
+								   primaryStrokeAlpha="{primaryAlphaSelect.value}"
+								   primaryStrokeThickness="{primaryThicknessSelect.value}"
+								   secondaryStrokeAlpha="{secondaryAlphaSelect.value}"
+								   secondaryStrokeColor="{secondaryColorSelect.selectedColor}"
+								   secondaryStrokeThickness="{secondaryThicknessSelect.value}"
+								   paddingTop="{topPaddingSelect1.value}"
+								   paddingRight="{rightPaddingSelect1.value}"
+								   paddingBottom="{bottomPaddingSelect1.value}"
+								   paddingLeft="{leftPaddingSelect1.value}"/>
+			<s:Label width="200" 
+					 text="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet."/>
+		</s:HGroup>
+	</s:BorderContainer>
+	<ui:HSeparator width="100%" paddingBottom="20" paddingTop="20"/>
+	<s:BorderContainer horizontalCenter="0" verticalCenter="0"
+					   backgroundColor="{getStyle('contentBackgroundColor')}">
+		<s:VGroup top="20" right="20" bottom="20" left="20" 
+				  horizontalAlign="justify"
+				  gap="0">
+			<s:VGroup verticalAlign="middle"
+					  horizontalAlign="justify">
+				<s:Label text="Lorem Ipsum"
+						 fontWeight="bold"/>
+				<s:HGroup verticalAlign="middle">
+					<s:Label width="75" 
+							 text="sit amet"/>
+					<s:TextInput width="100"/>
+				</s:HGroup>
+				<s:HGroup verticalAlign="middle">
+					<s:Label width="75" 
+							 text="consectetur"/>
+					<s:TextInput width="100"/>
+				</s:HGroup>
+			</s:VGroup>
+			<ui:HSeparator depth="1" 
+								   primaryStrokeColor="{primaryColorSelect.selectedColor}"
+								   primaryStrokeAlpha="{primaryAlphaSelect.value}"
+								   primaryStrokeThickness="{primaryThicknessSelect.value}"
+								   secondaryStrokeAlpha="{secondaryAlphaSelect.value}"
+								   secondaryStrokeColor="{secondaryColorSelect.selectedColor}"
+								   secondaryStrokeThickness="{secondaryThicknessSelect.value}"
+								   paddingTop="{topPaddingSelect1.value}"
+								   paddingRight="{rightPaddingSelect1.value}"
+								   paddingBottom="{bottomPaddingSelect1.value}"
+								   paddingLeft="{leftPaddingSelect1.value}"/>
+			<s:VGroup verticalAlign="middle"
+					  horizontalAlign="justify">
+				<s:Label text="Lorem Ipsum"
+						 fontWeight="bold"/>
+				<s:HGroup verticalAlign="middle">
+					<s:Label width="75" 
+							 text="sit amet"/>
+					<s:TextInput width="100"/>
+				</s:HGroup>
+				<s:HGroup verticalAlign="middle">
+					<s:Label width="75" 
+							 text="consectetur"/>
+					<s:TextInput width="100"/>
+				</s:HGroup>
+			</s:VGroup>
+			<ui:HSeparator depth="1" 
+								   primaryStrokeColor="{primaryColorSelect.selectedColor}"
+								   primaryStrokeAlpha="{primaryAlphaSelect.value}"
+								   primaryStrokeThickness="{primaryThicknessSelect.value}"
+								   secondaryStrokeAlpha="{secondaryAlphaSelect.value}"
+								   secondaryStrokeColor="{secondaryColorSelect.selectedColor}"
+								   secondaryStrokeThickness="{secondaryThicknessSelect.value}"
+								   paddingTop="{topPaddingSelect1.value}"
+								   paddingRight="{rightPaddingSelect1.value}"
+								   paddingBottom="{bottomPaddingSelect1.value}"
+								   paddingLeft="{leftPaddingSelect1.value}"/>
+			<s:Label width="200" 
+					 text="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor."/>
+		</s:VGroup>
+	</s:BorderContainer>
+</s:Application>
