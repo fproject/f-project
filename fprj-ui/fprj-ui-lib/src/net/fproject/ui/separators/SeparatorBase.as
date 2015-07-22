@@ -1,6 +1,6 @@
 package net.fproject.ui.separators
 {
-	import spark.components.Group;
+	import mx.core.UIComponent;
 	
 	 /**
 	 * Bottom padding to apply below the strokes.
@@ -74,7 +74,7 @@ package net.fproject.ui.separators
 	 * 
 	 * @author Bui Sy Nguyen
 	 */
-	public class SeparatorBase extends Group
+	public class SeparatorBase extends UIComponent
 	{
 		
 		protected var stylesDirty:Boolean;
