@@ -119,7 +119,7 @@ package net.fproject.calendar
 			{
 				case DAILY:
 					_periods = new Vector.<PeriodInternal>();
-					_periods.push(PeriodInternal.create(calendar,this));
+					_periods.push(PeriodInternal.fromCalendarPeriod(calendar,this));
 					break;
 				case WEEKLY:
 					_periods = createWeeklyPeriods(calendar);

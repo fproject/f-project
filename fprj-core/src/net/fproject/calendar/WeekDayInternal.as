@@ -93,7 +93,7 @@ package net.fproject.calendar
 		 * @return An instance of WeekDayInternal from the specified WeekDay object.
 		 * 
 		 */
-		internal static function create(calendar:WorkCalendar, wd:WeekDay):WeekDayInternal
+		internal static function fromCalendarWeekDay(calendar:WorkCalendar, wd:WeekDay):WeekDayInternal
 		{
 			var wt:WorkShift = null;
 			var dayPeriod:WeekDayInternal =

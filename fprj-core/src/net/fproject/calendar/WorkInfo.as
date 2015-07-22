@@ -55,7 +55,7 @@ package net.fproject.calendar
 			this._workShifts = new Vector.<WorkShift>();
 			if (working)
 			{
-				this._workShifts = WorkShift.copyWorkShifts(calendar.defaultWorkShifts);
+				this._workShifts = WorkShift.copy(calendar.defaultWorkShifts);
 			}
 		}
 		
@@ -93,7 +93,7 @@ package net.fproject.calendar
 		 */
 		internal function getClonedWorkShifts():Vector.<WorkShift>
 		{
-			return WorkShift.copyWorkShifts(this._workShifts);
+			return WorkShift.copy(this._workShifts);
 		}
 		
 		/**
@@ -504,7 +504,7 @@ package net.fproject.calendar
 		 */
 		internal function compareWorkShifts(p:WorkInfo):Boolean
 		{
-			return WorkShift.compareWorkShifts(this._workShifts, p._workShifts);
+			return WorkShift.compare(this._workShifts, p._workShifts);
 		}
 		
 		/**
@@ -514,7 +514,7 @@ package net.fproject.calendar
 		 */
 		internal function copyPeriodTo(copy:WorkInfo):void
 		{
-			copy._workShifts = WorkShift.copyWorkShifts(this._workShifts);
+			copy._workShifts = WorkShift.copy(this._workShifts);
 			copy.isInherited = this.isInherited;
 			copy.isWorking = this.isWorking;
 		}

@@ -54,7 +54,7 @@ package net.fproject.calendar
 			
 			if (working && workShifts != null)
 			{
-				this._workShifts = WorkShift.copyWorkShifts(workShifts);
+				this._workShifts = WorkShift.copy(workShifts);
 			}
 			
 		}
@@ -331,7 +331,7 @@ package net.fproject.calendar
 		 * @return The created new Period object
 		 * 
 		 */
-		internal static function create(calendar:WorkCalendar, period:Period) : PeriodInternal
+		internal static function fromCalendarPeriod(calendar:WorkCalendar, period:Period) : PeriodInternal
 		{	
 			var p:PeriodInternal = new PeriodInternal(
 				calendar, period.isWorking, period.start, period.end);
