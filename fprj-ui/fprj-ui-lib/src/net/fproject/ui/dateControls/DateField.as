@@ -128,6 +128,18 @@ package net.fproject.ui.dateControls
 			}
 		}
 		
+		private var _editable:String;
+
+		public function get editable():String
+		{
+			return _editable;
+		}
+
+		public function set editable(value:String):void
+		{
+			_editable = value;
+		}
+		
 		/**
 		 *  @private
 		 */
