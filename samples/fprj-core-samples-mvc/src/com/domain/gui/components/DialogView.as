@@ -9,9 +9,9 @@ package com.domain.gui.components
 	import mx.utils.StringUtil;
 	
 	import spark.components.DataGrid;
+	import spark.components.DropDownList;
 	import spark.components.TextArea;
 	
-	import net.fproject.active.ActiveDataProvider;
 	import net.fproject.active.PaginationResult;
 	
 	[EventHandling(event="initialize",handler="view_initialize")]//Event handling of class instance
@@ -22,18 +22,22 @@ package com.domain.gui.components
 		public var theTextArea:TextArea;
 		
 		[SkinPart(required="true")]
-		[PropertyBinding(dataProvider="gridDataProvider@")]
+		[PropertyBinding(dataProvider="model.userDataProvider@", labelField="'username'")]
+		[PropertyBinding(selectedItem='model.user@')]
+		public var theDropDown:DropDownList;
+		
+		[SkinPart(required="true")]
+		[PropertyBinding(dataProvider="model.userDataProvider@")]
 		public var theSparkDataGrid:DataGrid;
 		
 		[Bindable]
-		public var gridDataProvider:ActiveDataProvider;
+		public var model:DialogViewModel;
 		
 		public function view_initialize(e:Event):void
 		{
 			var criteria:Object = {condition:"username LIKE :name",params:{":name":"%demo_no_%"}};
 			UserService.instance.find(criteria, 2, 5, "-name", userFindCompleteHandler);
-			
-			gridDataProvider = UserService.instance.createDataProvider(criteria) as ActiveDataProvider;
+			model.init();
 		}
 		
 		public function view_close(e:Event):void

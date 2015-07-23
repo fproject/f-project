@@ -24,6 +24,8 @@ package com.domain.gui.components
 		public function showDialogButton_click(e:Event):void
 		{
 			var dlg:DialogView = new DialogView;
+			dlg.model = new DialogViewModel;
+			
 			PopUpManager.addPopUp(dlg, FlexGlobals.topLevelApplication as DisplayObject);
 			PopUpManager.centerPopUp(dlg);
 		}

@@ -1,6 +1,8 @@
 package com.domain.model
 {
-	public class User
+	import net.fproject.model.LocalUID;
+
+	public class User extends LocalUID
 	{
 		public var id:String;
 		public var username:String;
