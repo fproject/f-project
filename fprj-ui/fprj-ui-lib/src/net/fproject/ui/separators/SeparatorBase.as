@@ -69,8 +69,7 @@ package net.fproject.ui.separators
 	 * <p>Base class for components that display vertical and horizontal separator
 	 * lines.</p>
 	 * <p>The Separator components allow you to provide visually appealing breaks
-	 * between layout elements and alter the spacing between elements without changing
-	 * the gap in the layout.</p>
+	 * between layout elements and alter the spacing between elements.</p>
 	 * 
 	 * @author Bui Sy Nguyen
 	 */

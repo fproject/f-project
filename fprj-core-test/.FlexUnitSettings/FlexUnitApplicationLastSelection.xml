@@ -4,7 +4,7 @@
 <testsuite name="net.fproject.utils.DateTimeUtil:DateTimeUtil_parseStandardDate" type="testcaseclass">
 <testcase name="testCase001" classname="net.fproject.utils.DateTimeUtil:DateTimeUtil_parseStandardDate"/>
 </testsuite>
-<testsuite name="net.fproject.di:Injector_TestSuite" type="testsuiteclass"/>
+<testsuite name="net.fproject.active:ActiveService_TestSuite" type="testsuiteclass"/>
 </testsuite>
 <portNumber value="8765" />
 </testrun>
