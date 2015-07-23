@@ -7,6 +7,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 package net.fproject.active
 {
+	import mx.collections.CursorBookmark;
 	import mx.collections.HierarchicalData;
 	import mx.collections.IHierarchicalData;
 	import mx.collections.IViewCursor;
@@ -283,6 +284,67 @@ package net.fproject.active
 			if(toHierarchicalItemFunction != null)
 				item = toHierarchicalItemFunction(item);
 			this.addChild(parent, item);
+		}
+		
+		public function addItemAt(item:Object, index:int):void
+		{
+			this.addChildAt(null, item, index);
+		}
+		
+		public function getItemAt(index:int, prefetch:int = 0):Object
+		{
+			var cursor:IViewCursor = createCursor();
+			cursor.seek(CursorBookmark.FIRST);
+			var count:int = 0;
+			while(!cursor.afterLast)
+			{
+				if(count == index)
+					return cursor.current;
+				cursor.moveNext();
+				count++;
+			}
+			return null;
+		}
+		
+		public function getItemIndex(item:Object):int
+		{
+			var cursor:IViewCursor = createCursor();
+			cursor.seek(CursorBookmark.FIRST);
+			var index:int = 0;
+			while(!cursor.afterLast)
+			{
+				var equal:Boolean = itemEqualFunction != null ? 
+					itemEqualFunction(cursor.current, item) : cursor.current == item;
+				if(equal)
+					return index;
+				cursor.moveNext();
+				index++;
+			}
+			return -1;
+		}
+		
+		public function removeAll():void
+		{
+			this.source = new HierarchicalData;
+		}
+		
+		public function removeItemAt(index:int):Object
+		{
+			var o:Object = this.getItemAt(index);
+			this.removeChildAt(null, index);
+			return o;
+		}
+		
+		public function setItemAt(item:Object, index:int):Object
+		{
+			if(this.removeChildAt(null, index))
+				addItemAt(item, index);
+			return null;
+		}
+		
+		public function toArray():Array
+		{
+			return null;
 		}
 		
 		/**

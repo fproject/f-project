@@ -10,6 +10,7 @@ package net.fproject.active.supportClasses
 	import flash.events.Event;
 	
 	import mx.collections.CursorBookmark;
+	import mx.collections.ICollectionView;
 	import mx.collections.IViewCursor;
 	import mx.events.FlexEvent;
 	import mx.events.PropertyChangeEvent;
@@ -172,8 +173,11 @@ package net.fproject.active.supportClasses
 		{
 			for each(var o:Object in p.items)
 			{
-				if(!parent.contains(o))
+				var i:int = parent.getItemIndex(o);
+				if(i == -1)
 					parent.addItem(o);
+				else
+					parent.setItemAt(o, i);
 			}
 			parent.setPaginationResult(p);
 		}
@@ -193,7 +197,8 @@ package net.fproject.active.supportClasses
 				if(parent.paginationResult == null || 
 					parent.paginationResult.currentPage != pr.currentPage)
 				{
-					CollectionChangeManager.getInstance().pause(parent);
+					if(parent is ICollectionView)
+						CollectionChangeManager.getInstance().pause(ICollectionView(parent));
 					
 					if(parent.paginationResultHandler != null)
 						parent.paginationResultHandler(pr);
@@ -206,7 +211,8 @@ package net.fproject.active.supportClasses
 					if(parent.hasEventListener(Event.CHANGE))
 						parent.dispatchEvent(new Event(Event.CHANGE));
 					
-					CollectionChangeManager.getInstance().resume(parent);
+					if(parent is ICollectionView)
+						CollectionChangeManager.getInstance().resume(ICollectionView(parent));
 				}
 			}
 		}
