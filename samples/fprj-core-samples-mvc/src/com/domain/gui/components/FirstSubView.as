@@ -1,23 +1,28 @@
 package com.domain.gui.components
 {
 	import com.domain.model.Employee;
+	import com.domain.service.EmployeeService;
 	
 	import flash.events.Event;
 	
-	import mx.collections.ArrayCollection;
-	
 	import spark.components.DropDownList;
 	import spark.components.TextInput;
+	
+	import net.fproject.active.ActiveDataProvider;
 
 	[EventHandling(event="initialize",handler="view_initialize")]//Event handling of class instance
 	public class FirstSubView extends SkinnableViewBase
 	{
 		[Bindable]
-		public var employees:ArrayCollection;
+		public var employees:ActiveDataProvider;
+		
+		[Bindable]
+		public var selectedEmployee:Employee;
 		
 		[SkinPart(required="true")]
-		[PropertyBinding(dataProvider="employees@", labelField="{name}")]//dataProvider: deffered binding, labelField: literal binding
-		[PropertyBinding(hostChain="selectedItem", selectedItem="@phoneTextInput.text@")]//deffered inverse binding with hostChain specified
+		[PropertyBinding(dataProvider="employees@", labelField="'name'")]//dataProvider: deffered binding, labelField: literal binding
+		[PropertyBinding(hostChain="selectedItem", phone="@phoneTextInput.text@")]//deffered inverse binding with hostChain specified
+		[PropertyBinding(selectedItem='selectedEmployee@')]
 		public var dropDownList:DropDownList;
 		
 		[SkinPart(required="true")]
@@ -37,11 +42,8 @@ package com.domain.gui.components
 		
 		public function view_initialize(e:Event):void
 		{
-			this.employees = new ArrayCollection([
-				new Employee({id:1,name:"Peter Pan",age:10,phone:"0123456789"}),
-				new Employee({id:2,name:"Jesus Christ",age:20,phone:"8888888888"}),
-				new Employee({id:3,name:"Robin Hood",age:30,phone:"1111111111"}),
-			]);
+			employees = EmployeeService.instance.createDataProvider({}) as ActiveDataProvider;
+			selectedEmployee = new Employee({id:'1', name:'ABC'});
 		}
 	}
 }

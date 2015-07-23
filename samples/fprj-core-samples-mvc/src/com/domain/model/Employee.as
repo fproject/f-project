@@ -1,6 +1,8 @@
 package com.domain.model
 {
-	public class Employee
+	import net.fproject.model.LocalUID;
+
+	public class Employee extends LocalUID
 	{
 		[Bindable]
 		public var id:String;
