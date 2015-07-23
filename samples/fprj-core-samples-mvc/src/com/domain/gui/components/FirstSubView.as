@@ -43,7 +43,7 @@ package com.domain.gui.components
 		public function view_initialize(e:Event):void
 		{
 			employees = EmployeeService.instance.createDataProvider({}) as ActiveDataProvider;
-			selectedEmployee = new Employee({id:'1', name:'ABC'});
+			selectedEmployee = new Employee({id:'5', name:'ABC'});
 		}
 	}
 }
