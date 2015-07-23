@@ -20,7 +20,9 @@ package com.domain.gui.components
 			var criteria:Object = {condition:"username LIKE :name",params:{":name":"%demo_no_%"}};
 			userDataProvider = UserService.instance.createDataProvider(criteria) as ActiveDataProvider;
 			user = new User();
-			user.id = '2';
+			user.id = '10';
+			user.username = 'Some User';
+			userDataProvider.addItem(user);
 		}
 	}
 }
