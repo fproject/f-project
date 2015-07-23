@@ -1,6 +1,6 @@
 package net.fproject.active
 {
-	import mx.collections.ICollectionView;
+	import mx.collections.IList;
 
 	/**
 	 * IActiveDataProvider interface dedines a common set of methods used for active data providers.
@@ -11,7 +11,7 @@ package net.fproject.active
 	 * @see net.fproject.active.ActiveHierarchicalDataProvider
 	 * 
 	 */
-	public interface IActiveDataProvider extends ICollectionView
+	public interface IActiveDataProvider extends IList
 	{
 		/**
 		 * Set the source data.
@@ -116,14 +116,5 @@ package net.fproject.active
 		 * 
 		 */
 		function fetchNextPage():ActiveCallResponder;
-		
-		/**
-		 *  Adds the specified item to the end of the list.
-		 *  Equivalent to <code>addItemAt(item, length)</code>.
-		 *
-		 *  @param item The item to add.
-		 *  
-		 */
-		function addItem(item:Object):void;
 	}
 }
