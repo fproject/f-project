@@ -468,6 +468,8 @@ package net.fproject.di
 			}
 		}
 		
+		private static const FIELD_TYPE:String = "fieldType";
+		
 		/**
 		 * 
 		 * @private
@@ -504,7 +506,7 @@ package net.fproject.di
 								{
 									var f:Field = t.getField(arg.key);
 									if(f != null)
-										arg['fieldType'] = f.type.fullName;
+										arg[FIELD_TYPE] = f.type.fullName;
 								}
 							}
 							(bindingMeta.args as Array).push(arg);
@@ -712,7 +714,7 @@ package net.fproject.di
 		 */
 		private function bindDirectValue(targetObj:Object, metaArg:Object, container:Object):void
 		{
-			var targetFieldType:String = metaArg.hasOwnProperty('fieldType') ?  metaArg['fieldType'] : null;
+			var targetFieldType:String = metaArg.hasOwnProperty(FIELD_TYPE) ?  metaArg[FIELD_TYPE] : null;
 			if(targetObj != null)
 				targetObj[metaArg.key] = DataUtil.evaluateChainValue(metaArg.value, container, targetFieldType);
 		}
