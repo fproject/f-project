@@ -39,19 +39,19 @@ package net.fproject.di
 		
 		/**
 		 * Instantiate a class using singleton and dependency injection.
-		 * @param clazz The class or interface name to instantiate
+		 * @param abstractor The class, abstract class or interface name to instantiate
 		 * @param constructorArgs The constructor argument list (if any)
 		 * @return The singleton instance
 		 * 
 		 */
-		public static function getInstance(clazz:Class, constructorArgs:*=undefined):Object
+		public static function getInstance(abstractor:Class, constructorArgs:*=undefined):Object
 		{
-			if(implToInstance[clazz] != undefined)
-				return implToInstance[clazz];
+			if(implToInstance[abstractor] != undefined)
+				return implToInstance[abstractor];
 			
-			if(classToImpl[clazz] != undefined)
+			if(classToImpl[abstractor] != undefined)
 			{
-				var impl:Class = classToImpl[clazz];
+				var impl:Class = classToImpl[abstractor];
 				return implToInstance[impl];
 			}
 			
@@ -59,7 +59,7 @@ package net.fproject.di
 			{
 				if(i is Implementation)
 				{
-					if(Implementation(i).abstractor == clazz)
+					if(Implementation(i).abstractor == abstractor)
 					{
 						impl = Implementation(i).impl;
 						break;
@@ -69,7 +69,7 @@ package net.fproject.di
 			
 			if(impl == null)
 			{
-				var clsName:String = getQualifiedClassName(clazz).replace("::",".");
+				var clsName:String = getQualifiedClassName(abstractor).replace("::",".");
 				
 				if(factoryConfig != null)
 				{
@@ -86,21 +86,28 @@ package net.fproject.di
 					}
 				}
 				
-				if(impl == null && (clazz == Object || getQualifiedSuperclassName(clazz) != null))
+				if(impl == null && (abstractor == Object || getQualifiedSuperclassName(abstractor) != null))
 				{
-					impl = clazz;
+					impl = abstractor;
 				}
 			}
 			
 			if(impl != null)
 			{
-				if(constructorArgs != undefined && !(constructorArgs is Array))
+				if(constructorArgs == undefined)
+				{
+					var instance:Object = new impl();
+				}
+				else if(!(constructorArgs is Array))
+				{
 					constructorArgs = [constructorArgs];
-				implToInstance[impl] = ClassUtils.newInstance(impl, constructorArgs);
-				if(impl !== clazz)
-					implToInstance[clazz] == implToInstance[impl];
-				classToImpl[clazz] = impl;
-				return implToInstance[impl];
+					instance = ClassUtils.newInstance(impl, constructorArgs);
+				}
+				implToInstance[impl] = instance;
+				if(impl !== abstractor)
+					implToInstance[abstractor] == instance;
+				classToImpl[abstractor] = impl;
+				return instance;
 			}
 			else
 			{
