@@ -24,9 +24,9 @@ package net.fproject.di
 		 */
 		public var impl:Class;
 		
-		public function Implementation(intf:Class=null, impl:Class=null)
+		public function Implementation(abstractor:Class=null, impl:Class=null)
 		{
-			this.abstractor = intf;
+			this.abstractor = abstractor;
 			this.impl = impl;
 		}
 	}
