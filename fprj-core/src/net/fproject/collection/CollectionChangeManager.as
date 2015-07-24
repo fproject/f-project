@@ -234,7 +234,7 @@ package net.fproject.collection
 						
 						if (items.indexOf(newItem) == -1)
 						{
-							if(newItem.hasOwnProperty('_isInserting'))
+							if(newItem != null && newItem.hasOwnProperty('_isInserting'))
 								newItem._isInserting = true;
 							items.push(newItem);
 						}
@@ -259,7 +259,7 @@ package net.fproject.collection
 				
 				if (items.indexOf(item) == -1)
 				{
-					if(item.hasOwnProperty('_isInserting') && inserting)
+					if(item != null && item.hasOwnProperty('_isInserting') && inserting)
 						item._isInserting = true;
 					items.push(item);
 				}
