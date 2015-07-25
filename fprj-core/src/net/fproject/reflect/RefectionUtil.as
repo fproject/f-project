@@ -5,7 +5,7 @@
 // Copyright © 2015 f-project.net. All Rights Reserved.
 //
 ///////////////////////////////////////////////////////////////////////////////
-package net.fproject.di
+package net.fproject.reflect
 {
 	import org.as3commons.reflect.AbstractMember;
 	import org.as3commons.reflect.Metadata;
@@ -13,12 +13,12 @@ package net.fproject.di
 
 	/**
 	 * 
-	 * Dependency Injection utility class.
+	 * AS3 Refection utility class.
 	 * 
 	 * @author Bui Sy Nguyen
 	 * 
 	 */
-	public class InjectionUtil
+	public class RefectionUtil
 	{
 		
 		/**

@@ -66,7 +66,7 @@
     <classEntry path="net.fproject.service.IAppContextService"/>
     <classEntry path="net.fproject.core.AppContextDataDescriptor"/>
     <classEntry path="net.fproject.service.ServiceBase"/>
-    <classEntry path="net.fproject.di.InjectionUtil"/>
+    <classEntry path="net.fproject.reflect.RefectionUtil"/>
     <classEntry path="net.fproject.di.supportClasses.PropertyBindingHandler"/>
     <classEntry path="net.fproject.gui.component.supportClasses.RslsLoader"/>
     <classEntry path="net.fproject.gui.component.ComponentLoader"/>

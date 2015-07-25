@@ -15,7 +15,7 @@ package net.fproject.di.supportClasses
 	
 	import spark.events.SkinPartEvent;
 	
-	import net.fproject.di.InjectionUtil;
+	import net.fproject.reflect.RefectionUtil;
 	import net.fproject.di.Injector;
 	import net.fproject.utils.StringUtil;
 	
@@ -175,7 +175,7 @@ package net.fproject.di.supportClasses
 			}
 			else
 			{			
-				var meta:Object = InjectionUtil.findMemberMetadataValue(host, property, net.fproject.di.Injector.BINDABLE);
+				var meta:Object = RefectionUtil.findMemberMetadataValue(host, property, net.fproject.di.Injector.BINDABLE);
 				if(meta != null)
 				{
 					evts = new Vector.<String>;
