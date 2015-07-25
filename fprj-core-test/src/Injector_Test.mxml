@@ -10,11 +10,13 @@
 	<fx:Script>
 		<![CDATA[
 			import net.fproject.di.Injector_TestSuite;
+			import net.fproject.reflect.ReflectionUtil_findClassMetadataValue;
 			
 			public function currentRunTestSuite():Array
 			{
 				var testsToRun:Array = new Array();
 				testsToRun.push(Injector_TestSuite);
+				testsToRun.push(net.fproject.reflect.ReflectionUtil_findClassMetadataValue);
 				return testsToRun;
 			}
 			
