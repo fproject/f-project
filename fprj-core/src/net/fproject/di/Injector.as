@@ -28,6 +28,7 @@ package net.fproject.di
 	import org.as3commons.reflect.Metadata;
 	import org.as3commons.reflect.MetadataArgument;
 	import org.as3commons.reflect.Type;
+	import net.fproject.reflect.RefectionUtil;
 	
 	/**
 	 * 
@@ -166,7 +167,7 @@ package net.fproject.di
 			var handlingMemberInfoArr:Array = [];
 			
 			var thisInfo:Object = getMemberEventHandlingInfo(container,
-				{name:THIS, metadata:InjectionUtil.getAllExtendsClassMetadata(type)});
+				{name:THIS, metadata:RefectionUtil.getAllExtendsClassMetadata(type)});
 			
 			if(thisInfo != null)
 			{
@@ -423,7 +424,7 @@ package net.fproject.di
 			var members:Array = type.variables.concat(type.accessors);
 			members = members.concat(type.methods);
 			
-			var containerMember:Object = {name:THIS, metadata:InjectionUtil.getAllExtendsClassMetadata(type)};
+			var containerMember:Object = {name:THIS, metadata:RefectionUtil.getAllExtendsClassMetadata(type)};
 			members.push(containerMember);
 			
 			var additionalMetadataMap:Object = {};
@@ -977,7 +978,7 @@ package net.fproject.di
 			
 			if(!isSkinPart)
 			{
-				var meta:Object = InjectionUtil.findMemberMetadataValue(target,chain[0],'bindable');
+				var meta:Object = RefectionUtil.findMemberMetadataValue(target,chain[0],'bindable');
 				if(meta is String)
 				{
 					if(meta != "propertyChange")
