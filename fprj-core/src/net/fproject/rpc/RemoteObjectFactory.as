@@ -13,7 +13,7 @@ package net.fproject.rpc
 	import mx.messaging.ChannelSet;
 	import mx.messaging.config.ServerConfig;
 	
-	import net.fproject.reflect.RefectionUtil;
+	import net.fproject.reflect.ReflectionUtil;
 	import net.fproject.utils.StringUtil;
 	
 	import org.as3commons.reflect.Metadata;
@@ -74,7 +74,7 @@ package net.fproject.rpc
 			if(nameToRemoteObject[type.fullName] != undefined)
 				return nameToRemoteObject[type.fullName];
 			
-			var meta:Object = RefectionUtil.findClassMetadataValue(type, REMOTE_OBJECT);
+			var meta:Object = ReflectionUtil.findClassMetadataValue(type, REMOTE_OBJECT);
 			if ((meta is Array) && meta.length > 0 && (meta[0] is Metadata))
 				meta = meta[0];
 			if (meta is Metadata)
