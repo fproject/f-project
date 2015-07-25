@@ -20,6 +20,14 @@ package net.fproject.model
 	 */
 	public class HierarchicalItem extends LocalUID
 	{
+		/**
+		 * Constructor 
+		 * 
+		 */
+		public function HierarchicalItem()
+		{
+			_children = new AdvancedArrayCollection();
+		}
 		
 		//--------------------------------------------------------------------------
 		//
@@ -98,7 +106,7 @@ package net.fproject.model
 		/**
 		 * Storage for the children property
 		 */
-		protected var _children:AdvancedArrayCollection = new AdvancedArrayCollection();
+		protected var _children:AdvancedArrayCollection;
 		
 		[Transient]
 		[Bindable("propertyChange")]
@@ -216,6 +224,23 @@ package net.fproject.model
 			}
 			if(list.length > 0)
 				dispatchChildrenChanged();
+		}
+		
+		/**
+		 * Set/reset the <code>source</code> property for <code>children</code> collection.
+		 * 
+		 * This method helps improve performance especially when you want to add a large number of children.
+		 * 
+		 * @param childrenSource the source array.
+		 * 
+		 */
+		public function setChildren(childrenSource:Array):void
+		{
+			for each(var item:HierarchicalItem in childrenSource)
+			{
+				item._parent = this;
+			}
+			_children.source = childrenSource;
 		}
 		
 		/**
