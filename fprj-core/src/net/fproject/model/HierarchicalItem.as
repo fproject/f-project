@@ -231,16 +231,16 @@ package net.fproject.model
 		 * 
 		 * This method helps improve performance especially when you want to add a large number of children.
 		 * 
-		 * @param childrenSource the source array.
+		 * @param source the source array.
 		 * 
 		 */
-		public function setChildren(childrenSource:Array):void
+		public function setChildren(source:Array):void
 		{
-			for each(var item:HierarchicalItem in childrenSource)
+			for each(var item:HierarchicalItem in source)
 			{
 				item._parent = this;
 			}
-			_children.source = childrenSource;
+			_children.source = source;
 		}
 		
 		/**
