@@ -8,6 +8,5 @@ package net.fproject.di
 		public var injectionutilInstantiatemembers:Injector_instantiateMembers;
 		public var injectionutilAttacheventlisteners:Injector_attachEventListeners;
 		public var injectionutilBindproperties:Injector_bindProperties;
-		public var injectionutilFindmembermetadatavalue:InjectionUtil_findClassMetadataValue;
 	}
 }
