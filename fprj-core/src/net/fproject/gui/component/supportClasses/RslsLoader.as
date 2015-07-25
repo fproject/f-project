@@ -19,7 +19,7 @@ package net.fproject.gui.component.supportClasses
 	import mx.utils.StringUtil;
 	
 	import net.fproject.core.AppContext;
-	import net.fproject.reflect.RefectionUtil;
+	import net.fproject.reflect.ReflectionUtil;
 	import net.fproject.event.AppContextEvent;
 	import net.fproject.utils.ApplicationUtil;
 	
@@ -282,7 +282,7 @@ package net.fproject.gui.component.supportClasses
 			var info:Object = metaInfoCache[intface];
 			if(info == null)
 			{
-				var obj:Object = RefectionUtil.findClassMetadataValue(intface, metaArg.metaName);
+				var obj:Object = ReflectionUtil.findClassMetadataValue(intface, metaArg.metaName);
 				if(obj is Array)
 					obj = obj[0];
 				if(obj is Metadata)

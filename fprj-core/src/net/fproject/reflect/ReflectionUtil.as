@@ -18,7 +18,7 @@ package net.fproject.reflect
 	 * @author Bui Sy Nguyen
 	 * 
 	 */
-	public class RefectionUtil
+	public class ReflectionUtil
 	{
 		
 		/**
