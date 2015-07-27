@@ -52,7 +52,8 @@ package net.fproject.ui.dateControls
 	
 	/**
 	 * 
-	 * The text color for the cells in the displayed date chooser that not in current month.
+	 * The text color for the days that are displayed in the date chooser 
+	 * but not belong to the displayed month.
 	 * 
 	 */	
 	[Style(name="otherMonthDayColor", inherit="yes", type="uint", format="Color")]
