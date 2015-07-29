@@ -4,12 +4,12 @@ package net.fproject.ui.dateControls
 	
 	import mx.events.FlexMouseEvent;
 	
-	import spark.components.Button;
 	import spark.components.Group;
 	import spark.components.Label;
 	import spark.components.PopUpAnchor;
 	import spark.events.IndexChangeEvent;
 	
+	import net.fproject.ui.dateControls.supportClasses.DateFieldButton;
 	import net.fproject.ui.events.DateControlEvent;
 	import net.fproject.utils.DateTimeUtil;
 
@@ -105,7 +105,7 @@ package net.fproject.ui.dateControls
 		public var dropDownGroup:Group;
 		
 		[SkinPart(required="false",type="static")] 
-		public var openButton:Button;
+		public var openButton:DateFieldButton;
 		
 		[SkinPart(required="false",type="static")] 
 		public var labelDisplay:Label; // only used by DateField
