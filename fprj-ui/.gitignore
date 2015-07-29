@@ -1,0 +1,21 @@
+.idea
+.settings
+bin
+.idea
+rsls
+samples/fprj-core-samples-mvc/rsls
+
+# Build and Release Folders
+bin/
+bin-debug/
+bin-release/
+
+# Build artifacts
+target/
+
+# Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
+# should NOT be excluded as they contain compiler settings and other important
+# information for Eclipse / Flash Builder.
+
+# Downloaded Flash Player used by Travis-CI
+Flash Player Debugger.app

@@ -4,7 +4,7 @@
 	
 	<fx:Metadata>
 		<![CDATA[ 
-		[HostComponent("spark.components.Button")]  
+		[HostComponent("net.fproject.ui.dateControls.supportClasses.DateFieldButton")]  
 		]]>
 	</fx:Metadata> 
 	

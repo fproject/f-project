@@ -29,6 +29,10 @@ ui|DateField {
 	skinClass:ClassReference("net.fproject.themes.spark.skins.DateFieldSkin");
 }
 
+ui|DateFieldButton {
+	skinClass:ClassReference("net.fproject.themes.spark.skins.DateFieldButtonSkin");
+}
+
 ui|DateChooser {
 	skinClass:ClassReference("net.fproject.themes.spark.skins.DateChooserSkin");
 }
