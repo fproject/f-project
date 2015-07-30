@@ -27,6 +27,7 @@ package net.fproject.ui.datetime
 	
 	use namespace mx_internal;
 	
+	[Style(name="hintedTextColor", inherit="yes", type="uint", format="Color")]
 	/**
 	 * 
 	 * The TimeField allow users to select a time, specific to the minute.
@@ -630,7 +631,10 @@ package net.fproject.ui.datetime
 			if(h > 11)
 			{
 				h = h - 12;
+				var ampm:String = "pm";
 			}
+			else
+				ampm = "am";
 			if(h == 0)
 			{
 				h = 12;
@@ -639,7 +643,7 @@ package net.fproject.ui.datetime
 			{
 				m = "0" + m;
 			}
-			return String(h) + ":" + String(m) + "am";
+			return String(h) + ":" + String(m) + ampm;
 		}
 		
 		/**

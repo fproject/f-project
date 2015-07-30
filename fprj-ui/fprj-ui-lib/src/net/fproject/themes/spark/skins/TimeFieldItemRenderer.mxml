@@ -31,10 +31,9 @@
 			override protected function getCurrentRendererState() : String
 			{
 				if(!selected && !hovered && this._isHinted)
-				{
 					return "isHinted";
-				}
-				return super.getCurrentRendererState();
+				else
+					return super.getCurrentRendererState();
 			}
 		]]>
 	</fx:Script>
@@ -47,7 +46,8 @@
 		<s:State name="selected" stateGroups="selectedGroup"/>
 	</s:states>
 	
-	<s:Label id="labelDisplay" text="{data}"
-			 color.isHinted="{getStyle('selectionColor')}"/>
+	<s:Label id="labelDisplay" text="{data}" maxDisplayedLines="1"
+			 top="5" left="5" right="5" bottom="5"
+			 color.isHinted="{getStyle('hintedTextColor')}"/>
 	
 </s:ItemRenderer>
