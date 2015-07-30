@@ -8,6 +8,7 @@ package net.fproject.ui.datetime
 	import flash.ui.Keyboard;
 	
 	import mx.collections.ArrayCollection;
+	import mx.collections.IList;
 	import mx.collections.ISort;
 	import mx.collections.ISortField;
 	import mx.core.IVisualElementContainer;
@@ -41,7 +42,7 @@ package net.fproject.ui.datetime
 		
 		protected var textInputDirty:Boolean;
 		
-		protected var collection:ArrayCollection;
+		public var collection:ArrayCollection;
 		
 		protected var userSelectedMinutes:int = -1;
 		
@@ -109,7 +110,7 @@ package net.fproject.ui.datetime
 		
 		/**
 		 * <p>
-		 * The default time item to center in the drop down that is hinted, but
+		 * The default time item (in minutes) to center in the drop down that is hinted, but
 		 * not be the selected item.
 		 * </p>
 		 * @default <code>8 am</code>
@@ -269,7 +270,7 @@ package net.fproject.ui.datetime
 			this.collection.sort = sort;
 			this.buildCollection();
 			this.collection.refresh();
-			dataProvider = this.collection;
+			super.dataProvider = this.collection;
 			addEventListener(DropDownEvent.OPEN,this.eventHandler);
 			addEventListener(DropDownEvent.CLOSE,this.eventHandler);
 		}
@@ -293,6 +294,11 @@ package net.fproject.ui.datetime
 				this.textInputDirty = true;
 				invalidateProperties();
 			}
+		}
+		
+		override public function set dataProvider(value:IList):void
+		{
+			//Do nothing. Dont let anyone change the dataProvider.
 		}
 		
 		/**
@@ -395,7 +401,7 @@ package net.fproject.ui.datetime
 		
 		protected function setDefaultDropDownIndex() : void
 		{
-			var i:int = this.getClosestIndex(this._defaultDropDownTime);
+			var i:int = this.getClosestMinutesIndex(this._defaultDropDownTime);
 			this.setCenteredVerticalScrollPosition(i);
 			this.setHintedIndex(i);
 		}
@@ -492,7 +498,13 @@ package net.fproject.ui.datetime
 			}
 		}
 		
-		protected function getClosestIndex(minutes:Number) : int
+		/**
+		 * <p>
+		 * Returns the index of the element in the collection with the closest minutes
+		 * value relative to the passed value.
+		 * </p>
+		 */
+		public function getClosestMinutesIndex(minutes:Number) : int
 		{
 			for (var i:int=0; i<this.collection.length; i++)
 			{
@@ -510,7 +522,24 @@ package net.fproject.ui.datetime
 			return -1;
 		}
 		
-		protected function getMinutesIndex(minutes:Number) : int
+		/**
+		 * <p>
+		 * Set value for the selectedIndex field by the index of the element in the collection with the closest minutes
+		 * value relative to the passed value.
+		 * </p>
+		 */
+		public function selectClosestMinutes(minutes:Number) : void
+		{
+			this.selectedIndex = getClosestMinutesIndex(minutes);
+		}
+		
+		/**
+		 * <p>
+		 * Returns the index of the element in the collection with a "minutes"
+		 * property that is equal to the passed value. Returns -1 if not found.
+		 * </p>
+		 */
+		public function getMinutesIndex(minutes:Number) : int
 		{
 			for (var i:int=0; i<this.collection.length; i++)
 			{
@@ -522,6 +551,17 @@ package net.fproject.ui.datetime
 			}
 			
 			return -1;
+		}
+		
+		
+		/**
+		 * <p>
+		 * Set value for the selectedIndex field by the index of the element in the collection.
+		 * </p>
+		 */
+		public function selectMinutes(minutes:Number) : void
+		{
+			this.selectedIndex = getMinutesIndex(minutes);
 		}
 		
 		protected function setSelectedMinutes(value:Number) : void

@@ -280,5 +280,21 @@ package net.fproject.core
 				return (t != null && t.millisecondsFromMidnight == _millisecondsFromMidnight);
 			}
 		}
+		
+		/**
+		 * Order comparision this time to another time object. 
+		 * @param o The target object to compare to this Time object.
+		 * @return <code>true</code> if this Time object is before the target object.
+		 * <code>false</code> if otherwise.
+		 * 
+		 */
+		public function isBefore(o:Time):Boolean
+		{
+			if(o != null)
+			{
+				return this.millisecondsFromMidnight < o.millisecondsFromMidnight;
+			}
+			return false;
+		}
 	}
 }
