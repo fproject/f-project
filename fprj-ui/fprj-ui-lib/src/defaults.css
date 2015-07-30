@@ -27,6 +27,7 @@ ui|VSeparator {
 
 ui|TimeField {
 	skinClass:ClassReference("net.fproject.themes.spark.skins.TimeFieldSkin");
+	horizontalScrollPolicy:off;
 	hintedTextColor:#0000FF;
 }
 

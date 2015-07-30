@@ -27,7 +27,7 @@ package net.fproject.themes.spark.skins
 			if(textInput)
 			{
 				var metric:TextLineMetrics = measureText("00:00am");
-				textInput.width = metric.width + 5;
+				textInput.width = metric.width + 7;
 			}
 			super.measure();
 			
