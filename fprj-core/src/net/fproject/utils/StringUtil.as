@@ -532,6 +532,8 @@ package net.fproject.utils
 		 */
 		public static function trim(str:String, removingChars:String=null):String
 		{
+			if(str == null || str.length == 0)
+				return str;
 			if (removingChars == null) return mx.utils.StringUtil.trim(str);
 			
 			var startIndex:int = 0;
