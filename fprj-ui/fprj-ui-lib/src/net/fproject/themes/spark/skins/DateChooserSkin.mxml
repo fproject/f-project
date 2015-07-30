@@ -5,7 +5,7 @@
 		alpha.disabled="0.5" > 
 	<fx:Metadata>
 		<![CDATA[ 
-		[HostComponent("net.fproject.ui.dateControls.DateChooser")]  
+		[HostComponent("net.fproject.ui.datetime.DateChooser")]
 		]]>
 	</fx:Metadata> 
 	

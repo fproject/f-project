@@ -4,7 +4,7 @@
 	
 	<fx:Metadata>
 		<![CDATA[ 
-		[HostComponent("net.fproject.ui.dateControls.supportClasses.DateFieldButton")]  
+		[HostComponent("net.fproject.ui.datetime.supportClasses.DateFieldButton")]
 		]]>
 	</fx:Metadata> 
 	

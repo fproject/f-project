@@ -25,6 +25,10 @@ ui|VSeparator {
 	paddingRight:20;
 }
 
+ui|TimeField {
+	skinClass:ClassReference("net.fproject.themes.spark.skins.TimeFieldSkin");
+}
+
 ui|DateField {
 	skinClass:ClassReference("net.fproject.themes.spark.skins.DateFieldSkin");
 }

@@ -1,8 +1,9 @@
 <?xml version="1.0"?>
 <componentPackage>
-	<component id="DateField" class="net.fproject.ui.dateControls.DateField"/>
-	<component id="DateFieldButton" class="net.fproject.ui.dateControls.supportClasses.DateFieldButton"/>
-	<component id="DateChooser" class="net.fproject.ui.dateControls.DateChooser"/>
+	<component id="DateField" class="net.fproject.ui.datetime.DateField"/>
+	<component id="TimeField" class="net.fproject.ui.datetime.TimeField"/>
+	<component id="DateFieldButton" class="net.fproject.ui.datetime.supportClasses.DateFieldButton"/>
+	<component id="DateChooser" class="net.fproject.ui.datetime.DateChooser"/>
 	<component id="DateChooserWeekDayRenderer" class="net.fproject.themes.spark.skins.DateChooserWeekDayRenderer"/>
 	<component id="HSeparator" class="net.fproject.ui.separators.HSeparator"/>
 	<component id="VSeparator" class="net.fproject.ui.separators.VSeparator"/>
