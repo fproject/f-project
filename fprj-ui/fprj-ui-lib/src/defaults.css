@@ -27,6 +27,7 @@ ui|VSeparator {
 
 ui|TimeField {
 	skinClass:ClassReference("net.fproject.themes.spark.skins.TimeFieldSkin");
+	selectionColor:A8C6EE;
 }
 
 ui|DateField {
