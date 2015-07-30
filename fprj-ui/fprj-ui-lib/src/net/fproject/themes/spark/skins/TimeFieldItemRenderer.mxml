@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				xmlns:s="library://ns.adobe.com/flex/spark" 
+				xmlns:mx="library://ns.adobe.com/flex/mx" 
+				autoDrawBackground="true">
+	<fx:Script>
+		<![CDATA[
+			import net.fproject.ui.datetime.supportClasses.Time;
+			private var _isHinted:Boolean;
+			
+			public function set isHinted(value:Boolean) : void
+			{
+				if(value == this._isHinted)
+				{
+					return;
+				}
+				this._isHinted = value;
+				invalidateRendererState();
+			}
+			
+			override public function set data(value:Object) : void
+			{
+				super.data = value;
+				if(value is Time)
+				{
+					labelDisplay.text = value.label;
+					this.isHinted = data.isHinted;
+				}
+			}
+			
+			override protected function getCurrentRendererState() : String
+			{
+				if(!selected && !hovered && this._isHinted)
+				{
+					return "isHinted";
+				}
+				return super.getCurrentRendererState();
+			}
+		]]>
+	</fx:Script>
+	
+	<s:states>
+		<s:State name="normal"/>
+		<s:State name="isHinted"/>
+		<s:State name="hovered" stateGroups="hoveredGroup"/>
+		<s:State name="selectedAndHovered" stateGroups="selectedGroup,hoveredGroup"/>
+		<s:State name="selected" stateGroups="selectedGroup"/>
+	</s:states>
+	
+	<s:Label id="labelDisplay" text="{data}"
+			 color.isHinted="{getStyle('selectionColor')}"/>
+	
+</s:ItemRenderer>

@@ -27,6 +27,13 @@ package net.fproject.ui.datetime
 	
 	use namespace mx_internal;
 	
+	/**
+	 * 
+	 * The TimeField allow users to select a time, specific to the minute.
+	 * 
+	 * @author Bui Sy Nguyen
+	 * 
+	 */
 	public class TimeField extends ComboBox
 	{
 		protected var dataGroupDirty:Boolean;
@@ -47,9 +54,22 @@ package net.fproject.ui.datetime
 		
 		private var _defaultDropDownTime:Number = 480;
 		
+		/**
+		 * <p>
+		 * Indicates whether the drop down will open on focus.
+		 * </p>
+		 * @default true
+		 */
 		public var openOnFocus:Boolean = true;
 		
-		public var validationErrorMessage:String = "Not a recognized time. Examples: 7p, 7pm, 7:00pm, 700p, 19:00p, 19PM etc.";
+		/**
+		 * <p>
+		 * The validation error message.
+		 * A validation error occurs when the user entered a string that could not be converted to a valid minutes value.
+		 * </p>
+		 * @default <code>"Invalid time. You should input values like: 7p, 7pm, 7:00pm, 700p, 19:00p, 19PM etc."<code>
+		 */
+		public var validationErrorMessage:String = "Invalid time. You should input values like: 7p, 7pm, 7:00pm, 700p, 19:00p, 19PM etc.";
 		
 		protected var selectedMinutesDirty:Boolean;
 		
@@ -59,11 +79,21 @@ package net.fproject.ui.datetime
 		
 		private var _snapInterval:int = 30;
 		
+		/**
+		 * 
+		 * @inheritDoc
+		 * 
+		 */		
 		override public function get requireSelection() : Boolean
 		{
 			return this._requireSelection;
 		}
 		
+		/**
+		 * 
+		 * @private
+		 * 
+		 */
 		override public function set requireSelection(value:Boolean) : void
 		{
 			if(this._requireSelection == value)
@@ -75,6 +105,14 @@ package net.fproject.ui.datetime
 			invalidateProperties();
 		}
 		
+		
+		/**
+		 * <p>
+		 * The default time item to center in the drop down that is hinted, but
+		 * not be the selected item.
+		 * </p>
+		 * @default <code>8 am</code>
+		 */
 		public function get defaultDropDownTime() : Number
 		{
 			return this._defaultDropDownTime;
@@ -86,11 +124,22 @@ package net.fproject.ui.datetime
 		}
 		
 		[Bindable(event="valueCommit")]
+		/**
+		 * <p>
+		 * The user selected value in minutes. If there's no item selected, this value is -1.
+		 * </p>
+		 * @default -1
+		 */
 		public function get selectedMinutes() : int
 		{
 			return this._selectedMinutes;
 		}
 		
+		/**
+		 * 
+		 * @private
+		 * 
+		 */
 		public function set selectedMinutes(value:int) : void
 		{
 			if(value == this._selectedMinutes || isNaN(value))
@@ -104,6 +153,12 @@ package net.fproject.ui.datetime
 			dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));
 		}
 		
+		/**
+		 * <p>The intervals in minutes displayed in the drop down.
+		 * For example, a value of 30 indicates that the drop down will display times
+		 * each 30 minutes: 7:00am, 7:30am, 8:00am, 8:30am., etc.</p>
+		 * @default 30
+		 */
 		public function get snapInterval() : int
 		{
 			return this._snapInterval;
@@ -120,6 +175,10 @@ package net.fproject.ui.datetime
 			invalidateProperties();
 		}
 		
+		/**
+		 * @inheritDoc 
+		 * 
+		 */
 		override protected function commitProperties() : void
 		{
 			super.commitProperties();
@@ -150,6 +209,10 @@ package net.fproject.ui.datetime
 			}
 		}
 		
+		/**
+		 * @inheritDoc 
+		 * 
+		 */
 		override protected function commitSelection(value:Boolean = true) : Boolean
 		{
 			var s:String = textInput.text;
@@ -185,6 +248,10 @@ package net.fproject.ui.datetime
 			return b;
 		}
 		
+		/**
+		 * @inheritDoc 
+		 * 
+		 */
 		override protected function createChildren() : void
 		{
 			super.createChildren();
@@ -206,6 +273,10 @@ package net.fproject.ui.datetime
 			addEventListener(DropDownEvent.CLOSE,this.eventHandler);
 		}
 		
+		/**
+		 * @inheritDoc 
+		 * 
+		 */
 		override protected function partAdded(partName:String, instance:Object) : void
 		{
 			super.partAdded(partName,instance);
@@ -223,6 +294,10 @@ package net.fproject.ui.datetime
 			}
 		}
 		
+		/**
+		 * @inheritDoc 
+		 * 
+		 */
 		override protected function partRemoved(partName:String, instance:Object) : void
 		{
 			super.partRemoved(partName,instance);
@@ -233,6 +308,11 @@ package net.fproject.ui.datetime
 			}
 		}
 		
+		/**
+		 * <p>You should call this method when you no longer want to simply hide the
+		 * component and want it removed and eligible for garbage collection.
+		 * </p>
+		 */
 		public function dispose() : void
 		{
 			if(parent)
@@ -251,6 +331,11 @@ package net.fproject.ui.datetime
 			removeEventListener(DropDownEvent.OPEN,this.eventHandler);
 		}
 		
+		/**
+		 * <p>
+		 * Update the text input.
+		 * </p>
+		 */
 		public function setText(value:String) : void
 		{
 			if(textInput)
@@ -259,6 +344,12 @@ package net.fproject.ui.datetime
 			}
 		}
 		
+		/**
+		 * <p>
+		 * Determines if the selectedItem can be converted to a
+		 * valid minutes quantity, and clears the error string if the selectedItem is valid.
+		 * </p>
+		 */
 		public function validate() : Boolean
 		{
 			if(!this._requireSelection && textInput && textInput.text == null || textInput.text == "")
@@ -527,6 +618,11 @@ package net.fproject.ui.datetime
 			}
 		}
 		
+		/**
+		 * <p>
+		 * Converts minutes value into a time string.
+		 * </p>
+		 */
 		protected function convertMinutesToString(minutes:Number) : String
 		{
 			var h:Number = Math.floor(minutes / 60);
@@ -546,6 +642,9 @@ package net.fproject.ui.datetime
 			return String(h) + ":" + String(m) + "am";
 		}
 		
+		/**
+		 * <p>Converts a user entered string to numerical value of minutes.</p>
+		 */
 		protected function convertStringToMinutes(s:String) : Number
 		{
 			var a:Array = null;
@@ -615,6 +714,11 @@ package net.fproject.ui.datetime
 			return minutes;
 		}
 		
+		/**
+		 * 
+		 * @inheritDoc
+		 * 
+		 */
 		override protected function focusInHandler(e:FocusEvent) : void
 		{
 			super.focusInHandler(e);
@@ -624,12 +728,22 @@ package net.fproject.ui.datetime
 			}
 		}
 		
+		/**
+		 * 
+		 * @inheritDoc
+		 * 
+		 */
 		override protected function focusOutHandler(e:FocusEvent) : void
 		{
 			super.focusOutHandler(e);
 			this.validate();
 		}
 		
+		/**
+		 * 
+		 * @inheritDoc
+		 * 
+		 */
 		override protected function keyDownHandler(e:KeyboardEvent) : void
 		{
 			if(e.keyCode == Keyboard.ENTER)
@@ -646,6 +760,11 @@ package net.fproject.ui.datetime
 			super.keyDownHandler(e);
 		}
 		
+		/**
+		 * 
+		 * @inheritDoc
+		 * 
+		 */
 		override protected function capture_keyDownHandler(e:KeyboardEvent) : void
 		{
 			if(this.textInputHasFocus && isDropDownOpen)
@@ -655,6 +774,11 @@ package net.fproject.ui.datetime
 			super.capture_keyDownHandler(e);
 		}
 		
+		/**
+		 * 
+		 * @inheritDoc
+		 * 
+		 */
 		override protected function textInput_changeHandler(e:TextOperationEvent) : void
 		{
 			super.textInput_changeHandler(e);
@@ -664,6 +788,11 @@ package net.fproject.ui.datetime
 			}
 		}
 		
+		/**
+		 * <p>
+		 * Handles changes to the textInput text property.
+		 * </p>
+		 */
 		protected function textInputHandler(e:Event) : void
 		{
 			switch(e.type)
@@ -677,6 +806,12 @@ package net.fproject.ui.datetime
 			}
 		}
 		
+		/**
+		 * <p>
+		 * Handles events on the TimeField. When the opening the drop down, center
+		 * and hint the selectedIndex or the defaultDropDown index.
+		 * </p>
+		 */
 		protected function eventHandler(e:Event) : void
 		{
 			switch(e.type)
