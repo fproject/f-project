@@ -19,62 +19,6 @@
 		]]>
 	</fx:Metadata> 
 	
-		<fx:Script fb:purpose="styling">
-		/* Define the skin elements that should not be colorized. 
-		For dropDownList buttons, the graphics are colorized but the arrow is not. */
-		static private const exclusions:Array = ["arrow"];
-		
-		private var cornerRadius:Number = 0;
-		
-		/** 
-		 * @private
-		 */     
-		override public function get colorizeExclusions():Array {return exclusions;}
-		
-		/* Define the symbol fill items that should be colored by the "symbolColor" style. */
-		static private const symbols:Array = ["clockFill1", "clockFill2"];
-		
-		/**
-		 * @private 
-		 */
-		override public function get symbolItems():Array {return symbols};
-		
-		/**
-		 * @private
-		 */
-		override protected function initializationComplete():void
-		{
-			useChromeColor = true;
-			super.initializationComplete();
-		}
-		
-		/**
-		 *  @private
-		 */
-		override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number) : void
-		{
-			var cr:Number = getStyle("cornerRadius");
-			
-			if (cornerRadius != cr)
-			{
-				cornerRadius = cr;
-				fill.bottomRightRadiusX = fill.topRightRadiusX = cornerRadius;
-				lowlight.bottomRightRadiusX = lowlight.topRightRadiusX = cornerRadius;
-				highlight.bottomRightRadiusX = highlight.topRightRadiusX = cornerRadius;
-				border.bottomRightRadiusX = border.topRightRadiusX = cornerRadius;
-			}
-			
-			if (highlightStroke) 
-				highlightStroke.bottomRightRadiusX = highlightStroke.topRightRadiusX = cornerRadius;
-			if (hldownstroke1)
-				hldownstroke1.bottomRightRadiusX = hldownstroke1.topRightRadiusX = cornerRadius;
-			if (hldownstroke2)
-				hldownstroke2.bottomRightRadiusX = hldownstroke2.topRightRadiusX = cornerRadius;
-			
-			super.updateDisplayList(unscaledWidth, unscaledHeight);
-		}
-	</fx:Script>
-	
 	<!-- states -->
 	<s:states>
 		<s:State name="up" />
@@ -85,102 +29,44 @@
 	
 	<!-- layer 1: fill -->
 	<!--- @private -->
-	<s:Rect id="fill" left="1" right="1" top="1" bottom="1">
+	<s:Rect id="downOver" left="1" right="1" top="1" bottom="1">
 		<s:fill>
 			<s:LinearGradient rotation="90">
-				<s:GradientEntry color="0xFFFFFF" 
-								 color.over="0xBBBDBD" 
-								 color.down="0xAAAAAA" 
-								 alpha="0.85" />
-				<s:GradientEntry color="0xD8D8D8" 
-								 color.over="0x9FA0A1" 
-								 color.down="0x929496" 
-								 alpha="0.85" />
+				<s:GradientEntry ratio="0"
+								 color="#FAFAFA" 
+								 color.over="#FFFFFF" 
+								 color.down="0"
+								 alpha.down="0.05"/>
+				<s:GradientEntry ratio="1"
+								 color="#EAEAEA" 
+								 color.over="#EAEAEA" 
+								 color.down="0"
+								 alpha.down="0.01"/>
 			</s:LinearGradient>
 		</s:fill>
-	</s:Rect>
-	
-	<!-- layer 2: fill lowlight -->
-	<!--- @private -->
-	<s:Rect id="lowlight" left="1" right="1" top="1" bottom="1">
-		<s:fill>
-			<s:LinearGradient rotation="270">
-				<s:GradientEntry color="0x000000" ratio="0.0" alpha="0.0627" />
-				<s:GradientEntry color="0x000000" ratio="0.48" alpha="0.0099" />
-				<s:GradientEntry color="0x000000" ratio="0.48001" alpha="0" />
-			</s:LinearGradient>
-		</s:fill>
-	</s:Rect>
-	
-	<!-- layer 3: fill highlight -->
-	<!--- @private -->
-	<s:Rect id="highlight" left="1" right="1" top="1" bottom="1">
-		<s:fill>
-			<s:LinearGradient rotation="90">
-				<s:GradientEntry color="0xFFFFFF"
-								 ratio="0.0"
-								 alpha="0.33" 
-								 alpha.over="0.22" 
-								 alpha.down="0.12"/>
-				<s:GradientEntry color="0xFFFFFF"
-								 ratio="0.48"
-								 alpha="0.33"
-								 alpha.over="0.22"
-								 alpha.down="0.12" />
-				<s:GradientEntry color="0xFFFFFF"
-								 ratio="0.48001"
-								 alpha="0" />
-			</s:LinearGradient>
-		</s:fill>
-	</s:Rect>
-	
-	<!-- layer 4: highlight stroke (all states except down) -->
-	<!--- @private -->
-	<s:Rect id="highlightStroke" left="1" right="1" top="1" bottom="1" radiusX="0" radiusY="0" excludeFrom="down">
-		<s:stroke>
-			<s:LinearGradientStroke rotation="90" weight="1">
-				<s:GradientEntry color="0xFFFFFF" alpha.over="0.22" />
-				<s:GradientEntry color="0xD8D8D8" alpha.over="0.22" />
-			</s:LinearGradientStroke>
-		</s:stroke>
-	</s:Rect>
-	
-	<!-- layer 5: highlight stroke (down state only) -->
-	<!--- @private -->
-	<s:Rect id="hldownstroke1" left="1" right="1" top="1" bottom="1" radiusX="0" radiusY="0" includeIn="down">
-		<s:stroke>
-			<s:LinearGradientStroke rotation="90" weight="1">
-				<s:GradientEntry color="0x000000" alpha="0.25" ratio="0.0" />
-				<s:GradientEntry color="0x000000" alpha="0.25" ratio="0.001" />
-				<s:GradientEntry color="0x000000" alpha="0.07" ratio="0.0011" />
-				<s:GradientEntry color="0x000000" alpha="0.07" ratio="0.965" />
-				<s:GradientEntry color="0x000000" alpha="0.00" ratio="0.9651" />
-			</s:LinearGradientStroke>
-		</s:stroke>
-	</s:Rect>
-	<!--- @private -->
-	<s:Rect id="hldownstroke2" left="2" right="2" top="2" bottom="2" radiusX="0" radiusY="0" includeIn="down">
-		<s:stroke>
-			<s:LinearGradientStroke rotation="90" weight="1">
-				<s:GradientEntry color="0x000000" alpha="0.09" ratio="0.0" />
-				<s:GradientEntry color="0x000000" alpha="0.00" ratio="0.0001" />
-			</s:LinearGradientStroke>
-		</s:stroke>
 	</s:Rect>
 	
 	<!-- layer 6: border - put on top of the fill so it doesn't disappear when scale is less than 1 -->
 	<!--- @private -->
 	<s:Rect id="border" left="0" right="0" top="0" bottom="0" width="18" height="21">
 		<s:stroke>
-			<s:LinearGradientStroke rotation="90" weight="1">
-				<s:GradientEntry color="0x000000" 
-								 alpha="0.5625"
-								 alpha.down="0.6375" />
-				<s:GradientEntry color="0x000000" 
-								 alpha="0.75" 
-								 alpha.down="0.85" />
-			</s:LinearGradientStroke>
+			<s:SolidColorStroke caps="square" joints="miter"
+								color="#7A7A7A" 
+								alpha="0.85" alpha.over="1" alpha.down="1"/>
 		</s:stroke>
+		<s:fill>
+			<s:LinearGradient rotation="90">
+				<s:GradientEntry id="fillA"
+								 color="#EEEEEE"
+								 ratio="0"
+								 color.over="#FCFCFC" 
+								 color.down="#D4D4D4"/>
+				<s:GradientEntry id="fillB"
+								 color="#EBEBEB" 
+								 color.over="#F0F0F0" 
+								 color.down="#C1C1C1" />
+			</s:LinearGradient>
+		</s:fill>
 	</s:Rect>
 	
 	<!-- layer 7: arrow -->
@@ -188,13 +74,13 @@
 	<s:Path right="3" verticalCenter="0" data="M6.5 0C2.91602 0 0 2.91602 0 6.5 0 10.084 2.91602 13 6.5 13 10.084 13 13 10.084 13 6.5 13 2.91602 10.084 0 6.5 0ZM6.5 11.6318C3.67041 11.6318 1.36816 9.32959 1.36816 6.5 1.36816 3.67041 3.67041 1.36816 6.5 1.36816 9.32959 1.36816 11.6318 3.67041
 			11.6318 6.5 11.6318 9.32959 9.32959 11.6318 6.5 11.6318Z">
 		<s:fill>
-			<s:SolidColor id="clockFill1"/>
+			<s:SolidColor id="clockFill1" color="#777777" color.over="#999999"/>
 		</s:fill>
 	</s:Path>
 	<s:Path right="6" verticalCenter="-1" data="M4.60449 4.00244 2.06592 4.00244C1.97412 3.85205 1.84717 3.7251 1.69678 3.63281L1.69678 0.581543C1.69678 0.260254 1.43652 0 1.11523 0 0.793945 0 0.533691 0.260254 0.533691 0.581543L0.533691 3.63281C0.213867 3.8291 0 4.18213 0 4.58398 0 5.19873
 			0.500488 5.69922 1.11523 5.69922 1.51709 5.69922 1.86963 5.48535 2.06592 5.16553L4.60449 5.16553C4.92578 5.16553 5.18604 4.90527 5.18604 4.58398 5.18604 4.2627 4.92578 4.00244 4.60449 4.00244Z">
 		<s:fill>
-			<s:SolidColor id="clockFill2"/>
+			<s:SolidColor id="clockFill2" color="#333333" color.over="#555555"/>
 		</s:fill>
 	</s:Path>
 </s:SparkSkin>
