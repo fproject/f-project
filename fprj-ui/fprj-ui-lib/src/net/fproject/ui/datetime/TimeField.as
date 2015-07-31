@@ -393,6 +393,7 @@ package net.fproject.ui.datetime
 		
 		protected function setHintedIndex(index:int) : void
 		{
+			trace('setHintedIndex');
 			var item:Time = index > -1 && collection != null ? collection[index] : null;
 			if(itemEnabledFunction != null && !itemEnabledFunction(item))
 				return;
@@ -406,7 +407,9 @@ package net.fproject.ui.datetime
 		
 		protected function setDefaultDropDownIndex() : void
 		{
+			trace('setDefaultDropDownIndex _defaultDropDownTime=',this._defaultDropDownTime);
 			var i:int = this.getClosestMinutesIndex(this._defaultDropDownTime);
+			trace('...closestMinutesIndex=',i);
 			this.setCenteredVerticalScrollPosition(i);
 			this.setHintedIndex(i);
 		}
@@ -455,37 +458,30 @@ package net.fproject.ui.datetime
 		
 		protected function handleKeyboardNavigation(event:KeyboardEvent) : void
 		{
-			var unit:uint = 0;
-			var b:Boolean = false;
-			var curIdx:int = 0;
-			var destIndex:* = 0;
-			var code:uint = event.keyCode;
-			switch(code)
+			var unit:int = -1;
+			switch(event.keyCode)
 			{
 				case Keyboard.UP:
 					unit = NavigationUnit.UP;
-					b = true;
 					break;
 				case Keyboard.DOWN:
 					unit = NavigationUnit.DOWN;
-					b = true;
 					break;
 				case Keyboard.PAGE_UP:
 					unit = NavigationUnit.PAGE_UP;
-					b = true;
 					break;
 				case Keyboard.PAGE_DOWN:
 					unit = NavigationUnit.PAGE_DOWN;
-					b = true;
 					break;
 			}
-			if(b)
+			if(unit != -1)
 			{
-				curIdx = this.hintedIndex < NO_SELECTION?NO_SELECTION:this.hintedIndex;
-				destIndex = layout.getNavigationDestinationIndex(curIdx,unit,arrowKeysWrapFocus);
+				var curIdx:int = this.hintedIndex < NO_SELECTION?NO_SELECTION:this.hintedIndex;
+				var destIndex:int = layout.getNavigationDestinationIndex(curIdx,unit,arrowKeysWrapFocus);
 				if(destIndex != NO_SELECTION)
 				{
 					changeHighlightedSelection(destIndex);
+					trace('handleKeyboardNavigation',destIndex);
 					this.setHintedIndex(destIndex);
 					event.preventDefault();
 				}
@@ -712,7 +708,6 @@ package net.fproject.ui.datetime
 		 */
 		protected function convertStringToMinutes(s:String) : Number
 		{
-			var a:Array = null;
 			var ss:String = "";
 			for(var i:int=0; i<s.length; i++)
 			{
@@ -724,42 +719,42 @@ package net.fproject.ui.datetime
 			ss = ss.toLowerCase();
 			var regex:RegExp = new RegExp("^\\D*(\\d*)[:.]?([0-5]*\\d)?([ap]?).*$");
 			var matches:Array = regex.exec(ss);
-			var h:Number = matches[1] && matches[1].length > 0?Number(matches[1]):NaN;
-			if(String(matches[2]).length == 1)
-			{
-				matches[2] = matches[2] + "0";
-			}
-			var n:Number = matches[2] && matches[2].length > 0?Number(matches[2]):NaN;
+			s = matches[1];
+			var h:Number = s && s.length > 0?Number(s):NaN;
+			s = matches[2] ? matches[2] :null;
+			if(s != null && s.length == 1)
+				s = s + "0";
+			var n:Number = s != null && s.length > 0? Number(s) : NaN;
 			if(h > 24)
 			{
-				a = String(h).split("");
-				if(a.length > 3)
+				s = String(h);
+				if(s.length > 3)
 				{
-					h = Number(a[0] + a[1]);
-					n = Number(a[2] + a[3]);
+					h = Number(s.charAt(0) + s.charAt(1));
+					n = Number(s.charAt(2) + s.charAt(3));
 				}
-				else if(a.length == 3)
+				else if(s.length == 3)
 				{
-					h = Number(a[0]);
-					n = Number(a[1] + a[2]);
+					h = Number(s.charAt(0));
+					n = Number(s.charAt(1) + s.charAt(2));
 				}
-				else if(a.length == 2)
+				else if(s.length == 2)
 				{
-					h = Number(a[0]);
-					n = Number(a[1]);
+					h = Number(s.charAt(0));
+					n = Number(s.charAt(1));
 				}
 			}
 			if(matches[3])
 			{
-				var ampm:String = String(matches[3]);
+				var ampm:String = String(matches[3]).charAt(0);
 			}
-			else if(h == 12 || h > 0 && h < 7)
+			else if(h < 12)
 			{
-				ampm = "p";
+				ampm = "a";
 			}
 			else
 			{
-				ampm = "a";
+				ampm = "p";
 			}
 			if(h < 12 && ampm == "p")
 			{
@@ -846,6 +841,7 @@ package net.fproject.ui.datetime
 		 */
 		override protected function textInput_changeHandler(e:TextOperationEvent) : void
 		{
+			trace('textInput_changeHandler');
 			super.textInput_changeHandler(e);
 			if(textInput.text == null || textInput.text == "")
 				this.setDefaultDropDownIndex();
@@ -872,6 +868,7 @@ package net.fproject.ui.datetime
 		 */
 		protected function dropDownEventHandler(e:Event) : void
 		{
+			trace('dropDownEventHandler');
 			switch(e.type)
 			{
 				case DropDownEvent.CLOSE:
@@ -881,16 +878,13 @@ package net.fproject.ui.datetime
 						{
 							time.isHinted = false;
 						}
-						break;
 					}
 					break;
 				case DropDownEvent.OPEN:
 					if(selectedIndex == NO_SELECTION)
-					{
 						this.setDefaultDropDownIndex();
-						break;
-					}
-					this.setCenteredVerticalScrollPosition(selectedIndex);
+					else
+						this.setCenteredVerticalScrollPosition(selectedIndex);
 					break;
 			}
 		}
