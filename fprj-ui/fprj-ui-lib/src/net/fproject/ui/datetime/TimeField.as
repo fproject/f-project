@@ -42,7 +42,7 @@ package net.fproject.ui.datetime
 		
 		protected var textInputDirty:Boolean;
 		
-		public var collection:ArrayCollection;
+		protected var collection:ArrayCollection;
 		
 		protected var userSelectedMinutes:int = -1;
 		
@@ -66,6 +66,14 @@ package net.fproject.ui.datetime
 		
 		/**
 		 * <p>
+		 * The filter function indicates which item should be enabled and which item should be disabled.
+		 * </p>
+		 * @default null
+		 */
+		public var itemEnabledFunction:Function;
+		
+		/**
+		 * <p>
 		 * The validation error message.
 		 * A validation error occurs when the user entered a string that could not be converted to a valid minutes value.
 		 * </p>
@@ -81,6 +89,7 @@ package net.fproject.ui.datetime
 		
 		private var _snapInterval:int = 30;
 		
+		protected static const DAY_MINUTES:int = 1440;
 		/**
 		 * 
 		 * @inheritDoc
@@ -251,6 +260,14 @@ package net.fproject.ui.datetime
 		}
 		
 		/**
+		 *  @private
+		 */ 
+		override protected function dataProvider_collectionChangeHandler(event:Event):void
+		{      
+			//Override this function to prevent unwanted behavior in the textInput control
+		}
+		
+		/**
 		 * @inheritDoc 
 		 * 
 		 */
@@ -259,9 +276,9 @@ package net.fproject.ui.datetime
 			super.createChildren();
 			maxChars = 11;
 			restrict = "0-9.aApPmM:";
-			labelFunction = this.timePickerLabelFunction;
-			itemMatchingFunction = this.timePickerItemMatchingFunction;
-			labelToItemFunction = this.timePickerLabelToItemFunction;
+			labelFunction = this.dateFieldLabelFunction;
+			itemMatchingFunction = this.dateFieldItemMatchingFunction;
+			labelToItemFunction = this.inputTextToItemFunction;
 			openOnInput = true;
 			this.collection = new ArrayCollection();
 			var sort:ISort = new Sort();
@@ -269,10 +286,9 @@ package net.fproject.ui.datetime
 			sort.fields = [sortField];
 			this.collection.sort = sort;
 			this.buildCollection();
-			this.collection.refresh();
 			super.dataProvider = this.collection;
-			addEventListener(DropDownEvent.OPEN,this.eventHandler);
-			addEventListener(DropDownEvent.CLOSE,this.eventHandler);
+			addEventListener(DropDownEvent.OPEN,this.dropDownEventHandler);
+			addEventListener(DropDownEvent.CLOSE,this.dropDownEventHandler);
 		}
 		
 		/**
@@ -335,7 +351,7 @@ package net.fproject.ui.datetime
 			}
 			textInput = null;
 			dataGroup = null;
-			removeEventListener(DropDownEvent.OPEN,this.eventHandler);
+			removeEventListener(DropDownEvent.OPEN,this.dropDownEventHandler);
 		}
 		
 		/**
@@ -377,25 +393,14 @@ package net.fproject.ui.datetime
 		
 		protected function setHintedIndex(index:int) : void
 		{
-			if(this.hintedIndex > -1)
-			{
-				if(this.collection && this.collection[this.hintedIndex])
-				{
-					this.collection[this.hintedIndex].isHinted = false;
-				}
-				if(dataGroup && dataGroup.getVirtualElementAt(this.hintedIndex))
-				{
-					(dataGroup.getVirtualElementAt(this.hintedIndex) as Object).isHinted = false;
-				}
-			}
-			if(index > -1 && this.collection && this.collection[index])
-			{
-				this.collection[index].isHinted = true;
-			}
-			if(dataGroup && dataGroup.getVirtualElementAt(index))
-			{
-				(dataGroup.getVirtualElementAt(index) as Object).isHinted = true;
-			}
+			var item:Time = index > -1 && collection != null ? collection[index] : null;
+			if(itemEnabledFunction != null && !itemEnabledFunction(item))
+				return;
+			var oldItem:Time = hintedIndex > -1 && collection != null ? collection[hintedIndex] : null;
+			if(oldItem != null)
+				oldItem.isHinted = false;
+			if(item != null)
+				item.isHinted = true;
 			this.hintedIndex = index;
 		}
 		
@@ -506,9 +511,12 @@ package net.fproject.ui.datetime
 		 */
 		public function getClosestMinutesIndex(minutes:Number) : int
 		{
+			if(minutes == DAY_MINUTES)
+				return this.collection.length - 1;
 			for (var i:int=0; i<this.collection.length; i++)
 			{
 				var time:Time = this.collection[i] as Time;
+				
 				if(time.minutes == minutes)
 				{
 					return i;
@@ -553,6 +561,19 @@ package net.fproject.ui.datetime
 			return -1;
 		}
 		
+		/**
+		 * <p>Update enabled status of item renderers using itemEnabledFunction function</p>
+		 */
+		public function updateEnabledItems():void
+		{
+			if(itemEnabledFunction != null)
+			{
+				for each(var t:Time in this.collection)
+				{
+					t.enabled = itemEnabledFunction(t);
+				}
+			}
+		}
 		
 		/**
 		 * <p>
@@ -574,7 +595,7 @@ package net.fproject.ui.datetime
 			dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));
 		}
 		
-		protected function timePickerLabelFunction(data:Object) : String
+		protected function dateFieldLabelFunction(data:Object) : String
 		{
 			if(data && data.hasOwnProperty("label"))
 			{
@@ -583,7 +604,7 @@ package net.fproject.ui.datetime
 			return null;
 		}
 		
-		protected function timePickerLabelToItemFunction(s:String) : Object
+		protected function inputTextToItemFunction(s:String) : Object
 		{
 			var sMinutes:String = null;
 			var time:Time = null;
@@ -611,7 +632,7 @@ package net.fproject.ui.datetime
 			return null;
 		}
 		
-		protected function timePickerItemMatchingFunction(combo:ComboBox, input:String) : Vector.<int>
+		protected function dateFieldItemMatchingFunction(combo:ComboBox, input:String) : Vector.<int>
 		{
 			var l:int = 0;
 			var i:int = 0;
@@ -651,7 +672,7 @@ package net.fproject.ui.datetime
 		{
 			this.collection.removeAll();
 			var i:int = 0;
-			while(i < 1440)
+			while(i < DAY_MINUTES)
 			{
 				var s:String = this.convertMinutesToString(i);
 				this.collection.addItem(new Time(i,s));
@@ -751,7 +772,7 @@ package net.fproject.ui.datetime
 			var minutes:Number = h * 60;
 			if(!isNaN(n))
 				minutes += n;
-			if(isNaN(minutes) || minutes < 0 || minutes > 1440)
+			if(isNaN(minutes) || minutes < 0 || minutes > DAY_MINUTES)
 			{
 				return NaN;
 			}
@@ -827,9 +848,7 @@ package net.fproject.ui.datetime
 		{
 			super.textInput_changeHandler(e);
 			if(textInput.text == null || textInput.text == "")
-			{
 				this.setDefaultDropDownIndex();
-			}
 		}
 		
 		/**
@@ -839,15 +858,10 @@ package net.fproject.ui.datetime
 		 */
 		protected function textInputHandler(e:Event) : void
 		{
-			switch(e.type)
-			{
-				case FocusEvent.FOCUS_IN:
-					this.textInputHasFocus = true;
-					break;
-				case FocusEvent.FOCUS_OUT:
-					this.textInputHasFocus = false;
-					break;
-			}
+			if(e.type == FocusEvent.FOCUS_IN)
+				this.textInputHasFocus = true;
+			else if(e.type == FocusEvent.FOCUS_OUT)
+				this.textInputHasFocus = false;
 		}
 		
 		/**
@@ -856,7 +870,7 @@ package net.fproject.ui.datetime
 		 * and hint the selectedIndex or the defaultDropDown index.
 		 * </p>
 		 */
-		protected function eventHandler(e:Event) : void
+		protected function dropDownEventHandler(e:Event) : void
 		{
 			switch(e.type)
 			{
