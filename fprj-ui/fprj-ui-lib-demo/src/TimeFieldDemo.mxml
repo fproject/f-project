@@ -33,21 +33,8 @@
 							label="Error Message:">
 					<s:TextArea id="validationErrorMessageSelect"
 								width="100"
-								text="Not a recognized time.  Examples: 7p, 7pm, 7:00pm, 700p, 19:00p, 19PM etc."/>
+								text="Invalid time. You should input values like: 7p, 7pm, 7:00pm, 700p, 19:00p, 19PM etc."/>
 				</s:FormItem>
-			</s:Form>
-			
-			<s:Form>
-				<s:Form>
-					<s:FormItem label="Parsing User Entered Strings:">
-					</s:FormItem>
-					<s:FormItem label="Custom Times:">
-					</s:FormItem>
-					<s:FormItem label="Time Hinting:">
-					</s:FormItem>
-					<s:FormItem label="Keyboard Navigation:">
-					</s:FormItem>
-				</s:Form>
 			</s:Form>
 		</s:VGroup>
 		
@@ -56,7 +43,7 @@
 					 fontWeight="bold"
 					 text="Select a Time:"/>
 			<s:Label width="400" 
-					 text="Can parse English time descriptions like 7p or 1230a, etc. Try it out by typing time descriptions and hitting the ENTER key."/>
+					 text="Can parse time value like 9p or 1230a, etc. Just type a value and hitting the ENTER key."/>
 			<s:HGroup gap="20"
 					  verticalAlign="top">
 				<ui:TimeField id="timePicker"
