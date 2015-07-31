@@ -393,7 +393,6 @@ package net.fproject.ui.datetime
 		
 		protected function setHintedIndex(index:int) : void
 		{
-			trace('setHintedIndex');
 			var item:Time = index > -1 && collection != null ? collection[index] : null;
 			if(itemEnabledFunction != null && !itemEnabledFunction(item))
 				return;
@@ -407,9 +406,7 @@ package net.fproject.ui.datetime
 		
 		protected function setDefaultDropDownIndex() : void
 		{
-			trace('setDefaultDropDownIndex _defaultDropDownTime=',this._defaultDropDownTime);
 			var i:int = this.getClosestMinutesIndex(this._defaultDropDownTime);
-			trace('...closestMinutesIndex=',i);
 			this.setCenteredVerticalScrollPosition(i);
 			this.setHintedIndex(i);
 		}
@@ -481,7 +478,6 @@ package net.fproject.ui.datetime
 				if(destIndex != NO_SELECTION)
 				{
 					changeHighlightedSelection(destIndex);
-					trace('handleKeyboardNavigation',destIndex);
 					this.setHintedIndex(destIndex);
 					event.preventDefault();
 				}
@@ -851,7 +847,6 @@ package net.fproject.ui.datetime
 		 */
 		override protected function textInput_changeHandler(e:TextOperationEvent) : void
 		{
-			trace('textInput_changeHandler');
 			super.textInput_changeHandler(e);
 			if(textInput.text == null || textInput.text == "")
 				this.setDefaultDropDownIndex();
@@ -878,7 +873,6 @@ package net.fproject.ui.datetime
 		 */
 		protected function dropDownEventHandler(e:Event) : void
 		{
-			trace('dropDownEventHandler');
 			switch(e.type)
 			{
 				case DropDownEvent.CLOSE:
