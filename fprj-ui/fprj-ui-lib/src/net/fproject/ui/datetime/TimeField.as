@@ -277,7 +277,7 @@ package net.fproject.ui.datetime
 			maxChars = 11;
 			restrict = "0-9.aApPmM:";
 			labelFunction = this.dateFieldLabelFunction;
-			itemMatchingFunction = this.dateFieldItemMatchingFunction;
+			itemMatchingFunction = this.timeMatchingFunction;
 			labelToItemFunction = this.inputTextToItemFunction;
 			openOnInput = true;
 			this.collection = new ArrayCollection();
@@ -442,7 +442,7 @@ package net.fproject.ui.datetime
 				callLater(this.setSelectedValueIndex,[idx]);
 				return;
 			}
-			var time:Time = new Time(minutes,this.convertMinutesToString(minutes));
+			var time:Time = new Time(minutes,this.minutesToTimeString(minutes));
 			if(this.userSelectedMinutes > 0)
 			{
 				idx = this.getMinutesIndex(this.userSelectedMinutes);
@@ -602,21 +602,21 @@ package net.fproject.ui.datetime
 		
 		protected function inputTextToItemFunction(s:String) : Object
 		{
-			var sMinutes:String = null;
+			var timeString:String = null;
 			var time:Time = null;
-			var convertedMinutes:Number = this.convertStringToMinutes(s);
-			if(!isNaN(convertedMinutes))
+			var minutes:Number = this.timeStringToMinutes(s);
+			if(!isNaN(minutes))
 			{
 				this.invalid = false;
 				errorString = null;
 				validateProperties();
-				sMinutes = this.convertMinutesToString(convertedMinutes);
-				time = new Time(convertedMinutes,sMinutes);
+				timeString = this.minutesToTimeString(minutes);
+				time = new Time(minutes, timeString);
 				return time;
 			}
 			if(this._requireSelection)
 			{
-				time = new Time(0,this.convertMinutesToString(0));
+				time = new Time(0,this.minutesToTimeString(0));
 				return time;
 			}
 			this.invalid = true;
@@ -628,14 +628,14 @@ package net.fproject.ui.datetime
 			return null;
 		}
 		
-		protected function dateFieldItemMatchingFunction(combo:ComboBox, input:String) : Vector.<int>
+		protected function timeMatchingFunction(combo:ComboBox, input:String) : Vector.<int>
 		{
 			var l:int = 0;
 			var i:int = 0;
 			var time:Time;
 			var matchedItems:Vector.<int> = new Vector.<int>();
 			var index:int = -1;
-			var m:Number = this.convertStringToMinutes(input);
+			var m:Number = this.timeStringToMinutes(input);
 			if(!isNaN(m))
 			{
 				l = this.collection.length;
@@ -670,7 +670,7 @@ package net.fproject.ui.datetime
 			var i:int = 0;
 			while(i < DAY_MINUTES)
 			{
-				var s:String = this.convertMinutesToString(i);
+				var s:String = this.minutesToTimeString(i);
 				this.collection.addItem(new Time(i,s));
 				i = i + this._snapInterval;
 			}
@@ -681,7 +681,7 @@ package net.fproject.ui.datetime
 		 * Converts minutes value into a time string.
 		 * </p>
 		 */
-		protected function convertMinutesToString(minutes:Number) : String
+		protected function minutesToTimeString(minutes:Number) : String
 		{
 			var h:Number = Math.floor(minutes / 60);
 			var m:String = String(minutes % 60);
@@ -706,7 +706,7 @@ package net.fproject.ui.datetime
 		/**
 		 * <p>Converts a user entered string to numerical value of minutes.</p>
 		 */
-		protected function convertStringToMinutes(s:String) : Number
+		protected function timeStringToMinutes(s:String) : Number
 		{
 			var ss:String = "";
 			for(var i:int=0; i<s.length; i++)
@@ -720,7 +720,7 @@ package net.fproject.ui.datetime
 			var regex:RegExp = new RegExp("^\\D*(\\d*)[:.]?([0-5]*\\d)?([ap]?).*$");
 			var matches:Array = regex.exec(ss);
 			s = matches[1];
-			var h:Number = s && s.length > 0?Number(s):NaN;
+			var h:Number = s != null && s.length > 0 ? Number(s) : NaN;
 			s = matches[2] ? matches[2] :null;
 			if(s != null && s.length == 1)
 				s = s + "0";
@@ -744,33 +744,43 @@ package net.fproject.ui.datetime
 					n = Number(s.charAt(1));
 				}
 			}
-			if(matches[3])
-			{
-				var ampm:String = String(matches[3]).charAt(0);
-			}
-			else if(h < 12)
-			{
-				ampm = "a";
-			}
 			else
 			{
+				i = getMinutesIndex(h * 60);
+				if(i > -1 && collection && !Time(collection[i]).enabled)
+				{
+					h = h < 12 ? h + 12 : h - 12;
+				}
+			}
+			
+			if(matches[3])
+				var ampm:String = String(matches[3]).charAt(0);
+			else if(h < 12)
+				ampm = "a";
+			else
 				ampm = "p";
-			}
+			
 			if(h < 12 && ampm == "p")
-			{
 				h = h + 12;
-			}
 			else if(h == 12 && ampm == "a")
-			{
 				h = 0;
-			}
+			
 			var minutes:Number = h * 60;
+			
 			if(!isNaN(n))
 				minutes += n;
+			
 			if(isNaN(minutes) || minutes < 0 || minutes > DAY_MINUTES)
 			{
 				return NaN;
 			}
+			else
+			{
+				i = getClosestMinutesIndex(minutes);
+				if(i > -1 && collection && !Time(collection[i]).enabled)
+					return NaN;
+			}
+			
 			return minutes;
 		}
 		
