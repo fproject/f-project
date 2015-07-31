@@ -5,32 +5,35 @@
 				autoDrawBackground="true">
 	<fx:Script>
 		<![CDATA[
-			import net.fproject.ui.datetime.supportClasses.Time;
-			private var _isHinted:Boolean;
+			import mx.events.PropertyChangeEvent;
 			
-			public function set isHinted(value:Boolean) : void
-			{
-				if(value == this._isHinted)
-				{
-					return;
-				}
-				this._isHinted = value;
-				invalidateRendererState();
-			}
+			import net.fproject.ui.datetime.supportClasses.Time;
 			
 			override public function set data(value:Object) : void
 			{
+				if(data is Time)
+					IEventDispatcher(data).removeEventListener(PropertyChangeEvent.PROPERTY_CHANGE, onDataFieldChanged);
 				super.data = value;
 				if(value is Time)
 				{
-					labelDisplay.text = value.label;
-					this.isHinted = data.isHinted;
+					this.labelDisplay.text = Time(value).label;
+					this.enabled = Time(value).enabled;
+					IEventDispatcher(value).addEventListener(PropertyChangeEvent.PROPERTY_CHANGE, onDataFieldChanged);
+					invalidateRendererState();
 				}
+			}
+			
+			private function onDataFieldChanged(e:PropertyChangeEvent):void
+			{
+				if(e.property == "enabled")
+					this.enabled = e.newValue;
+				else if(e.property == "isHinted")
+					invalidateRendererState();
 			}
 			
 			override protected function getCurrentRendererState() : String
 			{
-				if(!selected && !hovered && this._isHinted)
+				if(!selected && !hovered && data is Time && Time(data).isHinted)
 					return "isHinted";
 				else
 					return super.getCurrentRendererState();
