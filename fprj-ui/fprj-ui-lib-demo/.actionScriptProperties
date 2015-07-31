@@ -17,6 +17,7 @@
   </compiler>
   <applications>
     <application path="DateControlsDemo.mxml"/>
+    <application path="TimeFieldDemo.mxml"/>
     <application path="SeparatorsDemo.mxml"/>
   </applications>
   <modules/>
