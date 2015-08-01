@@ -488,5 +488,13 @@ package net.fproject.utils
 			
 			return a;
 		}
+		
+		public static function jsonEscape(o:*):*
+		{
+			if(o is String)
+				return escape(o as String).replace(/\./g, "%2E").replace(/\:/g, "%3A").replace(/\//g, "%2F");
+			else
+				return o;
+		}
 	}
 }
