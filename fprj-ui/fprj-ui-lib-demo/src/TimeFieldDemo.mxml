@@ -11,26 +11,26 @@
 			<s:Form>
 				<s:FormHeading label="Properties:"/>
 				<s:FormItem label="snapInterval:">
-					<s:NumericStepper id="snapIntervalSelect"
+					<s:NumericStepper id="snapIntervalField"
 									  width="100"
 									  minimum="1" maximum="600" value="30"/>
 				</s:FormItem>
 				<s:FormItem label="defaultDropDownTime:">
-					<s:NumericStepper id="defaultDropDownTimeSelect"
+					<s:NumericStepper id="defaultDropDownField"
 									  width="100"
 									  minimum="0" maximum="1439" value="480"/>
 				</s:FormItem>
 				<s:FormItem label="openOnFocus:">
-					<s:CheckBox id="openOnFocusSelect"
+					<s:CheckBox id="openOnFocusCheckBox"
 								selected="true"/>
 				</s:FormItem>
-				<s:FormItem label="Require Selection:">
-					<s:CheckBox id="requireSelectionSelect"
+				<s:FormItem label="requireSelection:">
+					<s:CheckBox id="requireSelectionCheckBox"
 								selected="false"/>
 				</s:FormItem>
-				<s:FormItem enabled="{!requireSelectionSelect.selected}" 
+				<s:FormItem enabled="{!requireSelectionCheckBox.selected}" 
 							label="validationErrorMessage:">
-					<s:TextArea id="validationErrorMessageSelect"
+					<s:TextArea id="validationErrorMessageTextArea"
 								width="300"
 								text="Invalid time. Your input a value like: 8p, 5pm, 7:00pm, 830p, 19:00p, 21PM etc."/>
 				</s:FormItem>
@@ -43,11 +43,11 @@
 		<ui:TimeField id="timeField"
 					  selectedMinutes="-1"
 					  horizontalCenter="0" verticalCenter="0"
-					  requireSelection="{requireSelectionSelect.selected}"
-					  snapInterval="{snapIntervalSelect.value}"
-					  defaultDropDownTime="{defaultDropDownTimeSelect.value}"
-					  openOnFocus="{openOnFocusSelect.selected}"
-					  validationErrorMessage="{validationErrorMessageSelect.text}"/>
+					  requireSelection="{requireSelectionCheckBox.selected}"
+					  snapInterval="{snapIntervalField.value}"
+					  defaultDropDownTime="{defaultDropDownField.value}"
+					  openOnFocus="{openOnFocusCheckBox.selected}"
+					  validationErrorMessage="{validationErrorMessageTextArea.text}"/>
 		<s:FormItem width="150" label="selectedItem:">
 			<s:Label text="{timeField.selectedItem}"/>
 		</s:FormItem>
