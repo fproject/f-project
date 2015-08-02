@@ -40,7 +40,7 @@
 	<s:Form>
 		<s:FormHeading label="The TimeField control:"/>
 		<s:Label width="400" text="Type a value and hit the ENTER key. Use UP and DOWN key to change the selected item"/>
-		<ui:TimeField id="timePicker"
+		<ui:TimeField id="timeField"
 					  selectedMinutes="-1"
 					  horizontalCenter="0" verticalCenter="0"
 					  requireSelection="{requireSelectionSelect.selected}"
@@ -48,9 +48,13 @@
 					  defaultDropDownTime="{defaultDropDownTimeSelect.value}"
 					  openOnFocus="{openOnFocusSelect.selected}"
 					  validationErrorMessage="{validationErrorMessageSelect.text}"/>
+		<s:FormItem width="150" label="selectedItem:">
+			<s:Label text="{timeField.selectedItem}"/>
+		</s:FormItem>
 		
 		<s:FormItem width="150" label="selectedMinutes:">
-			<s:Label text="{timePicker.selectedMinutes}"/>
+			<s:Label text="{timeField.selectedMinutes}"/>
 		</s:FormItem>
+		
 	</s:Form>
 </s:Application>
