@@ -569,7 +569,7 @@ package net.fproject.ui.datetime
 		
 		override public function get selectedIndex():int
 		{
-			if(_requireSelection && super.selectedIndex == -1)
+			if(_requireSelection && super.selectedIndex == NO_SELECTION)
 			{
 				for(var i:int = 0; i < collection.length; i++)
 				{
@@ -577,6 +577,7 @@ package net.fproject.ui.datetime
 					if(t.enabled)
 					{
 						_selectedIndex = i;
+						_proposedSelectedIndex = i;
 						break;
 					}
 				}
