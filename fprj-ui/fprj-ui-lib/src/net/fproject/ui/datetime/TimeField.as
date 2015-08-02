@@ -200,7 +200,7 @@ package net.fproject.ui.datetime
 				{
 					closeDropDown(false);
 				}
-				this.setCustomSelectedItem(this._selectedMinutes);
+				this.setCustomSelectedItem(this._selectedMinutes, false);
 			}
 			if(this.snapIntervalDirty)
 			{
@@ -209,12 +209,12 @@ package net.fproject.ui.datetime
 				if(!this._requireSelection)
 				{
 					this.setText("");
-					this.setSelectedMinutes(-1);
+					this.setSelectedMinutes(-1, false);
 					setSelectedIndex(NO_SELECTION,true);
 				}
 				else
 				{
-					this.setSelectedMinutes(0);
+					this.setSelectedMinutes(0, false);
 					setSelectedIndex(0,true);
 				}
 			}
@@ -416,18 +416,18 @@ package net.fproject.ui.datetime
 			this.hintedIndex = selectedIndex = index;
 		}
 		
-		protected function setCustomSelectedItem(minutes:int) : void
+		protected function setCustomSelectedItem(minutes:int, fireIndexChange:Boolean=true) : void
 		{
 			if(minutes == -1)
 			{
 				if(!this._requireSelection)
 				{
-					this.setSelectedMinutes(-1);
+					this.setSelectedMinutes(-1, fireIndexChange);
 				}
 				if(this._requireSelection)
 				{
 					callLater(this.setSelectedValueIndex,[0]);
-					callLater(this.setSelectedMinutes,[0]);
+					callLater(this.setSelectedMinutes,[0, fireIndexChange]);
 					errorString = null;
 					validateProperties();
 				}
@@ -567,6 +567,23 @@ package net.fproject.ui.datetime
 			}
 		}
 		
+		override public function get selectedIndex():int
+		{
+			if(_requireSelection && super.selectedIndex == -1)
+			{
+				for(var i:int = 0; i < collection.length; i++)
+				{
+					var t:Time = collection[i];
+					if(t.enabled)
+					{
+						_selectedIndex = i;
+						break;
+					}
+				}
+			}
+			return super.selectedIndex;
+		}
+		
 		/**
 		 * <p>
 		 * Set value for the selectedIndex field by the index of the element in the collection.
@@ -577,12 +594,15 @@ package net.fproject.ui.datetime
 			this.selectedIndex = getMinutesIndex(minutes);
 		}
 		
-		protected function setSelectedMinutes(value:Number) : void
+		protected function setSelectedMinutes(value:Number, fireIndexChange:Boolean=true) : void
 		{
 			if(this._selectedMinutes != value)
 			{
 				this._selectedMinutes = value;
-				dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE));
+				var oldIdx:int = _selectedIndex;
+				this.selectedIndex = getClosestMinutesIndex(value);
+				if(fireIndexChange)
+					dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE, false, false, oldIdx, _selectedIndex));
 			}
 			dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));
 		}
