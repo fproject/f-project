@@ -9,12 +9,12 @@
 			   minWidth="955" minHeight="600" creationComplete="onCreationComplete()">
 	<fx:Script>
 		<![CDATA[
-			import net.fproject.di.Injector_TestSuite;
+			import net.fproject.utils.DataUtil_TestSuite;
 			
 			public function currentRunTestSuite():Array
 			{
 				var testsToRun:Array = new Array();
-				testsToRun.push(net.fproject.di.Injector_TestSuite);
+				testsToRun.push(net.fproject.utils.DataUtil_TestSuite);
 				return testsToRun;
 			}
 			
