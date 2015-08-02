@@ -26,6 +26,7 @@
     <application path="StringUtil_Test.mxml"/>
     <application path="Active_Test.mxml"/>
     <application path="FlexUnitApplication.mxml"/>
+    <application path="DataUtil_Test.mxml"/>
   </applications>
   <modules/>
   <workers/>
