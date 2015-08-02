@@ -32,7 +32,7 @@
 							label="validationErrorMessage:">
 					<s:TextArea id="validationErrorMessageTextArea"
 								width="300"
-								text="Invalid time. Your input a value like: 8p, 5pm, 7:00pm, 830p, 19:00p, 21PM etc."/>
+								text="Invalid time. Input a value like: 8p, 5pm, 7:00pm, 830p, 19:00p, 21PM etc."/>
 				</s:FormItem>
 			</s:Form>
 		</s:VGroup>
