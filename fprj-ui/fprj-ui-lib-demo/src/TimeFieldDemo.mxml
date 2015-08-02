@@ -3,25 +3,24 @@
 			   xmlns:s="library://ns.adobe.com/flex/spark"
 			   xmlns:mx="library://ns.adobe.com/flex/mx"
 			   xmlns:ui="http://f-project.net/xmlns/fprj-ui/2015"
-			   xmlns:containers="containers.*"
-			   xmlns:data="containers.data.*"
-			   width="100%" height="100%" viewSourceURL="srcview/index.html">
+			   width="100%" height="100%">
 	<s:layout><s:VerticalLayout paddingLeft="10"/></s:layout>
 	
 	<s:HGroup>
 		<s:VGroup>
 			<s:Form>
-				<s:FormItem label="Snap Interval:">
+				<s:FormHeading label="Properties:"/>
+				<s:FormItem label="snapInterval:">
 					<s:NumericStepper id="snapIntervalSelect"
 									  width="100"
 									  minimum="1" maximum="600" value="30"/>
 				</s:FormItem>
-				<s:FormItem label="Default Time:">
+				<s:FormItem label="defaultDropDownTime:">
 					<s:NumericStepper id="defaultDropDownTimeSelect"
 									  width="100"
 									  minimum="0" maximum="1439" value="480"/>
 				</s:FormItem>
-				<s:FormItem label="Open on Focus:">
+				<s:FormItem label="openOnFocus:">
 					<s:CheckBox id="openOnFocusSelect"
 								selected="true"/>
 				</s:FormItem>
@@ -30,38 +29,28 @@
 								selected="false"/>
 				</s:FormItem>
 				<s:FormItem enabled="{!requireSelectionSelect.selected}" 
-							label="Error Message:">
+							label="validationErrorMessage:">
 					<s:TextArea id="validationErrorMessageSelect"
-								width="100"
-								text="Invalid time. You should input values like: 7p, 7pm, 7:00pm, 700p, 19:00p, 19PM etc."/>
+								width="300"
+								text="Invalid time. Your input a value like: 8p, 5pm, 7:00pm, 830p, 19:00p, 21PM etc."/>
 				</s:FormItem>
 			</s:Form>
 		</s:VGroup>
-		
-		<s:VGroup gap="20">
-			<s:Label fontSize="13"
-					 fontWeight="bold"
-					 text="Select a Time:"/>
-			<s:Label width="400" 
-					 text="Can parse time value like 9p or 1230a, etc. Just type a value and hitting the ENTER key."/>
-			<s:HGroup gap="20"
-					  verticalAlign="top">
-				<ui:TimeField id="timePicker"
-									   selectedMinutes="-1"
-									   horizontalCenter="0" verticalCenter="0"
-									   requireSelection="{requireSelectionSelect.selected}"
-									   snapInterval="{snapIntervalSelect.value}"
-									   defaultDropDownTime="{defaultDropDownTimeSelect.value}"
-									   openOnFocus="{openOnFocusSelect.selected}"
-									   validationErrorMessage="{validationErrorMessageSelect.text}"/>
-				<s:HGroup width="150"
-						  paddingTop="5">
-					<s:Label text="Selected Minutes:"
-							 fontWeight="bold"/>
-					<s:Label text="{timePicker.selectedMinutes}"/>
-				</s:HGroup>
-			</s:HGroup>
-		</s:VGroup>
-		
 	</s:HGroup>
+	<s:Form>
+		<s:FormHeading label="The TimeField control:"/>
+		<s:Label width="400" text="Type a value and hit the ENTER key. Use UP and DOWN key to change the selected item"/>
+		<ui:TimeField id="timePicker"
+					  selectedMinutes="-1"
+					  horizontalCenter="0" verticalCenter="0"
+					  requireSelection="{requireSelectionSelect.selected}"
+					  snapInterval="{snapIntervalSelect.value}"
+					  defaultDropDownTime="{defaultDropDownTimeSelect.value}"
+					  openOnFocus="{openOnFocusSelect.selected}"
+					  validationErrorMessage="{validationErrorMessageSelect.text}"/>
+		
+		<s:FormItem width="150" label="selectedMinutes:">
+			<s:Label text="{timePicker.selectedMinutes}"/>
+		</s:FormItem>
+	</s:Form>
 </s:Application>
