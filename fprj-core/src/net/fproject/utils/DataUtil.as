@@ -189,9 +189,8 @@ package net.fproject.utils
 					case "0":     
 					case "false":     
 					case "no":         
-						return false;     
 					default:         
-						return Boolean(value); 
+						return false;   
 				}
 			}
 			else
@@ -291,11 +290,10 @@ package net.fproject.utils
 			else
 				chain = chain.replace(/[ \t]+/g, "");
 			
-			if((chain.charAt(0) == "'" && chain.charAt(chain.length - 1) == "'")
-				|| (chain.charAt(0) == '"' && chain.charAt(chain.length - 1) == '"')
-				|| (chain.charAt(0) == '{' && chain.charAt(chain.length - 1) == '}'))
+			var o:Object = parseLiteralValue(chain, expectedType);
+			if(o != null)
 			{
-				return getLiteralValue(chain.substring(1, chain.length - 1), expectedType);
+				return o.value;
 			}
 			
 			if(chain.indexOf(Injector.THIS + ".") == 0 || host is Class)
@@ -338,28 +336,69 @@ package net.fproject.utils
 				return host == null? chain : evaluateHostMember(host, chain);
 		}
 		
-		public static function getLiteralValue(s:String, expectedType:String=null):*
+		public static function parseLiteralValue(s:String, expectedType:String=null):Object
 		{
-			if(expectedType == null)
-				return s;
-			switch(expectedType.toLowerCase())
+			if((s.charAt(0) == "'" && s.charAt(s.length - 1) == "'")
+				|| (s.charAt(0) == '"' && s.charAt(s.length - 1) == '"')
+				|| (s.charAt(0) == '{' && s.charAt(s.length - 1) == '}'))
 			{
-				case "number":
-					return Number(s);
-				case "boolean":
-					return toBoolean(s);
-				case 'array':
-					s = StringUtil.trim(s);
-					if(s.charAt(0) == '[')
-						s = s.substr(1);
-					if(s.charAt(s.length - 1) == ']')
-						s = s.substr(0, s.length - 1);
-					return s.split(',');
-				case "boolean":
-				case "string":
-				default:
-					return s;
+				s = s.substring(1, s.length - 1);
+				var quoted:Boolean = true;
 			}
+			
+			if(quoted)
+			{
+				if(expectedType == null)
+					return {value:s};
+				
+				var v:*;
+				switch(expectedType.toLowerCase())
+				{
+					case "int":
+						v = int(s);
+						break;
+					case "uint":
+						v = uint(s);
+						break;
+					case "number":
+						v = Number(s);
+						break;
+					case "boolean":
+						v = toBoolean(s);
+						break;
+					case 'array':
+						s = StringUtil.trim(s);
+						if(s.charAt(0) == '[')
+							s = s.substr(1);
+						if(s.charAt(s.length - 1) == ']')
+							s = s.substr(0, s.length - 1);
+						v = s.split(',');
+						break;
+					case "string":
+					default:
+						v = s;
+				}
+				
+				return {value:v};
+			}
+			else if(s == 'true')
+			{
+				return {value:true};;
+			}
+			else if(s == 'false')
+			{
+				return {value:false};;
+			}
+			else if(s == 'null')
+			{
+				return {value:null};
+			}
+			else if(s.match(/^(\d+\.)?\d+$/))
+			{
+				return {value:Number(s)};
+			}
+			
+			return null;
 		}
 		
 		/**
