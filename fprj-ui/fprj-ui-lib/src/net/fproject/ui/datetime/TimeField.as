@@ -242,7 +242,7 @@ package net.fproject.ui.datetime
 			var b:Boolean = super.commitSelection(false);
 			if(selectedItem && selectedItem is Time)
 			{
-				this.setSelectedMinutes(selectedItem.minutes);
+				this.setSelectedMinutes(selectedItem.minutes, false);
 			}
 			this.validate();
 			if(selectedIndex == NO_SELECTION)
