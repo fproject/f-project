@@ -100,7 +100,7 @@ package net.fproject.serialize
 			return target;
 		}
 
-		private function isSimpleType(object:Object):Boolean
+		private function isBasicType(object:Object):Boolean
 		{
 			switch (typeof(object))
 			{
@@ -137,7 +137,7 @@ package net.fproject.serialize
 			if (value) 
 			{
 				// automatically coerce simple types.
-				if (!isSimpleType(value))
+				if (!isBasicType(value))
 				{
 					value = extract(value, fieldInjection.type);
 				}
