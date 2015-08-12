@@ -21,7 +21,7 @@ package net.fproject.gui.component.supportClasses
 	import net.fproject.core.AppContext;
 	import net.fproject.reflect.ReflectionUtil;
 	import net.fproject.event.AppContextEvent;
-	import net.fproject.utils.ApplicationUtil;
+	import net.fproject.utils.ApplicationGlobals;
 	
 	import org.as3commons.reflect.Metadata;
 
@@ -159,7 +159,7 @@ package net.fproject.gui.component.supportClasses
 				{
 					groupLoaded = false;
 					var rslLoader:Loader = new Loader();
-					var urlRequest:URLRequest = new URLRequest(ApplicationUtil.getRslBaseUrl() + "/" + rsl.url);
+					var urlRequest:URLRequest = new URLRequest(ApplicationGlobals.getRslBaseUrl() + "/" + rsl.url);
 					var context:LoaderContext = new LoaderContext(false, ApplicationDomain.currentDomain);
 					loaderToGroupInfo[rslLoader.contentLoaderInfo] = 
 						{index: groupIndex, callback: completeCallback};
@@ -199,7 +199,7 @@ package net.fproject.gui.component.supportClasses
 				if(!rsl.loaded)
 				{
 					var li:LoaderInfo = LoaderInfo(e.currentTarget);
-					var rslUrl:String = ApplicationUtil.getRslAbsoluteUrl(rsl.url);
+					var rslUrl:String = ApplicationGlobals.getRslAbsoluteUrl(rsl.url);
 					if(rslUrl.toLowerCase() == String(li.url).toLowerCase())
 					{
 						rsl.loaded = true;

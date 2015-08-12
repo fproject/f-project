@@ -19,7 +19,7 @@ package net.fproject.gui.component
 	import net.fproject.event.AppContextEvent;
 	import net.fproject.gui.component.supportClasses.DeferredCallHelper;
 	import net.fproject.gui.component.supportClasses.RslsLoader;
-	import net.fproject.utils.ApplicationUtil;
+	import net.fproject.utils.ApplicationGlobals;
 	import net.fproject.utils.ResourceUtil;
 	
 	/**
@@ -58,7 +58,7 @@ package net.fproject.gui.component
 		
 		public function set moduleUrl(value:String):void
 		{
-			this.url = ApplicationUtil.getModuleUrl(value);
+			this.url = ApplicationGlobals.getModuleUrl(value);
 		}
 		
 		private var moduleInterface:Class;
@@ -107,7 +107,7 @@ package net.fproject.gui.component
 		public static function getLoaderByUrl(url:String, rsls:String, loadAsNeed:Boolean=false,
 											  readyCallback:Function=null, errorCallback:Function=null):AdvancedModuleLoader
 		{
-			url = ApplicationUtil.getModuleUrl(url);
+			url = ApplicationGlobals.getModuleUrl(url);
 			var loader:AdvancedModuleLoader = urlToModuleLoader[url] as AdvancedModuleLoader;
 			if(loader == null && loadAsNeed)
 			{
