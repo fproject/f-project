@@ -2,6 +2,9 @@
 
 <!-- This is an auto generated file and is not intended for modification. -->
 
+
+<!-- This is an auto generated file and is not intended for modification. -->
+
 <s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
 			   xmlns:s="library://ns.adobe.com/flex/spark"
 			   xmlns:mx="library://ns.adobe.com/flex/mx"
@@ -9,19 +12,22 @@
 			   minWidth="955" minHeight="600" creationComplete="onCreationComplete()">
 	<fx:Script>
 		<![CDATA[
-			import net.fproject.utils.DataUtil_TestSuite;
+			import net.fproject.active.ActiveService_testCases;
 			
-			public function currentRunTestSuite():Array
-			{
-				var testsToRun:Array = new Array();
-				testsToRun.push(net.fproject.utils.DataUtil_TestSuite);
-				return testsToRun;
-			}
-			
+			import org.flexunit.runner.Request;
 			
 			private function onCreationComplete():void
 			{
 				testRunner.runWithFlexUnit4Runner(currentRunTestSuite(), "fprj-core-test");
+			}
+			
+			
+			public function currentRunTestSuite():Array
+			{
+				var testsToRun:Array = new Array();
+				
+				testsToRun.push(Request.methods(net.fproject.active.ActiveService_testCases,["testCase200"]));
+				return testsToRun;
 			}
 			
 		]]>
