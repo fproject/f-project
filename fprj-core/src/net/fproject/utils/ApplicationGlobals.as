@@ -20,7 +20,7 @@ package net.fproject.utils
 	 * @author Bui Sy Nguyen
 	 * 
 	 */
-	public class ApplicationUtil
+	public class ApplicationGlobals
 	{
 		public static function getModuleBaseUrl() : String
 		{

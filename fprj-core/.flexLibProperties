@@ -32,7 +32,6 @@
     <classEntry path="net.fproject.serialize.SerializeError"/>
     <classEntry path="net.fproject.serialize.Serializer"/>
     <classEntry path="net.fproject.utils.AdvancedDateFormatter"/>
-    <classEntry path="net.fproject.utils.ApplicationUtil"/>
     <classEntry path="net.fproject.utils.BitmapFactory"/>
     <classEntry path="net.fproject.utils.ColorUtil"/>
     <classEntry path="net.fproject.utils.CssUtil"/>
