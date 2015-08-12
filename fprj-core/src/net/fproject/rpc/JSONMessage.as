@@ -25,6 +25,8 @@ package net.fproject.rpc
 	{
 		public static const CONTENT_TYPE_JSON:String = "application/json";    
 		
+		public static const CONTENT_FORMAT_JSON:String = "json";  
+		
 		/**
 		 * Constructor
 		 *  

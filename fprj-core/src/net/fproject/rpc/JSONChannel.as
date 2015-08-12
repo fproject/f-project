@@ -33,6 +33,8 @@ package net.fproject.rpc
 	import mx.resources.IResourceManager;
 	import mx.resources.ResourceManager;
 	
+	import net.fproject.utils.ApplicationGlobals;
+	
 	use namespace mx_internal;
 	
 	[ResourceBundle("messaging")]
@@ -169,20 +171,28 @@ package net.fproject.rpc
 		/*override */mx_internal function createURLRequest(message:IMessage):URLRequest
 		{
 			var httpMsg:HTTPRequestMessage = HTTPRequestMessage(message);
-			var result:URLRequest = new URLRequest();
-			var url:String = httpMsg.url;
-			var params:String = null;
+			var req:URLRequest = new URLRequest();
 			
 			// Propagate our requestTimeout for those platforms
 			// supporting the idleTimeout property on URLRequest.
-			if ("idleTimeout" in result && requestTimeout > 0)
-				result["idleTimeout"] = requestTimeout * 1000;
+			if ("idleTimeout" in req && requestTimeout > 0)
+				req["idleTimeout"] = requestTimeout * 1000;
 			
-			result.contentType = httpMsg.contentType;
+			req.contentType = httpMsg.contentType;
 			
 			var contentTypeIsXML:Boolean = 
-				result.contentType == HTTPRequestMessage.CONTENT_TYPE_XML 
-				|| result.contentType == HTTPRequestMessage.CONTENT_TYPE_SOAP_XML;
+				req.contentType == HTTPRequestMessage.CONTENT_TYPE_XML 
+				|| req.contentType == HTTPRequestMessage.CONTENT_TYPE_SOAP_XML;
+			
+			var urlVariables:URLVariables = new URLVariables();
+			
+			if (!contentTypeIsXML)
+			{
+				
+				var body:Object = httpMsg.body;
+				for (var p:String in body)
+					urlVariables[p] = httpMsg.body[p];
+			}
 			
 			var headers:Object = httpMsg.httpHeaders;
 			var requestHeaders:Array = [];
@@ -195,56 +205,58 @@ package net.fproject.rpc
 				}				
 			}
 			
-			if(this.credentials != null && (headers == null || !headers.hasOwnProperty('Authorization')))
-				requestHeaders.push(new URLRequestHeader('Authorization', 'Bearer ' + this.credentials));
-			
-			if(headers == null || !headers.hasOwnProperty('Accept'))
-				requestHeaders.push(new URLRequestHeader('Accept', JSONMessage.CONTENT_TYPE_JSON));
-			
-			result.requestHeaders = requestHeaders;
-			
-			if (!contentTypeIsXML)
+			if(ApplicationGlobals.isDesktop())
 			{
-				var urlVariables:URLVariables = new URLVariables();
-				var body:Object = httpMsg.body;
-				for (var p:String in body)
-					urlVariables[p] = httpMsg.body[p];
+				if(this.credentials != null && (headers == null || !headers.hasOwnProperty('Authorization')))
+					requestHeaders.push(new URLRequestHeader('Authorization', 'Bearer ' + this.credentials));
 				
-				params = urlVariables.toString();
+				if(headers == null || !headers.hasOwnProperty('Accept'))
+					requestHeaders.push(new URLRequestHeader('Accept', JSONMessage.CONTENT_TYPE_JSON));
+				
+				req.requestHeaders = requestHeaders;
 			}
+			else
+			{
+				if(this.credentials != null)
+					urlVariables['access-token'] = this.credentials;
+					
+				urlVariables['_format'] = JSONMessage.CONTENT_FORMAT_JSON;
+			}
+			
+			var url:String = httpMsg.url;
+			var params:String = urlVariables.toString();
+			
+			if (params && params != "")
+			{
+				url += (url.indexOf("?") > -1) ? '&' : '?';
+				url += params;
+			}
+			req.url = url;
 			
 			if (httpMsg.method == HTTPRequestMessage.POST_METHOD || contentTypeIsXML)
 			{
-				result.method = "POST";
-				if (result.contentType == HTTPRequestMessage.CONTENT_TYPE_FORM)
-					result.data = params;
+				req.method = "POST";
+				if (req.contentType == HTTPRequestMessage.CONTENT_TYPE_FORM)
+					req.data = urlVariables.toString();
 				else
 				{
 					// For XML content, work around bug 196450 by calling 
 					// XML.toXMLString() ourselves as URLRequest.data uses
 					// XML.toString() hence bug 184950.
 					if (httpMsg.body != null && httpMsg.body is XML)
-						result.data = XML(httpMsg.body).toXMLString();
+						req.data = XML(httpMsg.body).toXMLString();
 					else
-						result.data = httpMsg.body;
+						req.data = httpMsg.body;
 				}
 			}
-			else
-			{
-				if (params && params != "")
-				{
-					url += (url.indexOf("?") > -1) ? '&' : '?';
-					url += params;
-				}
-			}
-			result.url = url;
+			
 			
 			if (NetworkMonitor.isMonitoring())
 			{
-				NetworkMonitor.adjustURLRequest(result, LoaderConfig.url, message.messageId);
+				NetworkMonitor.adjustURLRequest(req, LoaderConfig.url, message.messageId);
 			}
 			
-			return result;
+			return req;
 		}
 		
 		/**
