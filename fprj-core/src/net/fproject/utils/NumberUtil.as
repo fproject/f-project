@@ -7,21 +7,15 @@
 ///////////////////////////////////////////////////////////////////////////////
 package net.fproject.utils
 {
-	import mx.formatters.NumberBaseRoundType;
-	import mx.formatters.NumberFormatter;
-
 	public class NumberUtil
 	{
-		public static const NUMBER_PRECISION:int = 2;
-
-		public static function gridColumnNumberFomatter():NumberFormatter
-		{
-			var formatter:NumberFormatter = new NumberFormatter;
-			formatter.precision = NUMBER_PRECISION;
-			formatter.rounding = NumberBaseRoundType.NEAREST;
-			return formatter;
-		}
-
+		/**
+		 * Zero padding before a number.
+		 * @param number
+		 * @param width
+		 * @return a string composed by the number with zero-padding before
+		 * 
+		 */
 		public static function zeroPad(number:int, width:int):String
 		{
 			var prefix:String;
@@ -49,6 +43,12 @@ package net.fproject.utils
 		}
 		
 		
+		/**
+		 * Parse an array of integers or a string contains an array of integers and return a vector of integers 
+		 * @param value the input source to pase
+		 * @return a vector of int
+		 * 
+		 */
 		public static function parseInts(value:Object):Vector.<int>
 		{
 			var v:Vector.<int>;
@@ -81,5 +81,27 @@ package net.fproject.utils
 			return v;
 		}
 		
+		/**
+		 * Sort and uniquify an array of integers 
+		 * @param ints
+		 * @return the uniquified sorted array
+		 * 
+		 */
+		public static function sortAndUniquifyInts(ints:Array) : Array
+		{
+			var i:int = 0;
+			var a:Array = [];
+			ints.sort(Array.NUMERIC);
+			
+			for (var j:uint = 0; j < ints.length; j++)
+			{                
+				if (j == 0 || i != ints[j])
+				{
+					a.push(ints[j]);
+					i = ints[j];
+				}
+			}
+			return a;
+		}
 	}
 }

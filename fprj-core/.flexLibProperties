@@ -50,7 +50,6 @@
     <classEntry path="net.fproject.utils.LoggingUtil"/>
     <classEntry path="net.fproject.utils.LruCache"/>
     <classEntry path="net.fproject.utils.LunarCalendar"/>
-    <classEntry path="net.fproject.utils.MathUtil"/>
     <classEntry path="net.fproject.utils.MessageUtil"/>
     <classEntry path="net.fproject.utils.NumberUtil"/>
     <classEntry path="net.fproject.gui.Orientation"/>
