@@ -19,17 +19,20 @@ package net.fproject.di
 		private static var classToImpl:Dictionary = new Dictionary(true);
 		private static var implToInstance:Dictionary = new Dictionary(true);
 		
+		/**
+		 * @see #setInstanceFactoryConfig()
+		 */
 		private static var factoryConfig:XML
+		
 		/**
 		 * Set InstanceFactory configuration 
 		 * @param config the InstanceFactory configuration, using the following sample format:
 		 * <pre>
-		 *&lt;root&gt;
-		 *   	&lt;InstanceFactory&gt;
-		 *    		&lt;Impl name="net.fproject.rpc.IRemoteObject" impl="net.fproject.rpc.JSONRemoteObject"/&gt;
-		 * 		&lt;Impl name="com.myorg.IMyService" impl="com.myorg.MyServiceImpl"/&gt;
-		 *   	&lt;/InstanceFactory&gt;
-		 *&lt;/root&gt;</pre>
+		 *   &lt;ImplementationConfig&gt;
+		 *    	&lt;Implementation abstractor="net.fproject.rpc.IRemoteObject" impl="net.fproject.rpc.JSONRemoteObject"/&gt;
+		 * 	&lt;Implementation abstractor="com.myorg.IMyService" impl="com.myorg.MyServiceImpl"/&gt;
+		 *   &lt;/ImplementationConfig&gt;
+		 *</pre>
 		 * 
 		 */
 		public static function setInstanceFactoryConfig(config:XML):void
@@ -44,15 +47,15 @@ package net.fproject.di
 		 * @return The singleton instance
 		 * 
 		 */
-		public static function getInstance(abstractor:Class, constructorArgs:*=undefined):Object
+		public static function getInstance(abstractor:Class, constructorArgs:*=undefined, singleton:Boolean=true):Object
 		{
-			if(implToInstance[abstractor] != undefined)
+			if(singleton && implToInstance[abstractor] != undefined)
 				return implToInstance[abstractor];
 			
 			if(classToImpl[abstractor] != undefined)
 			{
 				var impl:Class = classToImpl[abstractor];
-				return implToInstance[impl];
+				return getInstanceByImpl(abstractor, impl, constructorArgs, singleton);
 			}
 			
 			for each (var i:Object in ImplementationConfig.instance.impls)
@@ -69,16 +72,16 @@ package net.fproject.di
 			
 			if(impl == null)
 			{
-				var clsName:String = getQualifiedClassName(abstractor).replace("::",".");
+				var abstractorName:String = getQualifiedClassName(abstractor).replace("::",".");
 				
 				if(factoryConfig != null)
 				{
-					for each (var itfImpl:XML in factoryConfig.InstanceFactory.Impl)
+					for each (var implXml:XML in factoryConfig.ImplementationConfig.Implementation)
 					{
-						var itfName:String = itfImpl.@name;
-						if(itfName.replace("::",".") == clsName)
+						var implAbs:String = implXml.@abstractor;
+						if(implAbs.replace("::",".") == abstractorName)
 						{
-							var implName:String = itfImpl.@impl as String;
+							var implName:String = implXml.@impl as String;
 							if(implName != null)
 								impl = getDefinitionByName(implName) as Class;
 							break;
@@ -92,20 +95,31 @@ package net.fproject.di
 				}
 			}
 			
+			return getInstanceByImpl(abstractor, impl, constructorArgs, singleton);
+		}
+		
+		private static function getInstanceByImpl(abstractor:Class, impl:Class, constructorArgs:*, singleton:Boolean):*
+		{
 			if(impl != null)
 			{
 				if(constructorArgs == undefined)
 				{
 					var instance:Object = new impl();
 				}
-				else if(!(constructorArgs is Array))
+				else
 				{
-					constructorArgs = [constructorArgs];
+					if(!(constructorArgs is Array))
+						constructorArgs = [constructorArgs];
 					instance = ClassUtils.newInstance(impl, constructorArgs);
 				}
-				implToInstance[impl] = instance;
-				if(impl !== abstractor)
-					implToInstance[abstractor] == instance;
+				
+				if(singleton)
+				{
+					implToInstance[impl] = instance;
+					if(impl !== abstractor)
+						implToInstance[abstractor] == instance;
+				}
+				
 				classToImpl[abstractor] = impl;
 				return instance;
 			}
