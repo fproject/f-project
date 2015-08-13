@@ -7,6 +7,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 package net.fproject.calendar
 {
+	import flash.events.Event;
+	import flash.events.EventDispatcher;
+	import flash.events.IEventDispatcher;
+	
+	import mx.events.PropertyChangeEvent;
+	
 	import net.fproject.fproject_internal;
 	import net.fproject.utils.DateTimeUtil;
 	import net.fproject.utils.GregorianCalendar;
@@ -41,13 +47,8 @@ package net.fproject.calendar
 	 * 
 	 * @author Bui Sy Nguyen
 	 */
-	public class WorkCalendarException extends Period
+	public class WorkCalendarException extends Period implements IEventDispatcher
 	{		
-		/**
-		 * Description of the exception 
-		 */
-		public var description:String;
-		
 		/**
 		 * Constructor 
 		 * @param startDate The start date-time of exception period
@@ -96,6 +97,8 @@ package net.fproject.calendar
 			_monthItem = monthItem;
 			_monthPosition = monthPosition;		
 			this.description = description;
+			
+			this._bindingEventDispatcher = new EventDispatcher(IEventDispatcher(this));
 		}
 		
 		/**
@@ -395,6 +398,31 @@ package net.fproject.calendar
 			return _periods;
 		}
 		
+		private var _description:String;
+
+		[Bindable(event="propertyChange")]
+		/**
+		 * Description of the exception 
+		 */
+		public function get description():String
+		{
+			return _description;
+		}
+
+		/**
+		 * @private
+		 */
+		public function set description(value:String):void
+		{
+			if( _description !== value)
+			{
+				var oldValue:String = _description;
+				_description = value;
+				firePropertyChange('description', oldValue, value);
+			}
+		}
+
+		
 		/**
 		 * The first week position in month that specified for the 
 		 * exception type of <code>MONTHLY_POSITIONAL</code> or
@@ -433,6 +461,7 @@ package net.fproject.calendar
 		
 		private var _monthPosition:uint;
 		
+		[Bindable(event="propertyChange")]
 		/**
 		 * The position of the week in month that specified for the 
 		 * exception type of <code>MONTHLY_POSITIONAL</code> or
@@ -459,7 +488,12 @@ package net.fproject.calendar
 		 */
 		public function set monthPosition(value:uint):void
 		{
-			_monthPosition = value;
+			if(_monthPosition != value)
+			{
+				var oldValue:uint = _monthPosition;
+				_monthPosition = value;
+				firePropertyChange('monthPosition', oldValue, value);
+			}
 		}
 		
 		/**
@@ -520,6 +554,7 @@ package net.fproject.calendar
 		
 		private var _monthItem:uint;
 		
+		[Bindable(event="propertyChange")]
 		/**
 		 * The predefined value for a day of week, used only for the 
 		 * exception type of <code>MONTHLY_POSITIONAL</code> or
@@ -546,11 +581,17 @@ package net.fproject.calendar
 		 */
 		public function set monthItem(value:uint):void
 		{
-			_monthItem = value;
+			if(_monthItem != value)
+			{
+				var oldValue:uint = _monthItem;
+				_monthItem = value;
+				firePropertyChange('monthItem', oldValue, value);
+			}
 		}
 		
 		private var _monthDay:uint;
 		
+		[Bindable(event="propertyChange")]
 		/**
 		 * The day of the month, used only for <code>YEARLY_MONTH_DAY</code> 
 		 * or <code>MONTHLY_MONTH_DAY</code> type exceptions.<br/>
@@ -570,11 +611,17 @@ package net.fproject.calendar
 		 */
 		public function set monthDay(value:uint):void
 		{
-			_monthDay = value;
+			if(_monthDay != value)
+			{
+				var oldValue:uint = _monthDay;
+				_monthDay = value;
+				firePropertyChange('monthDay', oldValue, value);
+			}
 		}
 		
 		private var _monthIndex:uint;
 		
+		[Bindable(event="propertyChange")]
 		/**
 		 * The month index in a year, used for <code>YEARLY_MONTH_DAY</code>
 		 * or <code>YEARLY_POSITIONAL</code> type exceptions. 
@@ -594,7 +641,12 @@ package net.fproject.calendar
 		 */
 		public function set monthIndex(value:uint):void
 		{
-			_monthIndex = value;
+			if(_monthIndex != value)
+			{
+				var oldValue:uint = _monthIndex;
+				_monthIndex = value;
+				firePropertyChange('monthIndex', oldValue, value);
+			}
 		}
 		
 		/**
@@ -646,6 +698,7 @@ package net.fproject.calendar
 		
 		private var _type:int;
 		
+		[Bindable(event="propertyChange")]
 		/**
 		 * <p>The type of exception, can be one of these:</p>
 		 * 
@@ -674,7 +727,12 @@ package net.fproject.calendar
 		 */
 		public function set type(value:int):void
 		{
-			_type = value;
+			if(_type != value)
+			{
+				var oldValue:int = _type;
+				_type = value;
+				firePropertyChange('type', oldValue, value);
+			}
 		}
 		
 		/**
@@ -734,6 +792,7 @@ package net.fproject.calendar
 		
 		private var _daysOfWeek:uint;
 		
+		[Bindable(event="propertyChange")]
 		/**
 		 * <p>Bit mask used for Weekly exceptions.</p>
 		 * Only use this field when the exception type is WEEKLY.
@@ -768,22 +827,54 @@ package net.fproject.calendar
 		 */
 		public function set daysOfWeek(value:uint):void
 		{
-			_daysOfWeek = value;
+			if(_daysOfWeek != value)
+			{
+				var oldValue:uint = _daysOfWeek;
+				_daysOfWeek = value;
+				firePropertyChange('daysOfWeek', oldValue, value);
+			}
+		}
+		
+		private var _interval:int;
+		
+		[Bindable(event="propertyChange")]
+		
+		/**
+		 * The period for calendar exception recurrences, specified as the number of days, weeks, or years.
+		 */
+		public function get interval():int
+		{
+			return _interval;
+		}
+		
+		/**
+		 * 
+		 * @private
+		 * 
+		 */
+		public function set interval(value:int):void
+		{
+			if(_interval != value)
+			{
+				var oldValue:int = _interval;
+				_interval = value;
+				firePropertyChange('interval', oldValue, value);
+			}
 		}
 		
 		/**
 		 * Return total number of occurences of this exception from its start date 
 		 * to its end date. 
-		 * @param calendar the <code>WorkCalendar</code> that contains this exception
+		 * @param gregorianCalendar the <code>GregorianCalendar</code> to compute exception's date-time
 		 * @return The total number of occurences of this exception from its start date 
 		 * to its end date.
 		 * 
 		 */
-		public function getOccurrences(calendar:WorkCalendar = null):Number
+		public function getOccurrences(gregorianCalendar:GregorianCalendar = null):Number
 		{
 			var occurrences:Number;
-			var gregorianCalendar:GregorianCalendar = calendar != null?
-				calendar.gregorianCalendar : new GregorianCalendar();
+			if(gregorianCalendar == null)
+				gregorianCalendar = new GregorianCalendar();
 			switch(_type)
 			{
 				case DAILY:					
@@ -1118,6 +1209,65 @@ package net.fproject.calendar
 		{
 			var bitTable:Array = daysOfWeekBitTable;
 			return (bitTable[date.day] & _daysOfWeek) == bitTable[date.day];
+		}
+		
+		
+		private var _bindingEventDispatcher:EventDispatcher
+		
+		/**
+		 * 
+		 * @inheritDoc
+		 * 
+		 */
+		public function addEventListener(type:String, listener:Function, useCapture:Boolean=false, priority:int=0, useWeakReference:Boolean=false) : void
+		{
+			this._bindingEventDispatcher.addEventListener(type,listener,useCapture,priority,useWeakReference);
+		}
+		
+		/**
+		 * 
+		 * @inheritDoc
+		 * 
+		 */
+		public function dispatchEvent(event:Event) : Boolean
+		{
+			return this._bindingEventDispatcher.dispatchEvent(event);
+		}
+		
+		/**
+		 * 
+		 * @inheritDoc
+		 * 
+		 */
+		public function hasEventListener(type:String) : Boolean
+		{
+			return this._bindingEventDispatcher.hasEventListener(type);
+		}
+		
+		/**
+		 * 
+		 * @inheritDoc
+		 * 
+		 */
+		public function removeEventListener(type:String, listener:Function, useCapture:Boolean = false) : void
+		{
+			this._bindingEventDispatcher.removeEventListener(type,listener,useCapture);
+		}
+		
+		/**
+		 * 
+		 * @inheritDoc
+		 * 
+		 */
+		public function willTrigger(type:String) : Boolean
+		{
+			return this._bindingEventDispatcher.willTrigger(type);
+		}
+		
+		private function firePropertyChange(prop:String, oldValue:*, value:*):void
+		{
+			if(hasEventListener(PropertyChangeEvent.PROPERTY_CHANGE))
+				dispatchEvent(PropertyChangeEvent.createUpdateEvent(this, prop, oldValue, value));
 		}
 	}
 }
