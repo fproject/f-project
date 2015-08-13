@@ -102,6 +102,9 @@ package net.fproject.di
 		{
 			if(impl != null)
 			{
+				if(singleton && implToInstance[impl] != undefined)
+					return implToInstance[impl];
+				
 				if(constructorArgs == undefined)
 				{
 					var instance:Object = new impl();
