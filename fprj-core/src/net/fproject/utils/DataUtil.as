@@ -108,6 +108,21 @@ package net.fproject.utils
 		}
 		
 		/**
+		 * Insert a child element to a XML object. 
+		 * @param parent the container XML object
+		 * @param child the child element to set.
+		 * @param nvl the value that will be used if the container is null.
+		 * @return the output XML
+		 */
+		public static function addXmlChild(parent:XML, child:XML, nvl:XML=null):XML
+		{
+			if(parent == null && nvl != null)
+				parent = nvl;
+			parent.appendChild(child);
+			return parent;
+		}
+		
+		/**
 		 * Set value for a field of an data object
 		 * @param data the data object
 		 * @param field the field
