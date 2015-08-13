@@ -81,6 +81,7 @@
     <classEntry path="net.fproject.active.ActiveHierarchicalDataProvider"/>
     <classEntry path="net.fproject.model.HierarchicalItem"/>
     <classEntry path="net.fproject.collection.CollectionChangeManager"/>
+    <classEntry path="net.fproject.calendar.recurrence.RecurrencePeriod"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="manifest.xml" sourcePath="manifest.xml"/>
