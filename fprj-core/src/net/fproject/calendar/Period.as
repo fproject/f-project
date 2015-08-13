@@ -62,12 +62,24 @@ package net.fproject.calendar
 	 */
 	public class Period extends DateRange
 	{		
-		private var _workShifts:Vector.<WorkShift>;
-		
+		protected var _isWorking:Boolean;
+
 		/**
 		 * Determines whether this period is working period or not. 
 		 */
-		public var isWorking:Boolean;
+		public function get isWorking():Boolean
+		{
+			return _isWorking;
+		}
+
+		/**
+		 * @private
+		 */
+		public function set isWorking(value:Boolean):void
+		{
+			_isWorking = value;
+		}
+
 		
 		/**
 		 * <p>Initializes a new instance of the <code>Period</code> 
@@ -86,6 +98,8 @@ package net.fproject.calendar
 			this._workShifts = new Vector.<WorkShift>;
 			this.isWorking = true;
 		}
+		
+		protected var _workShifts:Vector.<WorkShift>;
 		
 		/**
 		 * 
