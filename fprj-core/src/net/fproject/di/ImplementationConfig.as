@@ -9,7 +9,7 @@ package net.fproject.di
 {
 	import net.fproject.utils.LoggingUtil;
 	import net.fproject.utils.ResourceUtil;
-
+	
 	[DefaultProperty("impls")]
 	/**
 	 * <p>The ImplementationConfig class is used to separate system's implementation configuration 
@@ -35,7 +35,7 @@ package net.fproject.di
 		public var impls:Array;
 		
 		private static var _instance:ImplementationConfig;
-
+		
 		public static function get instance():ImplementationConfig
 		{
 			if(_instance == null)
@@ -53,6 +53,18 @@ package net.fproject.di
 				LoggingUtil.logAndThrowError(ImplementationConfig, ResourceUtil.FPRJ_CORE, 2, null,
 					ResourceUtil.FPRJ_CORE_BUNDLE, "singleton.violation");
 			_instance = this;
+		}
+		
+		/**
+		 * Add an implementation definition 
+		 * @param impl the implementation to add.
+		 * 
+		 */
+		public function addImplementation(impl:Implementation):void
+		{
+			if(impls == null)
+				impls = [];
+			impls.push(impl);
 		}
 	}
 }

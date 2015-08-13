@@ -12,6 +12,8 @@ package net.fproject.di
 	import flash.utils.getQualifiedClassName;
 	import flash.utils.getQualifiedSuperclassName;
 	
+	import net.fproject.utils.DataUtil;
+	
 	import org.as3commons.lang.ClassUtils;
 	
 	public class InstanceFactory
@@ -35,9 +37,17 @@ package net.fproject.di
 		 *</pre>
 		 * 
 		 */
-		public static function setInstanceFactoryConfig(config:XML):void
+		public static function setFactoryConfig(config:XML):void
 		{
 			factoryConfig = config;
+		}
+		
+		public static function addImplementation(implDefinition:Object):void
+		{
+			if(implDefinition is XML)
+				factoryConfig = DataUtil.addXmlChild(factoryConfig, implDefinition as XML, <ImplementationConfig/>);
+			else if(implDefinition is Implementation)
+				ImplementationConfig.instance.addImplementation(implDefinition as Implementation);
 		}
 		
 		/**
