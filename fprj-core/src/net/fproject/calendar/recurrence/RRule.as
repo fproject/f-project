@@ -4,10 +4,10 @@
 	import mx.resources.ResourceManager;
 	import mx.utils.StringUtil;
 	
-	import net.fproject.calendar.recurrence.supportClasses.RecurrenceUtil;
 	import net.fproject.model.LocalUID;
 	import net.fproject.utils.DateTimeUtil;
 	import net.fproject.utils.LoggingUtil;
+	import net.fproject.utils.NumberUtil;
 	import net.fproject.utils.ResourceUtil;
 	
 	/**
@@ -537,7 +537,7 @@
 						"parse.error.int.not.valid", [strArray[i]]);
 				}
 			}
-			intArray = RecurrenceUtil.sortAndUniquifyInts(intArray);
+			intArray = NumberUtil.sortAndUniquifyInts(intArray);
 			return intArray;
 		}
 		
