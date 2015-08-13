@@ -7,8 +7,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 package net.fproject.model
 {
-	import mx.events.PropertyChangeEvent;
-	
 	import net.fproject.fproject_internal;
 
 	/**
@@ -36,7 +34,7 @@ package net.fproject.model
 			{
 				var oldValue:String = _id;
 				_id = value;
-				dispatchEvent(PropertyChangeEvent.createUpdateEvent(this, 'id', oldValue, value));
+				dispatchChangeEvent('id', oldValue, value);
 			}
 		}
 
@@ -61,7 +59,7 @@ package net.fproject.model
 			{
 				var oldValue:String = _username;
 				_username = value;
-				dispatchEvent(PropertyChangeEvent.createUpdateEvent(this, 'username', oldValue, value));
+				dispatchChangeEvent('username', oldValue, value);
 			}
 		}
 

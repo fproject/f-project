@@ -10,7 +10,6 @@ package net.fproject.model
 	import mx.collections.ArrayCollection;
 	import mx.collections.ArrayList;
 	import mx.collections.IList;
-	import mx.events.PropertyChangeEvent;
 	
 	import net.fproject.collection.AdvancedArrayCollection;
 	
@@ -260,7 +259,7 @@ package net.fproject.model
 		 */
 		private function dispatchChildrenChanged():void
 		{
-			dispatchEvent(PropertyChangeEvent.createUpdateEvent(this, "children", null, children));   
+			dispatchChangeEvent("children", null, children);   
 		}
 		
 		/**
@@ -270,7 +269,7 @@ package net.fproject.model
 		{
 			if(newParent == null)
 				newParent = _parent;
-			dispatchEvent(PropertyChangeEvent.createUpdateEvent(this, "parent", oldParent, newParent));   
+			dispatchChangeEvent("parent", oldParent, newParent);   
 		}
 		
 		/**

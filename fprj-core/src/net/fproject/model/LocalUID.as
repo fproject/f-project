@@ -43,5 +43,10 @@ package net.fproject.model
 				dispatchEvent(PropertyChangeEvent.createUpdateEvent(this, 'uid', oldValue, value));
 			}
 		}
+		
+		public function dispatchChangeEvent(prop:String, oldValue:*, newValue:*):void
+		{
+			dispatchEvent(PropertyChangeEvent.createUpdateEvent(this, prop, oldValue, newValue));
+		}
 	}
 }
