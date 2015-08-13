@@ -46,7 +46,8 @@ package net.fproject.model
 		
 		public function dispatchChangeEvent(prop:String, oldValue:*, newValue:*):void
 		{
-			dispatchEvent(PropertyChangeEvent.createUpdateEvent(this, prop, oldValue, newValue));
+			if(this.hasEventListener(PropertyChangeEvent.PROPERTY_CHANGE))
+				dispatchEvent(PropertyChangeEvent.createUpdateEvent(this, prop, oldValue, newValue));
 		}
 	}
 }
