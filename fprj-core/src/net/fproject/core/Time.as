@@ -181,15 +181,20 @@ package net.fproject.core
 		 */
 		public static function parseTime(s:String):Time
 		{
+			var t:Time = new Time();
+			
+			return t.fromString(s) ? t : null;
+		}
+
+		public function fromString(s:String):Boolean
+		{
 			if (s == null)
-				return null;
+				return false;
+			
 			var strTime:String = s.toLowerCase(); // use the input parameter as read-only
-			if (strTime.
-				search("^[0-9]{1,2}:[0-9]{1,2}(|:[0-9]{1,2}(|(:|\.){1}[0-9]{1,3})) *(am|pm){0,1}$") !=
-				-1)
+			if (strTime.search("^[0-9]{1,2}:[0-9]{1,2}(|:[0-9]{1,2}(|(:|\.){1}[0-9]{1,3})) *(am|pm){0,1}$") != -1)
 			{
-				if (strTime.substring(strTime.length - 2) == "am" ||
-					strTime.substring(strTime.length - 2) == "pm")
+				if (strTime.substring(strTime.length - 2) == "am" || strTime.substring(strTime.length - 2) == "pm")
 				{
 					strTime = strTime.substr(0, strTime.length - 2);
 				}
@@ -199,7 +204,7 @@ package net.fproject.core
 					hour += 12; // AM
 				else if (s.substring(s.length - 2).toLowerCase() == "am" && hour == 12)
 					hour = 0;
-
+				
 				var minute:Number = pieces.length > 1 ? int(pieces[1]) % 60 : 0;
 				var second:Number =
 					pieces.length > 2 ?
@@ -207,12 +212,20 @@ package net.fproject.core
 				var millisecond:Number =
 					pieces.length > 3 ?
 					int((pieces[3] as String).replace(" *(am|pm)*", "")) % 1000 : 0;
-
-				return new Time(hour, minute, second, millisecond);
+				
+				this.hour = hour;
+				this.minute = minute;
+				this.second = second;
+				this.millisecond = millisecond;
+				
+				return true;
 			}
-			return null;
+			else
+			{
+				return false;
+			}
 		}
-
+		
 		/**
 		 * Convert time in milliseconds to time-serial value.
 		 *
