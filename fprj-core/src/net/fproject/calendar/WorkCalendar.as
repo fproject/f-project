@@ -235,7 +235,6 @@ package net.fproject.calendar
 		 */
 		public function set gregorianCalendar(value:GregorianCalendar):void
 		{
-			//this.assertNotReadOnly();
 			if (value != this._gregorianCalendar)
 			{
 				this._gregorianCalendar = value;
@@ -723,21 +722,12 @@ package net.fproject.calendar
 			if (DateTimeUtil.fproject_internal::areOnSameDay(startTime, endTime))
 			{
 				var calendarPeriodBase:WorkInfo = this.getPeriodAt(startTime);
-				/*if (!calendarPeriodBase.isWorking)
-				{
-				return 0;
-				}*/
 				totalWork = calendarPeriodBase.getTotalWorkBetweenHours(startTime, endTime);
 			}
 			else
 			{
-				//var returnValue:Number = 0;
 				startTime = this.getNextWorkingTime(startTime);
 				endTime = this.getPreviousWorkingTime(endTime);
-				/*if (startTime >= endTime)
-				{
-				return 0;
-				}*/
 				
 				totalWork = 0;
 				
@@ -779,7 +769,6 @@ package net.fproject.calendar
 						totalWork+= this.getStandardWorkBetween(startTime, endTime);
 						break;
 					}
-				//return b ? (-returnValue) : (returnValue);
 			}
 			
 			if(b)
@@ -1057,12 +1046,8 @@ package net.fproject.calendar
 		 */
 		fproject_internal function getPreviousWorkingTimeInternal(time:Date):Date
 		{
-			//var p:InternalPeriod;
-			//var wd:WeekDayPeriod;
-			//var startOfDay:Date;
 			var time:Date = new Date(time.time);
-			//try
-			//{
+			
 			if (!this.hasPreviousWorkingTime(time))
 			{
 				return time;
@@ -1097,17 +1082,12 @@ package net.fproject.calendar
 				var startOfDay:Date = DateTimeUtil.getStartOfDay(time);
 				if (time.time == startOfDay.time)
 				{
-					//time.date--;
 					this.gregorianCalendar.dateAddByTimeUnit(time, TimeUnit.DAY, -1, true);
 					continue;
 				}
 				time.time = startOfDay.time;
 			}
-			//}
-			//catch (err:Error)
-			//{
-			//	time.time = DateTimeUtil.MINIMUM_DATE.time;
-			//}
+			
 			return time;
 		}
 		
@@ -1180,13 +1160,8 @@ package net.fproject.calendar
 		 */
 		fproject_internal function getNextWorkingTimeInternal(time:Date):Date
 		{
-			//var working:Boolean;
-			//var wd:WeekDayPeriod;
-			//var p:InternalPeriod;
-			//var wd2:WeekDayPeriod;
 			var time:Date = new Date(time.time);
-			//try
-			//{
+			
 			if (!this.hasNextWorkingTime(time))
 			{
 				return time;
@@ -1206,7 +1181,7 @@ package net.fproject.calendar
 						}
 						continue;
 					}
-					//time = DateTimeUtil.getStartOfNextDay(time);
+					
 					this.gregorianCalendar.dateAddByTimeUnit(time, TimeUnit.DAY, 1, true);
 				}
 			}
@@ -1228,7 +1203,6 @@ package net.fproject.calendar
 						else
 						{
 							time = DateTimeUtil.getStartOfNextDay(p.endDate);
-							//time.time = p.endDateAndTime.time;
 						}
 						continue;
 					}
@@ -1246,11 +1220,7 @@ package net.fproject.calendar
 						true);
 				}
 			}
-			//}
-			//catch (err:Error)
-			//{
-			//	time.time = DateTimeUtil.MAXIMUM_DATE.time;
-			//}
+			
 			return time;
 		}
 		
@@ -1293,8 +1263,7 @@ package net.fproject.calendar
 			var p:PeriodInternal;
 			var wd:WeekDayInternal;
 			var time:Date = new Date(time.time);
-			//try
-			//{
+			
 			if (!this.hasNextNonWorkingTime(time))
 			{
 				return time;
@@ -1317,11 +1286,7 @@ package net.fproject.calendar
 					break;
 				}
 			}
-			//}
-			//catch (err:Error)
-			//{
-			//	time.time = DateTimeUtil.MAXIMUM_DATE.time;
-			//}
+			
 			return time;
 		}
 		
@@ -1346,36 +1311,14 @@ package net.fproject.calendar
 		 */
 		public function hasNextWorkingTime(time:Date):Boolean
 		{
-			//var j:int;
-			//var p:InternalPeriod;
-			//var date:Date;
-			//var hour:Number;
-			//var time:Date = time;
-			//try
-			//{
-			/*for (var i:int = 0; i < 7; i++)
-			{
-			if (this.getWeekDayPeriodFromWeekDay(i).isWorking)
-			{
-			return true;
-			}
-			//i++;
-			}*/
-			
 			if (hasWorkingWeekDayInBase())
 				return true;
-			
-			//j = (this._periods.length - 1);
-			//while (i >= 0)
 			
 			var date:Date = DateTimeUtil.getStartOfDay(time);
 			var hour:Number = time.time - date.time;
 			
 			for each (var p:PeriodInternal in this._periods)
 			{
-				//p = this._periods[i];
-				//date = DateTimeUtil.getStartOfDay(time);
-				
 				if (date <= p.endDate)
 				{
 					if (p.isWorking)
@@ -1384,16 +1327,12 @@ package net.fproject.calendar
 						{
 							return true;
 						}
-						//hour = time.time - date.time;
+						
 						return hour < p.workShifts[p.workShifts.length - 1].endTime;
 					}
 				}					
-				//j--;
 			}
-			//}
-			//catch (err:Error)
-			//{
-			//}
+			
 			return false;
 		}
 		
@@ -1406,22 +1345,6 @@ package net.fproject.calendar
 		 */
 		public function hasPreviousWorkingTime(time:Date):Boolean
 		{
-			//var i:int = 0;
-			//var p:InternalPeriod;
-			//var date:Date;
-			//var hour:Number;
-			/*try
-			{
-			while (i < 7)
-			{
-			if (this.getWeekDayPeriodFromWeekDay(i).isWorking)
-			{
-			return true;
-			}
-			i++;
-			}
-			i = 0;*/
-			
 			if (hasWorkingWeekDayInBase())
 				return true;
 			
@@ -1430,8 +1353,6 @@ package net.fproject.calendar
 			
 			for each (var p:PeriodInternal in this._periods)
 			{
-				//p = this._periods[i];
-				//date = DateTimeUtil.getStartOfDay(time);
 				if (date < p.startDate)
 				{
 					return false;
@@ -1442,15 +1363,11 @@ package net.fproject.calendar
 					{
 						return true;
 					}
-					//hour = time.time - date.time;
+					
 					return hour >= p.workShifts[0].startTime;
 				}
-				//i++;
 			}
-			/*}
-			catch (err:Error)
-			{
-			}*/
+			
 			return false;
 		}
 		
@@ -1463,7 +1380,6 @@ package net.fproject.calendar
 		 */
 		public function hasNextNonWorkingTime(time:Date):Boolean
 		{
-			//var i:int = 0;
 			var p:PeriodInternal;
 			var date:Date;
 			var hour:Number;
@@ -1471,17 +1387,15 @@ package net.fproject.calendar
 			var j:int;
 			var wt:WorkShift;
 			var time:Date = time;
-			/*try
-			{*/
+			
 			for (var i:int = 0; i < 7; i++)
 			{
 				if (!this.getWeekDayPeriodAtDow(i).is24HoursWork())
 				{
 					return true;
 				}
-				//i++;
 			}
-			//i = this._periods.length - 1;
+			
 			for (i = this._periods.length - 1; i >= 0; i--)
 			{
 				p = this._periods[i];
@@ -1502,8 +1416,8 @@ package net.fproject.calendar
 					}
 					hour = time.time - date.time;
 					max = TimeUnit.DAY.milliseconds;
-					j = p.workShifts.length - 1;
-					while (j >= 0)
+					
+					for (j = p.workShifts.length - 1; j >= 0; j--)
 					{
 						wt = p.workShifts[j];
 						if (wt.endTime == max)
@@ -1514,15 +1428,10 @@ package net.fproject.calendar
 						{
 							return hour < max;
 						}
-						j--;
 					}
 				}
-				//i--;
 			}
-			/*}
-			catch (err:Error)
-			{
-			}*/
+			
 			return false;
 		}
 		
@@ -2694,10 +2603,10 @@ package net.fproject.calendar
 		{
 			if (_defaultWorkShifts == null)
 			{
-				var defaultWorkingTimesArr:Array =
+				var defaultWorkShiftArr:Array =
 					ResourceUtil.getStringArray("default.workshifts");
-				//"08:30,12:00,13:00,17:30".split(",");
-				setDefaultWorkShifts(defaultWorkingTimesArr);
+				//This is equivalent to ["08:30", "12:00", "13:00", "17:30"];
+				setDefaultWorkShifts(defaultWorkShiftArr);
 			}
 			return _defaultWorkShifts;
 		}
@@ -2855,8 +2764,7 @@ package net.fproject.calendar
 		private static function sameWorkingDays(a:Vector.<WeekDayInternal>,
 												b:Vector.<WeekDayInternal>):Boolean
 		{
-			var dayIdx:int = 0;
-			while (dayIdx < 7)
+			for (var dayIdx:int = 0; dayIdx < 7; dayIdx++)
 			{
 				if (a[dayIdx] != null || b[dayIdx] != null)
 				{
@@ -2874,7 +2782,6 @@ package net.fproject.calendar
 						return false;
 					}
 				}
-				dayIdx++;
 			}
 			return true;
 		}
