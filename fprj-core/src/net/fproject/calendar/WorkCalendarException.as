@@ -76,7 +76,7 @@ package net.fproject.calendar
 										  type:int = DAILY, daysOfWeek:uint = 0, 
 										  monthDay:uint = 1, monthIndex:uint = 0, 
 										  monthItem:uint = ITEM_SUNDAY, monthPosition:uint = POS_FIRST,
-										  interval:int = 1, occurrences:int = 0,
+										  //interval:int = 1, occurrences:int = 0,
 										  description:String = null)
 		{
 			super();
@@ -835,24 +835,24 @@ package net.fproject.calendar
 			}
 		}
 		
-		private var _interval:int;
+		/*private var _interval:int;
 		
-		[Bindable(event="propertyChange")]
+		[Bindable(event="propertyChange")]*/
 		
 		/**
 		 * The period for calendar exception recurrences, specified as the number of days, weeks, or years.
 		 */
-		public function get interval():int
+		/*public function get interval():int
 		{
 			return _interval;
-		}
+		}*/
 		
 		/**
 		 * 
 		 * @private
 		 * 
 		 */
-		public function set interval(value:int):void
+		/*public function set interval(value:int):void
 		{
 			if(_interval != value)
 			{
@@ -860,7 +860,7 @@ package net.fproject.calendar
 				_interval = value;
 				firePropertyChange('interval', oldValue, value);
 			}
-		}
+		}*/
 		
 		/**
 		 * Return total number of occurences of this exception from its start date 
