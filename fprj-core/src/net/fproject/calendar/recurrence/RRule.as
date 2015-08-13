@@ -14,7 +14,7 @@
 	 * A recurrence rule as defined in the RFC-2445.
 	 * <p>
 	 * Not all the rules are supported by the default implementation of
-	 * recurrence. See the Developer's Guide for more information.
+	 * recurrence.
 	 * </p>
 	 */
 	public class RRule extends LocalUID
