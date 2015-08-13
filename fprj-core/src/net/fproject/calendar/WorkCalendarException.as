@@ -43,16 +43,10 @@ package net.fproject.calendar
 	 */
 	public class WorkCalendarException extends Period
 	{		
-		private var _daysOfWeek:uint;
 		/**
 		 * Description of the exception 
 		 */
 		public var description:String;
-		private var _type:int;
-		private var _monthIndex:uint;
-		private var _monthDay:uint;
-		private var _monthItem:uint;
-		private var _monthPosition:uint;		
 		
 		/**
 		 * Constructor 
@@ -81,6 +75,7 @@ package net.fproject.calendar
 										  type:int = DAILY, daysOfWeek:uint = 0, 
 										  monthDay:uint = 1, monthIndex:uint = 0, 
 										  monthItem:uint = ITEM_SUNDAY, monthPosition:uint = POS_FIRST,
+										  interval:int = 1, occurrences:int = 0,
 										  description:String = null)
 		{
 			super();
@@ -436,6 +431,8 @@ package net.fproject.calendar
 		 */
 		public static const POS_LAST:uint = 4;
 		
+		private var _monthPosition:uint;
+		
 		/**
 		 * The position of the week in month that specified for the 
 		 * exception type of <code>MONTHLY_POSITIONAL</code> or
@@ -521,6 +518,8 @@ package net.fproject.calendar
 		 */
 		public static const ITEM_SATURDAY:uint = 9;
 		
+		private var _monthItem:uint;
+		
 		/**
 		 * The predefined value for a day of week, used only for the 
 		 * exception type of <code>MONTHLY_POSITIONAL</code> or
@@ -550,6 +549,8 @@ package net.fproject.calendar
 			_monthItem = value;
 		}
 		
+		private var _monthDay:uint;
+		
 		/**
 		 * The day of the month, used only for <code>YEARLY_MONTH_DAY</code> 
 		 * or <code>MONTHLY_MONTH_DAY</code> type exceptions.<br/>
@@ -571,6 +572,8 @@ package net.fproject.calendar
 		{
 			_monthDay = value;
 		}
+		
+		private var _monthIndex:uint;
 		
 		/**
 		 * The month index in a year, used for <code>YEARLY_MONTH_DAY</code>
@@ -640,6 +643,8 @@ package net.fproject.calendar
 		 * @see #type
 		 */
 		public static const WEEKLY:int = 6;
+		
+		private var _type:int;
 		
 		/**
 		 * <p>The type of exception, can be one of these:</p>
@@ -726,6 +731,8 @@ package net.fproject.calendar
 					BIT_WEDNESDAY, BIT_THURSDAY, BIT_FRIDAY, BIT_SATURDAY];
 			return _daysOfWeekBitTable;
 		}
+		
+		private var _daysOfWeek:uint;
 		
 		/**
 		 * <p>Bit mask used for Weekly exceptions.</p>
