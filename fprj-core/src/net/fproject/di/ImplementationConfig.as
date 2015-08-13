@@ -64,7 +64,17 @@ package net.fproject.di
 		{
 			if(impls == null)
 				impls = [];
-			impls.push(impl);
+			for each(var i:Implementation in impls)
+			{
+				if(i.abstractor == impl.abstractor)
+				{
+					i.impl = impl.impl;
+					var found:Boolean = true;
+					break;
+				}
+			}
+			if(!found)
+				impls.push(impl);
 		}
 	}
 }
