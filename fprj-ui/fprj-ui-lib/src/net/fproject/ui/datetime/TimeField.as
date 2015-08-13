@@ -24,6 +24,7 @@ package net.fproject.ui.datetime
 	import spark.events.TextOperationEvent;
 	import spark.layouts.VerticalLayout;
 	
+	import net.fproject.collection.AdvancedArrayCollection;
 	import net.fproject.ui.datetime.supportClasses.Time;
 	
 	use namespace mx_internal;
@@ -42,7 +43,7 @@ package net.fproject.ui.datetime
 		
 		protected var textInputDirty:Boolean;
 		
-		protected var collection:ArrayCollection;
+		protected var collection:AdvancedArrayCollection;
 		
 		protected var userSelectedMinutes:int = -1;
 		
@@ -280,7 +281,8 @@ package net.fproject.ui.datetime
 			itemMatchingFunction = this.timeMatchingFunction;
 			labelToItemFunction = this.inputTextToItemFunction;
 			openOnInput = true;
-			this.collection = new ArrayCollection();
+			this.collection = new AdvancedArrayCollection();
+			this.collection.itemEqualFunction = function(a:Time, b:Time):Boolean{ return a.equals(b); };
 			var sort:ISort = new Sort();
 			var sortField:ISortField = new SortField("minutes",false,true);
 			sort.fields = [sortField];
