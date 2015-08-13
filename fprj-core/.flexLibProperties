@@ -6,7 +6,6 @@
     <classEntry path="net.fproject.calendar.WorkInfo"/>
     <classEntry path="net.fproject.calendar.WeekDay"/>
     <classEntry path="net.fproject.calendar.WorkCalendar"/>
-    <classEntry path="net.fproject.calendar.WorkCalendarException"/>
     <classEntry path="net.fproject.calendar.WorkShift"/>
     <classEntry path="net.fproject.di.ImplementationConfig"/>
     <classEntry path="net.fproject.di.Injector"/>
