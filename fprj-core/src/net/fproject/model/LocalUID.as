@@ -46,8 +46,20 @@ package net.fproject.model
 		
 		public function dispatchChangeEvent(prop:String, oldValue:*, newValue:*):void
 		{
-			if(this.hasEventListener(PropertyChangeEvent.PROPERTY_CHANGE))
+			if(!changeEventDisabled && this.hasEventListener(PropertyChangeEvent.PROPERTY_CHANGE))
 				dispatchEvent(PropertyChangeEvent.createUpdateEvent(this, prop, oldValue, newValue));
+		}
+		
+		private var changeEventDisabled:Boolean;
+		
+		public function disableChangeEvent():void
+		{
+			changeEventDisabled = true;
+		}
+		
+		public function enableChangeEvent():void
+		{
+			changeEventDisabled = false;
 		}
 	}
 }
