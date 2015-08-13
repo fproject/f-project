@@ -12,9 +12,12 @@ package net.fproject.di
 	import flash.utils.getQualifiedClassName;
 	import flash.utils.getQualifiedSuperclassName;
 	
+	import net.fproject.reflect.ReflectionUtil;
 	import net.fproject.utils.DataUtil;
+	import net.fproject.utils.StringUtil;
 	
 	import org.as3commons.lang.ClassUtils;
+	import org.as3commons.reflect.Type;
 	
 	public class InstanceFactory
 	{
@@ -42,12 +45,14 @@ package net.fproject.di
 			factoryConfig = config;
 		}
 		
-		public static function addImplementation(implDefinition:Object):void
+		/**
+		 * Add an implementation definition 
+		 * @param impl the implementation to add.
+		 * 
+		 */
+		public static function addImplementation(impl:XML):void
 		{
-			if(implDefinition is XML)
-				factoryConfig = DataUtil.addXmlChild(factoryConfig, implDefinition as XML, <ImplementationConfig/>);
-			else if(implDefinition is Implementation)
-				ImplementationConfig.instance.addImplementation(implDefinition as Implementation);
+			factoryConfig = DataUtil.addXmlChild(factoryConfig, impl, <ImplementationConfig/>);
 		}
 		
 		/**
@@ -100,10 +105,11 @@ package net.fproject.di
 				}
 				
 				if(impl == null && (abstractor == Object || getQualifiedSuperclassName(abstractor) != null))
-				{
 					impl = abstractor;
-				}
+				else if(impl == null)
+					impl = getImplFromMetadata(abstractor);
 			}
+			
 			
 			return getInstanceByImpl(abstractor, impl, constructorArgs, singleton);
 		}
@@ -140,6 +146,17 @@ package net.fproject.di
 			{
 				return null;
 			}
+		}
+		
+		private static const IMPLEMENTATION:String = "Implementation";
+		
+		private static function getImplFromMetadata(intf:Class):Class
+		{
+			var type:Type = Type.forClass(intf);
+			var implName:String = ReflectionUtil.findClassMetadataValue(type, IMPLEMENTATION) as String;
+			if(!StringUtil.isBlank(implName))
+				return getDefinitionByName(implName) as Class;
+			return null;
 		}
 	}
 }
