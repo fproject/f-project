@@ -19,9 +19,9 @@ package net.fproject.di
 	 * <pre>
 	 * &lt;fx:Declarations&gt;
 	 * 	&lt;fprj:ImplementationConfig&gt;
-	 * 		&lt;fprj:Interface intf="net.projectkit.controller.IAppContextController"
+	 * 		&lt;fprj:Implementation abstractor="net.projectkit.controller.IAppContextController"
 	 * 			impl="net.projectkit.controller.WebAppContextController"/&gt;
-	 * 		&lt;fprj:Interface intf="net.projectkit.util.IExternalInterfaceUtil"
+	 * 		&lt;fprj:Implementation abstractor="net.projectkit.util.IExternalInterfaceUtil"
 	 * 			impl="net.projectkit.util.web.WebExternalInterfaceUtil"/&gt;
 	 * 	&lt;/fprj:ImplementationConfig&gt;
 	 * &lt;/fx:Declarations&gt;</pre>
