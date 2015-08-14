@@ -97,14 +97,27 @@ package net.fproject.core
 		}
 		
 		/**
+		 * 
 		 * Clone the date range.
+		 * 
+		 * @param target the target that properties of this objet will be copied to
+		 * 
 		 * @return the cloned date range object. 
 		 * 
 		 */
-		public function clone():DateRange
-		{			
-			return new DateRange(_start != null ? new Date(_start.time) : null,
-				_end != null ? new Date(_end.time) : null);
+		public function clone(target:DateRange=null):DateRange
+		{		
+			if(target == null)
+			{
+				target = new DateRange(_start != null ? new Date(_start.time) : null, _end != null ? new Date(_end.time) : null);
+			}
+			else
+			{
+				target._start = _start != null ? new Date(_start.time) : null;
+				target._end = _end != null ? new Date(_end.time) : null;
+			}
+			
+			return target;
 		}
 		
 		/**
