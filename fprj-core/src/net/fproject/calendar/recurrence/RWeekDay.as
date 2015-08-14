@@ -6,14 +6,14 @@
     import net.fproject.utils.ResourceUtil;
 
 	/**
-	 * A week day.
+	 * The RWeekDay class represents a recurrence week day.
 	 * <p>
-	 * There is a modifier for specifying the nth week day in the month, starting
+	 * The <code>modifier</code> is used to specify the nth week day in the month, starting
 	 * from the beginning of the month if the modifier is positive or the end of
 	 * the month if the modifier is negative.
 	 * </p>
 	 */
-    public class RecurrenceWeekDay
+    public class RWeekDay
     {
         private var _day:int = -1;
 		
@@ -43,7 +43,7 @@
         public static const SA:String = "SA";
         public static const WEEK_DAYS:Array = [SU, MO, TU, WE, TH, FR, SA];
 
-        public function RecurrenceWeekDay(modifier:int = 0, day:int = 0)
+        public function RWeekDay(modifier:int = 0, day:int = 0)
         {
             this.day = day;
             this.modifier = modifier;
@@ -107,9 +107,9 @@
 		 * @param value The string to parse.
 		 * @return A <code>WeekDay</code> instance.
 		 */
-        public static function parse(value:String) : RecurrenceWeekDay
+        public static function parse(value:String) : RWeekDay
         {
-            var wd:RecurrenceWeekDay = new RecurrenceWeekDay;
+            var wd:RWeekDay = new RWeekDay;
             var count:int = 0;
             value = StringUtil.trim(value);
             var s:String = value.charAt(count);
