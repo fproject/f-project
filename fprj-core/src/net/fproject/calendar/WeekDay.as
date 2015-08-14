@@ -28,24 +28,24 @@ package net.fproject.calendar
 	 * </p>
 	 * 
 	 * <pre>
-	 * &lt;cal:WorkCalendar baseCalendar="{WorkCalendar.STANDARD}"&gt;
-	 * 	&lt;cal:weekDays&gt;
-	 * 		&lt;cal:WeekDay dayOfWeek="6" isWorking="false" /&gt;
-	 * 		&lt;cal:WeekDay dayOfWeek="1"&gt;
-	 * 			&lt;cal:workShifts&gt;
-	 * 				&lt;cal:WorkShift start="10:00" end="12:00" /&gt;
-	 * 				&lt;cal:WorkShift start="15:00" end="20:00" /&gt;
-	 * 			&lt;/cal:workShifts&gt;
-	 * 		&lt;/cal:WeekDay&gt;
-	 * 	&lt;/cal:weekDays&gt;
-	 * &lt;/cal:WorkCalendar&gt;
+	 * &lt;fprj:WorkCalendar baseCalendar="{WorkCalendar.STANDARD}"&gt;
+	 * 	&lt;fprj:weekDays&gt;
+	 * 		&lt;fprj:WeekDay dayOfWeek="6" isWorking="false" /&gt;
+	 * 		&lt;fprj:WeekDay dayOfWeek="1"&gt;
+	 * 			&lt;fprj:workShifts&gt;
+	 * 				&lt;fprj:WorkShift start="10:00" end="12:00" /&gt;
+	 * 				&lt;fprj:WorkShift start="15:00" end="20:00" /&gt;
+	 * 			&lt;/fprj:workShifts&gt;
+	 * 		&lt;/fprj:WeekDay&gt;
+	 * 	&lt;/fprj:weekDays&gt;
+	 * &lt;/fprj:WorkCalendar&gt;
 	 * </pre>
 	 * 
 	 * @mxml
 	 * 
 	 * <p>The <code>&lt;WeekDay&gt;</code> tag inherits all the tag attributes
 	 * of its superclass and adds the following tag attributes:</p>
-	 * <pre>   &lt;cal:WeekDay
+	 * <pre>   &lt;fprj:WeekDay
 	 * &lt;!--<b>Properties</b>--&gt;
 	 * dayOfWeek="-1"
 	 * workShifts="<i>A vector of <code>WorkShift</code></i>"

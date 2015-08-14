@@ -25,17 +25,17 @@ package net.fproject.calendar
 	 * </p>
 	 * 
 	 * <pre>
-	 * &lt;gantt:WorkCalendar baseCalendar="{WorkCalendar.STANDARD}"&gt;
-	 *	&lt;gantt:weekDays&gt;
-	 * 	&lt;gantt:WeekDay dayOfWeek="6" isWorking="false" /&gt;
-	 * 	&lt;gantt:WeekDay dayOfWeek="1"&gt;
-	 * 		&lt;gantt:workShifts&gt;
-	 * 			&lt;gantt:WorkShift start="10:00" end="12:00" /&gt;	 
-	 * 			&lt;gantt:WorkShift start="15:00" end="20:00" /&gt;
-	 * 		&lt;/gantt:workShifts&gt;
-	 * 	&lt;/gantt:WeekDay&gt;
-	 *	&lt;/gantt:weekDays&gt;
-	 * &lt;/gantt:WorkCalendar&gt;
+	 * &lt;fprj:WorkCalendar baseCalendar="{WorkCalendar.STANDARD}"&gt;
+	 *	&lt;fprj:weekDays&gt;
+	 * 	&lt;fprj:WeekDay dayOfWeek="6" isWorking="false" /&gt;
+	 * 	&lt;fprj:WeekDay dayOfWeek="1"&gt;
+	 * 		&lt;fprj:workShifts&gt;
+	 * 			&lt;fprj:WorkShift start="10:00" end="12:00" /&gt;	 
+	 * 			&lt;fprj:WorkShift start="15:00" end="20:00" /&gt;
+	 * 		&lt;/fprj:workShifts&gt;
+	 * 	&lt;/fprj:WeekDay&gt;
+	 *	&lt;/fprj:weekDays&gt;
+	 * &lt;/fprj:WorkCalendar&gt;
 	 * </pre>
 	 */
 	public class WorkShift
