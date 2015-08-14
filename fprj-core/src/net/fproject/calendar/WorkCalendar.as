@@ -342,7 +342,6 @@ package net.fproject.calendar
 		private var _periods:Vector.<PeriodInternal>;
 		private var _originalPeriods:Vector.<Period>;
 		
-		[Transient]
 		/**
 		 *
 		 * <p>List of the specific periods defined in this calendar.</p>
@@ -408,7 +407,7 @@ package net.fproject.calendar
 			this.onChanged();
 		}
 		
-		
+		[Transient]
 		/**
 		 *
 		 * <p>List of the specific exceptions defined in this calendar.</p>
