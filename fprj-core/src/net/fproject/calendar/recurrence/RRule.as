@@ -402,7 +402,7 @@
 		}
 		
 		
-		private var _weekStart:RecurrenceWeekDay;
+		private var _weekStart:RWeekDay;
 		
 		[Bindable(event="propertyChange")]
 		/**
@@ -410,7 +410,7 @@
 		 * The start of the week.
 		 * </p>
 		 */
-		public function get weekStart():RecurrenceWeekDay
+		public function get weekStart():RWeekDay
 		{
 			return _weekStart;
 		}
@@ -418,11 +418,11 @@
 		/**
 		 * @private
 		 */
-		public function set weekStart(value:RecurrenceWeekDay):void
+		public function set weekStart(value:RWeekDay):void
 		{
 			if( _weekStart !== value)
 			{
-				var oldValue:RecurrenceWeekDay = _weekStart;
+				var oldValue:RWeekDay = _weekStart;
 				_weekStart = value;
 				firePropertyChange('weekStart', oldValue, value);
 			}
@@ -548,7 +548,7 @@
 			
 			for (var i:uint = 0; i < strArray.length; i++)
 			{                
-				wdArray[i] = RecurrenceWeekDay.parse(strArray[i]);
+				wdArray[i] = RWeekDay.parse(strArray[i]);
 			}
 			return wdArray;
 		}
@@ -669,7 +669,7 @@
 					}
 					case "WKST":
 					{
-						this.weekStart = RecurrenceWeekDay.parse(ruleArray[1]);
+						this.weekStart = RWeekDay.parse(ruleArray[1]);
 						break;
 					}
 					default:
