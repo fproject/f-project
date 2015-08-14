@@ -63,17 +63,17 @@ package net.fproject.calendar
 	 *
 	 *
 	 *  <pre>
-	 *  &lt;cal:WorkCalendar baseCalendar="{WorkCalendar.STANDARD}"&gt;
-	 *  	&lt;cal:weekDays&gt;
-	 *  		&lt;cal:WeekDay dayOfWeek="5" isWorking="false" /&gt;
-	 *  		&lt;cal:WeekDay dayOfWeek="1"&gt;
-	 *  			&lt;cal:workShifts&gt;
-	 *  				&lt;cal:WorkShift start="07:00" end="13:00" /&gt;
-	 *  				&lt;cal:WorkShift start="15:00" end="20:00" /&gt;
-	 *  			&lt;/cal:workShifts&gt;
-	 *  		&lt;/cal:WeekDay&gt;
-	 *  	&lt;/cal:weekDays&gt;
-	 *  &lt;/cal:WorkCalendar&gt;
+	 *  &lt;fprj:WorkCalendar baseCalendar="{WorkCalendar.STANDARD}"&gt;
+	 *  	&lt;fprj:weekDays&gt;
+	 *  		&lt;fprj:WeekDay dayOfWeek="5" isWorking="false" /&gt;
+	 *  		&lt;fprj:WeekDay dayOfWeek="1"&gt;
+	 *  			&lt;fprj:workShifts&gt;
+	 *  				&lt;fprj:WorkShift start="07:00" end="13:00" /&gt;
+	 *  				&lt;fprj:WorkShift start="15:00" end="20:00" /&gt;
+	 *  			&lt;/fprj:workShifts&gt;
+	 *  		&lt;/fprj:WeekDay&gt;
+	 *  	&lt;/fprj:weekDays&gt;
+	 *  &lt;/fprj:WorkCalendar&gt;
 	 *  </pre>
 	 *
 	 *  <p>You can also specify the working times for a particular period by using the
@@ -84,24 +84,24 @@ package net.fproject.calendar
 	 *  March 7 2011 has 7AM-1PM and 3PM-8PM as working times.</p>
 	 *
 	 *  <pre>
-	 *  &lt;cal:WorkCalendar baseCalendar="{WorkCalendar.STANDARD}"&gt;
-	 *  	&lt;cal:periods&gt;
-	 *  		&lt;cal:Period start="2011/1/1" end="2011/1/7" isWorking="false" /&gt;
-	 *  		&lt;cal:Period start="2011/3/1" end="2011/3/7" &gt;
-	 *  			&lt;cal:workShifts&gt;
-	 *  				&lt;cal:WorkShift start="07:00" end="13:00" /&gt;
-	 *  				&lt;cal:WorkShift start="15:00" end="20:00" /&gt;
-	 *  			&lt;/cal:workShifts&gt;
-	 *  		&lt;/cal:Period&gt;
-	 *  	&lt;/cal:periods&gt;
-	 *  &lt;/cal:WorkCalendar&gt;
+	 *  &lt;fprj:WorkCalendar baseCalendar="{WorkCalendar.STANDARD}"&gt;
+	 *  	&lt;fprj:periods&gt;
+	 *  		&lt;fprj:Period start="2011/1/1" end="2011/1/7" isWorking="false" /&gt;
+	 *  		&lt;fprj:Period start="2011/3/1" end="2011/3/7" &gt;
+	 *  			&lt;fprj:workShifts&gt;
+	 *  				&lt;fprj:WorkShift start="07:00" end="13:00" /&gt;
+	 *  				&lt;fprj:WorkShift start="15:00" end="20:00" /&gt;
+	 *  			&lt;/fprj:workShifts&gt;
+	 *  		&lt;/fprj:Period&gt;
+	 *  	&lt;/fprj:periods&gt;
+	 *  &lt;/fprj:WorkCalendar&gt;
 	 *  </pre>
 	 *
 	 *  @mxml
 	 *  <p>The <code>&lt;WorkCalendar&gt;</code> tag inherits all the tag attributes
 	 *  of its superclass and adds the following tag attributes:</p>
 	 *  <pre>
-	 *  &lt;cal:WorkCalendar
+	 *  &lt;fprj:WorkCalendar
 	 *  &lt;!--<b>Properties</b>--&gt;
 	 *  baseCalendar="null"
 	 *  gregorianCalendar="<i>Instance of <code>GregorianCalendar</code></i>"
@@ -349,17 +349,17 @@ package net.fproject.calendar
 		 * 8/1 to 8/7/2010 is a nonworking period, and the period from 1/1 to 9/7/2010
 		 * has 7AM-1PM and 3PM-8PM as working times.</p>
 		 * <pre>
-		 * &lt;cal:WorkCalendar baseCalendar="{WorkCalendar.STANDARD}"&gt;
-		 * 	&lt;cal:periods&gt;
-		 * 		&lt;cal:Period start="2010/8/1" end="2010/8/1" isWorking="false" /&gt;
-		 * 		&lt;cal:Period start="2010/1/1" end="2010/9/7" &gt;
-		 * 			&lt;cal:workShifts&gt;
-		 * 				&lt;cal:WorkShift start="07:00" end="13:00" /&gt;
-		 * 				&lt;cal:WorkShift start="15:00" end="20:00" /&gt;
-		 * 			&lt;/cal:workShifts&gt;
-		 * 		&lt;/cal:Period&gt;
-		 * 	&lt;/cal:periods&gt;
-		 * &lt;/cal:WorkCalendar&gt;
+		 * &lt;fprj:WorkCalendar baseCalendar="{WorkCalendar.STANDARD}"&gt;
+		 * 	&lt;fprj:periods&gt;
+		 * 		&lt;fprj:Period start="2010/8/1" end="2010/8/1" isWorking="false" /&gt;
+		 * 		&lt;fprj:Period start="2010/1/1" end="2010/9/7" &gt;
+		 * 			&lt;fprj:workShifts&gt;
+		 * 				&lt;fprj:WorkShift start="07:00" end="13:00" /&gt;
+		 * 				&lt;fprj:WorkShift start="15:00" end="20:00" /&gt;
+		 * 			&lt;/fprj:workShifts&gt;
+		 * 		&lt;/fprj:Period&gt;
+		 * 	&lt;/fprj:periods&gt;
+		 * &lt;/fprj:WorkCalendar&gt;
 		 * </pre>
 		 * *
 		 */
@@ -414,19 +414,19 @@ package net.fproject.calendar
 		 * has 7AM-1PM and 3PM-8PM as working times, and an exception on 25/1 yearly 
 		 * from 2010 will be nonworking day until 10 times occurs</p>
 		 * <pre>
-		 * &lt;cal:WorkCalendar baseCalendar="{WorkCalendar.STANDARD}"&gt;
-		 * 	&lt;cal:exceptions&gt;
-		 * 		&lt;cal:WorkCalendarException start="2010/8/1" end="2010/8/1" isWorking="false" /&gt;
-		 * 		&lt;cal:WorkCalendarException start="2010/1/1" end="2010/9/7" &gt;
-		 * 			&lt;cal:workShifts&gt;
-		 * 				&lt;cal:WorkShift start="07:00" end="13:00" /&gt;
-		 * 				&lt;cal:WorkShift start="15:00" end="20:00" /&gt;
-		 * 			&lt;/cal:workShifts&gt;
-		 * 		&lt;/cal:WorkCalendarException&gt;
-		 * 		&lt;cal:WorkCalendarException start="2010/1/25" end="2019/1/25" isWorking="false"
+		 * &lt;fprj:WorkCalendar baseCalendar="{WorkCalendar.STANDARD}"&gt;
+		 * 	&lt;fprj:exceptions&gt;
+		 * 		&lt;fprj:WorkCalendarException start="2010/8/1" end="2010/8/1" isWorking="false" /&gt;
+		 * 		&lt;fprj:WorkCalendarException start="2010/1/1" end="2010/9/7" &gt;
+		 * 			&lt;fprj:workShifts&gt;
+		 * 				&lt;fprj:WorkShift start="07:00" end="13:00" /&gt;
+		 * 				&lt;fprj:WorkShift start="15:00" end="20:00" /&gt;
+		 * 			&lt;/fprj:workShifts&gt;
+		 * 		&lt;/fprj:WorkCalendarException&gt;
+		 * 		&lt;fprj:WorkCalendarException start="2010/1/25" end="2019/1/25" isWorking="false"
 		 * 			type="2", monthDay="25", monthIndex="0" /&gt;
-		 * 	&lt;/cal:exceptions&gt;
-		 * &lt;/cal:WorkCalendar&gt;
+		 * 	&lt;/fprj:exceptions&gt;
+		 * &lt;/fprj:WorkCalendar&gt;
 		 * </pre>
 		 * 
 		 * @default null
@@ -478,17 +478,17 @@ package net.fproject.calendar
 		 * <code>STANDARD</code> calendar.</p>
 		 *
 		 * <pre>
-		 * &lt;cal:WorkCalendar baseCalendar="{WorkCalendar.STANDARD}"&gt;
-		 * 	&lt;cal:workingDays&gt;
-		 * 		&lt;cal:WeekDay dayOfWeek="5" isWorking="false" /&gt;
-		 * 		&lt;cal:WeekDay dayOfWeek="1"&gt;
-		 * 			&lt;cal:workShifts&gt;
-		 * 				&lt;cal:WorkShift start="07:00" end="13:00" /&gt;
-		 * 				&lt;cal:WorkShift start="15:00" end="20:00" /&gt;
-		 * 			&lt;/cal:workShifts&gt;
-		 * 		&lt;/cal:WeekDay&gt;
-		 * 	&lt;/cal:workingDays&gt;
-		 * &lt;/cal:WorkCalendar&gt;
+		 * &lt;fprj:WorkCalendar baseCalendar="{WorkCalendar.STANDARD}"&gt;
+		 * 	&lt;fprj:workingDays&gt;
+		 * 		&lt;fprj:WeekDay dayOfWeek="5" isWorking="false" /&gt;
+		 * 		&lt;fprj:WeekDay dayOfWeek="1"&gt;
+		 * 			&lt;fprj:workShifts&gt;
+		 * 				&lt;fprj:WorkShift start="07:00" end="13:00" /&gt;
+		 * 				&lt;fprj:WorkShift start="15:00" end="20:00" /&gt;
+		 * 			&lt;/fprj:workShifts&gt;
+		 * 		&lt;/fprj:WeekDay&gt;
+		 * 	&lt;/fprj:workingDays&gt;
+		 * &lt;/fprj:WorkCalendar&gt;
 		 * </pre>
 		 *
 		 */

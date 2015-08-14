@@ -47,14 +47,12 @@
         {
             this.day = day;
             this.modifier = modifier;
-            return;
         }
 
         public function set weekDay(value:String) : void
         {
             this._weekDay = value;
             this._day = WEEK_DAYS.indexOf(this._weekDay);
-            return;
         }
 
 		/**
@@ -78,7 +76,6 @@
             }
             this._day = value;
             this._weekDay = WEEK_DAYS[this.day];
-            return;
         }
 
 		/**

@@ -38,18 +38,18 @@ package net.fproject.calendar
 	 * January 15 to January 20 2008: </p>
 	 * 
 	 * <pre>
-	 * &lt;cal:WorkCalendar baseCalendar="{WorkCalendar.STANDARD}"&gt;
-	 * 	&lt;cal:periods&gt;
-	 * 		&lt;cal:Period start="2008/1/15" end="2008/1/20" isWorking="false" /&gt;
-	 * 	&lt;/cal:periods&gt;
-	 * &lt;/cal:WorkCalendar&gt;
+	 * &lt;fprj:WorkCalendar baseCalendar="{WorkCalendar.STANDARD}"&gt;
+	 * 	&lt;fprj:periods&gt;
+	 * 		&lt;fprj:Period start="2008/1/15" end="2008/1/20" isWorking="false" /&gt;
+	 * 	&lt;/fprj:periods&gt;
+	 * &lt;/fprj:WorkCalendar&gt;
 	 * </pre> 
 	 * 
 	 * @mxml
 	 * <p>The <code>&lt;Period&gt;</code> tag inherits all the tag attributes
 	 * of its superclass and adds the following tag attributes:</p>
 	 * <pre>
-	 * &lt;cal:Period
+	 * &lt;fprj:Period
 	 * &lt;!--<b>Properties</b>--&gt;
 	 * startDate="null"
 	 * endDate="null"
@@ -110,7 +110,7 @@ package net.fproject.calendar
 		 */
 		public function get workShifts() : Vector.<WorkShift>
 		{
-			return WorkShift.copy(this._workShifts);
+			return _workShifts;
 		}
 		
 		/**
@@ -129,7 +129,7 @@ package net.fproject.calendar
 		 */
 		override public function get end() : Date
 		{
-			return _end != null ? new Date(_end.time) : null;
+			return _end;
 		}
 		
 		/**
@@ -139,7 +139,7 @@ package net.fproject.calendar
 		 */
 		override public function set end(value:Date) : void
 		{
-			this._end = (value != null ? DateTimeUtil.getStartOfDay(value) : null);
+			this._end = value != null ? DateTimeUtil.getStartOfDay(value) : null;
 		}
 		
 		/**
@@ -148,7 +148,7 @@ package net.fproject.calendar
 		 */
 		override public function get start() : Date
 		{
-			return _start != null ? new Date(_start.time) : null;
+			return _start;
 		}
 		
 		/**
