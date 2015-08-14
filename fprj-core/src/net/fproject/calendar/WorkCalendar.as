@@ -130,7 +130,7 @@ package net.fproject.calendar
 		fproject_internal var _gregorianCalendar:GregorianCalendar;
 		private var _name:String;
 		private var _baseCalendar:WorkCalendar;
-		private var _periods:Vector.<PeriodInternal>;
+		
 		private var _weekDays:Vector.<WeekDayInternal>;
 		private var _exceptions:Vector.<WorkCalendarException>;
 		
@@ -338,6 +338,10 @@ package net.fproject.calendar
 			}
 		}
 		
+		// Periods
+		private var _periods:Vector.<PeriodInternal>;
+		private var _originalPeriods:Vector.<Period>;
+		
 		[Transient]
 		/**
 		 *
@@ -365,7 +369,8 @@ package net.fproject.calendar
 		 */
 		public function get periods():Vector.<Period>
 		{
-			var returnPeriods:Vector.<Period> = new Vector.<Period>;
+			return _originalPeriods;
+			/*var returnPeriods:Vector.<Period> = new Vector.<Period>;
 			for each (var period:PeriodInternal in this._periods)
 			{
 				if (!period.isInherited)
@@ -373,7 +378,7 @@ package net.fproject.calendar
 					returnPeriods.push(Period.fromPeriodInternal(period));
 				}
 			}
-			return returnPeriods;
+			return returnPeriods;*/
 		}
 		
 		/**
@@ -384,19 +389,20 @@ package net.fproject.calendar
 		public function set periods(value:Vector.<Period>):void
 		{
 			this.assertNotReadOnly();
+			this._originalPeriods = value;
 			this._periods = new Vector.<PeriodInternal>;
-			for each (var workCalendarPeriod:Period in value)
+			for each (var p:Period in value)
 			{
-				var period:PeriodInternal =
-					PeriodInternal.fromPeriod(this, workCalendarPeriod);
-				if (workCalendarPeriod.isWorking)
+				var pi:PeriodInternal =
+					PeriodInternal.fromPeriod(this, p);
+				if (p.isWorking)
 				{
-					checkWorkShifts(period.workShifts);
-					this.addWorkingPeriod(period);
+					checkWorkShifts(pi.workShifts);
+					this.addWorkingPeriod(pi);
 				}
 				else
 				{
-					this.addNonWorkingPeriod(period);
+					this.addNonWorkingPeriod(pi);
 				}
 			}
 			this.onChanged();
