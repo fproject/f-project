@@ -331,7 +331,7 @@ package net.fproject.calendar
 		 * @return The created new Period object
 		 * 
 		 */
-		internal static function fromCalendarPeriod(calendar:WorkCalendar, period:Period) : PeriodInternal
+		internal static function fromPeriod(calendar:WorkCalendar, period:Period) : PeriodInternal
 		{	
 			var p:PeriodInternal = new PeriodInternal(
 				calendar, period.isWorking, period.start, period.end);
