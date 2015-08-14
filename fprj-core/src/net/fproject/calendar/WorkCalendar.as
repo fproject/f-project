@@ -1060,32 +1060,30 @@ package net.fproject.calendar
 					if (p.isWorking)
 					{
 						if (p.computePreviousWorkingTime(time))
-						{
 							return time;
-						}
 					}
 					else
 					{
 						time = p.startDate;
 					}
-					continue;
 				}
-				var wd:WeekDayInternal = this.getWeekDayPeriodBackwardAt(time);
-				if (wd.isWorking)
+				else
 				{
-					if (wd.computePreviousWorkingTime(time))
+					var wd:WeekDayInternal = this.getWeekDayPeriodBackwardAt(time);
+					if (wd.isWorking)
 					{
-						return time;
+						if (wd.computePreviousWorkingTime(time))
+							return time;
 					}
-					continue;
+					else
+					{
+						var startOfDay:Date = DateTimeUtil.getStartOfDay(time);
+						if (time.time == startOfDay.time)
+							this.gregorianCalendar.dateAddByTimeUnit(time, TimeUnit.DAY, -1, true);
+						else
+							time.time = startOfDay.time;
+					}
 				}
-				var startOfDay:Date = DateTimeUtil.getStartOfDay(time);
-				if (time.time == startOfDay.time)
-				{
-					this.gregorianCalendar.dateAddByTimeUnit(time, TimeUnit.DAY, -1, true);
-					continue;
-				}
-				time.time = startOfDay.time;
 			}
 			
 			return time;
