@@ -96,7 +96,7 @@ package net.fproject.calendar
 		{
 			super(startTime, endTime);
 			this._workShifts = new Vector.<WorkShift>;
-			this.isWorking = true;
+			this._isWorking = true;
 		}
 		
 		protected var _workShifts:Vector.<WorkShift>;
