@@ -388,7 +388,7 @@ package net.fproject.calendar
 			for each (var workCalendarPeriod:Period in value)
 			{
 				var period:PeriodInternal =
-					PeriodInternal.fromCalendarPeriod(this, workCalendarPeriod);
+					PeriodInternal.fromPeriod(this, workCalendarPeriod);
 				if (workCalendarPeriod.isWorking)
 				{
 					checkWorkShifts(period.workShifts);
