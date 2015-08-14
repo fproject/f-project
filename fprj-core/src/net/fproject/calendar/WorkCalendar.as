@@ -13,7 +13,6 @@ package net.fproject.calendar
 	import mx.resources.IResourceManager;
 	
 	import net.fproject.fproject_internal;
-	import net.fproject.calendar.recurrence.RecurrencePeriod;
 	import net.fproject.core.Time;
 	import net.fproject.core.TimeRange;
 	import net.fproject.core.TimeUnit;
@@ -133,7 +132,7 @@ package net.fproject.calendar
 		private var _baseCalendar:WorkCalendar;
 		private var _periods:Vector.<PeriodInternal>;
 		private var _weekDays:Vector.<WeekDayInternal>;
-		private var _exceptions:Vector.<RecurrencePeriod>;
+		private var _exceptions:Vector.<WorkCalendarException>;
 		
 		//20130429 Added
 		private var _workBetweenCache:LruCache;
@@ -409,7 +408,7 @@ package net.fproject.calendar
 		 * <p>List of the specific exceptions defined in this calendar.</p>
 		 * <p>
 		 * The <code>exceptions</code> property is a collection of 
-		 * <code>RecurrencePeriod</code> objects.<br/>
+		 * <code>WorkCalendarException</code> objects.<br/>
 		 * The following mxml fragment shows how to specify that the period from
 		 * 8/1 to 8/7/2010 is a nonworking period, the period from 1/1 to 9/7/2010
 		 * has 7AM-1PM and 3PM-8PM as working times, and an exception on 25/1 yearly 
@@ -417,14 +416,14 @@ package net.fproject.calendar
 		 * <pre>
 		 * &lt;cal:WorkCalendar baseCalendar="{WorkCalendar.STANDARD}"&gt;
 		 * 	&lt;cal:exceptions&gt;
-		 * 		&lt;cal:RecurrencePeriod start="2010/8/1" end="2010/8/1" isWorking="false" /&gt;
-		 * 		&lt;cal:RecurrencePeriod start="2010/1/1" end="2010/9/7" &gt;
+		 * 		&lt;cal:WorkCalendarException start="2010/8/1" end="2010/8/1" isWorking="false" /&gt;
+		 * 		&lt;cal:WorkCalendarException start="2010/1/1" end="2010/9/7" &gt;
 		 * 			&lt;cal:workShifts&gt;
 		 * 				&lt;cal:WorkShift start="07:00" end="13:00" /&gt;
 		 * 				&lt;cal:WorkShift start="15:00" end="20:00" /&gt;
 		 * 			&lt;/cal:workShifts&gt;
-		 * 		&lt;/cal:RecurrencePeriod&gt;
-		 * 		&lt;cal:RecurrencePeriod start="2010/1/25" end="2019/1/25" isWorking="false"
+		 * 		&lt;/cal:WorkCalendarException&gt;
+		 * 		&lt;cal:WorkCalendarException start="2010/1/25" end="2019/1/25" isWorking="false"
 		 * 			type="2", monthDay="25", monthIndex="0" /&gt;
 		 * 	&lt;/cal:exceptions&gt;
 		 * &lt;/cal:WorkCalendar&gt;
@@ -432,10 +431,10 @@ package net.fproject.calendar
 		 * 
 		 * @default null
 		 *
-		 * @see RecurrencePeriod
+		 * @see WorkCalendarException
 		 *
 		 */
-		public function get exceptions():Vector.<RecurrencePeriod>
+		public function get exceptions():Vector.<WorkCalendarException>
 		{
 			return _exceptions;
 		}
@@ -445,11 +444,11 @@ package net.fproject.calendar
 		 * @private
 		 *
 		 */
-		public function set exceptions(value:Vector.<RecurrencePeriod>):void
+		public function set exceptions(value:Vector.<WorkCalendarException>):void
 		{
 			this.assertNotReadOnly();
 			
-			/*for each (var calException:RecurrencePeriod in value)
+			for each (var calException:WorkCalendarException in value)
 			{
 				var pers:Vector.<PeriodInternal> = calException.fproject_internal::createPeriods(this);
 				for each (var period:PeriodInternal in pers)
@@ -464,7 +463,7 @@ package net.fproject.calendar
 						this.addNonWorkingPeriod(period);
 					}
 				}
-			}*/
+			}
 			_exceptions = value;
 		}
 		
