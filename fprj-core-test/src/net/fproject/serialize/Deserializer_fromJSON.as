@@ -549,5 +549,71 @@ package net.fproject.serialize
 			assertTrue(returnTestValue is Array);
 			assertEquals(0, (returnTestValue as Array).length);
 		}
+		
+		[Test (description="Normal case")]
+		/**
+		 * Test Case Type: Normal<br/>
+		 * <br/>
+		 * INPUT VALUES:<br/>
+		 *
+		 * OUTPUT EXPECTED:<br/>
+		 *
+		 */
+		public function testCase020():void
+		{
+			var a:Array = [];
+			for(var i:int = 0; i<10; i++)
+			{
+				var jsObj:Deserializer_fromJSON_14 = new Deserializer_fromJSON_14(
+					{
+						field1:"ABC No."+i,field2:i,field3:true
+					});
+				a.push(jsObj);
+			}
+			var json:String = JSON.stringify(a);
+			var returnTestValue:Object = deserializer.fromJSON(json, Vector.<Deserializer_fromJSON_14>);
+			assertTrue(returnTestValue is Vector.<Deserializer_fromJSON_14>);
+			assertEquals(10, returnTestValue.length);
+			for(i = 0; i<10; i++)
+			{
+				assertTrue(returnTestValue[i] is Deserializer_fromJSON_14);
+				assertEquals("ABC No."+i, Deserializer_fromJSON_14(returnTestValue[i]).field1);
+				assertEquals(i, Deserializer_fromJSON_14(returnTestValue[i]).field2);
+				assertTrue(Deserializer_fromJSON_14(returnTestValue[i]).field3);
+			}
+		}
+		
+		[Test (description="Normal case")]
+		/**
+		 * Test Case Type: Normal<br/>
+		 * <br/>
+		 * INPUT VALUES:<br/>
+		 *
+		 * OUTPUT EXPECTED:<br/>
+		 *
+		 */
+		public function testCase021():void
+		{
+			var a:Array = [];
+			for(var i:int = 0; i<10; i++)
+			{
+				var jsObj:Deserializer_fromJSON_14 = new Deserializer_fromJSON_14(
+					{
+						field1:"ABC No."+i,field2:i,field3:true
+					});
+				a.push(jsObj);
+			}
+			var json:String = JSON.stringify(a);
+			var returnTestValue:Object = deserializer.fromJSON(json, Deserializer_fromJSON_14);
+			assertTrue(returnTestValue is Array);
+			assertEquals(10, returnTestValue.length);
+			for(i = 0; i<10; i++)
+			{
+				assertTrue(returnTestValue[i] is Deserializer_fromJSON_14);
+				assertEquals("ABC No."+i, Deserializer_fromJSON_14(returnTestValue[i]).field1);
+				assertEquals(i, Deserializer_fromJSON_14(returnTestValue[i]).field2);
+				assertTrue(Deserializer_fromJSON_14(returnTestValue[i]).field3);
+			}
+		}
 	}
 }
