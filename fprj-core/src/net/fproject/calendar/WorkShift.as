@@ -8,9 +8,9 @@
 package net.fproject.calendar
 {    
 	import net.fproject.fproject_internal;
-	import net.fproject.utils.MessageUtil;
 	import net.fproject.core.Time;
 	import net.fproject.core.TimeUnit;
+	import net.fproject.utils.MessageUtil;
 	
 	use namespace fproject_internal;
 	/**
@@ -57,6 +57,15 @@ package net.fproject.calendar
 		
 		[Transient]
 		/**
+		 * The <code>Time</code> instance of end time 
+		 */
+		public function get endTimeObject():Time
+		{
+			return _end;
+		}
+		
+		[Transient]
+		/**
 		 * <p>Gets or sets the end time in raw-data of the period.</p>
 		 * This property is expressed in milliseconds from midnight.<br/>
 		 * <br/> 
@@ -72,13 +81,22 @@ package net.fproject.calendar
 		{
 			return _end.millisecondsFromMidnight;
 		}
-
+		
 		/**
 		 * @private
 		 */
 		public function set endTime(value:Number):void
 		{
 			_end = new Time(value);
+		}
+		
+		[Transient]
+		/**
+		 * The <code>Time</code> instance of start time 
+		 */
+		public function get startTimeObject():Time
+		{
+			return _start;
 		}
 
 		[Transient]
