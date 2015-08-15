@@ -24,6 +24,7 @@ package com.domain.gui.components
 		[SkinPart(required="true")]
 		[PropertyBinding(dataProvider="model.userDataProvider@", labelField="'username'")]
 		[PropertyBinding(selectedItem='model.user@')]
+		[EventHandling(event="change", handler="theDropDown_change")]
 		public var theDropDown:DropDownList;
 		
 		[SkinPart(required="true")]
@@ -33,6 +34,12 @@ package com.domain.gui.components
 		[Bindable]
 		public var model:DialogViewModel;
 		
+		public function theDropDown_change(e:Event):void
+		{
+			theTextArea.appendText("\r\ntheDropDown_change: current index="+theDropDown.selectedIndex+
+				", current item ID="+(theDropDown.selectedItem ? theDropDown.selectedItem.id : null));
+		}
+			
 		public function view_initialize(e:Event):void
 		{
 			var criteria:Object = {condition:"username LIKE :name",params:{":name":"%demo_no_%"}};
