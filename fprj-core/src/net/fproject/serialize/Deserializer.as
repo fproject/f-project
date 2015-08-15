@@ -369,6 +369,14 @@ package net.fproject.serialize
 			return (getQualifiedClassName(obj).indexOf('__AS3__.vec::Vector') == 0);
 		}
 		
+		private function getVectorElementType(vector:Class):Class 
+		{
+			var s:String = getQualifiedClassName(vector);
+			var end:int = s.lastIndexOf(">");
+			var start:int = s.lastIndexOf("<", end - 1);
+			return getDefinitionByName(s.substring(start + 1, end)) as Class;
+		}
+		
 		private var returningToClass:Object = {};
 		
 		/**
@@ -424,10 +432,20 @@ package net.fproject.serialize
 			
 			if(obj is Array)
 			{
-				var a:Array = [];
+				if(isVector(clazz))
+				{
+					var a:* = new clazz();
+					var eltType:Class = getVectorElementType(clazz);
+				}
+				else
+				{
+					a = [];
+					eltType = clazz;
+				}
+				
 				for each (var elt:Object in obj)
 				{
-					a.push(extract(elt, clazz));
+					a.push(extract(elt, eltType));
 				}
 				return a;
 			}
