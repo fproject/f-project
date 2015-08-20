@@ -81,17 +81,6 @@ package net.fproject.calendar
 			}
 		}
 		
-		[Transient]
-		/**
-		 *  
-		 * The duration of this working time in milliseconds. 
-		 * 
-		 */
-		fproject_internal function get duration() : Number
-		{
-			return this.endTime - this.startTime;
-		}
-		
 		/**
 		 * Clone the object
 		 * 
