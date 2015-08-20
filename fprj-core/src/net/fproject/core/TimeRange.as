@@ -191,6 +191,35 @@ package net.fproject.core
 		}
 		
 		/**
+		 * Validate the working time of this work shift.<br/><br/>
+		 * Throw exception in case of in valid date-time values were
+		 * assigned to <code>startTime</code> and <code>endTime</code> 
+		 * 
+		 */
+		public function validate() : void
+		{			
+			if (this.startTime > TimeUnit.DAY.milliseconds)
+			{
+				throw MessageUtil.wrongArgument(
+					TimeRange, "TimeRange.validate", "startTime > TimeUnit.DAY.milliseconds");
+			}
+			if (this.endTime > TimeUnit.DAY.milliseconds)
+			{
+				throw MessageUtil.wrongArgument(
+					TimeRange, "TimeRange.validate", "endTime > TimeUnit.DAY.milliseconds");
+			}
+			if (this.startTime > 0 && this.endTime == 0)
+			{
+				this.endTime = TimeUnit.DAY.milliseconds;
+			}
+			if (this.startTime >= this.endTime)
+			{
+				throw MessageUtil.wrongArgument(
+					TimeRange, "TimeRange.validate", "startTime >= endTime");
+			}
+		}
+		
+		/**
 		 * Check if this time range is intersected to another range 
 		 * @param r the range to check
 		 * @return true if the two range are intersected.
