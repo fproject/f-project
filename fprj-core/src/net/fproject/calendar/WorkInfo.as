@@ -504,7 +504,7 @@ package net.fproject.calendar
 		 */
 		internal function compareWorkShifts(p:WorkInfo):Boolean
 		{
-			return WorkShift.compare(this._workShifts, p._workShifts);
+			return WorkShift.vectorCompare(this._workShifts, p._workShifts);
 		}
 		
 		/**

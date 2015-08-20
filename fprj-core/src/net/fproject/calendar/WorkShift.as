@@ -8,7 +8,7 @@
 package net.fproject.calendar
 {    
 	import net.fproject.fproject_internal;
-	import net.fproject.core.Time;
+	import net.fproject.core.TimeRange;
 	import net.fproject.core.TimeUnit;
 	import net.fproject.utils.MessageUtil;
 	
@@ -38,11 +38,8 @@ package net.fproject.calendar
 	 * &lt;/fprj:WorkCalendar&gt;
 	 * </pre>
 	 */
-	public class WorkShift
+	public class WorkShift extends TimeRange
 	{
-		protected var _start:Time;
-		protected var _end:Time;
-		
 		/**
 		 * <p>Initializes a new instance of the <code>WorkShift</code> class.</p>
 		 * The <code>startTime</code> property is set to <code>0</code>, 
@@ -55,71 +52,6 @@ package net.fproject.calendar
 			this.endTime = TimeUnit.DAY.milliseconds;			
 		}
 		
-		[Transient]
-		/**
-		 * The <code>Time</code> instance of end time 
-		 */
-		public function get endTimeObject():Time
-		{
-			return _end;
-		}
-		
-		[Transient]
-		/**
-		 * <p>Gets or sets the end time in raw-data of the period.</p>
-		 * This property is expressed in milliseconds from midnight.<br/>
-		 * <br/> 
-		 * In normal case, its value must be greater than the <code>startTime</code> 
-		 * property value.<br/>
-		 * <br/>
-		 * In the case you set <code>endTime = 0</code> and <code>startTime</code>
-		 * has a correct time value, the  <code>endTime</code> will be automatically
-		 * set to 86400000 (this value is <code>TimeUnit.DAY.milliseconds</code> 
-		 * which means end time of a day)
-		 */
-		public function get endTime():Number
-		{
-			return _end.millisecondsFromMidnight;
-		}
-		
-		/**
-		 * @private
-		 */
-		public function set endTime(value:Number):void
-		{
-			_end = new Time(value);
-		}
-		
-		[Transient]
-		/**
-		 * The <code>Time</code> instance of start time 
-		 */
-		public function get startTimeObject():Time
-		{
-			return _start;
-		}
-
-		[Transient]
-		/**
-		 * <p>Gets or sets the start time in raw-data of the period.</p>
-		 * This property is expressed in milliseconds from midnight. 
-		 * Its value must not be negative, and must be smaller than the 
-		 * <code>endTime</code> property value.
-		 * 
-		 */
-		public function get startTime():Number
-		{
-			return _start.millisecondsFromMidnight;
-		}
-
-		/**
-		 * @private
-		 */
-		public function set startTime(value:Number):void
-		{
-			_start = new Time(value);
-		}
-
 		/**
 		 * Validate the working time of this work shift.<br/><br/>
 		 * Throw exception in case of in valid date-time values were
@@ -131,12 +63,12 @@ package net.fproject.calendar
 			if (this.startTime > TimeUnit.DAY.milliseconds)
 			{
 				throw MessageUtil.wrongArgument(
-					WorkShift, "WorkShift.checkWorkingTime", "startTime > TimeUnit.DAY.milliseconds");
+					WorkShift, "WorkShift.validate", "startTime > TimeUnit.DAY.milliseconds");
 			}
 			if (this.endTime > TimeUnit.DAY.milliseconds)
 			{
 				throw MessageUtil.wrongArgument(
-					WorkShift, "WorkShift.checkWorkingTime", "endTime > TimeUnit.DAY.milliseconds");
+					WorkShift, "WorkShift.validate", "endTime > TimeUnit.DAY.milliseconds");
 			}
 			if (this.startTime > 0 && this.endTime == 0)
 			{
@@ -145,7 +77,7 @@ package net.fproject.calendar
 			if (this.startTime >= this.endTime)
 			{
 				throw MessageUtil.wrongArgument(
-					WorkShift, "WorkShift.checkWorkingTime", "startTime >= endTime");
+					WorkShift, "WorkShift.validate", "startTime >= endTime");
 			}
 		}
 		
@@ -158,60 +90,6 @@ package net.fproject.calendar
 		fproject_internal function get duration() : Number
 		{
 			return this.endTime - this.startTime;
-		}
-		
-		/**
-		 * 
-		 * Gets or sets a string representation of the start time of the period.
-		 * 
-		 * <p>
-		 * The date is formatted using the <code>HH:MM:SS.mmm AM/PM</code> pattern.
-		 * </p>
-		 * 
-		 */
-		public function get start() : String
-		{
-			return _start.toString();
-		}
-		
-		/**
-		 * 
-		 * @private
-		 * 
-		 */
-		public function set start(value:String) : void
-		{
-			var time:Time = Time.parseTime(value);	
-			if(time == null)
-				throw MessageUtil.wrongArgument(WorkShift, "WorkShift.start", "value");
-			_start = time;
-		}
-		
-		/**
-		 * Gets or sets a string representation of the end time of the period.
-		 * 
-		 * <p>
-		 * The date is formatted using the <code>HH:MM:SS.mmm AM/PM</code> pattern.
-		 * </p>
-		 * 
-		 */
-		public function get end() : String
-		{
-			return _end.toString();
-		}
-		
-		
-		/**
-		 * 
-		 * @private
-		 * 
-		 */
-		public function set end(value:String) : void
-		{
-			var time:Time = Time.parseTime(value);	
-			if(time == null)
-				throw MessageUtil.wrongArgument(WorkShift, "WorkShift.end", "value");
-			this.endTime = Time.parseTime(value).millisecondsFromMidnight;			
 		}
 		
 		/**
@@ -259,19 +137,6 @@ package net.fproject.calendar
 		}
 		
 		/**
-		 * Equal comparision. 
-		 * @param shift The target work shift to compare to this work shift.
-		 * @return <code>true</code> if this work shift equals the target work shift.
-		 * <code>false</code> if otherwise.
-		 * 
-		 */
-		public function equals(shift:WorkShift) : Boolean
-		{
-			return shift != null && this._start.equals(shift._start) &&
-				this._end.equals(shift._end);
-		}
-		
-		/**
 		 * Copy a vector of work shifts to another.
 		 * @param shifts The vector of input work shifts
 		 * @return The copied vector. If the input parameter <code>shifts</code>
@@ -292,14 +157,14 @@ package net.fproject.calendar
 		}
 		
 		/**
-		 * Check whether the the two workshifts are equal or not.
+		 * Check whether the the two vector of workshifts are equal or not.
 		 * @param shifts1 The first comparing workshift
 		 * @param shifts1 The second comparing workshift
 		 * @return <code>true</code> if the two workshifts are equal,
 		 * <code>false</code> if otherwise.
 		 *
 		 */
-		public static function compare(shifts1:Vector.<WorkShift>, shifts2:Vector.<WorkShift>):Boolean
+		public static function vectorCompare(shifts1:Vector.<WorkShift>, shifts2:Vector.<WorkShift>):Boolean
 		{
 			if (shifts1 == shifts2)
 				return true;
