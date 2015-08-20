@@ -7,12 +7,9 @@
 ///////////////////////////////////////////////////////////////////////////////
 package net.fproject.calendar
 {    
-	import net.fproject.fproject_internal;
 	import net.fproject.core.TimeRange;
 	import net.fproject.core.TimeUnit;
-	import net.fproject.utils.MessageUtil;
 	
-	use namespace fproject_internal;
 	/**
 	 * A work shift is a working interval of time in a day on a <code>WorkCalendar</code>.
 	 * 
@@ -50,35 +47,6 @@ package net.fproject.calendar
 		{
 			this.startTime = 0;
 			this.endTime = TimeUnit.DAY.milliseconds;			
-		}
-		
-		/**
-		 * Validate the working time of this work shift.<br/><br/>
-		 * Throw exception in case of in valid date-time values were
-		 * assigned to <code>startTime</code> and <code>endTime</code> 
-		 * 
-		 */
-		fproject_internal function validate() : void
-		{			
-			if (this.startTime > TimeUnit.DAY.milliseconds)
-			{
-				throw MessageUtil.wrongArgument(
-					WorkShift, "WorkShift.validate", "startTime > TimeUnit.DAY.milliseconds");
-			}
-			if (this.endTime > TimeUnit.DAY.milliseconds)
-			{
-				throw MessageUtil.wrongArgument(
-					WorkShift, "WorkShift.validate", "endTime > TimeUnit.DAY.milliseconds");
-			}
-			if (this.startTime > 0 && this.endTime == 0)
-			{
-				this.endTime = TimeUnit.DAY.milliseconds;
-			}
-			if (this.startTime >= this.endTime)
-			{
-				throw MessageUtil.wrongArgument(
-					WorkShift, "WorkShift.validate", "startTime >= endTime");
-			}
 		}
 		
 		/**
