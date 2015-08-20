@@ -7,6 +7,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 package net.fproject.core
 {
+	import net.fproject.fproject_internal;
 	import net.fproject.utils.MessageUtil;
 
 	/**
@@ -167,6 +168,48 @@ package net.fproject.core
 		{
 			return shift != null && this._start.equals(shift._start) &&
 				this._end.equals(shift._end);
+		}
+		
+		/**
+		 * Get intersected range of another range with this period. 
+		 * @param start the start date of date range to check intersection
+		 * @param end the end date of date range to check intersection
+		 * @return the intersected range or <code>null</code> 
+		 * if the two date ranges are not intersected.
+		 * 
+		 */
+		public function getIntersectedRange(start:Time, end:Time):TimeRange
+		{
+			var r:TimeRange = null;
+			if((_end == null || !_end.isBefore(start)) && (_start == null || (end != null && !end.isBefore(_start))))
+			{
+				var s:Time = (_start == null || _start.isBefore(start)) ? start : _start;
+				var e:Time = (_end == null || end == null || end.isBefore(_end)) ? end : _end;
+				r = new TimeRange(s, e);
+			}
+			return r;
+		}
+		
+		/**
+		 * Check if this time range is intersected to another range 
+		 * @param r the range to check
+		 * @return true if the two range are intersected.
+		 * 
+		 */
+		public function isIntersected(r:TimeRange):Boolean
+		{
+			return r!= null && getIntersectedRange(r._start, r._end) != null;
+		}
+		
+		[Transient]
+		/**
+		 *  
+		 * The duration of this working time in milliseconds. 
+		 * 
+		 */
+		fproject_internal function get duration() : Number
+		{
+			return this.endTime - this.startTime;
 		}
 	}
 }
