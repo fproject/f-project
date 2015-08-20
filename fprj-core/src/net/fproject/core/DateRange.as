@@ -139,5 +139,16 @@ package net.fproject.core
 			}
 			return r;
 		}
+		
+		/**
+		 * Check if this date range is intersected to another range 
+		 * @param r the range to check
+		 * @return true if the two range are intersected.
+		 * 
+		 */
+		public function isIntersected(r:DateRange):Boolean
+		{
+			return r!= null && getIntersectedRange(r.start, r.end) != null;
+		}
 	}
 }
