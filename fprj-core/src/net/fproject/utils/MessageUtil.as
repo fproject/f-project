@@ -41,7 +41,7 @@ package net.fproject.utils
 											 resourceManager:IResourceManager = null) : Error
         {
             var msg:String = ResourceUtil.getError(ResourceUtil.FPRJ_CORE, 1, resourceManager,
-				"invalid.argument.message", ResourceUtil.FPRJ_CORE_BUNDLE, [method, argument]);
+				ResourceUtil.FPRJ_CORE_BUNDLE, "invalid.argument.message", [method, argument]);
             return new ArgumentError(msg);
         }
 
