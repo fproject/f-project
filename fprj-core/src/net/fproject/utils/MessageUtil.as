@@ -29,14 +29,6 @@ package net.fproject.utils
 				resourceManager.getString(bundleName, resourceName, parameters);
         }
 
-        /*public static function log(clazz:Class, level:int, bundleName:String, resourceName:String, 
-								   parameters:Array = null, resourceManager:IResourceManager = null) : String
-        {
-            var msg:String = getMessage(bundleName, resourceName, parameters, resourceManager);
-            LoggingUtil.log(clazz, level, msg);
-            return msg;
-        }*/// end function
-
         public static function wrongArgument(clazz:Class, method:String, argument:String, 
 											 resourceManager:IResourceManager = null) : Error
         {
