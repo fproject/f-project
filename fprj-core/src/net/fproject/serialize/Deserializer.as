@@ -385,7 +385,7 @@ package net.fproject.serialize
 		 * @param json the JSON string to decode or a generic Object instance
 		 * that need to be converted to the specific type.
 		 * @param returning the ouput type specification, using alias of a model class.
-		 * This can be a single type such as <code>"com.mycompany.Employee[]"</code>,
+		 * This can be a single type such as <code>"com.mycompany.Employee"</code>,
 		 * or an array type such as <code>"com.mycompany.Employee[]"</code>.
 		 * You can also directly pass a AS3 Class object such as com.mycompany.Employee.
 		 * 
