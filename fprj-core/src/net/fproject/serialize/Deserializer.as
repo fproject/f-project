@@ -387,7 +387,8 @@ package net.fproject.serialize
 		 * @param returning the ouput type specification, using alias of a model class.
 		 * This can be a single type such as <code>"com.mycompany.Employee"</code>,
 		 * or an array type such as <code>"com.mycompany.Employee[]"</code>.
-		 * You can also directly pass a AS3 Class object such as com.mycompany.Employee.
+		 * You can also directly pass an AS3 Class object such as <code>com.mycompany.Employee</code>
+		 * or <code>Vector.&lt;com.mycompany.Employee&gt;</code>.
 		 * 
 		 * @return the output data in strong-typing format that specified by <code>returning</code>
 		 * 
