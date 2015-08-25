@@ -29,6 +29,8 @@ package net.fproject.ui.datetime
 	 */	
 	[Event(name="close", type="net.fproject.ui.events.DateControlEvent")]
 	
+	[SkinState("normalAndOpen")]
+	[SkinState("normalWithYearButtonAndOpen")]
 	/**
 	 *  The DateField control is a control that shows a date
 	 *  with a calendar icon on its right side.
@@ -174,6 +176,18 @@ package net.fproject.ui.datetime
 			}			
 		}
 		
+		override protected function partAdded(partName:String, instance:Object):void
+		{
+			super.partAdded(partName, instance);
+			if(instance === dropDownGroup)
+				dropDownGroup.addEventListener(FlexMouseEvent.MOUSE_DOWN_OUTSIDE, onDropDownMouseDownOutside);
+			if(instance === openButton)
+				openButton.addEventListener(MouseEvent.MOUSE_DOWN, onOpenButtonMouseDown);
+			
+			if(instance === dataGroup)
+				dataGroup.addEventListener(MouseEvent.CLICK, onDataGroupClick);
+		}
+		
 		override protected function partRemoved(partName:String, instance:Object):void
 		{
 			super.partRemoved(partName, instance);
@@ -186,54 +200,46 @@ package net.fproject.ui.datetime
 				dataGroup.removeEventListener(MouseEvent.CLICK, onDataGroupClick);
 		}
 		
-		override protected function partAdded(partName:String, instance:Object):void
-		{
-			super.partAdded(partName, instance);
-			if(instance === dropDownGroup)
-				dropDownGroup.addEventListener(FlexMouseEvent.MOUSE_DOWN_OUTSIDE, onDropDownMouseDownOutside);
-			if(instance === openButton)
-				openButton.addEventListener(MouseEvent.MOUSE_DOWN, onOpenButtonMouseDown);
-			
-			if(instance === dataGroup)
-				dataGroup.addEventListener(MouseEvent.CLICK, onDataGroupClick);
-			
-			if(instance === dropDownGroup || instance === nextYearButton || instance === prevYearButton)
-				checkToAddYearButtons();
-		}
-		
-		protected function checkToAddYearButtons():void
-		{
-			if(yearNavigationEnabled)
-			{
-				if(dropDownGroup)
-				{
-					if(nextYearButton && !dropDownGroup.containsElement(nextYearButton))
-						dropDownGroup.addElement(nextYearButton);
-					if(prevYearButton && !dropDownGroup.containsElement(prevYearButton))
-						dropDownGroup.addElement(prevYearButton);
-				}
-			}
-		}
+		private var openRequested:Boolean;
 		
 		protected function onDropDownMouseDownOutside(e:FlexMouseEvent):void
 		{
 			if(popUpAnchor != null && popUpAnchor.isPopUp)
 				dispatchEvent(new DateControlEvent(DateControlEvent.CLOSE));
-			this.skin.setCurrentState('normal');
+			
+			this.invalidateSkinState();
 		}
 		
 		protected function onOpenButtonMouseDown(e:MouseEvent):void
 		{
 			if(popUpAnchor != null && !popUpAnchor.isPopUp)
 				dispatchEvent(new DateControlEvent(DateControlEvent.OPEN));
-			this.skin.setCurrentState('open');
+			else
+				openRequested = true;
+					
+			this.invalidateSkinState();
 		}
 		
 		protected function onDataGroupClick(e:MouseEvent):void
 		{
 			if(popUpAnchor != null && popUpAnchor.isPopUp)
 				dispatchEvent(new DateControlEvent(DateControlEvent.CLOSE));
-			this.skin.setCurrentState('normal');
+			
+			this.invalidateSkinState();
+		}
+		
+		/**
+		 * 
+		 * @inheritDoc
+		 * 
+		 */
+		override protected function getCurrentSkinState():String
+		{
+			var s:String = super.getCurrentSkinState();
+			if(openRequested || (popUpAnchor != null && popUpAnchor.isPopUp))
+				s +='AndOpen';
+			callLater(function():void{openRequested=false;});
+			return s;
 		}
 	}
 }

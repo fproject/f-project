@@ -58,7 +58,8 @@ package net.fproject.ui.datetime
 	 */	
 	[Style(name="otherMonthDayColor", inherit="yes", type="uint", format="Color")]
 	
-	[SkinState("yearButtonDisplayed")]
+	[SkinState("normalWithYearButton")]
+	[SkinState("disabledWithYearButton")]
 	[ResourceBundle("fprjui")]
 	/**
 	 *  The DateChooser control displays the name of a month, the year,
@@ -190,6 +191,11 @@ package net.fproject.ui.datetime
 			goPrevMonth();
 		}
 		
+		/**
+		 * 
+		 * User click 'Prev Month' button to goes to previous month
+		 * 
+		 */
 		protected function goPrevMonth():void
 		{
 			// updates its dataprovider
@@ -208,6 +214,11 @@ package net.fproject.ui.datetime
 			goNextMonth();
 		}
 		
+		/**
+		 * 
+		 * User click 'Next Month' button to goes to next month
+		 * 
+		 */
 		protected function goNextMonth():void
 		{
 			if (dayList.month == 11)
@@ -220,6 +231,11 @@ package net.fproject.ui.datetime
 			dispatchEvent(new DateControlEvent(DateControlEvent.MONTH_CHANGE));
 		}
 		
+		/**
+		 * 
+		 * User click 'Prev Year' button to goes to previous year
+		 * 
+		 */
 		protected function onPrevYear(e:MouseEvent):void
 		{
 			// updates its dataprovider
@@ -227,6 +243,11 @@ package net.fproject.ui.datetime
 			dispatchEvent(new DateControlEvent(DateControlEvent.YEAR_CHANGE));
 		}
 		
+		/**
+		 * 
+		 * User click 'Next Year' button to goes to next year
+		 * 
+		 */
 		protected function onNextYear(e:MouseEvent):void
 		{
 			// updates its dataprovider
@@ -234,7 +255,11 @@ package net.fproject.ui.datetime
 			dispatchEvent(new DateControlEvent(DateControlEvent.YEAR_CHANGE));
 		}
 		
-		// user changes the selection in the datechooser
+		/**
+		 * 
+		 * User changes the selection in the datechooser
+		 * 
+		 */
 		protected function onSelectionChange(e:IndexChangeEvent):void
 		{
 			var md:MonthDay = e.newIndex > -1 ? dayList.getItemAt(e.newIndex) as MonthDay : null;
@@ -338,12 +363,17 @@ package net.fproject.ui.datetime
 				yearLabel.text = dayList.year.toString(); 
 		}
 		
+		/**
+		 * 
+		 * @inheritDoc
+		 * 
+		 */
 		override protected function getCurrentSkinState():String
 		{
+			var s:String = super.getCurrentSkinState();
 			if(yearNavigationEnabled)
-				return 'yearButtonDisplayed';
-			else
-				return super.getCurrentSkinState();
+				s +='WithYearButton';
+			return s;
 		}
 		
 		// don't allow anyone to set our custom DP
@@ -353,6 +383,11 @@ package net.fproject.ui.datetime
 		
 		private var _monthNames:Array;
 		
+		/**
+		 * 
+		 * The month names, default to the resource bundle value of key 'month.long.names'
+		 * 
+		 */
 		public function get monthNames():Array
 		{
 			if(_monthNames == null)
@@ -373,6 +408,11 @@ package net.fproject.ui.datetime
 		
 		private var _dayNames:Array;
 		
+		/**
+		 * 
+		 * The weekday names, default to the resource bundle value of key 'weekday.short.names'
+		 * 
+		 */
 		public function get dayNames():Array
 		{
 			if(_dayNames == null)
