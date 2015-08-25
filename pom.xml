@@ -27,6 +27,12 @@
 				<version >${flexmojos.version}</version >
 				<extensions >true</extensions >
 				<configuration >
+					<includeSources>
+						<param>fprj-core/src</param>
+					</includeSources>
+					<includeTestSources>
+						<param>fprj-core-test/src</param>
+					</includeTestSources>
                     <sourceFile>TestMain.as</sourceFile>
 					<compilerWarnings>
                         <warn-no-constructor>false</warn-no-constructor>
