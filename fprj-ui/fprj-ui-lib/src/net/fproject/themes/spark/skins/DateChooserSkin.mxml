@@ -12,7 +12,8 @@
 	<s:states>
 		<s:State name="normal"/>
 		<s:State name="disabled"/>
-		<s:State name="yearButtonDisplayed"/>
+		<s:State name="normalWithYearButton" stateGroups="withYearButton"/>
+		<s:State name="disabledWithYearButton" stateGroups="withYearButton"/>
 	</s:states>
 	
 	<s:Rect left="0" right="0" top="0" bottom="0" visible="{getStyle('borderVisible')}">
@@ -39,10 +40,10 @@
 				  skinClass="mx.skins.spark.DateChooserPrevMonthSkin" x="5" y="11"/>
 	
 	<s:Label id="monthLabel" left="33" y="11"/>
-	<s:Label id="yearLabel" right="33" right.yearButtonDisplayed="45" y="11" textAlign="right"/>
-	<s:ButtonBase id="nextYearButton" includeIn="yearButtonDisplayed"
+	<s:Label id="yearLabel" right="33" right.withYearButton="45" y="11" textAlign="right"/>
+	<s:ButtonBase id="nextYearButton" includeIn="withYearButton"
 				  skinClass="mx.skins.spark.DateChooserNextYearSkin" right="30" y="9"/>
-	<s:ButtonBase id="prevYearButton" includeIn="yearButtonDisplayed"
+	<s:ButtonBase id="prevYearButton" includeIn="withYearButton"
 				  skinClass="mx.skins.spark.DateChooserPrevYearSkin" right="30" y="16"/>
 	
 	<s:ButtonBase id="nextMonthButton" 
