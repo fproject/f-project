@@ -789,7 +789,7 @@ package net.fproject.di
 			if(sourceObject is IEventDispatcher)
 			{
 				if(isSourceSkinPart)
-					PropertyBindingHandler.addCacheEvents(sourceObject, srcField, [SkinPartEvent.PART_ADDED]);
+					PropertyBindingHandler.addEventsToCache(sourceObject, srcField, [SkinPartEvent.PART_ADDED]);
 				setDeferredSourceChain(null, sourceObject, srcChain, targetObj, targetField);
 			}
 			else

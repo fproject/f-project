@@ -23,7 +23,7 @@ package net.fproject.di.supportClasses
 	
 	/**
 	 * 
-	 * PropertyBindingHandler define a set of methods for handling [PropertyBinding]
+	 * PropertyBindingHandler define a set of methods for handling a [PropertyBinding] declaration
 	 * 
 	 * @author Bui Sy Nguyen
 	 * 
@@ -214,7 +214,7 @@ package net.fproject.di.supportClasses
 		 * Caching events
 		 * 
 		 */
-		public static function addCacheEvents(classOrInstance:*, property:String, events:Array):void
+		public static function addEventsToCache(classOrInstance:*, property:String, events:Array):void
 		{
 			var clazz:String = getQualifiedClassName(classOrInstance);
 			var cacheKey:String = clazz + "." + property;
