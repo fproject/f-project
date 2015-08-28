@@ -201,8 +201,13 @@ package net.fproject.core
 		 * Load application context
 		 * 
 		 */
-		private function load():void
+		public function load(loginUserId:String=null, authToken:String=null):void
 		{
+			if(loginUserId != null)
+				loginUser.id = loginUserId;
+			if(authToken != null)
+				loginUser.fproject_internal::setToken(authToken);
+			
 			appContextService.load(loginUser.id,
 				function(data:Object):void
 				{
