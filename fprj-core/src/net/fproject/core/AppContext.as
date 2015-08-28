@@ -86,7 +86,7 @@ package net.fproject.core
 		
 		/**
 		 * 
-		 * <code>true</code> if the ProjectKit Flex application can connect with server.
+		 * <code>true</code> if the application can connect with server.
 		 * <code>false</code> if otherwise.
 		 */
 		public function get networkAvailable():Boolean
