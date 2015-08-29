@@ -7,7 +7,6 @@ package net.fproject.ui.datetime
 	import flash.geom.Rectangle;
 	import flash.ui.Keyboard;
 	
-	import mx.collections.ArrayCollection;
 	import mx.collections.IList;
 	import mx.collections.ISort;
 	import mx.collections.ISortField;
@@ -221,12 +220,16 @@ package net.fproject.ui.datetime
 			}
 		}
 		
+		private var oldSelectedIndex:int;
+		
 		/**
 		 * @inheritDoc 
 		 * 
 		 */
 		override protected function commitSelection(value:Boolean = true) : Boolean
 		{
+			oldSelectedIndex = _selectedIndex;
+			
 			var s:String = textInput.text;
 			if(selectedIndex == ComboBox.CUSTOM_SELECTED_ITEM)
 			{
@@ -257,7 +260,23 @@ package net.fproject.ui.datetime
 				errorString = null;
 				validateProperties();
 			}
+			
+			callLater(dispatchChangeEvent);
+			
 			return b;
+		}
+		
+		private function dispatchChangeEvent():void
+		{
+			// Dispatch the change event
+			if (dispatchChangeAfterSelection)
+			{
+				var e:IndexChangeEvent = new IndexChangeEvent(IndexChangeEvent.CHANGE);
+				e.oldIndex = oldSelectedIndex;
+				e.newIndex = _selectedIndex;
+				dispatchEvent(e);
+				dispatchChangeAfterSelection = false;
+			}
 		}
 		
 		/**
