@@ -12,7 +12,6 @@
     <classEntry path="net.fproject.di.Implementation"/>
     <classEntry path="net.fproject.fproject_internal"/>
     <classEntry path="net.fproject.gui.RenderItem"/>
-    <classEntry path="net.fproject.gui.component.GraphicButtonSkin"/>
     <classEntry path="net.fproject.gui.component.HorizontalSeparator"/>
     <classEntry path="net.fproject.gui.component.LineSeparatorBase"/>
     <classEntry path="net.fproject.gui.component.SolidColorRect"/>
