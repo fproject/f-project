@@ -179,7 +179,7 @@ package net.fproject.active
 		 *
 		 * <p>If value of first element does not equal to '&#42;', then all attributes in the list
 		 * will be saved regardless they are relation or not.
-		 * For example:<pre>userService.save(model, ['name', 'birthDay', 'age'])</pre>
+		 * For example:<pre>userService.save(model, ['name', 'birthDay', 'age', 'userProfile'])</pre>
 		 * </p>
 		 * 
 		 * @return a <code>CallResponder</code> responds for the call.
