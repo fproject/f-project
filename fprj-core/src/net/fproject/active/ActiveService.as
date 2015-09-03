@@ -286,7 +286,7 @@ package net.fproject.active
 		 * @param dataProvider the output data provider
 		 * @param fetchFirstPage if <code>true</code>, the first page query will be called and
 		 * the first page result will be merged in to the data provider.
-		 * @param factory The class used to generate IActiveDataProvider.
+		 * @param factory The class that implements IActiveDataProvider.
 		 * This class must has constructor that accepts two parameters:
 		 * <pre>public function ActiveDataProvider(criteria:Object, service:ActiveService) {...}</pre>
 		 * Default value is <code>net.fproject.active.ActiveDataProvider</code>
