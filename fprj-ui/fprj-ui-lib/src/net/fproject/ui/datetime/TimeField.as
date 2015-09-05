@@ -77,7 +77,7 @@ package net.fproject.ui.datetime
 		 * The validation error message.
 		 * A validation error occurs when the user entered a string that could not be converted to a valid minutes value.
 		 * </p>
-		 * @default <code>"Invalid time. You should input values like: 7p, 7pm, 7:00pm, 700p, 19:00p, 19PM etc."<code>
+		 * @default <code>"Invalid time. You should input values like: 7p, 7pm, 7:00pm, 700p, 19:00p, 19PM etc."</code>
 		 */
 		public var validationErrorMessage:String = "Invalid time. You should input values like: 7p, 7pm, 7:00pm, 700p, 19:00p, 19PM etc.";
 		

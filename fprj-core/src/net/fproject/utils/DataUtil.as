@@ -480,7 +480,7 @@ package net.fproject.utils
 		 * @param value The value to set
 		 * @param propertyChangeDispatcher the parent object implemented IEventDispatcher that will dispatch
 		 * PropertyChangeEvent when field value is set.
-		 * @return the source object it self. If the source object is <code>null<code>, a
+		 * @return the source object it self. If the source object is <code>null</code>, a
 		 * dynamic untyped object that has the field chain set will be returned.
 		 * 
 		 */
