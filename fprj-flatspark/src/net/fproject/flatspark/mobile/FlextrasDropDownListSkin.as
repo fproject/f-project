@@ -1,3 +1,10 @@
+///////////////////////////////////////////////////////////////////////////////
+//
+// Licensed Source Code - Property of f-project.net
+//
+// Copyright © 2015 f-project.net. All Rights Reserved.
+//
+///////////////////////////////////////////////////////////////////////////////
 package net.fproject.flatspark.mobile
 {
 	import com.flextras.mobile.dropDownList.skins.DropDownListMobileSkin_Default;
