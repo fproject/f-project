@@ -1,9 +1,6 @@
 package net.fproject.model
 {
-	import flash.events.EventDispatcher;
-	
 	import mx.core.IUID;
-	import mx.events.PropertyChangeEvent;
 	
 	import net.fproject.core.PropertyChangeDispatcher;
 	
