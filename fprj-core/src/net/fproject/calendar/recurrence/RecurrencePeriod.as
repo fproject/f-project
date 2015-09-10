@@ -1,12 +1,10 @@
 package net.fproject.calendar.recurrence
 {
 	import flash.events.Event;
-	import flash.events.EventDispatcher;
 	import flash.events.IEventDispatcher;
 	
-	import mx.events.PropertyChangeEvent;
-	
 	import net.fproject.calendar.Period;
+	import net.fproject.core.PropertyChangeDispatcher;
 	import net.fproject.utils.StringUtil;
 	
 	/**
@@ -28,7 +26,7 @@ package net.fproject.calendar.recurrence
 		public function RecurrencePeriod(startTime:Date=null, endTime:Date=null, rrule:String=null)
 		{
 			super(startTime, endTime);
-			this._bindingEventDispatcher = new EventDispatcher(IEventDispatcher(this));
+			this._bindingEventDispatcher = new PropertyChangeDispatcher(IEventDispatcher(this));
 		}
 		
 		protected var _name:String;
@@ -48,7 +46,7 @@ package net.fproject.calendar.recurrence
 			{
 				var oldValue:String = _name;
 				_name = value;
-				firePropertyChange('name', oldValue, value);
+				_bindingEventDispatcher.dispatchChangeEvent('name', oldValue, value);
 			}
 		}
 		
@@ -67,7 +65,7 @@ package net.fproject.calendar.recurrence
 			{
 				var oldValue:Boolean = _isWorking;
 				_isWorking = value;
-				firePropertyChange('isWorking', oldValue, value);
+				_bindingEventDispatcher.dispatchChangeEvent('isWorking', oldValue, value);
 			}
 		}
 		
@@ -86,7 +84,7 @@ package net.fproject.calendar.recurrence
 			{
 				var oldValue:Date = _start;
 				_start = value;
-				firePropertyChange('start', oldValue, value);
+				_bindingEventDispatcher.dispatchChangeEvent('start', oldValue, value);
 			}
 		}
 		
@@ -105,7 +103,7 @@ package net.fproject.calendar.recurrence
 			{
 				var oldValue:Date = _end;
 				_end = value;
-				firePropertyChange('end', oldValue, value);
+				_bindingEventDispatcher.dispatchChangeEvent('end', oldValue, value);
 			}
 		}
 			
@@ -128,13 +126,13 @@ package net.fproject.calendar.recurrence
 			{
 				var oldValue:* = _iCalRule;
 				_iCalRule = value;
-				firePropertyChange('iCalRule', oldValue, value);
+				_bindingEventDispatcher.dispatchChangeEvent('iCalRule', oldValue, value);
 				
 				if(!StringUtil.isBlank(_iCalRule))
 				{
 					oldValue = _rrule;
 					_rrule = new RRule(_iCalRule);
-					firePropertyChange('rrule', oldValue, _rrule);
+					_bindingEventDispatcher.dispatchChangeEvent('rrule', oldValue, _rrule);
 				}
 			}
 		}
@@ -145,7 +143,7 @@ package net.fproject.calendar.recurrence
 			return _rrule;
 		}
 		
-		private var _bindingEventDispatcher:EventDispatcher
+		private var _bindingEventDispatcher:PropertyChangeDispatcher
 		
 		/**
 		 * 
@@ -195,12 +193,6 @@ package net.fproject.calendar.recurrence
 		public function willTrigger(type:String) : Boolean
 		{
 			return this._bindingEventDispatcher.willTrigger(type);
-		}
-		
-		private function firePropertyChange(prop:String, oldValue:*, value:*):void
-		{
-			if(hasEventListener(PropertyChangeEvent.PROPERTY_CHANGE))
-				dispatchEvent(PropertyChangeEvent.createUpdateEvent(this, prop, oldValue, value));
 		}
 	}
 }

@@ -24,7 +24,7 @@ package net.fproject.core
 		public function dispatchChangeEvent(prop:String, oldValue:*, newValue:*):void
 		{
 			if(!changeEventDisabled && this.hasEventListener(PropertyChangeEvent.PROPERTY_CHANGE))
-				dispatchEvent(PropertyChangeEvent.createUpdateEvent(this, prop, oldValue, newValue));
+				dispatchEvent(PropertyChangeEvent.createUpdateEvent(target, prop, oldValue, newValue));
 		}
 		
 		private var changeEventDisabled:Boolean;
@@ -39,9 +39,12 @@ package net.fproject.core
 			changeEventDisabled = false;
 		}
 		
+		private var target:Object;
+		
 		public function PropertyChangeDispatcher(target:IEventDispatcher=null)
 		{
 			super(target);
+			this.target = target == null ? this : target;
 		}
 	}
 }
