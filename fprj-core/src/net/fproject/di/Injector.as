@@ -20,15 +20,16 @@ package net.fproject.di
 	
 	import net.fproject.fproject_internal;
 	import net.fproject.di.supportClasses.PropertyBindingHandler;
+	import net.fproject.reflect.ReflectionUtil;
 	import net.fproject.utils.DataUtil;
 	import net.fproject.utils.LoggingUtil;
+	import net.fproject.utils.StringUtil;
 	
 	import org.as3commons.reflect.AbstractMember;
 	import org.as3commons.reflect.Field;
 	import org.as3commons.reflect.Metadata;
 	import org.as3commons.reflect.MetadataArgument;
 	import org.as3commons.reflect.Type;
-	import net.fproject.reflect.ReflectionUtil;
 	
 	/**
 	 * 
@@ -182,7 +183,7 @@ package net.fproject.di
 					}
 					else if(container is IEventDispatcher)
 						IEventDispatcher(container).addEventListener(
-							evt.listenerInfo.event, evt.listenerInfo.handler);
+							evt.listenerInfo.event, evt.listenerInfo.handler, evt.listenerInfo.useCapture);
 					else
 						LoggingUtil.fproject_internal::error(Injector, 4, "invalid.dispatcher.error", [container]);
 				}
@@ -226,6 +227,7 @@ package net.fproject.di
 		public static const EVENT_KEY:String = "event";
 		public static const HANDLER_KEY:String = "handler";
 		public static const DISPATCHER_KEY:String = "dispatcher";
+		public static const USE_CAPTURE_KEY:String = "usecapture";
 		
 		/**
 		 * 
@@ -247,23 +249,44 @@ package net.fproject.di
 				
 				if (metadata.name == EVENT_HANDLING && metadata.arguments.length > 1)
 				{
-					if(metadata.arguments.length == 3)
-						var dispatcherChain:String = getMetadataArgument(metadata, DISPATCHER_KEY, 0);
+					if(metadata.arguments.length == 4)
+					{
+						var defaultIndex:int = 0;
+					}
+					else if(metadata.arguments.length == 3)
+					{
+						var useCapture:String = getMetadataArgument(metadata, USE_CAPTURE_KEY, 2);
+						if(useCapture.toLowerCase() == "true" || useCapture.toLowerCase() == "false")
+						{
+							defaultIndex = int.MAX_VALUE;
+						}
+						else
+						{
+							defaultIndex = 2;
+							useCapture = null;
+						}
+					}
 					else
-						dispatcherChain = getMetadataArgument(metadata, DISPATCHER_KEY);
-					var chain:Array = (dispatcherChain == null || dispatcherChain == "") ?
-						[] : dispatcherChain.split(".");
+					{
+						defaultIndex = int.MAX_VALUE;
+					}
+					
+					var dispatcherChain:String = getMetadataArgument(metadata, DISPATCHER_KEY, defaultIndex);
+					
+					var chain:Array = StringUtil.isBlank(dispatcherChain) ? [] : dispatcherChain.split(".");
 					
 					if(member.name != THIS)
 						chain = [member.name].concat(chain);
 					
-					var i:int = metadata.arguments.length == 2 ? 0 : 1;
+					var i:int = metadata.arguments.length == 2 || (metadata.arguments.length == 3 && !StringUtil.isBlank(useCapture)) ? 0 : 1;
 					
 					var event:String = getMetadataArgument(metadata, EVENT_KEY, i);
 					event = DataUtil.evaluateChainValue(event);
 					var handlerName:String = getMetadataArgument(metadata, HANDLER_KEY, i + 1);
 					var handler:Function = DataUtil.evaluateChainValue(handlerName, container);
-					eventInfo.push({listenerInfo:{event:event, handler:handler}, chain:chain});
+					if(StringUtil.isBlank(useCapture))
+						useCapture = getMetadataArgument(metadata, USE_CAPTURE_KEY, i + 2);
+					eventInfo.push({listenerInfo:{event:event, handler:handler, useCapture:DataUtil.toBoolean(useCapture)}, chain:chain});
 				}
 			}
 			
@@ -382,7 +405,7 @@ package net.fproject.di
 			}
 			
 			if(target is IEventDispatcher)
-				IEventDispatcher(target).addEventListener(listenerInfo.event, listenerInfo.handler);
+				IEventDispatcher(target).addEventListener(listenerInfo.event, listenerInfo.handler, listenerInfo.useCapture);
 			else if(target != null)
 				LoggingUtil.fproject_internal::error(Injector, 4, "invalid.dispatcher.error", [target]);
 		}
