@@ -103,6 +103,25 @@ package net.fproject.di.supportClasses
 		 * @private
 		 * 
 		 */
+		private function stop():void
+		{
+			if(host != null && this.bindingEvents != null)
+			{
+				for each(var s:String in bindingEvents)
+				{
+					var handler:Function = s==PropertyChangeEvent.PROPERTY_CHANGE ? propChangeHandler : changeEventHandler;
+					host.removeEventListener(s, handler);
+					if(s == SkinPartEvent.PART_ADDED)
+						host.removeEventListener(SkinPartEvent.PART_REMOVED, partRemovedHandler);
+				}
+			}
+		}
+		
+		/**
+		 * 
+		 * @private
+		 * 
+		 */
 		private function propChangeHandler(e:PropertyChangeEvent):void
 		{
 			if(property == e.property)
@@ -143,22 +162,6 @@ package net.fproject.di.supportClasses
 			}
 		}
 		
-		/**
-		 * 
-		 * @private
-		 * 
-		 */
-		private function stop():void
-		{
-			if(host != null)
-			{
-				for each(var s:String in bindingEvents)
-				{
-					var handler:Function = s==PropertyChangeEvent.PROPERTY_CHANGE ? propChangeHandler : changeEventHandler;
-					host.removeEventListener(s, handler);
-				}
-			}
-		}
 		
 		/**
 		 * 
@@ -175,7 +178,7 @@ package net.fproject.di.supportClasses
 			}
 			else
 			{			
-				var meta:Object = ReflectionUtil.findMemberMetadataValue(host, property, net.fproject.di.Injector.BINDABLE);
+				var meta:Object = ReflectionUtil.findMemberMetadataValue(host, property, Injector.BINDABLE);
 				if(meta != null)
 				{
 					evts = new Vector.<String>;
