@@ -21,6 +21,7 @@ package net.fproject.di
 	import testdata.di.Injector_attachEventListeners_017;
 	import testdata.di.Injector_attachEventListeners_018;
 	import testdata.di.Injector_attachEventListeners_019;
+	import testdata.di.Injector_attachEventListeners_020;
 
 	[ResourceBundle("fprjcore")]
 	/**
@@ -423,6 +424,34 @@ package net.fproject.di
 		public function testCase019_myEvent(e:Event, container:Injector_attachEventListeners_019):void
 		{
 			assertTrue(container.textInput_myEventRunned);	
+		}
+		
+		[Test (async,description="Normal case: Using complex dispatcher")]
+		/**
+		 * Test Case Type: Normal<br/>
+		 * INPUT VALUES:<br/>
+		 * <code>container = new Object()</code><br/>
+		 * <code>clazz = new Class()</code><br/>
+		 * <code>deferredBinding = false</code><br/>
+		 * <br/>
+		 * OUTPUT EXPECTED:<br/>
+		 * ---- expectations ----
+		 *
+		 */
+		public function testCase020():void
+		{
+			var container:Injector_attachEventListeners_020 = new Injector_attachEventListeners_020();
+			Injector.inject(container);
+			//---- Place result assertion here ----
+			// You must replace this code by function specifications or 
+			// the test always returns false!
+			container.show();
+			Async.handleEvent(this, container.comboBox.textInput, "creationComplete",testCase020_creationComplete, 100000, container);					
+		}
+		
+		public function testCase020_creationComplete(e:Event, container:Injector_attachEventListeners_020):void
+		{
+			assertTrue(container.comboBox.hasEventListener("myEvent"));
 		}
 	}
 }
