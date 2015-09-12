@@ -40,14 +40,29 @@ package net.fproject.di
 	 */
 	public class Injector
 	{
+		/**
+		 * The <code>[AutoInstance]</code> metadata 
+		 */
 		public static const AUTO_INSTANCE:String = "autoinstance";
 		
+		/**
+		 * The <code>[EventHandling]</code> metadata 
+		 */
 		public static const EVENT_HANDLING:String = "eventhandling";
 		
+		/**
+		 * The <code>[PropertyBinding]</code> metadata 
+		 */
 		public static const PROPERTY_BINDING:String = "propertybinding";
 		
+		/**
+		 * The <code>[SkinPart]</code> metadata 
+		 */
 		public static const SKIN_PART:String = "skinpart";
 		
+		/**
+		 * The <code>[Bindable]</code> metadata 
+		 */
 		public static const BINDABLE:String = "bindable";
 		
 		/**
@@ -88,6 +103,9 @@ package net.fproject.di
 			injector.fproject_internal::instantiateMembers(container, recursive);
 		}
 		
+		/**
+		 * The <code>factory</code> argument of <code>[AutoInstance]</code>  metadata 
+		 */
 		public static const FACTORY_KEY:String = "factory";
 		
 		private static var instantiatedContainer:Dictionary = new Dictionary(true);
@@ -224,9 +242,24 @@ package net.fproject.di
 			}
 		}
 		
+		/**
+		 * The <code>event</code> argument of <code>[EventHandling]</code> metadata 
+		 */
 		public static const EVENT_KEY:String = "event";
+		
+		/**
+		 * The <code>handler</code> argument of <code>[EventHandling]</code> metadata 
+		 */
 		public static const HANDLER_KEY:String = "handler";
+		
+		/**
+		 * The <code>dispatcher</code> argument of <code>[EventHandling]</code> metadata 
+		 */
 		public static const DISPATCHER_KEY:String = "dispatcher";
+		
+		/**
+		 * The <code>useCapture</code> argument of <code>[EventHandling]</code> metadata 
+		 */
 		public static const USE_CAPTURE_KEY:String = "usecapture";
 		
 		/**
@@ -430,9 +463,16 @@ package net.fproject.di
 			injector.fproject_internal::bindProperties(container);
 		}
 		
+		/**
+		 * The keyword <code>this</code> represents current container object.
+		 */
 		public static const THIS:String = "this";
+		
+		/**
+		 * The <code>hostChain</code> argument of <code>[PropertyBinding]</code> metadata 
+		 */
 		private static const HOST_CHAIN:String = "hostChain";
-		private static const SOURCE_EVENT:String = "sourceEvent";
+		
 		
 		/**
 		 * @private
@@ -492,6 +532,14 @@ package net.fproject.di
 			}
 		}
 		
+		/**
+		 * The <code>sourceEvent</code> argument of <code>[PropertyBinding]</code> metadata 
+		 */
+		public static const SOURCE_EVENT:String = "sourceEvent";
+		
+		/**
+		 * The type of target field 
+		 */
 		private static const FIELD_TYPE:String = "fieldType";
 		
 		/**
@@ -768,6 +816,9 @@ package net.fproject.di
 		
 		private var idToTarget:Object = {};
 		
+		/**
+		 * The prefix 'this.' 
+		 */
 		private static const THIS_DOT:String = "this.";
 		
 		/**
@@ -1163,8 +1214,9 @@ package net.fproject.di
 				return defaultIndex < metadata.arguments.length? metadata.arguments[defaultIndex].value : null;
 		}
 		
-		
-		
+		/**
+		 * The instance cache 
+		 */
 		private static var instanceCache:Dictionary = new Dictionary(true);
 		
 		/**
