@@ -31,6 +31,8 @@
 			description="%event.handling.event"/>
 		<attribute name="handler" type="Function" required="false" 
 			description="Event handler"/>
+		<attribute name="useCapture" type="Function" required="false" 
+			description="Determines whether the listener works in the capture phase or the target and bubbling phases"/>
 	</metadata>
 	
 	<metadata name="PropertyBinding" 
