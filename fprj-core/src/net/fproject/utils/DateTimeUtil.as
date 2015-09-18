@@ -653,14 +653,14 @@ package net.fproject.utils
 		}
 		
 		/**
-		 * Format a date to using ISO Date format. This method is use to process Date data for MS Project
-		 * @param value The ISO date string.
+		 * Format a date to using ISO Date format. This method is use to process Date data for JSON serialization and MS Project exporting.
+		 * @param d The AS3 Date instance.
 		 * @param includeMilliseconds Determines whether to include the
 		 * milliseconds value (if any) in the formatted string.
 		 * @param useZsign whether include "Z" sign to the end of output string or not
 		 * @param useTsign whether use "T" sign to to seperate date part and time part or not
 		 * 
-		 * @return The ISO date formatted string if no error.
+		 * @return The ISO date formatted string if no error occurred.
 		 * 
 		 */		
 		public static function formatIsoDate(d:Date, includeMilliseconds:Boolean=false,
