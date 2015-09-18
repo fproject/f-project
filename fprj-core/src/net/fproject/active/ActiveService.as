@@ -80,7 +80,9 @@ package net.fproject.active
 		 * @param completeCallback The call-back function that will be invoked after
 		 * the remote object call succesfully returned.
 		 * @param failCallback The call-back function that will be invoked after
-		 * the remote object call failed
+		 * the remote object call failed.
+		 * This function must have one parameter in type mx.rpc.Fault:
+		 * <pre>function failCallback(fault:Fault):void</pre>
 		 * @param extraParams An optional list of extra URL parameters used for service call.
 		 * For example you can pass <code>"expand=profile"</code> to make the additional URL parameter <code>&expand=profile</code>
 		 * 
@@ -119,7 +121,9 @@ package net.fproject.active
 		 * @param completeCallback The call-back function that will be invoked after
 		 * the remote object call succesfully returned.
 		 * @param failCallback The call-back function that will be invoked after
-		 * the remote object call failed
+		 * the remote object call failed.
+		 * This function must have one parameter in type mx.rpc.Fault:
+		 * <pre>function failCallback(fault:Fault):void</pre>
 		 * @param extraParams An optional list of extra URL parameters used for service call.
 		 * For example you can pass <code>"expand=profile"</code> to make the additional URL parameter <code>&expand=profile</code>
 		 * 
