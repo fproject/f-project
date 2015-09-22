@@ -9,6 +9,9 @@ package net.fproject.rpc
 {
 	import mx.rpc.remoting.RemoteObject;
 	
+	import net.fproject.core.AppContext;
+	import net.fproject.event.AppContextEvent;
+	
 	public dynamic class AMFRemoteObject extends RemoteObject implements IRemoteObject
 	{
 		/**
@@ -19,6 +22,11 @@ package net.fproject.rpc
 		public function setAuthToken(token:String):void
 		{
 			this.setCredentials('', token);
+			AppContext.instance.addEventListener(AppContextEvent.ACCESS_TOKEN_CHANGE,
+				function(e:AppContextEvent):void
+				{
+					setCredentials('', e.data as String);
+				});
 		}
 		
 		/**
