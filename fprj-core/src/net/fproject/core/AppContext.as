@@ -71,6 +71,14 @@ package net.fproject.core
 	[Event(name="serviceCallFailed", type="net.fproject.event.AppContextEvent")]
 	
 	/**
+	 * Dispatched when the app context initialization is completed.
+	 *
+	 * @eventType net.fproject.event.AppContextEvent.ACCESS_TOKEN_CHANGE
+	 * 
+	 */
+	[Event(name="accessTokenChange", type="net.fproject.event.AppContextEvent")]
+	
+	/**
 	 * <p>AppContext class is used to bootstrap Flex application by
 	 * supplying properties and methods to store application context 
 	 * data and application states.

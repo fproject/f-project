@@ -212,6 +212,34 @@ package net.fproject.event
 		public static const NETWORK_AVAILABILITY_CHANGE:String = "networkAvailabilityChange";
 		
 		/**
+		 *  The <code>AppContextEvent.ACCESS_TOKEN_CHANGE</code> constant defines the value of the
+		 *  <code>type</code> property of the event object for an <code>accessTokenChange</code> event.
+		 *
+		 * <p>This event is dispatched from the current AppContext when
+		 * the access token of current login user is changed.</p>
+		 * 
+		 *  <p>The properties of the event object have the following values:</p>
+		 *  <table class="innertable">
+		 *     <tr><th>Property</th><th>Value</th></tr>
+		 *     <tr><td><code>bubbles</code></td><td>false</td></tr>
+		 *     <tr><td><code>cancelable</code></td><td>false</td></tr>
+		 *     <tr><td><code>currentTarget</code></td><td>The Object that defines the
+		 *       event listener that handles the event. For example, if you use
+		 *       <code>myButton.addEventListener()</code> to register an event listener,
+		 *       myButton is the value of the <code>currentTarget</code>. </td></tr>
+		 *     <tr><td><code>target</code></td><td>The Object that dispatched the event;
+		 *       it is not always the Object listening for the event.
+		 *       Use the <code>currentTarget</code> property to always access the
+		 *       Object listening for the event.</td></tr>
+		 *     <tr><td><code>data</code></td><td>The data attached to this event.</td></tr>
+		 *  </table>
+		 *
+		 *  @eventType accessTokenChange
+		 *  
+		 */
+		public static const ACCESS_TOKEN_CHANGE:String = "accessTokenChange";
+		
+		/**
 		 *  The <code>AppContextEvent.LOGGED_IN</code> constant defines the value of the
 		 *  <code>type</code> property of the event object for an <code>loggedIn</code> event.
 		 *
