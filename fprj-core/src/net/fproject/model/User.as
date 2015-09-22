@@ -8,6 +8,8 @@
 package net.fproject.model
 {
 	import net.fproject.fproject_internal;
+	import net.fproject.core.AppContext;
+	import net.fproject.event.AppContextEvent;
 
 	/**
 	 * Represents an user.
@@ -80,7 +82,11 @@ package net.fproject.model
 		 */
 		fproject_internal function setToken(value:String):void
 		{
-			_token = value;
+			if(_token != value)
+			{
+				_token = value;
+				AppContext.instance.dispatchEvent(new AppContextEvent(AppContextEvent.ACCESS_TOKEN_CHANGE, value));
+			}			
 		}
 	}
 }
