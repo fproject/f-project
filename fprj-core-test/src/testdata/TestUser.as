@@ -6,8 +6,11 @@ package testdata
 		{
 			if(src != null)
 			{
-				this.id = src.id;
-				this.username = src.username;
+				for (var s:String in src)
+				{
+					if(this.hasOwnProperty(s))
+						this[s] = src[s];
+				}
 			}
 		}
 		
@@ -21,5 +24,8 @@ package testdata
 		public var accessToken:String;
 		
 		public var profile:TestUserProfile
+		
+		[Bindable]
+		public var birthDay:Date;
 	}
 }

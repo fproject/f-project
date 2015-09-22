@@ -2,6 +2,8 @@ package net.fproject.di
 {
 	import flash.events.Event;
 	
+	import net.fproject.utils.DateTimeUtil;
+	
 	import org.flexunit.asserts.assertEquals;
 	import org.flexunit.asserts.assertNotNull;
 	import org.flexunit.asserts.assertTrue;
@@ -31,6 +33,7 @@ package net.fproject.di
 	import testdata.di.Injector_bindProperties_025;
 	import testdata.di.Injector_bindProperties_026;
 	import testdata.di.Injector_bindProperties_027;
+	import testdata.di.Injector_bindProperties_028;
 	
 	[ResourceBundle("fprjcore")]
 	/**
@@ -736,6 +739,20 @@ package net.fproject.di
 			assertNotNull(container.dropDownList);
 			assertNotNull(container.dropDownList.dataProvider);
 			assertTrue(container.dropDownList.dataProvider.length > 0);
+		}
+		
+		[Test (async, description="Implement: #24")]
+		public function testCase028():void
+		{
+			var container:Injector_bindProperties_028 = new Injector_bindProperties_028();
+			Injector.inject(container);
+			container.show();
+			Async.proceedOnEvent(this, container, 'creationComplete', 10000);
+			//---- Place result assertion here ----
+			// You must replace this code by function specifications or 
+			// the test always returns false!
+			assertNotNull(container.bodTextInput);
+			assertEquals(DateTimeUtil.formatIsoDate(container.employee.birthDay), container.bodTextInput.text);
 		}
 	}
 }
