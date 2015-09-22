@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testrun name="" >
 <testsuite  name="Default Test Suite" project="fprj-core-test">
-<testsuite name="net.fproject.di:Injector_attachEventListeners" type="testcaseclass">
-<testcase name="testCase020" classname="net.fproject.di:Injector_attachEventListeners"/>
+<testsuite name="net.fproject.di:Injector_bindProperties" type="testcaseclass">
+<testcase name="testCase028" classname="net.fproject.di:Injector_bindProperties"/>
 </testsuite>
 </testsuite>
 <portNumber value="8765" />
