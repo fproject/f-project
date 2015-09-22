@@ -310,6 +310,11 @@ package net.fproject.utils
 			{
 				return o.value;
 			}
+			o = parseSimpleExpression(chain, expectedType);
+			if(o != null)
+			{
+				return o.value;
+			}
 			
 			if(chain.indexOf(Injector.THIS + ".") == 0 || host is Class)
 			{
@@ -413,6 +418,11 @@ package net.fproject.utils
 				return {value:Number(s)};
 			}
 			
+			return null;
+		}
+		
+		public static function parseSimpleExpression(s:String, expectedType:String=null):Object
+		{
 			return null;
 		}
 		
