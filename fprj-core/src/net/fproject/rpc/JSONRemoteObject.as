@@ -21,6 +21,8 @@ package net.fproject.rpc
 	import mx.rpc.AbstractService;
 	
 	import net.fproject.fproject_internal;
+	import net.fproject.core.AppContext;
+	import net.fproject.event.AppContextEvent;
 	import net.fproject.utils.LoggingUtil;
 	import net.fproject.utils.StringUtil;
 	
@@ -258,6 +260,12 @@ package net.fproject.rpc
 		{
 			channelSet.setCredentials(token, null);
 			channel.setCredentials(token);
+			AppContext.instance.addEventListener(AppContextEvent.ACCESS_TOKEN_CHANGE,
+				function(e:AppContextEvent):void
+				{
+					channelSet.setCredentials(e.data as String, null);
+					channel.setCredentials(e.data as String);
+				});
 		}
 		
 		private var _endpointInitialized:Boolean;
