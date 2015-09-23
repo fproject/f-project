@@ -82,6 +82,7 @@
     <classEntry path="net.fproject.collection.CollectionChangeManager"/>
     <classEntry path="net.fproject.calendar.recurrence.RecurrencePeriod"/>
     <classEntry path="net.fproject.core.PropertyChangeDispatcher"/>
+    <classEntry path="net.fproject.utils.IIterator"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="manifest.xml" sourcePath="manifest.xml"/>
