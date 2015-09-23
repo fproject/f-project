@@ -76,9 +76,15 @@ package net.fproject.utils
 		public static const FPRJ_GANTT:String = "FPRJ2";
 		
 		/**
+		 * Module ID for fprj-chart 
+		 */
+		public static const FPRJ_CHART:String = "FPRJ3";
+		
+		/**
 		 * Module ID for fprj-org 
 		 */
 		public static const FPRJ_ORG:String = "FPRJ5";
+		
 		
 		/**
 		 * Module ID for fprj-vmc 
