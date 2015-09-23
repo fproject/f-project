@@ -60,10 +60,12 @@ package net.fproject.di.supportClasses
 		 * @param targetField
 		 * 
 		 */
-		public function addBindingInfo(key:String, chain:Array, target:Object, targetField:String):void
+		public function addBindingInfo(key:String, chain:Array, target:Object, targetField:String,
+									   bindingMethod:Function, negation:Boolean):void
 		{
 			if(this.bindings[key] == undefined)
-				this.bindings[key] = {chain:chain, target:target, targetField:targetField};
+				this.bindings[key] = {chain:chain, target:target, targetField:targetField,
+					bindingMethod:bindingMethod, negation:negation};
 		}
 		
 		/**
@@ -129,7 +131,7 @@ package net.fproject.di.supportClasses
 				for(var s:String in bindings)
 				{
 					var info:Object = bindings[s];
-					executor(e.oldValue, e.newValue, info.chain, info.target, info.targetField);
+					executor(e.oldValue, e.newValue, info.chain, info.target, info.targetField, info.bindingMethod, info.negation);
 				}			
 			}		
 		};
@@ -144,7 +146,7 @@ package net.fproject.di.supportClasses
 			for(var s:String in bindings)
 			{
 				var info:Object = bindings[s];
-				executor(null, host[property], info.chain, info.target, info.targetField);
+				executor(null, host[property], info.chain, info.target, info.targetField, info.bindingMethod, info.negation);
 			}
 		};
 		
@@ -158,7 +160,7 @@ package net.fproject.di.supportClasses
 			for(var s:String in bindings)
 			{
 				var info:Object = bindings[s];
-				executor(host[property], null, info.chain, info.target, info.targetField);
+				executor(host[property], null, info.chain, info.target, info.targetField, info.bindingMethod, info.negation);
 			}
 		}
 		
