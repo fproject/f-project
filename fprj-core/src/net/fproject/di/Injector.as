@@ -763,20 +763,57 @@ package net.fproject.di
 						inverseDeferredArgs.push(ma);
 					}
 				}
-				else if(ma.value.charAt(ma.value.length - 1) == "@")
-				{
-					//Deferred binding
-					bindDeferredValue(object, ma.key, ma.value, container, skinPartMap);
-				}
 				else
 				{
-					//Direct binding
-					bindDirectValue(object, ma, container);
-				}										
+					var bindingInfo:Object = parseSimpleExpressionBinding(ma.value);
+					var expression:Object = bindingInfo.expression;
+					if(bindingInfo.type == 0)
+					{
+						expression.targetField = ma.key;
+						//Deferred binding
+						bindDeferredValue(object, expression, container, skinPartMap);
+					}
+					else
+					{
+						//Direct binding
+						bindDirectValue(object, ma, container, expression);
+					}	
+				}
+													
 			}
 			
 			if(inverseDeferredArgs.length > 0)
 				bindInverseDeferredArgs(object, inverseDeferredArgs, container, isSkinPart, skinPartMap);
+		}
+		
+		private function parseSimpleExpressionBinding(spec:String):Object
+		{
+			var expression:Object = {negation:false, chain:spec, methodChain:null};
+			
+			if(spec.charAt(0) == "!")
+			{
+				expression.negation = true;
+				expression.chain = spec = spec.substring(1);
+			}
+			
+			var end:int = spec.length - 1;
+			
+			if(spec.charAt(end) == ")")
+			{
+				var i:int = spec.lastIndexOf("(");
+				if(i != -1)
+				{
+					var argChain:String = StringUtil.trim(spec.substring(i + 1, end), " \t");
+					expression.methodChain = spec.substring(0, i);
+					expression.chain = spec = argChain;
+					end = spec.length - 1;
+				}
+			}
+			
+			if(spec.charAt(end) == "@")
+				return {type:0, expression: expression};
+			else
+				return {type:1, expression: expression};
 		}
 		
 		/**
@@ -784,12 +821,13 @@ package net.fproject.di
 		 * @private
 		 * 
 		 */
-		private function bindDirectValue(targetObj:Object, metaArg:Object, container:Object):void
+		private function bindDirectValue(targetObj:Object, metaArg:Object, container:Object, simpleExpressionInfo:Object):void
 		{
 			var targetFieldType:String = metaArg.hasOwnProperty(FIELD_TYPE) ?  metaArg[FIELD_TYPE] : null;
 			if(targetObj != null)
-				targetObj[metaArg.key] = DataUtil.evaluateChainValue(metaArg.value, container, targetFieldType);
+				targetObj[metaArg.key] = DataUtil.evaluateSimpleExpression(container, simpleExpressionInfo, targetFieldType);
 		}
+		
 		
 		/**
 		 * 
@@ -814,23 +852,22 @@ package net.fproject.di
 				container[targetChain] = srcValue;
 		}
 		
-		private var idToTarget:Object = {};
-		
 		/**
 		 * The prefix 'this.' 
 		 */
-		private static const THIS_DOT:String = "this.";
+		public static const THIS_DOT:String = "this.";
 		
 		/**
 		 * 
 		 * @private
 		 * 
 		 */
-		private function bindDeferredValue(targetObj:Object, targetField:String, sourceChain:String, 
-										   container:Object, skinPartMap:Object):void
+		private function bindDeferredValue(targetObj:Object, simpleExpressionInfo:Object, container:Object, skinPartMap:Object):void
 		{
 			if(targetObj == null)
 				return;
+			var targetField:String = simpleExpressionInfo.targetField
+			var sourceChain:String = simpleExpressionInfo.chain;
 			
 			//Remove the '@' character at right most
 			sourceChain = sourceChain.substring(0, sourceChain.length - 1);
@@ -852,11 +889,6 @@ package net.fproject.di
 				srcChain = [srcField]
 			}
 			
-			var id:String = UIDUtil.getUID(sourceObject) + "." + srcField;
-			if(idToTarget[id] == undefined)
-				idToTarget[id] = [];
-			(idToTarget[id] as Array).push({target:targetObj, field:targetField, srcChain:srcChain});
-			
 			if(skinPartMap[srcField] != undefined)
 				var isSourceSkinPart:Boolean = true;
 			
@@ -864,7 +896,9 @@ package net.fproject.di
 			{
 				if(isSourceSkinPart)
 					PropertyBindingHandler.addEventsToCache(sourceObject, srcField, [SkinPartEvent.PART_ADDED]);
-				setDeferredSourceChain(null, sourceObject, srcChain, targetObj, targetField);
+				if(simpleExpressionInfo.methodChain != null)
+					var bindingMethod:Function = DataUtil.evaluateChainValue(simpleExpressionInfo.methodChain, sourceObject) as Function;
+				setDeferredSourceChain(null, sourceObject, srcChain, targetObj, targetField, bindingMethod, simpleExpressionInfo.negation);
 			}
 			else
 			{
@@ -879,7 +913,8 @@ package net.fproject.di
 		 * @private
 		 * 
 		 */
-		private function setDeferredSourceChain(oldSource:Object, newSource:Object, srcChain:Array, target:Object, targetField:String):void
+		private function setDeferredSourceChain(oldSource:Object, newSource:Object, srcChain:Array, target:Object, targetField:String,
+												bindingMethod:Function, negation:Boolean):void
 		{
 			if(srcChain.length > 0)
 			{
@@ -914,7 +949,7 @@ package net.fproject.di
 								deferredSourcePropertyChangeListenerMap[newSrcId] = handler;
 							}
 							
-							handler.addBindingInfo(targetId, srcChain.slice(i + 1), target, targetField);
+							handler.addBindingInfo(targetId, srcChain.slice(i + 1), target, targetField, bindingMethod, negation);
 						}
 						
 						newSrc = newSrc[srcChain[i]];
@@ -936,6 +971,11 @@ package net.fproject.di
 						return;
 				}				
 			}
+			
+			if(bindingMethod != null)
+				newSource = bindingMethod(newSource);
+			if(negation)
+				newSource = !Boolean(newSource);
 			
 			target[targetField] = newSource;
 		}

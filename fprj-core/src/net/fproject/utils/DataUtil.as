@@ -294,7 +294,12 @@ package net.fproject.utils
 		/**
 		 * 
 		 * Evaluate value of a chain
-		 * @param chain a string that specify the value path. Eg: <code>net.fproject.di.Injector.THIS</code>
+		 * @param chain a string that specify the value path.<br/>
+		 * 	Eg:<pre>
+		 * 	mx.events.FlexEvent.INITIALIZE
+		 * or:
+		 * 	this.field.childField.grandChildField
+		 * </pre>
 		 * @param host the host object
 		 * 
 		 */
@@ -303,22 +308,17 @@ package net.fproject.utils
 			if(chain == Injector.THIS)
 				return host;
 			else
-				chain = chain.replace(/[ \t]+/g, "");
+				chain = StringUtil.trim(chain," \t");
 			
 			var o:Object = parseLiteralValue(chain, expectedType);
 			if(o != null)
 			{
 				return o.value;
 			}
-			o = parseSimpleExpression(chain, expectedType);
-			if(o != null)
-			{
-				return o.value;
-			}
 			
-			if(chain.indexOf(Injector.THIS + ".") == 0 || host is Class)
+			if(chain.indexOf(Injector.THIS_DOT) == 0 || host is Class)
 			{
-				var s:String = chain.indexOf(Injector.THIS + ".") == 0 ? chain.substr(5) : chain;
+				var s:String = chain.indexOf(Injector.THIS_DOT) == 0 ? chain.substr(5) : chain;
 				var a:Array = s.split(".");
 				var x:* = host;
 				for each (s in a)
@@ -421,9 +421,67 @@ package net.fproject.utils
 			return null;
 		}
 		
-		public static function parseSimpleExpression(s:String, expectedType:String=null):Object
+		/**
+		 * Evaluate a simple expression 
+		 * @param host
+		 * @param simpleExpressionInfo
+		 * @param expectedType
+		 * @return 
+		 * 
+		 */
+		public static function evaluateSimpleExpression(host:Object, simpleExpressionInfo:Object, expectedType:String=null):*
 		{
-			return null;
+			var chain:String = simpleExpressionInfo.chain;
+			var methodChain:String = simpleExpressionInfo.methodChain;
+			if(methodChain != null)
+			{
+				var f:Function = evaluateChainValue(methodChain, host) as Function;
+				if(f != null)
+				{
+					
+					if(chain == "")
+					{
+						var retVal:* = f();
+					}
+					else
+					{
+						if(thisDotCheck(chain, host))
+							chain = Injector.THIS_DOT + chain;
+						
+						retVal = evaluateChainValue(chain, host);
+						return f(retVal);
+					}						
+				}
+				else
+				{
+					throw new Error("Cannot evaluate expression. Invalid method name: " + methodChain);
+				}
+			}
+			else
+			{
+				if(chain != "" && thisDotCheck(chain, host))
+					chain = Injector.THIS_DOT + chain;
+				retVal = evaluateChainValue(chain, host, expectedType);
+			}
+			
+			if(simpleExpressionInfo.negation)
+				retVal = !Boolean(retVal);
+			
+			return retVal;
+		}
+		
+		private static function thisDotCheck(chain:String, host:Object):Boolean
+		{
+			if(chain.indexOf(Injector.THIS_DOT) != 0 && host != null)
+			{
+				var i:int = chain.indexOf(".");
+				if(i != -1)
+					var s:String = StringUtil.trim(chain.substring(0, i), " \t");
+				else
+					s = chain
+				return host.hasOwnProperty(s);
+			}
+			return false;
 		}
 		
 		/**
