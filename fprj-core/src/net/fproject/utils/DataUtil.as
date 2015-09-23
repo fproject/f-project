@@ -449,7 +449,7 @@ package net.fproject.utils
 							chain = Injector.THIS_DOT + chain;
 						
 						retVal = evaluateChainValue(chain, host);
-						return f(retVal);
+						retVal = f(retVal);
 					}						
 				}
 				else
