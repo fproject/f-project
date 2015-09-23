@@ -34,6 +34,7 @@ package net.fproject.di
 	import testdata.di.Injector_bindProperties_026;
 	import testdata.di.Injector_bindProperties_027;
 	import testdata.di.Injector_bindProperties_028;
+	import testdata.di.Injector_bindProperties_029;
 	
 	[ResourceBundle("fprjcore")]
 	/**
@@ -167,11 +168,11 @@ package net.fproject.di
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertTrue(container.label == container.label1);
+			assertTrue(container.label === container.label1);
 			//-------------------------------------
 		}
 		
-		[Test (expected="Error",description="Direct Binding: Normal case: Class metadata")]
+		[Test (description="Direct Binding: Normal case: Class metadata")]
 		/**
 		 * Test Case Type: Normal<br/>
 		 * <br/>
@@ -187,10 +188,8 @@ package net.fproject.di
 		{
 			var container:Injector_bindProperties_006 = new Injector_bindProperties_006();
 			Injector.bindProperties(container);
-			//---- Place result assertion here ----
-			// You must replace this code by function specifications or 
-			// the test always returns false!
-			//-------------------------------------
+			assertNotNull(container.label);
+			assertTrue(container.label === container.myObject.label);
 		}
 		
 		[Test (description="Direct Binding: Normal case: Class metadata")]
@@ -628,9 +627,6 @@ package net.fproject.di
 			Injector.inject(container);
 			container.show();
 			Async.proceedOnEvent(this, container, 'creationComplete', 10000);
-			//---- Place result assertion here ----
-			// You must replace this code by function specifications or 
-			// the test always returns false!
 			assertNotNull(container.nameTextInput);
 			assertEquals('Robin Hood', container.nameTextInput.text);
 		}
@@ -654,9 +650,6 @@ package net.fproject.di
 			Injector.inject(container);
 			container.show();
 			Async.proceedOnEvent(this, container, 'creationComplete', 10000);
-			//---- Place result assertion here ----
-			// You must replace this code by function specifications or 
-			// the test always returns false!
 			assertNotNull(container.nameTextInput);
 			assertEquals('2', container.idTextInput.text);
 			assertEquals('Robin Hood', container.nameTextInput.text);
@@ -681,9 +674,6 @@ package net.fproject.di
 			Injector.inject(container);
 			container.show();
 			Async.proceedOnEvent(this, container, 'creationComplete', 10000);
-			//---- Place result assertion here ----
-			// You must replace this code by function specifications or 
-			// the test always returns false!
 			assertNotNull(container.nameTextInput);
 			assertEquals('Robin Hood', container.nameTextInput.text);
 		}
@@ -707,9 +697,6 @@ package net.fproject.di
 			Injector.inject(container);
 			container.show();
 			Async.proceedOnEvent(this, container, 'creationComplete', 10000);
-			//---- Place result assertion here ----
-			// You must replace this code by function specifications or 
-			// the test always returns false!
 			assertNotNull(container.nameTextInput);
 			assertEquals('Robin Hood', container.nameTextInput.text);
 		}
@@ -733,9 +720,6 @@ package net.fproject.di
 			Injector.inject(container);
 			container.show();
 			Async.proceedOnEvent(this, container, 'creationComplete', 10000);
-			//---- Place result assertion here ----
-			// You must replace this code by function specifications or 
-			// the test always returns false!
 			assertNotNull(container.dropDownList);
 			assertNotNull(container.dropDownList.dataProvider);
 			assertTrue(container.dropDownList.dataProvider.length > 0);
@@ -748,11 +732,23 @@ package net.fproject.di
 			Injector.inject(container);
 			container.show();
 			Async.proceedOnEvent(this, container, 'creationComplete', 10000);
-			//---- Place result assertion here ----
-			// You must replace this code by function specifications or 
-			// the test always returns false!
 			assertNotNull(container.bodTextInput);
 			assertEquals(DateTimeUtil.formatIsoDate(container.employee.birthDay), container.bodTextInput.text);
+			assertNotNull(container.bodTextInput2);
+			assertEquals(DateTimeUtil.formatIsoDate(container.employee2.birthDay), container.bodTextInput2.text);
+		}
+		
+		[Test (async, description="Implement: #24")]
+		public function testCase029():void
+		{
+			var container:Injector_bindProperties_029 = new Injector_bindProperties_029();
+			Injector.inject(container);
+			container.show();
+			Async.proceedOnEvent(this, container, 'creationComplete', 10000);
+			assertNotNull(container.activatedTextInput);
+			assertEquals(String(!container.employee.activated), container.activatedTextInput.text);
+			assertNotNull(container.activatedTextInput2);
+			assertEquals(String(!container.employee2.activated), container.activatedTextInput2.text);
 		}
 	}
 }
