@@ -4,7 +4,7 @@
 		xmlns:mx="library://ns.adobe.com/flex/mx">
 	<!-- host component -->
 	<fx:Metadata>
-		[HostComponent("testdata.di.Injector_bindProperties_028")]
+		[HostComponent("testdata.di.Injector_bindProperties_029")]
 	</fx:Metadata>
 	
 	<!-- states -->
@@ -13,6 +13,6 @@
 		<s:State name="normal" />
 	</s:states>
 	
-	<s:TextInput id="bodTextInput"/>
-	<s:TextInput id="bodTextInput2"/>
+	<s:TextInput id="activatedTextInput"/>
+	<s:TextInput id="activatedTextInput2"/>
 </s:Skin>

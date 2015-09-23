@@ -27,5 +27,8 @@ package testdata
 		
 		[Bindable]
 		public var birthDay:Date;
+		
+		[Bindable]
+		public var activated:Boolean;
 	}
 }

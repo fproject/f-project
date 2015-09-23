@@ -12,7 +12,7 @@ package testdata.di
 	import testdata.TestUser;
 
 	[EventHandling(event="initialize",handler="view_initialize")]
-	public class Injector_bindProperties_028 extends SkinnableContainer
+	public class Injector_bindProperties_029 extends SkinnableContainer
 	{
 		[Bindable]
 		public var employee:TestUser;
@@ -21,22 +21,22 @@ package testdata.di
 		public var employee2:TestUser;
 		
 		[SkinPart(required="true")]
-		[PropertyBinding(text="net.fproject.utils.DateTimeUtil.formatIsoDate(employee.birthDay@)")]
-		public var bodTextInput:TextInput;
+		[PropertyBinding(text="!employee.activated@")]
+		public var activatedTextInput:TextInput;
 		
 		[SkinPart(required="true")]
-		[PropertyBinding(text="net.fproject.utils.DateTimeUtil.formatIsoDate(employee2.birthDay)")]
-		public var bodTextInput2:TextInput;
+		[PropertyBinding(text="!employee2.activated")]
+		public var activatedTextInput2:TextInput;
 		
-		public function Injector_bindProperties_028()
+		public function Injector_bindProperties_029()
 		{
-			employee2 = new TestUser({birthDay:new Date(1999,0,1)});
-			this.setStyle("skinClass", Injector_bindProperties_028Skin);
+			employee2 = new TestUser({activated:true});
+			this.setStyle("skinClass", Injector_bindProperties_029Skin);
 		}
 		
 		public function view_initialize(e:Event):void
 		{
-			employee = new TestUser({birthDay:new Date(2000,0,1)});
+			employee = new TestUser({activated:true});
 		}
 		
 		public function show():void
