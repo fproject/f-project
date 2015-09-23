@@ -2,6 +2,8 @@ package net.fproject.di
 {
 	import flash.events.Event;
 	
+	import mx.utils.ObjectUtil;
+	
 	import net.fproject.utils.DateTimeUtil;
 	
 	import org.flexunit.asserts.assertEquals;
@@ -35,6 +37,7 @@ package net.fproject.di
 	import testdata.di.Injector_bindProperties_027;
 	import testdata.di.Injector_bindProperties_028;
 	import testdata.di.Injector_bindProperties_029;
+	import testdata.di.Injector_bindProperties_030;
 	
 	[ResourceBundle("fprjcore")]
 	/**
@@ -749,6 +752,21 @@ package net.fproject.di
 			assertEquals(String(!container.employee.activated), container.activatedTextInput.text);
 			assertNotNull(container.activatedTextInput2);
 			assertEquals(String(!container.employee2.activated), container.activatedTextInput2.text);
+		}
+		
+		[Test (async, description="Implement: #24")]
+		public function testCase030():void
+		{
+			var container:Injector_bindProperties_030 = new Injector_bindProperties_030();
+			Injector.inject(container);
+			container.show();
+			Async.proceedOnEvent(this, container, 'creationComplete', 10000);
+			assertNotNull(container.textInput);
+			assertEquals(String(!container.isBefore2000(container.employee.birthDay)), container.textInput.text);
+			assertNotNull(container.textInput2);
+			assertEquals(String(!container.isBefore2000(container.employee2.birthDay)), container.textInput2.text);
+			assertNotNull(container.textInput3);
+			assertEquals(String(!ObjectUtil.isSimple(container.employee.profile)), container.textInput3.text);
 		}
 	}
 }

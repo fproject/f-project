@@ -23,6 +23,7 @@ package testdata
 		public var authKey:String;
 		public var accessToken:String;
 		
+		[Bindable]
 		public var profile:TestUserProfile
 		
 		[Bindable]
