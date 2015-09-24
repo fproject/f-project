@@ -7,9 +7,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 package net.fproject.utils
 {
-	import mx.core.IFlexModuleFactory;
 	import mx.graphics.*;
-	import mx.modules.Module;
 	import mx.styles.*;
 
 	public class CssUtil
@@ -19,16 +17,6 @@ package net.fproject.utils
 			0xE4F9A0, 0xFFD512, 0x75B000, 0x418480, 0x0662B0, 0xCC3300, 0xD1DFE7,
 			0x52D4CA, 0xC5E05D, 0xE7C174, 0xFFF797, 0xC5F68F, 0xBDF1E6, 0x9E987D,
 			0xEB988D, 0x91C9E5, 0x93DC4A, 0xFFB900, 0x9EBBCD, 0x009797, 0x0DB2C2];
-		private var styleManager:IStyleManager2;
-
-		public function CssUtil(mdl:Module = null)
-		{
-			var mdlFac:IFlexModuleFactory = null;
-			if (mdl != null)
-				mdlFac = mdl.moduleFactory;
-			styleManager = StyleManager.getStyleManager(mdlFac);
-			return;
-		}
 
 		public static function createSelector(selectorName:String, packageName:String =
 			null, styleManager:IStyleManager2 = null):CSSStyleDeclaration
