@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+///////////////////////////////////////////////////////////////////////////////
+//
+// Licensed Source Code - Property of ProjectKit
+//
+// Copyright © 2014 ProjectKit. All Rights Reserved.
+//
+///////////////////////////////////////////////////////////////////////////////
+-->
+<s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
+		  xmlns:s="library://ns.adobe.com/flex/spark"
+		  xmlns:mx="library://ns.adobe.com/flex/mx"
+		  xmlns:ui="http://f-project.net/xmlns/fprj-ui/2015"
+		  width="100%">
+	<fx:Script>
+		<![CDATA[
+			import spark.components.List;
+			
+			private function getLabel(data:Object):String
+			{
+				if(data == null)
+					return null;
+				var list:List = this.owner as List;
+				if(list != null && list.labelFunction != null)
+					var s:String = list.labelFunction(data);
+				else if(data != null && data.hasOwnProperty('toString'))
+					s = data.toString();
+				else
+					s = data as String;
+				return s;
+			}
+		]]>
+	</fx:Script>
+	<ui:HtmlLabel id="richTextDisplay"
+				textIndent="10"
+				width="100%"
+				lineBreak="toFit"
+				paddingLeft="5" paddingRight="5"
+				paddingTop="5" paddingBottom="5"
+				htmlText="{getLabel(data)}"/>
+</s:ItemRenderer>

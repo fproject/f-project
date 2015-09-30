@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+///////////////////////////////////////////////////////////////////////////////
+//
+// Licensed Source Code - Property of ProjectKit
+//
+// Copyright © 2014 ProjectKit. All Rights Reserved.
+//
+///////////////////////////////////////////////////////////////////////////////
+-->
+<s:HGroup
+	xmlns:fx="http://ns.adobe.com/mxml/2009"
+	xmlns:s="library://ns.adobe.com/flex/spark"
+	xmlns:mx="library://ns.adobe.com/flex/mx"
+	xmlns:supportClasses="net.fproject.ui.autoComplete.supportClasses.*"
+	implements="mx.managers.IFocusManagerComponent,net.fproject.ui.autoComplete.supportClasses.IFlowBoxItem"
+	gap="0" tabChildren="false" tabEnabled="false" 
+	height="{textInput.height}" initialize="init(event)"
+	creationComplete="init(event)">
+	
+	<fx:Metadata>
+		/**
+		* Dispatched when a selected item is removed.
+		* @eventType net.fproject.ui.events.AutoCompleteEvent.REMOVE_SELECTED_ITEM
+		*/
+		[Event(name="removeSelectedItem")]
+		[Event(name="textInput", type="flash.events.TextEvent")]
+	</fx:Metadata>
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			
+			protected var _text:String;
+			protected var _textChanged:Boolean;
+			
+			protected var _buttonStyleChanged:Boolean;
+			
+			protected var _item:Object;
+			protected var _isMouseOver:Boolean;
+			
+			protected var _allowMultipleSelection:Boolean;
+			protected var _allowMultipleSelectionChanged:Boolean;
+			
+			[Bindable]
+			public var selectedItemStyle:String;
+			
+			protected function init(e:FlexEvent):void
+			{
+				button.addEventListener(FocusEvent.FOCUS_OUT, handleButtonFocusOut);
+			}
+			
+			override protected function commitProperties():void
+			{
+				super.commitProperties();
+				
+				if (_textChanged)
+				{
+					_textChanged = false;					
+					button.label = _text;
+				}
+				
+				if (_allowMultipleSelectionChanged)
+				{
+					_allowMultipleSelectionChanged = false;
+					button.allowMultipleSelection = _allowMultipleSelection;
+				}
+			}
+			
+			protected function handleClick():void
+			{
+				selected = true;
+			}
+			
+			protected function handleButtonFocusOut(event:FocusEvent):void
+			{
+				if (!event.relatedObject)
+				{
+					button.setFocus();					
+				}
+				else
+				{
+					selected = false;
+				}
+			}
+			
+			protected function handleTextInput(event:TextEvent):void
+			{
+				textInput.text = "";
+				textInput.validateNow();
+				
+				dispatchEvent(event);
+			}
+			
+			public function set item(value:Object):void
+			{
+				_item = value;				
+			}
+			
+			public function get item():Object
+			{
+				return _item;
+			}
+			
+			public function get newText():String
+			{
+				return textInput.text;
+			}
+			
+			public function setTextFocus():void
+			{
+				textInput.setFocus();
+			}
+			
+			override public function setFocus():void
+			{
+				button.setFocus();
+			}
+			
+			public function set selected(value:Boolean):void
+			{
+				button.selected = value;
+			}
+			
+			public function isCursorAtBeginning():Boolean
+			{
+				return true;
+			}
+			
+			public function isCursorAtEnd():Boolean
+			{
+				return true;
+			}
+			
+			public function isEditable():Boolean
+			{
+				return false;
+			}			
+			
+			public function set text(value:String):void
+			{
+				if (_text != value)
+				{
+					_text = value;
+					_textChanged = true;
+					
+					invalidateProperties();
+				}
+			}
+			
+			public function get text():String
+			{
+				return _text;
+			}
+			
+			[Bindable]
+			public var showRemoveIcon:Boolean
+			
+			public function removeClickHandler(e:Event):void
+			{
+				dispatchEvent(new Event('removeSelectedItem'));
+			}
+			
+			public function set allowMultipleSelection(value:Boolean):void
+			{
+				if (_allowMultipleSelection != value)
+				{
+					_allowMultipleSelection = value;
+					_allowMultipleSelectionChanged = true;
+					
+					invalidateProperties();
+				}
+			}
+			
+			protected function itemDoubleClickHandler(event:Event):void
+			{
+				dispatchEvent(new Event('selectedItemDoubleClick'));
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<supportClasses:ItemTextInput id="textInput" width="5" borderVisible="false"
+				 paddingLeft="0" paddingRight="0" 
+				 focusThickness="0" textInput="handleTextInput(event)"/>
+	<supportClasses:SelectedItemButton id="button"
+									   showRemoveIcon="{showRemoveIcon}" 
+									   click="handleClick()"
+									   removeClick="removeClickHandler(event)"
+									   itemDoubleClick="itemDoubleClickHandler(event)"
+									   selectedItemStyle="{selectedItemStyle}"/>
+	<mx:Spacer id="spacer"/>
+	
+</s:HGroup>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:SparkButtonSkin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				   xmlns:s="library://ns.adobe.com/flex/spark" 
+				   xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
+				   minWidth="21" minHeight="21" 
+				   alpha.disabledStates="0.5"
+				   iconGroupPaddingRight="3"
+				   iconGroupPaddingLeft="5"
+				   gap="2">
+	<fx:Metadata>[HostComponent("net.fproject.ui.autoComplete.supportClasses.SelectedItemButton")]</fx:Metadata>
+	
+	<fx:Script fb:purpose="styling">
+		<![CDATA[
+			import net.fproject.ui.autoComplete.assets.REMOVE;
+			import net.fproject.ui.autoComplete.assets.REMOVE_OVER;
+			import net.fproject.ui.autoComplete.supportClasses.SelectedItemButton;
+			/**
+			 * @private
+			 */    
+			override public function get colorizeExclusions():Array {return ["labelDisplay"];}
+			
+			/**
+			 * @private
+			 */
+			override protected function initializationComplete():void
+			{
+				useChromeColor = true;
+				super.initializationComplete();
+			}
+			
+			/**
+			 * @private
+			 */
+			override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number) : void
+			{
+				var btn:SelectedItemButton = SelectedItemButton(hostComponent);
+				if(this.iconDisplay != null)
+				{
+					if(btn.removeButtonHovered)
+						this.iconDisplay.source = REMOVE_OVER;
+					else
+						this.iconDisplay.source = REMOVE;
+				}
+				else if(!btn.showRemoveIcon && labelDisplay != null)
+				{
+					Label(labelDisplay).left = 5;
+					Label(labelDisplay).right = 5;
+				}
+				
+				super.updateDisplayList(unscaledWidth, unscaledHeight);
+			}
+		]]>
+	</fx:Script>
+	<!-- states -->
+	<s:states>
+		<s:State name="up" />
+		<s:State name="over" stateGroups="overStates" />
+		<s:State name="down" stateGroups="downStates" />
+		<s:State name="disabled" stateGroups="disabledStates" />
+		<s:State name="upAndSelected" stateGroups="selectedStates, selectedUpStates" />
+		<s:State name="overAndSelected" stateGroups="overStates, selectedStates" />
+		<s:State name="downAndSelected" stateGroups="downStates, selectedStates" />
+		<s:State name="disabledAndSelected" stateGroups="selectedUpStates, disabledStates, selectedStates" />
+	</s:states>
+	
+	<s:Rect id="border" left="0" right="0" top="2" bottom="2" radiusX="3" radiusY="3">
+		<s:stroke>
+			<s:SolidColorStroke color="#9DACCB"/>
+		</s:stroke>
+		<s:fill>
+			<s:SolidColor color="#EFF2F7" color.selectedStates="#5670A6"/>
+		</s:fill>
+	</s:Rect>
+	
+	<s:Label id="labelDisplay"
+			 textAlign="center"
+			 verticalAlign="middle"
+			 maxDisplayedLines="1"
+			 horizontalCenter="0" verticalCenter="1"
+			 left="0" right="0" top="2" bottom="2"
+			 color.selectedStates="#FFFFFF">
+	</s:Label>    
+</s:SparkButtonSkin>

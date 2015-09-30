@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx"
+		xmlns:supportClasses="net.fproject.ui.autoComplete.supportClasses.*">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("net.fproject.ui.autoComplete.AutoComplete")]
+	</fx:Metadata>
+	
+	<mx:Grid id="grid" top="0" left="0" right="0" bottom="0"
+		clipContent="true" verticalAlign="middle" horizontalAlign="left"
+		verticalScrollPolicy="off" horizontalScrollPolicy="off">
+		<mx:GridRow id="mainGridRow" width="100%" height="100%">
+			<mx:GridItem id="mainGridItem" width="100%" height="100%">
+				<supportClasses:FlowBox id="flowBox" width="100%" height="100%"/>
+			</mx:GridItem>
+		</mx:GridRow>
+	</mx:Grid>
+</s:Skin>

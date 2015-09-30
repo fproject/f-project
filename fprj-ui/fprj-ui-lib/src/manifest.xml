@@ -1,5 +1,12 @@
 <?xml version="1.0"?>
 <componentPackage>
+	<component id="AutoComplete" class="net.fproject.ui.autoComplete.AutoComplete"/>
+	<component id="DefaultInlineButton" class="net.fproject.ui.autoComplete.supportClasses.DefaultInlineButton"/>
+	<component id="DropDownItemRenderer" class="net.fproject.ui.autoComplete.supportClasses.DropDownItemRenderer"/>
+	<component id="SelectedItemButton" class="net.fproject.ui.autoComplete.supportClasses.SelectedItemButton"/>
+	<component id="PromptTextInput" class="net.fproject.ui.autoComplete.supportClasses.PromptTextInput"/>
+	<component id="HtmlLabel" class="net.fproject.ui.autoComplete.supportClasses.HtmlLabel"/>
+	
 	<component id="DateField" class="net.fproject.ui.datetime.DateField"/>
 	<component id="TimeField" class="net.fproject.ui.datetime.TimeField"/>
 	<component id="DateFieldButton" class="net.fproject.ui.datetime.supportClasses.DateFieldButton"/>
@@ -7,5 +14,5 @@
 	<component id="DateChooserWeekDayRenderer" class="net.fproject.themes.spark.skins.DateChooserWeekDayRenderer"/>
 	<component id="HSeparator" class="net.fproject.ui.separators.HSeparator"/>
 	<component id="VSeparator" class="net.fproject.ui.separators.VSeparator"/>
-	<component id="SeparatorBase" class="net.fproject.ui.separators.SeparatorBase"/>
+	<component id="SeparatorBase" class="net.fproject.ui.separators.SeparatorBase"/>	
 </componentPackage>

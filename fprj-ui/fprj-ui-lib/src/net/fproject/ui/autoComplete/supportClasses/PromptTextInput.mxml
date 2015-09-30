@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+///////////////////////////////////////////////////////////////////////////////
+//
+// Licensed Source Code - Property of ProjectKit
+//
+// Copyright © 2014 ProjectKit. All Rights Reserved.
+//
+///////////////////////////////////////////////////////////////////////////////
+-->
+<s:HGroup
+	xmlns:fx="http://ns.adobe.com/mxml/2009"
+	xmlns:s="library://ns.adobe.com/flex/spark"
+	xmlns:mx="library://ns.adobe.com/flex/mx"
+	xmlns:supportClasses="net.fproject.ui.autoComplete.supportClasses.*"
+	implements="net.fproject.ui.autoComplete.supportClasses.IFlowBoxItem"
+	width="100" initialize="init(event)"
+	verticalAlign="top">
+	<fx:Metadata>
+		[Event(name="change", type="flash.events.Event")]
+		[Style(name="promptColor", type="uint", format="Color", inherit="yes")]
+		/**
+		* The text color for disabled state
+		*/
+		[Style(name="disabledTextColor", type="uint", format="Color", inherit="yes")]
+	</fx:Metadata>
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			
+			import net.fproject.ui.autoComplete.assets.CLEAR;
+			protected var _prompt:String;
+			protected var _promptChanged:Boolean;
+			protected var _enablePrompt:Boolean = true;
+			
+			protected var _isPromptSet:Boolean;
+			protected var _drawFocusBorder:Boolean = true;
+			
+			protected var _isMouseOver:Boolean;
+			
+			[Bindable]
+			public var showSpinner:Boolean;
+			
+			protected var _text:String;
+			protected var _textChanged:Boolean;
+			
+			protected var _promptColor:String;
+			protected var _textPadding:int = 10;
+			
+			protected var _tabIndex:int;
+			protected var _tabIndexChanged:Boolean;
+			
+			[Bindable]
+			public var displayAsPassword:Boolean;
+			
+			protected function init(e:FlexEvent):void
+			{
+				addEventListener(FocusEvent.FOCUS_IN, handleFocusIn);
+				addEventListener(FocusEvent.FOCUS_OUT, handleFocusOut);
+				addEventListener(MouseEvent.MOUSE_OVER, handleMouseOver);
+				addEventListener(MouseEvent.MOUSE_OUT, handleMouseOut);
+				
+				textInput.addEventListener(Event.CHANGE, handleChange);				
+				
+				_promptColor = getStyle("promptColor") ? getStyle("promptColor") : getStyle('disabledTextColor');				
+			}
+			
+			override protected function commitProperties():void
+			{
+				super.commitProperties();
+				
+				if (_textChanged)
+				{
+					_textChanged = false;
+					setNewText();
+				}
+				
+				if (_promptChanged)
+				{
+					_promptChanged = false;
+					
+					if (!_text)	
+					{
+						showPrompt();
+					}
+				}
+				
+				if (_tabIndexChanged)
+				{
+					_tabIndexChanged = false;
+					textInput.tabIndex = _tabIndex;
+				}
+			}						
+			
+			override public function styleChanged(styleProp:String):void 
+			{
+				super.styleChanged(styleProp);
+				
+				if (!styleProp || styleProp=="promptColor") 
+				{
+					_promptColor = getStyle("promptColor") ? getStyle("promptColor") : getStyle('disabledTextColor');
+					
+					if (_isPromptSet)
+					{
+						textInput.setStyle("color", _promptColor);
+					}
+				}
+			}
+			
+			protected function showPrompt():void
+			{
+				if (_prompt == null || !_enablePrompt)
+				{
+					return;
+				}
+				
+				if (!textInput)
+				{
+					return;
+				}
+				
+				// check that the component isn't currently focused
+				var focus:InteractiveObject = textInput.getFocus();
+				
+				if (focus && focus.parent == textInput)
+				{
+					return;
+				}
+				
+				_isPromptSet = true;
+				textInput.text = _prompt;
+				
+				textInput.setStyle("color", _promptColor);
+				textInput.setStyle("fontStyle", "italic");
+			}
+			
+			protected function hidePrompt():void
+			{
+				if (_isPromptSet)
+				{
+					textInput.text = "";	
+				}
+				
+				_isPromptSet = false;
+				
+				textInput.clearStyle("color");
+				textInput.clearStyle("fontStyle");
+			}
+			
+			public function set textPadding(value:int):void
+			{
+				_textPadding = value;
+			}
+			
+			override public function set tabIndex(value:int):void
+			{
+				if(_tabIndex != value)
+				{
+					_tabIndex = value;
+					_tabIndexChanged = true;
+					
+					invalidateProperties();
+				}
+			}
+			
+			override public function get minWidth():Number
+			{
+				return measureText(text).width + _textPadding;
+			}
+			
+			public function set prompt(value:String):void
+			{
+				if(_prompt != value)
+				{
+					_prompt = value;
+					_promptChanged = true;
+					
+					invalidateProperties();
+				}
+				
+			}
+			
+			protected var _showClearButton:Boolean;
+
+			[Bindable(event="propertyChange")]
+			public function get showClearButton():Boolean
+			{
+				return _showClearButton;
+			}
+
+			public function set showClearButton(value:Boolean):void
+			{
+				if(_showClearButton != value)
+				{
+					var oldValue:Boolean = _showClearButton;
+					_showClearButton = value;
+					dispatchPropertyChangeEvent('showClearButton', oldValue, value);
+					invalidateProperties();
+				}				
+			}
+			
+			public function set enablePrompt(value:Boolean):void
+			{
+				if(_enablePrompt != value)
+				{
+					_enablePrompt = value;
+					
+					if (!_enablePrompt)
+					{
+						hidePrompt();
+					}
+				}
+			}
+			
+			override public function validateNow():void
+			{
+				super.validateNow();
+				
+				textInput.validateNow();
+			}
+			
+			public function get text():String
+			{
+				if (_isPromptSet)
+				{
+					return "";
+				}
+				else
+				{
+					// When setting the htmlText property there's a delay until the text
+					// property is ready. This will force it to update it's text value 
+					if (textInput.text == null)
+					{
+						validateNow();
+					}
+					
+					if (_textChanged)
+					{
+						return _text;
+					}
+					else
+					{
+						return textInput.text;
+					}
+				}
+			}
+			
+			public function get selectionBeginIndex():int
+			{
+				return textInput.selectionAnchorPosition;
+			}
+			
+			public function set text(value:String):void
+			{
+				_text = value;
+				_textChanged = true;
+				
+				invalidateProperties();
+			}
+			
+			protected function setNewText():void
+			{	
+				if (_text == null)
+				{
+					textInput.text = "";
+					textInput.selectRange(0, 0);
+					
+					showPrompt();
+					hideClearIcon();
+				}	
+				else
+				{
+					hidePrompt();
+					textInput.text = _text;							
+				}
+				
+				textInput.validateNow();
+			}
+			
+			public function setTextSelected(value:Boolean):void
+			{
+				var startPos:uint = value ? 0 : text.length;
+				
+				textInput.selectRange(startPos, text.length);
+			}
+			
+			protected function handleFocusIn(event:FocusEvent):void
+			{
+				if (_drawFocusBorder)
+				{
+					drawFocus(true);					
+				}
+				
+				if (_isPromptSet)
+				{
+					hidePrompt();
+				}
+			}
+			
+			protected function handleFocusOut(event:FocusEvent):void
+			{
+				if (_drawFocusBorder)
+				{
+					drawFocus(false);
+				}
+				
+				if (textInput.text.length == 0)
+				{
+					showPrompt();
+				}
+			}
+			
+			public function set drawFocusBorder(value:Boolean):void
+			{
+				_drawFocusBorder = value;
+			}
+			
+			protected function handleChange(event:Event):void
+			{
+				dispatchEvent(event);
+				
+				// this helps keep the input at a good 
+				// horizontal scroll position
+				/*var scrollPos:int 		= textInput.horizontalScrollPosition;
+				var maxScrollPos:int 	= textInput.maxHorizontalScrollPosition;
+				
+				if (scrollPos - maxScrollPos > 50)
+				{
+					textInput.horizontalScrollPosition -= 50;
+				}
+				*/
+				
+				if (_isMouseOver)
+				{
+					if (text && text.length > 0)
+					{
+						showClearIcon();
+					}
+					else
+					{
+						hideClearIcon();
+					}
+				}																		
+			}
+			
+			protected function handleMouseOver(event:MouseEvent):void
+			{
+				_isMouseOver = true;
+				
+				if (text.length == 0)
+				{
+					return;
+				}
+				
+				showClearIcon();
+			}
+			
+			protected function handleMouseOut(event:MouseEvent):void
+			{
+				_isMouseOver = false;
+				
+				/*
+				if (clearIcon.visible = true)
+				{
+				if (event.relatedObject == getChildAt(1))
+				{
+				return;
+				}					
+				
+				hideClearIcon();
+				}
+				*/
+				
+				hideClearIcon();
+			}
+			
+			protected function hideClearIcon():void
+			{
+				clearIcon.visible = false;
+			}
+			
+			protected function showClearIcon():void
+			{
+				if (_showClearButton)
+				{
+					clearIcon.visible = true;
+				}																			
+			}
+			
+			protected function handleClearClick():void
+			{
+				text = null;
+				validateNow();
+				
+				hidePrompt();
+				setFocus();
+				
+				dispatchEvent(new Event(Event.CHANGE));
+			}
+			
+			override public function drawFocus(isFocused:Boolean):void
+			{
+				if(focusManager)
+					super.drawFocus(isFocused);
+			}
+			
+			override public function setFocus():void
+			{
+				textInput.setFocus();
+			}	
+			
+			public function get item():Object
+			{
+				return null;	
+			}						
+			
+			public function isEditable():Boolean
+			{
+				return true;	
+			}		
+			
+			public function setTextFocus():void
+			{
+				textInput.selectRange(0, 0);
+				setFocus();
+			}	
+			
+			public function isCursorAtBeginning():Boolean
+			{
+				return selectionBeginIndex == 0;
+			}				
+			
+			public function isCursorAtEnd():Boolean
+			{
+				return selectionBeginIndex == text.length;
+			}
+			
+			public function setCursorPosition(value:int):void
+			{
+				_setCursorPosition(value);
+				callLater(_setCursorPosition, [value]);
+			}	
+			
+			protected function _setCursorPosition(value:int):void
+			{
+				textInput.selectRange(value, value);
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<supportClasses:ItemTextInput id="textInput" width="100%"
+				 displayAsPassword="{displayAsPassword}" 
+				 borderVisible="false"/> 
+	<s:Image id="clearIcon" source="{CLEAR}" verticalAlign="middle" 
+			 visible="true" includeInLayout="{showClearButton}" click="handleClearClick()"/>
+</s:HGroup>
