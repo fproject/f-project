@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+///////////////////////////////////////////////////////////////////////////////
+//
+// Licensed Source Code - Property of ProjectKit
+//
+// Copyright © 2014 ProjectKit. All Rights Reserved.
+//
+///////////////////////////////////////////////////////////////////////////////
+-->
+<s:TextArea
+	xmlns:fx="http://ns.adobe.com/mxml/2009"
+	xmlns:s="library://ns.adobe.com/flex/spark"
+	xmlns:mx="library://ns.adobe.com/flex/mx" 
+	implements="net.fproject.ui.autoComplete.supportClasses.IFlowBoxItem"
+	initialize="init(event)" tabChildren="false" tabEnabled="false"
+	breakOpportunity="none"
+	borderVisible="false" focusThickness="0">
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			import net.fproject.utils.StringUtil;
+			
+			protected var _item:Object;
+			protected var _allowMultipleSelection:Boolean;
+			
+			protected function init(e:FlexEvent):void
+			{
+				addEventListener(Event.CHANGE, changeHandler);
+			}
+			
+			protected function changeHandler(event:Event):void
+			{
+				width = measureText(text).width + 10;
+			}
+			
+			override public function get minWidth():Number
+			{
+				return measureText(text).width + 10;
+			}
+			
+			override public function drawFocus(isFocused:Boolean):void
+			{
+				if(focusManager)
+					super.drawFocus(isFocused);
+			}
+			
+			public function setTextFocus():void
+			{
+				selectRange(0, 0)
+				setFocus();
+			}
+			
+			public function isTextSelected():Boolean
+			{
+				return (selectionAnchorPosition == 0 && selectionActivePosition == text.length - 1) ||
+					(selectionActivePosition == 0 && selectionAnchorPosition == text.length - 1);
+			}
+			
+			override protected function focusInHandler(event:FocusEvent):void
+			{
+				super.focusInHandler(event);
+				drawFocus(false);
+				
+				text = StringUtil.trim(text, ',');
+			}
+			
+			override protected function focusOutHandler(event:FocusEvent):void
+			{
+				super.focusOutHandler(event);
+				if (_allowMultipleSelection)
+				{
+					text = StringUtil.trim(text, ',') + ",";
+				}	
+			}
+			
+			public function setSelectionBeginning():void
+			{
+				selectRange(0, 0)
+			}
+			
+			public function setSelectionEnd():void
+			{	
+				selectRange(text.length - 1, text.length - 1);				
+			}
+			
+			public function isCursorAtBeginning():Boolean
+			{
+				return selectionActivePosition == 0;
+			}		
+			
+			public function isCursorAtEnd():Boolean
+			{
+				return selectionActivePosition == text.length - 1;
+			}
+			
+			public function set allowMultipleSelection(value:Boolean):void
+			{
+				_allowMultipleSelection = value;
+			}
+			
+			public function set item(value:Object):void
+			{
+				_item = value;
+			}		
+			
+			public function get item():Object
+			{
+				return _item;
+			}
+			
+			public function isEditable():Boolean
+			{
+				return true;
+			}			
+		]]>
+	</fx:Script>
+	
+</s:TextArea>

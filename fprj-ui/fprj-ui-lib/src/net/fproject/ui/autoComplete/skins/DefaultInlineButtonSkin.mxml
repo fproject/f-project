@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--- The default skin class for the DefaultInlineButton component.  
+@see net.fproject.ui.autoComplete.supportClasses.DefaultInlineButton
+-->
+<s:SparkButtonSkin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				   xmlns:s="library://ns.adobe.com/flex/spark" 
+				   xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
+				   minWidth="28" minHeight="21" 
+				   alpha.disabled="0.5">
+	<fx:Metadata>[HostComponent("net.fproject.ui.autoComplete.supportClasses.DefaultInlineButton")]</fx:Metadata>
+	<fx:Script>
+		<![CDATA[
+			import net.fproject.ui.autoComplete.supportClasses.DefaultInlineButton;
+		]]>
+	</fx:Script>
+	
+	<!-- states -->
+	<s:states>
+		<s:State name="up" />
+		<s:State name="over" />
+		<s:State name="down" />
+		<s:State name="disabled" />
+	</s:states>
+	<s:Rect top="0" left="0" right="0" bottom="0">
+		<s:fill>
+			<s:SolidColor color="#FFFFFF"/>
+		</s:fill>
+	</s:Rect>
+	<s:HGroup verticalAlign="middle" gap="5">
+		<s:Line xFrom="0" xTo="0" yFrom="2" yTo="20" >
+			<s:stroke>
+				<s:SolidColorStroke color="#E9EAED" color.over="#8CC2F2"/>
+			</s:stroke>
+		</s:Line>
+		<s:Path winding="nonZero" data="M15.6084 13.7178 12.1328 10.2417C12.1143 10.2231 12.0923 10.2104 12.0732 10.1934 12.7573 9.15576 13.1563 7.91357 13.1563 6.57813 13.1563 2.94531 10.2114 0 6.57813 0 2.94531 0 0 2.94531 0 6.57813 0 10.2109 2.94531 13.1563 6.57813 13.1563 7.91357
+				13.1563 9.15576 12.7573 10.1929 12.0732 10.2104 12.0923 10.2231 12.1143 10.2417 12.1328L13.7178 15.6084C14.2397 16.1309 15.0864 16.1309 15.6084 15.6084 16.1309 15.0864 16.1309 14.2397 15.6084 13.7178ZM6.57813 10.876C4.20459 10.876 2.28027 8.95166
+				2.28027 6.57813 2.28027 4.20459 4.20459 2.28027 6.57813 2.28027 8.95166 2.28027 10.876 4.20459 10.876 6.57813 10.876 8.95166 8.95166 10.876 6.57813 10.876Z">
+			<s:fill>
+				<s:SolidColor color="#E9EAED" color.over="#8CC2F2"/>
+			</s:fill>
+		</s:Path>
+	</s:HGroup>
+</s:SparkButtonSkin>
