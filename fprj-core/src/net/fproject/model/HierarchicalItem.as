@@ -149,6 +149,24 @@ package net.fproject.model
 			}
 		}
 		
+		public function hasChild(child:HierarchicalItem, recursive:Boolean=false):Boolean
+		{
+			if(_children != null)
+			{
+				if(_children.getItemIndex(child) != -1)
+					return true;
+				if(recursive)
+				{
+					for each(var i:HierarchicalItem in _children)
+					{
+						if(i.hasChild(child, true))
+							return true;
+					}
+				}
+			}
+			return false;
+		}
+		
 		/**
 		 * Add a child to children collection.
 		 */
