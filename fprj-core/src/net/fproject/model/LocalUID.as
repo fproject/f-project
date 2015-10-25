@@ -32,11 +32,18 @@ package net.fproject.model
 			{
 				if(this.hasOwnProperty('id'))
 				{
-					this['id'] = value;
+					var oldValue:String = this['id'];
+					try {
+						this['id'] = value;
+					}
+					catch (e:Error)
+					{
+						_uid = value;
+					}
 				}
 				else 
 				{
-					var oldValue:String = _uid;
+					oldValue = _uid;
 					_uid = value;
 				}
 				dispatchChangeEvent('uid', oldValue, value);
