@@ -57,8 +57,9 @@ package net.fproject.di
 		
 		/**
 		 * Instantiate a class using singleton and dependency injection.
-		 * @param abstractor The class, abstract class or interface name to instantiate
+		 * @param abstractor The class, abstract class or interface to instantiate
 		 * @param constructorArgs The constructor argument list (if any)
+		 * @param singleton indicate whether the instance is created using singleton or not
 		 * @return The singleton instance
 		 * 
 		 */
