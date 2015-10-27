@@ -157,6 +157,7 @@ package net.fproject.active.supportClasses
 			_fetchPending = true;
 			
 			parent.setSource(null);
+			parent.setPaginationResult(null);
 			
 			return parent.service.fetchData(parent);
 		}
