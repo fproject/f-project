@@ -428,6 +428,22 @@ package net.fproject.ui.autoComplete
 					}
 				}
 			}
+			
+			if (enableFilter){
+				_filteredCollection.removeEventListener(CollectionEvent.COLLECTION_CHANGE,filteredCollection_collectionChange);
+				
+				filterCollection();
+				
+				_filteredCollection.addEventListener(CollectionEvent.COLLECTION_CHANGE, filteredCollection_collectionChange, false, 0, true);
+			}
+			if (_filteredCollection.length == 0)
+			{
+				hideDropDown();
+			}
+			else
+			{
+				showDropDown();	
+			}
 		}
 		
 		protected function selectedItems_collectionChange(event:CollectionEvent):void
@@ -1246,6 +1262,30 @@ package net.fproject.ui.autoComplete
 					dispatchEvent(new AutoCompleteEvent(AutoCompleteEvent.SEARCH_CHANGE, searchTextInternal));
 			}
 			
+			if (searchTextInternal == null || searchTextInternal.length == 0 || _filteredCollection == null)
+			{
+				hideDropDown();
+				return;
+			}
+			
+			if (enableFilter)
+			{			
+				filterCollection();
+				
+				if (_filteredCollection.length == 0)
+				{
+					hideDropDown();
+				}
+				else
+				{
+					showDropDown();	
+				}
+			}
+		}
+		
+		//filter localColection follow match type and keyword
+		protected function filterCollection():void
+		{
 			if (!_filteredCollection)
 			{
 				return;
@@ -1286,37 +1326,8 @@ package net.fproject.ui.autoComplete
 			
 			/*if (searchText && searchText != _searchText)
 			{
-				textInput.text = _searchText;
+			textInput.text = _searchText;
 			}*/
-			
-			if (_filteredCollection.length == 0)
-			{
-				hideDropDown();
-				return;
-			}
-			
-			if (isDropDownVisible())
-			{
-				if (searchStr.length == 0)
-				{
-					hideDropDown();
-				}
-			}
-			else
-			{
-				if (_searchText && _searchText.length > 0 && _filteredCollection.length > 0)
-				{
-					showDropDown();	
-				}
-			}
-			
-			if (isDropDownVisible())
-			{
-				var layout:VerticalLayout = _dropDown.layout as VerticalLayout;
-				layout.requestedRowCount = (_filteredCollection.length < _dropDownRowCount ? _filteredCollection.length : _dropDownRowCount);
-				callLater(highlightFirstItem);
-				callLater(calculateDropDownPosition);									
-			}	
 		}
 		
 		protected function highlightFirstItem():void
@@ -1400,14 +1411,19 @@ package net.fproject.ui.autoComplete
 		
 		public function showDropDown():void
 		{
-			if (isDropDownVisible())
-			{
-				return;
-			}
-			
 			if (_dropDown == null)
 			{
 				createDropDown();
+			}
+
+			//update rowCount for Dropdown folow new data
+			var layout:VerticalLayout = _dropDown.layout as VerticalLayout;
+			layout.requestedRowCount = (_filteredCollection.length < _dropDownRowCount ? _filteredCollection.length : _dropDownRowCount);
+			
+			if (isDropDownVisible())
+			{
+				callLater(highlightFirstItem);
+				return;
 			}
 			
 			if (focusManager)
@@ -1419,12 +1435,11 @@ package net.fproject.ui.autoComplete
 			_dropDown.owner = this;
 			_dropDown.validateNow();
 			
-			
 			PopUpManager.addPopUp(_dropDown, this);
 			
 			callLater(_dropDown.ensureIndexIsVisible,[0]);
-			
 			callLater(initDropDown);
+			callLater(highlightFirstItem);
 			callLater(callLater, [calculateDropDownPosition]);
 		}
 		
@@ -1550,6 +1565,8 @@ package net.fproject.ui.autoComplete
 		{
 			_dropDownItemRenderer = value;
 		}
+		
+		public var enableFilter:Boolean = true;
 		
 		protected var _filterFunction:Function;
 		
