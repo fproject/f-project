@@ -129,6 +129,7 @@ package net.fproject.ui.autoComplete
 		
 		private function initializeHandler(e:FlexEvent):void
 		{
+			_enableFilter = true;
 			_selectedItems = new ArrayCollection();
 			_selectedItems.addEventListener(CollectionEvent.COLLECTION_CHANGE, selectedItems_collectionChange);
 			
@@ -429,21 +430,12 @@ package net.fproject.ui.autoComplete
 				}
 			}
 			
-			if (enableFilter){
-				_filteredCollection.removeEventListener(CollectionEvent.COLLECTION_CHANGE,filteredCollection_collectionChange);
-				
-				filterCollection();
-				
-				_filteredCollection.addEventListener(CollectionEvent.COLLECTION_CHANGE, filteredCollection_collectionChange, false, 0, true);
-			}
-			if (_filteredCollection.length == 0)
-			{
-				hideDropDown();
-			}
-			else
-			{
-				showDropDown();	
-			}
+			//Call updateDropdown function may cause change on collection so have to remove event colection_change first and add after call funtion
+			_filteredCollection.removeEventListener(CollectionEvent.COLLECTION_CHANGE,filteredCollection_collectionChange);
+			
+			updateDropdown();
+			
+			_filteredCollection.addEventListener(CollectionEvent.COLLECTION_CHANGE, filteredCollection_collectionChange, false, 0, true);
 		}
 		
 		protected function selectedItems_collectionChange(event:CollectionEvent):void
@@ -742,7 +734,6 @@ package net.fproject.ui.autoComplete
 		override protected function keyDownHandler(event:KeyboardEvent):void
 		{
 			super.keyDownHandler(event);
-			
 			if (isDropDownVisible())
 			{
 				if (event.keyCode == Keyboard.DOWN)
@@ -822,6 +813,16 @@ package net.fproject.ui.autoComplete
 					
 					if (!target.isCursorAtBeginning())
 					{
+						return;
+					}
+					
+					/*Because searchText be remove before "keyDownHandler" so There are 2 case when cursorrAtBeginning:
+					1. SearchText is null before. In this case, "isBackspaceText" == false
+					2. SearchText != null but it be null after remove function. 
+						In this case, "isBackspaceText" == true, we have to set "isBackspaceText" == false and exit
+					*/
+					if (isBackspaceText){
+						isBackspaceText = false;
 						return;
 					}
 					
@@ -1201,7 +1202,7 @@ package net.fproject.ui.autoComplete
 		
 		protected function itemDoubleClickHandler(e:Event):void
 		{
-			dispatchEvent(new AutoCompleteEvent(AutoCompleteEvent.SELECTED_ITEM_DOUBLE_CLICK));
+			dispatchEvent(new AutoCompleteEvent(AutoCompleteEvent.SELECTED_ITEM_DOUBLE_CLICK,e.target['item']));
 		}
 		
 		protected function itemTextInputHandler(event:TextEvent):void
@@ -1247,11 +1248,16 @@ package net.fproject.ui.autoComplete
 			dispatchEvent(new AutoCompleteEvent(AutoCompleteEvent.CHANGE));
 		}
 		
+		private var isBackspaceText:Boolean;
+		
 		public function flowBox_change(event:Event):void
 		{
+			searchText = StringUtil.trim(searchTextInternal, ',');
+			if (searchText != "")
+				isBackspaceText = true;
 			flowBox.invalidateDisplayList();
 			
-			if (selectedItem && !_allowMultipleSelection && searchTextInternal)
+			if (selectedItem && !_allowMultipleSelection && searchText)
 			{
 				_selectedItems.removeAll();							
 			}
@@ -1259,75 +1265,54 @@ package net.fproject.ui.autoComplete
 			if (event)
 			{
 				if(hasEventListener(AutoCompleteEvent.SEARCH_CHANGE))
-					dispatchEvent(new AutoCompleteEvent(AutoCompleteEvent.SEARCH_CHANGE, searchTextInternal));
+					dispatchEvent(new AutoCompleteEvent(AutoCompleteEvent.SEARCH_CHANGE, searchText));
 			}
 			
-			if (searchTextInternal == null || searchTextInternal.length == 0 || _filteredCollection == null)
+			if (searchText == null || searchText.length == 0)
 			{
 				hideDropDown();
 				return;
 			}
 			
 			if (enableFilter)
-			{			
-				filterCollection();
-				
-				if (_filteredCollection.length == 0)
-				{
-					hideDropDown();
-				}
-				else
-				{
-					showDropDown();	
-				}
+			{
+				updateDropdown();
 			}
 		}
 		
 		//filter localColection follow match type and keyword
-		protected function filterCollection():void
+		protected function updateDropdown():void
 		{
 			if (!_filteredCollection)
 			{
 				return;
-			}				
+			}	
 			
-			// we're splitting by a delimeter to handle the case where the 
-			// user enters a comma separated list of values
-			var parts:Array;
-			
-			if (_delimiter != null && _allowMultipleSelection)
+			if (enableFilter)
 			{
-				parts = searchTextInternal.split(_delimiter);
-			}
-			else
-			{
-				parts = [searchTextInternal];
-			}
-			
-			for each (var searchStr:String in parts)
-			{
-				_searchText = searchStr;					
 				filterData();
-				
-				if (_autoSelectEnabled)
-				{
-					if (isPerfectMatch())
-					{
-						_searchText = "";
-						continue;
-					}						
-				}
-				
-				if (_allowNewValues && parts.length > 1)
-				{
-					_selectedItems.addItem(searchStr);						
-				}					
 			}
 			
-			/*if (searchText && searchText != _searchText)
+			if (_autoSelectEnabled && !_allowNewValues)
 			{
-			textInput.text = _searchText;
-			}*/
+				if (isPerfectMatch())
+				{
+					var item:Object = _filteredCollection.getItemAt(0);
+					_selectedItems.addItem(item);
+					searchText = "";
+					dispatchEvent(new AutoCompleteEvent(AutoCompleteEvent.CHANGE));
+					return;
+				}						
+			}
+			
+			if (_filteredCollection.length == 0)
+			{
+				hideDropDown();
+			}
+			else if (searchTextInternal.length > 0)
+			{
+				showDropDown();	
+			}
 		}
 		
 		protected function highlightFirstItem():void
@@ -1350,23 +1335,12 @@ package net.fproject.ui.autoComplete
 				
 				if (_autoSelectFunction != null)
 				{
-					if (_autoSelectFunction(item, str))
-					{
-						_selectedItems.addItem(item);
-						dispatchEvent(new AutoCompleteEvent(AutoCompleteEvent.CHANGE));
-						return true;
-					}
+					return _autoSelectFunction(item, str);
 				}
 				else
 				{
-					var label:String = itemToDropDownLabel(item);
-					
-					if (label.toLowerCase() == str.toLowerCase())
-					{
-						_selectedItems.addItem(item);
-						dispatchEvent(new AutoCompleteEvent(AutoCompleteEvent.CHANGE));
-						return true;
-					}
+					var label:String = itemToLabel(item);
+					return (label.toLowerCase() == str.toLowerCase());
 				}
 			}
 			
@@ -1388,7 +1362,7 @@ package net.fproject.ui.autoComplete
 		{
 			if(_searchText != value)
 			{
-				_searchText = value;
+				_searchText = value == null ? "":value;
 				
 				textInput.text = value;
 				textInput.validateNow();
@@ -1566,7 +1540,17 @@ package net.fproject.ui.autoComplete
 			_dropDownItemRenderer = value;
 		}
 		
-		public var enableFilter:Boolean = true;
+		private var _enableFilter:Boolean;
+		
+		protected function set enableFilter(value:Boolean):void
+		{
+			_enableFilter = value;
+		}
+		
+		protected function get enableFilter():Boolean
+		{
+			return _enableFilter;
+		}
 		
 		protected var _filterFunction:Function;
 		
