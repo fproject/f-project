@@ -51,3 +51,7 @@ ui|DateChooserWeekDayRenderer {
 ui|AutoComplete {
 	skinClass:ClassReference("net.fproject.ui.autoComplete.skins.AutoCompleteSkin");
 }
+
+ui|DefaultInlineButton {
+	skinClass:ClassReference("net.fproject.ui.autoComplete.skins.DefaultInlineButtonSkin");	
+}
