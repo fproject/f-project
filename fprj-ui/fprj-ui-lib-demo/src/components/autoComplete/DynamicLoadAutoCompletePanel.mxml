@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:NavigatorContent 
+	xmlns:fx="http://ns.adobe.com/mxml/2009"
+	xmlns:s="library://ns.adobe.com/flex/spark"
+	xmlns:mx="library://ns.adobe.com/flex/mx"
+	xmlns:ac="components.autoComplete.*"
+	xmlns:ui="http://f-project.net/xmlns/fprj-ui/2015"
+	width="100%" height="100%"
+	initialize="init()">
+	<s:layout>
+		<s:HorizontalLayout verticalAlign="top" horizontalAlign="left" 
+							paddingLeft="20" paddingTop="20" paddingBottom="20" paddingRight="20"/>
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			
+			import net.fproject.ui.events.AutoCompleteEvent;
+			
+			[Bindable]
+			public var colors:ArrayCollection;
+			
+			private var delayTimer:Timer;
+			
+			private function init():void 
+			{
+				colors = new ArrayCollection();
+				delayTimer = new Timer(1000, 2);
+				delayTimer.addEventListener(TimerEvent.TIMER_COMPLETE, timerCompleteHandler);
+			}
+			
+			private function handleSearchChange(e:AutoCompleteEvent):void 
+			{
+				if (e.data == null)
+				{
+					var a:int;
+					a = 1;
+				}
+				if (delayTimer.running) 
+				{
+					delayTimer.stop();
+				}
+				if (autoComplete.searchText && autoComplete.searchText.length > 2) 
+				{
+					// if you remove below line then it kind of works
+					// but it is more correct to remove all data
+					// before repopulate. Really it is just holding
+					// on to stale data
+					//colors.removeAll();
+					delayTimer.reset();
+					delayTimer.start();
+					
+					autoComplete.enabled = false;
+				}
+			}
+			
+			private function timerCompleteHandler( event:TimerEvent ):void
+			{
+				autoComplete.enabled = true;
+				colors.source = [ { "name":"Almond", "hex":0xEED9C4 },{ "name":"Abc", "hex":0xAABBCC } ];
+				colors.addItem({ "name":"Almond", "hex":0xEED9C4 });
+				colors.addItem({ "name":"Abc", "hex":0xAABBCC });
+				autoComplete.dataProvider = colors;
+				callLater(autoComplete.showDropDown);
+			}
+			
+			protected function openDropDown_clickHandler(event:MouseEvent):void
+			{
+				autoComplete.showDropDown();
+			}
+		]]>
+	</fx:Script>
+	
+	<ui:AutoComplete id="autoComplete" dataProvider="{colors}"  allowMultipleSelection="true"
+					 labelField="name" searchChange="handleSearchChange(event)" x="500" y="300"
+					 showRemoveIcon="true"/>
+	<s:Button label="Open Dropdown" click="openDropDown_clickHandler(event)"/>
+</s:NavigatorContent>
