@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:NavigatorContent
+	xmlns:fx="http://ns.adobe.com/mxml/2009"
+	xmlns:s="library://ns.adobe.com/flex/spark"
+	xmlns:mx="library://ns.adobe.com/flex/mx"
+	xmlns:ac="components.autoComplete.*"
+	xmlns:ui="http://f-project.net/xmlns/fprj-ui/2015"
+	width="100%" height="100%"
+	initialize="init()">
+	<s:layout>
+		<s:HorizontalLayout verticalAlign="top" horizontalAlign="left" 
+							paddingLeft="20" paddingTop="15" paddingBottom="20" paddingRight="20"/>
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.SortField;
+			import mx.collections.Sort;
+			import mx.utils.StringUtil;
+			import mx.core.ByteArrayAsset;
+			import mx.collections.ArrayCollection;
+			
+			[Bindable]
+			public var characters:ArrayCollection;
+			
+			[Bindable]
+			public var actors:ArrayCollection;
+			
+			[Bindable]  
+			[Embed(source="simpsons.txt", mimeType="application/octet-stream")]  
+			private var myFileClass:Class; 
+
+
+			private function init():void
+			{
+				characters = new ArrayCollection();
+				actors = new ArrayCollection();
+				
+				var MyFileByteArray:ByteArrayAsset = ByteArrayAsset(new myFileClass());  
+				var simpsons:String = MyFileByteArray.readUTFBytes(MyFileByteArray.length);
+				
+				for each (var simpson:String in simpsons.split( "\r" ))
+				{
+					var parts:Array = simpson.split( "\t" );
+					
+					var obj:Object = new Object();
+					obj.name = parts[0];
+					obj.voicedBy = new ArrayCollection();
+					
+					for each (var actor:String in String( parts[1] ).split( "," ))
+					{
+						actor = StringUtil.trim( actor );
+						
+						ArrayCollection( obj.voicedBy ).addItem( actor );
+						
+						if (!actors.contains( actor ))
+						{
+							actors.addItem( actor );
+						}
+					}
+					
+					characters.addItem( obj );
+				}
+				
+				var sort:Sort = new Sort();
+				var sortField:SortField = new SortField( "name" );
+				sort.fields = [ sortField ];
+				
+				characters.sort = sort;
+				characters.refresh();
+			}
+			
+			private function voicedByFunction( item:Object, column:AdvancedDataGridColumn ):String
+			{
+				return ArrayCollection( item.voicedBy ).source.join( ", " );
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<fx:Component id="autocomplete">
+			<ui:AutoComplete dataProvider="{ outerDocument.actors }" selectedItemStyle="underline"
+									 allowMultipleSelection="true" labelField="name" backspaceAction="remove" allowNewValues="true"/>
+		</fx:Component>
+	</fx:Declarations>
+						
+	<mx:AdvancedDataGrid dataProvider="{ characters }" editable="true" width="100%" height="100%">
+		<mx:columns>
+			<mx:AdvancedDataGridColumn width="160" headerText="Character" dataField="name" editable="false"/>
+			<mx:AdvancedDataGridColumn headerText="Voiced By" labelFunction="voicedByFunction" editorUsesEnterKey="true"
+				itemEditor="{ autocomplete }" editorDataField="selectedItems" dataField="voicedBy"/>
+		</mx:columns>
+	</mx:AdvancedDataGrid>
+
+</s:NavigatorContent>

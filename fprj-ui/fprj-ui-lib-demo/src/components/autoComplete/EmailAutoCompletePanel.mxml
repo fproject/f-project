@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:NavigatorContent 
+	xmlns:fx="http://ns.adobe.com/mxml/2009"
+	xmlns:s="library://ns.adobe.com/flex/spark"
+	xmlns:mx="library://ns.adobe.com/flex/mx"
+	xmlns:ac="components.autoComplete.*"
+	xmlns:ui="http://f-project.net/xmlns/fprj-ui/2015"
+	width="100%" height="100%"
+	initialize="init()">
+	<s:layout>
+		<s:HorizontalLayout verticalAlign="top" horizontalAlign="left" 
+							paddingLeft="20" paddingTop="0" paddingBottom="20" paddingRight="20"/>
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import mx.core.ByteArrayAsset;
+			import mx.utils.StringUtil;
+			
+			import net.fproject.ui.autoComplete.supportClasses.AutoCompleteUtil;
+			
+			[Bindable]
+			private var _contacts:ArrayCollection;
+			
+			[Bindable]  
+			[Embed(source="simpsons.txt", mimeType="application/octet-stream")]  
+			private var myFileClass:Class; 
+			
+			private function init():void
+			{
+				_contacts = new ArrayCollection();
+				
+				var MyFileByteArray:ByteArrayAsset = ByteArrayAsset(new myFileClass());  
+				var simpsons:String = MyFileByteArray.readUTFBytes(MyFileByteArray.length);
+				
+				for each (var simpson:String in simpsons.split( "\r" ))
+				{
+					var parts:Array = simpson.split( "\t" );
+					
+					var obj:Object = new Object();
+					obj.name = StringUtil.trim( parts[0] );
+					obj.email = String( obj.name.split( " " )[0] ).toLowerCase() + "@gmail.com";
+					_contacts.addItem( obj ); 
+				}				
+			}
+			
+			public function dropDownLabelFunction( item:Object ):String
+			{
+				var string:String = item.name + " &lt;" + item.email + "&gt;";
+				var searchStr:String = autocomplete.searchText;
+				
+				var returnStr:String = AutoCompleteUtil.highlightMatch( string, searchStr );
+				
+				if (autocomplete.selectedItems.getItemIndex( item ) >= 0)
+    			{
+    				returnStr = "<font color='#999999'>" + returnStr + "</font>";
+    			}
+    			
+    			return returnStr;
+			}
+			
+		]]>
+	</fx:Script>
+	
+
+	<s:Form width="100%" height="100%">
+		<s:FormItem label="To: ">				
+			<ui:AutoComplete id="autocomplete" dataProvider="{ _contacts }" width="350"
+				allowMultipleSelection="true" allowNewValues="true" allowEditingNewValues="true"
+				labelField="name" dropDownLabelFunction="dropDownLabelFunction" matchType="word" 
+				selectedItemStyle="macMail"/>
+		</s:FormItem>
+		<s:FormItem label="Subject: ">
+			<s:TextInput width="350"/>
+		</s:FormItem>
+		<s:FormItem label="Body: " height="100%">
+			<s:TextArea width="350" height="100%"/>
+		</s:FormItem>
+	</s:Form>
+	
+</s:NavigatorContent>

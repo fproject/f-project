@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" width="400" height="300" 
+			   xmlns:autoComplete="net.fproject.ui.autoComplete.*"
+			   keyDown="dialog_keyDownHandler(event)">
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.managers.PopUpManager;
+			protected function dialog_keyDownHandler(event:KeyboardEvent):void
+			{
+				if (event.keyCode == Keyboard.ESCAPE)
+					PopUpManager.removePopUp(this);
+				else if (event.keyCode == Keyboard.ENTER)
+					PopUpManager.removePopUp(this);
+			}
+		]]>
+	</fx:Script>
+	
+	<autoComplete:AutoComplete id="managerAutocomplete" top="20" left="20" right="10" height="50"
+							   selectedItemStyle="{AutoComplete.STYLE_FACEBOOK}" matchType="anyPart"
+							   allowMultipleSelection="true" showRemoveIcon="true"
+							   allowNewValues="true" allowEditingNewValues="false" 
+							   preventDefaultEnterKey="true"
+							   backspaceAction="focus"/>
+</s:TitleWindow>

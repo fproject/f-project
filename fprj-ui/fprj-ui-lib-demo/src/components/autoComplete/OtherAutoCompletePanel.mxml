@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:NavigatorContent 
+	xmlns:fx="http://ns.adobe.com/mxml/2009"
+	xmlns:s="library://ns.adobe.com/flex/spark"
+	xmlns:mx="library://ns.adobe.com/flex/mx"
+	xmlns:ac="components.autoComplete.*"
+	xmlns:ui="http://f-project.net/xmlns/fprj-ui/2015"
+	width="100%" height="100%"
+	initialize="init()">
+	<s:layout>
+		<s:VerticalLayout paddingTop="20"/>
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import mx.core.ByteArrayAsset;
+			import mx.utils.StringUtil;
+			
+			import net.fproject.ui.autoComplete.supportClasses.AutoCompleteUtil;
+			import net.fproject.ui.events.AutoCompleteEvent;
+			
+			[Bindable]
+			private var _contacts:ArrayCollection;
+			
+			[Bindable]  
+			[Embed(source="simpsons.txt", mimeType="application/octet-stream")]  
+			private var myFileClass:Class; 
+			
+			private function init():void
+			{
+				_contacts = new ArrayCollection();
+				
+				var MyFileByteArray:ByteArrayAsset = ByteArrayAsset(new myFileClass());  
+				var simpsons:String = MyFileByteArray.readUTFBytes(MyFileByteArray.length);
+				
+				for each (var simpson:String in simpsons.split("\r"))
+				{
+					var parts:Array = simpson.split("\t");
+					
+					var obj:Object = new Object();
+					obj.name = StringUtil.trim(parts[0]);
+					obj.email = String(obj.name.split(" ")[0]).toLowerCase() + "@gmail.com";
+					_contacts.addItem(obj); 
+				}				
+			}
+			
+			public function labelFunction(item:Object):String
+			{
+				return String(item.name).substr(0,5);
+			}
+			
+			public function dropDownLabelFunction(item:Object):String
+			{
+				if(item == null)
+					return null;
+				var searchStr:String = autocomplete.searchText;
+				var sName:String = AutoCompleteUtil.highlightMatch(item.name, searchStr);
+				var sEmail:String = AutoCompleteUtil.highlightMatch(item.email, searchStr);
+				var returnStr:String = sName + " &lt;" + sEmail + "&gt;";
+				
+				if (autocomplete.selectedItems.getItemIndex(item) >= 0)
+				{
+					returnStr = "<font color='#999999'>" + returnStr + "</font>";
+				}
+				
+				return returnStr;
+			}
+			
+			protected function openDropDown_clickHandler(event:MouseEvent):void
+			{
+				autocomplete2.showDropDown();
+			}
+			
+			protected function autocomplete_inlineButtonClickHandler(event:AutoCompleteEvent):void
+			{
+				textArea.appendText("Inline button clicked!\r\n")
+			}
+			
+			protected function autocomplete_changeHandler(event:AutoCompleteEvent):void
+			{
+				if(autocomplete.selectedItems.length == 0)
+				{
+					var s:String = "(null)";
+				}
+				else
+				{
+					s = "[\"";
+					for (var i:int = 0; i < autocomplete.selectedItems.length; i++)
+					{
+						var selItem:Object = autocomplete.selectedItems[i];
+						if(selItem != null && selItem.hasOwnProperty('name'))
+							s += selItem.name;
+						else
+							s += String(selItem);
+						if(i < autocomplete.selectedItems.length-1)
+							s += "\", \"";
+					}
+				}
+				textArea.appendText("Selected items changed to:" + s + "\"]\r\n")
+			}
+			
+			protected function autocomplete_selectedItemDoubleClickHandler(event:AutoCompleteEvent):void
+			{
+				if (Object(event.data).hasOwnProperty('name'))
+				{
+					textArea.appendText("Selected items double-clicked:" + event.data['name'] + "\r\n");
+				}
+				else
+				{
+					textArea.appendText("Selected items double-clicked:" + event.data + "\r\n");
+				}
+			}
+			
+			protected function clearSelItems_clickHandler(event:MouseEvent):void
+			{
+				autocomplete.selectedItems = null;
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<s:Label text="Search button:"/>
+	<s:HGroup>
+		<ui:AutoComplete id="autocomplete" dataProvider="{ _contacts }" width="350"
+						 showInlineButton="true"
+						 showRemoveIcon="true"
+						 allowMultipleSelection="true" allowNewValues="true" allowEditingNewValues="true"
+						 labelField="name" dropDownLabelFunction="dropDownLabelFunction" matchType="word" 
+						 selectedItemStyle="facebook"
+						 inlineButtonClick="autocomplete_inlineButtonClickHandler(event)"
+						 selectedItemDoubleClick="autocomplete_selectedItemDoubleClickHandler(event)"
+						 change="autocomplete_changeHandler(event)"/>
+		<s:Button label="Clear selected items" click="clearSelItems_clickHandler(event)"/>
+	</s:HGroup>
+	<ui:HSeparator width="100%"/>
+	
+	<s:Label text="labelFunction and dropDownLabelFunction:"/>
+	<ui:AutoComplete id="autocomplete2" dataProvider="{ _contacts }" width="350"
+					 showRemoveIcon="true" showClearButton="true"
+					 allowMultipleSelection="true" allowNewValues="true" allowEditingNewValues="true"
+					 labelFunction="{labelFunction}"
+					 labelField="name"
+					 matchType="word"
+					 selectedItemStyle="facebook"/>
+	<ui:HSeparator width="100%"/>
+	
+	<s:Label text="Clear button:"/>
+	<s:HGroup>
+		<ui:AutoComplete id="autocomplete3" dataProvider="{ _contacts }" width="350"
+						 showRemoveIcon="true" showClearButton="true"
+						 allowMultipleSelection="true" allowNewValues="true" allowEditingNewValues="true"
+						 labelField="name"
+						 matchType="word" 
+						 selectedItemStyle="facebook"/>
+		<s:Button label="Open Dropdown" click="openDropDown_clickHandler(event)"/>
+	</s:HGroup>
+	<ui:HSeparator width="100%"/>
+	<s:TextArea id="textArea" width="100%"/>
+</s:NavigatorContent>
