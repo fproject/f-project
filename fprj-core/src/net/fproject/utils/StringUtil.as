@@ -535,13 +535,13 @@ package net.fproject.utils
 			if(str == null || str.length == 0)
 				return str;
 			if (removingChars == null) return mx.utils.StringUtil.trim(str);
-			
+			var lent:int = str.length;
 			var startIndex:int = 0;
-			while (isRemovingChar(str.charAt(startIndex), removingChars))
+			while (startIndex < lent && isRemovingChar(str.charAt(startIndex), removingChars))
 				++startIndex;
 			
 			var endIndex:int = str.length - 1;
-			while (isRemovingChar(str.charAt(endIndex), removingChars))
+			while (endIndex >=0 && isRemovingChar(str.charAt(endIndex), removingChars))
 				--endIndex;
 			
 			if (endIndex >= startIndex)
@@ -553,6 +553,7 @@ package net.fproject.utils
 		private static function isRemovingChar(character:String, removingChars:String):Boolean
 		{
 			return removingChars.indexOf(character) != -1;
+			return character == "" ? false: removingChars.indexOf(character) != -1;
 		}
 	}
 }
