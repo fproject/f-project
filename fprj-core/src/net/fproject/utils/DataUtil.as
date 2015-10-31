@@ -435,26 +435,34 @@ package net.fproject.utils
 			var methodChain:String = simpleExpressionInfo.methodChain;
 			if(methodChain != null)
 			{
-				var f:Function = evaluateChainValue(methodChain, host) as Function;
+				var f:Function = getPredefinedMethod(methodChain);
 				if(f != null)
 				{
-					
-					if(chain == "")
-					{
-						var retVal:* = f();
-					}
-					else
-					{
-						if(thisDotCheck(chain, host))
-							chain = Injector.THIS_DOT + chain;
-						
-						retVal = evaluateChainValue(chain, host);
-						retVal = f(retVal);
-					}						
+					return evaluatePredefinedMethod(host, f, chain);
 				}
 				else
 				{
-					throw new Error("Cannot evaluate expression. Invalid method name: " + methodChain);
+					f = evaluateChainValue(methodChain, host) as Function;
+					if(f != null)
+					{
+						
+						if(chain == "")
+						{
+							var retVal:* = f();
+						}
+						else
+						{
+							if(thisDotCheck(chain, host))
+								chain = Injector.THIS_DOT + chain;
+							
+							retVal = evaluateChainValue(chain, host);
+							retVal = f(retVal);
+						}						
+					}
+					else
+					{
+						throw new Error("Cannot evaluate expression. Invalid method name: " + methodChain);
+					}
 				}
 			}
 			else
@@ -468,6 +476,42 @@ package net.fproject.utils
 				retVal = !Boolean(retVal);
 			
 			return retVal;
+		}
+		
+		private static function getPredefinedMethod(methodName:String):Function
+		{
+			if(methodName == "$RB")
+				return method_RB;
+			return null;
+		}
+		
+		private static function evaluatePredefinedMethod(host:Object, method:Function, chain:String):*
+		{
+			if(chain == "")
+			{
+				var retVal:* = method();
+			}
+			else
+			{
+				var sparams:Array = chain.split(",");
+				var argArray:Array = [];
+				for each(var p:String in sparams)
+				{
+					if(thisDotCheck(p, host))
+						p = Injector.THIS_DOT + p;
+					
+					var pVal:* = evaluateChainValue(p, host);
+					argArray.push(pVal);
+				}
+				retVal = method.apply(host, argArray);
+			}
+			
+			return retVal;
+		}
+		
+		private static function method_RB(bundle:String, key:String):String
+		{
+			return ResourceUtil.getString(key, bundle);
 		}
 		
 		private static function thisDotCheck(chain:String, host:Object):Boolean
