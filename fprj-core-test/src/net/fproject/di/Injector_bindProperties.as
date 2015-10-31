@@ -38,6 +38,7 @@ package net.fproject.di
 	import testdata.di.Injector_bindProperties_028;
 	import testdata.di.Injector_bindProperties_029;
 	import testdata.di.Injector_bindProperties_030;
+	import testdata.di.Injector_bindProperties_031;
 	
 	[ResourceBundle("fprjcore")]
 	/**
@@ -767,6 +768,17 @@ package net.fproject.di
 			assertEquals(String(!container.isBefore2000(container.employee2.birthDay)), container.textInput2.text);
 			assertNotNull(container.textInput3);
 			assertEquals(String(!ObjectUtil.isSimple(container.employee.profile)), container.textInput3.text);
+		}
+		
+		[Test (async, description="Implement: #25")]
+		public function testCase031():void
+		{
+			var container:Injector_bindProperties_031 = new Injector_bindProperties_031();
+			Injector.inject(container);
+			container.show();
+			Async.proceedOnEvent(this, container, 'creationComplete', 10000);
+			assertNotNull(container.textInput);
+			assertEquals("My Bundle Value", container.textInput.text);
 		}
 	}
 }
