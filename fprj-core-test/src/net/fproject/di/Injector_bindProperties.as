@@ -790,6 +790,9 @@ package net.fproject.di
 			var container:Injector_bindProperties_032 = new Injector_bindProperties_032();
 			Injector.inject(container);
 			container.show();
+			container.employee = new TestUser();
+			container.employee.profile = new TestUserProfile;
+			container.employee.profile.email = "abc@xyz.com";
 			Async.proceedOnEvent(this, container, 'creationComplete', 10000);
 			assertNotNull(container.textInput);
 			assertEquals("abc@xyz.com", container.textInput.text);
@@ -798,7 +801,7 @@ package net.fproject.di
 			container.employee.profile = new TestUserProfile;
 			container.employee.profile.email = "ghi@xyz.com";
 			container.show();
-			Async.proceedOnEvent(this, container, 'added', 10000);
+			Async.proceedOnEvent(this, container, 'creationComplete', 10000);
 			assertEquals("ghi@xyz.com", container.textInput.text);
 		}
 	}
