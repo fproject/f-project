@@ -10,6 +10,7 @@ package net.fproject.core
 	import flash.events.EventDispatcher;
 	
 	import mx.rpc.CallResponder;
+	import mx.rpc.Fault;
 	
 	import net.fproject.fproject_internal;
 	import net.fproject.di.ImplementationConfig;
@@ -126,11 +127,11 @@ package net.fproject.core
 					_initialized = true;
 					load();
 				}, 
-				function():void
+				function(fault:Fault):void
 				{
 					_initialized = false;
 					if(hasEventListener(AppContextEvent.SERVICE_FAILED))
-						dispatchEvent(new AppContextEvent(AppContextEvent.SERVICE_FAILED));
+						dispatchEvent(new AppContextEvent(AppContextEvent.SERVICE_FAILED, fault));
 				});
 		}
 		
@@ -169,10 +170,10 @@ package net.fproject.core
 					if(hasEventListener(AppContextEvent.SAVED))
 						dispatchEvent(new AppContextEvent(AppContextEvent.SAVED));
 				},
-				function():void
+				function(fault:Fault):void
 				{
 					if(hasEventListener(AppContextEvent.SERVICE_FAILED))
-						dispatchEvent(new AppContextEvent(AppContextEvent.SERVICE_FAILED));
+						dispatchEvent(new AppContextEvent(AppContextEvent.SERVICE_FAILED, fault));
 				});
 		}
 		
@@ -243,10 +244,10 @@ package net.fproject.core
 					if(hasEventListener(AppContextEvent.LOGGED_OUT))
 						dispatchEvent(new AppContextEvent(AppContextEvent.LOGGED_OUT));
 				}, 
-				function():void
+				function(fault:Fault):void
 				{
 					if(hasEventListener(AppContextEvent.SERVICE_FAILED))
-						dispatchEvent(new AppContextEvent(AppContextEvent.SERVICE_FAILED));
+						dispatchEvent(new AppContextEvent(AppContextEvent.SERVICE_FAILED, fault));
 				});
 		}
 		
