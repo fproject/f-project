@@ -11,6 +11,8 @@ package net.fproject.di
 	import org.flexunit.asserts.assertTrue;
 	import org.flexunit.async.Async;
 	
+	import testdata.TestUser;
+	import testdata.TestUserProfile;
 	import testdata.di.Injector_bindProperties_001;
 	import testdata.di.Injector_bindProperties_005;
 	import testdata.di.Injector_bindProperties_006;
@@ -782,7 +784,7 @@ package net.fproject.di
 			assertEquals("My Bundle Value", container.textInput.text);
 		}
 		
-		[Test (async, description="Additional case")]
+		[Test (async, description="Testcase for #26")]
 		public function testCase032():void
 		{
 			var container:Injector_bindProperties_032 = new Injector_bindProperties_032();
@@ -791,6 +793,13 @@ package net.fproject.di
 			Async.proceedOnEvent(this, container, 'creationComplete', 10000);
 			assertNotNull(container.textInput);
 			assertEquals("abc@xyz.com", container.textInput.text);
+			container.hide();
+			container.employee = new TestUser();
+			container.employee.profile = new TestUserProfile;
+			container.employee.profile.email = "ghi@xyz.com";
+			container.show();
+			Async.proceedOnEvent(this, container, 'added', 10000);
+			assertEquals("ghi@xyz.com", container.textInput.text);
 		}
 	}
 }
