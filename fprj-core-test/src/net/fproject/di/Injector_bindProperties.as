@@ -39,6 +39,7 @@ package net.fproject.di
 	import testdata.di.Injector_bindProperties_029;
 	import testdata.di.Injector_bindProperties_030;
 	import testdata.di.Injector_bindProperties_031;
+	import testdata.di.Injector_bindProperties_032;
 	
 	[ResourceBundle("fprjcore")]
 	/**
@@ -779,6 +780,17 @@ package net.fproject.di
 			Async.proceedOnEvent(this, container, 'creationComplete', 10000);
 			assertNotNull(container.textInput);
 			assertEquals("My Bundle Value", container.textInput.text);
+		}
+		
+		[Test (async, description="Additional case")]
+		public function testCase032():void
+		{
+			var container:Injector_bindProperties_032 = new Injector_bindProperties_032();
+			Injector.inject(container);
+			container.show();
+			Async.proceedOnEvent(this, container, 'creationComplete', 10000);
+			assertNotNull(container.textInput);
+			assertEquals("abc@xyz.com", container.textInput.text);
 		}
 	}
 }
