@@ -41,5 +41,10 @@ package testdata.di
 		{
 			PopUpManager.addPopUp(this, FlexGlobals.topLevelApplication as DisplayObject);
 		}
+		
+		public function hide():void
+		{
+			PopUpManager.removePopUp(this);
+		}
 	}
 }
