@@ -797,9 +797,10 @@ package net.fproject.di
 			assertNotNull(container.textInput);
 			assertEquals("abc@xyz.com", container.textInput.text);
 			container.hide();
-			container.employee = new TestUser();
-			container.employee.profile = new TestUserProfile;
-			container.employee.profile.email = "ghi@xyz.com";
+			var employee:TestUser = new TestUser();
+			employee.profile = new TestUserProfile;
+			employee.profile.email = "ghi@xyz.com";
+			container.employee = employee;
 			container.show();
 			Async.proceedOnEvent(this, container, 'creationComplete', 10000);
 			assertEquals("ghi@xyz.com", container.textInput.text);
