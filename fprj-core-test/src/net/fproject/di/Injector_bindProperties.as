@@ -42,6 +42,7 @@ package net.fproject.di
 	import testdata.di.Injector_bindProperties_030;
 	import testdata.di.Injector_bindProperties_031;
 	import testdata.di.Injector_bindProperties_032;
+	import testdata.di.Injector_bindProperties_032_Model;
 	
 	[ResourceBundle("fprjcore")]
 	/**
@@ -790,20 +791,23 @@ package net.fproject.di
 			var container:Injector_bindProperties_032 = new Injector_bindProperties_032();
 			Injector.inject(container);
 			container.show();
-			container.employee = new TestUser();
-			container.employee.profile = new TestUserProfile;
-			container.employee.profile.email = "abc@xyz.com";
+			container.model = new Injector_bindProperties_032_Model;
+			container.model.user = new TestUser();
+			container.model.user.profile = new TestUserProfile;
+			container.model.user.profile.email = "abc@xyz.com"
+				
 			Async.proceedOnEvent(this, container, 'creationComplete', 10000);
-			assertNotNull(container.textInput);
-			assertEquals("abc@xyz.com", container.textInput.text);
+			assertNotNull(container.thePart);
+			assertEquals("abc@xyz.com", container.thePart.user.profile.email);
 			container.hide();
 			var employee:TestUser = new TestUser();
-			employee.profile = new TestUserProfile;
-			employee.profile.email = "ghi@xyz.com";
-			container.employee = employee;
+			container.model = new Injector_bindProperties_032_Model;
+			container.model.user = new TestUser();
+			container.model.user.profile = new TestUserProfile;
+			container.model.user.profile.email = "ghi@xyz.com"
 			container.show();
 			Async.proceedOnEvent(this, container, 'creationComplete', 10000);
-			assertEquals("ghi@xyz.com", container.textInput.text);
+			assertEquals("ghi@xyz.com", container.thePart.user.profile.email);
 		}
 	}
 }
