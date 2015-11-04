@@ -1538,6 +1538,8 @@ package net.fproject.ui.autoComplete
 		public function set dropDownItemRenderer(value:IFactory):void
 		{
 			_dropDownItemRenderer = value;
+			if (_dropDown != null)
+				_dropDown.itemRenderer = _dropDownItemRenderer;
 		}
 		
 		private var _enableFilter:Boolean;
