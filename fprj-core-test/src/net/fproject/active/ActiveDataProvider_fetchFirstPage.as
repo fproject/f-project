@@ -11,7 +11,7 @@ package net.fproject.active
 	import org.flexunit.async.TestResponder;
 	
 	import testdata.TestUser;
-	import testdata.active.JSONRemoteObject_RESTfulService;
+	import testdata.active.TestUserService;
 
 	/**
 	 * FlexUnit test case class for method<br/>
@@ -21,14 +21,14 @@ package net.fproject.active
 	 */
 	public class ActiveDataProvider_fetchFirstPage extends ServiceTestCaseBase
 	{
-		private var restService:JSONRemoteObject_RESTfulService;
+		private var restService:TestUserService;
 		
 		private var activedataProvider:ActiveDataProvider;
 
 		[Before(async)]
 		override public function runBeforeEveryTest():void
 		{
-			restService = InstanceFactory.getInstance(JSONRemoteObject_RESTfulService) as JSONRemoteObject_RESTfulService;
+			restService = InstanceFactory.getInstance(TestUserService) as TestUserService;
 			//Your test data initialization
 		}
 
