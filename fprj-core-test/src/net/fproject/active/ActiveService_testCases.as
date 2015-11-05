@@ -18,8 +18,8 @@ package net.fproject.active
 	import testdata.TestUser;
 	import testdata.TestUserExt;
 	import testdata.TestUserProfile;
-	import testdata.active.JSONRemoteObject_RESTfulService;
-	import testdata.active.JSONRemoteObject_RESTfulService_ext;
+	import testdata.active.TestUserService;
+	import testdata.active.TestUserExtService;
 
 	/**
 	 * FlexUnit test case class for method<br/>
@@ -29,13 +29,13 @@ package net.fproject.active
 	 */
 	public class ActiveService_testCases extends ServiceTestCaseBase
 	{
-		private var restService:JSONRemoteObject_RESTfulService;
+		private var restService:TestUserService;
 		
 		[Before(async)]
 		override public function runBeforeEveryTest():void
 		{
 			super.runBeforeEveryTest();
-			restService = InstanceFactory.getInstance(JSONRemoteObject_RESTfulService) as JSONRemoteObject_RESTfulService;
+			restService = InstanceFactory.getInstance(TestUserService) as TestUserService;
 		}
 
 		[After]
@@ -212,8 +212,8 @@ package net.fproject.active
 		 */
 		public function testCase202():void
 		{
-			var restServiceExt:JSONRemoteObject_RESTfulService_ext = 
-				InstanceFactory.getInstance(JSONRemoteObject_RESTfulService_ext) as JSONRemoteObject_RESTfulService_ext;
+			var restServiceExt:TestUserExtService = 
+				InstanceFactory.getInstance(TestUserExtService) as TestUserExtService;
 			var responder:CallResponder = restServiceExt.findOne("1");
 			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase202_checkResult, onFault), 2000));
 		}
@@ -401,8 +401,8 @@ package net.fproject.active
 		{
 			var id:String = UIDUtil.createUID();
 			var responder:CallResponder = restService.batchSave(
-				[{"id":null,"username":"Batch User " + id,"password":"ABC123"},
-				{"id":null,"username":"Batch User " + id,"password":"ABC123"}]);
+				[{"id":null,"username":"Batch User " + id, "password":"ABC123"},
+				{"id":null,"username":"Batch User " + id, "password":"ABC123"}]);
 			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase600_added, onFault), 2000));
 		}
 		
@@ -419,6 +419,42 @@ package net.fproject.active
 		}
 		
 		public function testCase600_checkResult(event:ResultEvent, passThroughData:Object):void
+		{
+			assertEquals(2, event.result);			
+		}
+		
+		[Test (async, description="Normal case",order=3)]
+		/**
+		 * Test Case Type: Normal<br/>
+		 * <br/>
+		 * INPUT VALUES:<br/>
+		 * <br/>
+		 * OUTPUT EXPECTED:<br/>
+		 * ---- expectations ----
+		 *
+		 */
+		public function testCase601():void
+		{
+			var id:String = UIDUtil.createUID();
+			var responder:CallResponder = restService.batchSave(
+				[{"id":null,"username":"Batch User " + id, "password":"ABC123"},
+					{"id":null,"username":"Batch User " + id, "password":"ABC123"}]);
+			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase601_added, onFault), 2000));
+		}
+		
+		public function testCase601_added(event:ResultEvent, passThroughData:Object):void
+		{
+			var batchSaveReturn:Object = event.result;
+			var a:Array = [];
+			for(var i:int = int(batchSaveReturn.insertCount); i > 0; i--)
+			{
+				a.push(int(batchSaveReturn.lastId) - i + 1);
+			}
+			var responder:CallResponder = restService.batchRemove(a);
+			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase601_checkResult, onFault), 2000));	
+		}
+		
+		public function testCase601_checkResult(event:ResultEvent, passThroughData:Object):void
 		{
 			assertEquals(2, event.result);			
 		}
