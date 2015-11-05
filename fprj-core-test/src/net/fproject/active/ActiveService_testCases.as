@@ -18,8 +18,9 @@ package net.fproject.active
 	import testdata.TestUser;
 	import testdata.TestUserExt;
 	import testdata.TestUserProfile;
-	import testdata.active.TestUserService;
 	import testdata.active.TestUserExtService;
+	import testdata.active.TestUserService;
+	import testdata.active.UserDepartmentAssignmentService;
 
 	/**
 	 * FlexUnit test case class for method<br/>
@@ -29,13 +30,15 @@ package net.fproject.active
 	 */
 	public class ActiveService_testCases extends ServiceTestCaseBase
 	{
-		private var restService:TestUserService;
+		private var testUserService:TestUserService;
+		private var userDepartmentAssignmentService:UserDepartmentAssignmentService;
 		
 		[Before(async)]
 		override public function runBeforeEveryTest():void
 		{
 			super.runBeforeEveryTest();
-			restService = InstanceFactory.getInstance(TestUserService) as TestUserService;
+			testUserService = InstanceFactory.getInstance(TestUserService) as TestUserService;
+			userDepartmentAssignmentService = InstanceFactory.getInstance(UserDepartmentAssignmentService) as UserDepartmentAssignmentService;
 		}
 
 		[After]
@@ -56,7 +59,7 @@ package net.fproject.active
 		 */
 		public function testCase100():void
 		{
-			var responder:CallResponder = restService.find();
+			var responder:CallResponder = testUserService.find();
 			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase100_checkResult, onFault), 2000));
 		}
 		
@@ -82,7 +85,7 @@ package net.fproject.active
 		 */
 		public function testCase101():void
 		{
-			var responder:CallResponder = restService.find({condition:"username like :name", params:{":name":"%Batch%"}});
+			var responder:CallResponder = testUserService.find({condition:"username like :name", params:{":name":"%Batch%"}});
 			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase101_checkResult, onFault), 2000));
 		}
 		
@@ -109,7 +112,7 @@ package net.fproject.active
 		 */
 		public function testCase102():void
 		{
-			var responder:CallResponder = restService.find({condition:"id < :id", params:{":id":5}});
+			var responder:CallResponder = testUserService.find({condition:"id < :id", params:{":id":5}});
 			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase102_checkResult, onFault), 2000));
 		}
 		
@@ -136,7 +139,7 @@ package net.fproject.active
 		 */
 		public function testCase103():void
 		{
-			var responder:CallResponder = restService.find(null, NaN, NaN, null, null, null, "expand=profile");
+			var responder:CallResponder = testUserService.find(null, NaN, NaN, null, null, null, "expand=profile");
 			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase103_checkResult, onFault), 2000));
 		}
 		
@@ -164,7 +167,7 @@ package net.fproject.active
 		 */
 		public function testCase200():void
 		{
-			var responder:CallResponder = restService.findOne("1");
+			var responder:CallResponder = testUserService.findOne("1");
 			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase200_checkResult, onFault), 2000));
 		}
 		
@@ -189,7 +192,7 @@ package net.fproject.active
 		 */
 		public function testCase201():void
 		{
-			var responder:CallResponder = restService.findOne("1",null,null,{expand:"profile"});
+			var responder:CallResponder = testUserService.findOne("1",null,null,{expand:"profile"});
 			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase201_checkResult, onFault), 2000));
 		}
 		
@@ -240,7 +243,7 @@ package net.fproject.active
 		 */
 		public function testCase300():void
 		{
-			var responder:CallResponder = restService.save({"id":null,"username":"User 04"+UIDUtil.createUID(),"password":"ABC123"});
+			var responder:CallResponder = testUserService.save({"id":null,"username":"User 04"+UIDUtil.createUID(),"password":"ABC123"});
 			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase300_checkResult, onFault), 2000));
 		}
 		
@@ -263,7 +266,7 @@ package net.fproject.active
 		{
 			var name:String = "Save User " + UIDUtil.createUID();
 			var user:Object = {"id":null,"username":name,"password":"ABC123"};
-			var responder:CallResponder = restService.save(user);
+			var responder:CallResponder = testUserService.save(user);
 			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase301_added, onFault), 2000, user));
 		}
 		
@@ -271,7 +274,7 @@ package net.fproject.active
 		{
 			var id:Object = event.result;
 			user.id = id;
-			var responder:CallResponder = restService.findOne(id);
+			var responder:CallResponder = testUserService.findOne(id);
 			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase301_checkAndSaveAgain, onFault), 2000, user));	
 		}
 		
@@ -281,14 +284,14 @@ package net.fproject.active
 			assertEquals(user.username, u.username);		
 			u.username = "aaa";
 			u.password = "newpassword"
-			var responder:CallResponder = restService.save(u, null, null, ['id','password']);
+			var responder:CallResponder = testUserService.save(u, null, null, ['id','password']);
 			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase301_findAgain, onFault), 2000, user));
 		}
 		
 		public function testCase301_findAgain(event:ResultEvent, user:Object):void
 		{
 			var id:Object = event.result;
-			var responder:CallResponder = restService.findOne(id);
+			var responder:CallResponder = testUserService.findOne(id);
 			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase301_checkFinalResult, onFault), 2000, user));	
 		}
 		
@@ -313,7 +316,7 @@ package net.fproject.active
 		public function testCase400():void
 		{
 			var id:String = UIDUtil.createUID();
-			var responder:CallResponder = restService.batchSave(
+			var responder:CallResponder = testUserService.batchSave(
 				[
 					{"id":null,"username":"Batch User 01" + id,"password":"ABC123"},
 					{"id":null,"username":"Batch User 02" + id,"password":"ABC123"},
@@ -343,7 +346,7 @@ package net.fproject.active
 		public function testCase401():void
 		{
 			var id:String = UIDUtil.createUID();
-			var responder:CallResponder = restService.batchSave(
+			var responder:CallResponder = testUserService.batchSave(
 				[
 					{"id":"6","username":"Batch User 01" + id,"password":"ABC123"},
 					{"id":"7","username":"Batch User 02" + id,"password":"ABC123"},
@@ -372,13 +375,13 @@ package net.fproject.active
 		public function testCase500():void
 		{
 			var id:String = UIDUtil.createUID();
-			var responder:CallResponder = restService.save({"id":null,"username":"Batch User " + id,"password":"ABC123"});
+			var responder:CallResponder = testUserService.save({"id":null,"username":"Batch User " + id,"password":"ABC123"});
 			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase500_added, onFault), 2000));
 		}
 		
 		public function testCase500_added(event:ResultEvent, passThroughData:Object):void
 		{
-			var responder:CallResponder = restService.remove(event.result);
+			var responder:CallResponder = testUserService.remove(event.result);
 			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase500_checkResult, onFault), 2000));	
 		}
 		
@@ -400,7 +403,7 @@ package net.fproject.active
 		public function testCase600():void
 		{
 			var id:String = UIDUtil.createUID();
-			var responder:CallResponder = restService.batchSave(
+			var responder:CallResponder = testUserService.batchSave(
 				[{"id":null,"username":"Batch User " + id, "password":"ABC123"},
 				{"id":null,"username":"Batch User " + id, "password":"ABC123"}]);
 			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase600_added, onFault), 2000));
@@ -414,7 +417,7 @@ package net.fproject.active
 			{
 				a.push(int(batchSaveReturn.lastId) - i + 1);
 			}
-			var responder:CallResponder = restService.batchRemove(a);
+			var responder:CallResponder = testUserService.batchRemove(a);
 			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase600_checkResult, onFault), 2000));	
 		}
 		
@@ -436,21 +439,17 @@ package net.fproject.active
 		public function testCase601():void
 		{
 			var id:String = UIDUtil.createUID();
-			var responder:CallResponder = restService.batchSave(
-				[{"id":null,"username":"Batch User " + id, "password":"ABC123"},
-					{"id":null,"username":"Batch User " + id, "password":"ABC123"}]);
+			var responder:CallResponder = userDepartmentAssignmentService.batchSave(
+				[{_isInserting:true,userId:1, departmentId:1},
+					{_isInserting:true,userId:1, departmentId:2}]);
 			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase601_added, onFault), 2000));
 		}
 		
 		public function testCase601_added(event:ResultEvent, passThroughData:Object):void
 		{
 			var batchSaveReturn:Object = event.result;
-			var a:Array = [];
-			for(var i:int = int(batchSaveReturn.insertCount); i > 0; i--)
-			{
-				a.push(int(batchSaveReturn.lastId) - i + 1);
-			}
-			var responder:CallResponder = restService.batchRemove(a);
+			var a:Array = [{userId:1, departmentId:1}, {userId:1, departmentId:2}];
+			var responder:CallResponder = userDepartmentAssignmentService.batchRemove(a);
 			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase601_checkResult, onFault), 2000));	
 		}
 		
@@ -471,7 +470,7 @@ package net.fproject.active
 		 */
 		public function testCase700():void
 		{
-			var activedataProvider:IActiveDataProvider = restService.createDataProvider({pagination:{perPage:11}});
+			var activedataProvider:IActiveDataProvider = testUserService.createDataProvider({pagination:{perPage:11}});
 			Async.handleEvent(this, activedataProvider, 'propertyChange', testCase700_checkResult, 2000, activedataProvider);
 		}
 		
@@ -500,7 +499,7 @@ package net.fproject.active
 		 */
 		public function testCase701():void
 		{
-			var activedataProvider:IActiveDataProvider = restService.createDataProvider(
+			var activedataProvider:IActiveDataProvider = testUserService.createDataProvider(
 				{
 					criteria : {condition : "@findAllCondition"},
 					pagination:{perPage:10}
