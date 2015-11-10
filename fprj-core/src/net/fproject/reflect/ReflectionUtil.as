@@ -175,5 +175,29 @@ package net.fproject.reflect
 			
 			return a;
 		}
+		
+		public static function getAllMembersMetadata(container:Object, metadataName:String):Array
+		{
+			var type:Type = Type.forInstance(container);
+			var members:Array = type.variables.concat(type.accessors);
+			var metaArr:Array = [];
+			for each (var member:AbstractMember in members)
+			{
+				var m:Object = null;
+				for each(var meta:Metadata in member.metadata)
+				{
+					if(meta.name.toLowerCase() == metadataName.toLowerCase())
+					{
+						if(m == null)
+						{
+							m = {name:member.name, metadata:[]};
+							metaArr.push(m);
+						}
+						m.metadata.push(meta);
+					}
+				}
+			}
+			return metaArr;
+		}
 	}
 }
