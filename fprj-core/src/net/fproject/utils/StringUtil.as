@@ -565,5 +565,11 @@ package net.fproject.utils
 			return removingChars.indexOf(character) != -1;
 			return character == "" ? false: removingChars.indexOf(character) != -1;
 		}
+		
+		public static function validateEmail(s:String):Boolean
+		{
+			var re:RegExp = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+			return re.test(s);
+		}
 	}
 }
