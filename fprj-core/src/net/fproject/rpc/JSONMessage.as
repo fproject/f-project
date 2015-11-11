@@ -170,6 +170,11 @@ package net.fproject.rpc
 					else
 						route += ("?" + extraParamStr);
 				}
+				else
+				{
+					if(route.charAt(route.length - 1) == "?")
+						route = route.substring(0, route.length - 1);
+				}
 			}
 			
 			var body:Object = remainingArgs.length == 0 ? {} : remainingArgs.length == 1 ? remainingArgs[0] : remainingArgs;				
