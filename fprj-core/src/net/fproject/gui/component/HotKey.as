@@ -43,14 +43,47 @@ package net.fproject.gui.component
 	 */
 	public class HotKey
 	{
+		/**
+		 * The host (container) object 
+		 */
 		public var host:IEventDispatcher;
+		
+		/**
+		 * Specify value for the <code>keyCode</code> field of <code>KeyboardEvent</code>
+		 */
 		public var keyCode:uint;
+		
+		/**
+		 * Specify value for the <code>ctrlKey</code> field of <code>KeyboardEvent</code>
+		 */
 		public var ctrlKey:Boolean;
+		
+		/**
+		 * Specify value for the <code>shiftKey</code> field of <code>KeyboardEvent</code>
+		 */
 		public var shiftKey:Boolean;
+		
+		/**
+		 * Specify value for the <code>altKey</code> field of <code>KeyboardEvent</code>
+		 */
 		public var altKey:Boolean;
+		
+		/**
+		 * The event handler of target member object's event.
+		 * 
+		 */
 		public var handler:Function;
 		
-		public var eventName:String;
+		/**
+		 * The type of event that target member object will dispatch.
+		 * If value for this field is set, the <code>handler</code> field will be ignored.
+		 */		
+		public var event:String;
+		
+		/**
+		 * The type of event that will be listened from host object
+		 */
+		public var sourceEvent:String;
 		
 		private static const HOT_KEY_DISPATCHER:String = "hostkeydispatcher";
 		
@@ -68,7 +101,7 @@ package net.fproject.gui.component
 		
 		protected function attach():void
 		{
-			host.addEventListener(eventName, onHotKeyEvent);
+			host.addEventListener(sourceEvent, onHotKeyEvent);
 		}
 		
 		protected function onHotKeyEvent(e:Event):void
@@ -97,9 +130,13 @@ package net.fproject.gui.component
 				throwMetaDefinitionError(metaMember);
 			this.keyCode = DataUtil.evaluateChainValue(firstMeta.getArgument("keyCode").value, host)as uint;
 			
-			if(!firstMeta.hasArgumentWithKey("handler"))
+			if(firstMeta.hasArgumentWithKey("handler"))
+				this.handler = DataUtil.evaluateChainValue(firstMeta.getArgument("handler").value, host)as Function;
+			if(firstMeta.hasArgumentWithKey("event"))
+				this.event = DataUtil.evaluateChainValue(firstMeta.getArgument("event").value, host)as String;
+			
+			if(this.handler == null && this.event == null)
 				throwMetaDefinitionError(metaMember);
-			this.handler = DataUtil.evaluateChainValue(firstMeta.getArgument("handler").value, host)as Function;
 			
 			if(firstMeta.hasArgumentWithKey("ctrlKey"))
 				this.ctrlKey = DataUtil.evaluateChainValue(firstMeta.getArgument("ctrlKey").value, host)as Boolean;
@@ -107,10 +144,10 @@ package net.fproject.gui.component
 				this.shiftKey = DataUtil.evaluateChainValue(firstMeta.getArgument("shiftKey").value, host)as Boolean;
 			if(firstMeta.hasArgumentWithKey("altKey"))
 				this.altKey = DataUtil.evaluateChainValue(firstMeta.getArgument("altKey").value, host)as Boolean;
-			if(firstMeta.hasArgumentWithKey("eventName"))
-				this.eventName = DataUtil.evaluateChainValue(firstMeta.getArgument("eventName").value, host)as String;
+			if(firstMeta.hasArgumentWithKey("sourceEvent"))
+				this.sourceEvent = DataUtil.evaluateChainValue(firstMeta.getArgument("sourceEvent").value, host)as String;
 			else
-				this.eventName = KeyboardEvent.KEY_UP;
+				this.sourceEvent = KeyboardEvent.KEY_UP;
 		}
 		
 		private function throwMetaDefinitionError(metaMember:Object):void
