@@ -2,7 +2,7 @@
 <testrun name="" >
 <testsuite  name="Default Test Suite" project="fprj-core-test">
 <testsuite name="net.fproject.active:ActiveService_testCases" type="testcaseclass">
-<testcase name="testCase600" classname="net.fproject.active:ActiveService_testCases"/>
+<testcase name="testCase501" classname="net.fproject.active:ActiveService_testCases"/>
 </testsuite>
 </testsuite>
 <portNumber value="8765" />
