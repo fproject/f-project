@@ -176,9 +176,25 @@ package net.fproject.reflect
 			return a;
 		}
 		
-		public static function getAllMembersMetadata(container:Object, metadataName:String):Array
+		/**
+		 * Get all members that has given metadata 
+		 * @param container the metadata container or source to search. This can be a class, an instance object of a class
+		 * or an instance of <code>org.as3commons.reflect.Type</code>
+		 * @param metadataName the metadata name to search, should be in lower-case
+		 * @param memberFoundCallback the callback that will be invoked anytime a member with specified metadata was found.
+		 * Should have following signature:
+		 * <pre>function myMemberFoundCallback(member:AbstractMember, metaMember:Object)</pre>
+		 * 
+		 * @return array of found members. Each element is a standard object has the following format:
+		 * 
+		 * <pre>{name:"memberName", metadata:[Metadata_1,Metadata_2,...]}</pre>
+		 */
+		public static function getAllMembersMetadata(container:Object, metadataName:String, memberFoundCallback:Function=null):Array
 		{
-			var type:Type = Type.forInstance(container);
+			if(container is Type)
+				var type:Type = Type(container);
+			else
+				type = Type.forInstance(container);
 			var members:Array = type.variables.concat(type.accessors);
 			var metaArr:Array = [];
 			for each (var member:AbstractMember in members)
@@ -192,6 +208,8 @@ package net.fproject.reflect
 						{
 							m = {name:member.name, metadata:[]};
 							metaArr.push(m);
+							if(memberFoundCallback != null)
+								memberFoundCallback(member, m);
 						}
 						m.metadata.push(meta);
 					}
