@@ -15,7 +15,7 @@
 // limitations under the License.
 //
 ///////////////////////////////////////////////////////////////////////////////
-package net.fproject.gui.component
+package net.fproject.di.supportClasses
 {
 	import flash.events.Event;
 	import flash.events.IEventDispatcher;
@@ -48,7 +48,7 @@ package net.fproject.gui.component
 	 * @author Bui Sy Nguyen
 	 * 
 	 */
-	public class HotKey
+	public class HotKeyHandler
 	{
 		/**
 		 * The host (container) object 
@@ -134,7 +134,7 @@ package net.fproject.gui.component
 			
 			for each (var metaMember:Object in medaArr)
 			{
-				var hotKey:HotKey = new HotKey(host, metaMember);
+				var hotKey:HotKeyHandler = new HotKeyHandler(host, metaMember);
 				
 				hotKey.attach();
 			}			
@@ -212,7 +212,7 @@ package net.fproject.gui.component
 			return false;
 		}
 		
-		public function HotKey(host:IEventDispatcher, metaMember:Object)
+		public function HotKeyHandler(host:IEventDispatcher, metaMember:Object)
 		{
 			this.host = host;
 			this.dispatcherName = metaMember.name;

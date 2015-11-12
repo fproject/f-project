@@ -84,7 +84,7 @@
     <classEntry path="net.fproject.core.PropertyChangeDispatcher"/>
     <classEntry path="net.fproject.utils.IIterator"/>
     <classEntry path="net.fproject.gui.component.IDataProviderOwner"/>
-    <classEntry path="net.fproject.gui.component.HotKey"/>
+    <classEntry path="net.fproject.di.supportClasses.HotKeyHandler"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="manifest.xml" sourcePath="manifest.xml"/>

@@ -29,6 +29,7 @@ package net.fproject.di
 	import spark.events.SkinPartEvent;
 	
 	import net.fproject.fproject_internal;
+	import net.fproject.di.supportClasses.HotKeyHandler;
 	import net.fproject.di.supportClasses.PropertyBindingHandler;
 	import net.fproject.reflect.ReflectionUtil;
 	import net.fproject.utils.DataUtil;
@@ -89,6 +90,7 @@ package net.fproject.di
 			injector.fproject_internal::instantiateMembers(container, true);
 			injector.fproject_internal::attachEventListeners(container);
 			injector.fproject_internal::bindProperties(container);
+			injector.fproject_internal::handleHotKey(container);
 		}
 		
 		/**
@@ -451,6 +453,15 @@ package net.fproject.di
 				IEventDispatcher(target).addEventListener(listenerInfo.event, listenerInfo.handler, listenerInfo.useCapture);
 			else if(target != null)
 				LoggingUtil.fproject_internal::error(Injector, 4, "invalid.dispatcher.error", [target]);
+		}
+		
+		/**
+		 * @private
+		 * 
+		 */
+		fproject_internal function handleHotKey(container:Object):void
+		{
+			HotKeyHandler.attachHost(container);
 		}
 		
 		/**
