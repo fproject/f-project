@@ -20,13 +20,17 @@ package net.fproject.gui.component
 	import flash.events.Event;
 	import flash.events.IEventDispatcher;
 	import flash.events.KeyboardEvent;
+	import flash.system.ApplicationDomain;
+	
+	import spark.events.SkinPartEvent;
 	
 	import net.fproject.reflect.ReflectionUtil;
 	import net.fproject.utils.DataUtil;
+	import net.fproject.utils.StringUtil;
 	
 	import org.as3commons.reflect.Metadata;
 	import org.as3commons.reflect.Type;
-
+	
 	/**
 	 * <p>
 	 * The HotKey component helps to define hotkeys in you UI applications by using <code>[HotKeyDispatcher]</code> metadata.
@@ -85,6 +89,9 @@ package net.fproject.gui.component
 		 */
 		public var sourceEvent:String;
 		
+		private var target:IEventDispatcher;
+		private var targetName:String;
+		
 		private static const HOT_KEY_DISPATCHER:String = "hostkeydispatcher";
 		
 		public static function attachHost(host:IEventDispatcher):void
@@ -102,12 +109,34 @@ package net.fproject.gui.component
 		protected function attach():void
 		{
 			host.addEventListener(sourceEvent, onHotKeyEvent);
+			target = host[targetName];
+			host.addEventListener(SkinPartEvent.PART_ADDED, onHostPartAdded);
+		}
+		
+		protected function onHostPartAdded(e:SkinPartEvent):void
+		{
+			if(e.partName == this.targetName)
+				target = e.instance as IEventDispatcher;
 		}
 		
 		protected function onHotKeyEvent(e:Event):void
 		{
 			if(checkEvent(e))
-				handler(e);
+			{
+				if (!StringUtil.isBlank(event))
+				{
+					var eventClassName:String = event.substring(0, event.lastIndexOf("."));
+					if(ApplicationDomain.currentDomain.hasDefinition(eventClassName))
+					{
+						var eventClass:Class = ApplicationDomain.currentDomain.getDefinition(eventClassName) as Class;
+						var evtType:String = eventClass[event.substring(1 + event.lastIndexOf("."))];
+						var evt:Event = new eventClass(evtType);
+						
+						target.dispatchEvent(evt);
+					}
+				}
+				else handler(e);
+			}
 		}
 		
 		protected function checkEvent(e:Event):Boolean
@@ -125,6 +154,8 @@ package net.fproject.gui.component
 		public function HotKey(host:IEventDispatcher, metaMember:Object)
 		{
 			this.host = host;
+			this.targetName = metaMember.name;
+			
 			var firstMeta:Metadata = metaMember.metadata[0];
 			if(!firstMeta.hasArgumentWithKey("keyCode"))
 				throwMetaDefinitionError(metaMember);
@@ -133,7 +164,7 @@ package net.fproject.gui.component
 			if(firstMeta.hasArgumentWithKey("handler"))
 				this.handler = DataUtil.evaluateChainValue(firstMeta.getArgument("handler").value, host)as Function;
 			if(firstMeta.hasArgumentWithKey("event"))
-				this.event = DataUtil.evaluateChainValue(firstMeta.getArgument("event").value, host)as String;
+				this.event = firstMeta.getArgument("event").value;
 			
 			if(this.handler == null && this.event == null)
 				throwMetaDefinitionError(metaMember);
