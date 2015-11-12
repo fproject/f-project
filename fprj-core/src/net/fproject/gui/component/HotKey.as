@@ -22,14 +22,17 @@ package net.fproject.gui.component
 	import flash.events.KeyboardEvent;
 	import flash.system.ApplicationDomain;
 	
+	import mx.binding.utils.BindingUtils;
+	
 	import spark.events.SkinPartEvent;
 	
+	import net.fproject.di.Injector;
 	import net.fproject.reflect.ReflectionUtil;
 	import net.fproject.utils.DataUtil;
 	import net.fproject.utils.StringUtil;
 	
+	import org.as3commons.reflect.AbstractMember;
 	import org.as3commons.reflect.Metadata;
-	import org.as3commons.reflect.Type;
 	
 	/**
 	 * <p>
@@ -39,7 +42,7 @@ package net.fproject.gui.component
 	 * Example of Usage:
 	 * <pre>
 	 * SkinPart(required="true",type="static")]
-	 * [HostKeyDispatcher(keyCode="flash.ui.Keyboard.INSERT",handler="addButton_click")]
+	 * [HotKeyDispatcher(keyCode="flash.ui.Keyboard.INSERT",handler="addButton_click")]
 	 * public var addButton:Button;</pre>
 	 * 
 	 * @author Bui Sy Nguyen
@@ -73,13 +76,13 @@ package net.fproject.gui.component
 		public var altKey:Boolean;
 		
 		/**
-		 * The event handler of target member object's event.
+		 * The event handler of dispatcher member object's event.
 		 * 
 		 */
 		public var handler:Function;
 		
 		/**
-		 * The type of event that target member object will dispatch.
+		 * The type of event that dispatcher member object will dispatch.
 		 * If value for this field is set, the <code>handler</code> field will be ignored.
 		 */		
 		public var event:String;
@@ -89,19 +92,50 @@ package net.fproject.gui.component
 		 */
 		public var sourceEvent:String;
 		
-		private var target:IEventDispatcher;
-		private var targetName:String;
+		/**
+		 * The member of <code>host</code> that dispatchs hot key event when the <code>host</code>
+		 * received keyboard event from user interaction
+		 */
+		public var dispatcher:IEventDispatcher;
 		
-		private static const HOT_KEY_DISPATCHER:String = "hostkeydispatcher";
+		/**
+		 * The member name of <code>dispatcher</code>.
+		 */
+		public var dispatcherName:String;
+		
+		/**
+		 * Whether <code>dispatcher</code> is a member of <code>host</code> that has [Bindable] metadata 
+		 */		
+		protected var isBindable:Boolean;
+		
+		/**
+		 * Whether <code>dispatcher</code> is a member of <code>host</code> that has [SkinPart] metadata 
+		 */
+		protected var isSkinPart:Boolean;
+		
+		/**
+		 * The metadata name for [HotKeyDispatcher]
+		 */
+		private static const HOT_KEY_DISPATCHER:String = "hotkeydispatcher";
 		
 		public static function attachHost(host:IEventDispatcher):void
 		{
-			var type:Type = Type.forInstance(host);
+			var medaArr:Array = ReflectionUtil.getAllMembersMetadata(host, HOT_KEY_DISPATCHER, 
+				function(m:AbstractMember, metaMember:Object):void
+				{
+					for each(var meta:Metadata in m.metadata)
+					{
+						if(meta.name.toLowerCase() == Injector.SKIN_PART)
+							metaMember.isSkinPart = true;
+						else if(meta.name.toLowerCase() == Injector.BINDABLE)
+							metaMember.isBindable = true;
+					}
+				});
 			
-			var medaArr:Array = ReflectionUtil.getAllMembersMetadata(host, HOT_KEY_DISPATCHER);
 			for each (var metaMember:Object in medaArr)
 			{
 				var hotKey:HotKey = new HotKey(host, metaMember);
+				
 				hotKey.attach();
 			}			
 		}
@@ -109,32 +143,59 @@ package net.fproject.gui.component
 		protected function attach():void
 		{
 			host.addEventListener(sourceEvent, onHotKeyEvent);
-			target = host[targetName];
-			host.addEventListener(SkinPartEvent.PART_ADDED, onHostPartAdded);
+			dispatcher = host[dispatcherName];
+			if(this.isSkinPart)
+			{
+				host.addEventListener(SkinPartEvent.PART_ADDED, onHostPartAdded);
+			}
+			else if(this.isBindable)
+			{
+				BindingUtils.bindSetter(onDispatcherSet, host, dispatcherName);
+			}
 		}
 		
 		protected function onHostPartAdded(e:SkinPartEvent):void
 		{
-			if(e.partName == this.targetName)
-				target = e.instance as IEventDispatcher;
+			if(e.partName == this.dispatcherName)
+				dispatcher = e.instance as IEventDispatcher;
 		}
+		
+		protected function onDispatcherSet(v:Object):void
+		{
+			dispatcher = v as IEventDispatcher;
+		}
+		
+		private var eventInfo:Object;
 		
 		protected function onHotKeyEvent(e:Event):void
 		{
 			if(checkEvent(e))
 			{
-				if (!StringUtil.isBlank(event))
+				if(eventInfo == null)
 				{
-					var eventClassName:String = event.substring(0, event.lastIndexOf("."));
-					if(ApplicationDomain.currentDomain.hasDefinition(eventClassName))
+					if (!StringUtil.isBlank(event))
 					{
-						var eventClass:Class = ApplicationDomain.currentDomain.getDefinition(eventClassName) as Class;
-						var evtType:String = eventClass[event.substring(1 + event.lastIndexOf("."))];
-						var evt:Event = new eventClass(evtType);
-						
-						target.dispatchEvent(evt);
+						var lastDotPos:int = event.lastIndexOf(".");
+						if(lastDotPos > 0 && lastDotPos < event.length - 1)
+						{
+							var eventClassName:String = event.substring(0, lastDotPos);
+							if(ApplicationDomain.currentDomain.hasDefinition(eventClassName))
+							{
+								eventInfo = {eventClass:ApplicationDomain.currentDomain.getDefinition(eventClassName) as Class};
+								eventInfo.eventType = eventClass[event.substring(lastDotPos + 1)];
+							}
+						}
 					}
 				}
+				
+				if(eventInfo != null)
+				{
+					var eventClass:Class = eventInfo.eventClass;
+					var evtType:String = eventInfo.eventType;
+					var evt:Event = new eventClass(evtType);
+					dispatcher.dispatchEvent(evt);
+				}
+				
 				else handler(e);
 			}
 		}
@@ -154,7 +215,12 @@ package net.fproject.gui.component
 		public function HotKey(host:IEventDispatcher, metaMember:Object)
 		{
 			this.host = host;
-			this.targetName = metaMember.name;
+			this.dispatcherName = metaMember.name;
+			
+			if(metaMember.hasOwnProperty("isBindable"))
+				this.isBindable = metaMember.isBindable;
+			if(metaMember.hasOwnProperty("isSkinPart"))
+				this.isSkinPart = metaMember.isSkinPart;
 			
 			var firstMeta:Metadata = metaMember.metadata[0];
 			if(!firstMeta.hasArgumentWithKey("keyCode"))
