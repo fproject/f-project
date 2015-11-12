@@ -303,6 +303,50 @@ package net.fproject.active
 			assertEquals(null, TestUser(event.result).password);	
 		}
 		
+		[Test (async, description="Normal case",order=2)]
+		/**
+		 * Test Case Type: Normal<br/>
+		 * <br/>
+		 * INPUT VALUES:<br/>
+		 * <br/>
+		 * OUTPUT EXPECTED:<br/>
+		 * ---- expectations ----
+		 *
+		 */
+		public function testCase302():void
+		{
+			var responder:CallResponder = userDepartmentAssignmentService.remove({userId:1, departmentId:1});
+			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase302_removed, testCase302_removeFailed), 2000));
+		}
+		
+		public function testCase302_removeFailed(data:Object, passThroughData:Object ):void 
+		{
+			testCase302_removed();
+		}
+		
+		/**
+		 * Test Case Type: Normal<br/>
+		 * <br/>
+		 * INPUT VALUES:<br/>
+		 * <br/>
+		 * OUTPUT EXPECTED:<br/>
+		 * ---- expectations ----
+		 *
+		 */
+		public function testCase302_removed():void
+		{
+			var responder:CallResponder = userDepartmentAssignmentService.save(
+				{_isInserting:true,userId:1, departmentId:1});			
+			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase302_added, onFault), 2000));
+		}
+		
+		public function testCase302_added(event:ResultEvent, passThroughData:Object):void
+		{
+			assertNotNull(event.result is Object);
+			assertEquals(1, event.result.departmentId);
+			assertEquals(1, event.result.userId);
+		}
+		
 		[Test (async, description="Normal case")]
 		/**
 		 * Test Case Type: Normal<br/>
@@ -386,6 +430,35 @@ package net.fproject.active
 		}
 		
 		public function testCase500_checkResult(event:ResultEvent, passThroughData:Object):void
+		{
+			assertNull(event.result);			
+		}
+		
+		[Test (async, description="Normal case",order=2)]
+		/**
+		 * Test Case Type: Normal<br/>
+		 * <br/>
+		 * INPUT VALUES:<br/>
+		 * <br/>
+		 * OUTPUT EXPECTED:<br/>
+		 * ---- expectations ----
+		 *
+		 */
+		public function testCase501():void
+		{
+			var id:String = UIDUtil.createUID();
+			var responder:CallResponder = userDepartmentAssignmentService.save(
+				{_isInserting:true,userId:1, departmentId:1});			
+			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase501_added, onFault), 2000));
+		}
+		
+		public function testCase501_added(event:ResultEvent, passThroughData:Object):void
+		{
+			var responder:CallResponder = userDepartmentAssignmentService.remove(event.result);
+			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase501_checkResult, onFault), 2000));	
+		}
+		
+		public function testCase501_checkResult(event:ResultEvent, passThroughData:Object):void
 		{
 			assertNull(event.result);			
 		}
