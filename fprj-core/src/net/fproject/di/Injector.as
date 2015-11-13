@@ -461,7 +461,8 @@ package net.fproject.di
 		 */
 		fproject_internal function handleHotKey(container:Object):void
 		{
-			HotKeyHandler.attachHost(container);
+			if(container is IEventDispatcher)
+				HotKeyHandler.attachHost(IEventDispatcher(container));
 		}
 		
 		/**
