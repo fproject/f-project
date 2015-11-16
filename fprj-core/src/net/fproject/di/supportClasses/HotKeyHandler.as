@@ -182,7 +182,7 @@ package net.fproject.di.supportClasses
 							if(ApplicationDomain.currentDomain.hasDefinition(eventClassName))
 							{
 								eventInfo = {eventClass:ApplicationDomain.currentDomain.getDefinition(eventClassName) as Class};
-								eventInfo.eventType = eventClass[event.substring(lastDotPos + 1)];
+								eventInfo.eventType = eventInfo.eventClass[event.substring(lastDotPos + 1)];
 							}
 						}
 					}
