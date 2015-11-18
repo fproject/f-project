@@ -425,6 +425,11 @@ package net.fproject.serialize
 						}						
 					}
 				}
+				else
+				{
+					c = returningToClass[returning];
+				}
+				
 				if(c != null)
 				{
 					returningToClass[returning] = c;
