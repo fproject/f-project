@@ -73,10 +73,20 @@ package net.fproject.active
 	 */
 	public class ActiveDataProvider extends AdvancedArrayCollection implements IActiveDataProvider
 	{
-		private var handler:ActiveDataProviderHandler;
+		private var _handler:ActiveDataProviderHandler;
 		
-		private var _criteria:DbCriteria;
+		/**
+		 * 
+		 * The handler instance.
+		 * 
+		 */
+		public function get handler():ActiveDataProviderHandler
+		{
+			return _handler;
+		}
 
+		private var _criteria:DbCriteria;
+		
 		/**
 		 * 
 		 * @inheritDoc
@@ -274,7 +284,7 @@ package net.fproject.active
 			super();
 			_service = service;
 			
-			handler = new ActiveDataProviderHandler(this);
+			_handler = new ActiveDataProviderHandler(this);
 			
 			_criteria = handler.parseCriteria(criteria);			
 		}
