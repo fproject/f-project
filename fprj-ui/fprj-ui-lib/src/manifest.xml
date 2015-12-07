@@ -15,4 +15,11 @@
 	<component id="HSeparator" class="net.fproject.ui.separators.HSeparator"/>
 	<component id="VSeparator" class="net.fproject.ui.separators.VSeparator"/>
 	<component id="SeparatorBase" class="net.fproject.ui.separators.SeparatorBase"/>	
+	
+	<component id="AdvancedRect" class="net.fproject.themes.shapes.AdvancedRect"/>
+	<component id="CancelIcon" class="net.fproject.themes.shapes.CancelIcon"/>
+	<component id="DeleteIconPaths" class="net.fproject.themes.shapes.DeleteIconPaths"/>
+	<component id="EditIcon" class="net.fproject.themes.shapes.EditIcon"/>
+	<component id="TickCircle" class="net.fproject.themes.shapes.TickCircle"/>
+	<component id="Triangle" class="net.fproject.themes.shapes.Triangle"/>
 </componentPackage>
