@@ -33,7 +33,7 @@ We will release first stable version soon.
   * FlexUnit Auto Wire: Automatically generate FlexUnit test scripts based on analysing the AS3 source code's methods.
   * Flex Code Analyser: Flex source Line of Code counter, Source code statistics...
   * [Under Development] Flex Code Auto Wire: Automatically generate AS3 model and service classes from server code written in PHP, Java, Scala
-* **fproject/pinta**: A fork from [dunamis/pinta](https://github.com/dunamis/pinta) with many new features for testing AMF Server and RESTful Webservices
+* **fprj-tester**: A tool based on from [dunamis/pinta](https://github.com/dunamis/pinta) with many new features for testing AMF Server and RESTful Webservices. See [fproject/fprj-tester](https://github.com/fproject/fprj-tester)
 
 ## Installation
 
