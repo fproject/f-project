@@ -8,6 +8,7 @@ package net.fproject.themes.shapes
 	{
 		private var _paths:Array;
 
+		[Bindable("_none_")]
 		public function get paths():Array
 		{
 			return _paths;
