@@ -2,9 +2,9 @@
 <flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
   <includeClasses/>
   <includeResources>
-    <resourceEntry destPath="manifest.xml" sourcePath="manifest.xml"/>
-    <resourceEntry destPath="design.xml" sourcePath="design.xml"/>
     <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>
+    <resourceEntry destPath="design.xml" sourcePath="design.xml"/>
+    <resourceEntry destPath="manifest.xml" sourcePath="manifest.xml"/>
   </includeResources>
   <namespaceManifests>
     <namespaceManifestEntry manifest="manifest.xml" namespace="http://f-project.net/xmlns/fprj-ui/2015"/>

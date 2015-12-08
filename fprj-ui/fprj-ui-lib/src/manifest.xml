@@ -22,4 +22,8 @@
 	<component id="EditIcon" class="net.fproject.themes.shapes.EditIcon"/>
 	<component id="TickCircle" class="net.fproject.themes.shapes.TickCircle"/>
 	<component id="Triangle" class="net.fproject.themes.shapes.Triangle"/>
+	
+	<component id="BorderAndGradientFillSkin" class="net.fproject.themes.BorderAndGradientFillSkin"/>
+	<component id="SimpleButtonSkin" class="net.fproject.themes.SimpleButtonSkin"/>
+	<component id="ButtonSkin" class="net.fproject.themes.chrome.skins.ButtonSkin"/>
 </componentPackage>
