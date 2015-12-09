@@ -99,7 +99,7 @@ package net.fproject.utils
 				this._calendar = InstanceFactory.getInstance(GregorianCalendar) as GregorianCalendar;
 			}
 			return this._calendar;
-		} // end function
+		}
 
 		/**
 		 *
@@ -109,7 +109,7 @@ package net.fproject.utils
 		public function set gregorianCalendar(value:GregorianCalendar):void
 		{
 			this._calendar = value;
-		} // end function
+		}
 
 		/**
 		 *
@@ -125,7 +125,7 @@ package net.fproject.utils
 				return this._explicitDayNamesNarrow;
 			}
 			return this._defaultDayNamesNarrow;
-		} // end function
+		}
 
 		/**
 		 *
@@ -135,7 +135,7 @@ package net.fproject.utils
 		public function set dayNamesNarrow(value:Array):void
 		{
 			this._explicitDayNamesNarrow = value;
-		} // end function
+		}
 
 		/**
 		 *
@@ -152,7 +152,7 @@ package net.fproject.utils
 				return this._explicitMonthNamesNarrow;
 			}
 			return this._defaultMonthNamesNarrow;
-		} // end function
+		}
 
 		/**
 		 *
@@ -162,7 +162,7 @@ package net.fproject.utils
 		public function set monthNamesNarrow(value:Array):void
 		{
 			this._explicitMonthNamesNarrow = value;
-		} // end function
+		}
 
 		/**
 		 *
@@ -366,7 +366,7 @@ package net.fproject.utils
 				return this._explicitFormatString;
 			}
 			return this._defaultFormatString;
-		} // end function
+		}
 
 		/**
 		 *
@@ -376,7 +376,7 @@ package net.fproject.utils
 		public function set formatString(value:String):void
 		{
 			this._explicitFormatString = value;
-		} // end function
+		}
 
 		/**
 		 *
@@ -398,7 +398,7 @@ package net.fproject.utils
 				this._referenceDate = GregorianCalendar.fproject_internal::getDefaultReferenceDate();
 			}
 			return this._referenceDate;
-		} // end function
+		}
 
 		/**
 		 *
@@ -408,7 +408,7 @@ package net.fproject.utils
 		public function set referenceDate(value:Date):void
 		{
 			this._referenceDate = value;
-		} // end function
+		}
 
 		/**
 		 *
@@ -437,7 +437,7 @@ package net.fproject.utils
 		public function get startOfYear():Date
 		{
 			return this._startOfYear;
-		} // end function
+		}
 
 		/**
 		 *
@@ -447,7 +447,7 @@ package net.fproject.utils
 		public function set startOfYear(value:Date):void
 		{
 			this._startOfYear = value;
-		} // end function
+		}
 
 		/**
 		 *
@@ -581,7 +581,7 @@ package net.fproject.utils
 				return this.formatWithInvalidFormat();
 			}
 			return this.doFormat(value as Date);
-		} // end function
+		}
 
 		/**
 		 * Returns the date formatted using the <code>formatString</code>
@@ -1429,7 +1429,7 @@ package net.fproject.utils
 			}
 
 			return formattingResult;
-		} // end function
+		}
 
 		internal function padNumberWithLeadingZeros(value:Number,
 			paddedLength:Number, usePositiveSign:Boolean = false):String
@@ -1450,19 +1450,19 @@ package net.fproject.utils
 				return this._positiveSign + paddingValue;
 			}
 			return paddingValue;
-		} // end function
+		}
 
 		private function formatWithInvalidFormat():String
 		{
 			error = defaultInvalidFormatError;
 			return "";
-		} // end function
+		}
 
 		private function formatWithInvalidValue():String
 		{
 			error = defaultInvalidValueError;
 			return "";
-		} // end function
+		}
 
 		override protected function resourcesChanged():void
 		{
@@ -1498,7 +1498,7 @@ package net.fproject.utils
 				this.getStringArrayPropertyValue(ResourceUtil.FPRJ_CORE_BUNDLE,
 				"month.names.narrow",
 				["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"]);
-		} // end function
+		}
 
 		private function getPropertyValue(bundleName:String,
 			propertyName:String, defaultValue:String):String
@@ -1510,7 +1510,7 @@ package net.fproject.utils
 				return value;
 			}
 			return defaultValue;
-		} // end function
+		}
 
 		private function getStringArrayPropertyValue(bundleName:String,
 			propertyName:String, defaultValue:Array):Array
@@ -1522,7 +1522,7 @@ package net.fproject.utils
 				return value;
 			}
 			return defaultValue;
-		} // end function
+		}
 
 		/**
 		 *  Converts a date that is formatted as a String into a Date object.
