@@ -283,7 +283,7 @@ package net.fproject.ui.datetime
 			_selectedDate = md.date;
 			if(!md.isInCurrentMonth)
 			{
-				if(_selectedDate.month < dayList.month)
+				if(_selectedDate.fullYear < dayList.year || (_selectedDate.month < dayList.month && _selectedDate.fullYear == dayList.year))
 					callLater(goPrevMonth);
 				else
 					callLater(goNextMonth);
