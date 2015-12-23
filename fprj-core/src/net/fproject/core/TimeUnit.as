@@ -111,7 +111,7 @@ package net.fproject.core
 		{
 			this._name = name;
 			this._milliseconds = milliseconds;
-		} // end function
+		}
 
 		/**
 		 * The duration of a time unit in milliseconds. This value is at best
@@ -121,7 +121,7 @@ package net.fproject.core
 		public function get milliseconds():Number
 		{
 			return this._milliseconds;
-		} // end function
+		}
 
 		/**
 		 * The name of the time unit.
@@ -130,7 +130,7 @@ package net.fproject.core
 		public function get name():String
 		{
 			return this._name;
-		} // end function
+		}
 
 		/**
 		 * Returns a string representing this time unit.
@@ -140,7 +140,7 @@ package net.fproject.core
 		public function toString():String
 		{
 			return this._name;
-		} // end function
+		}
 
 		/**
 		 *
