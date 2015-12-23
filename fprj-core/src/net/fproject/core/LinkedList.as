@@ -37,7 +37,7 @@ package net.fproject.core
 		public function get count():uint
 		{
 			return this._count;
-		} // end function
+		}
 
 		
 		/**
@@ -48,7 +48,7 @@ package net.fproject.core
 		public function get first():LinkedListNode
 		{
 			return this._first;
-		} // end function
+		}
 
 		
 		/**
@@ -59,7 +59,7 @@ package net.fproject.core
 		public function get last():LinkedListNode
 		{
 			return this._last;
-		} // end function
+		}
 
 		/**
 		 * 
@@ -71,7 +71,7 @@ package net.fproject.core
 			var newNode:LinkedListNode=new LinkedListNode(value);
 			this.appendNode(newNode);
 			return newNode;
-		} // end function
+		}
 
 		/**
 		 * 
@@ -92,7 +92,7 @@ package net.fproject.core
 			this._last=node;
 
 			this._count++;
-		} // end function
+		}
 
 		/**
 		 * 
@@ -126,6 +126,6 @@ package net.fproject.core
 			node.next=null;
 			node.previous=null;
 			this._count--;
-		} // end function
+		}
 	}
 }
