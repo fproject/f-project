@@ -528,5 +528,10 @@ package net.fproject.event
 		 *  
 		 */
 		public static const MODULE_LOADED:String = "moduleLoaded";
+		
+		override public function clone():Event
+		{
+			return new AppContextEvent(this.type, this.data);
+		}
 	}
 }
