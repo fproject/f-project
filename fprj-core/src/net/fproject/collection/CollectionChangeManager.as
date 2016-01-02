@@ -24,7 +24,7 @@ package net.fproject.collection
 	import mx.events.CollectionEvent;
 	import mx.events.CollectionEventKind;
 	import mx.events.PropertyChangeEvent;
-
+	
 	/**
 	 * 
 	 * The <code>CollectionChangeManager</code> class manages the set of editing items on a 
@@ -243,11 +243,7 @@ package net.fproject.collection
 							delItems.push(oldItem);
 						
 						if (items.indexOf(newItem) == -1)
-						{
-							if(newItem != null && newItem.hasOwnProperty('_isInserting'))
-								newItem._isInserting = true;
 							items.push(newItem);
-						}
 					}
 					else					
 					{
@@ -263,16 +259,10 @@ package net.fproject.collection
 			for each (item in ce.items)
 			{
 				if(item is PropertyChangeEvent)
-				{
 					item = item.source;
-				}
 				
 				if (items.indexOf(item) == -1)
-				{
-					if(item != null && item.hasOwnProperty('_isInserting') && inserting)
-						item._isInserting = true;
 					items.push(item);
-				}
 			}
 			
 			_collectionToChangeItems[ce.currentTarget][propName] = items;			
