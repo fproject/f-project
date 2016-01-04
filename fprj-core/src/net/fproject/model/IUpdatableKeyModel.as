@@ -3,13 +3,6 @@ package net.fproject.model
 	public interface IUpdatableKeyModel
 	{
 		/**
-		 * 
-		 * The composite key 
-		 * 
-		 */
-		function get key():Object;
-		
-		/**
 		 * Returns the old primary key value.
 		 * This refers to the primary key value that is populated from the active record
 		 * after executing a find method (e.g. find(), findOne()).
