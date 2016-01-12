@@ -16,10 +16,11 @@
 //
 ///////////////////////////////////////////////////////////////////////////////
 package net.fproject.calendar
-{    
+{
 	import net.fproject.core.TimeRange;
 	import net.fproject.core.TimeUnit;
 	
+	[RemoteClass(alias="net.fproject.calendar.WorkShift")]
 	/**
 	 * A work shift is a working interval of time in a day on a <code>WorkCalendar</code>.
 	 * 

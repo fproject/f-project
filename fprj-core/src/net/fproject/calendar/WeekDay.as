@@ -16,7 +16,8 @@
 //
 ///////////////////////////////////////////////////////////////////////////////
 package net.fproject.calendar
-{    
+{
+	[RemoteClass(alias="net.fproject.calendar.WeekDay")]
 	/**
 	 * Represents a working or nonworking day of week in a <code>WorkCalendar</code>.
 	 * 
