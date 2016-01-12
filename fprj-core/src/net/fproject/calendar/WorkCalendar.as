@@ -26,6 +26,7 @@ package net.fproject.calendar
 	import net.fproject.core.Time;
 	import net.fproject.core.TimeRange;
 	import net.fproject.core.TimeUnit;
+	import net.fproject.di.InstanceFactory;
 	import net.fproject.model.LocalUID;
 	import net.fproject.utils.DataUtil;
 	import net.fproject.utils.DateTimeUtil;
@@ -54,6 +55,7 @@ package net.fproject.calendar
 	[Event(name="initialize", type="mx.events.FlexEvent")]
 	
 	[ResourceBundle("fprjutils")]
+	[RemoteClass(alias="net.fproject.calendar.WorkCalendar")]
 	/**
 	 * 	Represents a calendar that defines working and nonworking periods as
 	 *  well as working times for each day.
@@ -147,6 +149,8 @@ package net.fproject.calendar
 		//20130429 Added
 		private var _workBetweenCache:LruCache;
 		
+		private static var _standard:WorkCalendar;
+		
 		/**
 		 * <p>The standard calendar.
 		 * </p><p>This calendar is a base calendar that defines the week-end as a non-working period
@@ -156,7 +160,14 @@ package net.fproject.calendar
 		 * @see #TWENTY_FOUR_HOURS
 		 * @see #NIGHT_SHIFT
 		 */
-		public static const STANDARD:WorkCalendar = createStandardCalendar();
+		public static function get STANDARD():WorkCalendar
+		{
+			if(_standard == null)
+				_standard = new WorkCalendar(CALRENDAR_NAME_STANDARD);
+			return _standard;
+		}
+		
+		private static var _24Hours:WorkCalendar;
 		
 		/**
 		 * <p>The 24 hours work calendar.
@@ -165,7 +176,24 @@ package net.fproject.calendar
 		 * @see #STANDARD
 		 * @see #NIGHT_SHIFT
 		 * */
-		public static const TWENTY_FOUR_HOURS:WorkCalendar = create24HoursCalendar();
+		public static function get TWENTY_FOUR_HOURS():WorkCalendar
+		{
+			if(_24Hours == null)
+			{
+				_24Hours = new WorkCalendar(CALRENDAR_NAME_24HOURS);
+				var workingTimes:Vector.<WorkShift> = new Vector.<WorkShift>(1);
+				workingTimes[0] = WorkShift.create(0, DateTimeUtil.getTime(24));
+				
+				for (var i:int = 0; i < 7; i++)
+				{
+					_24Hours.setWeekDayWorkShifts(i, workingTimes);
+				}
+			}
+			
+			return _24Hours;
+		}
+		
+		private static var _nightShift:WorkCalendar;
 		
 		/**
 		 * <p>The night shift work calendar.
@@ -182,7 +210,32 @@ package net.fproject.calendar
 		 * @see #STANDARD
 		 * @see #TWENTY_FOUR_HOURS
 		 */
-		public static const NIGHT_SHIFT:WorkCalendar = createNightShiftCalendar();
+		public static function get NIGHT_SHIFT():WorkCalendar
+		{
+			if(_nightShift == null)
+			{
+				_nightShift = new WorkCalendar(CALRENDAR_NAME_NIGHT_SHIFT);
+				
+				_nightShift.setWeekDayToNonWorking(WeekDay.SUNDAY);
+				
+				var wts:Vector.<WorkShift> = new Vector.<WorkShift>(3);
+				wts[0] = WorkShift.create(DateTimeUtil.getTime(0), DateTimeUtil.getTime(3));
+				wts[1] = WorkShift.create(DateTimeUtil.getTime(4), DateTimeUtil.getTime(8));
+				wts[2] = WorkShift.create(DateTimeUtil.getTime(23), DateTimeUtil.getTime(24));
+				_nightShift.setWeekDayWorkShifts(WeekDay.MONDAY, wts);
+				_nightShift.setWeekDayWorkShifts(WeekDay.TUESDAY, wts);
+				_nightShift.setWeekDayWorkShifts(WeekDay.WEDNESDAY, wts);
+				_nightShift.setWeekDayWorkShifts(WeekDay.THURSDAY, wts);
+				_nightShift.setWeekDayWorkShifts(WeekDay.FRIDAY, wts);
+				
+				wts = new Vector.<WorkShift>(2);
+				wts[0] = WorkShift.create(DateTimeUtil.getTime(0), DateTimeUtil.getTime(3));
+				wts[1] = WorkShift.create(DateTimeUtil.getTime(4), DateTimeUtil.getTime(8));
+				_nightShift.setWeekDayWorkShifts(WeekDay.SATURDAY, wts);
+			}
+			
+			return _nightShift;
+		}
 		
 		//Private variables and constants
 		private static var _resourceManager:IResourceManager;
@@ -205,7 +258,7 @@ package net.fproject.calendar
 		public function WorkCalendar(name:String = CALRENDAR_NAME_DEFAULT,
 									 baseCalendar:WorkCalendar = null)
 		{
-			this._gregorianCalendar = new GregorianCalendar();
+			this._gregorianCalendar = InstanceFactory.getInstance(GregorianCalendar) as GregorianCalendar;;
 			this._name = name;
 			this._periods = new Vector.<PeriodInternal>();
 			this._weekDays = new Vector.<WeekDayInternal>(7);
@@ -233,7 +286,7 @@ package net.fproject.calendar
 		{
 			if (!this._gregorianCalendar)
 			{
-				this._gregorianCalendar = new GregorianCalendar();
+				this._gregorianCalendar = InstanceFactory.getInstance(GregorianCalendar) as GregorianCalendar;
 			}
 			return this._gregorianCalendar;
 		}
@@ -580,7 +633,7 @@ package net.fproject.calendar
 		 */
 		public function get isPredefinedCalendar():Boolean
 		{
-			return NIGHT_SHIFT == this || STANDARD == this || TWENTY_FOUR_HOURS == this;
+			return _nightShift == this || _standard == this || _24Hours == this;
 		}
 		
 		
@@ -2653,64 +2706,6 @@ package net.fproject.calendar
 				}
 			}
 			return _defaultNonWorkingDays;
-		}
-		
-		/**
-		 *
-		 * @private
-		 *
-		 */
-		private static function createStandardCalendar():WorkCalendar
-		{
-			return new WorkCalendar(CALRENDAR_NAME_STANDARD);
-		}
-		
-		/**
-		 *
-		 * @private
-		 *
-		 */
-		private static function create24HoursCalendar():WorkCalendar
-		{
-			var workCalendar:WorkCalendar = new WorkCalendar(CALRENDAR_NAME_24HOURS);
-			var workingTimes:Vector.<WorkShift> = new Vector.<WorkShift>(1);
-			workingTimes[0] = WorkShift.create(0, DateTimeUtil.getTime(24));
-			
-			for (var i:int = 0; i < 7; i++)
-			{
-				workCalendar.setWeekDayWorkShifts(i, workingTimes);
-			}
-			return workCalendar;
-		}
-		
-		/**
-		 *
-		 * @private
-		 *
-		 */
-		private static function createNightShiftCalendar():WorkCalendar
-		{
-			
-			var workCalendar:WorkCalendar = new WorkCalendar(CALRENDAR_NAME_NIGHT_SHIFT);
-			
-			workCalendar.setWeekDayToNonWorking(WeekDay.SUNDAY);
-			
-			var wts:Vector.<WorkShift> = new Vector.<WorkShift>(3);
-			wts[0] = WorkShift.create(DateTimeUtil.getTime(0), DateTimeUtil.getTime(3));
-			wts[1] = WorkShift.create(DateTimeUtil.getTime(4), DateTimeUtil.getTime(8));
-			wts[2] = WorkShift.create(DateTimeUtil.getTime(23), DateTimeUtil.getTime(24));
-			workCalendar.setWeekDayWorkShifts(WeekDay.MONDAY, wts);
-			workCalendar.setWeekDayWorkShifts(WeekDay.TUESDAY, wts);
-			workCalendar.setWeekDayWorkShifts(WeekDay.WEDNESDAY, wts);
-			workCalendar.setWeekDayWorkShifts(WeekDay.THURSDAY, wts);
-			workCalendar.setWeekDayWorkShifts(WeekDay.FRIDAY, wts);
-			
-			wts = new Vector.<WorkShift>(2);
-			wts[0] = WorkShift.create(DateTimeUtil.getTime(0), DateTimeUtil.getTime(3));
-			wts[1] = WorkShift.create(DateTimeUtil.getTime(4), DateTimeUtil.getTime(8));
-			workCalendar.setWeekDayWorkShifts(WeekDay.SATURDAY, wts);
-			
-			return workCalendar;
 		}
 		
 		/**
