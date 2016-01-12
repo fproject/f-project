@@ -24,6 +24,7 @@ package net.fproject.calendar
 	import mx.events.PropertyChangeEvent;
 	
 	import net.fproject.fproject_internal;
+	import net.fproject.di.InstanceFactory;
 	import net.fproject.utils.DateTimeUtil;
 	import net.fproject.utils.GregorianCalendar;
 	import net.fproject.utils.LoggingUtil;
@@ -884,7 +885,7 @@ package net.fproject.calendar
 		{
 			var occurrences:Number;
 			if(gregorianCalendar == null)
-				gregorianCalendar = new GregorianCalendar();
+				gregorianCalendar = InstanceFactory.getInstance(GregorianCalendar) as GregorianCalendar;
 			switch(_type)
 			{
 				case DAILY:					
