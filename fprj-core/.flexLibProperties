@@ -85,6 +85,8 @@
     <classEntry path="net.fproject.utils.IIterator"/>
     <classEntry path="net.fproject.gui.component.IDataProviderOwner"/>
     <classEntry path="net.fproject.di.supportClasses.HotKeyHandler"/>
+    <classEntry path="net.fproject.model.ISerializableModel"/>
+    <classEntry path="net.fproject.model.AbstractModel"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="manifest.xml" sourcePath="manifest.xml"/>
