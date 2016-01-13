@@ -27,7 +27,7 @@ package net.fproject.model
 	/**
 	 * A hierarchical object, that is base class for all hierarchical model classes
 	 */
-	public class HierarchicalItem extends LocalUID
+	public class HierarchicalItem extends AbstractModel implements ISerializableModel
 	{
 		/**
 		 * Constructor 

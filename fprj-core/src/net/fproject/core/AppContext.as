@@ -26,6 +26,7 @@ package net.fproject.core
 	import net.fproject.di.ImplementationConfig;
 	import net.fproject.di.InstanceFactory;
 	import net.fproject.event.AppContextEvent;
+	import net.fproject.model.ISerializableModel;
 	import net.fproject.model.User;
 	import net.fproject.rpc.RemoteObjectFactory;
 	import net.fproject.service.IAppContextService;
@@ -249,7 +250,9 @@ package net.fproject.core
 		 */
 		public function save():void
 		{
-			appContextService.save(_data,
+			var contextData:Object = _data is ISerializableModel ? ISerializableModel(_data).serializableClone() : _data;
+				
+			appContextService.save(contextData,
 				function(b:Boolean):void
 				{
 					if(hasEventListener(AppContextEvent.SAVED))

@@ -24,7 +24,7 @@ package net.fproject.model
 	/**
 	 * Represents an user.
 	 */
-	public class User extends LocalUID
+	public class User extends AbstractModel
 	{
 		private var _id:String;
 
@@ -97,6 +97,16 @@ package net.fproject.model
 				_token = value;
 				AppContext.instance.dispatchEvent(new AppContextEvent(AppContextEvent.ACCESS_TOKEN_CHANGE, value));
 			}			
+		}
+		
+		public function clone(target:User=null):User
+		{
+			if(target == null)
+				target = new User;
+			target._id = this._id;
+			target._username = this._username;
+			target._token = this._token;
+			return target;
 		}
 	}
 }
