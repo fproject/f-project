@@ -23,6 +23,7 @@ package net.fproject.calendar
 	
 	use namespace fproject_internal;
 	
+	[RemoteClass(alias="net.fproject.calendar.Period")]
 	/**
 	 * Represents a working or a nonworking period in a <code>WorkCalendar</code>.
 	 * 
