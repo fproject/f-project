@@ -9,15 +9,12 @@
 			   minWidth="955" minHeight="600" creationComplete="onCreationComplete()">
 	<fx:Script>
 		<![CDATA[
-			import net.fproject.active.ActiveService_testCases;
-			
-			import org.flexunit.runner.Request;
+			import net.fproject.calendar.WorkCalendar_WorkCalendar;
 			
 			public function currentRunTestSuite():Array
 			{
 				var testsToRun:Array = new Array();
-				
-				testsToRun.push(Request.methods(net.fproject.active.ActiveService_testCases,["testCase302"]));
+				testsToRun.push(net.fproject.calendar.WorkCalendar_WorkCalendar);
 				return testsToRun;
 			}
 			
