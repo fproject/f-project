@@ -180,14 +180,16 @@ package net.fproject.calendar
 		{
 			if(_24Hours == null)
 			{
-				_24Hours = new WorkCalendar(CALRENDAR_NAME_24HOURS);
+				var cal:WorkCalendar = new WorkCalendar(CALRENDAR_NAME_24HOURS);
 				var workingTimes:Vector.<WorkShift> = new Vector.<WorkShift>(1);
 				workingTimes[0] = WorkShift.create(0, DateTimeUtil.getTime(24));
 				
 				for (var i:int = 0; i < 7; i++)
 				{
-					_24Hours.setWeekDayWorkShifts(i, workingTimes);
+					cal.setWeekDayWorkShifts(i, workingTimes);
 				}
+				
+				_24Hours = cal;
 			}
 			
 			return _24Hours;
@@ -214,24 +216,25 @@ package net.fproject.calendar
 		{
 			if(_nightShift == null)
 			{
-				_nightShift = new WorkCalendar(CALRENDAR_NAME_NIGHT_SHIFT);
+				var cal:WorkCalendar = new WorkCalendar(CALRENDAR_NAME_NIGHT_SHIFT);
 				
-				_nightShift.setWeekDayToNonWorking(WeekDay.SUNDAY);
+				cal.setWeekDayToNonWorking(WeekDay.SUNDAY);
 				
 				var wts:Vector.<WorkShift> = new Vector.<WorkShift>(3);
 				wts[0] = WorkShift.create(DateTimeUtil.getTime(0), DateTimeUtil.getTime(3));
 				wts[1] = WorkShift.create(DateTimeUtil.getTime(4), DateTimeUtil.getTime(8));
 				wts[2] = WorkShift.create(DateTimeUtil.getTime(23), DateTimeUtil.getTime(24));
-				_nightShift.setWeekDayWorkShifts(WeekDay.MONDAY, wts);
-				_nightShift.setWeekDayWorkShifts(WeekDay.TUESDAY, wts);
-				_nightShift.setWeekDayWorkShifts(WeekDay.WEDNESDAY, wts);
-				_nightShift.setWeekDayWorkShifts(WeekDay.THURSDAY, wts);
-				_nightShift.setWeekDayWorkShifts(WeekDay.FRIDAY, wts);
+				cal.setWeekDayWorkShifts(WeekDay.MONDAY, wts);
+				cal.setWeekDayWorkShifts(WeekDay.TUESDAY, wts);
+				cal.setWeekDayWorkShifts(WeekDay.WEDNESDAY, wts);
+				cal.setWeekDayWorkShifts(WeekDay.THURSDAY, wts);
+				cal.setWeekDayWorkShifts(WeekDay.FRIDAY, wts);
 				
 				wts = new Vector.<WorkShift>(2);
 				wts[0] = WorkShift.create(DateTimeUtil.getTime(0), DateTimeUtil.getTime(3));
 				wts[1] = WorkShift.create(DateTimeUtil.getTime(4), DateTimeUtil.getTime(8));
-				_nightShift.setWeekDayWorkShifts(WeekDay.SATURDAY, wts);
+				cal.setWeekDayWorkShifts(WeekDay.SATURDAY, wts);
+				_nightShift = cal;
 			}
 			
 			return _nightShift;
