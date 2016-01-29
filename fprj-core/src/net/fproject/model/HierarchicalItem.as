@@ -35,7 +35,6 @@ package net.fproject.model
 		 */
 		public function HierarchicalItem()
 		{
-			_children = new AdvancedArrayCollection();
 		}
 		
 		//--------------------------------------------------------------------------
@@ -124,6 +123,8 @@ package net.fproject.model
 		 */
 		public function get children():ArrayCollection
 		{
+			if(_children == null)
+				_children = new AdvancedArrayCollection();
 			return _children;
 		}
 		
@@ -161,17 +162,14 @@ package net.fproject.model
 		
 		public function hasChild(child:HierarchicalItem, recursive:Boolean=false):Boolean
 		{
-			if(_children != null)
+			if(children.getItemIndex(child) != -1)
+				return true;
+			if(recursive)
 			{
-				if(_children.getItemIndex(child) != -1)
-					return true;
-				if(recursive)
+				for each(var i:HierarchicalItem in children)
 				{
-					for each(var i:HierarchicalItem in _children)
-					{
-						if(i.hasChild(child, true))
-							return true;
-					}
+					if(i.hasChild(child, true))
+						return true;
 				}
 			}
 			return false;
@@ -184,17 +182,17 @@ package net.fproject.model
 								 replaceIfExist:Boolean=true, updateParent:Boolean=false,
 								 firePropertyChange:Boolean=true):void
 		{
-			var i:int = _children.getItemIndex(element);
+			var i:int = children.getItemIndex(element);
 			if(i != -1)
 			{
-				_children.setItemAt(element, i);
+				children.setItemAt(element, i);
 			}
 			else
 			{
 				if(index == -1)
-					_children.addItem(element); 
+					children.addItem(element); 
 				else
-					_children.addItemAt(element, index)
+					children.addItemAt(element, index)
 			}
 			
 			if(updateParent && element.parent !== this)
@@ -226,14 +224,14 @@ package net.fproject.model
 			for(var i:int=0; i<list.length; i++)
 			{
 				var item:Object = list.getItemAt(i);
-				var idx:int = _children.getItemIndex(item);
+				var idx:int = children.getItemIndex(item);
 				
 				if(idx != -1)
-					_children.setItemAt(item, idx);
+					children.setItemAt(item, idx);
 				else if(index == -1)
-					_children.addItem(item); 
+					children.addItem(item); 
 				else
-					_children.addItemAt(item, index);
+					children.addItemAt(item, index);
 				
 				if(updateParent && item is HierarchicalItem)
 				{
@@ -267,7 +265,7 @@ package net.fproject.model
 			{
 				item._parent = this;
 			}
-			_children.source = source;
+			children.source = source;
 		}
 		
 		/**
@@ -275,10 +273,10 @@ package net.fproject.model
 		 */
 		public function removeChild(element:HierarchicalItem):void
 		{
-			var index:int = _children.getItemIndex(element);
+			var index:int = children.getItemIndex(element);
 			if (index == -1)
 				return;
-			_children.removeItemAt(index);
+			children.removeItemAt(index);
 			dispatchChildrenChanged();
 		}
 		
