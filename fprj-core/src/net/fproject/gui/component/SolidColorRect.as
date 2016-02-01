@@ -49,6 +49,11 @@ package net.fproject.gui.component
 			if(_styleName.substr(0,1) != ".")
 				_styleName = "." + _styleName;
 			var styleDec:CSSStyleDeclaration =StyleManager.getStyleManager(null).getStyleDeclaration(_styleName);
+			if(styleDec == null)
+			{
+				trace("Style name not found: " + _styleName);
+				return;
+			}
 			var styleValue:* = styleDec.getStyle("fillAlpha");
 			if (styleValue == undefined)
 				styleValue = 1.0;
