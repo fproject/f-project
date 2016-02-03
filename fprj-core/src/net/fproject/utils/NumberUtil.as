@@ -21,8 +21,8 @@ package net.fproject.utils
 	{
 		/**
 		 * Zero padding before a number.
-		 * @param number
-		 * @param width
+		 * @param number The number of any object converting to number.
+		 * @param width The desired length of the returned string with zero padded.
 		 * @return a string composed by the number with zero-padding before
 		 * 
 		 */
