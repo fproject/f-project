@@ -405,6 +405,9 @@ package net.fproject.serialize
 		 */
 		public function fromJSON(json:*, returning:*=undefined):Object
 		{
+			if(json == null)
+				return json;
+			
 			if(returning is String)
 			{
 				if(returning != null && returning.length > 2 && returning.substr(-2) == "[]")
