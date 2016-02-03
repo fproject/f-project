@@ -313,6 +313,7 @@ package net.fproject.calendar
 		 */
 		public var id:String;
 		
+		[Bindable("change")]
 		/**
 		 *
 		 * <p>The name of the calendar.
@@ -368,8 +369,7 @@ package net.fproject.calendar
 			if (value == this)
 			{
 				// A calendar cannot be itself's base-calendar
-				throw MessageUtil.wrongArgument(WorkCalendar, "WorkCalendar.baseCalendar",
-					"value");
+				throw MessageUtil.wrongArgument(WorkCalendar, "WorkCalendar.baseCalendar", "value");
 			}
 			
 			if (value != _baseCalendar)
