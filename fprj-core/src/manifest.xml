@@ -1,14 +1,16 @@
 <?xml version="1.0"?>
 <componentPackage>
+	<component id="AdvancedModuleLoader" class="net.fproject.gui.component.AdvancedModuleLoader"/>
+	<component id="ComponentLoader" class="net.fproject.gui.component.ComponentLoader"/>
+	<component id="HorizontalSeparator" class="net.fproject.gui.component.HorizontalSeparator"/>
+	<component id="Implementation" class="net.fproject.di.Implementation"/>
+	<component id="ImplementationConfig" class="net.fproject.di.ImplementationConfig"/>
 	<component id="Period" class="net.fproject.calendar.Period"/>
+	<component id="SolidColorRect" class="net.fproject.gui.component.SolidColorRect"/>
+	<component id="VerticalSeparator" class="net.fproject.gui.component.VerticalSeparator"/>
 	<component id="WeekDay" class="net.fproject.calendar.WeekDay"/>
 	<component id="WorkCalendar" class="net.fproject.calendar.WorkCalendar"/>
 	<component id="WorkCalendarException" class="net.fproject.calendar.WorkCalendarException"/>
 	<component id="WorkShift" class="net.fproject.calendar.WorkShift"/>
-	<component id="ImplementationConfig" class="net.fproject.di.ImplementationConfig"/>
-	<component id="Implementation" class="net.fproject.di.Implementation"/>
-	<component id="HorizontalSeparator" class="net.fproject.gui.component.HorizontalSeparator"/>
-	<component id="VerticalSeparator" class="net.fproject.gui.component.VerticalSeparator"/>
-	<component id="SolidColorRect" class="net.fproject.gui.component.SolidColorRect"/>
-	<component id="ComponentLoader" class="net.fproject.gui.component.ComponentLoader"/>
+    <component id="LineSeparatorBase" class="net.fproject.gui.component.LineSeparatorBase"/>
 </componentPackage>
