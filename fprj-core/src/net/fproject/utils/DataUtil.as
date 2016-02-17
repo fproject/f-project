@@ -564,11 +564,15 @@ package net.fproject.utils
 		 */
 		public static function equalsByUid(a:Object, b:Object):Boolean
 		{
+			if(a === b)
+				return true;
+			
 			if(a != null && a.hasOwnProperty("equals") && a["equals"] is Function)
 				return a.equals(b);
 			else if(a is IUID && b is IUID)
-				return IUID(a).uid == IUID(b).uid;	
-			return a === b;
+				return IUID(a).uid == IUID(b).uid && IUID(a).uid !== null;
+			
+			return false;
 		}
 		
 		/**
