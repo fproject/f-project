@@ -367,12 +367,13 @@ package net.fproject.utils
 		/**
 		 * Parses the specified string as a duration.
 		 * @param s the input string
+		 * @param returnUnit the unit used for return value, default is TimeUnit.DAY
 		 * @param minutesPerDay The number of working minutes per day
 		 * @param minutesPerWeek The number of working minutes per week
 		 * @param daysPerMonth The number of working days per month
 		 * @return The parsed duration in days
 		 */
-		public static function parseDuration(s:String, minutesPerDay:Number = 0, 
+		public static function parseDuration(s:String, returnUnit:TimeUnit = null, minutesPerDay:Number = 0, 
 											 minutesPerWeek:Number = 0, daysPerMonth:Number = 0) : Number
 		{
 			
@@ -471,8 +472,13 @@ package net.fproject.utils
 			if (isNaN(Number(s))) 
 				return NaN;
 			
+			var n:Number = parseFloat(s);
+			
+			if(returnUnit == null)
+				returnUnit = TimeUnit.DAY;
+			
 			// Default is days.. could be specified in model
-			return parseFloat(s);
+			return n * (returnUnit.milliseconds / (minutesPerDay * 60000));
 		}
 		
 		/**
