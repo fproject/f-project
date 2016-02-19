@@ -192,6 +192,73 @@ package net.fproject.collection
 				_collectionToChangeItems[collection].paused = false;
 		}
 		
+		private function insertItems(items:Array, collection:Object):void
+		{
+			var deletedItems:Array = _collectionToChangeItems[collection].deleteItems;
+			var insertedItems:Array = _collectionToChangeItems[collection].insertItems;
+			var deletedItemCollection:AdvancedArrayCollection = new AdvancedArrayCollection;
+			deletedItemCollection.source = deletedItems;
+			
+			for each (var item:Object in items)
+			{
+				if(item is PropertyChangeEvent)
+					item = item.source;
+				
+				var index:int = deletedItemCollection.getItemIndex(item);
+				if (index != -1)
+					deletedItemCollection.removeItemAt(index);
+				else if (insertedItems.indexOf(item) == -1)
+					insertedItems.push(item);
+					
+			}
+		}
+		
+		private function updateItems(items:Array, collection:Object):void
+		{
+			var insertedItems:Array = _collectionToChangeItems[collection].insertItems;
+			var updatedItems:Array = _collectionToChangeItems[collection].updateItems;
+			
+			for each (var item:Object in items)
+			{
+				if(item is PropertyChangeEvent)
+					item = item.source;
+				
+				if (insertedItems.indexOf(item) == -1 && updatedItems.indexOf(item) == -1)
+					updatedItems.push(item);
+			}
+		}
+		
+		private function deleteItems(items:Array, collection:Object):void
+		{
+			var deletedItems:Array = _collectionToChangeItems[collection].deleteItems;
+			var insertedItems:Array = _collectionToChangeItems[collection].insertItems;
+			var updatedItems:Array = _collectionToChangeItems[collection].updateItems;
+			
+			for each (var item:Object in items)
+			{
+				if(item is PropertyChangeEvent)
+					item = item.source;
+				
+				var indexInInsertedItems:int = insertedItems.indexOf(item); 
+				if (indexInInsertedItems != -1)
+				{
+					insertedItems.splice(indexInInsertedItems,1);
+				}
+				else
+				{
+					var indexInUpdatedItems:int = updatedItems.indexOf(item); 
+					if (indexInUpdatedItems != -1)
+					{
+						updatedItems.splice(indexInUpdatedItems,1);
+					}
+					else
+					{
+						deletedItems.push(item);
+					}
+				}
+			}
+		}
+		
 		private function collection_collectionChangeHandler(event:Event):void
 		{
 			var ce:CollectionEvent = event as CollectionEvent;
@@ -205,21 +272,17 @@ package net.fproject.collection
 			}
 			
 			var items:Array;
-			var propName:String;
 			if (ce.kind == CollectionEventKind.ADD || ce.kind == CE_KIND_ADD_ITEM)
 			{
-				items = _collectionToChangeItems[ce.currentTarget].insertItems;
-				propName = "insertItems";
+				this.insertItems(ce.items,ce.currentTarget);
 			}
 			else if (ce.kind == CollectionEventKind.UPDATE)
 			{
-				items = _collectionToChangeItems[ce.currentTarget].updateItems;
-				propName = "updateItems";
+				this.updateItems(ce.items,ce.currentTarget);
 			}
 			else if (ce.kind == CollectionEventKind.REMOVE)
 			{
-				items = _collectionToChangeItems[ce.currentTarget].deleteItems;
-				propName = "deleteItems";
+				this.deleteItems(ce.items,ce.currentTarget);
 			}
 			else if (ce.kind == CollectionEventKind.RESET ||
 				ce.kind == CollectionEventKind.REFRESH)
@@ -230,7 +293,6 @@ package net.fproject.collection
 			}
 			else if (ce.kind == CollectionEventKind.REPLACE)
 			{
-				items = _collectionToChangeItems[ce.currentTarget].insertItems;
 				var delItems:Array = _collectionToChangeItems[ce.currentTarget].deleteItems;
 				for each (var item:Object in ce.items)
 				{
@@ -239,33 +301,16 @@ package net.fproject.collection
 						var oldItem:Object = PropertyChangeEvent(item).oldValue;
 						var newItem:Object = PropertyChangeEvent(item).newValue;
 						
-						if (delItems.indexOf(oldItem) == -1)
-							delItems.push(oldItem);
-						
-						if (items.indexOf(newItem) == -1)
-							items.push(newItem);
+						this.deleteItems([oldItem], ce.currentTarget);
+						this.insertItems([newItem], ce.currentTarget);
 					}
 					else					
 					{
-						if (items.indexOf(item) == -1)
-							items.push(item);
+						this.insertItems([item],ce.currentTarget);
 					}
 				}
 				return;				
 			}
-			
-			var inserting:Boolean = propName == "insertItems";
-			
-			for each (item in ce.items)
-			{
-				if(item is PropertyChangeEvent)
-					item = item.source;
-				
-				if (items.indexOf(item) == -1)
-					items.push(item);
-			}
-			
-			_collectionToChangeItems[ce.currentTarget][propName] = items;			
 		}
 		
 		public static const CE_KIND_ADD_ITEM:String = "addItem";
