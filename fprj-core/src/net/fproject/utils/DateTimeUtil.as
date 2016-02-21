@@ -505,7 +505,8 @@ package net.fproject.utils
 		 * @param duration The duration in milliseconds
 		 * @param minutesPerDay The number of working minutes per day
 		 * @param showUnit Show the unit text or not
-		 * @param unit the TimeUnit instance to specify the output unit
+		 * @param unit the TimeUnit instance to specify the output unit.
+		 * Default is TimeUnit.STANDARD_WORKING_DAY
 		 * @return The formatted result
 		 * 
 		 */          
