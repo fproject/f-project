@@ -17,6 +17,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 package net.fproject.core
 {
+	import net.fproject.utils.ResourceUtil;
 
 	/**
 	 * Defines the time units used to measure time.<br/><br/>
@@ -46,18 +47,13 @@ package net.fproject.core
 		/**
 		 * A calendar hour.
 		 */
-		public static var CALENDAR_HOUR:TimeUnit = new TimeUnit("hour (calendar)", 60 * MINUTE.milliseconds);
+		public static var CALENDAR_HOUR:TimeUnit = new TimeUnit("calendar.hour", 60 * MINUTE.milliseconds);
 
 		/**
 		 * An hour as elapsed time.
 		 */
-		public static var HOUR:TimeUnit = new TimeUnit("hour (elapsed)", 60 * MINUTE.milliseconds);
+		public static var HOUR:TimeUnit = new TimeUnit("hour", 60 * MINUTE.milliseconds);
 
-		/**
-		 * A calendar hour.  
-		 */
-		public static var HOUR_CALENDAR:TimeUnit = new TimeUnit("hour (calendar)", 60 * MINUTE.milliseconds);
-		
 		/**
 		 * A day.
 		 */
@@ -77,15 +73,13 @@ package net.fproject.core
 		 * A quarter. The first quarter of year 2010 starts on
 		 * 2010-01-01 00:00:00.000 and ends on 2010-3-31 23:59:59.999.
 		 */
-		public static var QUARTER:TimeUnit =
-			new TimeUnit("quarter", (2 * 31 + 30) * DAY.milliseconds);
+		public static var QUARTER:TimeUnit = new TimeUnit("quarter", (2 * 31 + 30) * DAY.milliseconds);
 
 		/**
 		 * A half-year or semester. The first half of year 2010 starts on
 		 * 2010-01-01 00:00:00.000 and ends on 2010-7-31 23:59:59.999.
 		 */
-		public static var HALF_YEAR:TimeUnit =
-			new TimeUnit("half-year", (4 * 31 + 2 * 30) * DAY.milliseconds);
+		public static var HALF_YEAR:TimeUnit = new TimeUnit("half-year", (4 * 31 + 2 * 30) * DAY.milliseconds);
 
 		/**
 		 * A year. The year 2010 starts on
@@ -97,8 +91,7 @@ package net.fproject.core
 		 * A decade. The decade for the year 2010 starts on
 		 * 2010-01-01 00:00:00.000 and ends on 2019-12-31 23:59:59.999.
 		 */
-		public static var DECADE:TimeUnit =
-			new TimeUnit("decade", (8 * 366 + 2 * 365) * DAY.milliseconds);
+		public static var DECADE:TimeUnit = new TimeUnit("decade", (8 * 366 + 2 * 365) * DAY.milliseconds);
 
 		/**
 		 * <p>Initializes a new instance of the <code>TimeUnit</code> class.</p>
@@ -137,7 +130,27 @@ package net.fproject.core
 		 */
 		public function toString():String
 		{
-			return this._name;
+			return this.getLabel();
+		}
+		
+		private static var labels:Object;
+		
+		public function getLabel():String
+		{
+			if(labels == null)
+			{
+				labels = {};
+				var names:Array = [HOUR.name, DAY.name, WEEK.name, MONTH.name];
+				for each (var s:String in names)
+				{
+					labels[s] = ResourceUtil.getString("common.caption." + s);
+				}
+			}
+			
+			if(labels.hasOwnProperty(this.name))
+				return labels[this.name];
+			else
+				return this.name;
 		}
 
 		/**
