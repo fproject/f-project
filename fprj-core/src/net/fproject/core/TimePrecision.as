@@ -53,10 +53,6 @@ package net.fproject.core
 		 */
 		public static var HOUR:TimePrecision = new TimePrecision(TimeUnit.HOUR);
 		
-		/**
-		 * A calendar hour.  
-		 */
-		public static var HOUR_CALENDAR:TimePrecision = new TimePrecision(TimeUnit.HOUR_CALENDAR);
 		
 		/**
 		 * A day.
