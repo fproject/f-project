@@ -47,6 +47,7 @@ package net.fproject.core
 		 * A calendar hour.
 		 */
 		public static var CALENDAR_HOUR:TimePrecision = new TimePrecision(TimeUnit.CALENDAR_HOUR);
+		
 		/**
 		 * An hour as elapsed time.
 		 */
