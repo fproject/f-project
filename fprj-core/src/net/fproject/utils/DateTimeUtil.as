@@ -367,14 +367,37 @@ package net.fproject.utils
 		/**
 		 * Parses the specified string as a duration.
 		 * @param s the input string
-		 * @param returnUnit the unit used for return value, default is TimeUnit.DAY
+		 * @param defaultInputUnit the default unit used for input value.
+		 * If null, TimeUnit.STANDARD_WORKING_DAY will be used.
+		 * @param ouputUnit the unit used for return value, default is TimeUnit.DAY
 		 * @param minutesPerDay The number of working minutes per day
 		 * @param minutesPerWeek The number of working minutes per week
 		 * @param daysPerMonth The number of working days per month
-		 * @return The parsed duration in days
+		 * @return The parsed duration in specified units
 		 */
-		public static function parseDuration(s:String, returnUnit:TimeUnit = null, minutesPerDay:Number = 0, 
-											 minutesPerWeek:Number = 0, daysPerMonth:Number = 0) : Number
+		public static function parseDuration(s:String, defaultInputUnit:TimeUnit = null, ouputUnit:TimeUnit = null,
+											 minutesPerDay:Number = 0, minutesPerWeek:Number = 0, daysPerMonth:Number = 0) : Number
+		{
+			var n:Number = parseDurationInMillis(s, defaultInputUnit, minutesPerDay, minutesPerWeek, daysPerMonth);
+			
+			if(ouputUnit == null)
+				ouputUnit = TimeUnit.STANDARD_WORKING_DAY;
+			
+			return n / ouputUnit.milliseconds;
+		}
+		
+		/**
+		 * Parses the specified string as a duration.
+		 * @param s the input string
+		 * @param defaultInputUnit the default unit used for input value.
+		 * If null, TimeUnit.STANDARD_WORKING_DAY will be used.
+		 * @param minutesPerDay The number of working minutes per day
+		 * @param minutesPerWeek The number of working minutes per week
+		 * @param daysPerMonth The number of working days per month
+		 * @return The parsed duration in milliseconds
+		 */
+		public static function parseDurationInMillis(s:String, defaultInputUnit:TimeUnit = null,
+													  minutesPerDay:Number = 0, minutesPerWeek:Number = 0, daysPerMonth:Number = 0) : Number
 		{
 			
 			if (minutesPerDay == 0)
@@ -392,13 +415,13 @@ package net.fproject.utils
 			if (StringUtil.endsWith(s, suffix, false, true))
 			{
 				f = getDoubleFromString(s, suffix);
-				return 60 * f / minutesPerDay; 
+				return TimeUnit.HOUR.milliseconds * f; 
 			}
 			suffix = ResourceUtil.getString("common.caption.hours");
 			if (StringUtil.endsWith(s, suffix, false, true))
 			{
 				f = getDoubleFromString(s, suffix);
-				return 60 * f / minutesPerDay;
+				return TimeUnit.HOUR.milliseconds * f;
 			}
 			
 			// Deal with days
@@ -406,13 +429,13 @@ package net.fproject.utils
 			if (StringUtil.endsWith(s, suffix, false, true))
 			{
 				f = getDoubleFromString(s, suffix);
-				return f;
+				return TimeUnit.MINUTE.milliseconds * minutesPerDay * f;
 			}
 			suffix = ResourceUtil.getString("common.caption.days");
 			if (StringUtil.endsWith(s, suffix, false, true))
 			{
 				f = getDoubleFromString(s, suffix);
-				return f;
+				return TimeUnit.MINUTE.milliseconds * minutesPerDay * f;
 			}
 			
 			// Deal with weeks
@@ -420,13 +443,13 @@ package net.fproject.utils
 			if (StringUtil.endsWith(s, suffix, false, true))
 			{
 				f = getDoubleFromString(s, suffix);
-				return f * minutesPerWeek / minutesPerDay;
+				return TimeUnit.MINUTE.milliseconds * f * minutesPerWeek;
 			}
 			suffix = ResourceUtil.getString("common.caption.weeks");
 			if (StringUtil.endsWith(s, suffix, false, true))
 			{
 				f = getDoubleFromString(s, suffix);
-				return f * minutesPerWeek / minutesPerDay;
+				return TimeUnit.MINUTE.milliseconds * f * minutesPerWeek;
 			}
 			
 			// Deal with months
@@ -434,13 +457,13 @@ package net.fproject.utils
 			if (StringUtil.endsWith(s, suffix, false, true))
 			{
 				f = getDoubleFromString(s, suffix);
-				return f * daysPerMonth;
+				return TimeUnit.MINUTE.milliseconds * f * minutesPerDay * daysPerMonth;
 			}
 			suffix = ResourceUtil.getString("common.caption.months");
 			if (StringUtil.endsWith(s, suffix, false, true))
 			{
 				f = getDoubleFromString(s, suffix);
-				return f * daysPerMonth;
+				return TimeUnit.MINUTE.milliseconds * f * minutesPerDay * daysPerMonth;
 			}
 			
 			// Deal with short suffices after because it may conflict with long suffices.
@@ -450,7 +473,7 @@ package net.fproject.utils
 			if (StringUtil.endsWith(s, suffix, false, true))
 			{
 				f = getDoubleFromString(s, suffix);
-				return 60 * f / minutesPerDay;
+				return TimeUnit.HOUR.milliseconds * f;
 			}
 			
 			// Deal with short days
@@ -458,7 +481,7 @@ package net.fproject.utils
 			if (StringUtil.endsWith(s, suffix, false, true))
 			{
 				f = getDoubleFromString(s, suffix);
-				return f;
+				return TimeUnit.MINUTE.milliseconds * minutesPerDay * f;
 			}
 			
 			// Deal with short weeks
@@ -466,7 +489,7 @@ package net.fproject.utils
 			if (StringUtil.endsWith(s, suffix, false, true))
 			{
 				f = getDoubleFromString(s, suffix);
-				return f * minutesPerWeek / minutesPerDay;
+				return TimeUnit.MINUTE.milliseconds * f * minutesPerWeek;
 			}
 			
 			if (isNaN(Number(s))) 
@@ -474,11 +497,11 @@ package net.fproject.utils
 			
 			var n:Number = parseFloat(s);
 			
-			if(returnUnit == null)
-				returnUnit = TimeUnit.DAY;
+			if(defaultInputUnit == null)
+				defaultInputUnit = TimeUnit.STANDARD_WORKING_DAY;
 			
 			// Default is days.. could be specified in model
-			return n * (returnUnit.milliseconds / (minutesPerDay * 60000));
+			return n * defaultInputUnit.milliseconds;
 		}
 		
 		/**
