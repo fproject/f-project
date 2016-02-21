@@ -1041,17 +1041,14 @@ package net.fproject.utils
 					{
 						if (numberSignOrPercentage == "%")
 						{
-							timeValuePiece =
-								this.gregorianCalendar.getUnitValue(value,
-								TimeUnit.CALENDAR_HOUR, this.startOfYear);
+							timeValuePiece = this.gregorianCalendar.getUnitValue(value, TimeUnit.CALENDAR_HOUR, this.startOfYear);
 						}
 						else
 						{
 							timeValuePiece = value.hours;
 						}
 						timeValuePiece = timeValuePiece < 12 ? (0) : (1);
-						formattingResult =
-							formattingResult + DateBase.timeOfDay[timeValuePiece];
+						formattingResult = formattingResult + DateBase.timeOfDay[timeValuePiece];
 						numberSignOrPercentage = null;
 						break;
 					}
@@ -1059,16 +1056,13 @@ package net.fproject.utils
 					{
 						if (numberSignOrPercentage == "%")
 						{
-							timeValuePiece =
-								this.gregorianCalendar.getUnitValue(value,
-								TimeUnit.CALENDAR_HOUR, this.startOfYear);
+							timeValuePiece = this.gregorianCalendar.getUnitValue(value, TimeUnit.CALENDAR_HOUR, this.startOfYear);
 						}
 						else
 						{
 							timeValuePiece = value.hours;
 						}
-						formattingResult =
-							formattingResult + (timeValuePiece < 12 ? (this._periodAMStandaloneText) : (this._periodPMStandaloneText));
+						formattingResult = formattingResult + (timeValuePiece < 12 ? (this._periodAMStandaloneText) : (this._periodPMStandaloneText));
 						numberSignOrPercentage = null;
 						break;
 					}
@@ -1079,17 +1073,13 @@ package net.fproject.utils
 							timeValuePiece =
 								this.gregorianCalendar.getElapsedHours(this.referenceDate,
 								value);
-							formattingResult =
-								formattingResult + this.padNumberWithLeadingZeros(timeValuePiece,
-								i, usePositiveSign);
+							formattingResult = formattingResult + this.padNumberWithLeadingZeros(timeValuePiece, i, usePositiveSign);
 						}
 						else
 						{
 							if (numberSignOrPercentage == "%")
 							{
-								timeValuePiece =
-									this.gregorianCalendar.getUnitValue(value,
-									TimeUnit.HOUR, this.startOfYear);
+								timeValuePiece = this.gregorianCalendar.getUnitValue(value, TimeUnit.HOUR, this.startOfYear);
 							}
 							else
 							{
@@ -1102,14 +1092,11 @@ package net.fproject.utils
 							}
 							if (i == 1)
 							{
-								formattingResult =
-									formattingResult + String(timeValuePiece);
+								formattingResult = formattingResult + String(timeValuePiece);
 							}
 							else
 							{
-								formattingResult =
-									formattingResult + this.padNumberWithLeadingZeros(timeValuePiece,
-									i > 2 ? (2) : (i));
+								formattingResult = formattingResult + this.padNumberWithLeadingZeros(timeValuePiece, i > 2 ? (2) : (i));
 							}
 						}
 						numberSignOrPercentage = null;
@@ -1119,20 +1106,14 @@ package net.fproject.utils
 					{
 						if (numberSignOrPercentage == "#")
 						{
-							timeValuePiece =
-								this.gregorianCalendar.getElapsedHours(this.referenceDate,
-								value);
-							formattingResult =
-								formattingResult + this.padNumberWithLeadingZeros(timeValuePiece,
-								i, usePositiveSign);
+							timeValuePiece = this.gregorianCalendar.getElapsedHours(this.referenceDate, value);
+							formattingResult = formattingResult + this.padNumberWithLeadingZeros(timeValuePiece, i, usePositiveSign);
 						}
 						else
 						{
 							if (numberSignOrPercentage == "%")
 							{
-								timeValuePiece =
-									this.gregorianCalendar.getUnitValue(value,
-									TimeUnit.HOUR, this.startOfYear);
+								timeValuePiece = this.gregorianCalendar.getUnitValue(value, TimeUnit.HOUR, this.startOfYear);
 							}
 							else
 							{
@@ -1140,14 +1121,11 @@ package net.fproject.utils
 							}
 							if (i == 1)
 							{
-								formattingResult =
-									formattingResult + String(timeValuePiece);
+								formattingResult = formattingResult + String(timeValuePiece);
 							}
 							else
 							{
-								formattingResult =
-									formattingResult + this.padNumberWithLeadingZeros(timeValuePiece,
-									i > 2 ? (2) : (i));
+								formattingResult = formattingResult + this.padNumberWithLeadingZeros(timeValuePiece, i > 2 ? (2) : (i));
 							}
 						}
 						numberSignOrPercentage = null;
@@ -1160,17 +1138,13 @@ package net.fproject.utils
 							timeValuePiece =
 								this.gregorianCalendar.getElapsedHours(this.referenceDate,
 								value);
-							formattingResult =
-								formattingResult + this.padNumberWithLeadingZeros(timeValuePiece,
-								i, usePositiveSign);
+							formattingResult = formattingResult + this.padNumberWithLeadingZeros(timeValuePiece, i, usePositiveSign);
 						}
 						else
 						{
 							if (numberSignOrPercentage == "%")
 							{
-								timeValuePiece =
-									this.gregorianCalendar.getUnitValue(value,
-									TimeUnit.HOUR, this.startOfYear);
+								timeValuePiece = this.gregorianCalendar.getUnitValue(value, TimeUnit.HOUR, this.startOfYear);
 							}
 							else
 							{
@@ -1179,14 +1153,11 @@ package net.fproject.utils
 							timeValuePiece = timeValuePiece % 12;
 							if (i == 1)
 							{
-								formattingResult =
-									formattingResult + String(timeValuePiece);
+								formattingResult = formattingResult + String(timeValuePiece);
 							}
 							else
 							{
-								formattingResult =
-									formattingResult + this.padNumberWithLeadingZeros(timeValuePiece,
-									i > 2 ? (2) : (i));
+								formattingResult = formattingResult + this.padNumberWithLeadingZeros(timeValuePiece, i > 2 ? (2) : (i));
 							}
 						}
 						numberSignOrPercentage = null;
@@ -1196,20 +1167,14 @@ package net.fproject.utils
 					{
 						if (numberSignOrPercentage == "#")
 						{
-							timeValuePiece =
-								this.gregorianCalendar.getElapsedHours(this.referenceDate,
-								value);
-							formattingResult =
-								formattingResult + this.padNumberWithLeadingZeros(timeValuePiece,
-								i, usePositiveSign);
+							timeValuePiece = this.gregorianCalendar.getElapsedHours(this.referenceDate, value);
+							formattingResult = formattingResult + this.padNumberWithLeadingZeros(timeValuePiece, i, usePositiveSign);
 						}
 						else
 						{
 							if (numberSignOrPercentage == "%")
 							{
-								timeValuePiece =
-									this.gregorianCalendar.getUnitValue(value,
-									TimeUnit.HOUR, this.startOfYear);
+								timeValuePiece = this.gregorianCalendar.getUnitValue(value, TimeUnit.HOUR, this.startOfYear);
 							}
 							else
 							{
@@ -1221,14 +1186,11 @@ package net.fproject.utils
 							}
 							if (i == 1)
 							{
-								formattingResult =
-									formattingResult + String(timeValuePiece);
+								formattingResult = formattingResult + String(timeValuePiece);
 							}
 							else
 							{
-								formattingResult =
-									formattingResult + this.padNumberWithLeadingZeros(timeValuePiece,
-									i > 2 ? (2) : (i));
+								formattingResult = formattingResult + this.padNumberWithLeadingZeros(timeValuePiece, i > 2 ? (2) : (i));
 							}
 						}
 						numberSignOrPercentage = null;
@@ -1238,20 +1200,14 @@ package net.fproject.utils
 					{
 						if (numberSignOrPercentage == "#")
 						{
-							timeValuePiece =
-								this.gregorianCalendar.getElapsedMinutes(this.referenceDate,
-								value);
-							formattingResult =
-								formattingResult + this.padNumberWithLeadingZeros(timeValuePiece,
-								i, usePositiveSign);
+							timeValuePiece = this.gregorianCalendar.getElapsedMinutes(this.referenceDate, value);
+							formattingResult = formattingResult + this.padNumberWithLeadingZeros(timeValuePiece, i, usePositiveSign);
 						}
 						else
 						{
 							if (numberSignOrPercentage == "%")
 							{
-								timeValuePiece =
-									this.gregorianCalendar.getUnitValue(value,
-									TimeUnit.MINUTE, this.startOfYear);
+								timeValuePiece = this.gregorianCalendar.getUnitValue(value, TimeUnit.MINUTE, this.startOfYear);
 							}
 							else
 							{
@@ -1259,14 +1215,11 @@ package net.fproject.utils
 							}
 							if (i == 1)
 							{
-								formattingResult =
-									formattingResult + String(timeValuePiece);
+								formattingResult = formattingResult + String(timeValuePiece);
 							}
 							else
 							{
-								formattingResult =
-									formattingResult + this.padNumberWithLeadingZeros(timeValuePiece,
-									i > 2 ? (2) : (i));
+								formattingResult = formattingResult + this.padNumberWithLeadingZeros(timeValuePiece, i > 2 ? (2) : (i));
 							}
 						}
 						numberSignOrPercentage = null;
@@ -1276,20 +1229,14 @@ package net.fproject.utils
 					{
 						if (numberSignOrPercentage == "#")
 						{
-							timeValuePiece =
-								this.gregorianCalendar.getElapsedSeconds(this.referenceDate,
-								value);
-							formattingResult =
-								formattingResult + this.padNumberWithLeadingZeros(timeValuePiece,
-								i, usePositiveSign);
+							timeValuePiece = this.gregorianCalendar.getElapsedSeconds(this.referenceDate, value);
+							formattingResult = formattingResult + this.padNumberWithLeadingZeros(timeValuePiece, i, usePositiveSign);
 						}
 						else
 						{
 							if (numberSignOrPercentage == "%")
 							{
-								timeValuePiece =
-									this.gregorianCalendar.getUnitValue(value,
-									TimeUnit.SECOND, this.startOfYear);
+								timeValuePiece = this.gregorianCalendar.getUnitValue(value, TimeUnit.SECOND, this.startOfYear);
 							}
 							else
 							{
@@ -1297,14 +1244,11 @@ package net.fproject.utils
 							}
 							if (i == 1)
 							{
-								formattingResult =
-									formattingResult + String(timeValuePiece);
+								formattingResult = formattingResult + String(timeValuePiece);
 							}
 							else
 							{
-								formattingResult =
-									formattingResult + this.padNumberWithLeadingZeros(timeValuePiece,
-									i > 2 ? (2) : (i));
+								formattingResult = formattingResult + this.padNumberWithLeadingZeros(timeValuePiece, i > 2 ? (2) : (i));
 							}
 						}
 						numberSignOrPercentage = null;
@@ -1314,9 +1258,7 @@ package net.fproject.utils
 					{
 						if (numberSignOrPercentage == "%")
 						{
-							timeValuePiece =
-								this.gregorianCalendar.getUnitValue(value,
-								TimeUnit.MILLISECOND, this.startOfYear);
+							timeValuePiece = this.gregorianCalendar.getUnitValue(value, TimeUnit.MILLISECOND, this.startOfYear);
 						}
 						else
 						{
@@ -1332,14 +1274,11 @@ package net.fproject.utils
 						}
 						if (i == 1)
 						{
-							formattingResult =
-								formattingResult + String(timeValuePiece);
+							formattingResult = formattingResult + String(timeValuePiece);
 						}
 						else
 						{
-							formattingResult =
-								formattingResult + this.padNumberWithLeadingZeros(timeValuePiece,
-								i > 3 ? (3) : (i));
+							formattingResult = formattingResult + this.padNumberWithLeadingZeros(timeValuePiece, i > 3 ? (3) : (i));
 						}
 						numberSignOrPercentage = null;
 						break;
@@ -1348,20 +1287,14 @@ package net.fproject.utils
 					{
 						if (numberSignOrPercentage == "#")
 						{
-							timeValuePiece =
-								this.gregorianCalendar.getElapsedMilliseconds(this.referenceDate,
-								value);
-							formattingResult =
-								formattingResult + this.padNumberWithLeadingZeros(timeValuePiece,
-								i, usePositiveSign);
+							timeValuePiece = this.gregorianCalendar.getElapsedMilliseconds(this.referenceDate, value);
+							formattingResult = formattingResult + this.padNumberWithLeadingZeros(timeValuePiece, i, usePositiveSign);
 						}
 						else
 						{
 							if (numberSignOrPercentage == "%")
 							{
-								timeValuePiece =
-									this.gregorianCalendar.getUnitValue(value,
-									TimeUnit.MILLISECOND, this.startOfYear);
+								timeValuePiece = this.gregorianCalendar.getUnitValue(value, TimeUnit.MILLISECOND, this.startOfYear);
 							}
 							else
 							{
@@ -1369,14 +1302,11 @@ package net.fproject.utils
 							}
 							if (i == 1)
 							{
-								formattingResult =
-									formattingResult + String(timeValuePiece);
+								formattingResult = formattingResult + String(timeValuePiece);
 							}
 							else
 							{
-								formattingResult =
-									formattingResult + this.padNumberWithLeadingZeros(timeValuePiece,
-									i > 3 ? (3) : (i));
+								formattingResult = formattingResult + this.padNumberWithLeadingZeros(timeValuePiece, i > 3 ? (3) : (i));
 							}
 						}
 						numberSignOrPercentage = null;
@@ -1394,23 +1324,16 @@ package net.fproject.utils
 							Math.floor(timeValuePiece / 60);
 						var hours:String = null;
 						var minutes:String = null;
-						var paddingMinutes:Number =
-							timeValuePiece - offsetInHours * 60;
-						hours =
-							this.padNumberWithLeadingZeros(isNegativeTimeValue ? (-offsetInHours) : (offsetInHours),
-							2, true);
-						minutes =
-							this.padNumberWithLeadingZeros(paddingMinutes, 2);
+						var paddingMinutes:Number = timeValuePiece - offsetInHours * 60;
+						hours = this.padNumberWithLeadingZeros(isNegativeTimeValue ? (-offsetInHours) : (offsetInHours), 2, true);
+						minutes = this.padNumberWithLeadingZeros(paddingMinutes, 2);
 						if (i <= 3)
 						{
-							formattingResult =
-								formattingResult + (hours + minutes);
+							formattingResult = formattingResult + (hours + minutes);
 						}
 						else if (i == 4)
 						{
-							formattingResult =
-								formattingResult + mx.utils.StringUtil.substitute(this._gmtFormat,
-								hours, minutes);
+							formattingResult = formattingResult + mx.utils.StringUtil.substitute(this._gmtFormat, hours, minutes);
 						}
 						numberSignOrPercentage = null;
 						break;
@@ -1419,8 +1342,7 @@ package net.fproject.utils
 					{
 						for (tmpInt = 0; tmpInt < i; tmpInt++)
 						{
-							formattingResult =
-								formattingResult + currentFormatterChar;
+							formattingResult = formattingResult + currentFormatterChar;
 						}
 						break;
 					}

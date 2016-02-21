@@ -46,14 +46,12 @@ package net.fproject.core
 		/**
 		 * A calendar hour.
 		 */
-		public static var CALENDAR_HOUR:TimeUnit =
-			new TimeUnit("hour (calendar)", 60 * MINUTE.milliseconds);
+		public static var CALENDAR_HOUR:TimeUnit = new TimeUnit("hour (calendar)", 60 * MINUTE.milliseconds);
 
 		/**
 		 * An hour as elapsed time.
 		 */
-		public static var HOUR:TimeUnit =
-			new TimeUnit("hour (elapsed)", 60 * MINUTE.milliseconds);
+		public static var HOUR:TimeUnit = new TimeUnit("hour (elapsed)", 60 * MINUTE.milliseconds);
 
 		/**
 		 * A calendar hour.  
