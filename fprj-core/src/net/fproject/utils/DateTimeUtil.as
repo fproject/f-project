@@ -501,22 +501,41 @@ package net.fproject.utils
 		}
 		
 		/**
-		 * Formats the specified duration. The result displays a number of working days.
+		 * Formats the specified duration. The result displays a number of time units.
 		 * @param duration The duration in milliseconds
 		 * @param minutesPerDay The number of working minutes per day
 		 * @param showUnit Show the unit text or not
+		 * @param unit the TimeUnit instance to specify the output unit
 		 * @return The formatted result
 		 * 
 		 */          
-		public static function formatDuration(duration:Number, minutesPerDay:Number = NaN, showUnit:Boolean = false):String
+		public static function formatDuration(duration:Number, unit:TimeUnit = null,
+											  showUnit:Boolean = false):String
 		{
-			var minutes:Number = duration / 60000;
+			if(unit == null)
+				unit = TimeUnit.STANDARD_WORKING_DAY;
 			
-			if (isNaN(NaN))
-				minutesPerDay = defaultMinutesPerDay;
+			var n:Number = duration / unit.milliseconds;
 			
-			var days:Number = minutes / minutesPerDay;     
-			return daysDurationToString(days, showUnit);		
+			var s:String = formatDurationNumber(n);	
+			
+			if(showUnit)
+				s += " " + unit.getLabel(n > 1);
+			
+			return s;
+		}
+		
+		private static function formatDurationNumber(n:Number):String
+		{
+			var formatter:NumberFormatter = new NumberFormatter();
+			formatter.precision = 2;
+			var result:String = formatter.format(n);
+			var toRemove:int;
+			if (result.charAt(result.length - 1) == '0')
+				toRemove = 1;
+			if (toRemove == 1 && result.charAt(result.length - 2) == '0')
+				toRemove = 3;
+			return result.substr(0, result.length - toRemove);
 		}
 		
 		/**
@@ -528,18 +547,12 @@ package net.fproject.utils
 		 */    
 		public static function daysDurationToString(days:Number, showUnit:Boolean) : String
 		{
-			var formatter:NumberFormatter = new NumberFormatter();
-			formatter.precision = 2;
-			var result:String = formatter.format(days);
-			var toRemove:int;
-			if (result.charAt(result.length - 1) == '0')
-				toRemove = 1;
-			if (toRemove == 1 && result.charAt(result.length - 2) == '0')
-				toRemove = 3;
-			return showUnit? result.substr(0, result.length - toRemove) + " " + (days == 1 ? 
-				ResourceUtil.getString("common.caption.day") 
-				: ResourceUtil.getString("common.caption.days"))
-				: result.substr(0, result.length - toRemove);
+			var s:String = formatDurationNumber(days);	
+			
+			if(showUnit)
+				s += " " + TimeUnit.DAY.getLabel(days > 1);
+			
+			return s;
 		}
 		
 		/**
