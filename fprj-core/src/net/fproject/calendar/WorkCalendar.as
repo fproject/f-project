@@ -3070,7 +3070,7 @@ package net.fproject.calendar
 				{
 					return steps * unit.milliseconds;
 				}
-				case TimeUnit.HOUR_CALENDAR:
+				case TimeUnit.CALENDAR_HOUR:
 				{
 					return steps * unit.milliseconds;
 				}

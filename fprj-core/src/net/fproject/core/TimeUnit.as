@@ -60,6 +60,11 @@ package net.fproject.core
 		public static var DAY:TimeUnit = new TimeUnit("day", 24 * HOUR.milliseconds);
 
 		/**
+		 * A standard working day.
+		 */
+		public static var STANDARD_WORKING_DAY:TimeUnit = new TimeUnit("day", 8 * HOUR.milliseconds);
+		
+		/**
 		 * A week.
 		 */
 		public static var WEEK:TimeUnit = new TimeUnit("week", 7 * DAY.milliseconds);
@@ -135,7 +140,7 @@ package net.fproject.core
 		
 		private static var labels:Object;
 		
-		public function getLabel():String
+		public function getLabel(plural:Boolean=false):String
 		{
 			if(labels == null)
 			{
@@ -143,12 +148,18 @@ package net.fproject.core
 				var names:Array = [HOUR.name, DAY.name, WEEK.name, MONTH.name];
 				for each (var s:String in names)
 				{
-					labels[s] = ResourceUtil.getString("common.caption." + s);
+					var key:String = "common.caption." + s;
+					labels[s] = ResourceUtil.getString(key);
+					labels[s + "s"] = ResourceUtil.getString(key + "s");
 				}
 			}
 			
-			if(labels.hasOwnProperty(this.name))
-				return labels[this.name];
+			key = this.name;
+			if(plural)
+				key += "s";
+			
+			if(labels.hasOwnProperty(key))
+				return labels[key];
 			else
 				return this.name;
 		}
