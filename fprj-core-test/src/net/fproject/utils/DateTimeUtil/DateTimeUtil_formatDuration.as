@@ -48,7 +48,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = 0;
 			var minutesPerDay:Number = 0;
 			var showUnit:Boolean = true;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -74,7 +74,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = Number.POSITIVE_INFINITY;
 			var minutesPerDay:Number = 0;
 			var showUnit:Boolean = true;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -100,7 +100,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerDay:Number = 0;
 			var showUnit:Boolean = true;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -126,7 +126,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = Number.MAX_VALUE;
 			var minutesPerDay:Number = 0;
 			var showUnit:Boolean = true;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -152,7 +152,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = Number.MIN_VALUE;
 			var minutesPerDay:Number = 0;
 			var showUnit:Boolean = true;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -178,7 +178,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = NaN;
 			var minutesPerDay:Number = 0;
 			var showUnit:Boolean = true;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -204,7 +204,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = 0;
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var showUnit:Boolean = true;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -230,7 +230,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = Number.POSITIVE_INFINITY;
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var showUnit:Boolean = true;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -256,7 +256,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var showUnit:Boolean = true;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -282,7 +282,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = Number.MAX_VALUE;
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var showUnit:Boolean = true;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -308,7 +308,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = Number.MIN_VALUE;
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var showUnit:Boolean = true;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -334,7 +334,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = NaN;
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var showUnit:Boolean = true;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -360,7 +360,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = 0;
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var showUnit:Boolean = true;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -386,7 +386,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = Number.POSITIVE_INFINITY;
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var showUnit:Boolean = true;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -412,7 +412,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var showUnit:Boolean = true;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -438,7 +438,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = Number.MAX_VALUE;
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var showUnit:Boolean = true;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -464,7 +464,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = Number.MIN_VALUE;
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var showUnit:Boolean = true;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -490,7 +490,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = NaN;
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var showUnit:Boolean = true;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -516,7 +516,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = 0;
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var showUnit:Boolean = true;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -542,7 +542,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = Number.POSITIVE_INFINITY;
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var showUnit:Boolean = true;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -568,7 +568,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var showUnit:Boolean = true;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -594,7 +594,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = Number.MAX_VALUE;
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var showUnit:Boolean = true;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -620,7 +620,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = Number.MIN_VALUE;
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var showUnit:Boolean = true;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -646,7 +646,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = NaN;
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var showUnit:Boolean = true;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -672,7 +672,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = 0;
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var showUnit:Boolean = true;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -698,7 +698,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = Number.POSITIVE_INFINITY;
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var showUnit:Boolean = true;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -724,7 +724,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var showUnit:Boolean = true;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -750,7 +750,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = Number.MAX_VALUE;
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var showUnit:Boolean = true;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -776,7 +776,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = Number.MIN_VALUE;
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var showUnit:Boolean = true;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -802,7 +802,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = NaN;
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var showUnit:Boolean = true;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -828,7 +828,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = 0;
 			var minutesPerDay:Number = NaN;
 			var showUnit:Boolean = true;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -854,7 +854,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = Number.POSITIVE_INFINITY;
 			var minutesPerDay:Number = NaN;
 			var showUnit:Boolean = true;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -880,7 +880,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerDay:Number = NaN;
 			var showUnit:Boolean = true;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -906,7 +906,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = Number.MAX_VALUE;
 			var minutesPerDay:Number = NaN;
 			var showUnit:Boolean = true;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -932,7 +932,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = Number.MIN_VALUE;
 			var minutesPerDay:Number = NaN;
 			var showUnit:Boolean = true;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -958,7 +958,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = NaN;
 			var minutesPerDay:Number = NaN;
 			var showUnit:Boolean = true;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -984,7 +984,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = 0;
 			var minutesPerDay:Number = 0;
 			var showUnit:Boolean = false;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1010,7 +1010,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = Number.POSITIVE_INFINITY;
 			var minutesPerDay:Number = 0;
 			var showUnit:Boolean = false;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1036,7 +1036,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerDay:Number = 0;
 			var showUnit:Boolean = false;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1062,7 +1062,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = Number.MAX_VALUE;
 			var minutesPerDay:Number = 0;
 			var showUnit:Boolean = false;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1088,7 +1088,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = Number.MIN_VALUE;
 			var minutesPerDay:Number = 0;
 			var showUnit:Boolean = false;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1114,7 +1114,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = NaN;
 			var minutesPerDay:Number = 0;
 			var showUnit:Boolean = false;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1140,7 +1140,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = 0;
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var showUnit:Boolean = false;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1166,7 +1166,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = Number.POSITIVE_INFINITY;
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var showUnit:Boolean = false;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1192,7 +1192,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var showUnit:Boolean = false;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1218,7 +1218,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = Number.MAX_VALUE;
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var showUnit:Boolean = false;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1244,7 +1244,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = Number.MIN_VALUE;
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var showUnit:Boolean = false;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1270,7 +1270,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = NaN;
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var showUnit:Boolean = false;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1296,7 +1296,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = 0;
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var showUnit:Boolean = false;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1322,7 +1322,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = Number.POSITIVE_INFINITY;
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var showUnit:Boolean = false;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1348,7 +1348,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var showUnit:Boolean = false;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1374,7 +1374,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = Number.MAX_VALUE;
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var showUnit:Boolean = false;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1400,7 +1400,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = Number.MIN_VALUE;
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var showUnit:Boolean = false;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1426,7 +1426,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = NaN;
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var showUnit:Boolean = false;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1452,7 +1452,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = 0;
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var showUnit:Boolean = false;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1478,7 +1478,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = Number.POSITIVE_INFINITY;
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var showUnit:Boolean = false;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1504,7 +1504,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var showUnit:Boolean = false;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1530,7 +1530,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = Number.MAX_VALUE;
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var showUnit:Boolean = false;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1556,7 +1556,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = Number.MIN_VALUE;
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var showUnit:Boolean = false;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1582,7 +1582,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = NaN;
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var showUnit:Boolean = false;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1608,7 +1608,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = 0;
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var showUnit:Boolean = false;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1634,7 +1634,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = Number.POSITIVE_INFINITY;
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var showUnit:Boolean = false;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1660,7 +1660,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var showUnit:Boolean = false;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1686,7 +1686,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = Number.MAX_VALUE;
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var showUnit:Boolean = false;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1712,7 +1712,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = Number.MIN_VALUE;
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var showUnit:Boolean = false;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1738,7 +1738,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = NaN;
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var showUnit:Boolean = false;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1764,7 +1764,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = 0;
 			var minutesPerDay:Number = NaN;
 			var showUnit:Boolean = false;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1790,7 +1790,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = Number.POSITIVE_INFINITY;
 			var minutesPerDay:Number = NaN;
 			var showUnit:Boolean = false;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1816,7 +1816,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerDay:Number = NaN;
 			var showUnit:Boolean = false;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1842,7 +1842,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = Number.MAX_VALUE;
 			var minutesPerDay:Number = NaN;
 			var showUnit:Boolean = false;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1868,7 +1868,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = Number.MIN_VALUE;
 			var minutesPerDay:Number = NaN;
 			var showUnit:Boolean = false;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1894,7 +1894,7 @@ package net.fproject.utils.DateTimeUtil
 			var duration:Number = NaN;
 			var minutesPerDay:Number = NaN;
 			var showUnit:Boolean = false;
-			var returnTestValue:String = DateTimeUtil.formatDuration(duration, minutesPerDay, showUnit);
+			var returnTestValue:String = DateTimeUtil.formatDuration(duration, null, showUnit);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
