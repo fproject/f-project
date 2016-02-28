@@ -50,7 +50,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -78,7 +78,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -106,7 +106,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -134,7 +134,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -162,7 +162,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -190,7 +190,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -218,7 +218,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -246,7 +246,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -274,7 +274,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -302,7 +302,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -330,7 +330,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -358,7 +358,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -386,7 +386,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -414,7 +414,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -442,7 +442,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -470,7 +470,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -498,7 +498,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -526,7 +526,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -554,7 +554,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -582,7 +582,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -610,7 +610,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -638,7 +638,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -666,7 +666,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -694,7 +694,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -722,7 +722,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -750,7 +750,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -778,7 +778,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -806,7 +806,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -834,7 +834,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -862,7 +862,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -890,7 +890,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -918,7 +918,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -946,7 +946,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -974,7 +974,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1002,7 +1002,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1030,7 +1030,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1058,7 +1058,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1086,7 +1086,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1114,7 +1114,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1142,7 +1142,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1170,7 +1170,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1198,7 +1198,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1226,7 +1226,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1254,7 +1254,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1282,7 +1282,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1310,7 +1310,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1338,7 +1338,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1366,7 +1366,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1394,7 +1394,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1422,7 +1422,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1450,7 +1450,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1478,7 +1478,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1506,7 +1506,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1534,7 +1534,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1562,7 +1562,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1590,7 +1590,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1618,7 +1618,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1646,7 +1646,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1674,7 +1674,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1702,7 +1702,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1730,7 +1730,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1758,7 +1758,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1786,7 +1786,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1814,7 +1814,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1842,7 +1842,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1870,7 +1870,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1898,7 +1898,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1926,7 +1926,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1954,7 +1954,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -1982,7 +1982,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -2010,7 +2010,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -2038,7 +2038,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -2066,7 +2066,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -2094,7 +2094,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -2122,7 +2122,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -2150,7 +2150,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -2178,7 +2178,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -2206,7 +2206,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -2234,7 +2234,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -2262,7 +2262,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -2290,7 +2290,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -2318,7 +2318,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -2346,7 +2346,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -2374,7 +2374,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -2402,7 +2402,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -2430,7 +2430,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -2458,7 +2458,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -2486,7 +2486,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -2514,7 +2514,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -2542,7 +2542,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -2570,7 +2570,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -2598,7 +2598,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -2626,7 +2626,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -2654,7 +2654,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -2682,7 +2682,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -2710,7 +2710,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -2738,7 +2738,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -2766,7 +2766,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -2794,7 +2794,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -2822,7 +2822,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -2850,7 +2850,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -2878,7 +2878,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -2906,7 +2906,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -2934,7 +2934,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -2962,7 +2962,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -2990,7 +2990,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -3018,7 +3018,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -3046,7 +3046,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = 0;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -3074,7 +3074,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -3102,7 +3102,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -3130,7 +3130,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -3158,7 +3158,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -3186,7 +3186,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -3214,7 +3214,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -3242,7 +3242,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -3270,7 +3270,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -3298,7 +3298,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -3326,7 +3326,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -3354,7 +3354,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -3382,7 +3382,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -3410,7 +3410,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -3438,7 +3438,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -3466,7 +3466,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -3494,7 +3494,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -3522,7 +3522,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -3550,7 +3550,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -3578,7 +3578,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -3606,7 +3606,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -3634,7 +3634,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -3662,7 +3662,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -3690,7 +3690,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -3718,7 +3718,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -3746,7 +3746,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -3774,7 +3774,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -3802,7 +3802,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -3830,7 +3830,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -3858,7 +3858,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -3886,7 +3886,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -3914,7 +3914,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -3942,7 +3942,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -3970,7 +3970,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -3998,7 +3998,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -4026,7 +4026,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -4054,7 +4054,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -4082,7 +4082,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -4110,7 +4110,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -4138,7 +4138,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -4166,7 +4166,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -4194,7 +4194,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -4222,7 +4222,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -4250,7 +4250,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -4278,7 +4278,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -4306,7 +4306,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -4334,7 +4334,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -4362,7 +4362,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -4390,7 +4390,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -4418,7 +4418,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -4446,7 +4446,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -4474,7 +4474,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -4502,7 +4502,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -4530,7 +4530,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -4558,7 +4558,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -4586,7 +4586,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -4614,7 +4614,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -4642,7 +4642,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -4670,7 +4670,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -4698,7 +4698,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -4726,7 +4726,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -4754,7 +4754,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -4782,7 +4782,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -4810,7 +4810,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -4838,7 +4838,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -4866,7 +4866,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -4894,7 +4894,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -4922,7 +4922,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -4950,7 +4950,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -4978,7 +4978,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -5006,7 +5006,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -5034,7 +5034,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -5062,7 +5062,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -5090,7 +5090,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -5118,7 +5118,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -5146,7 +5146,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -5174,7 +5174,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -5202,7 +5202,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -5230,7 +5230,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -5258,7 +5258,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -5286,7 +5286,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -5314,7 +5314,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -5342,7 +5342,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -5370,7 +5370,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -5398,7 +5398,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -5426,7 +5426,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -5454,7 +5454,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -5482,7 +5482,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -5510,7 +5510,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -5538,7 +5538,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -5566,7 +5566,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -5594,7 +5594,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -5622,7 +5622,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -5650,7 +5650,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -5678,7 +5678,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -5706,7 +5706,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -5734,7 +5734,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -5762,7 +5762,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -5790,7 +5790,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -5818,7 +5818,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -5846,7 +5846,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -5874,7 +5874,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -5902,7 +5902,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -5930,7 +5930,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -5958,7 +5958,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -5986,7 +5986,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -6014,7 +6014,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -6042,7 +6042,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -6070,7 +6070,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.POSITIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -6098,7 +6098,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -6126,7 +6126,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -6154,7 +6154,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -6182,7 +6182,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -6210,7 +6210,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -6238,7 +6238,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -6266,7 +6266,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -6294,7 +6294,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -6322,7 +6322,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -6350,7 +6350,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -6378,7 +6378,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -6406,7 +6406,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -6434,7 +6434,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -6462,7 +6462,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -6490,7 +6490,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -6518,7 +6518,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -6546,7 +6546,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -6574,7 +6574,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -6602,7 +6602,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -6630,7 +6630,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -6658,7 +6658,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -6686,7 +6686,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -6714,7 +6714,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -6742,7 +6742,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -6770,7 +6770,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -6798,7 +6798,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -6826,7 +6826,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -6854,7 +6854,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -6882,7 +6882,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -6910,7 +6910,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -6938,7 +6938,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -6966,7 +6966,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -6994,7 +6994,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -7022,7 +7022,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -7050,7 +7050,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -7078,7 +7078,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -7106,7 +7106,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -7134,7 +7134,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -7162,7 +7162,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -7190,7 +7190,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -7218,7 +7218,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -7246,7 +7246,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -7274,7 +7274,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -7302,7 +7302,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -7330,7 +7330,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -7358,7 +7358,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -7386,7 +7386,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -7414,7 +7414,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -7442,7 +7442,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -7470,7 +7470,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -7498,7 +7498,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -7526,7 +7526,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -7554,7 +7554,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -7582,7 +7582,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -7610,7 +7610,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -7638,7 +7638,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -7666,7 +7666,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -7694,7 +7694,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -7722,7 +7722,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -7750,7 +7750,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -7778,7 +7778,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -7806,7 +7806,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -7834,7 +7834,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -7862,7 +7862,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -7890,7 +7890,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -7918,7 +7918,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -7946,7 +7946,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -7974,7 +7974,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -8002,7 +8002,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -8030,7 +8030,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -8058,7 +8058,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -8086,7 +8086,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -8114,7 +8114,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -8142,7 +8142,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -8170,7 +8170,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -8198,7 +8198,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -8226,7 +8226,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -8254,7 +8254,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -8282,7 +8282,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -8310,7 +8310,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -8338,7 +8338,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -8366,7 +8366,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -8394,7 +8394,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -8422,7 +8422,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -8450,7 +8450,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -8478,7 +8478,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -8506,7 +8506,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -8534,7 +8534,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -8562,7 +8562,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -8590,7 +8590,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -8618,7 +8618,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -8646,7 +8646,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -8674,7 +8674,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -8702,7 +8702,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -8730,7 +8730,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -8758,7 +8758,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -8786,7 +8786,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -8814,7 +8814,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -8842,7 +8842,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -8870,7 +8870,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -8898,7 +8898,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -8926,7 +8926,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -8954,7 +8954,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -8982,7 +8982,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -9010,7 +9010,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -9038,7 +9038,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -9066,7 +9066,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -9094,7 +9094,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.NEGATIVE_INFINITY;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -9122,7 +9122,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -9150,7 +9150,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -9178,7 +9178,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -9206,7 +9206,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -9234,7 +9234,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -9262,7 +9262,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -9290,7 +9290,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -9318,7 +9318,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -9346,7 +9346,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -9374,7 +9374,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -9402,7 +9402,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -9430,7 +9430,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -9458,7 +9458,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -9486,7 +9486,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -9514,7 +9514,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -9542,7 +9542,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -9570,7 +9570,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -9598,7 +9598,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -9626,7 +9626,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -9654,7 +9654,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -9682,7 +9682,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -9710,7 +9710,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -9738,7 +9738,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -9766,7 +9766,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -9794,7 +9794,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -9822,7 +9822,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -9850,7 +9850,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -9878,7 +9878,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -9906,7 +9906,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -9934,7 +9934,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -9962,7 +9962,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -9990,7 +9990,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -10018,7 +10018,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -10046,7 +10046,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -10074,7 +10074,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -10102,7 +10102,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -10130,7 +10130,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -10158,7 +10158,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -10186,7 +10186,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -10214,7 +10214,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -10242,7 +10242,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -10270,7 +10270,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -10298,7 +10298,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -10326,7 +10326,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -10354,7 +10354,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -10382,7 +10382,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -10410,7 +10410,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -10438,7 +10438,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -10466,7 +10466,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -10494,7 +10494,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -10522,7 +10522,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -10550,7 +10550,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -10578,7 +10578,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -10606,7 +10606,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -10634,7 +10634,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -10662,7 +10662,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -10690,7 +10690,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -10718,7 +10718,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -10746,7 +10746,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -10774,7 +10774,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -10802,7 +10802,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -10830,7 +10830,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -10858,7 +10858,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -10886,7 +10886,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -10914,7 +10914,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -10942,7 +10942,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -10970,7 +10970,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -10998,7 +10998,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -11026,7 +11026,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -11054,7 +11054,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -11082,7 +11082,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -11110,7 +11110,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -11138,7 +11138,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -11166,7 +11166,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -11194,7 +11194,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -11222,7 +11222,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -11250,7 +11250,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -11278,7 +11278,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -11306,7 +11306,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -11334,7 +11334,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -11362,7 +11362,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -11390,7 +11390,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -11418,7 +11418,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -11446,7 +11446,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -11474,7 +11474,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -11502,7 +11502,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -11530,7 +11530,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -11558,7 +11558,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -11586,7 +11586,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -11614,7 +11614,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -11642,7 +11642,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -11670,7 +11670,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -11698,7 +11698,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -11726,7 +11726,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -11754,7 +11754,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -11782,7 +11782,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -11810,7 +11810,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -11838,7 +11838,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -11866,7 +11866,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -11894,7 +11894,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -11922,7 +11922,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -11950,7 +11950,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -11978,7 +11978,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -12006,7 +12006,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -12034,7 +12034,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -12062,7 +12062,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -12090,7 +12090,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -12118,7 +12118,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.MAX_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -12146,7 +12146,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -12174,7 +12174,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -12202,7 +12202,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -12230,7 +12230,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -12258,7 +12258,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -12286,7 +12286,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -12314,7 +12314,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -12342,7 +12342,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -12370,7 +12370,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -12398,7 +12398,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -12426,7 +12426,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -12454,7 +12454,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -12482,7 +12482,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -12510,7 +12510,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -12538,7 +12538,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -12566,7 +12566,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -12594,7 +12594,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -12622,7 +12622,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -12650,7 +12650,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -12678,7 +12678,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -12706,7 +12706,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -12734,7 +12734,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -12762,7 +12762,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -12790,7 +12790,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -12818,7 +12818,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -12846,7 +12846,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -12874,7 +12874,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -12902,7 +12902,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -12930,7 +12930,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -12958,7 +12958,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -12986,7 +12986,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -13014,7 +13014,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -13042,7 +13042,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -13070,7 +13070,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -13098,7 +13098,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -13126,7 +13126,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -13154,7 +13154,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -13182,7 +13182,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -13210,7 +13210,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -13238,7 +13238,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -13266,7 +13266,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -13294,7 +13294,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -13322,7 +13322,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -13350,7 +13350,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -13378,7 +13378,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -13406,7 +13406,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -13434,7 +13434,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -13462,7 +13462,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -13490,7 +13490,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -13518,7 +13518,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -13546,7 +13546,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -13574,7 +13574,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -13602,7 +13602,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -13630,7 +13630,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -13658,7 +13658,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -13686,7 +13686,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -13714,7 +13714,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -13742,7 +13742,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -13770,7 +13770,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -13798,7 +13798,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -13826,7 +13826,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -13854,7 +13854,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -13882,7 +13882,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -13910,7 +13910,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -13938,7 +13938,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -13966,7 +13966,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -13994,7 +13994,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -14022,7 +14022,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -14050,7 +14050,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -14078,7 +14078,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -14106,7 +14106,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -14134,7 +14134,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -14162,7 +14162,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -14190,7 +14190,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -14218,7 +14218,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -14246,7 +14246,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -14274,7 +14274,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -14302,7 +14302,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -14330,7 +14330,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -14358,7 +14358,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -14386,7 +14386,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -14414,7 +14414,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -14442,7 +14442,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -14470,7 +14470,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -14498,7 +14498,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -14526,7 +14526,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -14554,7 +14554,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -14582,7 +14582,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -14610,7 +14610,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -14638,7 +14638,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -14666,7 +14666,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -14694,7 +14694,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -14722,7 +14722,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -14750,7 +14750,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -14778,7 +14778,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -14806,7 +14806,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -14834,7 +14834,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -14862,7 +14862,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -14890,7 +14890,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -14918,7 +14918,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -14946,7 +14946,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -14974,7 +14974,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -15002,7 +15002,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -15030,7 +15030,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -15058,7 +15058,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -15086,7 +15086,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -15114,7 +15114,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -15142,7 +15142,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = Number.MIN_VALUE;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -15170,7 +15170,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -15198,7 +15198,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -15226,7 +15226,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -15254,7 +15254,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -15282,7 +15282,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -15310,7 +15310,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -15338,7 +15338,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -15366,7 +15366,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -15394,7 +15394,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -15422,7 +15422,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -15450,7 +15450,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -15478,7 +15478,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -15506,7 +15506,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -15534,7 +15534,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -15562,7 +15562,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -15590,7 +15590,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -15618,7 +15618,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -15646,7 +15646,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = 0;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -15674,7 +15674,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -15702,7 +15702,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -15730,7 +15730,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -15758,7 +15758,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -15786,7 +15786,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -15814,7 +15814,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -15842,7 +15842,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -15870,7 +15870,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -15898,7 +15898,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -15926,7 +15926,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -15954,7 +15954,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -15982,7 +15982,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -16010,7 +16010,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -16038,7 +16038,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -16066,7 +16066,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -16094,7 +16094,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -16122,7 +16122,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -16150,7 +16150,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.POSITIVE_INFINITY;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -16178,7 +16178,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -16206,7 +16206,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -16234,7 +16234,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -16262,7 +16262,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -16290,7 +16290,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -16318,7 +16318,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -16346,7 +16346,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -16374,7 +16374,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -16402,7 +16402,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -16430,7 +16430,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -16458,7 +16458,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -16486,7 +16486,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -16514,7 +16514,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -16542,7 +16542,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -16570,7 +16570,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -16598,7 +16598,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -16626,7 +16626,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -16654,7 +16654,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.NEGATIVE_INFINITY;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -16682,7 +16682,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -16710,7 +16710,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -16738,7 +16738,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -16766,7 +16766,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -16794,7 +16794,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -16822,7 +16822,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -16850,7 +16850,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -16878,7 +16878,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -16906,7 +16906,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -16934,7 +16934,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -16962,7 +16962,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -16990,7 +16990,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -17018,7 +17018,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -17046,7 +17046,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -17074,7 +17074,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -17102,7 +17102,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -17130,7 +17130,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -17158,7 +17158,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.MAX_VALUE;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -17186,7 +17186,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -17214,7 +17214,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -17242,7 +17242,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -17270,7 +17270,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -17298,7 +17298,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -17326,7 +17326,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -17354,7 +17354,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -17382,7 +17382,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -17410,7 +17410,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -17438,7 +17438,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -17466,7 +17466,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -17494,7 +17494,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -17522,7 +17522,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -17550,7 +17550,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -17578,7 +17578,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -17606,7 +17606,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -17634,7 +17634,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -17662,7 +17662,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = Number.MIN_VALUE;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -17690,7 +17690,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -17718,7 +17718,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -17746,7 +17746,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = 0;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -17774,7 +17774,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -17802,7 +17802,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -17830,7 +17830,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.POSITIVE_INFINITY;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -17858,7 +17858,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -17886,7 +17886,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -17914,7 +17914,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.NEGATIVE_INFINITY;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -17942,7 +17942,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -17970,7 +17970,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -17998,7 +17998,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MAX_VALUE;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -18026,7 +18026,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -18054,7 +18054,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -18082,7 +18082,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = Number.MIN_VALUE;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -18110,7 +18110,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -18138,7 +18138,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -18166,7 +18166,7 @@ package net.fproject.utils.DateTimeUtil
 			var minutesPerDay:Number = NaN;
 			var minutesPerWeek:Number = NaN;
 			var daysPerMonth:Number = NaN;
-			var returnTestValue:Number = DateTimeUtil.parseDuration(s, minutesPerDay, minutesPerWeek, daysPerMonth);
+			var returnTestValue:Number = DateTimeUtil.parseDuration(s, null, null, minutesPerDay, minutesPerWeek, daysPerMonth);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
