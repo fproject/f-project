@@ -78,8 +78,10 @@ package net.fproject.model
 		 */
 		public function setParent(newParent:HierarchicalItem, newIndex:int=-1, firePropertyChange:Boolean=true):Boolean
 		{
+			
 			if (_parent !== newParent)
 			{
+				var oldOutLineLevel:int = this.outlineLevel;
 				var oldParent:HierarchicalItem = _parent;
 				if (oldParent != null)
 					oldParent.removeChild(this);
@@ -95,7 +97,10 @@ package net.fproject.model
 				{
 					outlineLevel = 0;
 				}
-				
+				if(outlineLevel - oldOutLineLevel != 0)
+				{
+					updateOutLineLevelForChild(outlineLevel - oldOutLineLevel);
+				}
 				var b:Boolean = true;
 			}
 			else
@@ -105,6 +110,15 @@ package net.fproject.model
 				dispatchParentChanged(oldParent, _parent);
 			
 			return b;
+		}
+		
+		// outline = 1 cho trường hợp indent, outline = -1 cho trường hợp outdent
+		public function updateOutLineLevelForChild(outLine:Number):void
+		{
+			for each (var note:HierarchicalItem in this.allChildren){
+					note.outlineLevel = note.outlineLevel + outLine;
+			}
+			
 		}
 		
 		//----------------------------------
