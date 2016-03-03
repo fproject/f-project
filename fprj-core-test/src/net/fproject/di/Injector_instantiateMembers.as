@@ -36,7 +36,7 @@ package net.fproject.di
 			//Your test data cleaning
 		}
 
-		[Test (description="Normal case: [container = new Object(), constructorParam = new *()]")]
+		[Test(ui, description="Normal case: [container = new Object(), constructorParam = new *()]")]
 		/**
 		 * Test Case Type: Normal<br/>
 		 * <br/>
@@ -82,7 +82,7 @@ package net.fproject.di
 			//-------------------------------------
 		}
 
-		[Test (description="Boundary case: [container = new Object(), constructorParam = null]")]
+		[Test(ui, description="Boundary case: [container = new Object(), constructorParam = null]")]
 		/**
 		 * Test Case Type: Boundary<br/>
 		 * <br/>
@@ -107,7 +107,7 @@ package net.fproject.di
 		}
 
 		
-		[Test (description="Normal case: [container = new Object(), constructorParam = null]")]
+		[Test(ui, description="Normal case: [container = new Object(), constructorParam = null]")]
 		public function testCase005():void
 		{
 			var impl:Implementation = new Implementation(Injector_instantiateMembers_005_interface,

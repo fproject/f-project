@@ -44,7 +44,7 @@ package net.fproject.di
 			//Your test data cleaning
 		}
 
-		[Test (description="Normal case: ")]
+		[Test(ui, description="Normal case: ")]
 		/**
 		 * Test Case Type: Normal<br/>
 		 * <br/>
@@ -68,7 +68,7 @@ package net.fproject.di
 			assertTrue(container.label.hasEventListener(MouseEvent.DOUBLE_CLICK));
 		}
 
-		[Test (expected="Error", description="Boundary case: [container = null, clazz = new Class() = false]")]
+		[Test(expected="Error", description="Boundary case: [container = null, clazz = new Class() = false]")]
 		/**
 		 * Test Case Type: Boundary<br/>
 		 * <br/>
@@ -92,7 +92,7 @@ package net.fproject.di
 			//-------------------------------------
 		}
 
-		[Test (description="Boundary case: [container = new Object(), clazz = null = false]")]
+		[Test(ui, description="Boundary case: [container = new Object(), clazz = null = false]")]
 		/**
 		 * Test Case Type: Boundary<br/>
 		 * <br/>
@@ -117,7 +117,7 @@ package net.fproject.di
 			//-------------------------------------
 		}
 
-		[Test (expected="Error", description="Boundary case: [container = null, clazz = null = false]")]
+		[Test(expected="Error", description="Boundary case: [container = null, clazz = null = false]")]
 		/**
 		 * Test Case Type: Boundary<br/>
 		 * <br/>
@@ -142,7 +142,7 @@ package net.fproject.di
 		}
 
 
-		[Test (description="Normal case: ")]
+		[Test(ui, description="Normal case: ")]
 		/**
 		 * Test Case Type: Normal<br/>
 		 * <br/>
@@ -166,7 +166,7 @@ package net.fproject.di
 			assertTrue(container.hasEventListener(MouseEvent.DOUBLE_CLICK));
 		}
 		
-		[Test (description="Normal case: ")]
+		[Test(ui, description="Normal case: ")]
 		/**
 		 * Test Case Type: Normal<br/>
 		 * <br/>
@@ -189,7 +189,7 @@ package net.fproject.di
 			assertTrue(container.hasEventListener(MouseEvent.DOUBLE_CLICK));
 		}
 		
-		[Test (description="Normal case: ")]
+		[Test(ui, description="Normal case: ")]
 		/**
 		 * Test Case Type: Normal<br/>
 		 * <br/>
@@ -213,7 +213,7 @@ package net.fproject.di
 			assertTrue(container.label.hasEventListener(MouseEvent.DOUBLE_CLICK));
 		}
 		
-		[Test (description="Normal case: ")]
+		[Test(ui, description="Normal case: ")]
 		/**
 		 * Test Case Type: Normal<br/>
 		 * <br/>
@@ -238,7 +238,7 @@ package net.fproject.di
 			assertTrue(container.myObject.label.hasEventListener("click"));
 		}
 		
-		[Test (async,description="Normal case: ")]
+		[Test(async,description="Normal case: ")]
 		/**
 		 * Test Case Type: Normal<br/>
 		 * <br/>
@@ -264,7 +264,7 @@ package net.fproject.di
 			assertTrue(container.dataGrid.hasEventListener("change"));
 		}
 		
-		[Test (async,description="Normal case: ")]
+		[Test(async,description="Normal case: ")]
 		/**
 		 * Test Case Type: Normal<br/>
 		 * <br/>
@@ -290,7 +290,7 @@ package net.fproject.di
 			assertTrue(container.dataGrid.hasEventListener("change"));
 		}
 		
-		[Test (async,description="Normal case: ")]
+		[Test(async,description="Normal case: ")]
 		/**
 		 * Test Case Type: Normal<br/>
 		 * <br/>
@@ -316,7 +316,7 @@ package net.fproject.di
 			assertTrue(container.dataGrid.hasEventListener("change"));
 		}
 		
-		[Test (description="Normal case: ")]
+		[Test(ui, description="Normal case: ")]
 		/**
 		 * Test Case Type: Normal<br/>
 		 * <br/>
@@ -340,7 +340,7 @@ package net.fproject.di
 			assertTrue(container.label.hasEventListener("click"));
 		}
 		
-		[Test (description="Normal case: ")]
+		[Test(ui, description="Normal case: ")]
 		/**
 		 * Test Case Type: Normal<br/>
 		 * <br/>
@@ -364,7 +364,7 @@ package net.fproject.di
 			assertTrue(container.label.hasEventListener("click"));
 		}
 		
-		[Test (async,description="Normal case: Test integration to bindProperties()")]
+		[Test(async,description="Normal case: Test integration to bindProperties()")]
 		/**
 		 * Test Case Type: Normal<br/>
 		 * INPUT VALUES:<br/>
@@ -396,7 +396,7 @@ package net.fproject.di
 		}
 		
 		
-		[Test (async,description="Normal case: Using complex dispatcher")]
+		[Test(async,description="Normal case: Using complex dispatcher")]
 		/**
 		 * Test Case Type: Normal<br/>
 		 * INPUT VALUES:<br/>
@@ -426,7 +426,7 @@ package net.fproject.di
 			assertTrue(container.textInput_myEventRunned);	
 		}
 		
-		[Test (async,description="Normal case: Using complex dispatcher")]
+		[Test(async,description="Normal case: Using complex dispatcher")]
 		/**
 		 * Test Case Type: Normal<br/>
 		 * INPUT VALUES:<br/>
