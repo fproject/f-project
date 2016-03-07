@@ -77,9 +77,10 @@ package net.fproject.model
 		 * @return <code>true</code> if the new parent is set, <code>false</code> if nothing was set
 		 */
 		public function setParent(newParent:HierarchicalItem, newIndex:int=-1, firePropertyChange:Boolean=true):Boolean
-		{
+		{			
 			if (_parent !== newParent)
 			{
+				var oldOutLineLevel:int = this.outlineLevel;
 				var oldParent:HierarchicalItem = _parent;
 				if (oldParent != null)
 					oldParent.removeChild(this);
@@ -89,13 +90,16 @@ package net.fproject.model
 				if (_parent != null)
 				{
 					_parent.addChild(this, newIndex);
-					outlineLevel = _parent.outlineLevel + 1;
+					this.outlineLevel = _parent.outlineLevel + 1;
 				}
 				else
 				{
-					outlineLevel = 0;
+					this.outlineLevel = 0; 
 				}
-				
+				if( !isNaN(oldOutLineLevel) && (this.outlineLevel - oldOutLineLevel) != 0)
+				{
+					deriveChildrenOutlineLevel(this.outlineLevel - oldOutLineLevel);
+				}
 				var b:Boolean = true;
 			}
 			else
@@ -105,6 +109,14 @@ package net.fproject.model
 				dispatchParentChanged(oldParent, _parent);
 			
 			return b;
+		}
+		
+		// outline = 1 for indent, outline = -1 for outdent
+		protected function deriveChildrenOutlineLevel(diff:Number):void
+		{
+			for each (var note:HierarchicalItem in this.allChildren){
+					note.outlineLevel = note.outlineLevel + diff;
+			}
 		}
 		
 		//----------------------------------
