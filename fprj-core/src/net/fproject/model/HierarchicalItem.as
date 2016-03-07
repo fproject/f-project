@@ -112,10 +112,10 @@ package net.fproject.model
 		}
 		
 		// outline = 1 for indent, outline = -1 for outdent
-		protected function deriveChildrenOutlineLevel(outLine:Number):void
+		protected function deriveChildrenOutlineLevel(diff:Number):void
 		{
 			for each (var note:HierarchicalItem in this.allChildren){
-					note.outlineLevel = note.outlineLevel + outLine;
+					note.outlineLevel = note.outlineLevel + diff;
 			}
 		}
 		
