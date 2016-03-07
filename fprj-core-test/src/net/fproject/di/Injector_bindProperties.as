@@ -65,7 +65,7 @@ package net.fproject.di
 			//Your test data cleaning
 		}
 		
-		[Test (description="Direct Binding: Normal case: [container = new Object(), clazz = new Class()]")]
+		[Test(ui, description="Direct Binding: Normal case: [container = new Object(), clazz = new Class()]")]
 		/**
 		 * Test Case Type: Normal<br/>
 		 * <br/>
@@ -111,7 +111,7 @@ package net.fproject.di
 			//-------------------------------------
 		}
 		
-		[Test (description="Direct Binding: Boundary case: [container = new Object(), clazz = null]")]
+		[Test(ui, description="Direct Binding: Boundary case: [container = new Object(), clazz = null]")]
 		/**
 		 * Test Case Type: Boundary<br/>
 		 * <br/>
@@ -157,7 +157,7 @@ package net.fproject.di
 			//-------------------------------------
 		}
 		
-		[Test (description="Direct Binding: Normal case: Class metadata")]
+		[Test(ui, description="Direct Binding: Normal case: Class metadata")]
 		/**
 		 * Test Case Type: Normal<br/>
 		 * <br/>
@@ -180,7 +180,7 @@ package net.fproject.di
 			//-------------------------------------
 		}
 		
-		[Test (description="Direct Binding: Normal case: Class metadata")]
+		[Test(ui, description="Direct Binding: Normal case: Class metadata")]
 		/**
 		 * Test Case Type: Normal<br/>
 		 * <br/>
@@ -200,7 +200,7 @@ package net.fproject.di
 			assertTrue(container.label === container.myObject.label);
 		}
 		
-		[Test (description="Direct Binding: Normal case: Class metadata")]
+		[Test(ui, description="Direct Binding: Normal case: Class metadata")]
 		/**
 		 * Test Case Type: Normal<br/>
 		 * <br/>
@@ -223,7 +223,7 @@ package net.fproject.di
 			//-------------------------------------
 		}
 		
-		[Test (description="Direct Binding: Normal case: Class metadata")]
+		[Test(ui, description="Direct Binding: Normal case: Class metadata")]
 		/**
 		 * Test Case Type: Normal<br/>
 		 * <br/>
@@ -246,7 +246,7 @@ package net.fproject.di
 			//-------------------------------------
 		}
 		
-		[Test (description="Direct Binding: Normal case: Class metadata")]
+		[Test(ui, description="Direct Binding: Normal case: Class metadata")]
 		/**
 		 * Test Case Type: Normal<br/>
 		 * <br/>
@@ -327,7 +327,7 @@ package net.fproject.di
 			assertEquals(100, container.label.left);
 		}
 		
-		[Test (description="Deferred Binding: Normal case: [container = new Object(), clazz = new Class()]")]
+		[Test(ui, description="Deferred Binding: Normal case: [container = new Object(), clazz = new Class()]")]
 		/**
 		 * Test Case Type: Normal<br/>
 		 * <br/>
@@ -380,7 +380,7 @@ package net.fproject.di
 			assertEquals("AAABBBCCC", container.label.text);	
 		}
 		
-		[Test (description="Method Binding")]
+		[Test(ui, description="Method Binding")]
 		/**
 		 * Test Case Type: Normal<br/>
 		 * <br/>
@@ -403,7 +403,7 @@ package net.fproject.di
 			assertEquals("AAABBBCCC", container.label.text);
 		}
 		
-		[Test (description="Method Binding")]
+		[Test(ui, description="Method Binding")]
 		/**
 		 * Test Case Type: Normal<br/>
 		 * <br/>
