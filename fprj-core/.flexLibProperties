@@ -3,6 +3,7 @@
   <includeClasses>
     <classEntry path="net.fproject.model.OptimisticLockModel"/>
     <classEntry path="net.fproject.model.OptimisticLockHierarchicalItem"/>
+    <classEntry path="net.fproject.model.IOptimisticLockModel"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="manifest.xml" sourcePath="manifest.xml"/>

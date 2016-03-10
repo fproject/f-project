@@ -17,28 +17,19 @@
 ///////////////////////////////////////////////////////////////////////////////
 package net.fproject.model
 {
-	/**
-	 * The abstract class for all model that implement optimistic locking
-	 * 
-	 * @author Bui Sy Nguyen
-	 * 
-	 */
-	public class OptimisticLockModel extends AbstractModel implements IOptimisticLockModel
+	public interface IOptimisticLockModel
 	{
-		private var _version:Number;
-		
 		/**
 		 * The version number, used for optimistic locking.
 		 * Do not manually modify this value.
 		 */
-		public function get version():Number
-		{
-			return _version;
-		}
+		function get version():Number;
 		
-		public function set version(value:Number):void
-		{
-			_version = value;
-		}
+		/**
+		 * 
+		 * @private
+		 * 
+		 */
+		function set version(value:Number):void;
 	}
 }
