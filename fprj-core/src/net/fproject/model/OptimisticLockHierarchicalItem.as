@@ -6,7 +6,7 @@ package net.fproject.model
 	 * @author Bui Sy Nguyen
 	 * 
 	 */
-	public class OptimisticLockHierarchicalItem extends HierarchicalItem
+	public class OptimisticLockHierarchicalItem extends HierarchicalItem implements IOptimisticLockModel
 	{
 		private var _version:Number;
 		

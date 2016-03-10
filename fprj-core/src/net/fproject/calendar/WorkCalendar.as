@@ -27,7 +27,7 @@ package net.fproject.calendar
 	import net.fproject.core.TimeRange;
 	import net.fproject.core.TimeUnit;
 	import net.fproject.di.InstanceFactory;
-	import net.fproject.model.AbstractModel;
+	import net.fproject.model.OptimisticLockModel;
 	import net.fproject.utils.DataUtil;
 	import net.fproject.utils.DateTimeUtil;
 	import net.fproject.utils.GregorianCalendar;
@@ -131,7 +131,7 @@ package net.fproject.calendar
 	 * @includeExample ResourceChartDefiningWorkCalendar.mxml
 	 * @includeExample WorkCalendarBaseCalendar.mxml
 	 * 	 */
-	public class WorkCalendar extends AbstractModel
+	public class WorkCalendar extends OptimisticLockModel
 	{
 		private var _subCalendars:Vector.<WorkCalendar>;
 		private var _disableEvents:Boolean;
@@ -704,6 +704,9 @@ package net.fproject.calendar
 					target._weekDays[i] = WeekDayInternal(this._weekDays[i].clone());
 				}
 			}
+			
+			target.version = this.version;
+			
 			return target;
 		}
 		
