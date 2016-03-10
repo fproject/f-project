@@ -27,7 +27,7 @@ package net.fproject.calendar
 	import net.fproject.core.TimeRange;
 	import net.fproject.core.TimeUnit;
 	import net.fproject.di.InstanceFactory;
-	import net.fproject.model.LocalUID;
+	import net.fproject.model.AbstractModel;
 	import net.fproject.utils.DataUtil;
 	import net.fproject.utils.DateTimeUtil;
 	import net.fproject.utils.GregorianCalendar;
@@ -131,7 +131,7 @@ package net.fproject.calendar
 	 * @includeExample ResourceChartDefiningWorkCalendar.mxml
 	 * @includeExample WorkCalendarBaseCalendar.mxml
 	 * 	 */
-	public class WorkCalendar extends LocalUID
+	public class WorkCalendar extends AbstractModel
 	{
 		private var _subCalendars:Vector.<WorkCalendar>;
 		private var _disableEvents:Boolean;

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
-  <includeClasses/>
+  <includeClasses>
+    <classEntry path="net.fproject.model.OptimisticLockModel"/>
+    <classEntry path="net.fproject.model.OptimisticLockHierarchicalItem"/>
+  </includeClasses>
   <includeResources>
     <resourceEntry destPath="manifest.xml" sourcePath="manifest.xml"/>
     <resourceEntry destPath="design.xml" sourcePath="design.xml"/>
