@@ -40,6 +40,28 @@ package net.fproject.themes
 			_borderVisible = true;
 		}
 		
+		private function parseColorArray(colors:Object):Array
+		{
+			if(!(colors is Array))
+			{
+				var s:String = colors as String;
+				if(s)
+				{
+					var a:Array = s.split(",");
+					var b:Array = [];
+					for each (s in a)
+					{
+						if(s.charAt(0) == "#")
+							b.push(parseInt(s.substr(1), 16));
+						else
+							b.push(parseInt(s, 10));
+					}
+					colors = b;
+				}
+			}
+			return colors as Array;
+		}
+		
 		override protected function commitProperties() : void
 		{
 			super.commitProperties();
@@ -48,7 +70,7 @@ package net.fproject.themes
 			if(backgroundFillColorsChanged)
 			{
 				backgroundFillColorsChanged = false;
-				this._backgroundFillColors = getStyle("backgroundFillColors");
+				this._backgroundFillColors = parseColorArray(getStyle("backgroundFillColors"));
 				dirty = true;
 			}
 			
