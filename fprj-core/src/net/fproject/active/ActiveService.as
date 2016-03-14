@@ -17,8 +17,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 package net.fproject.active
 {
-	import mx.rpc.CallResponder;
+	import flash.utils.Dictionary;
 	
+	import mx.rpc.CallResponder;
+	import mx.rpc.events.ResultEvent;
+	
+	import net.fproject.model.IOptimisticLockModel;
 	import net.fproject.service.ServiceBase;
 	
 	/**
@@ -162,6 +166,8 @@ package net.fproject.active
 				completeCallback, failCallback) ;
 		}
 		
+		private static var responderToOptimisticModel:Dictionary;
+		
 		[RESTOperation(method='POST', route="/save?fields={1}")]
 		/**
 		 * <p>
@@ -204,8 +210,25 @@ package net.fproject.active
 							 completeCallback:Function=null, failCallback:Function=null,
 							 attributes:Array=null):CallResponder
 		{
-			return createServiceCall(remoteObject.save(model, attributes),
+			var r:CallResponder = createServiceCall(remoteObject.save(model, attributes),
 				completeCallback, failCallback);
+			if(model is IOptimisticLockModel)
+			{
+				if(responderToOptimisticModel == null)
+					responderToOptimisticModel = new Dictionary;
+				responderToOptimisticModel[r] = model;
+				r.addEventListener(ResultEvent.RESULT, function(e:ResultEvent):void
+				{
+					model = responderToOptimisticModel[e.target];
+					delete responderToOptimisticModel[e.target];
+					var v:Number = IOptimisticLockModel(model).version;
+					if(isNaN(v))
+						v = 0;
+					IOptimisticLockModel(model).version = v + 1;
+				});
+			}
+			
+			return r;
 		}
 		
 		[RESTOperation(method='GET', route="/remove/{0}")]
