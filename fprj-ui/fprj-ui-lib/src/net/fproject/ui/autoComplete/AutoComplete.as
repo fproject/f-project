@@ -718,7 +718,15 @@ package net.fproject.ui.autoComplete
 			_dropDown.focusEnabled 	= false;
 			_dropDown.dataProvider 	= _filteredCollection;
 			_dropDown.labelFunction = _dropDownLabelFunction;
+			
+			_dropDown.width = _dropDownWidth ? _dropDownWidth : flowBox.width;
+			if (_dropDownHeight)
+				_dropDown.height = _dropDownHeight;
+			if (_dropDownMaxHeight)
+			_dropDown.maxHeight = _dropDownMaxHeight;
+			
 			var layout:VerticalLayout = new VerticalLayout;
+			layout.gap = _dropDownLayoutGap;
 			layout.requestedRowCount = _dropDownRowCount;
 			_dropDown.layout		= layout;
 			_dropDown.itemRenderer  = _dropDownItemRenderer ? _dropDownItemRenderer : new ClassFactory(DropDownItemRenderer);
@@ -1422,7 +1430,6 @@ package net.fproject.ui.autoComplete
 				focusManager.defaultButtonEnabled = false;
 			}				
 			
-			_dropDown.width = _dropDownWidth ? _dropDownWidth : flowBox.width;
 			_dropDown.owner = this;
 			_dropDown.validateNow();
 			
@@ -1693,11 +1700,32 @@ package net.fproject.ui.autoComplete
 			_disabledItems = value;
 		}
 		
-		protected var _dropDownWidth:int;
+		protected var _dropDownWidth:int = NaN;
 		
 		public function set dropDownWidth(value:int):void
 		{
 			_dropDownWidth = value;
+		}
+		
+		protected var _dropDownHeight:int = NaN;
+		
+		public function set dropDownHeight(value:int):void
+		{
+			_dropDownHeight = value;
+		}
+		
+		protected var _dropDownMaxHeight:int;
+		
+		public function set dropDownMaxHeight(value:int):void
+		{
+			_dropDownMaxHeight = value;
+		}
+		
+		protected var _dropDownLayoutGap:int = 0;
+		
+		public function set dropDownLayoutGap(value:int):void
+		{
+			_dropDownLayoutGap = value;
 		}
 		
 		/**
