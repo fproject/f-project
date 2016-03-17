@@ -29,6 +29,7 @@ package net.fproject.service
 	import net.fproject.event.AppContextEvent;
 	import net.fproject.rpc.IRemoteObject;
 	import net.fproject.rpc.RemoteObjectFactory;
+	import net.fproject.utils.DateTimeUtil;
 
 	/**
 	 * <p>Base class cho tất các các service class.
@@ -132,7 +133,7 @@ package net.fproject.service
 			if (responderToCallbackInfo[e.currentTarget]["failCallback"] != undefined)
 				responderToCallbackInfo[e.currentTarget].failCallback(e.fault);
 			
-			trace("Service call failed: " + e.toString());
+			trace("\n[" + DateTimeUtil.formatIsoDate(new Date) + "] Service call failed: " + e.toString());
 			
 			deleteServiceCall(CallResponder(e.currentTarget));
 			
