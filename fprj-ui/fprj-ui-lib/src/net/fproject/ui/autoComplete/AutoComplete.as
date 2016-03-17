@@ -718,6 +718,13 @@ package net.fproject.ui.autoComplete
 			_dropDown.focusEnabled 	= false;
 			_dropDown.dataProvider 	= _filteredCollection;
 			_dropDown.labelFunction = _dropDownLabelFunction;
+			
+			_dropDown.width = _dropDownWidth ? _dropDownWidth : flowBox.width;
+			if (_dropDownHeight)
+				_dropDown.height = _dropDownHeight;
+			if (_dropDownMaxHeight)
+			_dropDown.maxHeight = _dropDownMaxHeight;
+			
 			var layout:VerticalLayout = new VerticalLayout;
 			layout.gap = _dropDownLayoutGap;
 			layout.requestedRowCount = _dropDownRowCount;
@@ -1423,14 +1430,10 @@ package net.fproject.ui.autoComplete
 				focusManager.defaultButtonEnabled = false;
 			}				
 			
-			_dropDown.width = _dropDownWidth ? _dropDownWidth : flowBox.width;
-			_dropDown.height = _dropDownHeight;
 			_dropDown.owner = this;
 			_dropDown.validateNow();
 			
 			PopUpManager.addPopUp(_dropDown, this);
-			
-			_dropDown.height = (_dropDownMaxHeight && _dropDown.height > _dropDownMaxHeight) ? _dropDownMaxHeight:_dropDown.height; 
 			
 			callLater(_dropDown.ensureIndexIsVisible,[0]);
 			callLater(initDropDown);
