@@ -31,8 +31,6 @@ package net.fproject.di
 	 * 	&lt;fprj:ImplementationConfig&gt;
 	 * 		&lt;fprj:Implementation abstractor="net.projectkit.controller.IAppContextController"
 	 * 			impl="net.projectkit.controller.WebAppContextController"/&gt;
-	 * 		&lt;fprj:Implementation abstractor="net.projectkit.util.IExternalInterfaceUtil"
-	 * 			impl="net.projectkit.util.web.WebExternalInterfaceUtil"/&gt;
 	 * 	&lt;/fprj:ImplementationConfig&gt;
 	 * &lt;/fx:Declarations&gt;</pre>
 	 * </p>
