@@ -196,7 +196,7 @@ package net.fproject.service
 		{
 			appContext.fproject_internal::setNetworkAvailable(value);
 			if(appContext.hasEventListener(AppContextEvent.NETWORK_AVAILABILITY_CHANGE))
-				appContext.dispatchEvent(new AppContextEvent(AppContextEvent.NETWORK_AVAILABILITY_CHANGE));
+				appContext.dispatchEvent(new AppContextEvent(AppContextEvent.NETWORK_AVAILABILITY_CHANGE, value));
 		}
 		
 		private function getNetworkFaultCode(e:FaultEvent):String
