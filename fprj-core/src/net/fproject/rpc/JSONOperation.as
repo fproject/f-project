@@ -183,9 +183,18 @@ package net.fproject.rpc
 			} 
 			catch (e:Error) 
 			{
-				var fault:Fault = new Fault('JSON Error', "Result decoding failed.", e.message);
-				dispatchRpcEvent(FaultEvent.createEvent(fault, token, message));
-				return false;
+				if(jsonBody != null)
+				{
+					if(StringUtil.trim(jsonBody).charAt(0) != '{')
+						decodedResult = jsonBody;
+				}
+				
+				if(decodedResult == null)
+				{
+					var fault:Fault = new Fault('JSON Error', "Result decoding failed.", e.message);
+					dispatchRpcEvent(FaultEvent.createEvent(fault, token, message));
+					return false;
+				}
 			}
 			
 			// Decoding was successfull
