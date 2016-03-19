@@ -188,5 +188,10 @@ package net.fproject.utils
 		{
 			return getWebAppBaseUrl() + getRslBaseUrl() + "/" + rslUrl;
 		}
+		
+		public static function isOnline():Boolean
+		{
+			return true;
+		}
 	}
 }

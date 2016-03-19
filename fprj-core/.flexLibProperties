@@ -5,6 +5,7 @@
     <classEntry path="net.fproject.model.OptimisticLockHierarchicalItem"/>
     <classEntry path="net.fproject.model.IOptimisticLockModel"/>
     <classEntry path="net.fproject.core.ClassFactory"/>
+    <classEntry path="net.fproject.utils.ExternalInterfaceUtil"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="manifest.xml" sourcePath="manifest.xml"/>
