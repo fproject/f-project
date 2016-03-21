@@ -19,7 +19,6 @@ package net.fproject.collection
 {
 	import flash.events.Event;
 	import flash.utils.Dictionary;
-	import flash.utils.Timer;
 	
 	import mx.collections.ICollectionView;
 	import mx.events.CollectionEvent;
@@ -30,6 +29,7 @@ package net.fproject.collection
 	import mx.rpc.events.ResultEvent;
 	
 	import net.fproject.active.ActiveService;
+	import net.fproject.event.CollectionChangeEvent;
 	
 	/**
 	 * 
@@ -353,8 +353,26 @@ package net.fproject.collection
 			}
 		}
 		
-		private static var _savingData:Dictionary = new Dictionary(true);
 		private static var _savingCollection:Dictionary = new Dictionary(true);
+		private function isSaving(collection:Object):Boolean
+		{
+			return _savingCollection[collection] !== undefined;
+		}
+		
+		private function registerSaving(collection:Object):void
+		{
+			_savingCollection[collection] = (_savingCollection[collection] === undefined) ? 1:_savingCollection[collection]++;
+		}
+		
+		private function unregisterSaving(collection:Object):void
+		{
+			if (_savingCollection[collection] !== undefined && _savingCollection[collection] > 1)
+				_savingCollection[collection]--;
+			else
+				delete _savingCollection[collection];
+		}
+		
+		private static var _savingData:Dictionary = new Dictionary(true);
 		
 		/**
 		 * Save data to server
@@ -364,8 +382,8 @@ package net.fproject.collection
 		 */
 		private function saveData(collection:Object):void
 		{
-			//Nếu đang lưu dữ liệu trên chính collection này thì sẽ đợi đến khi nào save xong mới lưu
-			if (_savingCollection[collection] !== undefined)
+			//Nếu đang lưu dữ liệu trên chính collection này thì sẽ đợi đến khi nào lưu xong mới tiếp tục lưu
+			if (isSaving(collection))
 				return;
 			if (!haveChanges(collection as ICollectionView))
 			{
@@ -376,48 +394,74 @@ package net.fproject.collection
 				return;
 			}
 			
-			//deley save data
-			var timer:Timer = new Timer(200);
-			timer.start();
-			while (timer == true)
-			{
-				//do nothing
-			}
-
 			var saveItems:Array = getSaveItems(collection as ICollectionView);
 			var deleteItems:Array = getDeleteItems(collection as ICollectionView);
-			trace(saveItems.length);
-			trace(deleteItems.length);
+			resetCollectionChange(collection as ICollectionView);
 			var service:ActiveService = _services[collection];
 			
 			if (saveItems != null && saveItems.length > 0)
 			{
-				_savingCollection[collection] = true;
+				registerSaving(collection);
+				
 				var r:CallResponder = service.batchSave(saveItems,null,null,_attributes[collection]);
 				_savingData[r] = saveItems;
 				r.addEventListener(ResultEvent.RESULT, function(e:ResultEvent):void
 				{
-					var items:Array = _savingData[e.target];
-					delete _savingCollection[collection];
-					delete _savingData[e.target];
-					
+					dispatchEventAfterSave(SAVE_TYPE,e,collection);
 					saveData(collection);
 				});
 				
 				r.addEventListener(FaultEvent.FAULT, function(e:FaultEvent):void
 				{
-					var items:Array = _savingData[e.target];
-					delete _savingData[e.target];
-					delete _savingCollection[collection];
-
+					dispatchEventAfterSave(SAVE_TYPE,e,collection);
 					saveData(collection);
 				});
 			}
-			if (deleteItems != null && deleteItems.length > 0)
-				service.batchRemove(deleteItems);
 			
-			resetCollectionChange(collection as ICollectionView);
+			if (deleteItems != null && deleteItems.length > 0)
+			{
+				service.batchRemove(deleteItems);
+				
+				registerSaving(collection);
+				
+				r = service.batchSave(saveItems,null,null,_attributes[collection]);
+				_savingData[r] = deleteItems;
+				r.addEventListener(ResultEvent.RESULT, function(e:ResultEvent):void
+				{
+					dispatchEventAfterSave(DELETE_TYPE,e,collection);
+					saveData(collection);
+				});
+				
+				r.addEventListener(FaultEvent.FAULT, function(e:FaultEvent):void
+				{
+					dispatchEventAfterSave(DELETE_TYPE,e,collection);
+					saveData(collection);
+				});
+			}
+			
 			return;
+		}
+		
+		private function dispatchEventAfterSave(requestType:String, event:Event, collection:Object):void
+		{
+			var items:Array = _savingData[event.target];
+			delete _savingData[event.target];
+			unregisterSaving(collection);
+			
+			if (requestType == DELETE_TYPE)
+			{
+				if (event is ResultEvent)
+					ICollectionView(collection).dispatchEvent(new CollectionChangeEvent(CollectionChangeEvent.DELETE_COMPLETE,ResultEvent(event).result,items));
+				else if (event is FaultEvent)
+					ICollectionView(collection).dispatchEvent(new CollectionChangeEvent(CollectionChangeEvent.DELETE_FAULT,FaultEvent(event).fault,items));
+			}
+			else if (requestType == SAVE_TYPE)
+			{
+				if (event is ResultEvent)
+					ICollectionView(collection).dispatchEvent(new CollectionChangeEvent(CollectionChangeEvent.SAVE_COMPLETE,ResultEvent(event).result,items));
+				else if (event is FaultEvent)
+					ICollectionView(collection).dispatchEvent(new CollectionChangeEvent(CollectionChangeEvent.SAVE_FAULT,FaultEvent(event).fault,items));
+			}
 		}
 		
 		private function collection_collectionChangeHandler(event:Event):void
@@ -478,5 +522,7 @@ package net.fproject.collection
 		}
 		
 		public static const CE_KIND_ADD_ITEM:String = "addItem";
+		private static const SAVE_TYPE:String = "save";
+		private static const DELETE_TYPE:String = "delete";
 	}
 }
