@@ -24,6 +24,7 @@ package net.fproject.utils
 	import mx.logging.LogEventLevel;
 	import mx.logging.targets.TraceTarget;
 	import mx.resources.IResourceManager;
+	import mx.resources.ResourceManager;
 	
 	import net.fproject.fproject_internal;
 	
@@ -89,6 +90,8 @@ package net.fproject.utils
 		{
 			if (Log.isInfo())
 			{
+				if(resourceManager == null)
+					resourceManager == ResourceManager.getInstance();
 				getLogger(clazz).info(resourceManager.getString(resourceBundle, bundleKey, parameters, locale));
 			}
 		}
@@ -110,6 +113,8 @@ package net.fproject.utils
 		{
 			if (Log.isWarn())
 			{
+				if(resourceManager == null)
+					resourceManager == ResourceManager.getInstance();
 				getLogger(clazz).warn(resourceManager.getString(resourceBundle, bundleKey, parameters, locale));
 			}
 		}
@@ -148,6 +153,8 @@ package net.fproject.utils
 		{
 			if (Log.isError())
 			{
+				if(resourceManager == null)
+					resourceManager == ResourceManager.getInstance();
 				getLogger(clazz).error(resourceManager.getString(resourceBundle, bundleKey, parameters, locale));
 			}
 		}
@@ -186,6 +193,8 @@ package net.fproject.utils
 		{
 			if (Log.isDebug())
 			{
+				if(resourceManager == null)
+					resourceManager == ResourceManager.getInstance();
 				getLogger(clazz).debug(resourceManager.getString(resourceBundle, bundleKey, parameters, locale));
 			}
 		}
@@ -207,6 +216,8 @@ package net.fproject.utils
 		{
 			if (Log.isFatal())
 			{
+				if(resourceManager == null)
+					resourceManager == ResourceManager.getInstance();
 				getLogger(clazz).fatal(resourceManager.getString(resourceBundle, bundleKey, parameters, locale));
 			}
 		}
