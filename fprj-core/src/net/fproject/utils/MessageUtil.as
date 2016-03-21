@@ -53,5 +53,16 @@ package net.fproject.utils
             return i != -1 ? resourceName.substr(i + 1) : "";
         }
 
+		/**
+		 * Shorten the logging message to 1000 characters limit 
+		 * @param s
+		 * 
+		 */
+		public static function shortenMsg(s:String):String
+		{
+			if(s != null)
+				s = s.substr(0, 1000);
+			return s;
+		}
     }
 }
