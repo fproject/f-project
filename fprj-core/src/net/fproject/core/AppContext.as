@@ -17,8 +17,13 @@
 ///////////////////////////////////////////////////////////////////////////////
 package net.fproject.core
 {
+	import flash.events.Event;
 	import flash.events.EventDispatcher;
+	import flash.events.IEventDispatcher;
+	import flash.external.ExternalInterface;
+	import flash.utils.getDefinitionByName;
 	
+	import mx.core.FlexGlobals;
 	import mx.rpc.CallResponder;
 	import mx.rpc.Fault;
 	
@@ -30,6 +35,8 @@ package net.fproject.core
 	import net.fproject.model.User;
 	import net.fproject.rpc.RemoteObjectFactory;
 	import net.fproject.service.IAppContextService;
+	import net.fproject.utils.ApplicationGlobals;
+	import net.fproject.utils.ExternalInterfaceUtil;
 	import net.fproject.utils.LoggingUtil;
 	import net.fproject.utils.ResourceUtil;
 	
@@ -90,6 +97,14 @@ package net.fproject.core
 	[Event(name="accessTokenChange", type="net.fproject.event.AppContextEvent")]
 	
 	/**
+	 * Dispatched when the system network availability is changed
+	 *
+	 * @eventType net.fproject.event.AppContextEvent.NETWORK_CHANGE
+	 * 
+	 */
+	[Event(name="networkChange", type="net.fproject.event.AppContextEvent")]
+	
+	/**
 	 * <p>AppContext class is used to bootstrap Flex application by
 	 * supplying properties and methods to store application context 
 	 * data and application states.
@@ -101,21 +116,27 @@ package net.fproject.core
 	{
 		public var dataDescriptor:AppContextDataDescriptor;
 		
-		protected var _networkAvailable:Boolean;
+		protected var _isOnline:Boolean;
 		
 		/**
 		 * 
 		 * <code>true</code> if the application can connect with server.
 		 * <code>false</code> if otherwise.
 		 */
-		public function get networkAvailable():Boolean
+		public function get isOnline():Boolean
 		{
-			return _networkAvailable;
+			if(ApplicationGlobals.isDesktop())
+			{
+				return _isOnline;
+			}
+			return isWebOnline();
 		}
 		
-		fproject_internal function setNetworkAvailable(value:Boolean):void
+		fproject_internal function setNetworkAvailability(value:Boolean):void
 		{
-			_networkAvailable = value;
+			_isOnline = value;
+			if(this.hasEventListener(AppContextEvent.NETWORK_CHANGE))
+				this.dispatchEvent(new AppContextEvent(AppContextEvent.NETWORK_CHANGE, value));
 		}
 		
 		protected var _data:Object;
@@ -138,7 +159,7 @@ package net.fproject.core
 		
 		private function initContextData():void
 		{
-			if(this._data == null)
+			if(this._data == null && appContextService != null)
 			{
 				setContextData(appContextService.createDefaultContextData());
 			}
@@ -185,35 +206,103 @@ package net.fproject.core
 		{
 			if(_initialized)
 				return;
-			
+			initNetworkMonitoring();
 			initContextData();
-			try
+			if(appContextService != null)
 			{
-				appContextService.initialize(
-					function(info:Object):void
+				try
+				{
+					appContextService.initialize(
+						function(info:Object):void
+						{
+							loginUser.id = dataDescriptor.initInfoToLoginUserId(info);
+							loginUser.fproject_internal::setToken(dataDescriptor.initInfoToLoginUserToken(info));
+							if(hasEventListener(AppContextEvent.INITIALIZED))
+								dispatchEvent(new AppContextEvent(AppContextEvent.INITIALIZED, info));
+							_initialized = true;
+							load();
+						}, 
+						function(fault:Fault):void
+						{
+							_initialized = false;
+							if(hasEventListener(AppContextEvent.SERVICE_CALL_FAILED))
+								dispatchEvent(new AppContextEvent(AppContextEvent.SERVICE_CALL_FAILED, fault));
+							if(hasEventListener(AppContextEvent.INITIALIZE_FAILED))
+								dispatchEvent(new AppContextEvent(AppContextEvent.INITIALIZE_FAILED, fault));
+						});
+				}
+				catch (e:Error)
+				{
+					e.message
+					dispatchEvent(new AppContextEvent(AppContextEvent.INITIALIZE_FAILED));
+					trace(e.getStackTrace());
+				}
+			}
+		}
+		
+		private static const NETWORK_CHANGE_CALLBACK:String="networkChangeCallback";
+		
+		private function networkChangeJSListerner(status:String):String
+		{
+			var id:String = FlexGlobals.topLevelApplication.id;
+			return "window.addEventListener('" + status + "',function(){var fxControl=document." +
+				id + " || window." + id + ";if(typeof fxControl." + NETWORK_CHANGE_CALLBACK +
+				"=='function')fxControl." + NETWORK_CHANGE_CALLBACK + "('" + status + "');});";
+		}
+		
+		private function initNetworkMonitoring():void
+		{
+			if(ApplicationGlobals.isDesktop())
+			{
+				var na:* = getDefinitionByName("flash.desktop.NativeApplication");
+				var naInstance:IEventDispatcher = na["nativeApplication"];
+				naInstance.addEventListener("networkChange", function(e:Event):void
+				{
+					fproject_internal::setNetworkAvailability(isDesktopOnline());
+				});
+			}
+			else
+			{
+				var id:String = FlexGlobals.topLevelApplication.id;
+				ExternalInterface.addCallback(NETWORK_CHANGE_CALLBACK, 
+					function(sts:String):void
 					{
-						loginUser.id = dataDescriptor.initInfoToLoginUserId(info);
-						loginUser.fproject_internal::setToken(dataDescriptor.initInfoToLoginUserToken(info));
-						if(hasEventListener(AppContextEvent.INITIALIZED))
-							dispatchEvent(new AppContextEvent(AppContextEvent.INITIALIZED, info));
-						_initialized = true;
-						load();
-					}, 
-					function(fault:Fault):void
-					{
-						_initialized = false;
-						if(hasEventListener(AppContextEvent.SERVICE_CALL_FAILED))
-							dispatchEvent(new AppContextEvent(AppContextEvent.SERVICE_CALL_FAILED, fault));
-						if(hasEventListener(AppContextEvent.INITIALIZE_FAILED))
-							dispatchEvent(new AppContextEvent(AppContextEvent.INITIALIZE_FAILED, fault));
+						fproject_internal::setNetworkAvailability(sts=="online");
 					});
+					
+				ExternalInterfaceUtil.invokeExternalCall("function(){" +
+					networkChangeJSListerner("online") +
+					networkChangeJSListerner("offline") +
+					"}");
 			}
-			catch (e:Error)
+		}
+		
+		public function isWebOnline():Boolean
+		{
+			return ExternalInterfaceUtil.invokeExternalCall("function(){return navigator.onLine;}");
+		}
+		
+		private function isDesktopOnline():Boolean
+		{
+			var ni:* = getDefinitionByName("flash.net.NetworkInfo");
+
+			var interfaces:*= ni.networkInfo.findInterfaces();
+			
+			if(interfaces.length==0)
 			{
-				e.message
-				dispatchEvent(new AppContextEvent(AppContextEvent.INITIALIZE_FAILED));
-				trace(e.getStackTrace());
+				return true;
 			}
+			
+			for(var i:uint = 0; i < interfaces.length; i++)
+			{
+				var name:String = interfaces[i].displayName.toLowerCase();
+				if(name == "wifi" || name == "mobile" || name == "ethernet")
+				{
+					if(interfaces[i].active)
+						return true;
+				}
+			}
+			return false;
 		}
 		
 		/**
@@ -302,7 +391,7 @@ package net.fproject.core
 			return appContextService.login(userName, password,
 				function(result:String):void
 				{
-					_networkAvailable = true;
+					_isOnline = true;
 					_authenticated = true;
 					loginUser.id = dataDescriptor.loginResultToLoginUserId(result);
 					loginUser.fproject_internal::setToken(dataDescriptor.loginResultToLoginUserToken(result));					
@@ -363,6 +452,7 @@ package net.fproject.core
 			if(_instance != null)
 				LoggingUtil.logAndThrowError(ImplementationConfig, ResourceUtil.FPRJ_CORE, 2, null,
 					ResourceUtil.FPRJ_CORE_BUNDLE, "singleton.violation");
+			_isOnline = true;
 			dataDescriptor = new AppContextDataDescriptor;
 			_instance = this;
 		}
