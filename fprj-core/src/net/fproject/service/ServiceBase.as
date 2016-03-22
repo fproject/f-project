@@ -192,11 +192,17 @@ package net.fproject.service
 			return AppContext.instance;
 		}
 		
+		private static const FAILED_THRESHOLD:uint = 20;
+		private static var failedCount:int;
+		
 		private function changeNetworkAvailability(value:Boolean):void
 		{
-			appContext.fproject_internal::setNetworkAvailable(value);
-			if(appContext.hasEventListener(AppContextEvent.NETWORK_AVAILABILITY_CHANGE))
-				appContext.dispatchEvent(new AppContextEvent(AppContextEvent.NETWORK_AVAILABILITY_CHANGE, value));
+			if(value)
+				failedCount = 0;
+			else
+				failedCount++;
+			if(failedCount > FAILED_THRESHOLD)
+				appContext.fproject_internal::setNetworkAvailability(false);
 		}
 		
 		private function getNetworkFaultCode(e:FaultEvent):String
