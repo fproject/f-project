@@ -18,15 +18,9 @@
     <sourceAttachmentPath/>
   </compiler>
   <applications>
-    <application path="RPC_Test.mxml"/>
-    <application path="WorkCalendar_Test.mxml"/>
-    <application path="Injector_Test.mxml"/>
-    <application path="Serialize_Test.mxml"/>
     <application path="DateTimeUtil_Test.mxml"/>
-    <application path="StringUtil_Test.mxml"/>
-    <application path="Active_Test.mxml"/>
+    <application path="OtherTests.mxml"/>
     <application path="FlexUnitApplication.mxml"/>
-    <application path="DataUtil_Test.mxml"/>
   </applications>
   <modules/>
   <workers/>

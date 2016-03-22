@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   minWidth="955" minHeight="600"
+			   creationComplete="app_creationCompleteHandler(event)">
+	<s:layout>
+		<s:VerticalLayout/>
+	</s:layout>
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.core.FlexGlobals;
+			import mx.events.FlexEvent;
+			
+			import net.fproject.core.AppContext;
+			import net.fproject.event.AppContextEvent;
+			import net.fproject.utils.ApplicationGlobals;
+			protected function onlineCheck_clickHandler(event:MouseEvent):void
+			{
+				logger.appendText("\nIs online? " + ApplicationGlobals.isOnline());
+			}
+			
+			protected function app_creationCompleteHandler(event:FlexEvent):void
+			{
+				logger.appendText("\nCurrent App ID: " + FlexGlobals.topLevelApplication.id);
+				AppContext.instance.initialize();
+				AppContext.instance.addEventListener(AppContextEvent.NETWORK_CHANGE,function(e:AppContextEvent):void
+				{
+					logger.appendText("\nIs online? " + e.data);
+				})
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<s:Button label="Check Online Status" id="onlineCheck" click="onlineCheck_clickHandler(event)"/>
+	<s:TextArea id="logger" width="100%" height="300"/>
+</s:Application>
