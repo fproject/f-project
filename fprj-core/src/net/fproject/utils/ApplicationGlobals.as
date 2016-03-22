@@ -23,6 +23,8 @@ package net.fproject.utils
 	import mx.managers.BrowserManager;
 	import mx.managers.IBrowserManager;
 	
+	import net.fproject.core.AppContext;
+	
 	/**
 	 * 
 	 * A set of application utility methods
@@ -191,7 +193,7 @@ package net.fproject.utils
 		
 		public static function isOnline():Boolean
 		{
-			return true;
+			return AppContext.instance.isOnline;
 		}
 	}
 }
