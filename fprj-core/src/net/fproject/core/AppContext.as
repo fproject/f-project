@@ -296,7 +296,7 @@ package net.fproject.core
 			for(var i:uint = 0; i < interfaces.length; i++)
 			{
 				var name:String = interfaces[i].displayName.toLowerCase();
-				if(name == "wifi" || name == "mobile" || name == "ethernet")
+				if(name == "wifi" || name == "wi-fi" || name == "mobile" || name == "ethernet")
 				{
 					if(interfaces[i].active)
 						return true;
