@@ -39,6 +39,7 @@ package net.fproject.core
 	import net.fproject.utils.ExternalInterfaceUtil;
 	import net.fproject.utils.LoggingUtil;
 	import net.fproject.utils.ResourceUtil;
+	import net.fproject.utils.StringUtil;
 	
 	/**
 	 * Dispatched when the app context initialization is completed.
@@ -296,7 +297,7 @@ package net.fproject.core
 			for(var i:uint = 0; i < interfaces.length; i++)
 			{
 				var name:String = interfaces[i].displayName.toLowerCase();
-				if(name == "wifi" || name == "wi-fi" || name == "mobile" || name == "ethernet")
+				if(StringUtil.isBlank(name) || name == "wifi" || name == "wi-fi" || name == "mobile" || name == "ethernet")
 				{
 					if(interfaces[i].active)
 						return true;
