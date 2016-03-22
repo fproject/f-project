@@ -194,8 +194,8 @@ package net.fproject.event
 		public static const SAVED:String = "saved";		
 		
 		/**
-		 *  The <code>AppContextEvent.NETWORK_AVAILABILITY_CHANGE</code> constant defines the value of the
-		 *  <code>type</code> property of the event object for an <code>networkAvailabilityChange</code> event.
+		 *  The <code>AppContextEvent.NETWORK_CHANGE</code> constant defines the value of the
+		 *  <code>type</code> property of the event object for an <code>networkChange</code> event.
 		 *
 		 * <p>This event is dispatched from the current AppContext when
 		 * the system network availability is changed.</p>
@@ -213,13 +213,14 @@ package net.fproject.event
 		 *       it is not always the Object listening for the event.
 		 *       Use the <code>currentTarget</code> property to always access the
 		 *       Object listening for the event.</td></tr>
-		 *     <tr><td><code>data</code></td><td>The data attached to this event.</td></tr>
+		 *     <tr><td><code>data</code></td><td>A boolean value indicates the intenet connection status
+		 * 		<code>true</code> if system is online, <code>false</code> if otherwise.</td></tr>
 		 *  </table>
 		 *
-		 *  @eventType networkAvailabilityChange
+		 *  @eventType networkChange
 		 *  
 		 */
-		public static const NETWORK_AVAILABILITY_CHANGE:String = "networkAvailabilityChange";
+		public static const NETWORK_CHANGE:String = "networkChange";
 		
 		/**
 		 *  The <code>AppContextEvent.ACCESS_TOKEN_CHANGE</code> constant defines the value of the
