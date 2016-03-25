@@ -24,7 +24,6 @@ package net.fproject.themes.shapes
 		
 		public function DeleteIconPaths()
 		{
-			super();
 			_paths = [];
 			var p:Path = new Path;
 			p.x = 6;
