@@ -225,7 +225,7 @@ package net.fproject.active
 					if(isNaN(v))
 						v = 0;
 					IOptimisticLockModel(model).version = v + 1;
-				});
+				}, false, 1);
 			}
 			
 			return r;
