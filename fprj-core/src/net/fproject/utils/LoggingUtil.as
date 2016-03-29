@@ -97,25 +97,28 @@ package net.fproject.utils
 		}
 		
 		/**
-		 * Log a message at the WARN level according to the specified message bundle message and parameters. 
+		 * Log a message at the WARN level according to the specified message, with resource bundle support. 
 		 * 
-		 * @param clazz
-		 * @param resourceManager
-		 * @param bundleName
-		 * @param resourceName
-		 * @param parameters
-		 * @param locale
+		 * @param clazz The class that fires logging action
+		 * @param message The log message. If value of param <code>resourceBundle</code> is passed, the <code>message</code>
+		 * will be used as resource bundle key for the bundle message.
+		 * @param parameters The parameters used for resource bundle message
+		 * @param resourceBundle The resource bundle name. If this parameter is not passed, the <code>message</code> will be directly used for logging.
+		 * @param resourceManager The instance of IResourceManager, default is <code>ResourceManager.getInstance()</code>
+		 * @param locale The locale of resource bundle.
 		 * 
 		 */
-		public static function warn(clazz:Class, resourceManager:IResourceManager, 
-									resourceBundle:String, bundleKey:String, parameters:Array = null, 
+		public static function warn(clazz:Class, message:String, parameters:Array = null, 
+									resourceBundle:String = null, resourceManager:IResourceManager = null,
 									locale:String = null) : void
 		{
 			if (Log.isWarn())
 			{
 				if(resourceManager == null)
 					resourceManager == ResourceManager.getInstance();
-				getLogger(clazz).warn(resourceManager.getString(resourceBundle, bundleKey, parameters, locale));
+				if(resourceBundle != null)
+					message = resourceManager.getString(resourceBundle, message, parameters, locale);
+				getLogger(clazz).warn(message);
 			}
 		}
 		
@@ -137,25 +140,28 @@ package net.fproject.utils
 		}
 		
 		/**
-		 * Log a message at the ERROR level according to the specified message bundle message and parameters. 
+		 * Log a message at the ERROR level according to the specified message, with resource bundle support. 
 		 * 
-		 * @param clazz
-		 * @param resourceManager
-		 * @param bundleName
-		 * @param resourceName
-		 * @param parameters
-		 * @param locale
+		 * @param clazz The class that fires logging action
+		 * @param message The log message. If value of param <code>resourceBundle</code> is passed, the <code>message</code>
+		 * will be used as resource bundle key for the bundle message.
+		 * @param parameters The parameters used for resource bundle message
+		 * @param resourceBundle The resource bundle name. If this parameter is not passed, the <code>message</code> will be directly used for logging.
+		 * @param resourceManager The instance of IResourceManager, default is <code>ResourceManager.getInstance()</code>
+		 * @param locale The locale of resource bundle.
 		 * 
 		 */
-		public static function error(clazz:Class, resourceManager:IResourceManager, 
-									 resourceBundle:String, bundleKey:String, parameters:Array = null, 
+		public static function error(clazz:Class, message:String, parameters:Array = null,
+									 resourceBundle:String = null, resourceManager:IResourceManager = null,
 									 locale:String = null) : void
 		{
 			if (Log.isError())
 			{
 				if(resourceManager == null)
 					resourceManager == ResourceManager.getInstance();
-				getLogger(clazz).error(resourceManager.getString(resourceBundle, bundleKey, parameters, locale));
+				if(resourceBundle != null)
+					message = resourceManager.getString(resourceBundle, message, parameters, locale);
+				getLogger(clazz).error(message);
 			}
 		}
 		
@@ -177,48 +183,54 @@ package net.fproject.utils
 		}
 		
 		/**
-		 * Log a message at the DEBUG level according to the specified message bundle message and parameters.
+		 * Log a message at the DEBUG level according to the specified message, with resource bundle support. 
 		 * 
-		 * @param clazz
-		 * @param resourceManager
-		 * @param bundleName
-		 * @param resourceName
-		 * @param parameters
-		 * @param locale
+		 * @param clazz The class that fires logging action
+		 * @param message The log message. If value of param <code>resourceBundle</code> is passed, the <code>message</code>
+		 * will be used as resource bundle key for the bundle message.
+		 * @param parameters The parameters used for resource bundle message
+		 * @param resourceBundle The resource bundle name. If this parameter is not passed, the <code>message</code> will be directly used for logging.
+		 * @param resourceManager The instance of IResourceManager, default is <code>ResourceManager.getInstance()</code>
+		 * @param locale The locale of resource bundle.
 		 * 
 		 */
-		public static function debug(clazz:Class, resourceManager:IResourceManager, 
-									 resourceBundle:String, bundleKey:String, parameters:Array = null, 
+		public static function debug(clazz:Class, message:String, parameters:Array = null,
+									 resourceBundle:String = null, resourceManager:IResourceManager = null,
 									 locale:String = null) : void
 		{
 			if (Log.isDebug())
 			{
 				if(resourceManager == null)
 					resourceManager == ResourceManager.getInstance();
-				getLogger(clazz).debug(resourceManager.getString(resourceBundle, bundleKey, parameters, locale));
+				if(resourceBundle != null)
+					message = resourceManager.getString(resourceBundle, message, parameters, locale);
+				getLogger(clazz).debug(message);
 			}
 		}
 		
 		/**
-		 * Log a message at the FATAL level according to the specified message bundle message and parameters.
+		 * Log a message at the FATAL level according to the specified message, with resource bundle support. 
 		 * 
-		 * @param clazz
-		 * @param resourceManager
-		 * @param bundleName
-		 * @param resourceName
-		 * @param parameters
-		 * @param locale
+		 * @param clazz The class that fires logging action
+		 * @param message The log message. If value of param <code>resourceBundle</code> is passed, the <code>message</code>
+		 * will be used as resource bundle key for the bundle message.
+		 * @param parameters The parameters used for resource bundle message
+		 * @param resourceBundle The resource bundle name. If this parameter is not passed, the <code>message</code> will be directly used for logging.
+		 * @param resourceManager The instance of IResourceManager, default is <code>ResourceManager.getInstance()</code>
+		 * @param locale The locale of resource bundle.
 		 * 
 		 */
-		public static function fatal(clazz:Class, resourceManager:IResourceManager, 
-									 resourceBundle:String, bundleKey:String, parameters:Array = null, 
+		public static function fatal(clazz:Class, message:String, parameters:Array = null,
+									 resourceBundle:String = null, resourceManager:IResourceManager = null,
 									 locale:String = null) : void
 		{
 			if (Log.isFatal())
 			{
 				if(resourceManager == null)
 					resourceManager == ResourceManager.getInstance();
-				getLogger(clazz).fatal(resourceManager.getString(resourceBundle, bundleKey, parameters, locale));
+				if(resourceBundle != null)
+					message = resourceManager.getString(resourceBundle, message, parameters, locale);
+				getLogger(clazz).fatal(message);
 			}
 		}
 		
