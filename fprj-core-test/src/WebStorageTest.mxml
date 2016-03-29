@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   minWidth="955"
+			   minHeight="600"
+			   applicationComplete="onApplicationComplete(event)"
+			   viewSourceURL="srcview/index.html">
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.events.FlexEvent;
+			
+			import net.fproject.event.WebStorageEvent;
+			import net.fproject.webstorage.WebStorage;
+			
+			[Bindable]
+			private var storage:ArrayCollection=new ArrayCollection();
+			
+			private var _storageArea:String;
+			
+			[Bindable('propertyChange')]
+			public function get storageArea():String
+			{
+				return _storageArea;
+			}
+			
+			public function set storageArea(value:String):void
+			{
+				if(_storageArea != value)
+				{
+					var oldValue:String = _storageArea;
+					_storageArea = value;
+					dispatchPropertyChangeEvent("storageArea", oldValue, value);
+					if(value != null)
+					{
+						var storage:WebStorage = WebStorage[value+"Storage"];
+						if(!storage.hasEventListener(WebStorageEvent.STORAGE))
+						{
+							storage.addEventListener(WebStorageEvent.STORAGE, updateData)
+						}
+					}
+				}
+			}
+			
+			
+			private function onApplicationComplete(event:FlexEvent):void
+			{
+				this.storageArea = "local";
+				
+				if (!WebStorage[storageArea+"Storage"].available())
+				{
+					Alert.show("Browser does not support External Interface API, or Local Storage is not supported");
+					return;
+				}
+				
+				//ExternalInterface.addCallback("as3WebStorageCallback", updateData);
+				//ExternalInterface.call(jsAddListener, ExternalInterface.objectID, false);
+			}
+			
+			private function updateData(event:WebStorageEvent):void
+			{
+				storage.removeAll();
+				
+				var length:uint=WebStorage[storageArea+"Storage"].length;
+				for (var i:int=0; i < length; i++)
+				{
+					var key:*=WebStorage[storageArea+"Storage"].key(i);
+					var data:*=WebStorage[storageArea+"Storage"].getItem(key);
+					
+					var row:Object=new Object();
+					row.key=key;
+					row.data=data;
+					storage.addItem(row);
+				}
+				
+				webStorageAreaHead.label = "WebStorage: " + event.storageArea;
+				
+				storage.refresh();
+			}
+			
+			protected function lengthButton_clickHandler(event:MouseEvent):void
+			{
+				var length:uint=WebStorage[storageArea+"Storage"].length;
+				length_lengthText.text=length.toString();
+			}
+			
+			protected function keyButton_clickHandler(event:MouseEvent):void
+			{
+				var index:uint=uint(key_indexText.text);
+				var key:*=WebStorage[storageArea+"Storage"].key(index);
+				key_keyText.text=key;
+			}
+			
+			protected function getItemButton_clickHandler(event:MouseEvent):void
+			{
+				var key:String=getItem_keyText.text;
+				var data:*=WebStorage[storageArea+"Storage"].getItem(key);
+				getItem_dataText.text=data;
+			}
+			
+			protected function setItemButton_clickHandler(event:MouseEvent):void
+			{
+				var key:String=setItem_keyText.text;
+				var data:*=setItem_dataText.text;
+				WebStorage[storageArea+"Storage"].setItem(key, data);
+				
+				//updateData()
+			}
+			
+			protected function removeItemButton_clickHandler(event:MouseEvent):void
+			{
+				var key:String=removeItem_keyText.text;
+				WebStorage[storageArea+"Storage"].removeItem(key);
+				
+				//updateData()
+			}
+			
+			protected function clearButton_clickHandler(event:MouseEvent):void
+			{
+				WebStorage[storageArea+"Storage"].clear();
+				
+				//updateData()
+			}
+			
+			protected function radio_clickHandler(event:MouseEvent):void
+			{
+				this.storageArea = localRadio.selected ? "local" : "session";
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<s:FormItem label="Storage Area:">
+		<s:layout>
+			<s:HorizontalLayout/>
+		</s:layout>
+		<s:RadioButton id="localRadio" label="Local Storage" click="radio_clickHandler(event)" selected="true"/>
+		<s:RadioButton id="sessionRadio" label="Session Storage" click="radio_clickHandler(event)"/>
+	</s:FormItem>
+	
+	<s:Form x="10"
+			y="50">
+		<s:FormHeading label="WebStorage.getItem()"/>
+		<s:Label text="key"/>
+		<s:TextInput width="188"
+					 id="getItem_keyText"/>
+		<s:Button label="getItem"
+				  width="84"
+				  id="getItemButton"
+				  click="getItemButton_clickHandler(event)"/>
+		<s:Label text="data"/>
+		<s:TextArea id="getItem_dataText"
+					editable="false"/>
+	</s:Form>
+	<s:Form x="240"
+			y="50">
+		<s:FormHeading label="WebStorage.setItem()"/>
+		<s:Label text="key"/>
+		<s:TextInput width="188"
+					 id="setItem_keyText"/>
+		<s:Label text="data"/>
+		<s:TextArea id="setItem_dataText"/>
+		<s:Button label="setItem"
+				  width="84"
+				  id="setItemButton"
+				  click="setItemButton_clickHandler(event)"/>
+	</s:Form>
+	<s:Form x="467"
+			y="10">
+		<s:FormHeading label="WebStorage.removeItem()"/>
+		<s:Label text="key"/>
+		<s:TextInput width="188"
+					 id="removeItem_keyText"/>
+		<s:Button label="removeItem"
+				  id="removeItemButton"
+				  click="removeItemButton_clickHandler(event)"/>
+	</s:Form>
+	<s:Form x="467"
+			y="143">
+		<s:FormHeading label="WebStorage.length"/>
+		<s:FormItem>
+			<s:layout>
+				<s:HorizontalLayout/>
+			</s:layout>
+			<s:Button label="length"
+					  id="lengthButton"
+					  click="lengthButton_clickHandler(event)"/>
+			<s:TextInput id="length_lengthText"
+						 width="70"
+						 editable="false"/>
+		</s:FormItem>
+	</s:Form>
+	<s:Form x="467"
+			y="231">
+		<s:FormHeading label="WebStorage.key()"/>
+		<s:FormItem>
+			<s:layout>
+				<s:HorizontalLayout/>
+			</s:layout>
+			<s:TextInput width="73"
+						 id="key_indexText"/>
+			<s:Button label="key"
+					  id="keyButton"
+					  click="keyButton_clickHandler(event)"/>
+		</s:FormItem>
+		<s:TextInput id="key_keyText"
+					 width="148"
+					 editable="false"/>
+	</s:Form>
+	<s:Form x="467"
+			y="347">
+		<s:FormHeading label="WebStorage.clear()"/>
+		<s:Button label="clear"
+				  width="84"
+				  id="clearButton"
+				  click="clearButton_clickHandler(event)"/>
+	</s:Form>
+	<s:Form x="11"
+			y="364">
+		<s:FormHeading id="webStorageAreaHead" label="WebStorage"/>
+		<s:DataGrid width="414"
+					 height="168"
+					 dataProvider="{storage}">
+			<s:columns>
+				<s:ArrayList>
+					<s:GridColumn headerText="key"
+									   dataField="key"/>
+					<s:GridColumn headerText="data"
+									   dataField="data"/>
+				</s:ArrayList>
+				
+			</s:columns>
+		</s:DataGrid>
+	</s:Form>
+</s:Application>
