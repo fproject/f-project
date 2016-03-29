@@ -6,6 +6,7 @@
     <classEntry path="net.fproject.model.IOptimisticLockModel"/>
     <classEntry path="net.fproject.core.ClassFactory"/>
     <classEntry path="net.fproject.utils.ExternalInterfaceUtil"/>
+    <classEntry path="net.fproject.event.WebStorageEvent"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="manifest.xml" sourcePath="manifest.xml"/>
