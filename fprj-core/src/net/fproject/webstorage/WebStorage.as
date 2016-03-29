@@ -27,7 +27,7 @@ package net.fproject.webstorage
 	 * 
 	 * For more details, see: <a href="https://html.spec.whatwg.org/multipage/webstorage.html">W3C Web Storage Specification</a>
 	 * 
-	 * @see net.fproject.webstorage.SessionStorage
+	 * @see net.fproject.event.WebStorageEvent
 	 * 
 	 * @author Bui Sy Nguyen
 	 */
