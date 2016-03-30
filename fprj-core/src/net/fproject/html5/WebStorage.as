@@ -15,7 +15,7 @@
 // limitations under the License.
 //
 ///////////////////////////////////////////////////////////////////////////////
-package net.fproject.webstorage
+package net.fproject.html5
 {
     import flash.events.EventDispatcher;
     import flash.external.ExternalInterface;
