@@ -23,6 +23,11 @@ package net.fproject.html5
     import net.fproject.event.WebStorageEvent;
 
 	/**
+	 * The <code>storage</code> event is fired on a Document's Window object when a (session or local) storage area changes.
+	 * */
+	[Event(name="storage", type="net.fproject.event.WebStorageEvent")]
+	
+	/**
 	 * This is a proxy class that provides methods to access HTML5 Web Storage API.
 	 * 
 	 * For more details, see: <a href="https://html.spec.whatwg.org/multipage/webstorage.html">W3C Web Storage Specification</a>
@@ -33,7 +38,10 @@ package net.fproject.html5
 	 */
     public class WebStorage extends EventDispatcher
     {
-		public var type:String;//'session' or 'local'
+		/**
+		 * The type of storage. Must be one of the two values: <code>"local"</code> or <code>"session"</code> 
+		 */
+		public var type:String;
 		
 		/**
 		 * The number of key/value pairs currently present in the list associated with the <code>WebStorage</code> object.
