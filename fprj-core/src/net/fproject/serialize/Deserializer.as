@@ -19,9 +19,12 @@ package net.fproject.serialize
 {
 	import flash.net.getClassByAlias;
 	import flash.system.ApplicationDomain;
+	import flash.utils.ByteArray;
 	import flash.utils.Dictionary;
 	import flash.utils.getDefinitionByName;
 	import flash.utils.getQualifiedClassName;
+	
+	import mx.utils.Base64Decoder;
 	
 	import net.fproject.fproject_internal;
 	import net.fproject.di.supportClasses.FieldInjection;
@@ -403,7 +406,7 @@ package net.fproject.serialize
 		 * @return the output data in strong-typing format that specified by <code>returning</code>
 		 * 
 		 */
-		public function fromJSON(json:*, returning:*=undefined):Object
+		public function fromJSON(json:*, returning:*=undefined):*
 		{
 			if(json == null)
 				return json;
@@ -472,6 +475,24 @@ package net.fproject.serialize
 			{
 				return extract(obj, clazz);
 			}
+		}
+		
+		private var _base64Decoder:Base64Decoder;
+		protected function get base64Decoder():Base64Decoder
+		{
+			if(_base64Decoder == null)
+				_base64Decoder = new Base64Decoder;
+			return _base64Decoder;
+		}
+		
+		public function fromBase64AMF(value:String):*
+		{
+			if(StringUtil.isBlank(value))
+				return value;
+			
+			this.base64Decoder.decode(value);
+			var ba:ByteArray = this.base64Decoder.toByteArray();
+			return ba.readObject();
 		}
 	}
 }

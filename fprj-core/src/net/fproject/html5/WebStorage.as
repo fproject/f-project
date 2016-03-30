@@ -21,6 +21,8 @@ package net.fproject.html5
     import flash.external.ExternalInterface;
     
     import net.fproject.event.WebStorageEvent;
+    import net.fproject.serialize.Deserializer;
+    import net.fproject.serialize.Serializer;
 
 	/**
 	 * The <code>storage</code> event is fired on a Document's Window object when a (session or local) storage area changes.
@@ -81,7 +83,8 @@ package net.fproject.html5
 		 */
         public function getItem(key:String):*
         {
-            return ExternalInterface.call(type + "Storage.getItem", key);
+			var s:String = ExternalInterface.call(type + "Storage.getItem", key);
+            return Deserializer.getInstance().fromBase64AMF(s);
         }
 
 		/**
@@ -97,7 +100,7 @@ package net.fproject.html5
 		 */
         public function setItem(key:String, value:*):void
         {
-            ExternalInterface.call(type + "Storage.setItem", key, value);
+            ExternalInterface.call(type + "Storage.setItem", key, Serializer.getInstance().toBase64AMF(value));
         }
 
 		/**
