@@ -26,6 +26,8 @@ package net.fproject.gui.component
 	import spark.filters.GlowFilter;
 	import spark.primitives.Rect;
 	
+	import net.fproject.utils.LoggingUtil;
+	
 	/**
 	 * A spark.primitives.Rect that is filled with a solid color specified by styles
 	 * 
@@ -51,7 +53,7 @@ package net.fproject.gui.component
 			var styleDec:CSSStyleDeclaration =StyleManager.getStyleManager(null).getStyleDeclaration(_styleName);
 			if(styleDec == null)
 			{
-				trace("Style name not found: " + _styleName);
+				LoggingUtil.warn(SolidColorRect,"Style name not found: " + _styleName);
 				return;
 			}
 			var styleValue:* = styleDec.getStyle("fillAlpha");

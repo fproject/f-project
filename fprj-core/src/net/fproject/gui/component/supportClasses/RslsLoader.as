@@ -29,9 +29,10 @@ package net.fproject.gui.component.supportClasses
 	import mx.utils.StringUtil;
 	
 	import net.fproject.core.AppContext;
-	import net.fproject.reflect.ReflectionUtil;
 	import net.fproject.event.AppContextEvent;
+	import net.fproject.reflect.ReflectionUtil;
 	import net.fproject.utils.ApplicationGlobals;
+	import net.fproject.utils.LoggingUtil;
 	
 	import org.as3commons.reflect.Metadata;
 
@@ -177,7 +178,7 @@ package net.fproject.gui.component.supportClasses
 					rslLoader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, 
 						function(e:IOErrorEvent):void
 						{
-							trace(e.text);
+							LoggingUtil.error(RslsLoader, e.text);
 							if(AppContext.instance.hasEventListener(AppContextEvent.APP_ERROR))
 								AppContext.instance.dispatchEvent(new AppContextEvent(AppContextEvent.APP_ERROR, e.text));
 							e.stopPropagation();

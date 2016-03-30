@@ -234,9 +234,8 @@ package net.fproject.core
 				}
 				catch (e:Error)
 				{
-					e.message
 					dispatchEvent(new AppContextEvent(AppContextEvent.INITIALIZE_FAILED));
-					trace(e.getStackTrace());
+					LoggingUtil.error(AppContext, e.getStackTrace());
 				}
 			}
 		}

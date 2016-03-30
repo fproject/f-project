@@ -30,6 +30,7 @@ package net.fproject.service
 	import net.fproject.rpc.IRemoteObject;
 	import net.fproject.rpc.RemoteObjectFactory;
 	import net.fproject.utils.DateTimeUtil;
+	import net.fproject.utils.LoggingUtil;
 
 	/**
 	 * <p>Base class cho tất các các service class.
@@ -125,7 +126,7 @@ package net.fproject.service
 				changeNetworkAvailability(false);
 			}
 			
-			trace("Service failed: " + e.currentTarget.source + "\n" + e.message);
+			LoggingUtil.error(ServiceBase, "Service failed: " + e.currentTarget.source + "\n" + e.message);
 		}
 		
 		protected function onCallFailed(e:FaultEvent):void
@@ -133,7 +134,7 @@ package net.fproject.service
 			if (responderToCallbackInfo[e.currentTarget]["failCallback"] != undefined)
 				responderToCallbackInfo[e.currentTarget].failCallback(e.fault);
 			
-			trace("\n[" + DateTimeUtil.formatIsoDate(new Date) + "] Service call failed: " + e.toString());
+			LoggingUtil.error(ServiceBase, "\n[" + DateTimeUtil.formatIsoDate(new Date) + "] Service call failed: " + e.toString());
 			
 			deleteServiceCall(CallResponder(e.currentTarget));
 			
