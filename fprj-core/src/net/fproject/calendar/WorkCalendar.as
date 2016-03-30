@@ -2401,7 +2401,7 @@ package net.fproject.calendar
 			}
 			catch (err:Error)
 			{
-				trace(err.errorID + err.message);
+				LoggingUtil.error(WorkCalendar, err.errorID + err.message);
 				throw err;
 			}
 			finally
@@ -2443,7 +2443,7 @@ package net.fproject.calendar
 			}
 			catch (err:Error)
 			{
-				trace(err.errorID + err.message);
+				LoggingUtil.error(WorkCalendar, err.errorID + err.message);
 				throw err;
 			}
 			finally

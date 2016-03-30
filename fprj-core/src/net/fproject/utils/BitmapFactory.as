@@ -167,7 +167,7 @@ package net.fproject.utils
 		
 		private function loaderInfo_ioError(event:IOErrorEvent):void
 		{
-			trace("BitmapFactory " + event.text);
+			LoggingUtil.error(BitmapFactory, event.text);
 		}
 		
 		/**
