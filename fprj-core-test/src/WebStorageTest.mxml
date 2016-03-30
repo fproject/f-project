@@ -14,6 +14,7 @@
 			
 			import net.fproject.event.WebStorageEvent;
 			import net.fproject.html5.WebStorage;
+			import net.fproject.utils.DateTimeUtil;
 			
 			[Bindable]
 			private var storage:ArrayCollection=new ArrayCollection();
@@ -38,7 +39,7 @@
 						var storage:WebStorage = WebStorage[value+"Storage"];
 						if(!storage.hasEventListener(WebStorageEvent.STORAGE))
 						{
-							storage.addEventListener(WebStorageEvent.STORAGE, updateData)
+							storage.addEventListener(WebStorageEvent.STORAGE, onWebStorageUpdated)
 						}
 					}
 				}
@@ -55,11 +56,10 @@
 					return;
 				}
 				
-				//ExternalInterface.addCallback("as3WebStorageCallback", updateData);
-				//ExternalInterface.call(jsAddListener, ExternalInterface.objectID, false);
+				onWebStorageUpdated(null);
 			}
 			
-			private function updateData(event:WebStorageEvent):void
+			private function onWebStorageUpdated(event:WebStorageEvent):void
 			{
 				storage.removeAll();
 				
@@ -69,13 +69,12 @@
 					var key:*=WebStorage[storageArea+"Storage"].key(i);
 					var data:*=WebStorage[storageArea+"Storage"].getItem(key);
 					
-					var row:Object=new Object();
-					row.key=key;
-					row.data=data;
+					var row:Object={key:key,data:data};
 					storage.addItem(row);
 				}
 				
-				webStorageAreaHead.label = "WebStorage: " + event.storageArea;
+				if(event != null)
+					webStorageAreaHead.label = "WebStorage: " + event.storageArea;
 				
 				storage.refresh();
 			}
@@ -104,6 +103,26 @@
 			{
 				var key:String=setItem_keyText.text;
 				var data:*=setItem_dataText.text;
+				switch(dataTypeDropDown.selectedItem)
+				{
+					case "int":
+						data = int(data);
+						break;
+					case "Number":
+						data = Number(data);
+						break;
+					case "Date":
+						data = DateTimeUtil.parseIsoDate(data);
+						break;
+					case "Object":
+						data = JSON.parse(data);
+						break;
+					case "null":
+						data = null;
+						break;
+					default:
+						break;
+				}
 				WebStorage[storageArea+"Storage"].setItem(key, data);
 				
 				//updateData()
@@ -127,6 +146,17 @@
 			protected function radio_clickHandler(event:MouseEvent):void
 			{
 				this.storageArea = localRadio.selected ? "local" : "session";
+			}
+			
+			protected function getDataType(item:Object, column:GridColumn):String
+			{
+				if(item.data === null)
+					return "null";
+				if(item.data is int)
+					return "int";
+				if(item.data is Date)
+					return "Date";
+				return typeof(item.data);
 			}
 			
 		]]>
@@ -157,10 +187,16 @@
 	<s:Form x="240"
 			y="50">
 		<s:FormHeading label="WebStorage.setItem()"/>
-		<s:Label text="key"/>
+		<s:Label text="data"/>
 		<s:TextInput width="188"
 					 id="setItem_keyText"/>
-		<s:Label text="data"/>
+		
+		<s:FormItem label="data">
+			<s:layout>
+				<s:HorizontalLayout/>
+			</s:layout>
+			<s:DropDownList id="dataTypeDropDown" dataProvider="{new ArrayList(['String','int','Number','Date','Object','null'])}" selectedIndex="0"/>
+		</s:FormItem>
 		<s:TextArea id="setItem_dataText"/>
 		<s:Button label="setItem"
 				  width="84"
@@ -229,6 +265,8 @@
 									   dataField="key"/>
 					<s:GridColumn headerText="data"
 									   dataField="data"/>
+					<s:GridColumn headerText="Type"
+								  labelFunction="{getDataType}"/>
 				</s:ArrayList>
 				
 			</s:columns>
