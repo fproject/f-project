@@ -26,6 +26,8 @@ package net.fproject.html5
 
 	/**
 	 * The <code>storage</code> event is fired on a Document's Window object when a (session or local) storage area changes.
+	 * 
+	 * @eventType net.fproject.event.WebStorageEvent.STORAGE
 	 * */
 	[Event(name="storage", type="net.fproject.event.WebStorageEvent")]
 	
