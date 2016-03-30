@@ -13,7 +13,7 @@
 			import mx.events.FlexEvent;
 			
 			import net.fproject.event.WebStorageEvent;
-			import net.fproject.webstorage.WebStorage;
+			import net.fproject.html5.WebStorage;
 			
 			[Bindable]
 			private var storage:ArrayCollection=new ArrayCollection();
