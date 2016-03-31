@@ -36,8 +36,6 @@ package net.fproject.calendar
 	import net.fproject.utils.MessageUtil;
 	import net.fproject.utils.ResourceUtil;
 	
-	use namespace fproject_internal;
-	
 	/**
 	 * <p>Dispatched when the <code>WorkCalendar</code> is changed.</p>
 	 * <p>Classes that use <code>WorkCalendar</code> should listen for this
@@ -261,7 +259,7 @@ package net.fproject.calendar
 		public function WorkCalendar(name:String = CALRENDAR_NAME_DEFAULT,
 									 baseCalendar:WorkCalendar = null)
 		{
-			this._gregorianCalendar = InstanceFactory.getInstance(GregorianCalendar) as GregorianCalendar;;
+			fproject_internal::_gregorianCalendar = InstanceFactory.getInstance(GregorianCalendar) as GregorianCalendar;;
 			this._name = name;
 			this._periods = new Vector.<PeriodInternal>();
 			this._weekDays = new Vector.<WeekDayInternal>(7);
@@ -287,11 +285,11 @@ package net.fproject.calendar
 		 * */
 		public function get gregorianCalendar():GregorianCalendar
 		{
-			if (!this._gregorianCalendar)
+			if (!fproject_internal::_gregorianCalendar)
 			{
-				this._gregorianCalendar = InstanceFactory.getInstance(GregorianCalendar) as GregorianCalendar;
+				fproject_internal::_gregorianCalendar = InstanceFactory.getInstance(GregorianCalendar) as GregorianCalendar;
 			}
-			return this._gregorianCalendar;
+			return fproject_internal::_gregorianCalendar;
 		}
 		
 		/**
@@ -301,9 +299,9 @@ package net.fproject.calendar
 		 */
 		public function set gregorianCalendar(value:GregorianCalendar):void
 		{
-			if (value != this._gregorianCalendar)
+			if (value != fproject_internal::_gregorianCalendar)
 			{
-				this._gregorianCalendar = value;
+				fproject_internal::_gregorianCalendar = value;
 				this.onChanged();
 			}
 		}
@@ -652,7 +650,7 @@ package net.fproject.calendar
 		public function copyFrom(cal:WorkCalendar):void
 		{
 			this.assertNotReadOnly();
-			this._gregorianCalendar = cal._gregorianCalendar;
+			fproject_internal::_gregorianCalendar = cal.fproject_internal::_gregorianCalendar;
 			for (var i:int = 0; i < 7; i++)
 			{
 				var weekDay:WeekDayInternal = cal._weekDays[i];
@@ -685,7 +683,7 @@ package net.fproject.calendar
 		{
 			if(target == null)
 				target = new WorkCalendar(this.name, this.baseCalendar);
-			target._gregorianCalendar = this.gregorianCalendar;
+			target.fproject_internal::_gregorianCalendar = this.gregorianCalendar;
 			target._periods = this._periods.slice(0);
 			var i:int;
 			for (i = 0; i < this._periods.length; i++)
@@ -811,7 +809,7 @@ package net.fproject.calendar
 						var period:PeriodInternal = this.nextPeriod(startTime);
 						if (period != null)
 						{
-							if (DateTimeUtil.getStartOfDay(endTime) < period.startDate)
+							if (DateTimeUtil.fproject_internal::getStartOfDay(endTime) < period.startDate)
 							{
 								totalWork+= this.getStandardWorkBetween(startTime, endTime);
 								break;
@@ -824,7 +822,7 @@ package net.fproject.calendar
 										period.startDate);
 									startTime.time = period.startDate.time;
 								}
-								if (DateTimeUtil.getStartOfDay(endTime) <= period.endDate)
+								if (DateTimeUtil.fproject_internal::getStartOfDay(endTime) <= period.endDate)
 								{
 									totalWork+= period.getTotalWorkBetween(startTime, endTime);
 									break;
@@ -832,7 +830,7 @@ package net.fproject.calendar
 								else
 								{
 									var endTime:Date =
-										this._gregorianCalendar.dateAddByTimeUnit(period.endDate,
+										fproject_internal::_gregorianCalendar.dateAddByTimeUnit(period.endDate,
 											TimeUnit.DAY, 1);
 									totalWork+= period.getTotalWorkBetween(startTime, endTime);
 									startTime.time = endTime.time;
@@ -878,16 +876,16 @@ package net.fproject.calendar
 			var p:WorkInfo = this.getPeriodAt(startDate);
 			var n:Number = getTotalWorkAtDay(startDate);
 			
-			if (DateTimeUtil.areOnSameDay(startDate, endDate))
+			if (DateTimeUtil.fproject_internal::areOnSameDay(startDate, endDate))
 			{				
 				return n > 0 ? p.getTotalWorkBetween(startDate, endDate) / n : 0;
 			}
 			
-			var nextDayStart:Date = DateTimeUtil.getStartOfNextDay(startDate);
+			var nextDayStart:Date = DateTimeUtil.fproject_internal::getStartOfNextDay(startDate);
 			var duration:Number = n > 0 ? p.getTotalWorkBetween(startDate, nextDayStart) / n : 0;
 			
 			var d:Date = nextDayStart;
-			var end:Date = DateTimeUtil.getStartOfDay(endDate);
+			var end:Date = DateTimeUtil.fproject_internal::getStartOfDay(endDate);
 			while (d < end)
 			{
 				if (isWorkingDate(d))
@@ -1099,7 +1097,7 @@ package net.fproject.calendar
 					return new Date(Number(data));
 				}
 			}
-			var returnDate:Date = this.getPreviousWorkingTimeInternal(time);
+			var returnDate:Date = fproject_internal::getPreviousWorkingTimeInternal(time);
 			if (time.time == returnDate.time)
 			{
 				if (this._previousWorkingTimeCache == null)
@@ -1151,7 +1149,7 @@ package net.fproject.calendar
 					}
 					else
 					{
-						var startOfDay:Date = DateTimeUtil.getStartOfDay(time);
+						var startOfDay:Date = DateTimeUtil.fproject_internal::getStartOfDay(time);
 						if (time.time == startOfDay.time)
 							this.gregorianCalendar.dateAddByTimeUnit(time, TimeUnit.DAY, -1, true);
 						else
@@ -1174,7 +1172,7 @@ package net.fproject.calendar
 		{
 			if (!this.isWorkingDate(date))
 				return null;
-			return getNextWorkingTime(DateTimeUtil.getStartOfDay(new Date(date.time)));
+			return getNextWorkingTime(DateTimeUtil.fproject_internal::getStartOfDay(new Date(date.time)));
 		}
 		
 		/**
@@ -1188,7 +1186,7 @@ package net.fproject.calendar
 		{
 			if (!this.isWorkingDate(date))
 				return null;
-			return getPreviousWorkingTime(DateTimeUtil.getStartOfNextDay(new Date(date.time)));
+			return getPreviousWorkingTime(DateTimeUtil.fproject_internal::getStartOfNextDay(new Date(date.time)));
 		}
 		
 		/**
@@ -1208,10 +1206,10 @@ package net.fproject.calendar
 					return new Date(Number(data));
 				}
 			}
-			var returnDate:Date = this.getNextWorkingTimeInternal(time);
+			var returnDate:Date = fproject_internal::getNextWorkingTimeInternal(time);
 			if (time.time != returnDate.time)
 			{
-				if (this.getPreviousWorkingTimeInternal(time).time == time.time)
+				if (fproject_internal::getPreviousWorkingTimeInternal(time).time == time.time)
 				{
 					if (this._nextWorkingTimeCache == null)
 					{
@@ -1274,7 +1272,7 @@ package net.fproject.calendar
 						}
 						else
 						{
-							time = DateTimeUtil.getStartOfNextDay(p.endDate);
+							time = DateTimeUtil.fproject_internal::getStartOfNextDay(p.endDate);
 						}
 						continue;
 					}
@@ -1288,7 +1286,7 @@ package net.fproject.calendar
 						}
 						continue;
 					}
-					this._gregorianCalendar.dateAddByTimeUnit(time, TimeUnit.DAY, 1,
+					fproject_internal::_gregorianCalendar.dateAddByTimeUnit(time, TimeUnit.DAY, 1,
 						true);
 				}
 			}
@@ -1312,7 +1310,7 @@ package net.fproject.calendar
 					return new Date(Number(data));
 				}
 			}
-			var nextNonWtInternal:Date = this.getNextNonWorkingTimeInternal(time);
+			var nextNonWtInternal:Date = fproject_internal::getNextNonWorkingTimeInternal(time);
 			if (time.time != nextNonWtInternal.time)
 			{
 				if (this._nextNonWorkingTimeCache == null)
@@ -1386,7 +1384,7 @@ package net.fproject.calendar
 			if (hasWorkingWeekDayInBase())
 				return true;
 			
-			var date:Date = DateTimeUtil.getStartOfDay(time);
+			var date:Date = DateTimeUtil.fproject_internal::getStartOfDay(time);
 			var hour:Number = time.time - date.time;
 			
 			for each (var p:PeriodInternal in this._periods)
@@ -1420,7 +1418,7 @@ package net.fproject.calendar
 			if (hasWorkingWeekDayInBase())
 				return true;
 			
-			var date:Date = DateTimeUtil.getStartOfDay(time);
+			var date:Date = DateTimeUtil.fproject_internal::getStartOfDay(time);
 			var hour:Number = time.time - date.time;
 			
 			for each (var p:PeriodInternal in this._periods)
@@ -1471,7 +1469,7 @@ package net.fproject.calendar
 			for (i = this._periods.length - 1; i >= 0; i--)
 			{
 				p = this._periods[i];
-				date = DateTimeUtil.getStartOfDay(time);
+				date = DateTimeUtil.fproject_internal::getStartOfDay(time);
 				if (date > p.endDate)
 				{
 					return false;
@@ -1518,8 +1516,8 @@ package net.fproject.calendar
 			var period:PeriodInternal = null;
 			var newPeriod:PeriodInternal;
 			this.assertNotReadOnly();
-			start = DateTimeUtil.getStartOfDay(start);
-			end = DateTimeUtil.getStartOfDay(end);
+			start = DateTimeUtil.fproject_internal::getStartOfDay(start);
+			end = DateTimeUtil.fproject_internal::getStartOfDay(end);
 			if (end < start)
 			{
 				var tmp:Date = start;
@@ -1548,7 +1546,7 @@ package net.fproject.calendar
 					{
 						newPeriod = PeriodInternal(period.clone());
 						newPeriod.startDate =
-							this._gregorianCalendar.dateAddByTimeUnit(end, TimeUnit.DAY,
+							fproject_internal::_gregorianCalendar.dateAddByTimeUnit(end, TimeUnit.DAY,
 								1);
 						this._periods.splice(idx, 0, newPeriod);
 					}
@@ -1562,8 +1560,8 @@ package net.fproject.calendar
 					{
 						newPeriod = PeriodInternal(period.clone());
 						newPeriod.isInherited = true;
-						newPeriod.startDate = DateTimeUtil.max(newPeriod.startDate, start);
-						newPeriod.endDate = DateTimeUtil.min(newPeriod.endDate, end);
+						newPeriod.startDate = DateTimeUtil.fproject_internal::max(newPeriod.startDate, start);
+						newPeriod.endDate = DateTimeUtil.fproject_internal::min(newPeriod.endDate, end);
 						var i:uint = this._periods.length;
 						var j:uint = 0;
 						for each (var p:PeriodInternal in this._periods)
@@ -1593,8 +1591,8 @@ package net.fproject.calendar
 											workShifts:Vector.<WorkShift>):void
 		{
 			this.assertNotReadOnly();
-			fromDate = DateTimeUtil.getStartOfDay(fromDate);
-			toDate = DateTimeUtil.getStartOfDay(toDate);
+			fromDate = DateTimeUtil.fproject_internal::getStartOfDay(fromDate);
+			toDate = DateTimeUtil.fproject_internal::getStartOfDay(toDate);
 			var period:PeriodInternal = new PeriodInternal(this, true, fromDate, toDate);
 			if (workShifts != null && workShifts.length != 0)
 			{
@@ -1619,8 +1617,8 @@ package net.fproject.calendar
 		public function setPeriodToNonWorking(fromDate:Date, toDate:Date):void
 		{
 			this.assertNotReadOnly();
-			fromDate = DateTimeUtil.getStartOfDay(fromDate);
-			toDate = DateTimeUtil.getStartOfDay(toDate);
+			fromDate = DateTimeUtil.fproject_internal::getStartOfDay(fromDate);
+			toDate = DateTimeUtil.fproject_internal::getStartOfDay(toDate);
 			this.addNonWorkingPeriod(new PeriodInternal(this, false, fromDate, toDate));
 			this.onChanged();
 		}
@@ -1955,9 +1953,9 @@ package net.fproject.calendar
 							if (!period.isInherited)
 							{
 								newPeriod.startDate =
-									DateTimeUtil.min(period.startDate, newPeriod.startDate);
+									DateTimeUtil.fproject_internal::min(period.startDate, newPeriod.startDate);
 								newPeriod.endDate =
-									DateTimeUtil.max(period.endDate, newPeriod.endDate);
+									DateTimeUtil.fproject_internal::max(period.endDate, newPeriod.endDate);
 							}
 							else
 							{
@@ -1965,7 +1963,7 @@ package net.fproject.calendar
 								{
 									clonedPeriod = PeriodInternal(period.clone());
 									clonedPeriod.endDate =
-										this._gregorianCalendar.
+										fproject_internal::_gregorianCalendar.
 										dateAddByTimeUnit(newPeriod.startDate,
 											TimeUnit.DAY, -1);
 									newPeriods.push(clonedPeriod);
@@ -1974,7 +1972,7 @@ package net.fproject.calendar
 								{
 									clonedPeriod = PeriodInternal(period.clone());
 									clonedPeriod.startDate =
-										this._gregorianCalendar.
+										fproject_internal::_gregorianCalendar.
 										dateAddByTimeUnit(newPeriod.endDate, TimeUnit.DAY,
 											1);
 									newPeriods.push(clonedPeriod);
@@ -1993,7 +1991,7 @@ package net.fproject.calendar
 						{
 							clonedPeriod = PeriodInternal(period.clone());
 							clonedPeriod.endDate =
-								this._gregorianCalendar.dateAddByTimeUnit(newPeriod.startDate,
+								fproject_internal::_gregorianCalendar.dateAddByTimeUnit(newPeriod.startDate,
 									TimeUnit.DAY, -1);
 							newPeriods.push(clonedPeriod);
 						}
@@ -2001,7 +1999,7 @@ package net.fproject.calendar
 						{
 							clonedPeriod = PeriodInternal(period.clone());
 							clonedPeriod.startDate =
-								this._gregorianCalendar.dateAddByTimeUnit(newPeriod.endDate,
+								fproject_internal::_gregorianCalendar.dateAddByTimeUnit(newPeriod.endDate,
 									TimeUnit.DAY, 1);
 							newPeriods.push(clonedPeriod);
 						}
@@ -2061,19 +2059,14 @@ package net.fproject.calendar
 							periodInternal.intersects(period.startDate, period.endDate);
 						}
 						if (periodInternal.intersects(period.startDate, period.endDate) ||
-							period.endDate.time + TimeUnit.DAY.milliseconds ==
-							periodInternal.startDate.time ||
-							periodInternal.endDate.time + TimeUnit.DAY.milliseconds ==
-							period.startDate.time)
+							period.endDate.time + TimeUnit.DAY.milliseconds == periodInternal.startDate.time ||
+							periodInternal.endDate.time + TimeUnit.DAY.milliseconds == period.startDate.time)
 						{
 							if (!period.isInherited &&
 								periodInternal.compareWorkShifts(period))
 							{
-								periodInternal.startDate =
-									DateTimeUtil.min(period.startDate,
-										periodInternal.startDate);
-								periodInternal.endDate =
-									DateTimeUtil.max(period.endDate, periodInternal.endDate);
+								periodInternal.startDate = DateTimeUtil.fproject_internal::min(period.startDate, periodInternal.startDate);
+								periodInternal.endDate = DateTimeUtil.fproject_internal::max(period.endDate, periodInternal.endDate);
 							}
 							else
 							{
@@ -2082,18 +2075,13 @@ package net.fproject.calendar
 								{
 									clonedPeriod = PeriodInternal(period.clone());
 									clonedPeriod.startDate =
-										this._gregorianCalendar.
-										dateAddByTimeUnit(periodInternal.startDate,
-											TimeUnit.DAY, -1);
+										fproject_internal::_gregorianCalendar.dateAddByTimeUnit(periodInternal.startDate, TimeUnit.DAY, -1);
 									newPeriods.push(clonedPeriod);
 								}
 								if (period.endDate > periodInternal.endDate)
 								{
 									clonedPeriod = PeriodInternal(period.clone());
-									clonedPeriod.startDate =
-										this._gregorianCalendar.
-										dateAddByTimeUnit(periodInternal.endDate,
-											TimeUnit.DAY, 1);
+									clonedPeriod.startDate = fproject_internal::_gregorianCalendar.dateAddByTimeUnit(periodInternal.endDate, TimeUnit.DAY, 1);
 									newPeriods.push(clonedPeriod);
 								}
 							}
@@ -2111,16 +2099,14 @@ package net.fproject.calendar
 						{
 							clonedPeriod = PeriodInternal(period.clone());
 							clonedPeriod.startDate =
-								this._gregorianCalendar.dateAddByTimeUnit(periodInternal.
-									startDate, TimeUnit.DAY, -1);
+								fproject_internal::_gregorianCalendar.dateAddByTimeUnit(periodInternal.startDate, TimeUnit.DAY, -1);
 							newPeriods.push(clonedPeriod);
 						}
 						if (period.endDate > periodInternal.endDate)
 						{
 							clonedPeriod = PeriodInternal(period.clone());
 							clonedPeriod.startDate =
-								this._gregorianCalendar.dateAddByTimeUnit(periodInternal.
-									endDate, TimeUnit.DAY, 1);
+								fproject_internal::_gregorianCalendar.dateAddByTimeUnit(periodInternal.endDate, TimeUnit.DAY, 1);
 							newPeriods.push(clonedPeriod);
 						}
 						continue;
@@ -2167,7 +2153,7 @@ package net.fproject.calendar
 				throw MessageUtil.wrongArgument(WorkCalendar,
 					"WorkCalendar.standardWorkBetween", "t1 > t2");
 			}
-			if (DateTimeUtil.areOnSameDay(start, end))
+			if (DateTimeUtil.fproject_internal::areOnSameDay(start, end))
 				var workBeetween:Number = getWeekDayPeriodAt(start).getTotalWorkBetween(start, end);
 			else
 				workBeetween = stdWorkBetweenDiffDates(start, end);
@@ -2183,7 +2169,7 @@ package net.fproject.calendar
 			var d:Date = new Date(nextDayStart.time);
 			var wdp:WeekDayInternal = this.getWeekDayPeriodAt(start);
 			var work:Number = wdp.getTotalWorkBetween(start, d);
-			var days:Number = DateTimeUtil.millisecondToDay(floorEnd.time - d.time);
+			var days:Number = DateTimeUtil.fproject_internal::millisecondToDay(floorEnd.time - d.time);
 			var weeks:Number = Math.floor(days / 7);
 			if (weeks != 0)
 			{
@@ -2248,7 +2234,7 @@ package net.fproject.calendar
 			{
 				return null;
 			}
-			var startOfDay:Date = DateTimeUtil.getStartOfDay(t);
+			var startOfDay:Date = DateTimeUtil.fproject_internal::getStartOfDay(t);
 			for each (var period:PeriodInternal in this._periods)
 			{
 				
@@ -2272,7 +2258,7 @@ package net.fproject.calendar
 			{
 				return null;
 			}
-			var startOfDay:Date = DateTimeUtil.getStartOfDay(t);
+			var startOfDay:Date = DateTimeUtil.fproject_internal::getStartOfDay(t);
 			while (len >= 0)
 			{
 				var period:PeriodInternal = this._periods[len];
@@ -2485,7 +2471,7 @@ package net.fproject.calendar
 		private function getWeekDayPeriodBackwardAt(time:Date):WeekDayInternal
 		{
 			var intDay:int = 0;
-			if (time.time == DateTimeUtil.getStartOfDay(time).time)
+			if (time.time == DateTimeUtil.fproject_internal::getStartOfDay(time).time)
 			{
 				intDay = time.day - 1;
 				if (intDay == -1)
@@ -2530,7 +2516,7 @@ package net.fproject.calendar
 			{
 				return null;
 			}
-			var startOfDay:Date = DateTimeUtil.getStartOfDay(time);
+			var startOfDay:Date = DateTimeUtil.fproject_internal::getStartOfDay(time);
 			for (var i:int = 0; i < len; i++)
 			{
 				period = this._periods[i];
@@ -2933,7 +2919,7 @@ package net.fproject.calendar
 				days = -days;
 			}
 			
-			var dayEndOrStart:Date = sign > 0 ? DateTimeUtil.getEndOfDay(time) : DateTimeUtil.getStartOfDay(time);
+			var dayEndOrStart:Date = sign > 0 ? DateTimeUtil.fproject_internal::getEndOfDay(time) : DateTimeUtil.fproject_internal::getStartOfDay(time);
 			var d:Number = this.getTotalWorkBetween(time, dayEndOrStart);
 			if (d > 0)
 			{
@@ -2952,7 +2938,7 @@ package net.fproject.calendar
 				if ((sign > 0 && !this.hasNextWorkingTime(time))
 					|| (sign < 0 && !this.hasPreviousWorkingTime(time)))
 					break;
-				time = sign > 0 ? DateTimeUtil.getEndOfNextDay(time) : DateTimeUtil.getStartOfPreviousDay(time);
+				time = sign > 0 ? DateTimeUtil.fproject_internal::getEndOfNextDay(time) : DateTimeUtil.fproject_internal::getStartOfPreviousDay(time);
 				var p:WorkInfo = this.getPeriodAt(time);
 				if (p.isWorking)
 				{
