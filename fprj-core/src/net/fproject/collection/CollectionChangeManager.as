@@ -179,7 +179,7 @@ package net.fproject.collection
 		{
 			if(collection && _collectionToChangeItems[collection] !== undefined)
 			{
-				if (isSaveAutomationOn(collection))
+				if (isAutoSaveEnabled(collection))
 				{
 					if (haveChanges(collection))
 					{
@@ -201,7 +201,7 @@ package net.fproject.collection
 		 * @return true the features has enable, false in otherwise
 		 * 
 		 */
-		public function isSaveAutomationOn(collection:ICollectionView):Boolean
+		public function isAutoSaveEnabled(collection:ICollectionView):Boolean
 		{
 			return 	_services[collection] !== undefined;
 		}
@@ -214,7 +214,7 @@ package net.fproject.collection
 		 * attributes = null to save all attributes
 		 * 
 		 */
-		public function enableSaveAutomation(collection:ICollectionView, service:ActiveService, attributes:Array=null):void
+		public function enableAutoSave(collection:ICollectionView, service:ActiveService, attributes:Array=null):void
 		{
 			if (!isRegistered(collection))
 				registerCollection(collection);
@@ -359,12 +359,12 @@ package net.fproject.collection
 			return _savingCollection[collection] !== undefined;
 		}
 		
-		private function registerSaving(collection:Object):void
+		private function markCollectionSaving(collection:Object):void
 		{
 			_savingCollection[collection] = (_savingCollection[collection] === undefined) ? 1:_savingCollection[collection]++;
 		}
 		
-		private function unregisterSaving(collection:Object):void
+		private function unmarkCollectionSaving(collection:Object):void
 		{
 			if (_savingCollection[collection] !== undefined && _savingCollection[collection] > 1)
 				_savingCollection[collection]--;
@@ -380,7 +380,7 @@ package net.fproject.collection
 		 * Use as the key on Dictionary to find data use to save
 		 * 
 		 */
-		private function saveData(collection:Object):void
+		private function save(collection:Object):void
 		{
 			//Nếu đang lưu dữ liệu trên chính collection này thì sẽ đợi đến khi nào lưu xong mới tiếp tục lưu
 			if (isSaving(collection))
@@ -401,20 +401,20 @@ package net.fproject.collection
 			
 			if (saveItems != null && saveItems.length > 0)
 			{
-				registerSaving(collection);
+				markCollectionSaving(collection);
 				
 				var r:CallResponder = service.batchSave(saveItems,null,null,_attributes[collection]);
 				_savingData[r] = saveItems;
 				r.addEventListener(ResultEvent.RESULT, function(e:ResultEvent):void
 				{
 					dispatchEventAfterSave(SAVE_TYPE,e,collection);
-					saveData(collection);
+					save(collection);
 				});
 				
 				r.addEventListener(FaultEvent.FAULT, function(e:FaultEvent):void
 				{
 					dispatchEventAfterSave(SAVE_TYPE,e,collection);
-					saveData(collection);
+					save(collection);
 				});
 			}
 			
@@ -422,20 +422,20 @@ package net.fproject.collection
 			{
 				service.batchRemove(deleteItems);
 				
-				registerSaving(collection);
+				markCollectionSaving(collection);
 				
 				r = service.batchSave(saveItems,null,null,_attributes[collection]);
 				_savingData[r] = deleteItems;
 				r.addEventListener(ResultEvent.RESULT, function(e:ResultEvent):void
 				{
 					dispatchEventAfterSave(DELETE_TYPE,e,collection);
-					saveData(collection);
+					save(collection);
 				});
 				
 				r.addEventListener(FaultEvent.FAULT, function(e:FaultEvent):void
 				{
 					dispatchEventAfterSave(DELETE_TYPE,e,collection);
-					saveData(collection);
+					save(collection);
 				});
 			}
 			
@@ -446,7 +446,7 @@ package net.fproject.collection
 		{
 			var items:Array = _savingData[event.target];
 			delete _savingData[event.target];
-			unregisterSaving(collection);
+			unmarkCollectionSaving(collection);
 			
 			if (requestType == DELETE_TYPE)
 			{
@@ -515,9 +515,9 @@ package net.fproject.collection
 				}
 			}
 			
-			if (isSaveAutomationOn(ce.currentTarget as ICollectionView))
+			if (isAutoSaveEnabled(ce.currentTarget as ICollectionView))
 			{
-				saveData(ce.currentTarget);
+				save(ce.currentTarget);
 			}
 		}
 		
