@@ -885,7 +885,7 @@ package net.fproject.calendar
 		{
 			var occurrences:Number;
 			if(gregorianCalendar == null)
-				gregorianCalendar = InstanceFactory.getInstance(GregorianCalendar) as GregorianCalendar;
+				gregorianCalendar = InstanceFactory.getInstance(GregorianCalendar);
 			switch(_type)
 			{
 				case DAILY:					
