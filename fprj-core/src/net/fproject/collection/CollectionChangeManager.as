@@ -30,6 +30,7 @@ package net.fproject.collection
 	
 	import net.fproject.active.ActiveService;
 	import net.fproject.event.CollectionChangeEvent;
+	import net.fproject.model.IUpdatableKeyModel;
 	
 	/**
 	 * 
@@ -279,6 +280,7 @@ package net.fproject.collection
 		{
 			var deletedItems:Array = _collectionToChangeItems[collection].deleteItems;
 			var insertedItems:Array = _collectionToChangeItems[collection].insertItems;
+			var updatedItems:Array = _collectionToChangeItems[collection].updateItems;
 			var deletedItemCollection:AdvancedArrayCollection = new AdvancedArrayCollection;
 			deletedItemCollection.source = deletedItems;
 			
@@ -289,7 +291,13 @@ package net.fproject.collection
 				
 				var index:int = deletedItemCollection.getItemIndex(item);
 				if (index != -1)
+				{
+					var oldItem:Object = deletedItemCollection.getItemAt(index);
+					if (oldItem is IUpdatableKeyModel && item is IUpdatableKeyModel)
+						IUpdatableKeyModel(item).oldKey = IUpdatableKeyModel(oldItem).oldKey;
 					deletedItemCollection.removeItemAt(index);
+					updatedItems.push(item);
+				}
 				else if (insertedItems.indexOf(item) == -1)
 					insertedItems.push(item);
 			}
