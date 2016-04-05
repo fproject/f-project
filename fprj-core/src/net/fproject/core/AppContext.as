@@ -181,7 +181,7 @@ package net.fproject.core
 		
 		private function get appContextService():IAppContextService
 		{
-			return IAppContextService(InstanceFactory.getInstance(IAppContextService));
+			return InstanceFactory.getInstance(IAppContextService);
 		}
 		
 		private var _initialized:Boolean;
@@ -438,7 +438,7 @@ package net.fproject.core
 		 */
 		public static function get instance():AppContext
 		{
-			return AppContext(InstanceFactory.getInstance(AppContext));
+			return InstanceFactory.getInstance(AppContext);
 		}
 
 		

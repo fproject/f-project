@@ -73,7 +73,7 @@ package net.fproject.di
 		 * @return The singleton instance
 		 * 
 		 */
-		public static function getInstance(abstractor:Class, constructorArgs:*=undefined, singleton:Boolean=true):Object
+		public static function getInstance(abstractor:Class, constructorArgs:*=undefined, singleton:Boolean=true):*
 		{
 			if(singleton && implToInstance[abstractor] != undefined)
 				return implToInstance[abstractor];

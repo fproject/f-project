@@ -259,7 +259,7 @@ package net.fproject.calendar
 		public function WorkCalendar(name:String = CALRENDAR_NAME_DEFAULT,
 									 baseCalendar:WorkCalendar = null)
 		{
-			fproject_internal::_gregorianCalendar = InstanceFactory.getInstance(GregorianCalendar) as GregorianCalendar;;
+			fproject_internal::_gregorianCalendar = InstanceFactory.getInstance(GregorianCalendar);
 			this._name = name;
 			this._periods = new Vector.<PeriodInternal>();
 			this._weekDays = new Vector.<WeekDayInternal>(7);
@@ -287,7 +287,7 @@ package net.fproject.calendar
 		{
 			if (!fproject_internal::_gregorianCalendar)
 			{
-				fproject_internal::_gregorianCalendar = InstanceFactory.getInstance(GregorianCalendar) as GregorianCalendar;
+				fproject_internal::_gregorianCalendar = InstanceFactory.getInstance(GregorianCalendar);
 			}
 			return fproject_internal::_gregorianCalendar;
 		}

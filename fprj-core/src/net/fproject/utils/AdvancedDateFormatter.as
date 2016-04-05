@@ -96,7 +96,7 @@ package net.fproject.utils
 		{
 			if (!this._calendar)
 			{
-				this._calendar = InstanceFactory.getInstance(GregorianCalendar) as GregorianCalendar;
+				this._calendar = InstanceFactory.getInstance(GregorianCalendar);
 			}
 			return this._calendar;
 		}
