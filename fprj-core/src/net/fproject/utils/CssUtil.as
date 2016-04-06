@@ -38,13 +38,6 @@ package net.fproject.utils
 			}
 			if (styleManager == null)
 			{
-				//This used for old Flex version (deprecated)
-				/*styleDecl = StyleManager.getStyleDeclaration(selectorName);
-				if (styleDecl == null)
-				{
-					styleDecl = new CSSStyleDeclaration();
-					StyleManager.setStyleDeclaration(selectorName, styleDecl, false);
-				}*/
 				throw new Error(ResourceUtil.getString("invalidStyleManagerParameter",
 					ResourceUtil.FPRJ_CORE_BUNDLE));
 			}

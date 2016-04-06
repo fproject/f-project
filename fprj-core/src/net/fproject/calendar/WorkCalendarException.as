@@ -913,9 +913,6 @@ package net.fproject.calendar
 					break;
 				
 				default:
-					/*throw new Error(MessageUtil.log(WorkCalendarException, LogEventLevel.ERROR, 
-						ResourceUtil.FPRJ_GANTT_BUNDLE, 
-						"illegal.calendar.exception.type", [_type]));*/
 					LoggingUtil.logAndThrowError(WorkCalendarException, ResourceUtil.FPRJ_UTILITIES,
 						1, null, ResourceUtil.FPRJ_UTILS_BUNDLE, "illegal.calendar.exception.type", [_type]);
 					break;

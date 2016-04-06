@@ -920,7 +920,9 @@ package net.fproject.calendar.recurrence
 				var charCode:Number = strInt.charCodeAt(cnt);
 				if (charCode < 48 || charCode > 57)
 				{
-					throw new Error(ResourceUtil.getError(ResourceUtil.FPRJ_CALENDAR, 52, ResourceManager.getInstance(), ResourceUtil.FPRJ_CALENDAR_BUNDLE, "parse.error.int.not.valid", [strInt]));
+					LoggingUtil.logAndThrowError(
+						RRule, ResourceUtil.FPRJ_CALENDAR, 52, null, ResourceUtil.FPRJ_CALENDAR_BUNDLE, 
+						"parse.error.int.not.valid", [strInt]);
 				}
 				cnt = cnt + 1;
 			}

@@ -29,6 +29,8 @@ package net.fproject.di.supportClasses
 	import net.fproject.di.Injector;
 	import net.fproject.reflect.ReflectionUtil;
 	import net.fproject.utils.DataUtil;
+	import net.fproject.utils.LoggingUtil;
+	import net.fproject.utils.ResourceUtil;
 	import net.fproject.utils.StringUtil;
 	
 	import org.as3commons.reflect.AbstractMember;
@@ -249,7 +251,8 @@ package net.fproject.di.supportClasses
 		
 		private function throwMetaDefinitionError(metaMember:Object):void
 		{
-			throw new Error("Invalid [HotKeyDispatcher] definition for " + metaMember.name);
+			LoggingUtil.logAndThrowError(HotKeyHandler, ResourceUtil.FPRJ_CORE, 11, null, 
+				ResourceUtil.FPRJ_CORE_BUNDLE,"invalid.hotkey.dispatcher", [metaMember.name]);
 		}
 	}
 }

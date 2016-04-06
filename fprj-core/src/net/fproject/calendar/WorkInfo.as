@@ -23,6 +23,7 @@ package net.fproject.calendar
 	import net.fproject.core.TimeUnit;
 	import net.fproject.utils.DateTimeUtil;
 	import net.fproject.utils.GregorianCalendar;
+	import net.fproject.utils.LoggingUtil;
 	import net.fproject.utils.MessageUtil;
 	
 	use namespace fproject_internal;
@@ -395,7 +396,7 @@ package net.fproject.calendar
 		// Must inherit
 		internal function getTotalWorkBetween(start:Date, end:Date):Number
 		{
-			throw new Error();
+			return LoggingUtil.logAndThrowUnimplementedMethod(WorkInfo, 'getTotalWorkBetween');
 		}
 		
 		/**
@@ -538,7 +539,7 @@ package net.fproject.calendar
 		// Must inherit
 		internal function clone():WorkInfo
 		{
-			throw new Error();
+			return LoggingUtil.logAndThrowUnimplementedMethod(WorkInfo, 'clone');
 		}
 		
 		/**
