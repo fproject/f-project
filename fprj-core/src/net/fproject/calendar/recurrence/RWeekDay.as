@@ -17,9 +17,10 @@
 ///////////////////////////////////////////////////////////////////////////////
 package net.fproject.calendar.recurrence
 {
-    import mx.resources.*;
-    import mx.utils.*;
+    import mx.resources.ResourceManager;
+    import mx.utils.StringUtil;
     
+    import net.fproject.utils.LoggingUtil;
     import net.fproject.utils.ResourceUtil;
 
 	/**
@@ -164,8 +165,9 @@ package net.fproject.calendar.recurrence
             }
             if (!isLetter(s))
             {
-                throw new Error(ResourceUtil.getError(ResourceUtil.FPRJ_CALENDAR, 14, 
-					ResourceManager.getInstance(), ResourceUtil.FPRJ_CALENDAR_BUNDLE, "parse.error", [value]));
+				LoggingUtil.logAndThrowError(
+					RWeekDay, ResourceUtil.FPRJ_CALENDAR, 14, null, ResourceUtil.FPRJ_CALENDAR_BUNDLE, 
+					"parse.error", [value]);
             }
             var sWd:String = s;
             count++;
@@ -174,8 +176,9 @@ package net.fproject.calendar.recurrence
             sWd = sWd.toUpperCase();
             if (count != (value.length - 1) || WEEK_DAYS.indexOf(sWd) == -1)
             {
-                throw new Error(ResourceUtil.getError(ResourceUtil.FPRJ_CALENDAR, 14, 
-					ResourceManager.getInstance(), ResourceUtil.FPRJ_CALENDAR_BUNDLE, "parse.error", [value]));
+				LoggingUtil.logAndThrowError(
+					RWeekDay, ResourceUtil.FPRJ_CALENDAR, 14, null, ResourceUtil.FPRJ_CALENDAR_BUNDLE, 
+					"parse.error", [value]);
             }
             wd.weekDay = sWd;
             return wd;

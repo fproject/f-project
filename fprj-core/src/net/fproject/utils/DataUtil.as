@@ -471,7 +471,8 @@ package net.fproject.utils
 					}
 					else
 					{
-						throw new Error("Cannot evaluate expression. Invalid method name: " + methodChain);
+						LoggingUtil.logAndThrowError(DataUtil, ResourceUtil.FPRJ_CORE, 14, null, 
+							ResourceUtil.FPRJ_CORE_BUNDLE, 'invalid.method.expression.evaluation', [methodChain]);
 					}
 				}
 			}

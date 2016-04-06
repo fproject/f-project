@@ -17,6 +17,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 package net.fproject.core
 {
+	import net.fproject.utils.LoggingUtil;
 	import net.fproject.utils.ResourceUtil;
 
 	/**
@@ -214,7 +215,10 @@ package net.fproject.core
 					timeUnit = DECADE;
 					break;
 				default:
-					throw new Error("TimeUnit parsing error: Invalid unit");
+				{
+					LoggingUtil.logAndThrowError(TimeUnit, ResourceUtil.FPRJ_CORE, 13, null,
+						ResourceUtil.FPRJ_CORE_BUNDLE, 'invalid.time.unit', [unit]);
+				}
 			}
 			return timeUnit;
 		}

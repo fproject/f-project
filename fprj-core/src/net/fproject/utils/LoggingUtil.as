@@ -390,5 +390,10 @@ package net.fproject.utils
 			log(clazz, LogEventLevel.ERROR, msgUid);
 			throw new Error(msgUid);
 		}
+		
+		public static function logAndThrowUnimplementedMethod(clazz:Class, methodName:String):*
+		{
+			logAndThrowError(clazz, ResourceUtil.FPRJ_CORE, 12, null, ResourceUtil.FPRJ_CORE_BUNDLE, "unimplemented.method.call", [methodName]);
+		}
 	}
 }
