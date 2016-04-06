@@ -288,8 +288,8 @@ package net.fproject.utils
 			}
 			else
 			{
-				throw new Error(ResourceUtil.getString("nullTimePrecision",
-					ResourceUtil.FPRJ_CORE_BUNDLE));
+				return LoggingUtil.logAndThrowError(GregorianCalendar, ResourceUtil.FPRJ_CORE, 18,
+					null, ResourceUtil.FPRJ_CORE_BUNDLE, "nullTimePrecision");
 			}			 
 		} // end function
 
@@ -1248,8 +1248,8 @@ package net.fproject.utils
 				}
 				default:
 				{
-					throw new Error("Unknown TimeUnit: " + TimeUnit);
-					break;
+					return LoggingUtil.logAndThrowError(GregorianCalendar, ResourceUtil.FPRJ_CORE, 19, null,
+						ResourceUtil.FPRJ_CORE, "unknown.time.unit", [unit != null ? unit.toString() : "(null)"]);
 				}
 			}
 		} // end function

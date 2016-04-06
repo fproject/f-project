@@ -203,7 +203,8 @@ package net.fproject.utils
 			
 			if (jd > LAST_DAY || jd < FIRST_DAY || ly[0].jd > jd) 
 			{
-				throw new Error("Out of Lunar Calendar date range.");
+				LoggingUtil.logAndThrowError(LunarCalendar, ResourceUtil.FPRJ_CORE, 20, null,
+					ResourceUtil.FPRJ_CORE_BUNDLE, "out.of.lunar.date.range", ["[Julian]" + jd]);
 			}
 			var i:int = ly.length-1;
 			while (jd < ly[i].jd) 
@@ -225,7 +226,8 @@ package net.fproject.utils
 			var yyyy:int = d.fullYear;
 			if (yyyy < 1800 || 2199 < yyyy) 
 			{
-				throw new Error("Out of Lunar Calendar date range.");
+				LoggingUtil.logAndThrowError(LunarCalendar, ResourceUtil.FPRJ_CORE, 20, null,
+					ResourceUtil.FPRJ_CORE_BUNDLE, "out.of.lunar.date.range", [d.toString()]);
 			}
 			ly = decodeLunarYearInfo(yyyy, YEAR_INFO[yyyy - 1800]);
 			jd = getJulianDateNumber(d.date, d.month, yyyy);

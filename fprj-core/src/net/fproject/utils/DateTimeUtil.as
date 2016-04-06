@@ -690,14 +690,14 @@ package net.fproject.utils
 				
 				if (finalDate.toString() == "Invalid Date")
 				{
-					throw new Error("This date does not conform to W3CDTF.");
+					LoggingUtil.logAndThrowError(DateTimeUtil, ResourceUtil.FPRJ_CORE, 16, null,
+						ResourceUtil.FPRJ_CORE_BUNDLE, "invalid.W3CDTF.parse.input", [str]);
 				}
 			}
 			catch (e:Error)
 			{
-				var eStr:String = "Unable to parse the string [" +str+ "] into a date. ";
-				eStr += "The internal error was: " + e.toString();
-				throw new Error(eStr);
+				LoggingUtil.logAndThrowError(DateTimeUtil, ResourceUtil.FPRJ_CORE, 17, null,
+					ResourceUtil.FPRJ_CORE_BUNDLE, "W3CDTF.parse.error", [str, e.toString()]);
 			}
 			return finalDate;
 		}
