@@ -231,13 +231,14 @@ package net.fproject.active
 					else
 						isOld = false;
 					
+					var v:Number = IOptimisticLockModel(model).version;
+					if(isNaN(v))
+						v = 0;
+					
 					if(isOld)
-					{
-						var v:Number = IOptimisticLockModel(model).version;
-						if(isNaN(v))
-							v = 0;
-						IOptimisticLockModel(model).version = v + 1;
-					}
+						v++;
+					
+					IOptimisticLockModel(model).version = v;
 					
 				}, false, 1);
 			}
