@@ -383,14 +383,20 @@ package net.fproject.utils
 		 */
 		public static function logAndThrowError(clazz:Class, module:String, messageNumber:uint, 
 												resourceManager:IResourceManager, resourceBundle:String, 
-												bundleKey:String, parameters:Array = null) : void
+												bundleKey:String, parameters:Array = null, level:int=LogEventLevel.ERROR):*
 		{
 			var msgUid:String = ResourceUtil.getError(module, messageNumber, resourceManager, 
 				resourceBundle, bundleKey, parameters);
-			log(clazz, LogEventLevel.ERROR, msgUid);
+			log(clazz, level, msgUid);
 			throw new Error(msgUid);
 		}
 		
+		/**
+		 * Log and throw an error with message "Call to unimplemented method: xyx"
+		 * @param clazz The source class to log
+		 * @param methodName Name of the method caused the error
+		 * 
+		 */
 		public static function logAndThrowUnimplementedMethod(clazz:Class, methodName:String):*
 		{
 			logAndThrowError(clazz, ResourceUtil.FPRJ_CORE, 12, null, ResourceUtil.FPRJ_CORE_BUNDLE, "unimplemented.method.call", [methodName]);

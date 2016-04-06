@@ -17,8 +17,10 @@
 ///////////////////////////////////////////////////////////////////////////////
 package net.fproject.utils
 {
-	import mx.graphics.*;
-	import mx.styles.*;
+	import mx.graphics.IFill;
+	import mx.graphics.SolidColor;
+	import mx.styles.CSSStyleDeclaration;
+	import mx.styles.IStyleManager2;
 
 	public class CssUtil
 	{
@@ -38,8 +40,7 @@ package net.fproject.utils
 			}
 			if (styleManager == null)
 			{
-				throw new Error(ResourceUtil.getString("invalidStyleManagerParameter",
-					ResourceUtil.FPRJ_CORE_BUNDLE));
+				LoggingUtil.logAndThrowError(CssUtil, ResourceUtil.FPRJ_CORE, 15, null, ResourceUtil.FPRJ_CORE_BUNDLE, "invalidStyleManagerParameter");
 			}
 			else
 			{
