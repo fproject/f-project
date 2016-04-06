@@ -48,7 +48,7 @@ package net.fproject.utils
 		/**
 		 * To check a string to be a number
 		 */ 
-		public static function isNumber(value:String):Boolean {
+		public static function isNumber(value:*):Boolean {
 			return !isNaN(Number(value));
 		}
 		

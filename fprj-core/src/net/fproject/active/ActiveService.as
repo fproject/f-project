@@ -22,8 +22,11 @@ package net.fproject.active
 	import mx.rpc.CallResponder;
 	import mx.rpc.events.ResultEvent;
 	
+	import net.fproject.model.AbstractModel;
 	import net.fproject.model.IOptimisticLockModel;
+	import net.fproject.model.IUpdatableKeyModel;
 	import net.fproject.service.ServiceBase;
+	import net.fproject.utils.NumberUtil;
 	
 	/**
 	 * <p>ActiveService implements a common set of operations for supporting remote access 
@@ -221,10 +224,21 @@ package net.fproject.active
 				{
 					model = responderToOptimisticModel[e.target];
 					delete responderToOptimisticModel[e.target];
-					var v:Number = IOptimisticLockModel(model).version;
-					if(isNaN(v))
-						v = 0;
-					IOptimisticLockModel(model).version = v + 1;
+					if(model is IUpdatableKeyModel)
+						var isOld:Boolean = (IUpdatableKeyModel(model).oldKey != null);
+					else if(model is AbstractModel)
+						isOld = NumberUtil.isNumber(AbstractModel(model).uid);
+					else
+						isOld = false;
+					
+					if(isOld)
+					{
+						var v:Number = IOptimisticLockModel(model).version;
+						if(isNaN(v))
+							v = 0;
+						IOptimisticLockModel(model).version = v + 1;
+					}
+					
 				}, false, 1);
 			}
 			
