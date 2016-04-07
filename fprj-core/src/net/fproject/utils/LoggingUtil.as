@@ -401,5 +401,16 @@ package net.fproject.utils
 		{
 			logAndThrowError(clazz, ResourceUtil.FPRJ_CORE, 12, null, ResourceUtil.FPRJ_CORE_BUNDLE, "unimplemented.method.call", [methodName]);
 		}
+		
+		/**
+		 * Log and throw an error with message "Singleton Violation"
+		 * @param clazz The source class to log
+		 * @param methodName Name of the method caused the error
+		 * 
+		 */
+		public static function logAndThrowSingletonError(clazz:Class):*
+		{
+			logAndThrowError(clazz, ResourceUtil.FPRJ_CORE, 21, null, ResourceUtil.FPRJ_CORE_BUNDLE, "singleton.violation");
+		}
 	}
 }
