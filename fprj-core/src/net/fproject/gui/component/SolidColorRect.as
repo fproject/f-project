@@ -53,7 +53,7 @@ package net.fproject.gui.component
 			var styleDec:CSSStyleDeclaration =StyleManager.getStyleManager(null).getStyleDeclaration(_styleName);
 			if(styleDec == null)
 			{
-				LoggingUtil.warn(SolidColorRect,"Style name not found: " + _styleName);
+				LoggingUtil.warn(SolidColorRect, "Style name not found: " + _styleName);
 				return;
 			}
 			var styleValue:* = styleDec.getStyle("fillAlpha");

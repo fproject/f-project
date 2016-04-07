@@ -74,25 +74,32 @@ package net.fproject.utils
 		}
 		
 		/**
-		 * Log a message at the INFO level according to the specified message bundle message and parameters.
-		 *  
-		 * @param clazz
-		 * @param resourceManager
-		 * @param bundleName
-		 * @param resourceName
-		 * @param parameters
-		 * @param locale
+		 * Log a message at the INFO level according to the specified message, with resource bundle support. 
+		 * 
+		 * @param clazz The class that fires logging action
+		 * @param message The log message. If value of param <code>resourceBundle</code> is passed, the <code>message</code>
+		 * will be used as resource bundle key for the bundle message.
+		 * @param parameters The parameters used for resource bundle message
+		 * @param resourceBundle The resource bundle name. If this parameter is not passed, the <code>message</code> will be directly used for logging.
+		 * @param resourceManager The instance of IResourceManager, default is <code>ResourceManager.getInstance()</code>
+		 * @param locale The locale of resource bundle.
 		 * 
 		 */
-		public static function info(clazz:Class, resourceManager:IResourceManager, 
-									resourceBundle:String, bundleKey:String, parameters:Array = null, 
+		public static function info(clazz:Class, message:String, parameters:Array = null,
+									resourceManager:IResourceManager = null, 
+									resourceBundle:String = null, 
 									locale:String = null) : void
 		{
 			if (Log.isInfo())
 			{
-				if(resourceManager == null)
-					resourceManager == ResourceManager.getInstance();
-				getLogger(clazz).info(resourceManager.getString(resourceBundle, bundleKey, parameters, locale));
+				if(resourceBundle != null)
+				{
+					if(resourceManager == null)
+						resourceManager == ResourceManager.getInstance();
+					message = resourceManager.getString(resourceBundle, message, parameters, locale);
+				}
+				
+				getLogger(clazz).info(message);
 			}
 		}
 		
@@ -114,10 +121,13 @@ package net.fproject.utils
 		{
 			if (Log.isWarn())
 			{
-				if(resourceManager == null)
-					resourceManager == ResourceManager.getInstance();
 				if(resourceBundle != null)
+				{
+					if(resourceManager == null)
+						resourceManager == ResourceManager.getInstance();
 					message = resourceManager.getString(resourceBundle, message, parameters, locale);
+				}
+				
 				getLogger(clazz).warn(message);
 			}
 		}
@@ -157,10 +167,13 @@ package net.fproject.utils
 		{
 			if (Log.isError())
 			{
-				if(resourceManager == null)
-					resourceManager == ResourceManager.getInstance();
 				if(resourceBundle != null)
+				{
+					if(resourceManager == null)
+						resourceManager == ResourceManager.getInstance();
 					message = resourceManager.getString(resourceBundle, message, parameters, locale);
+				}
+				
 				getLogger(clazz).error(message);
 			}
 		}
@@ -200,10 +213,13 @@ package net.fproject.utils
 		{
 			if (Log.isDebug())
 			{
-				if(resourceManager == null)
-					resourceManager == ResourceManager.getInstance();
 				if(resourceBundle != null)
+				{
+					if(resourceManager == null)
+						resourceManager == ResourceManager.getInstance();
 					message = resourceManager.getString(resourceBundle, message, parameters, locale);
+				}
+				
 				getLogger(clazz).debug(message);
 			}
 		}
@@ -226,10 +242,13 @@ package net.fproject.utils
 		{
 			if (Log.isFatal())
 			{
-				if(resourceManager == null)
-					resourceManager == ResourceManager.getInstance();
 				if(resourceBundle != null)
+				{
+					if(resourceManager == null)
+						resourceManager == ResourceManager.getInstance();
 					message = resourceManager.getString(resourceBundle, message, parameters, locale);
+				}
+				
 				getLogger(clazz).fatal(message);
 			}
 		}
