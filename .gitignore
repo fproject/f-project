@@ -18,4 +18,3 @@ target/
 
 # Downloaded Flash Player used by Travis-CI
 Flash Player Debugger.app
-/fprj-core
