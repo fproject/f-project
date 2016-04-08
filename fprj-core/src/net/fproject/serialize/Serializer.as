@@ -99,7 +99,7 @@ package net.fproject.serialize
 		}
 		
 		private var _base64Encoder:Base64Encoder;
-		protected function get base64Encoder():Base64Encoder
+		public function get base64Encoder():Base64Encoder
 		{
 			if(_base64Encoder == null)
 				_base64Encoder = new Base64Encoder;
