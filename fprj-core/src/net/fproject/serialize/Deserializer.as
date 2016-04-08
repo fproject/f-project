@@ -478,7 +478,7 @@ package net.fproject.serialize
 		}
 		
 		private var _base64Decoder:Base64Decoder;
-		protected function get base64Decoder():Base64Decoder
+		public function get base64Decoder():Base64Decoder
 		{
 			if(_base64Decoder == null)
 				_base64Decoder = new Base64Decoder;
