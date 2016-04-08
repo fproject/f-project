@@ -122,7 +122,7 @@ package net.fproject.service
 		
 		protected function onServiceFailed(e:FaultEvent):void
 		{
-			if(RPCUtil.getNetworkFaultCode(e) != null)
+			if(RPCUtil.getNetworkFaultCode(e.fault) != null)
 			{
 				changeNetworkAvailability(false);
 			}

@@ -1,16 +1,16 @@
 package net.fproject.rpc
 {
-	import mx.rpc.events.FaultEvent;
+	import mx.rpc.Fault;
 
 	public class RPCUtil
 	{
-		public static function getNetworkFaultCode(e:FaultEvent):String
+		public static function getNetworkFaultCode(fault:Fault):String
 		{
-			if(e.fault.faultCode == "Channel.Call.Failed" 
-				|| e.fault.faultCode == "Client.Error.RequestTimeout"
-				|| e.fault.faultCode == "Client.Error.MessageSend")
+			if(fault.faultCode == "Channel.Call.Failed" 
+				|| fault.faultCode == "Client.Error.RequestTimeout"
+				|| fault.faultCode == "Client.Error.MessageSend")
 			{
-				return e.fault.faultCode;
+				return fault.faultCode;
 			}
 			return null;
 		}
