@@ -28,6 +28,7 @@ package net.fproject.service
 	import net.fproject.core.AppContext;
 	import net.fproject.event.AppContextEvent;
 	import net.fproject.rpc.IRemoteObject;
+	import net.fproject.rpc.RPCUtil;
 	import net.fproject.rpc.RemoteObjectFactory;
 	import net.fproject.utils.DateTimeUtil;
 	import net.fproject.utils.LoggingUtil;
@@ -121,7 +122,7 @@ package net.fproject.service
 		
 		protected function onServiceFailed(e:FaultEvent):void
 		{
-			if(getNetworkFaultCode(e) != null)
+			if(RPCUtil.getNetworkFaultCode(e) != null)
 			{
 				changeNetworkAvailability(false);
 			}
@@ -204,17 +205,6 @@ package net.fproject.service
 				failedCount++;
 			if(failedCount > FAILED_THRESHOLD)
 				appContext.fproject_internal::setNetworkAvailability(false);
-		}
-		
-		private function getNetworkFaultCode(e:FaultEvent):String
-		{
-			if(e.fault.faultCode == "Channel.Call.Failed" 
-				|| e.fault.faultCode == "Client.Error.RequestTimeout"
-				|| e.fault.faultCode == "Client.Error.MessageSend")
-			{
-				return e.fault.faultCode;
-			}
-			return null;
 		}
 	}
 }
