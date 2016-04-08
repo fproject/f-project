@@ -8,6 +8,7 @@
     <classEntry path="net.fproject.utils.ExternalInterfaceUtil"/>
     <classEntry path="net.fproject.event.WebStorageEvent"/>
     <classEntry path="net.fproject.rpc.RPCUtil"/>
+    <classEntry path="net.fproject.utils.Base64"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="manifest.xml" sourcePath="manifest.xml"/>
