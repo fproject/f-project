@@ -24,11 +24,10 @@ package net.fproject.serialize
 	import flash.utils.getDefinitionByName;
 	import flash.utils.getQualifiedClassName;
 	
-	import mx.utils.Base64Decoder;
-	
 	import net.fproject.fproject_internal;
 	import net.fproject.di.supportClasses.FieldInjection;
 	import net.fproject.di.supportClasses.TypeInjection;
+	import net.fproject.utils.Base64;
 	import net.fproject.utils.DateTimeUtil;
 	import net.fproject.utils.ResourceUtil;
 	import net.fproject.utils.StringUtil;
@@ -477,21 +476,12 @@ package net.fproject.serialize
 			}
 		}
 		
-		private var _base64Decoder:Base64Decoder;
-		public function get base64Decoder():Base64Decoder
-		{
-			if(_base64Decoder == null)
-				_base64Decoder = new Base64Decoder;
-			return _base64Decoder;
-		}
-		
 		public function fromBase64AMF(value:String):*
 		{
 			if(StringUtil.isBlank(value))
 				return value;
 			
-			this.base64Decoder.decode(value);
-			var ba:ByteArray = this.base64Decoder.toByteArray();
+			var ba:ByteArray = Base64.decodeToBytes(value);
 			return ba.readObject();
 		}
 	}

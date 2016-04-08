@@ -19,8 +19,7 @@ package net.fproject.serialize
 {
 	import flash.utils.ByteArray;
 	
-	import mx.utils.Base64Encoder;
-	
+	import net.fproject.utils.Base64;
 	import net.fproject.utils.DateTimeUtil;
 
 	/**
@@ -98,13 +97,7 @@ package net.fproject.serialize
 			return JSON.stringify(object);
 		}
 		
-		private var _base64Encoder:Base64Encoder;
-		public function get base64Encoder():Base64Encoder
-		{
-			if(_base64Encoder == null)
-				_base64Encoder = new Base64Encoder;
-			return _base64Encoder;
-		}
+		
 		
 		/**
 		 * Serialize an AS3 object to AMF bytes and encode the result in a Base64 string.
@@ -116,8 +109,7 @@ package net.fproject.serialize
 		{
 			var ba:ByteArray = new ByteArray;
 			ba.writeObject(object);
-			this.base64Encoder.encodeBytes(ba);
-			return this.base64Encoder.toString();
+			return Base64.encodeBytes(ba);
 		}
 	}
 }
