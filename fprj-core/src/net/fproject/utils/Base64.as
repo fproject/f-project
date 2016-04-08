@@ -104,5 +104,22 @@ package net.fproject.utils
 			getInstance().getDecoder(true).decode(encoded);
 			return _instance._decoder.toByteArray();
 		}
+		
+		/**
+		 * Encodes the characters of a String in Base64. Strings must be in ASCII format. 
+		 * 
+		 * @param data The String to encode.
+		 * @param offset The character position from which to start encoding.
+		 * @param length The number of characters to encode from the offset.
+		 * 
+		 * @return The Base64 encoded String. Note that
+		 * calling this method also clears the buffer and resets the 
+		 * <code>encoder</code> to its initial state.
+		 */
+		public function encodeString(data:String, offset:uint=0, length:uint=0):String
+		{
+			getInstance().getEncoder(true).encode(data, offset, length);
+			return _instance._encoder.toString();
+		}
 	}
 }
