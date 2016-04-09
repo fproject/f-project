@@ -194,13 +194,17 @@ package net.fproject.html5
 		
 		fproject_internal static function fromBase64AMF(s:String):*
 		{
-			if(!StringUtil.isBlank(s) && (s.length % 4) == 0)
+			if(!StringUtil.isBlank(s))
 			{
-				var s1:String = StringUtil.trim(s," \t\r\n");
-				if(s1.charAt(0) != "{" && s1.charAt(0) != '"' && s1.charAt(s1.length -1) != "}" && s1.charAt(s1.length -1) != '"')
+				if((s.length % 4) == 0)
 				{
-					return Deserializer.getInstance().fromBase64AMF(s);
+					var s1:String = StringUtil.trim(s," \t\r\n");
+					if(s1.charAt(0) != "{" && s1.charAt(0) != '"' && s1.charAt(s1.length -1) != "}" && s1.charAt(s1.length -1) != '"')
+					{
+						return Deserializer.getInstance().fromBase64AMF(s);
+					}
 				}
+				return JSON.parse(s);
 			}
 			return s;
 		}
