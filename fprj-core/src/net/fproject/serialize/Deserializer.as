@@ -476,12 +476,12 @@ package net.fproject.serialize
 			}
 		}
 		
-		public function fromBase64AMF(value:String):*
+		public function fromBase64AMF(encoded:String):*
 		{
-			if(StringUtil.isBlank(value))
-				return value;
+			if(StringUtil.isBlank(encoded))
+				return encoded;
 			
-			var ba:ByteArray = Base64.decodeToBytes(value);
+			var ba:ByteArray = Base64.decodeToBytes(encoded);
 			return ba.readObject();
 		}
 	}

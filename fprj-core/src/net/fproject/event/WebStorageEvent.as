@@ -19,7 +19,8 @@ package net.fproject.event
 {
 	import flash.events.Event;
 	
-	import net.fproject.serialize.Deserializer;
+	import net.fproject.fproject_internal;
+	import net.fproject.html5.WebStorage;
 
 	public class WebStorageEvent extends Event
 	{
@@ -62,8 +63,8 @@ package net.fproject.event
 					if(this.hasOwnProperty(s))
 						this[s] = base64Source[s];
 				}
-				this.oldValue = Deserializer.getInstance().fromBase64AMF(this.oldValue);
-				this.newValue = Deserializer.getInstance().fromBase64AMF(this.newValue);
+				this.oldValue = WebStorage.fproject_internal::fromBase64AMF(this.oldValue);
+				this.newValue = WebStorage.fproject_internal::fromBase64AMF(this.newValue);
 			}
 		}
 		

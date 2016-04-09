@@ -20,9 +20,11 @@ package net.fproject.html5
     import flash.events.EventDispatcher;
     import flash.external.ExternalInterface;
     
+    import net.fproject.fproject_internal;
     import net.fproject.event.WebStorageEvent;
     import net.fproject.serialize.Deserializer;
     import net.fproject.serialize.Serializer;
+    import net.fproject.utils.StringUtil;
 
 	/**
 	 * The <code>storage</code> event is fired on a Document's Window object when a (session or local) storage area changes.
@@ -86,7 +88,7 @@ package net.fproject.html5
         public function getItem(key:String):*
         {
 			var s:String = ExternalInterface.call(type + "Storage.getItem", key);
-            return Deserializer.getInstance().fromBase64AMF(s);
+            return WebStorage.fproject_internal::fromBase64AMF(s);
         }
 
 		/**
@@ -188,6 +190,19 @@ package net.fproject.html5
 				_sessionStorage = new WebStorage("session");
 			}
 			return _sessionStorage;
+		}
+		
+		fproject_internal static function fromBase64AMF(s:String):*
+		{
+			if(!StringUtil.isBlank(s) && (s.length % 4) == 0)
+			{
+				var s1:String = StringUtil.trim(s," \t\r\n");
+				if(s1.charAt(0) != "{" && s1.charAt(0) != '"' && s1.charAt(s1.length -1) != "}" && s1.charAt(s1.length -1) != '"')
+				{
+					return Deserializer.getInstance().fromBase64AMF(s);
+				}
+			}
+			return s;
 		}
     }
 }
