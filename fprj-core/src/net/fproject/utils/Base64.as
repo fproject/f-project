@@ -5,6 +5,13 @@ package net.fproject.utils
 	import mx.utils.Base64Decoder;
 	import mx.utils.Base64Encoder;
 	
+	/**
+	 * This class consists exclusively of static methods for obtaining
+	 * encoders and decoders for the Base64 encoding scheme.
+	 * 
+	 * @author Bui Sy Nguyen
+	 * 
+	 */
 	public class Base64
 	{
 		private var _encoder:Base64Encoder;
