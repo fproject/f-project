@@ -90,7 +90,7 @@ package net.fproject.utils
 									resourceBundle:String = null, 
 									locale:String = null) : void
 		{
-			if (Log.isInfo())
+			if (isLoggable(LogEventLevel.INFO))
 			{
 				if(resourceBundle != null)
 				{
@@ -119,7 +119,7 @@ package net.fproject.utils
 									resourceBundle:String = null, resourceManager:IResourceManager = null,
 									locale:String = null) : void
 		{
-			if (Log.isWarn())
+			if (isLoggable(LogEventLevel.WARN))
 			{
 				if(resourceBundle != null)
 				{
@@ -165,7 +165,7 @@ package net.fproject.utils
 									 resourceBundle:String = null, resourceManager:IResourceManager = null,
 									 locale:String = null) : void
 		{
-			if (Log.isError())
+			if (isLoggable(LogEventLevel.ERROR))
 			{
 				if(resourceBundle != null)
 				{
@@ -211,7 +211,7 @@ package net.fproject.utils
 									 resourceBundle:String = null, resourceManager:IResourceManager = null,
 									 locale:String = null) : void
 		{
-			if (Log.isDebug())
+			if (isLoggable(LogEventLevel.DEBUG))
 			{
 				if(resourceBundle != null)
 				{
@@ -240,7 +240,7 @@ package net.fproject.utils
 									 resourceBundle:String = null, resourceManager:IResourceManager = null,
 									 locale:String = null) : void
 		{
-			if (Log.isFatal())
+			if (isLoggable(LogEventLevel.FATAL))
 			{
 				if(resourceBundle != null)
 				{
