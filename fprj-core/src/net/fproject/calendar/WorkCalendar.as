@@ -2844,46 +2844,50 @@ package net.fproject.calendar
 		 */
 		public function dateAddByWork(time:Date, duration:Number) : Date
 		{
-			time = new Date(time.time);
-			while (duration > 0)
+			if(time != null)
 			{
-				time = this.getNextWorkingTime(time);
-				
-				if (!this.hasNextWorkingTime(time))
+				time = new Date(time.time);
+				while (duration > 0)
 				{
-					return time;
-				}				
-				
-				var p:PeriodInternal = this.getInternalPeriodAt(time);
-				if (p != null)
-				{
-					duration = p.addWork(time, duration);
-					continue;
-				}
-				p = this.nextPeriod(time);
-				var d:Number = duration;
-				if (p != null)
-				{
-					d = Math.min(duration, this.getStandardWorkBetween(time, p.startDate));
-				}
-				duration = duration - d;
-				var ww:Number = this.workInOneWeek;
-				if (ww != 0 && d >= ww)
-				{
-					var n:Number = int(d / ww);
-					if (d % ww == 0)
-					{
-						n = n - 1;
-					}
-					time = this.gregorianCalendar.dateAddByTimeUnit(time, TimeUnit.WEEK, n, true);
-					d = d - n * ww;
-				}
-				while (d != 0)
-				{					
 					time = this.getNextWorkingTime(time);
-					d = this.getWeekDayPeriodAt(time).addWork(time, d);
+					
+					if (!this.hasNextWorkingTime(time))
+					{
+						return time;
+					}				
+					
+					var p:PeriodInternal = this.getInternalPeriodAt(time);
+					if (p != null)
+					{
+						duration = p.addWork(time, duration);
+						continue;
+					}
+					p = this.nextPeriod(time);
+					var d:Number = duration;
+					if (p != null)
+					{
+						d = Math.min(duration, this.getStandardWorkBetween(time, p.startDate));
+					}
+					duration = duration - d;
+					var ww:Number = this.workInOneWeek;
+					if (ww != 0 && d >= ww)
+					{
+						var n:Number = int(d / ww);
+						if (d % ww == 0)
+						{
+							n = n - 1;
+						}
+						time = this.gregorianCalendar.dateAddByTimeUnit(time, TimeUnit.WEEK, n, true);
+						d = d - n * ww;
+					}
+					while (d != 0)
+					{					
+						time = this.getNextWorkingTime(time);
+						d = this.getWeekDayPeriodAt(time).addWork(time, d);
+					}
 				}
 			}
+				
 			return time;
 		}
 		//20130502 Added (End)
