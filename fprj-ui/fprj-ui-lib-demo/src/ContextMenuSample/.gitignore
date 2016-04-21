@@ -1,0 +1,8 @@
+**/.idea
+**/bin-debug/
+**/bin-release
+**/rsls/
+**/bin
+**/.DS_Store
+/projectkit-desktop/pk-web-src
+pk-source/.flexLibProperties
