@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" 
+			   minWidth="955" minHeight="600"
+			   creationComplete="application1_creationCompleteHandler(event)" 
+			   xmlns:ui="http://f-project.net/xmlns/fprj-ui/2015">
+	<s:layout>
+		<s:VerticalLayout/>			
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayList;
+			import mx.controls.Alert;
+			import mx.events.FlexEvent;
+			import mx.events.MenuEvent;
+			
+			import ContextMenuSample.itemRenderer.EmployeeRenderer;
+			
+			import net.fproject.ui.menu.ContextMenu;
+			
+			[Bindable]
+			protected var listResource:ArrayList = new ArrayList();
+			[Bindable]
+			private var contxtMenu:net.fproject.ui.menu.ContextMenu = new net.fproject.ui.menu.ContextMenu;
+			private function getSpaceLenOf(len:int):String {
+				var ret:String = "";
+				for(var i:int = 0; i < len; i++) ret+=" ";
+				return ret;
+			}
+			[Embed(source="ContextMenuSample/resource/icon.png")]
+			private var sampIcon:Class;
+			[Bindable]
+			protected var lstItems:Array = new Array(
+				{label: 'New'  +getSpaceLenOf(30) + 'Ctrl+N', icon: sampIcon, clickHandler:'newActionMenuHandler'},
+				{type: 'separator'},
+				{label: "Copy" +getSpaceLenOf(29) + "Ctrl+C", icon: sampIcon, clickHandler:'copyActionMenuHandler'},
+				{label: 'Cut'  +getSpaceLenOf(32) + 'Ctrl+X', icon: sampIcon, clickHandler:'cutActionMenuHandler'},
+				{label: 'Paste'+getSpaceLenOf(28) + 'Ctrl+V', icon: sampIcon, clickHandler:'pasteActionMenuHandler'},
+				{label: 'Delete', icon: sampIcon, clickHandler:'deleteActionMenuHandler'},
+				{label: 'Select All', clickHandler:'selectAllActionMenuHandler'}
+			);
+			
+			protected function newActionMenuHandler():void {
+				Alert.show("new action menu handler in App");
+			}
+			protected function cutActionMenuHandler():void {
+				Alert.show("cut action menu handler in App");
+			}
+			protected function copyActionMenuHandler():void {
+				Alert.show("copy action menu handler in App");
+			}
+			protected function pasteActionMenuHandler():void {
+				Alert.show("paste action menu handler in App");
+			}
+			protected function deleteActionMenuHandler():void {
+				Alert.show("delete action menu handler in App");
+			}
+			protected function selectAllActionMenuHandler():void {
+				Alert.show("select all action menu handler in App");
+			}
+			
+			protected function onMenuItemClick(event: mx.events.MenuEvent):void {
+				this[event.item.clickHandler]();
+			}
+			
+			protected function application1_creationCompleteHandler(event:FlexEvent):void
+			{
+				var i:int;
+				for(i = 0; i < 15; i++) {
+					listResource.addItem({
+						stt: i,
+						name: "employee no."+i,
+						level: i % 4,
+						salary: ( i % 5 + 1) * 1000
+					});
+				}
+				contxtMenu.dataProvider = lstItems;
+				// contxtMenu.itemRenderer = "itemRenderer.MenuItemRenderer" as IFactory;
+				contxtMenu.addEventListener(MenuEvent.ITEM_CLICK, onMenuItemClick);
+				//dataGrid.addEventListener(MouseEvent.RIGHT_CLICK, advanceddatagrid1_rightClickHandler);
+				dataGrid.addEventListener(MouseEvent.RIGHT_CLICK, advanceddatagrid1_disable_editable, false, 1000);
+				dataGrid.addEventListener(MouseEvent.RIGHT_CLICK, advanceddatagrid1_enable_editable, false, -1000);
+				
+				sparkList.addEventListener(MouseEvent.RIGHT_CLICK, sparkList_itemClickHandler, false, 1000);
+			}
+			protected function advanceddatagrid1_disable_editable(event:MouseEvent):void {
+				dataGrid.editable = null;
+				advanceddatagrid1_rightClickHandler(event);
+			}
+			protected function advanceddatagrid1_enable_editable(event:MouseEvent):void {
+				dataGrid.editable = 'true';
+				
+			}
+			private function setMenu(menu:net.fproject.ui.menu.ContextMenu, obj:Object):void {
+				for(var idx:String in obj) {
+					menu.dataProvider[int(idx)].enabled = obj[idx];
+				}
+			}
+			protected function advanceddatagrid1_rightClickHandler(event:MouseEvent):void
+			{
+				var itemIndex:int = getItemIndex(event.stageY);
+				if(    
+					dataGrid.selectedIndices.length > 1 
+					&& itemIndex >= 0
+					&& dataGrid.selectedIndices.indexOf(itemIndex) >= 0
+				)
+				{
+//					 setMenu(contxtMenu, {2:'false', 3:'false', 5:'false'});
+				}
+				else if( itemIndex == -1 ) {
+					dataGrid.selectedIndices = [];
+					setMenu(contxtMenu, {2:'false', 3:'false', 5:'false'});
+				}
+				else if( itemIndex >= 0) {
+					dataGrid.selectedIndex = itemIndex;
+					setMenu(contxtMenu, {2:'true', 3:'true', 5:'true'});
+				}
+			}
+			/*
+			use linear search ( can refactor in O(1) with the same hight items )
+			*/
+			protected function getItemIndexList(stageY:Number):int {
+				var p1:Point, p2:Point;
+				var renderer:DisplayObject;
+				for(var i:int = 0; i < sparkList.dataProvider.length; i++)
+				{
+					renderer = sparkList.dataGroup.getElementAt(i) as DisplayObject;
+					if(!renderer)//item is not displayed (scroll to view it)
+						continue;
+					p1 = new Point(0, renderer.y);
+					p2 = new Point(0, renderer.height);
+					p1 = renderer.parent.localToGlobal(p1);
+					p2 = renderer.localToGlobal(p2);
+					if(stageY >= p1.y && stageY <= p2.y) return i;
+				}
+				if( stageY > p2.y ) return -1;
+				return -2;
+			}
+
+			protected function sparkList_itemClickHandler(event: MouseEvent):void {
+//				var renderer:DisplayObject;
+//				trace("number of item: " + sparkList.dataProvider.length);
+//				for(var i:int = 0; i < sparkList.dataProvider.length; i++) {
+//					renderer = sparkList.dataGroup.getElementAt(i) as DisplayObject;
+//					if( renderer == null ) {
+//						trace("Element " + i + " is null");
+//						continue;
+//					}
+//					trace("top: " + renderer.y + " " + renderer.parent.localToGlobal(new Point(0, renderer.y)).y);
+//					trace("bottom: " + renderer.height + " " + renderer.localToGlobal(new Point(0, renderer.height)).y);
+//				}
+				var itemIndex:int = getItemIndexList(event.stageY);
+				// trace("stageY: " + event.stageY);
+//				trace("before: " + itemIndex + " " + sparkList.selectedIndex);
+				if( itemIndex == - 1) {
+					setMenu(contxtMenu, {2:'false', 3:'false', 5:'false'});
+				}
+				else {
+					setMenu(contxtMenu, {2:'true', 3:'true', 5:'true'});
+				}
+				sparkList.selectedIndex = itemIndex;
+//				trace("after: " + itemIndex + " " + sparkList.selectedIndex);
+			}
+			/**
+			 * This function return index of item in dataGrid when click right
+			 * @param stageY y-cordinate stage of mouse
+			 * @return
+			 * 		-2 : mouse at header
+			 * 		-1 : mouse at empty row
+			 *      int: mouse at any item
+			 */
+			private function getItemIndex(stageY:Number):int {
+				var p1:Point, p2:Point;
+				var renderer:DisplayObject;
+				for(var i:int = 0; i < dataGrid.dataProvider.length; i++)
+				{
+					renderer = DisplayObject(dataGrid.indexToItemRenderer(i));
+					if(!renderer)//item is not displayed (scroll to view it)
+					{
+						trace("renderer " + i + " is null");
+						continue;
+					}
+					p1 = new Point(0, renderer.y);
+					p2 = new Point(0, renderer.height);
+					p1 = renderer.parent.localToGlobal(p1);
+					p2 = renderer.localToGlobal(p2);
+					if(stageY >= p1.y && stageY <= p2.y) return i;
+				}
+				if( stageY > p2.y ) return -1;
+				return -2;
+			}
+			[Bindable]
+			private var textAreaContent:String = 
+				"1. Hiệu ứng cho advancedDataGrid\n \
+				\r\t- Chuột phải 1 item\n              \
+				\r\t- Select nhiều item rồi chuột phải\n\
+				\r\t- Chuột phải vào dòng trống\n\
+				\r2. Hiệu ứng cho SparkList ( giống advancedDataGrid nhưng không cho select nhiều item )\n"
+		]]>
+	</fx:Script>
+	
+	<mx:VBox width="100%">
+		<s:TextArea editable="false" 
+					text="{textAreaContent}"
+					width="100%">
+		</s:TextArea>
+		<mx:HBox width="100%">
+			<mx:AdvancedDataGrid dataProvider="{listResource}" 
+								 id='dataGrid'
+								 height="500"
+								 flexContextMenu="{contxtMenu}"
+								 selectionMode="multipleRows"
+								 editable="true"
+								 width="50%">
+				<mx:columns>
+					<mx:AdvancedDataGridColumn dataField="stt"/>
+					<mx:AdvancedDataGridColumn dataField="name"/>
+					<mx:AdvancedDataGridColumn dataField="level"/>
+					<mx:AdvancedDataGridColumn dataField="salary"/>
+				</mx:columns>
+			</mx:AdvancedDataGrid>
+			<s:List id='sparkList'
+					dataProvider="{listResource}"
+					itemRenderer="ContextMenuSample.itemRenderer.EmployeeRenderer" 
+					height="500"
+					flexContextMenu="{contxtMenu}"
+					width="50%">
+			</s:List>
+		</mx:HBox>
+	</mx:VBox>
+</s:Application>
