@@ -4,8 +4,7 @@
 			   xmlns:mx="library://ns.adobe.com/flex/mx" 
 			   minWidth="955" minHeight="600"
 			   creationComplete="application1_creationCompleteHandler(event)" 
-			   xmlns:ui="http://f-project.net/xmlns/fprj-ui/2015"
-			   xmlns:component="component.*">
+			   xmlns:ui="http://f-project.net/xmlns/fprj-ui/2015">
 	<s:layout>
 		<s:VerticalLayout/>			
 	</s:layout>
@@ -14,10 +13,9 @@
 			import mx.collections.ArrayList;
 			import mx.controls.Alert;
 			import mx.events.FlexEvent;
-			import mx.events.ListEvent;
 			import mx.events.MenuEvent;
 			
-			import itemRenderer.employeeRenderer;
+			import ContextMenuSample.itemRenderer.EmployeeRenderer;
 			
 			import net.fproject.ui.menu.ContextMenu;
 			
@@ -30,7 +28,7 @@
 				for(var i:int = 0; i < len; i++) ret+=" ";
 				return ret;
 			}
-			[Embed(source="resource/icon.png")]
+			[Embed(source="ContextMenuSample/resource/icon.png")]
 			private var sampIcon:Class;
 			[Bindable]
 			protected var lstItems:Array = new Array(
@@ -224,7 +222,7 @@
 			</mx:AdvancedDataGrid>
 			<s:List id='sparkList'
 					dataProvider="{listResource}"
-					itemRenderer="itemRenderer.employeeRenderer" 
+					itemRenderer="ContextMenuSample.itemRenderer.EmployeeRenderer" 
 					height="500"
 					flexContextMenu="{contxtMenu}"
 					width="50%">

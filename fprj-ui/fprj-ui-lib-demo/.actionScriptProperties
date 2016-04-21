@@ -20,6 +20,7 @@
     <application path="TimeFieldDemo.mxml"/>
     <application path="SeparatorsDemo.mxml"/>
     <application path="AutoCompleteDemo.mxml"/>
+    <application path="ContextMenuSample.mxml"/>
   </applications>
   <modules/>
   <workers/>
