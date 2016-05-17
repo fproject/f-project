@@ -9,6 +9,7 @@
     <classEntry path="net.fproject.event.WebStorageEvent"/>
     <classEntry path="net.fproject.rpc.RPCUtil"/>
     <classEntry path="net.fproject.utils.Base64"/>
+    <classEntry path="net.fproject.html5.FileDownloader"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="manifest.xml" sourcePath="manifest.xml"/>
