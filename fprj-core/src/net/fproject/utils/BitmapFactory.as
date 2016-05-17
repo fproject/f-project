@@ -72,6 +72,7 @@ package net.fproject.utils
 					var loader:Loader = new Loader();
 					loader.load(new URLRequest(url), new LoaderContext(true));
 					src = loader;
+					bitmapCache[url] = src;
 				}
 				
 				targetToSourceInfo[target] = {source:src, width:width, height:height};
