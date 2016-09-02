@@ -35,6 +35,10 @@
 			description="%event.handling.handler"/>
 		<attribute name="useCapture" type="Boolean" hint="boolean" defaultValue="false" required="false" 
 			description="%event.handling.useCapture"/>
+		<attribute name="priority" type="Number" defaultValue="0" required="false" 
+			description="%event.handling.priority"/>
+		<attribute name="useWeakReference" type="Boolean" defaultValue="false" hint="boolean" required="false" 
+			description="%event.handling.useWeakReference"/>
 	</metadata>
 	
 	<metadata name="PropertyBinding" 

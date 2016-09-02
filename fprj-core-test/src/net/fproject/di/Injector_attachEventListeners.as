@@ -6,6 +6,7 @@ package net.fproject.di
 	import spark.components.Label;
 	import spark.events.TextOperationEvent;
 	
+	import org.flexunit.asserts.assertFalse;
 	import org.flexunit.asserts.assertNotNull;
 	import org.flexunit.asserts.assertTrue;
 	import org.flexunit.async.Async;
@@ -22,6 +23,7 @@ package net.fproject.di
 	import testdata.di.Injector_attachEventListeners_018;
 	import testdata.di.Injector_attachEventListeners_019;
 	import testdata.di.Injector_attachEventListeners_020;
+	import testdata.di.Injector_attachEventListeners_021;
 
 	[ResourceBundle("fprjcore")]
 	/**
@@ -452,6 +454,37 @@ package net.fproject.di
 		public function testCase020_creationComplete(e:Event, container:Injector_attachEventListeners_020):void
 		{
 			assertTrue(container.comboBox.hasEventListener("myEvent"));
+		}
+		
+		[Test(async,description="Normal case: Using complex dispatcher")]
+		/**
+		 * Test Case Type: Normal<br/>
+		 * INPUT VALUES:<br/>
+		 * <code>container = new Object()</code><br/>
+		 * <code>clazz = new Class()</code><br/>
+		 * <code>deferredBinding = false</code><br/>
+		 * <br/>
+		 * OUTPUT EXPECTED:<br/>
+		 * ---- expectations ----
+		 *
+		 */
+		public function testCase021():void
+		{
+			var container:Injector_attachEventListeners_021 = new Injector_attachEventListeners_021();
+			Injector.inject(container);
+			//---- Place result assertion here ----
+			// You must replace this code by function specifications or 
+			// the test always returns false!
+			container.show();
+			Async.handleEvent(this, container.comboBox.textInput, "myEvent",testCase021_myEvent, 100000, container);
+			Async.proceedOnEvent(this, container, "creationComplete", 10000);			
+			container.comboBox.textInput.dispatchEvent(new Event("myEvent", true));
+		}
+		
+		public function testCase021_myEvent(e:Event, container:Injector_attachEventListeners_021):void
+		{
+			assertFalse(container.textInput_myEventRunned);	
+			assertTrue(container.comboBox.textInput.hasEventListener("myEvent"));
 		}
 	}
 }
