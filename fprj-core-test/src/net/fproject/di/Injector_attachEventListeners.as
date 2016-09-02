@@ -483,7 +483,7 @@ package net.fproject.di
 		
 		public function testCase021_myEvent(e:Event, container:Injector_attachEventListeners_021):void
 		{
-			assertFalse(container.textInput_myEventRunned);	
+			assertTrue(container.textInput_myEventRunned);	
 			assertTrue(container.comboBox.textInput.hasEventListener("myEvent"));
 		}
 	}
