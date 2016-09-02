@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testrun name="" >
 <testsuite  name="Default Test Suite" project="fprj-core-test">
-<testsuite name="net.fproject.calendar:WorkCalendar_WorkCalendar" type="testcaseclass"/>
+<testsuite name="net.fproject.di:Injector_attachEventListeners" type="testcaseclass">
+<testcase name="testCase013" classname="net.fproject.di:Injector_attachEventListeners"/>
+</testsuite>
 </testsuite>
 <portNumber value="8765" />
 </testrun>

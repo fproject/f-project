@@ -19,9 +19,10 @@
   </compiler>
   <applications>
     <application path="DateTimeUtil_Test.mxml"/>
-    <application path="OtherTests.mxml"/>
     <application path="FlexUnitApplication.mxml"/>
+    <application path="OtherTests.mxml"/>
     <application path="WebStorageTest.mxml"/>
+    <application path="Injector_Test.mxml"/>
   </applications>
   <modules/>
   <workers/>

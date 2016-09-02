@@ -9,12 +9,15 @@
 			   minWidth="955" minHeight="600" creationComplete="onCreationComplete()">
 	<fx:Script>
 		<![CDATA[
-			import net.fproject.calendar.WorkCalendar_WorkCalendar;
+			import net.fproject.di.Injector_attachEventListeners;
+			
+			import org.flexunit.runner.Request;
 			
 			public function currentRunTestSuite():Array
 			{
 				var testsToRun:Array = new Array();
-				testsToRun.push(net.fproject.calendar.WorkCalendar_WorkCalendar);
+				
+				testsToRun.push(Request.methods(net.fproject.di.Injector_attachEventListeners,["testCase021"]));
 				return testsToRun;
 			}
 			
@@ -26,9 +29,7 @@
 			
 		]]>
 	</fx:Script>
-	<fx:Declarations>
-		<!-- Place non-visual elements (e.g., services, value objects) here -->
-	</fx:Declarations>
 	<flexui:FlexUnitTestRunnerUI id="testRunner" portNumber="8765">
 	</flexui:FlexUnitTestRunnerUI>
+	
 </s:Application>
