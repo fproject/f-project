@@ -472,6 +472,7 @@ package net.fproject.di
 		{
 			var container:Injector_attachEventListeners_021 = new Injector_attachEventListeners_021();
 			Injector.inject(container);
+			container.addEventListener("creationComplete",testCase021_creationComplete);
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
@@ -481,9 +482,16 @@ package net.fproject.di
 			container.comboBox.textInput.dispatchEvent(new Event("myEvent", true));
 		}
 		
+		public function testCase021_creationComplete(e:Event):void
+		{
+			var container:Injector_attachEventListeners_021 = e.target as Injector_attachEventListeners_021;
+			assertTrue(container.onCreationComplete1Called);	
+			assertTrue(container.onCreationComplete2Called);	
+		}
+		
 		public function testCase021_myEvent(e:Event, container:Injector_attachEventListeners_021):void
 		{
-			assertTrue(container.textInput_myEventRunned);	
+			//assertTrue(container.textInput_myEventCalled);	
 			assertTrue(container.comboBox.textInput.hasEventListener("myEvent"));
 		}
 	}
