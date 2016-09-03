@@ -10,7 +10,7 @@ package testdata.di
 	import spark.components.SkinnableContainer;
 
 	[EventHandling(event="creationComplete",handler="onCreationComplete1",priority="1000")]
-	[EventHandling(event="creationComplete",handler="onCreationComplete2",priority="1000")]
+	[EventHandling(event="creationComplete",handler="onCreationComplete2",priority="-1000")]
 	public class Injector_attachEventListeners_021 extends SkinnableContainer
 	{
 		public function Injector_attachEventListeners_021()

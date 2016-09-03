@@ -486,7 +486,7 @@ package net.fproject.di
 		{
 			var container:Injector_attachEventListeners_021 = e.target as Injector_attachEventListeners_021;
 			assertTrue(container.onCreationComplete1Called);	
-			assertTrue(container.onCreationComplete2Called);	
+			assertFalse(container.onCreationComplete2Called);	
 		}
 		
 		public function testCase021_myEvent(e:Event, container:Injector_attachEventListeners_021):void
