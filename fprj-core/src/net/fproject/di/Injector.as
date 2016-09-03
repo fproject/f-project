@@ -142,7 +142,7 @@ package net.fproject.di
 				{
 					if (metadata.name == AUTO_INSTANCE)
 					{
-						var implClassName:String = getMetadataArgument(metadata, FACTORY_KEY, 0);
+						var implClassName:String = getMetadataArgumentValue(metadata, FACTORY_KEY, 0);
 						if(implClassName == null)
 							var cls:Class = member.type.clazz as Class;
 						else
@@ -212,8 +212,9 @@ package net.fproject.di
 						(memberInfo.eventInfo as Array).push(evt);
 					}
 					else if(container is IEventDispatcher)
-						IEventDispatcher(container).addEventListener(
-							evt.listenerInfo.event, evt.listenerInfo.handler, evt.listenerInfo.useCapture);
+						IEventDispatcher(container).addEventListener(evt.listenerInfo.event,
+							evt.listenerInfo.handler, evt.listenerInfo.useCapture,
+							evt.listenerInfo.priority, evt.listenerInfo.useWeakRef);
 					else
 						LoggingUtil.fproject_internal::error(Injector, 4, "invalid.dispatcher.error", [container]);
 				}
@@ -272,7 +273,17 @@ package net.fproject.di
 		/**
 		 * The <code>useCapture</code> argument of <code>[EventHandling]</code> metadata 
 		 */
-		public static const USE_CAPTURE_KEY:String = "usecapture";
+		public static const USE_CAPTURE_KEY:String = "useCapture";
+		
+		/**
+		 * The <code>priority</code> argument of <code>[EventHandling]</code> metadata 
+		 */
+		public static const PRIORITY_KEY:String = "priority";
+		
+		/**
+		 * The <code>useWeakReference</code> argument of <code>[EventHandling]</code> metadata 
+		 */
+		public static const USE_WEAK_REFERENCE_KEY:String = "useWeakReference";
 		
 		/**
 		 * 
@@ -294,13 +305,13 @@ package net.fproject.di
 				
 				if (metadata.name == EVENT_HANDLING && metadata.arguments.length > 1)
 				{
-					if(metadata.arguments.length == 4)
+					if(metadata.arguments.length >5)
 					{
 						var defaultIndex:int = 0;
 					}
 					else if(metadata.arguments.length == 3)
 					{
-						var useCapture:String = getMetadataArgument(metadata, USE_CAPTURE_KEY, 2);
+						var useCapture:String = getMetadataArgumentValue(metadata, USE_CAPTURE_KEY, 2);
 						if(useCapture.toLowerCase() == "true" || useCapture.toLowerCase() == "false")
 						{
 							defaultIndex = int.MAX_VALUE;
@@ -316,7 +327,7 @@ package net.fproject.di
 						defaultIndex = int.MAX_VALUE;
 					}
 					
-					var dispatcherChain:String = getMetadataArgument(metadata, DISPATCHER_KEY, defaultIndex);
+					var dispatcherChain:String = getMetadataArgumentValue(metadata, DISPATCHER_KEY, defaultIndex);
 					
 					var chain:Array = StringUtil.isBlank(dispatcherChain) ? [] : dispatcherChain.split(".");
 					
@@ -325,13 +336,30 @@ package net.fproject.di
 					
 					var i:int = metadata.arguments.length == 2 || (metadata.arguments.length == 3 && !StringUtil.isBlank(useCapture)) ? 0 : 1;
 					
-					var event:String = getMetadataArgument(metadata, EVENT_KEY, i);
+					var event:String = getMetadataArgumentValue(metadata, EVENT_KEY, i);
 					event = DataUtil.evaluateChainValue(event);
-					var handlerName:String = getMetadataArgument(metadata, HANDLER_KEY, i + 1);
+					var handlerName:String = getMetadataArgumentValue(metadata, HANDLER_KEY, i + 1);
 					var handler:Function = DataUtil.evaluateChainValue(handlerName, container);
 					if(StringUtil.isBlank(useCapture))
-						useCapture = getMetadataArgument(metadata, USE_CAPTURE_KEY, i + 2);
-					eventInfo.push({listenerInfo:{event:event, handler:handler, useCapture:DataUtil.toBoolean(useCapture)}, chain:chain});
+					{
+						var ma:MetadataArgument = metadata.getArgument(USE_CAPTURE_KEY);
+						if(ma != null)
+						{
+							useCapture = ma.value;
+							i = int.MAX_VALUE - 4;
+						}
+					}
+					
+					var priority:int = int(getMetadataArgumentValue(metadata, PRIORITY_KEY, i + 3));
+					var useWeakRef:Boolean = DataUtil.toBoolean(getMetadataArgumentValue(metadata, USE_WEAK_REFERENCE_KEY, i + 4));
+					
+					eventInfo.push({
+						listenerInfo:{
+							event:event, handler:handler, useCapture:DataUtil.toBoolean(useCapture),
+							priority:priority,useWeakRef:useWeakRef
+						}, 
+						chain:chain
+					});
 				}
 			}
 			
@@ -450,7 +478,8 @@ package net.fproject.di
 			}
 			
 			if(target is IEventDispatcher)
-				IEventDispatcher(target).addEventListener(listenerInfo.event, listenerInfo.handler, listenerInfo.useCapture);
+				IEventDispatcher(target).addEventListener(listenerInfo.event, listenerInfo.handler, 
+					listenerInfo.useCapture, listenerInfo.priority, listenerInfo.useWeakRef);
 			else if(target != null)
 				LoggingUtil.fproject_internal::error(Injector, 4, "invalid.dispatcher.error", [target]);
 		}
@@ -1266,7 +1295,7 @@ package net.fproject.di
 		 * @private
 		 * 
 		 */
-		private static function getMetadataArgument(metadata:Metadata, key:String, 
+		private static function getMetadataArgumentValue(metadata:Metadata, key:String, 
 											 defaultIndex:int=int.MAX_VALUE):String
 		{			
 			var arg:MetadataArgument = metadata.getArgument(key);
