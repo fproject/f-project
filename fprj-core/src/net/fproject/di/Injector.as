@@ -295,6 +295,8 @@ package net.fproject.di
 			var eventInfo:Array = [];
 			var isBindable:Boolean = false;
 			var isSkinPart:Boolean = false;
+			var event:String, handlerName:String, useCapture:String;
+			var priority:String, useWeakRef:String, dispatcherChain:String;
 			
 			for each (var metadata:Metadata in member.metadata)
 			{
@@ -305,58 +307,79 @@ package net.fproject.di
 				
 				if (metadata.name == EVENT_HANDLING && metadata.arguments.length > 1)
 				{
-					if(metadata.arguments.length >5)
+					for (var i:int=0; i < metadata.arguments.length; i++)
 					{
-						var defaultIndex:int = 0;
-					}
-					else if(metadata.arguments.length == 3)
-					{
-						var useCapture:String = getMetadataArgumentValue(metadata, USE_CAPTURE_KEY, 2);
-						if(useCapture.toLowerCase() == "true" || useCapture.toLowerCase() == "false")
+						var ma:MetadataArgument = metadata.arguments[i];
+						if(EVENT_KEY.toLowerCase() == ma.key.toLowerCase())
 						{
-							defaultIndex = int.MAX_VALUE;
+							event = ma.value;
 						}
-						else
+						else if(HANDLER_KEY.toLowerCase() == ma.key.toLowerCase())
 						{
-							defaultIndex = 2;
-							useCapture = null;
+							handlerName = ma.value;
 						}
-					}
-					else
-					{
-						defaultIndex = int.MAX_VALUE;
+						else if(USE_CAPTURE_KEY.toLowerCase() == ma.key.toLowerCase())
+						{
+							useCapture = ma.value;
+						}
+						else if(PRIORITY_KEY.toLowerCase() == ma.key.toLowerCase())
+						{
+							priority = ma.value;
+						}						
+						else if(USE_WEAK_REFERENCE_KEY.toLowerCase() == ma.key.toLowerCase())
+						{
+							useWeakRef = ma.value;
+						}
+						else if(DISPATCHER_KEY.toLowerCase() == ma.key.toLowerCase())
+						{
+							dispatcherChain = ma.value;
+						}
 					}
 					
-					var dispatcherChain:String = getMetadataArgumentValue(metadata, DISPATCHER_KEY, defaultIndex);
+					if (StringUtil.isBlank(event) && StringUtil.isBlank(handlerName) && StringUtil.isBlank(useCapture) &&
+						StringUtil.isBlank(priority) && StringUtil.isBlank(useWeakRef) && StringUtil.isBlank(dispatcherChain))
+					{
+						event = metadata.arguments[0].value;
+						handlerName = metadata.arguments[1].value;
+						if(metadata.arguments.length > 2)
+							useCapture = metadata.arguments[2].value;
+						if(metadata.arguments.length > 3)
+							priority = metadata.arguments[3].value;
+						if(metadata.arguments.length > 4)
+							useWeakRef = metadata.arguments[4].value;
+						if(metadata.arguments.length > 5)
+							dispatcherChain = metadata.arguments[5].value;
+					}
 					
+					if (StringUtil.isBlank(event) || StringUtil.isBlank(handlerName))
+					{
+						LoggingUtil.fproject_internal::warn(Injector, 23, 
+							"cannot.inject.event.handler", [metadata.toString()]);
+						continue;					
+					}
+			
 					var chain:Array = StringUtil.isBlank(dispatcherChain) ? [] : dispatcherChain.split(".");
 					
 					if(member.name != THIS)
 						chain = [member.name].concat(chain);
 					
-					var i:int = metadata.arguments.length == 2 || (metadata.arguments.length == 3 && !StringUtil.isBlank(useCapture)) ? 0 : 1;
-					
-					var event:String = getMetadataArgumentValue(metadata, EVENT_KEY, i);
 					event = DataUtil.evaluateChainValue(event);
-					var handlerName:String = getMetadataArgumentValue(metadata, HANDLER_KEY, i + 1);
-					var handler:Function = DataUtil.evaluateChainValue(handlerName, container);
-					if(StringUtil.isBlank(useCapture))
-					{
-						var ma:MetadataArgument = metadata.getArgument(USE_CAPTURE_KEY);
-						if(ma != null)
-						{
-							useCapture = ma.value;
-							i = int.MAX_VALUE - 4;
-						}
-					}
 					
-					var priority:int = int(getMetadataArgumentValue(metadata, PRIORITY_KEY, i + 3));
-					var useWeakRef:Boolean = DataUtil.toBoolean(getMetadataArgumentValue(metadata, USE_WEAK_REFERENCE_KEY, i + 4));
+					var handler:Function = DataUtil.evaluateChainValue(handlerName, container);
+					
+					if(!StringUtil.isBlank(useCapture))
+						var useCapt:Boolean = DataUtil.toBoolean(useCapture);
+					
+					if(!StringUtil.isBlank(priority))
+						var prior:int = int(priority);
+					
+					if(!StringUtil.isBlank(useWeakRef))
+						var useWeak:Boolean = DataUtil.toBoolean(useWeak);
 					
 					eventInfo.push({
 						listenerInfo:{
-							event:event, handler:handler, useCapture:DataUtil.toBoolean(useCapture),
-							priority:priority,useWeakRef:useWeakRef
+							event:event, handler:handler, useCapture:useCapt,
+							priority:prior,useWeakRef:useWeak
 						}, 
 						chain:chain
 					});
