@@ -352,9 +352,9 @@ package net.fproject.ui.autoComplete
 				_filteredCollection.addEventListener(CollectionEvent.COLLECTION_CHANGE, filteredCollection_collectionChange, false, 0, true);
 				_filteredCollection.refresh();
 				
-				if (_dropDown)
+				if (_dropDownContainer)
 				{
-					_resultList.dataProvider = _filteredCollection;
+					_dropDown.dataProvider = _filteredCollection;
 					showDropDown();
 				}					
 			}	
@@ -726,14 +726,14 @@ package net.fproject.ui.autoComplete
 			/**
 			 * set border for group
 			 */
-			_dropDown = new BorderContainer();
-			_dropDown.width = _dropDownWidth ? _dropDownWidth : flowBox.width;
+			_dropDownContainer = new BorderContainer();
+			_dropDownContainer.width = _dropDownWidth ? _dropDownWidth : flowBox.width;
 			if (_dropDownHeight)
 				_dropDown.height = _dropDownHeight;
 			if (_dropDownMaxHeight)
-				_dropDown.maxHeight = _dropDownMaxHeight;
-			_dropDown.setStyle("borderColor","#D1D2D4");
-			var contentWidth:Number = _dropDown.width - 2;
+				_dropDownContainer.maxHeight = _dropDownMaxHeight;
+			_dropDownContainer.setStyle("borderColor","#D1D2D4");
+			var contentWidth:Number = _dropDownContainer.width - 2;
 			
 			/**
 			 * _statusLabel:Label is used to display the status of searching
@@ -750,23 +750,23 @@ package net.fproject.ui.autoComplete
 			_statusLabel.setStyle('paddingLeft',5);
 			
 			/**
-			 * _resultList:IList is used to display search result 
+			 * _dropDown:IList is used to display search result 
 			 */
-			_resultList = new List();
-			_resultList.focusEnabled = false;
-			_resultList.dataProvider = _filteredCollection;
-			_resultList.labelFunction = _dropDownLabelFunction;
-			_resultList.width = contentWidth;
-			_resultList.setStyle("borderVisible",false);
+			_dropDown = new List();
+			_dropDown.focusEnabled = false;
+			_dropDown.dataProvider = _filteredCollection;
+			_dropDown.labelFunction = _dropDownLabelFunction;
+			_dropDown.width = contentWidth;
+			_dropDown.setStyle("borderVisible",false);
 			
-			_resultList.itemRenderer  = _dropDownItemRenderer ? _dropDownItemRenderer : new ClassFactory(DropDownItemRenderer);
-			_resultList.addEventListener(IndexChangeEvent.CHANGE, dropDownChangeHandler);	
-			_resultList.addEventListener(MouseEvent.CLICK, dropDownChangeHandler, true);	
+			_dropDown.itemRenderer  = _dropDownItemRenderer ? _dropDownItemRenderer : new ClassFactory(DropDownItemRenderer);
+			_dropDown.addEventListener(IndexChangeEvent.CHANGE, dropDownChangeHandler);	
+			_dropDown.addEventListener(MouseEvent.CLICK, dropDownChangeHandler, true);	
 			systemManager.addEventListener(MouseEvent.MOUSE_DOWN, mouseDownHandler);
 			
-			var resultListLayout:VerticalLayout = new VerticalLayout;
-			resultListLayout.gap = _dropDownLayoutGap;
-			_resultList.layout = resultListLayout;
+			var dropDown:VerticalLayout = new VerticalLayout;
+			dropDown.gap = _dropDownLayoutGap;
+			_dropDown.layout = dropDown;
 			
 			/**
 			 * Link button to add new Value for AutoComplete when option create new Value is enabled 
@@ -785,11 +785,11 @@ package net.fproject.ui.autoComplete
 			 */
 			var dropDownLayout:VerticalLayout = new VerticalLayout();
 			dropDownLayout.gap = _dropDownLayoutGap;
-			_dropDown.layout = dropDownLayout;
+			_dropDownContainer.layout = dropDownLayout;
 			
-			_dropDown.addElement(_statusLabel);
-			_dropDown.addElement(_resultList);
-			_dropDown.addElement(_createNewValueLinkButton);
+			_dropDownContainer.addElement(_statusLabel);
+			_dropDownContainer.addElement(_dropDown);
+			_dropDownContainer.addElement(_createNewValueLinkButton);
 			
 			if (!_allowNewValues || searchText == null || searchText.length == 0)
 			{
@@ -824,8 +824,8 @@ package net.fproject.ui.autoComplete
 				return;
 			}
 			
-			var p:Point = _dropDown.localToGlobal(new Point(0, 0));
-			var rect:Rectangle = new Rectangle(p.x, p.y, _dropDown.width, _dropDown.height);
+			var p:Point = _dropDownContainer.localToGlobal(new Point(0, 0));
+			var rect:Rectangle = new Rectangle(p.x, p.y, _dropDownContainer.width, _dropDownContainer.height);
 			
 			if (!rect.contains(event.stageX, event.stageY))
 			{
@@ -842,29 +842,29 @@ package net.fproject.ui.autoComplete
 			{
 				if (event.keyCode == Keyboard.DOWN)
 				{
-					if (_resultList.selectedIndex == _filteredCollection.length - 1)
+					if (_dropDown.selectedIndex == _filteredCollection.length - 1)
 					{
-						_resultList.selectedIndex = 0;
+						_dropDown.selectedIndex = 0;
 					}
 					else
 					{
-						_resultList.selectedIndex++;
+						_dropDown.selectedIndex++;
 					}
-					_resultList.ensureIndexIsVisible(_resultList.selectedIndex);
+					_dropDown.ensureIndexIsVisible(_dropDown.selectedIndex);
 					textInput.setCursorPosition(textInput.selectionBeginIndex);						
 				}
 				else if (event.keyCode == Keyboard.UP)
 				{
-					if (_resultList.selectedIndex == 0)
+					if (_dropDown.selectedIndex == 0)
 					{
-						_resultList.selectedIndex = _filteredCollection.length - 1;
+						_dropDown.selectedIndex = _filteredCollection.length - 1;
 					}
 					else
 					{
-						_resultList.selectedIndex--;						
+						_dropDown.selectedIndex--;						
 					}
 					
-					_resultList.ensureIndexIsVisible(_resultList.selectedIndex);
+					_dropDown.ensureIndexIsVisible(_dropDown.selectedIndex);
 					textInput.setCursorPosition(textInput.selectionBeginIndex);							
 				}
 				else if (event.keyCode == Keyboard.ESCAPE)
@@ -874,7 +874,7 @@ package net.fproject.ui.autoComplete
 				else if (event.keyCode == Keyboard.ENTER || event.keyCode == Keyboard.TAB 
 					|| (String.fromCharCode(event.charCode) == _delimiter && _allowMultipleSelection))
 				{
-					_selectedItems.addItem(_resultList.selectedItem);
+					_selectedItems.addItem(_dropDown.selectedItem);
 					dispatchEvent(new AutoCompleteEvent(AutoCompleteEvent.CHANGE));
 					if(event.keyCode == Keyboard.ENTER  && preventDefaultEnterKey)
 					{
@@ -1348,7 +1348,7 @@ package net.fproject.ui.autoComplete
 		
 		protected function dropDownChangeHandler(event:Event):void
 		{
-			_selectedItems.addItem(_resultList.selectedItem);
+			_selectedItems.addItem(_dropDown.selectedItem);
 			dispatchEvent(new AutoCompleteEvent(AutoCompleteEvent.CHANGE));
 		}
 		
@@ -1433,7 +1433,7 @@ package net.fproject.ui.autoComplete
 		
 		protected function highlightFirstItem():void
 		{
-			_resultList.selectedIndex = 0;
+			_dropDown.selectedIndex = 0;
 		}
 		
 		protected function isPerfectMatch():Boolean
@@ -1505,13 +1505,13 @@ package net.fproject.ui.autoComplete
 		
 		public function showDropDown():void
 		{
-			if (_dropDown == null)
+			if (_dropDownContainer == null)
 			{
 				createDropDown();
 			}
 
 			//update rowCount for Dropdown folow new data
-			var layout:VerticalLayout = _resultList.layout as VerticalLayout;
+			var layout:VerticalLayout = _dropDown.layout as VerticalLayout;
 			layout.requestedRowCount = (_filteredCollection.length < _dropDownRowCount ? _filteredCollection.length : _dropDownRowCount);
 			
 			if (isDropDownVisible())
@@ -1525,12 +1525,12 @@ package net.fproject.ui.autoComplete
 				focusManager.defaultButtonEnabled = false;
 			}				
 			
-			_dropDown.owner = this;
-			_dropDown.validateNow();
+			_dropDownContainer.owner = this;
+			_dropDownContainer.validateNow();
 			
-			PopUpManager.addPopUp(_dropDown, this);
+			PopUpManager.addPopUp(_dropDownContainer, this);
 			
-			callLater(_resultList.ensureIndexIsVisible,[0]);
+			callLater(_dropDown.ensureIndexIsVisible,[0]);
 			callLater(initDropDown);
 			callLater(callLater, [calculateDropDownPosition]);
 		}
@@ -1538,7 +1538,7 @@ package net.fproject.ui.autoComplete
 		protected function initDropDown():void
 		{
 			highlightFirstItem();
-			var layout:VerticalLayout = _resultList.layout as VerticalLayout;
+			var layout:VerticalLayout = _dropDown.layout as VerticalLayout;
 			layout.requestedRowCount = (_filteredCollection.length < _dropDownRowCount ? _filteredCollection.length : _dropDownRowCount);
 		}
 		
@@ -1552,25 +1552,25 @@ package net.fproject.ui.autoComplete
 			var localPoint:Point = new Point(0, mainGridRow.y);
 			var globalPoint:Point = localToGlobal(localPoint);
 			
-			_dropDown.x = globalPoint.x;
+			_dropDownContainer.x = globalPoint.x;
 			
-			var fitsBelow:Boolean = FlexGlobals.topLevelApplication.height - globalPoint.y - mainGridRow.height > dropDown.height;
-			var fitsAbove:Boolean = globalPoint.y > dropDown.height;
+			var fitsBelow:Boolean = FlexGlobals.topLevelApplication.height - globalPoint.y - mainGridRow.height > _dropDownContainer.height;
+			var fitsAbove:Boolean = globalPoint.y > _dropDownContainer.height;
 			
 			// check if it will fit below the textInput 
 			if (fitsBelow || !fitsAbove)	
 			{
-				_dropDown.y = globalPoint.y + grid.height;
+				_dropDownContainer.y = globalPoint.y + grid.height;
 			}
 			else
 			{
-				_dropDown.y = globalPoint.y - dropDown.height;
+				_dropDownContainer.y = globalPoint.y - _dropDownContainer.height;
 			}			
 		}
 		
 		public function hideDropDown():void
 		{
-			PopUpManager.removePopUp(_dropDown);
+			PopUpManager.removePopUp(_dropDownContainer);
 			
 			callLater(enableDefaultButton);
 		}
@@ -1597,11 +1597,11 @@ package net.fproject.ui.autoComplete
 			return _statusLabel;
 		}
 		
-		protected var _resultList:List;
+		protected var _dropDown:List;
 		
-		public function get resultList():List
+		public function get dropDown():List
 		{
-			return _resultList;
+			return _dropDown;
 		}
 		
 		protected var _createNewValueLinkButton:LinkButton;
@@ -1611,11 +1611,11 @@ package net.fproject.ui.autoComplete
 			return _createNewValueLinkButton;	
 		}
 		
-		protected var _dropDown:BorderContainer;
+		protected var _dropDownContainer:BorderContainer;
 		
-		public function get dropDown():BorderContainer
+		public function get dropDownContainer():BorderContainer
 		{
-			return _dropDown;
+			return _dropDownContainer;
 		}
 		
 		protected var _labelField:String;
@@ -1684,8 +1684,8 @@ package net.fproject.ui.autoComplete
 		public function set dropDownItemRenderer(value:IFactory):void
 		{
 			_dropDownItemRenderer = value;
-			if (_resultList != null)
-				_resultList.itemRenderer = _dropDownItemRenderer;
+			if (_dropDown != null)
+				_dropDown.itemRenderer = _dropDownItemRenderer;
 		}
 		
 		private var _enableFilter:Boolean;
@@ -1961,7 +1961,7 @@ package net.fproject.ui.autoComplete
 		
 		public function isDropDownVisible():Boolean
 		{
-			return _dropDown && _dropDown.parent;
+			return _dropDownContainer && _dropDownContainer.parent;
 		}
 		
 		protected var _prompt:String;
