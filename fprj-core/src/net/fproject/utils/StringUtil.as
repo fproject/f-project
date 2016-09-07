@@ -571,5 +571,32 @@ package net.fproject.utils
 			var re:RegExp = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
 			return re.test(s);
 		}
+		
+		/**
+		 * HTML encoding for safe display
+		 */
+		public static function htmlEncode(s:String):String
+		{
+			s = s.replace("&", "&amp;");
+			s = s.replace("<", "&lt;");
+			s = s.replace(">", "&gt;");
+			s = s.replace("™", '&trade;');
+			s = s.replace("®", '&reg;');
+			s = s.replace("©", '&copy;');
+			s = s.replace("€", "&euro;");
+			s = s.replace("£", "&pound;");
+			s = s.replace("—", "&mdash;");
+			s = s.replace("–", "&ndash;");
+			s = s.replace("…", "&hellip;");
+			s = s.replace("†", "&dagger;");
+			s = s.replace("·", "&middot;");
+			s = s.replace("µ", "&micro;");
+			s = s.replace("«", "&laquo;");
+			s = s.replace("»", "&raquo;");
+			s = s.replace("•", "&bull;");
+			s = s.replace("°", "&deg;");
+			s = s.replace('"', "&quot;");
+			return s;
+		}
 	}
 }
