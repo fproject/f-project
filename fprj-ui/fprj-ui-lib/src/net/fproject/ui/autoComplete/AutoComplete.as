@@ -194,9 +194,9 @@ package net.fproject.ui.autoComplete
 			hasFocusableChildren = true;
 			
 			/* 
-			 * Remember that the super class UIComponent already added the 'keyDownHandler', 'focusInHandler',
-			 * and 'focusOutHandler' to listen KEY_DOWN, FOCUS_IN, FOCUS_OUT events
-			 */
+			* Remember that the super class UIComponent already added the 'keyDownHandler', 'focusInHandler',
+			* and 'focusOutHandler' to listen KEY_DOWN, FOCUS_IN, FOCUS_OUT events
+			*/
 			addEventListener(MoveEvent.MOVE, moveHandler);
 		}
 		
@@ -348,15 +348,10 @@ package net.fproject.ui.autoComplete
 			if (_dataProviderChanged && _filteredCollection)
 			{
 				_dataProviderChanged = false;
-				
-				_filteredCollection.addEventListener(CollectionEvent.COLLECTION_CHANGE, filteredCollection_collectionChange, false, 0, true);
-				_filteredCollection.refresh();
+				filterData();
 				
 				if (_dropDownContainer)
-				{
 					_dropDown.dataProvider = _filteredCollection;
-					showDropDown();
-				}					
 			}	
 			
 			if (_selectedItemChanged && _filteredCollection)
@@ -648,9 +643,7 @@ package net.fproject.ui.autoComplete
 		protected function defaultFilterFunction(item:Object, searchStr:String):Boolean
 		{
 			if (!searchStr || searchStr.length == 0 || _labelFunction == null)
-			{
 				return true;
-			}
 			
 			var str:String = _labelFunction(item);
 			
@@ -735,6 +728,9 @@ package net.fproject.ui.autoComplete
 			_dropDownContainer.setStyle("borderColor","#D1D2D4");
 			var contentWidth:Number = _dropDownContainer.width - 2;
 			
+			_dropDownContainer.owner = this;
+			_dropDownContainer.validateNow();
+			
 			/**
 			 * _statusLabel:Label is used to display the status of searching
 			 * There are two status:
@@ -761,12 +757,14 @@ package net.fproject.ui.autoComplete
 			
 			_dropDown.itemRenderer  = _dropDownItemRenderer ? _dropDownItemRenderer : new ClassFactory(DropDownItemRenderer);
 			_dropDown.addEventListener(IndexChangeEvent.CHANGE, dropDownChangeHandler);	
-			_dropDown.addEventListener(MouseEvent.CLICK, dropDownChangeHandler, true);	
+			_dropDown.addEventListener(MouseEvent.CLICK, dropDownChangeHandler, true);
 			systemManager.addEventListener(MouseEvent.MOUSE_DOWN, mouseDownHandler);
 			
-			var dropDown:VerticalLayout = new VerticalLayout;
-			dropDown.gap = _dropDownLayoutGap;
-			_dropDown.layout = dropDown;
+			var dropDownLayout:VerticalLayout = new VerticalLayout;
+			dropDownLayout.gap = _dropDownLayoutGap;
+			dropDownLayout.requestedMaxRowCount = _dropDownRowCount;
+			
+			_dropDown.layout = dropDownLayout;
 			
 			/**
 			 * Link button to add new Value for AutoComplete when option create new Value is enabled 
@@ -781,11 +779,11 @@ package net.fproject.ui.autoComplete
 			_createNewValueLinkButton.addEventListener(MouseEvent.CLICK, createNewValueLinkButtonClickHandler);
 			
 			/**
-			 * Create dropDownLayout and add Element.
+			 * Create dropDownContainer and add Element.
 			 */
-			var dropDownLayout:VerticalLayout = new VerticalLayout();
-			dropDownLayout.gap = _dropDownLayoutGap;
-			_dropDownContainer.layout = dropDownLayout;
+			var dropDownContainerLayout:VerticalLayout = new VerticalLayout();
+			dropDownContainerLayout.gap = _dropDownLayoutGap;
+			_dropDownContainer.layout = dropDownContainerLayout;
 			
 			_dropDownContainer.addElement(_statusLabel);
 			_dropDownContainer.addElement(_dropDown);
@@ -1374,8 +1372,8 @@ package net.fproject.ui.autoComplete
 			
 			/*if (searchText == null || searchText.length == 0)
 			{
-				hideDropDown();
-				return;
+			hideDropDown();
+			return;
 			}*/
 			
 			if (_allowNewValues && _createNewValueLinkButton != null){
@@ -1390,10 +1388,7 @@ package net.fproject.ui.autoComplete
 				}
 			}
 			
-			if (enableFilter)
-			{
-				updateDropdown();
-			}
+			updateDropdown();
 		}
 		
 		//filter localColection follow match type and keyword
@@ -1405,9 +1400,7 @@ package net.fproject.ui.autoComplete
 			}	
 			
 			if (enableFilter)
-			{
 				filterData();
-			}
 			
 			if (_autoSelectEnabled && !_allowNewValues)
 			{
@@ -1415,17 +1408,18 @@ package net.fproject.ui.autoComplete
 				{
 					var item:Object = _filteredCollection.getItemAt(0);
 					_selectedItems.addItem(item);
+					hideDropDown();
 					searchText = "";
 					dispatchEvent(new AutoCompleteEvent(AutoCompleteEvent.CHANGE));
 					return;
 				}						
 			}
 			
-			if (_filteredCollection.length == 0)
+			/*if (_filteredCollection.length == 0)
 			{
-				hideDropDown();
-			}
-			else if (searchTextInternal.length > 0)
+			hideDropDown();
+			}*/
+			if (searchTextInternal.length > 0)
 			{
 				showDropDown();	
 			}
@@ -1509,37 +1503,19 @@ package net.fproject.ui.autoComplete
 			{
 				createDropDown();
 			}
-
-			//update rowCount for Dropdown folow new data
-			var layout:VerticalLayout = _dropDown.layout as VerticalLayout;
-			layout.requestedRowCount = (_filteredCollection.length < _dropDownRowCount ? _filteredCollection.length : _dropDownRowCount);
-			
-			if (isDropDownVisible())
+			if (!isDropDownVisible())
 			{
-				callLater(highlightFirstItem);
-				return;
+				PopUpManager.addPopUp(_dropDownContainer, this);
+				callLater(_dropDown.ensureIndexIsVisible,[0]);
+				callLater(callLater, [calculateDropDownPosition]);
 			}
 			
 			if (focusManager)
 			{
 				focusManager.defaultButtonEnabled = false;
-			}				
+			}
 			
-			_dropDownContainer.owner = this;
-			_dropDownContainer.validateNow();
-			
-			PopUpManager.addPopUp(_dropDownContainer, this);
-			
-			callLater(_dropDown.ensureIndexIsVisible,[0]);
-			callLater(initDropDown);
-			callLater(callLater, [calculateDropDownPosition]);
-		}
-		
-		protected function initDropDown():void
-		{
-			highlightFirstItem();
-			var layout:VerticalLayout = _dropDown.layout as VerticalLayout;
-			layout.requestedRowCount = (_filteredCollection.length < _dropDownRowCount ? _filteredCollection.length : _dropDownRowCount);
+			callLater(highlightFirstItem);
 		}
 		
 		public function calculateDropDownPosition():void
@@ -1756,9 +1732,20 @@ package net.fproject.ui.autoComplete
 			}
 		}
 		
+		protected var itemMatchingCount:int = 0; 
 		protected function filterFunctionWrapper(item:Object):Boolean
 		{
-			return _filterFunction(item, _searchText);
+			if (_filteredCollection.getItemIndex(item) == 0)
+				itemMatchingCount = 0;
+			
+			if (itemMatchingCount >= _dropDownRowCount)
+				return false; 
+			if (_filterFunction(item, _searchText))
+			{
+				itemMatchingCount++;
+				return true;
+			}
+			return false;
 		}
 		
 		public function get textInput():PromptTextInput
