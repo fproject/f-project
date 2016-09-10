@@ -686,7 +686,7 @@ package net.fproject.ui.autoComplete
 		 */
 		public function defaultDropDownLabelFunction(item:Object):String
 		{
-			var string:String = defaultLabelFunction(item);
+			var string:String = itemToLabel(item);
 			if (string == null)
 			{
 				return "";
