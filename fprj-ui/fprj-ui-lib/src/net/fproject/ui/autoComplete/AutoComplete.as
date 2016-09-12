@@ -1476,8 +1476,11 @@ package net.fproject.ui.autoComplete
 			{
 				_searchText = value == null ? "":value;
 				
-				textInput.text = value;
-				textInput.validateNow();
+				if (textInput != null)
+				{
+					textInput.text = value;
+					textInput.validateNow();
+				}
 				
 				if(hasEventListener(AutoCompleteEvent.SEARCH_CHANGE))
 					dispatchEvent(new AutoCompleteEvent(AutoCompleteEvent.SEARCH_CHANGE, _searchText));	
@@ -2044,19 +2047,21 @@ package net.fproject.ui.autoComplete
 		
 		override public function setFocus():void
 		{
-			textInput.setFocus();
+			if(textInput != null)
+				textInput.setFocus();
 		}
 		
 		override public function drawFocus(isFocused:Boolean):void
 		{
-			flowBox.drawFocus(isFocused);
+			if(flowBox != null)
+				flowBox.drawFocus(isFocused);
 		}
 		
 		override public function styleChanged(styleProp:String):void
 		{
 			super.styleChanged(styleProp);
 			
-			if (styleProp == "borderColor")
+			if (flowBox != null && styleProp == "borderColor")
 			{
 				flowBox.setStyle(styleProp, getStyle(styleProp));
 			}
