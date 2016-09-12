@@ -257,6 +257,8 @@ package net.fproject.ui.autoComplete
 		override protected function commitProperties():void
 		{
 			super.commitProperties();
+			if (flowBox == null)
+				return;
 			
 			var item:Object;
 			var i:int;
@@ -1750,7 +1752,7 @@ package net.fproject.ui.autoComplete
 		
 		public function get textInput():PromptTextInput
 		{
-			return flowBox.prompt;
+			return flowBox != null  ? flowBox.prompt : null;
 		}
 		
 		protected var _dataProviderChanged:Boolean;
