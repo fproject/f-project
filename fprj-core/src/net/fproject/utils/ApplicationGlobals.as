@@ -36,12 +36,7 @@ package net.fproject.utils
 	{
 		public static function getModuleBaseUrl() : String
 		{
-			if (isDesktop())
-			{
-				return "modules";
-			}
-			else
-				return getAppParameter("moduleBaseUrl");
+			return getAppParameter("moduleBaseUrl");
 		}
 		
 		public static function isDesktop():Boolean
@@ -104,7 +99,7 @@ package net.fproject.utils
 		
 		public static function getAppParameter(paramName:String) : *
 		{
-			return decodeURIComponent(FlexGlobals.topLevelApplication.parameters[paramName]);
+			return ApplicationParam.instance.getParameter(paramName);
 		}
 		
 		/**

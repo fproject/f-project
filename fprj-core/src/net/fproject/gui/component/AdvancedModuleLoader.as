@@ -21,11 +21,13 @@ package net.fproject.gui.component
 	import flash.utils.ByteArray;
 	
 	import mx.events.ModuleEvent;
+	import mx.managers.SystemManagerGlobals;
 	import mx.rpc.AsyncToken;
 	
 	import spark.modules.ModuleLoader;
 	
 	import net.fproject.core.AppContext;
+	import net.fproject.di.InstanceFactory;
 	import net.fproject.event.AppContextEvent;
 	import net.fproject.gui.component.supportClasses.DeferredCallHelper;
 	import net.fproject.gui.component.supportClasses.RslsLoader;
@@ -272,7 +274,8 @@ package net.fproject.gui.component
 		public function AdvancedModuleLoader()
 		{
 			this.applicationDomain = ApplicationDomain.currentDomain;
-			rslsLoader = new RslsLoader;
+			this.moduleFactory = SystemManagerGlobals.topLevelSystemManagers[0];
+			rslsLoader = InstanceFactory.getInstance(RslsLoader, undefined, false);
 			this.addEventListener(ModuleEvent.READY, moduleLoader_ready, false, 0, true);
 			this.addEventListener(ModuleEvent.ERROR, moduleLoader_error, false, 0, true);
 		}

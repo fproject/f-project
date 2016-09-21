@@ -27,6 +27,7 @@ package net.fproject.gui.component
 	import spark.components.Group;
 	
 	import net.fproject.core.AppContext;
+	import net.fproject.di.InstanceFactory;
 	import net.fproject.event.AppContextEvent;
 	import net.fproject.gui.component.supportClasses.RslsLoader;
 	import net.fproject.utils.ResourceUtil;
@@ -221,7 +222,7 @@ package net.fproject.gui.component
 		 */
 		public function ComponentLoader()
 		{
-			rslsLoader = new RslsLoader;
+			rslsLoader = InstanceFactory.getInstance(RslsLoader, undefined, false);
 		}
 	}
 }
