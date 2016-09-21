@@ -25,6 +25,8 @@ package net.fproject.themes
 		
 		protected var _borderVisible:Boolean;
 		
+		protected var _verticalBackground:Boolean;
+		
 		protected var backgroundFillColorsChanged:Boolean;
 		
 		protected var backgroundAlphaChanged:Boolean;
@@ -34,6 +36,8 @@ package net.fproject.themes
 		protected var borderAlphaChanged:Boolean;
 		
 		protected var borderVisibleChanged:Boolean;
+		
+		protected var verticalBackgroundChanged:Boolean;
 		
 		public function BorderAndGradientFillSkin()
 		{
@@ -102,6 +106,13 @@ package net.fproject.themes
 				dirty = true;
 			}
 			
+			if(verticalBackgroundChanged)
+			{
+				verticalBackgroundChanged = false;
+				this._verticalBackground = getStyle("verticalBackground");
+				dirty = true;
+			}
+			
 			if(dirty && !mx_internal::invalidateDisplayListFlag)
 			{
 				invalidateDisplayList();
@@ -120,6 +131,8 @@ package net.fproject.themes
 				borderAlphaChanged = true;
 			if(styleProp == null || styleProp == "borderVisible")
 				borderVisibleChanged = true;
+			if(styleProp == null || styleProp == "verticalBackground")
+				verticalBackgroundChanged = true;
 			
 			super.styleChanged(styleProp);
 			
@@ -217,6 +230,11 @@ package net.fproject.themes
 				{
 					this.background.visible = false;
 				}
+				
+				if(_verticalBackground)
+					this.background.rotation = 270;
+				else
+					this.background.rotation = 0;
 			}
 			
 			if(this._borderVisible && this.border && this.borderStroke)
