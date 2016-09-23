@@ -35,10 +35,11 @@ package net.fproject.gui.component
 		 * override public function get menuData() : Object
 		 * {
 		 *	return {
+		 * 		states: ['normal','abnormal'],
 		 *		menuItems:[
 		 *			{label:"@Resource(project,mainmenu.new)",
 		 *			 event:"net.fproject.event.TaskEvent.NEW_TASK",
-		 *			 icon:"newproject.png"}
+		 *			 icon:"newproject.png", "icon.abnormal":"existed.png"}
 		 *		]
 		 *	};
 		 * }
@@ -48,7 +49,6 @@ package net.fproject.gui.component
 		 * is set to <code>"mainmenu.new"</code> that is a resource bundle key defined in 
 		 * the <code>project.properties</code> bundle
 		 * 
-		 * @see MenuUtil.createMenu()
 		 */
 		function get menuData() : Object;
 	}
