@@ -1221,8 +1221,7 @@ package net.fproject.ui.autoComplete
 				if(hasEventListener(AutoCompleteEvent.SEARCH_CHANGE))
 					dispatchEvent(new AutoCompleteEvent(AutoCompleteEvent.SEARCH_CHANGE, searchText));
 			}
-			if (searchText.length > 0)
-				updateDropdown();
+			updateDropdown();
 		}
 		
 		//filter localColection follow match type and keyword
