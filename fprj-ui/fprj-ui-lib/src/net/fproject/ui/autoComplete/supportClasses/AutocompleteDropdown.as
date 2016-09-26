@@ -23,10 +23,6 @@ package net.fproject.ui.autoComplete.supportClasses
 	import net.fproject.ui.events.AutoCompleteEvent;
 	import net.fproject.utils.StringUtil;
 	
-	/**
-	 * The text color for disabled state
-	 */
-	[Style(name="disabledTextColor", type="uint", format="Color", inherit="yes")]
 	[SkinState("found")]
 	[SkinState("nothingFound")]
 	[EventHandling(event="mx.events.FlexEvent.INITIALIZE",handler="module_initialize")]
@@ -103,6 +99,8 @@ package net.fproject.ui.autoComplete.supportClasses
 			
 			if (_itemRenderer == null) 
 				_itemRenderer = new ClassFactory(DropDownItemRenderer);
+			if (_buttonItemRenderer == null) 
+				_buttonItemRenderer = new ClassFactory(CreateNewButtonRenderer);
 			FlexGlobals.topLevelApplication.addEventListener(KeyboardEvent.KEY_DOWN, dropDownKeydownEventHandler);
 			//this.addEventListener(KeyboardEvent.KEY_DOWN, dropDownKeydownEventHandler);
 		}
@@ -220,26 +218,6 @@ package net.fproject.ui.autoComplete.supportClasses
 		public function highLightMatchLabelFunction(item:Object):String
 		{
 			return highlightMatch(labelFunction(item));
-			
-			var string:String = labelFunction(item);
-			if (string == null)
-			{
-				return "";
-			}
-			
-			var searchStr:String = searchText;
-			
-			// there are problems using ">"s and "<"s in HTML
-			string = string.replace("<", "&lt;").replace(">", "&gt;");				
-			
-			var returnStr:String = AutoCompleteUtil.highlightMatch(string, searchStr);
-			
-			if (disabledItems.getItemIndex(item) >= 0)
-			{
-				returnStr = "<font color='" + getStyle('disabledTextColor') + "'>" + returnStr + "</font>";
-			}
-			
-			return returnStr;
 		}
 		
 		protected var _matchType:String = MATCH_ANY_PART;
@@ -275,8 +253,6 @@ package net.fproject.ui.autoComplete.supportClasses
 			var string:String = sourceText.replace("<", "&lt;").replace(">", "&gt;");				
 			
 			var returnStr:String = AutoCompleteUtil.highlightMatch(string, searchText);
-			
-			returnStr = "<font color='" + getStyle('disabledTextColor') + "'>" + returnStr + "</font>";
 			
 			return returnStr;
 		}
@@ -446,8 +422,6 @@ package net.fproject.ui.autoComplete.supportClasses
 		public function set itemRenderer(value:IFactory):void
 		{
 			_itemRenderer = value;
-			if (dropDown != null)
-				dropDown.itemRenderer = _itemRenderer;
 		}
 		
 		public function get itemRenderer():IFactory
@@ -455,7 +429,7 @@ package net.fproject.ui.autoComplete.supportClasses
 			return _itemRenderer;
 		}
 		
-		protected var _buttonItemRenderer:IFactory = new ClassFactory(CreateNewButtonRenderer);
+		protected var _buttonItemRenderer:IFactory;
 		/**
 		 * The custom item renderer for the dropdown displayed when searching.
 		 */			

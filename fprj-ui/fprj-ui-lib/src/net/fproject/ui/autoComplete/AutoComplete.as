@@ -1408,9 +1408,12 @@ package net.fproject.ui.autoComplete
 			dropDownContainer.itemRenderer = value;
 		}
 		
-		public function get dropDownItemRenderer():IFactory
+		/**
+		 * The custom item renderer for the create new button on dropdown displayed when searching.
+		 */			
+		public function set createNewButtonItemRenderer(value:IFactory):void
 		{
-			return dropDownContainer.itemRenderer;
+			dropDownContainer.buttonItemRenderer = value;
 		}
 		
 		public function set enableFilter(value:Boolean):void

@@ -76,6 +76,10 @@ ui|DefaultInlineButton {
 	skinClass:ClassReference("net.fproject.ui.autoComplete.skins.DefaultInlineButtonSkin");	
 }
 
-supportClasses|AutocompleteDropdown{
+ui|AutocompleteDropdown{
 	skinClass:ClassReference("net.fproject.ui.autoComplete.skins.AutocompleteDropdownSkin")
+}
+
+ui|CreateNewButtonRenderer{
+	icon:Embed("net/fproject/ui/autoComplete/assets/addButton.png");
 }
