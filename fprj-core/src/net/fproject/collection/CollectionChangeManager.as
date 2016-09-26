@@ -61,10 +61,10 @@ package net.fproject.collection
 			return _instance;
 		}
 		
-		private static var _collectionToChangeItems:Dictionary = new Dictionary(true);
-		private static var _services:Dictionary = new Dictionary(true);
-		private static var _attributes:Dictionary = new Dictionary(true);
-		private static var _unregisterPending:Dictionary = new Dictionary(true);
+		private var _collectionToChangeItems:Dictionary = new Dictionary(true);
+		private var _services:Dictionary = new Dictionary(true);
+		private var _attributes:Dictionary = new Dictionary(true);
+		private var _unregisterPending:Dictionary = new Dictionary(true);
 		
 		/**
 		 * Get all saved (inserted or updated) items
@@ -82,10 +82,10 @@ package net.fproject.collection
 					if(items.indexOf(o) == -1)
 						items.push(o);
 				}
-				return items;
 			}
-			else
-				return null;
+			if (items == null)
+				items = [];
+			return items;
 		}
 		
 		/**
@@ -97,9 +97,11 @@ package net.fproject.collection
 		public function getInsertItems(collection:ICollectionView):Array
 		{
 			if(_collectionToChangeItems[collection] !== undefined)
-				return _collectionToChangeItems[collection].insertItems;
-			else
-				return null;
+				var items:Array = _collectionToChangeItems[collection].insertItems;
+			
+			if (items == null)
+				items = [];
+			return items;
 		}
 		
 		/**
@@ -111,9 +113,10 @@ package net.fproject.collection
 		public function getUpdateItems(collection:ICollectionView):Array
 		{
 			if(_collectionToChangeItems[collection] !== undefined)
-				return _collectionToChangeItems[collection].updateItems;
-			else
-				return null;
+				var items:Array = _collectionToChangeItems[collection].updateItems;
+			if (items == null)
+				items = [];
+			return items;
 		}
 		
 		/**
@@ -125,9 +128,10 @@ package net.fproject.collection
 		public function getDeleteItems(collection:ICollectionView):Array
 		{
 			if(_collectionToChangeItems[collection] !== undefined)
-				return _collectionToChangeItems[collection].deleteItems;
-			else
-				return null;
+				var items:Array = _collectionToChangeItems[collection].deleteItems;
+			if (items == null)
+				items = [];
+			return items;
 		}
 		
 		/**
@@ -407,7 +411,7 @@ package net.fproject.collection
 			resetCollectionChange(collection as ICollectionView);
 			var service:ActiveService = _services[collection];
 			
-			if (saveItems != null && saveItems.length > 0)
+			if (saveItems.length > 0)
 			{
 				markCollectionSaving(collection);
 				
@@ -426,7 +430,7 @@ package net.fproject.collection
 				});
 			}
 			
-			if (deleteItems != null && deleteItems.length > 0)
+			if (deleteItems.length > 0)
 			{
 				service.batchRemove(deleteItems);
 				
