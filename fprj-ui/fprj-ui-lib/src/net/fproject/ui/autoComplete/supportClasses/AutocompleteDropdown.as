@@ -196,24 +196,13 @@ package net.fproject.ui.autoComplete.supportClasses
 		{
 			_labelFunction = value;
 		}
-
 		
 		/**
 		 * The default function used to determine the text to display in the dropdown when searching.
 		 * It will try to find the part of the item which matched the search string and highlight
 		 * it by making bold and underlined
 		 */
-		public function defaultLabelFunction(item:Object):String
-		{
-			if (labelField && item.hasOwnProperty(labelField))
-			{
-				return item[labelField];
-			}
-			else
-			{
-				return item.toString();
-			}
-		}
+		public var defaultLabelFunction:Function;
 		
 		public function highLightMatchLabelFunction(item:Object):String
 		{
