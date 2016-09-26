@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				xmlns:s="library://ns.adobe.com/flex/spark" 
+				xmlns:mx="library://ns.adobe.com/flex/mx" 
+				autoDrawBackground="true"
+				width="100%">
+	<s:HGroup gap="3" verticalAlign="middle" left="5" width="100%" height="20">
+		<s:Image source="@Embed('../src/net/fproject/ui/autoComplete/assets/addButton.png')" height="16" width="16"/>
+		<s:Label text="@Resource(bundle='fprjui', key='autocomplete.createNew.label')" width="100%"/>
+	</s:HGroup>
+</s:ItemRenderer>
