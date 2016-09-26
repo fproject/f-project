@@ -29,7 +29,6 @@ package net.fproject.ui.autoComplete
 	
 	import mx.collections.ArrayCollection;
 	import mx.collections.IList;
-	import mx.collections.ListCollectionView;
 	import mx.containers.Grid;
 	import mx.containers.GridItem;
 	import mx.containers.GridRow;
@@ -49,18 +48,12 @@ package net.fproject.ui.autoComplete
 	import mx.managers.IFocusManagerComponent;
 	import mx.managers.PopUpManager;
 	
-	import spark.components.BorderContainer;
-	import spark.components.Label;
 	import spark.components.List;
 	import spark.components.supportClasses.SkinnableComponent;
 	import spark.events.IndexChangeEvent;
-	import spark.layouts.VerticalLayout;
 	
-	import flashx.textLayout.formats.VerticalAlign;
-	
-	import net.fproject.ui.autoComplete.supportClasses.AutoCompleteUtil;
+	import net.fproject.ui.autoComplete.supportClasses.AutocompleteDropdown;
 	import net.fproject.ui.autoComplete.supportClasses.DefaultInlineButton;
-	import net.fproject.ui.autoComplete.supportClasses.DropDownItemRenderer;
 	import net.fproject.ui.autoComplete.supportClasses.EditableItem;
 	import net.fproject.ui.autoComplete.supportClasses.FlowBox;
 	import net.fproject.ui.autoComplete.supportClasses.IFlowBoxItem;
@@ -68,7 +61,6 @@ package net.fproject.ui.autoComplete
 	import net.fproject.ui.autoComplete.supportClasses.SelectedItem;
 	import net.fproject.ui.autoComplete.supportClasses.SelectedItemButton;
 	import net.fproject.ui.events.AutoCompleteEvent;
-	import net.fproject.util.FprjuiUtil;
 	import net.fproject.utils.StringUtil;
 	
 	/**
@@ -151,14 +143,16 @@ package net.fproject.ui.autoComplete
 		[Inspectable(enumeration="facebook,macMail,underline")]
 		[Bindable]
 		public var selectedItemStyle:String;
-		public var recentText:String = FprjuiUtil.getString("autocomplete.recentSearches");
-		public var nothingFoundMessage:String = FprjuiUtil.getString("autocomplete.nothingFound");
 		
 		private function initializeHandler(e:FlexEvent):void
 		{
-			_enableFilter = true;
 			_selectedItems = new ArrayCollection();
 			_selectedItems.addEventListener(CollectionEvent.COLLECTION_CHANGE, selectedItems_collectionChange);
+			dropDownContainer.addEventListener(IndexChangeEvent.CHANGE, dropDownChangeHandler);
+			dropDownContainer.addEventListener(AutoCompleteEvent.CREATE_NEW_BUTTON_CLICK, onCreateNewButtonClickHandler);
+			dropDownContainer.addEventListener(AutoCompleteEvent.PERFECT_MATCH, onPerfectMatchHandler);
+			
+			systemManager.addEventListener(MouseEvent.MOUSE_DOWN, mouseDownHandler);
 			
 			if (!_disabledItems)
 			{
@@ -170,20 +164,10 @@ package net.fproject.ui.autoComplete
 				labelFunction = defaultLabelFunction;
 			}
 			
-			if (_filterFunction == null)
-			{
-				filterFunction = defaultFilterFunction;
-			}				
-			
 			if (_createNewValueFunction == null)
 			{
 				createNewValueFunction = defaultCreateNewValue;
 			}	
-			
-			if (_dropDownLabelFunction == null)
-			{			
-				dropDownLabelFunction = defaultDropDownLabelFunction;
-			}
 			
 			if (!width && !percentWidth)
 			{
@@ -229,7 +213,7 @@ package net.fproject.ui.autoComplete
 			
 			if (searchTextInternal.length > 0)
 			{
-				if (_allowNewValues)
+				if (dropDownContainer.allowNewValues)
 				{
 					/*_selectedItems.addItem(searchTextInternal);
 					dispatchEvent(new AutoCompleteEvent(AutoCompleteEvent.CHANGE));*/
@@ -341,92 +325,77 @@ package net.fproject.ui.autoComplete
 				flowBox.showRemoveIcon = _showRemoveIcon;
 			}		
 			
-			if (_maxHeightChanged)
+			/*if (_selectedItemChanged && _filteredCollection)
 			{
-				_maxHeightChanged = false;
-				flowBox.maxHeight = _maxHeight;
-			}				
+			_selectedItemChanged = false;
+			clear();
 			
-			if (_dataProviderChanged && _filteredCollection)
+			if (_selectedItem)
 			{
-				_dataProviderChanged = false;
-				filterData();
-				
-				if (_dropDownContainer)
-					_dropDown.dataProvider = _filteredCollection;
-			}	
+			_selectedItems.addItem(_selectedItem);
+			}
 			
-			if (_selectedItemChanged && _filteredCollection)
-			{
-				_selectedItemChanged = false;
-				clear();
-				
-				if (_selectedItem)
-				{
-					_selectedItems.addItem(_selectedItem);
-				}
-				
-				_selectedItem = null;
+			_selectedItem = null;
 			}
 			
 			if (_selectedItemIdChanged && _filteredCollection)
 			{
-				_selectedItemIdChanged = false;
-				_selectedItems.removeAll();
-				
-				for (i=0; i<_filteredCollection.list.length; i++)
-				{
-					item = _filteredCollection.list.getItemAt(i);
-					
-					if (item.hasOwnProperty(_keyField) && item[_keyField] == _selectedItemId)
-					{
-						_selectedItems.addItem(item);
-						_selectedItemId = 0;
-						break;
-					}
-				}
+			_selectedItemIdChanged = false;
+			_selectedItems.removeAll();
+			
+			for (i=0; i<_filteredCollection.list.length; i++)
+			{
+			item = _filteredCollection.list.getItemAt(i);
+			
+			if (item.hasOwnProperty(_keyField) && item[_keyField] == _selectedItemId)
+			{
+			_selectedItems.addItem(item);
+			_selectedItemId = 0;
+			break;
+			}
+			}
 			}
 			
 			if (_selectedItemsChanged && _filteredCollection)
 			{
-				_selectedItemsChanged = false;
-				_selectedItems.removeAll();
-				
-				for each (var selectedItem:Object in _initialSelectedItems)
-				{
-					var foundItem:Object = null;
-					
-					for (i=0; i<_filteredCollection.list.length; i++)
-					{
-						item = _filteredCollection.list.getItemAt(i);
-						
-						if (item == selectedItem)
-						{
-							foundItem = item;
-						}
-						else if (item.hasOwnProperty(_keyField) 
-							&& selectedItem.hasOwnProperty(_keyField)
-							&& item[_keyField] == selectedItem[_keyField])
-						{
-							foundItem = item;
-						}
-						
-						if (foundItem)
-						{
-							_selectedItems.addItem(foundItem);
-							foundItem = true;
-							break;
-						}
-					}
-					
-					if (foundItem == null)
-					{
-						_selectedItems.addItem(selectedItem);																		
-					}
-				}
-				
-				_initialSelectedItems = null;
+			_selectedItemsChanged = false;
+			_selectedItems.removeAll();
+			
+			for each (var selectedItem:Object in _initialSelectedItems)
+			{
+			var foundItem:Object = null;
+			
+			for (i=0; i<_filteredCollection.list.length; i++)
+			{
+			item = _filteredCollection.list.getItemAt(i);
+			
+			if (item == selectedItem)
+			{
+			foundItem = item;
 			}
+			else if (item.hasOwnProperty(_keyField) 
+			&& selectedItem.hasOwnProperty(_keyField)
+			&& item[_keyField] == selectedItem[_keyField])
+			{
+			foundItem = item;
+			}
+			
+			if (foundItem)
+			{
+			_selectedItems.addItem(foundItem);
+			foundItem = true;
+			break;
+			}
+			}
+			
+			if (foundItem == null)
+			{
+			_selectedItems.addItem(selectedItem);																		
+			}
+			}
+			
+			_initialSelectedItems = null;
+			}*/
 			
 			if (_tabIndexChanged)
 			{
@@ -642,26 +611,6 @@ package net.fproject.ui.autoComplete
 			dispatchEvent(new FlexEvent(FlexEvent.DATA_CHANGE));
 		}			
 		
-		protected function defaultFilterFunction(item:Object, searchStr:String):Boolean
-		{
-			if (!searchStr || searchStr.length == 0 || _labelFunction == null)
-				return true;
-			
-			var str:String = _labelFunction(item);
-			
-			switch (_matchType)
-			{
-				case MATCH_ANY_PART:
-					return AutoCompleteUtil.contains(str, searchStr);
-				case MATCH_BEGINNING:
-					return StringUtil.startsWith(str, searchStr);
-				case MATCH_WORD:
-					return AutoCompleteUtil.anyWordBeginsWith(str, searchStr);
-			}
-			
-			return false;
-		}
-		
 		public function defaultLabelFunction(item:Object):String
 		{
 			if (_labelField && item.hasOwnProperty(_labelField))
@@ -679,139 +628,21 @@ package net.fproject.ui.autoComplete
 			return _labelFunction != null ? _labelFunction(item) : defaultLabelFunction(item);
 		}
 		
-		/**
-		 * The default function used to determine the text to display in the dropdown when searching.
-		 * It will try to find the part of the item which matched the search string and highlight
-		 * it by making bold and underlined
-		 */
-		public function defaultDropDownLabelFunction(item:Object):String
-		{
-			var string:String = itemToLabel(item);
-			if (string == null)
-			{
-				return "";
-			}
-			
-			var searchStr:String = searchTextInternal;
-			
-			// there are problems using ">"s and "<"s in HTML
-			string = string.replace("<", "&lt;").replace(">", "&gt;");				
-			
-			var returnStr:String = AutoCompleteUtil.highlightMatch(string, searchStr);
-			
-			if (_selectedItems.getItemIndex(item) >= 0 || _disabledItems.getItemIndex(item) >= 0)
-			{
-				returnStr = "<font color='" + getStyle('disabledTextColor') + "'>" + returnStr + "</font>";
-			}
-			
-			return returnStr;
-		}
 		
 		public function itemToDropDownLabel(item:Object):String
 		{
-			return _dropDownLabelFunction != null ? _dropDownLabelFunction(item) : defaultDropDownLabelFunction(item);
+			return _dropDownLabelFunction != null ? _dropDownLabelFunction(item) : "sdfsf";//dropDownContainer.defaultDropDownLabelFunction(item);
 		}
 		
 		protected function setClearIconEnabled():void
 		{
 			textInput.showClearButton = _showClearButton && !_allowMultipleSelection;
 		}
-		protected function createDropDown():void
-		{
-			/**
-			 * set border for group
-			 */
-			_dropDownContainer = new BorderContainer();
-			_dropDownContainer.width = _dropDownWidth ? _dropDownWidth : flowBox.width;
-			if (_dropDownHeight)
-				_dropDown.height = _dropDownHeight;
-			if (_dropDownMaxHeight)
-				_dropDownContainer.maxHeight = _dropDownMaxHeight;
-			_dropDownContainer.setStyle("borderColor","#D1D2D4");
-			var contentWidth:Number = _dropDownContainer.width - 2;
-			
-			_dropDownContainer.owner = this;
-			_dropDownContainer.validateNow();
-			
-			/**
-			 * _statusLabel:Label is used to display the status of searching
-			 * There are two status:
-			 * - show recents: show when user focusIn the Autocomplete and type nothing
-			 * - nothing found: show when have nothing matches user search criteria
-			 */
-			
-			_statusLabel.width = contentWidth;
-			_statusLabel.text = _filteredCollection.length > 0 ? recentText:nothingFoundMessage;
-			_statusLabel.height = 25;
-			_statusLabel.setStyle("backgroundColor","#f6f7f9"); 
-			_statusLabel.setStyle('verticalAlign',VerticalAlign.MIDDLE);
-			_statusLabel.setStyle('paddingLeft',5);
-			
-			/**
-			 * _dropDown:IList is used to display search result 
-			 */
-			_dropDown = new List();
-			_dropDown.focusEnabled = false;
-			_dropDown.dataProvider = _filteredCollection;
-			_dropDown.labelFunction = _dropDownLabelFunction;
-			_dropDown.width = contentWidth;
-			_dropDown.setStyle("borderVisible",false);
-			
-			_dropDown.itemRenderer  = _dropDownItemRenderer ? _dropDownItemRenderer : new ClassFactory(DropDownItemRenderer);
-			_dropDown.addEventListener(IndexChangeEvent.CHANGE, dropDownChangeHandler);	
-			_dropDown.addEventListener(MouseEvent.CLICK, dropDownChangeHandler, true);
-			systemManager.addEventListener(MouseEvent.MOUSE_DOWN, mouseDownHandler);
-			
-			var dropDownLayout:VerticalLayout = new VerticalLayout;
-			dropDownLayout.gap = _dropDownLayoutGap;
-			dropDownLayout.requestedMaxRowCount = _dropDownRowCount;
-			
-			_dropDown.layout = dropDownLayout;
-			
-			/**
-			 * Link button to add new Value for AutoComplete when option create new Value is enabled 
-			 */
-			_createNewValueLinkButton = new LinkButton();
-			_createNewValueLinkButton.label = FprjuiUtil.getString("autocomplete.createNew.label");
-			_createNewValueLinkButton.height = 30;
-			_createNewValueLinkButton.width = textInput.width;
-			_createNewValueLinkButton.setStyle("backgroundColor","#f6f7f9"); 
-			_createNewValueLinkButton.setStyle('verticalAlign',VerticalAlign.MIDDLE);
-			_createNewValueLinkButton.setStyle('paddingLeft',5);
-			_createNewValueLinkButton.addEventListener(MouseEvent.CLICK, createNewValueLinkButtonClickHandler);
-			
-			/**
-			 * Create dropDownContainer and add Element.
-			 */
-			var dropDownContainerLayout:VerticalLayout = new VerticalLayout();
-			dropDownContainerLayout.gap = _dropDownLayoutGap;
-			_dropDownContainer.layout = dropDownContainerLayout;
-			
-			_dropDownContainer.addElement(_statusLabel);
-			_dropDownContainer.addElement(_dropDown);
-			_dropDownContainer.addElement(_createNewValueLinkButton);
-			
-			if (!_allowNewValues || searchText == null || searchText.length == 0)
-			{
-				_createNewValueLinkButton.visible = false;
-				_createNewValueLinkButton.includeInLayout = false;
-			}else
-			{
-				_createNewValueLinkButton.visible = true;
-				_createNewValueLinkButton.includeInLayout = true;
-			}
-		}
 		
 		protected function defaultCreateNewValue():void
 		{
 			if (_selectedItems && searchTextInternal)
 				_selectedItems.addItem(searchTextInternal);
-		}
-		
-		public function createNewValueLinkButtonClickHandler(event:MouseEvent):void
-		{
-			createNewValueFunction();
-			dispatchEvent(new AutoCompleteEvent(AutoCompleteEvent.CHANGE));
 		}
 		
 		/**
@@ -824,8 +655,8 @@ package net.fproject.ui.autoComplete
 				return;
 			}
 			
-			var p:Point = _dropDownContainer.localToGlobal(new Point(0, 0));
-			var rect:Rectangle = new Rectangle(p.x, p.y, _dropDownContainer.width, _dropDownContainer.height);
+			var p:Point = dropDownContainer.localToGlobal(new Point(0, 0));
+			var rect:Rectangle = new Rectangle(p.x, p.y, dropDownContainer.width, dropDownContainer.height);
 			
 			if (!rect.contains(event.stageX, event.stageY))
 			{
@@ -842,39 +673,39 @@ package net.fproject.ui.autoComplete
 			{
 				if (event.keyCode == Keyboard.DOWN)
 				{
-					if (_dropDown.selectedIndex == _filteredCollection.length - 1)
+					if (dropDownContainer.selectedIndex == dropDownContainer.dataProvider.length - 1)
 					{
-						_dropDown.selectedIndex = 0;
+						dropDownContainer.selectedIndex = 0;
 					}
 					else
 					{
-						_dropDown.selectedIndex++;
+						dropDownContainer.selectedIndex++;
 					}
-					_dropDown.ensureIndexIsVisible(_dropDown.selectedIndex);
+					dropDownContainer.ensureIndexIsVisible(dropDownContainer.selectedIndex);
 					textInput.setCursorPosition(textInput.selectionBeginIndex);						
 				}
 				else if (event.keyCode == Keyboard.UP)
 				{
-					if (_dropDown.selectedIndex == 0)
+					if (dropDownContainer.selectedIndex == 0)
 					{
-						_dropDown.selectedIndex = _filteredCollection.length - 1;
+						dropDownContainer.selectedIndex = dropDownContainer.dataProvider.length - 1;
 					}
 					else
 					{
-						_dropDown.selectedIndex--;						
+						dropDownContainer.selectedIndex--;						
 					}
 					
-					_dropDown.ensureIndexIsVisible(_dropDown.selectedIndex);
+					dropDownContainer.ensureIndexIsVisible(dropDownContainer.selectedIndex);
 					textInput.setCursorPosition(textInput.selectionBeginIndex);							
 				}
 				else if (event.keyCode == Keyboard.ESCAPE)
 				{
 					hideDropDown();
 				}
-				else if (event.keyCode == Keyboard.ENTER || event.keyCode == Keyboard.TAB 
+				/*else if (event.keyCode == Keyboard.ENTER || event.keyCode == Keyboard.TAB 
 					|| (String.fromCharCode(event.charCode) == _delimiter && _allowMultipleSelection))
 				{
-					_selectedItems.addItem(_dropDown.selectedItem);
+					//_selectedItems.addItem(dropDownContainer.selectedItem);
 					dispatchEvent(new AutoCompleteEvent(AutoCompleteEvent.CHANGE));
 					if(event.keyCode == Keyboard.ENTER  && preventDefaultEnterKey)
 					{
@@ -882,7 +713,7 @@ package net.fproject.ui.autoComplete
 						event.stopPropagation();
 						event.preventDefault();
 					}
-				}
+				}*/
 			}
 			else
 			{
@@ -923,7 +754,7 @@ package net.fproject.ui.autoComplete
 					/*Because searchText be remove before "keyDownHandler" so There are 2 case when cursorrAtBeginning:
 					1. SearchText is null before. In this case, "isBackspaceText" == false
 					2. SearchText != null but it be null after remove function. 
-						In this case, "isBackspaceText" == true, we have to set "isBackspaceText" == false and exit
+					In this case, "isBackspaceText" == true, we have to set "isBackspaceText" == false and exit
 					*/
 					if (isBackspaceText){
 						isBackspaceText = false;
@@ -1149,7 +980,7 @@ package net.fproject.ui.autoComplete
 						
 						textInput.setFocus();
 					}
-					else if (target.text && _allowNewValues && target.isEditable())
+					else if (target.text && dropDownContainer.allowNewValues && target.isEditable())
 					{
 						_selectedItems.addItem(target.text);
 						dispatchEvent(new AutoCompleteEvent(AutoCompleteEvent.CHANGE));																														
@@ -1238,7 +1069,7 @@ package net.fproject.ui.autoComplete
 				selectedItems.removeItemAt(0);				
 			}
 			
-			var isNew:Boolean = item is String && (!_filteredCollection || _filteredCollection.getItemIndex(item) == -1);
+			var isNew:Boolean = item is String && (!dropDownContainer.dataProvider || dropDownContainer.dataProvider.getItemIndex(item) == -1);
 			
 			if (isNew)
 			{
@@ -1348,7 +1179,26 @@ package net.fproject.ui.autoComplete
 		
 		protected function dropDownChangeHandler(event:Event):void
 		{
-			_selectedItems.addItem(_dropDown.selectedItem);
+			_selectedItems.addItem(dropDownContainer.selectedItem);
+			dispatchEvent(new AutoCompleteEvent(AutoCompleteEvent.CHANGE));
+		}
+		
+		protected function onPerfectMatchHandler(event:AutoCompleteEvent):void
+		{
+			if (_autoSelectEnabled && !allowNewValues)
+			{
+				var item:Object = event.data;
+				_selectedItems.addItem(item);
+				hideDropDown();
+				searchText = "";
+				dispatchEvent(new AutoCompleteEvent(AutoCompleteEvent.CHANGE));
+				return;
+			}
+		}
+		
+		protected function onCreateNewButtonClickHandler(event:AutoCompleteEvent):void
+		{
+			createNewValueFunction();
 			dispatchEvent(new AutoCompleteEvent(AutoCompleteEvent.CHANGE));
 		}
 		
@@ -1371,92 +1221,17 @@ package net.fproject.ui.autoComplete
 				if(hasEventListener(AutoCompleteEvent.SEARCH_CHANGE))
 					dispatchEvent(new AutoCompleteEvent(AutoCompleteEvent.SEARCH_CHANGE, searchText));
 			}
-			
-			/*if (searchText == null || searchText.length == 0)
-			{
-			hideDropDown();
-			return;
-			}*/
-			
-			if (_allowNewValues && _createNewValueLinkButton != null){
-				if (searchText == null || searchText.length == 0)
-				{
-					_createNewValueLinkButton.visible = false;
-					_createNewValueLinkButton.includeInLayout = false;
-				}else
-				{
-					_createNewValueLinkButton.visible = true;
-					_createNewValueLinkButton.includeInLayout = true;
-				}
-			}
-			
-			updateDropdown();
+			if (searchText.length > 0)
+				updateDropdown();
 		}
 		
 		//filter localColection follow match type and keyword
 		protected function updateDropdown():void
 		{
-			if (!_filteredCollection)
-			{
-				return;
-			}	
-			
-			if (enableFilter)
-				filterData();
-			
-			if (_autoSelectEnabled && !_allowNewValues)
-			{
-				if (isPerfectMatch())
-				{
-					var item:Object = _filteredCollection.getItemAt(0);
-					_selectedItems.addItem(item);
-					hideDropDown();
-					searchText = "";
-					dispatchEvent(new AutoCompleteEvent(AutoCompleteEvent.CHANGE));
-					return;
-				}						
-			}
-			
-			/*if (_filteredCollection.length == 0)
-			{
-			hideDropDown();
-			}*/
-			if (searchTextInternal.length > 0)
-			{
-				showDropDown();	
-			}
-		}
-		
-		protected function highlightFirstItem():void
-		{
-			_dropDown.selectedIndex = 0;
-		}
-		
-		protected function isPerfectMatch():Boolean
-		{
-			if (!_searchText)
-			{
-				return false;
-			}
-			
-			var str:String = StringUtil.trim(_searchText, ',');
-			
-			if (_filteredCollection && _filteredCollection.length == 1)
-			{
-				var item:Object = _filteredCollection.getItemAt(0);
-				
-				if (_autoSelectFunction != null)
-				{
-					return _autoSelectFunction(item, str);
-				}
-				else
-				{
-					var label:String = itemToLabel(item);
-					return (label.toLowerCase() == str.toLowerCase());
-				}
-			}
-			
-			return false;
+			dropDownContainer.searchText = searchText;
+			dropDownContainer.updateDropdown();
+			if (searchText.length > 0)
+				showDropDown();
 		}
 		
 		protected var _searchText:String;
@@ -1492,26 +1267,18 @@ package net.fproject.ui.autoComplete
 			return textInput && textInput.text ? textInput.text : "";
 		}
 		
-		public function filterData():void
-		{
-			_filteredCollection.filterFunction = filterFunctionWrapper;
-			
-			//Call updateDropdown function may cause change on collection so have to remove event colection_change first and add after call funtion
-			_filteredCollection.removeEventListener(CollectionEvent.COLLECTION_CHANGE,filteredCollection_collectionChange);
-			_filteredCollection.refresh();
-			_filteredCollection.addEventListener(CollectionEvent.COLLECTION_CHANGE, filteredCollection_collectionChange, false, 0, true);
-		}
-		
 		public function showDropDown():void
 		{
-			if (_dropDownContainer == null)
-			{
-				createDropDown();
-			}
+			/*
+			* Because of Changing ItemRenderer betwen 2 times of showing dropdown may cause bug 
+			* so we have to set ItemRenderer for Dropdown on showDropdown function because 
+			*/
+			dropDownContainer.dropdownWidth = flowBox.width;
+			//updateDropdown();
+			
 			if (!isDropDownVisible())
 			{
-				PopUpManager.addPopUp(_dropDownContainer, this);
-				callLater(_dropDown.ensureIndexIsVisible,[0]);
+				PopUpManager.addPopUp(dropDownContainer, this);
 				callLater(callLater, [calculateDropDownPosition]);
 			}
 			
@@ -1519,8 +1286,6 @@ package net.fproject.ui.autoComplete
 			{
 				focusManager.defaultButtonEnabled = false;
 			}
-			
-			callLater(highlightFirstItem);
 		}
 		
 		public function calculateDropDownPosition():void
@@ -1533,26 +1298,25 @@ package net.fproject.ui.autoComplete
 			var localPoint:Point = new Point(0, mainGridRow.y);
 			var globalPoint:Point = localToGlobal(localPoint);
 			
-			_dropDownContainer.x = globalPoint.x;
+			dropDownContainer.x = globalPoint.x;
 			
-			var fitsBelow:Boolean = FlexGlobals.topLevelApplication.height - globalPoint.y - mainGridRow.height > _dropDownContainer.height;
-			var fitsAbove:Boolean = globalPoint.y > _dropDownContainer.height;
+			var fitsBelow:Boolean = FlexGlobals.topLevelApplication.height - globalPoint.y - mainGridRow.height > dropDownContainer.height;
+			var fitsAbove:Boolean = globalPoint.y > dropDownContainer.height;
 			
 			// check if it will fit below the textInput 
 			if (fitsBelow || !fitsAbove)	
 			{
-				_dropDownContainer.y = globalPoint.y + grid.height;
+				dropDownContainer.y = globalPoint.y + grid.height;
 			}
 			else
 			{
-				_dropDownContainer.y = globalPoint.y - _dropDownContainer.height;
+				dropDownContainer.y = globalPoint.y - dropDownContainer.height;
 			}			
 		}
 		
 		public function hideDropDown():void
 		{
-			PopUpManager.removePopUp(_dropDownContainer);
-			
+			PopUpManager.removePopUp(dropDownContainer);
 			callLater(enableDefaultButton);
 		}
 		
@@ -1563,27 +1327,6 @@ package net.fproject.ui.autoComplete
 				focusManager.defaultButtonEnabled = true;
 			}												
 		}
-		/**
-		 * status of searching
-		 * display recent when user focus in but type nothing
-		 * display nothing found when there is nothing mathes with user criteria
-		 * hide when user searching and have something match
-		 * 
-		 * Update when dataprovider change
-		 */
-		protected var _statusLabel:Label = new Label();
-		
-		public function get statusLabel():Label
-		{
-			return _statusLabel;
-		}
-		
-		protected var _dropDown:List;
-		
-		public function get dropDown():List
-		{
-			return _dropDown;
-		}
 		
 		protected var _createNewValueLinkButton:LinkButton;
 		
@@ -1592,12 +1335,7 @@ package net.fproject.ui.autoComplete
 			return _createNewValueLinkButton;	
 		}
 		
-		protected var _dropDownContainer:BorderContainer;
-		
-		public function get dropDownContainer():BorderContainer
-		{
-			return _dropDownContainer;
-		}
+		protected var dropDownContainer:AutocompleteDropdown = new AutocompleteDropdown;
 		
 		protected var _labelField:String;
 		/**
@@ -1606,6 +1344,12 @@ package net.fproject.ui.autoComplete
 		public function set labelField(value:String):void
 		{
 			_labelField = value;
+			dropDownContainer.labelField = value;
+		}
+		
+		public function set matchType(value:String):void
+		{
+			dropDownContainer.matchType = value;
 		}
 		
 		protected var _labelFunction:Function;
@@ -1634,15 +1378,13 @@ package net.fproject.ui.autoComplete
 			_keyField = value;
 		}
 		
-		protected var _autoSelectFunction:Function;	
-		
 		/**
 		 * A function which controls whether or not to automatically select the item if it's the
 		 * only match. Note, this functionality is disabled if autoSelect is set to false. 
 		 */
 		public function set autoSelectFunction(value:Function):void
 		{
-			_autoSelectFunction = value;
+			dropDownContainer.checkMatchingFunction = value;
 		}
 		
 		protected var _autoSelectEnabled:Boolean = true;
@@ -1658,40 +1400,36 @@ package net.fproject.ui.autoComplete
 			_autoSelectEnabled = value;
 		}			
 		
-		protected var _dropDownItemRenderer:IFactory;
 		/**
 		 * The custom item renderer for the dropdown displayed when searching.
 		 */			
 		public function set dropDownItemRenderer(value:IFactory):void
 		{
-			_dropDownItemRenderer = value;
-			if (_dropDown != null)
-				_dropDown.itemRenderer = _dropDownItemRenderer;
+			dropDownContainer.itemRenderer = value;
 		}
 		
-		private var _enableFilter:Boolean;
-		
-		protected function set enableFilter(value:Boolean):void
+		public function get dropDownItemRenderer():IFactory
 		{
-			_enableFilter = value;
+			return dropDownContainer.itemRenderer;
 		}
 		
-		protected function get enableFilter():Boolean
+		public function set enableFilter(value:Boolean):void
 		{
-			return _enableFilter;
+			dropDownContainer.enableFilter = value;
 		}
 		
-		protected var _filterFunction:Function;
+		public function get enableFilter():Boolean
+		{
+			return dropDownContainer.enableFilter;
+		}
 		
 		/**
 		 * A function that the view will use to eliminate items that do not match the function's criteria.
 		 */ 			
 		public function set filterFunction(value:Function):void
 		{
-			_filterFunction = value;
+			dropDownContainer.filterFunction = value;
 		}
-		
-		protected var _allowNewValues:Boolean;
 		
 		[Inspectable(enumeration="true,false")]
 		/**
@@ -1700,11 +1438,15 @@ package net.fproject.ui.autoComplete
 		 */			
 		public function set allowNewValues(value:Boolean):void
 		{
-			_allowNewValues = value;
+			dropDownContainer.allowNewValues = value;
+		}
+		
+		public function get allowNewValues():Boolean
+		{
+			return dropDownContainer.allowNewValues;
 		}
 		
 		protected var _createNewValueFunction:Function;
-		
 		/**
 		 * A function that the view will use to create and add new value for autocomplete dataprovider.
 		 */ 			
@@ -1731,26 +1473,11 @@ package net.fproject.ui.autoComplete
 			if (value != _allowMultipleSelection)
 			{
 				_allowMultipleSelection = value;
+				dropDownContainer.allowMultipleSelection = value;
 				_allowMultipleSelectionChanged = true;
 				
 				invalidateProperties();
 			}
-		}
-		
-		protected var itemMatchingCount:int = 0; 
-		protected function filterFunctionWrapper(item:Object):Boolean
-		{
-			if (_filteredCollection.getItemIndex(item) == 0)
-				itemMatchingCount = 0;
-			
-			if (itemMatchingCount >= _dropDownRowCount)
-				return false; 
-			if (_filterFunction(item, _searchText))
-			{
-				itemMatchingCount++;
-				return true;
-			}
-			return false;
 		}
 		
 		public function get textInput():PromptTextInput
@@ -1758,41 +1485,14 @@ package net.fproject.ui.autoComplete
 			return flowBox != null  ? flowBox.prompt : null;
 		}
 		
-		protected var _dataProviderChanged:Boolean;
-		
-		// The dataProvider supplied by the user is stored in
-		// the .list property of the _filteredDataProvider
-		protected var _filteredCollection:ListCollectionView;
-		
-		protected var _dataProvider:IList;
-		
 		public function get dataProvider():IList
 		{
-			return _dataProvider;
+			return dropDownContainer.dataProvider;
 		}
 		
 		public function set dataProvider(value:IList):void
 		{
-			if (value != _dataProvider)
-			{
-				if (_dataProvider != null)
-				{
-					_filteredCollection.removeEventListener(CollectionEvent.COLLECTION_CHANGE,
-						filteredCollection_collectionChange);
-				}
-				
-				_dataProvider = value;
-				
-				if(value is ListCollectionView)
-					_filteredCollection = new ListCollectionView(ListCollectionView(value).list);
-				else
-					_filteredCollection = value == null ? null : new ListCollectionView(value);
-				
-				_dataProviderChanged = true;
-				if (_statusLabel != null)
-					_statusLabel.text = _filteredCollection.length > 0 ? recentText:nothingFoundMessage;
-				invalidateProperties();
-			}
+			dropDownContainer.dataProvider = value;
 		}
 		
 		protected var _selectedItemIdChanged:Boolean;
@@ -1828,34 +1528,7 @@ package net.fproject.ui.autoComplete
 		public function set disabledItems(value:ArrayCollection):void
 		{
 			_disabledItems = value;
-		}
-		
-		protected var _dropDownWidth:int = NaN;
-		
-		public function set dropDownWidth(value:int):void
-		{
-			_dropDownWidth = value;
-		}
-		
-		protected var _dropDownHeight:int = NaN;
-		
-		public function set dropDownHeight(value:int):void
-		{
-			_dropDownHeight = value;
-		}
-		
-		protected var _dropDownMaxHeight:int;
-		
-		public function set dropDownMaxHeight(value:int):void
-		{
-			_dropDownMaxHeight = value;
-		}
-		
-		protected var _dropDownLayoutGap:int = 0;
-		
-		public function set dropDownLayoutGap(value:int):void
-		{
-			_dropDownLayoutGap = value;
+			dropDownContainer.disabledItems = value;
 		}
 		
 		/**
@@ -1918,6 +1591,11 @@ package net.fproject.ui.autoComplete
 			}
 		}
 		
+		public function get dropDown():List
+		{
+			return dropDownContainer.dropDown;
+		}
+		
 		protected var _text:String;
 		protected var _textChanged:Boolean;
 		
@@ -1953,7 +1631,7 @@ package net.fproject.ui.autoComplete
 		
 		public function isDropDownVisible():Boolean
 		{
-			return _dropDownContainer && _dropDownContainer.parent;
+			return dropDownContainer && dropDownContainer.parent;
 		}
 		
 		protected var _prompt:String;
@@ -2028,22 +1706,6 @@ package net.fproject.ui.autoComplete
 			}
 		}
 		
-		protected var _matchType:String = MATCH_WORD;
-		[Inspectable(enumeration="beginning,word,anyPart")]
-		/**
-		 * Specifies the how to compare the item to the search string when checking for a match.
-		 * Note, setting a value for the filterFunction property will override this property.
-		 * @default beginning
-		 */
-		public function get matchType():String
-		{
-			return _matchType;
-		}
-		
-		public function set matchType(value:String):void
-		{
-			_matchType = value;
-		}
 		
 		override public function setFocus():void
 		{
@@ -2181,26 +1843,18 @@ package net.fproject.ui.autoComplete
 			return _selectedItems.getItemIndex(item) >= 0;
 		}
 		
-		protected var _dropDownRowCount:uint = 5;
-		
 		/**
 		 * The number of rows to show in the dropDown which
 		 * appears when searching
 		 */
 		public function set dropDownRowCount(value:uint):void
 		{
-			_dropDownRowCount = value;
+			dropDownContainer.dropDownRowCount = value;
 		}
 		
-		protected var _maxHeight:Number;
-		protected var _maxHeightChanged:Boolean;
-		
-		override public function set maxHeight(value:Number):void
+		public function get dropDownRowCount():uint
 		{
-			_maxHeight = value;
-			_maxHeightChanged = true;
-			
-			invalidateProperties();
+			return dropDownContainer.dropDownRowCount;
 		}
 		
 		protected var _tabIndex:int;
@@ -2229,6 +1883,7 @@ package net.fproject.ui.autoComplete
 		public function set delimiter(value:String):void
 		{
 			_delimiter = value;
+			dropDownContainer.delimiter = value;
 		}
 		
 		protected var _clearSearchOnFocusOut:Boolean = true;
