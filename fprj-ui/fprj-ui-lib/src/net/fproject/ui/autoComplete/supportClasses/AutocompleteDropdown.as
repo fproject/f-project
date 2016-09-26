@@ -101,6 +101,21 @@ package net.fproject.ui.autoComplete.supportClasses
 				_itemRenderer = new ClassFactory(DropDownItemRenderer);
 			if (_buttonItemRenderer == null) 
 				_buttonItemRenderer = new ClassFactory(CreateNewButtonRenderer);
+			
+			if (_defaultLabelFunction == null)
+			{
+				_defaultLabelFunction = function(item:Object):String
+				{
+					if (labelField && item.hasOwnProperty(labelField))
+					{
+						return item[labelField];
+					}
+					else
+					{
+						return item.toString();
+					}
+				}
+			}
 			this.addEventListener(KeyboardEvent.KEY_DOWN, dropDownKeydownEventHandler);
 		}
 		
@@ -188,7 +203,7 @@ package net.fproject.ui.autoComplete.supportClasses
 		
 		public function get labelFunction():Function
 		{
-			return (_labelFunction != null) ? _labelFunction:defaultLabelFunction;
+			return (_labelFunction != null) ? _labelFunction:_defaultLabelFunction;
 		}
 		
 		public function set labelFunction(value:Function):void
@@ -202,15 +217,13 @@ package net.fproject.ui.autoComplete.supportClasses
 		 * It will try to find the part of the item which matched the search string and highlight
 		 * it by making bold and underlined
 		 */
-		public function defaultLabelFunction(item:Object):String
+		protected var _defaultLabelFunction:Function;
+		
+		public function set defaultLabelFunction(value:Function):void
 		{
-			if (labelField && item.hasOwnProperty(labelField))
+			if (value != null)
 			{
-				return item[labelField];
-			}
-			else
-			{
-				return item.toString();
+				_defaultLabelFunction = value;
 			}
 		}
 		

@@ -1320,7 +1320,7 @@ package net.fproject.ui.autoComplete
 		public function set labelFunction(value:Function):void
 		{
 			_labelFunction = value;
-			//dropDownContainer.defaultLabelFunction = value;
+			dropDownContainer.defaultLabelFunction = value;
 		}
 		
 		protected var _dropDownLabelFunction:Function;
