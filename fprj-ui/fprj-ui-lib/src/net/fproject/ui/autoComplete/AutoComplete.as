@@ -670,49 +670,12 @@ package net.fproject.ui.autoComplete
 			super.keyDownHandler(event);
 			if (isDropDownVisible())
 			{
-				if (event.keyCode == Keyboard.DOWN)
-				{
-					if (dropDownContainer.selectedIndex == dropDownContainer.dataProvider.length - 1)
-					{
-						dropDownContainer.selectedIndex = 0;
-					}
-					else
-					{
-						dropDownContainer.selectedIndex++;
-					}
-					dropDownContainer.ensureIndexIsVisible(dropDownContainer.selectedIndex);
-					textInput.setCursorPosition(textInput.selectionBeginIndex);						
-				}
-				else if (event.keyCode == Keyboard.UP)
-				{
-					if (dropDownContainer.selectedIndex == 0)
-					{
-						dropDownContainer.selectedIndex = dropDownContainer.dataProvider.length - 1;
-					}
-					else
-					{
-						dropDownContainer.selectedIndex--;						
-					}
-					
-					dropDownContainer.ensureIndexIsVisible(dropDownContainer.selectedIndex);
-					textInput.setCursorPosition(textInput.selectionBeginIndex);							
-				}
-				else if (event.keyCode == Keyboard.ESCAPE)
+				dropDownContainer.dispatchEvent(event);
+				
+				if (event.keyCode == Keyboard.ESCAPE)
 				{
 					hideDropDown();
 				}
-				/*else if (event.keyCode == Keyboard.ENTER || event.keyCode == Keyboard.TAB 
-					|| (String.fromCharCode(event.charCode) == _delimiter && _allowMultipleSelection))
-				{
-					//_selectedItems.addItem(dropDownContainer.selectedItem);
-					dispatchEvent(new AutoCompleteEvent(AutoCompleteEvent.CHANGE));
-					if(event.keyCode == Keyboard.ENTER  && preventDefaultEnterKey)
-					{
-						textInput.text = null;
-						event.stopPropagation();
-						event.preventDefault();
-					}
-				}*/
 			}
 			else
 			{
@@ -1357,7 +1320,7 @@ package net.fproject.ui.autoComplete
 		public function set labelFunction(value:Function):void
 		{
 			_labelFunction = value;
-			dropDownContainer.defaultLabelFunction = value;
+			//dropDownContainer.defaultLabelFunction = value;
 		}
 		
 		protected var _dropDownLabelFunction:Function;
