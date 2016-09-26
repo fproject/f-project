@@ -628,10 +628,9 @@ package net.fproject.ui.autoComplete
 			return _labelFunction != null ? _labelFunction(item) : defaultLabelFunction(item);
 		}
 		
-		
 		public function itemToDropDownLabel(item:Object):String
 		{
-			return _dropDownLabelFunction != null ? _dropDownLabelFunction(item) : "sdfsf";//dropDownContainer.defaultDropDownLabelFunction(item);
+			return dropDownContainer.labelFunction(item);
 		}
 		
 		protected function setClearIconEnabled():void
@@ -1363,7 +1362,7 @@ package net.fproject.ui.autoComplete
 		protected var _dropDownLabelFunction:Function;
 		public function set dropDownLabelFunction(value:Function):void
 		{
-			_dropDownLabelFunction = value;
+			dropDownContainer.labelFunction = value;
 		}
 		
 		protected var _keyField:String = "id";
