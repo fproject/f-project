@@ -26,4 +26,8 @@
 	<component id="BorderAndGradientFillSkin" class="net.fproject.themes.BorderAndGradientFillSkin"/>
 	<component id="SimpleButtonSkin" class="net.fproject.themes.SimpleButtonSkin"/>
 	<component id="ButtonSkin" class="net.fproject.themes.chrome.skins.ButtonSkin"/>
+	
+	<component id="AutocompleteDropdown" class="net.fproject.ui.autoComplete.supportClasses.AutocompleteDropdown"/>
+	<component id="CreateNewButtonRenderer" class="net.fproject.ui.autoComplete.supportClasses.CreateNewButtonRenderer"/>
+	
 </componentPackage>
