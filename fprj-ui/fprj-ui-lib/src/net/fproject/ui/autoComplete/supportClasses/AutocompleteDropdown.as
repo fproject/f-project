@@ -42,18 +42,18 @@ package net.fproject.ui.autoComplete.supportClasses
 		public static const createNewButtonData:Object = {type:"createNewButtonData", label:"Not found? Click to create new"};
 		
 		private var _dropdownWidth:int;
-
+		
 		[Bindable]
 		public function get dropdownWidth():int
 		{
 			return _dropdownWidth;
 		}
-
+		
 		public function set dropdownWidth(value:int):void
 		{
 			_dropdownWidth = value;
 		}
-
+		
 		public var delimiter:String = ",";
 		
 		public var allowMultipleSelection:Boolean;
@@ -79,8 +79,8 @@ package net.fproject.ui.autoComplete.supportClasses
 				
 				/*if (textInput != null)
 				{
-					textInput.text = value;
-					textInput.validateNow();
+				textInput.text = value;
+				textInput.validateNow();
 				}*/
 				
 				if(hasEventListener(AutoCompleteEvent.SEARCH_CHANGE))
@@ -101,8 +101,7 @@ package net.fproject.ui.autoComplete.supportClasses
 				_itemRenderer = new ClassFactory(DropDownItemRenderer);
 			if (_buttonItemRenderer == null) 
 				_buttonItemRenderer = new ClassFactory(CreateNewButtonRenderer);
-			FlexGlobals.topLevelApplication.addEventListener(KeyboardEvent.KEY_DOWN, dropDownKeydownEventHandler);
-			//this.addEventListener(KeyboardEvent.KEY_DOWN, dropDownKeydownEventHandler);
+			this.addEventListener(KeyboardEvent.KEY_DOWN, dropDownKeydownEventHandler);
 		}
 		
 		public static function regexEscap(string:String):String
@@ -186,23 +185,34 @@ package net.fproject.ui.autoComplete.supportClasses
 		public var labelField:String;
 		
 		private var _labelFunction:Function;
-
+		
 		public function get labelFunction():Function
 		{
 			return (_labelFunction != null) ? _labelFunction:defaultLabelFunction;
 		}
-
+		
 		public function set labelFunction(value:Function):void
 		{
 			_labelFunction = value;
 		}
+		
 		
 		/**
 		 * The default function used to determine the text to display in the dropdown when searching.
 		 * It will try to find the part of the item which matched the search string and highlight
 		 * it by making bold and underlined
 		 */
-		public var defaultLabelFunction:Function;
+		public function defaultLabelFunction(item:Object):String
+		{
+			if (labelField && item.hasOwnProperty(labelField))
+			{
+				return item[labelField];
+			}
+			else
+			{
+				return item.toString();
+			}
+		}
 		
 		public function highLightMatchLabelFunction(item:Object):String
 		{
@@ -315,12 +325,12 @@ package net.fproject.ui.autoComplete.supportClasses
 			{
 				/*for each (var item:Object in event.items)
 				{
-					var index:int = _selectedItems.getItemIndex(item);
-					
-					if (index >= 0)
-					{
-						_selectedItems.removeItemAt(index);
-					}
+				var index:int = _selectedItems.getItemIndex(item);
+				
+				if (index >= 0)
+				{
+				_selectedItems.removeItemAt(index);
+				}
 				}*/
 			}
 			updateDropdown();
@@ -346,7 +356,7 @@ package net.fproject.ui.autoComplete.supportClasses
 				filterData();
 			if (isPerfectMatch())
 				dispatchEvent(new AutoCompleteEvent(AutoCompleteEvent.PERFECT_MATCH, filteredCollection.getItemAt(0)));
-
+			
 			if (dropDown != null)
 			{
 				//var dropDownLayout:VerticalLayout = (dropDown.layout != null)? VerticalLayout(dropDown.layout): new VerticalLayout;
@@ -450,6 +460,32 @@ package net.fproject.ui.autoComplete.supportClasses
 		
 		public function dropDownKeydownEventHandler(event:KeyboardEvent):void
 		{
+			if (event.keyCode == Keyboard.DOWN)
+			{
+				if (selectedIndex == filteredCollection.length - 1)
+				{
+					selectedIndex = 0;
+				}
+				else
+				{
+					selectedIndex++;
+				}
+				ensureIndexIsVisible(selectedIndex);
+			}
+			else if (event.keyCode == Keyboard.UP)
+			{
+				if (selectedIndex == 0)
+				{
+					selectedIndex = filteredCollection.length - 1;
+				}
+				else
+				{
+					selectedIndex--;						
+				}
+				
+				ensureIndexIsVisible(selectedIndex);
+			}
+			
 			if (event.keyCode == Keyboard.ENTER || event.keyCode == Keyboard.TAB 
 				|| (String.fromCharCode(event.charCode) == delimiter && allowMultipleSelection))
 			{
