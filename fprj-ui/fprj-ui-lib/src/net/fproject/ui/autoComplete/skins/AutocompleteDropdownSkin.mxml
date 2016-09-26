@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("net.fproject.ui.autoComplete.supportClasses.AutocompleteDropdown")]
+	</fx:Metadata>
+	
+	<!-- states -->
+	<s:states>
+		<s:State name="normal" />
+		<s:State name="disabled" />
+		<s:State name="nothingFound" />
+		<s:State name="found" />
+	</s:states>
+	
+	<!-- SkinParts
+	name=contentGroup, type=spark.components.Group, required=false
+	-->
+	<s:BorderContainer minHeight="0">
+		<s:layout>
+			<s:VerticalLayout gap="0"/>
+		</s:layout>
+		<s:Label id="nothingFoundLabel" 
+				 includeIn="nothingFound"
+				 text="@Resource(bundle='fprjui', key='autocomplete.nothingFound')"
+				 paddingLeft="10" backgroundColor="#f6f7f9" verticalAlign="middle" height="25"/>
+		<s:List id="dropDown"
+				requireSelection="true"
+				borderVisible="false">
+			<s:layout>
+				<s:VerticalLayout gap="0"/>
+			</s:layout>
+		</s:List>
+	</s:BorderContainer>
+</s:Skin>

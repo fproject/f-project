@@ -20,6 +20,7 @@
 @namespace s "library://ns.adobe.com/flex/spark";
 @namespace mx "library://ns.adobe.com/flex/mx";
 @namespace ui "http://f-project.net/xmlns/fprj-ui/2015";
+@namespace supportClasses "net.fproject.ui.autoComplete.supportClasses.*";
 
 ui|SeparatorBase {
 	secondaryStrokeThickness:1;
@@ -73,4 +74,8 @@ ui|AutoComplete {
 
 ui|DefaultInlineButton {
 	skinClass:ClassReference("net.fproject.ui.autoComplete.skins.DefaultInlineButtonSkin");	
+}
+
+supportClasses|AutocompleteDropdown{
+	skinClass:ClassReference("net.fproject.ui.autoComplete.skins.AutocompleteDropdownSkin")
 }
