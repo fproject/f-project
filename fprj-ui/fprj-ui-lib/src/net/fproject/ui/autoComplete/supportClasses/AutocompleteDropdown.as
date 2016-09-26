@@ -348,7 +348,8 @@ package net.fproject.ui.autoComplete.supportClasses
 			{
 				filteredCollection.removeEventListener(CollectionEvent.COLLECTION_CHANGE,filteredCollection_collectionChange);
 				filteredCollection.removeItem(createNewButtonData);
-				filteredCollection.addItem(createNewButtonData);
+				if (searchText != null && searchText.length > 0)
+					filteredCollection.addItem(createNewButtonData);
 				filteredCollection.addEventListener(CollectionEvent.COLLECTION_CHANGE, filteredCollection_collectionChange, false, 0, true);
 			}
 			
