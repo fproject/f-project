@@ -40,6 +40,18 @@ package net.fproject.ui.events
 		public static const INLINE_BUTTON_CLICK:String = "inlineButtonClick";
 		
 		/**
+		 * Dispatched when user clicks on the create new button
+		 * @eventType createNewButtonClick
+		 */
+		public static const CREATE_NEW_BUTTON_CLICK:String = "createNewButtonClick";
+		
+		/**
+		 * Dispatched when autocomplete search result have only one result and perfect match whith user searching text
+		 * @eventType perfectMatch
+		 */
+		public static const PERFECT_MATCH:String = "perfectMatch";
+		
+		/**
 		 * Dispatched when the text in the search field is changed.
 		 * @eventType searchChange
 		 */
