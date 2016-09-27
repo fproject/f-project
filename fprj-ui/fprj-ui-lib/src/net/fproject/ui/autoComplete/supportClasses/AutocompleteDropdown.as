@@ -522,6 +522,7 @@ package net.fproject.ui.autoComplete.supportClasses
 		[PropertyBinding(width="dropdownWidth@",labelField="labelField@",labelFunction="highLightMatchLabelFunction@")]
 		[PropertyBinding(itemRendererFunction="itemRendererFunction")]
 		[EventHandling(event="change",handler="dropDownChangeEventHandler")]
+		[EventHandling(event="click",handler="dropDownChangeEventHandler")]
 		public var dropDown:List;
 	}
 }
