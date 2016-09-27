@@ -1296,7 +1296,16 @@ package net.fproject.ui.autoComplete
 			return _createNewValueLinkButton;	
 		}
 		
-		protected var dropDownContainer:AutocompleteDropdown = new AutocompleteDropdown;
+		private var _dropDownContainer:AutocompleteDropdown;
+		protected function get dropDownContainer():AutocompleteDropdown
+		{
+			if (_dropDownContainer == null)
+			{
+				_dropDownContainer = new AutocompleteDropdown;
+				_dropDownContainer.owner = this;
+			}
+			return _dropDownContainer;
+		}
 		
 		protected var _labelField:String;
 		/**
