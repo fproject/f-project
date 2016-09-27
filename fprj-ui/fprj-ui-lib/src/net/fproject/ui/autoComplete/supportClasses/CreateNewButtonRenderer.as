@@ -13,6 +13,14 @@ package net.fproject.ui.autoComplete.supportClasses
 	public class CreateNewButtonRenderer extends ItemRenderer
 	{
 		protected var imageDisplay:Image;
+
+		public override function get label():String
+		{
+			if (label == null)
+				label = ResourceUtil.getString('autocomplete.createNew.label','fprjui');
+			return label;
+		}
+
 		public function CreateNewButtonRenderer()
 		{
 			this.autoDrawBackground = true;
@@ -63,7 +71,7 @@ package net.fproject.ui.autoComplete.supportClasses
 			{
 				iconChanged = false;
 				imageDisplay.source = this.getStyle("icon");
-				labelDisplay.text = ResourceUtil.getString('autocomplete.createNew.label','fprjui');
+				labelDisplay.text = label;
 			}
 		}
 	}
