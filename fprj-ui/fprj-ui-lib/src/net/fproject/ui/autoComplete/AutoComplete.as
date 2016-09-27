@@ -325,77 +325,77 @@ package net.fproject.ui.autoComplete
 				flowBox.showRemoveIcon = _showRemoveIcon;
 			}		
 			
-			/*if (_selectedItemChanged && _filteredCollection)
+			if (_selectedItemChanged && dropDownContainer.dataProvider)
 			{
-			_selectedItemChanged = false;
-			clear();
-			
-			if (_selectedItem)
-			{
-			_selectedItems.addItem(_selectedItem);
+				_selectedItemChanged = false;
+				clear();
+				
+				if (_selectedItem)
+				{
+					_selectedItems.addItem(_selectedItem);
+				}
+				
+				_selectedItem = null;
 			}
 			
-			_selectedItem = null;
+			if (_selectedItemIdChanged && dropDownContainer.dataProvider)
+			{
+				_selectedItemIdChanged = false;
+				_selectedItems.removeAll();
+				
+				for (i=0; i< dropDownContainer.dataProvider.length; i++)
+				{
+					item = dropDownContainer.dataProvider.getItemAt(i);
+					
+					if (item.hasOwnProperty(_keyField) && item[_keyField] == _selectedItemId)
+					{
+						_selectedItems.addItem(item);
+						_selectedItemId = 0;
+						break;
+					}
+				}
 			}
 			
-			if (_selectedItemIdChanged && _filteredCollection)
+			if (_selectedItemsChanged && dropDownContainer.dataProvider)
 			{
-			_selectedItemIdChanged = false;
-			_selectedItems.removeAll();
-			
-			for (i=0; i<_filteredCollection.list.length; i++)
-			{
-			item = _filteredCollection.list.getItemAt(i);
-			
-			if (item.hasOwnProperty(_keyField) && item[_keyField] == _selectedItemId)
-			{
-			_selectedItems.addItem(item);
-			_selectedItemId = 0;
-			break;
+				_selectedItemsChanged = false;
+				_selectedItems.removeAll();
+				
+				for each (var selectedItem:Object in _initialSelectedItems)
+				{
+					var foundItem:Object = null;
+					
+					for (i=0; i<dropDownContainer.dataProvider.length; i++)
+					{
+						item = dropDownContainer.dataProvider.getItemAt(i);
+						
+						if (item == selectedItem)
+						{
+							foundItem = item;
+						}
+						else if (item.hasOwnProperty(_keyField) 
+							&& selectedItem.hasOwnProperty(_keyField)
+							&& item[_keyField] == selectedItem[_keyField])
+						{
+							foundItem = item;
+						}
+						
+						if (foundItem)
+						{
+							_selectedItems.addItem(foundItem);
+							foundItem = true;
+							break;
+						}
+					}
+					
+					if (foundItem == null)
+					{
+						_selectedItems.addItem(selectedItem);																		
+					}
+				}
+				
+				_initialSelectedItems = null;
 			}
-			}
-			}
-			
-			if (_selectedItemsChanged && _filteredCollection)
-			{
-			_selectedItemsChanged = false;
-			_selectedItems.removeAll();
-			
-			for each (var selectedItem:Object in _initialSelectedItems)
-			{
-			var foundItem:Object = null;
-			
-			for (i=0; i<_filteredCollection.list.length; i++)
-			{
-			item = _filteredCollection.list.getItemAt(i);
-			
-			if (item == selectedItem)
-			{
-			foundItem = item;
-			}
-			else if (item.hasOwnProperty(_keyField) 
-			&& selectedItem.hasOwnProperty(_keyField)
-			&& item[_keyField] == selectedItem[_keyField])
-			{
-			foundItem = item;
-			}
-			
-			if (foundItem)
-			{
-			_selectedItems.addItem(foundItem);
-			foundItem = true;
-			break;
-			}
-			}
-			
-			if (foundItem == null)
-			{
-			_selectedItems.addItem(selectedItem);																		
-			}
-			}
-			
-			_initialSelectedItems = null;
-			}*/
 			
 			if (_tabIndexChanged)
 			{

@@ -2,13 +2,13 @@ package net.fproject.ui.autoComplete.supportClasses
 {
 	import flash.events.Event;
 	import flash.events.KeyboardEvent;
+	import flash.events.MouseEvent;
 	import flash.ui.Keyboard;
 	
 	import mx.collections.ArrayCollection;
 	import mx.collections.IList;
 	import mx.collections.ListCollectionView;
 	import mx.core.ClassFactory;
-	import mx.core.FlexGlobals;
 	import mx.core.IFactory;
 	import mx.events.CollectionEvent;
 	import mx.events.CollectionEventKind;
@@ -469,6 +469,8 @@ package net.fproject.ui.autoComplete.supportClasses
 		public function dropDownChangeEventHandler(event:Event):void
 		{
 			dispatchChangeEvent();
+			event.stopImmediatePropagation();
+			event.preventDefault();
 		}
 		
 		public function dropDownKeydownEventHandler(event:KeyboardEvent):void
@@ -519,7 +521,6 @@ package net.fproject.ui.autoComplete.supportClasses
 		[PropertyBinding(dataProvider="filteredCollection@",itemRendererFunction="itemRendererFunction@")]
 		[PropertyBinding(width="dropdownWidth@",labelField="labelField@",labelFunction="highLightMatchLabelFunction@")]
 		[PropertyBinding(itemRendererFunction="itemRendererFunction")]
-		[EventHandling(event="click",handler="dropDownChangeEventHandler")]
 		[EventHandling(event="change",handler="dropDownChangeEventHandler")]
 		public var dropDown:List;
 	}
