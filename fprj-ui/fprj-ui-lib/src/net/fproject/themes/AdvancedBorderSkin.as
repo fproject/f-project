@@ -88,7 +88,7 @@ package net.fproject.themes
 				dirty = true;
 			}
 			
-			if(dirty && !mx_internal::invalidateDisplayListFlag)
+			if(dirty)
 			{
 				invalidateDisplayList();
 			}
@@ -108,8 +108,7 @@ package net.fproject.themes
 			
 			super.styleChanged(styleProp);
 			
-			if(!mx_internal::invalidatePropertiesFlag)
-				invalidateProperties();
+			invalidateProperties();
 		}
 		
 		protected function createBackground() : Rect

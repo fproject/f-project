@@ -26,7 +26,7 @@ package net.fproject.themes
 				b = true;
 			}
 			
-			if(b && !mx_internal::invalidateDisplayListFlag)
+			if(b)
 			{
 				invalidateDisplayList();
 			}
@@ -43,8 +43,7 @@ package net.fproject.themes
 			super.styleChanged(styleProp);
 			mx_internal::invalidatePropertiesFlag = b;
 			
-			if(!mx_internal::invalidatePropertiesFlag)
-				invalidateProperties();
+			invalidateProperties();
 		}
 		
 		override protected function createBackgroundFill() : IFill
