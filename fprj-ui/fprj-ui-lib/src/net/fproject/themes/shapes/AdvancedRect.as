@@ -4,6 +4,8 @@ package net.fproject.themes.shapes
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	
+	import mx.core.mx_internal;
+	
 	import spark.primitives.Rect;
 	
 	/**
@@ -51,7 +53,8 @@ package net.fproject.themes.shapes
 			{
 				_leftBorderVisible = value;
 				borderVisibleDirty = true;
-				invalidateProperties();
+				if(!this.mx_internal::invalidatePropertiesFlag)
+					invalidateProperties();
 			}
 		}
 
@@ -79,7 +82,8 @@ package net.fproject.themes.shapes
 			{
 				_rightBorderVisible = value;
 				borderVisibleDirty = true;
-				invalidateProperties();
+				if(!this.mx_internal::invalidatePropertiesFlag)
+					invalidateProperties();
 			}
 		}
 
@@ -107,7 +111,8 @@ package net.fproject.themes.shapes
 			{
 				_topBorderVisible = value;
 				borderVisibleDirty = true;
-				invalidateProperties();
+				if(!this.mx_internal::invalidatePropertiesFlag)
+					invalidateProperties();
 			}
 		}
 
@@ -135,7 +140,8 @@ package net.fproject.themes.shapes
 			{
 				_bottomBorderVisible = value;
 				borderVisibleDirty = true;
-				invalidateProperties();
+				if(!this.mx_internal::invalidatePropertiesFlag)
+					invalidateProperties();
 			}
 		}
 		
@@ -147,7 +153,8 @@ package net.fproject.themes.shapes
 		{
 			if(borderVisibleDirty)
 			{
-				invalidateDisplayList();
+				if(!this.mx_internal::invalidateDisplayListFlag)
+					invalidateDisplayList();
 				borderVisibleDirty = false;
 			}
 			super.commitProperties();

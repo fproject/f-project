@@ -22,6 +22,11 @@ package net.fproject.themes
 		
 		protected var _borderVisible:Boolean;
 		
+		protected var _leftBorderVisible:Boolean;
+		protected var _rightBorderVisible:Boolean;
+		protected var _topBorderVisible:Boolean;
+		protected var _bottomBorderVisible:Boolean;
+		
 		protected var backgroundAlphaChanged:Boolean;
 		
 		protected var borderColorChanged:Boolean;
@@ -64,7 +69,22 @@ package net.fproject.themes
 			if(borderVisibleChanged)
 			{
 				borderVisibleChanged = false;
-				this._borderVisible = getStyle("borderVisible");
+				var styleVal:*;
+				if((styleVal=getStyle("borderVisible")) !== undefined)
+					this._borderVisible = styleVal;
+				
+				if((styleVal=getStyle("leftBorderVisible")) !== undefined)
+					this._leftBorderVisible = styleVal;
+				
+				if((styleVal=getStyle("rightBorderVisible")) !== undefined)
+					this._rightBorderVisible = styleVal;
+				
+				if((styleVal=getStyle("topBorderVisible")) !== undefined)
+					this._topBorderVisible = styleVal;
+				
+				if((styleVal=getStyle("bottomBorderVisible")) !== undefined)
+					this._bottomBorderVisible = styleVal;
+				
 				dirty = true;
 			}
 			
@@ -147,16 +167,31 @@ package net.fproject.themes
 					this.background.visible = false;
 			}
 			
-			if(this._borderVisible && this.border && this.borderStroke)
+			if(this.border)
 			{
-				this.border.visible = true;
-				this.borderStroke.color = this._borderColor;
-				this.borderStroke.alpha = this._borderAlpha;
+				if((_borderVisible || _leftBorderVisible || _rightBorderVisible || _topBorderVisible || _bottomBorderVisible)
+					&& this.borderStroke)
+				{
+					this.border.mx_internal::invalidatePropertiesFlag = true;
+					this.border.visible = true;
+					if(_borderVisible)
+						_leftBorderVisible = _rightBorderVisible = _topBorderVisible = _bottomBorderVisible = true;
+					this.border.leftBorderVisible = _leftBorderVisible;
+					this.border.rightBorderVisible = _rightBorderVisible;
+					this.border.topBorderVisible = _topBorderVisible;
+					this.border.bottomBorderVisible = _bottomBorderVisible;
+					
+					this.borderStroke.color = this._borderColor;
+					this.borderStroke.alpha = this._borderAlpha;
+					this.border.mx_internal::invalidatePropertiesFlag = false;
+					this.border.invalidateProperties();
+				}
+				else
+				{
+					this.border.visible = false;
+				}
 			}
-			else if(this.border)
-			{
-				this.border.visible = false;
-			}
+			
 			super.updateDisplayList(uw,uh);
 		}
 		
