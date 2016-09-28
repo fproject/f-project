@@ -14,7 +14,7 @@ package net.fproject.themes
 	
 	public class BorderAndSolidFillSkin extends Skin implements IStateClient2
 	{
-		protected var _backgroundFillColor:uint;
+		protected var _backgroundColor:uint;
 		
 		protected var _backgroundAlpha:Number;
 		
@@ -24,7 +24,7 @@ package net.fproject.themes
 		
 		protected var _borderVisible:Boolean;
 		
-		protected var backgroundFillColorChanged:Boolean;
+		protected var backgroundColorChanged:Boolean;
 		
 		protected var backgroundAlphaChanged:Boolean;
 		
@@ -44,10 +44,10 @@ package net.fproject.themes
 			super.commitProperties();
 			var dirty:Boolean = false;
 			
-			if(backgroundFillColorChanged)
+			if(backgroundColorChanged)
 			{
-				backgroundFillColorChanged = false;
-				this._backgroundFillColor = getStyle("backgroundFillColor");
+				backgroundColorChanged = false;
+				this._backgroundColor = getStyle("backgroundColor");
 				dirty = true;
 			}
 			
@@ -87,8 +87,8 @@ package net.fproject.themes
 		
 		override public function styleChanged(styleProp:String) : void
 		{
-			if(styleProp == null || styleProp == "backgroundFillColor")
-				backgroundFillColorChanged = true;
+			if(styleProp == null || styleProp == "backgroundColor")
+				backgroundColorChanged = true;
 			if(styleProp == null || styleProp == "backgroundAlpha")
 				backgroundAlphaChanged = true;
 			if(styleProp == null || styleProp == "borderColor")
@@ -121,7 +121,7 @@ package net.fproject.themes
 		protected function createBackgroundFill() : SolidColor
 		{
 			var f:SolidColor = new SolidColor();
-			f.color = _backgroundFillColor;
+			f.color = _backgroundColor;
 			this.backgroundFill = f;
 			return f;
 		}
@@ -156,25 +156,33 @@ package net.fproject.themes
 			if(this.background)
 			{
 				if(this.backgroundFill)
+				{
+					this.backgroundFill.color = this._backgroundColor;
+					this.backgroundFill.alpha = this._backgroundAlpha;
 					this.background.visible = true;
+				}
 				else
 					this.background.visible = false;
 			}
 			
-			if(this._borderVisible && this.border && this.borderStroke)
+			if(this.border)
 			{
-				this.border.visible = true;
-				this.borderStroke.color = this._borderColor;
-				this.borderStroke.alpha = this._borderAlpha;
+				if(this._borderVisible && this.borderStroke)
+				{
+					this.border.visible = true;
+					this.borderStroke.color = this._borderColor;
+					this.borderStroke.alpha = this._borderAlpha;
+				}
+				else
+				{
+					this.border.visible = false;
+				}
 			}
-			else if(this.border)
-			{
-				this.border.visible = false;
-			}
+			
 			super.updateDisplayList(uw,uh);
 		}
 		
-		private var _background:Rect;
+		protected var _background:Rect;
 		
 		public function get background() : Rect
 		{
@@ -194,7 +202,7 @@ package net.fproject.themes
 			}
 		}
 		
-		private var _backgroundFill:SolidColor;
+		protected var _backgroundFill:SolidColor;
 		public function get backgroundFill() : SolidColor
 		{
 			return this._backgroundFill;
@@ -213,7 +221,7 @@ package net.fproject.themes
 			}
 		}
 		
-		private var _border:AdvancedRect;
+		protected var _border:AdvancedRect;
 		
 		public function get border() : AdvancedRect
 		{
