@@ -2,7 +2,6 @@ package net.fproject.ui.autoComplete.supportClasses
 {
 	import flash.events.Event;
 	import flash.events.KeyboardEvent;
-	import flash.events.MouseEvent;
 	import flash.ui.Keyboard;
 	
 	import mx.collections.ArrayCollection;
@@ -134,6 +133,7 @@ package net.fproject.ui.autoComplete.supportClasses
 		 */
 		public function module_creationComplete(event:FlexEvent):void
 		{
+			updateDropdown();
 		}
 		
 		protected var _dataProviderChanged:Boolean;
