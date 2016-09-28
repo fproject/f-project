@@ -1,85 +1,32 @@
 package net.fproject.themes
 {
-	import mx.binding.BindingManager;
-	import mx.core.IStateClient2;
 	import mx.core.mx_internal;
-	import mx.events.PropertyChangeEvent;
+	import mx.graphics.IFill;
 	import mx.graphics.SolidColor;
-	import mx.graphics.SolidColorStroke;
 	
-	import spark.components.supportClasses.Skin;
-	import spark.primitives.Rect;
-	
-	import net.fproject.themes.shapes.AdvancedRect;
-	
-	public class BorderAndSolidFillSkin extends Skin implements IStateClient2
+	public class BorderAndSolidFillSkin extends AdvancedBorderSkin
 	{
 		protected var _backgroundColor:uint;
 		
-		protected var _backgroundAlpha:Number;
-		
-		protected var _borderColor:uint;
-		
-		protected var _borderAlpha:Number;
-		
-		protected var _borderVisible:Boolean;
-		
 		protected var backgroundColorChanged:Boolean;
-		
-		protected var backgroundAlphaChanged:Boolean;
-		
-		protected var borderColorChanged:Boolean;
-		
-		protected var borderAlphaChanged:Boolean;
-		
-		protected var borderVisibleChanged:Boolean;
-		
-		public function BorderAndSolidFillSkin()
-		{
-			_borderVisible = true;
-		}
 		
 		override protected function commitProperties() : void
 		{
+			var b:* = mx_internal::invalidateDisplayListFlag;
+			mx_internal::invalidateDisplayListFlag = true;
 			super.commitProperties();
-			var dirty:Boolean = false;
+			mx_internal::invalidateDisplayListFlag = b;
+			
+			b = false;
 			
 			if(backgroundColorChanged)
 			{
 				backgroundColorChanged = false;
 				this._backgroundColor = getStyle("backgroundColor");
-				dirty = true;
+				b = true;
 			}
 			
-			if(backgroundAlphaChanged)
-			{
-				backgroundAlphaChanged = false;
-				this._backgroundAlpha = getStyle("backgroundAlpha");
-				dirty = true;
-			}
-			
-			if(borderColorChanged)
-			{
-				borderColorChanged = false;
-				this._borderColor = getStyle("borderColor");
-				dirty = true;
-			}
-			
-			if(borderAlphaChanged)
-			{
-				borderAlphaChanged = false;
-				this._borderAlpha = getStyle("borderAlpha");
-				dirty = true;
-			}
-			
-			if(borderVisibleChanged)
-			{
-				borderVisibleChanged = false;
-				this._borderVisible = getStyle("borderVisible");
-				dirty = true;
-			}
-			
-			if(dirty && !mx_internal::invalidateDisplayListFlag)
+			if(b && !mx_internal::invalidateDisplayListFlag)
 			{
 				invalidateDisplayList();
 			}
@@ -89,175 +36,34 @@ package net.fproject.themes
 		{
 			if(styleProp == null || styleProp == "backgroundColor")
 				backgroundColorChanged = true;
-			if(styleProp == null || styleProp == "backgroundAlpha")
-				backgroundAlphaChanged = true;
-			if(styleProp == null || styleProp == "borderColor")
 				borderColorChanged = true;
-			if(styleProp == null || styleProp == "borderAlpha")
-				borderAlphaChanged = true;
-			if(styleProp == null || styleProp == "borderVisible")
-				borderVisibleChanged = true;
 			
+			var b:* = mx_internal::invalidatePropertiesFlag;
+			mx_internal::invalidatePropertiesFlag = true;
 			super.styleChanged(styleProp);
+			mx_internal::invalidatePropertiesFlag = b;
 			
 			if(!mx_internal::invalidatePropertiesFlag)
 				invalidateProperties();
 		}
 		
-		protected function createBackground() : Rect
-		{
-			var r:Rect = new Rect();
-			r.top = 0;
-			r.right = 0;
-			r.bottom = 0;
-			r.left = 0;
-			r.fill = this.createBackgroundFill();
-			r.initialized(this,"background");
-			this.background = r;
-			BindingManager.executeBindings(this,"background",this.background);
-			return r;
-		}
-		
-		protected function createBackgroundFill() : SolidColor
+		override protected function createBackgroundFill() : IFill
 		{
 			var f:SolidColor = new SolidColor();
 			f.color = _backgroundColor;
 			this.backgroundFill = f;
-			return f;
-		}
-		
-		protected function createBorder() : AdvancedRect
-		{
-			var r:AdvancedRect = new AdvancedRect();
-			r.visible = false;
-			r.top = 0;
-			r.right = 0;
-			r.bottom = 0;
-			r.left = 0;
-			r.stroke = this.createBorderStroke();
-			r.initialized(this,null);
-			this.border = r;
-			return r;
-		}
-		
-		protected function createBorderStroke() : SolidColorStroke
-		{
-			var s:SolidColorStroke = new SolidColorStroke();
-			s.weight = 1;
-			s.color = 0x7A7A7A;
-			s.pixelHinting = true;
-			s.caps = "square";
-			this.borderStroke = s;
-			return s;
+			return super.createBackgroundFill();
 		}
 		
 		override protected function updateDisplayList(uw:Number, uh:Number) : void
 		{
-			if(this.background)
+			if(this.background && this.backgroundFill)
 			{
-				if(this.backgroundFill)
-				{
-					this.backgroundFill.color = this._backgroundColor;
-					this.backgroundFill.alpha = this._backgroundAlpha;
-					this.background.visible = true;
-				}
-				else
-					this.background.visible = false;
-			}
-			
-			if(this.border)
-			{
-				if(this._borderVisible && this.borderStroke)
-				{
-					this.border.visible = true;
-					this.borderStroke.color = this._borderColor;
-					this.borderStroke.alpha = this._borderAlpha;
-				}
-				else
-				{
-					this.border.visible = false;
-				}
+				SolidColor(this.backgroundFill).color = this._backgroundColor;
+				SolidColor(this.backgroundFill).alpha = this._backgroundAlpha;
 			}
 			
 			super.updateDisplayList(uw,uh);
-		}
-		
-		protected var _background:Rect;
-		
-		public function get background() : Rect
-		{
-			return this._background;
-		}
-		
-		public function set background(value:Rect) : void
-		{
-			var o:Object = this._background;
-			if(o !== value)
-			{
-				this._background = value;
-				if(this.hasEventListener("propertyChange"))
-				{
-					this.dispatchEvent(PropertyChangeEvent.createUpdateEvent(this,"background",o,value));
-				}
-			}
-		}
-		
-		protected var _backgroundFill:SolidColor;
-		public function get backgroundFill() : SolidColor
-		{
-			return this._backgroundFill;
-		}
-		
-		public function set backgroundFill(value:SolidColor) : void
-		{
-			var o:SolidColor = this._backgroundFill;
-			if(o !== value)
-			{
-				this._backgroundFill = value;
-				if(this.hasEventListener("propertyChange"))
-				{
-					this.dispatchEvent(PropertyChangeEvent.createUpdateEvent(this,"backgroundFill",o,value));
-				}
-			}
-		}
-		
-		protected var _border:AdvancedRect;
-		
-		public function get border() : AdvancedRect
-		{
-			return this._border;
-		}
-		
-		public function set border(value:AdvancedRect) : void
-		{
-			var o:Object = this._border;
-			if(o !== value)
-			{
-				this._border = value;
-				if(this.hasEventListener("propertyChange"))
-				{
-					this.dispatchEvent(PropertyChangeEvent.createUpdateEvent(this,"border",o,value));
-				}
-			}
-		}
-		
-		private var _borderStroke:SolidColorStroke;
-		public function get borderStroke() : SolidColorStroke
-		{
-			return this._borderStroke;
-		}
-		
-		public function set borderStroke(value:SolidColorStroke) : void
-		{
-			var o:Object = this._borderStroke;
-			if(o !== value)
-			{
-				this._borderStroke = value;
-				if(this.hasEventListener("propertyChange"))
-				{
-					this.dispatchEvent(PropertyChangeEvent.createUpdateEvent(this,"borderStroke",o,value));
-				}
-			}
 		}
 	}
 }
