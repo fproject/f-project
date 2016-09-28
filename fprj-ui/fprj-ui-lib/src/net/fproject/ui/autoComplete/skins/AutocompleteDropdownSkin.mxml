@@ -28,6 +28,7 @@
 				 paddingLeft="10" backgroundColor="#f6f7f9" verticalAlign="middle" height="25"/>
 		<s:List id="dropDown"
 				requireSelection="true"
+				focusEnabled="false"
 				borderVisible="false"
 				verticalScrollPolicy="off"
 				horizontalScrollPolicy="off">

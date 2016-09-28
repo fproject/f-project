@@ -148,7 +148,7 @@ package net.fproject.ui.autoComplete
 		{
 			_selectedItems = new ArrayCollection();
 			_selectedItems.addEventListener(CollectionEvent.COLLECTION_CHANGE, selectedItems_collectionChange);
-			dropDownContainer.addEventListener(IndexChangeEvent.CHANGE, dropDownChangeHandler);
+			dropDownContainer.addEventListener(AutoCompleteEvent.CHANGE, dropDownChangeHandler);
 			dropDownContainer.addEventListener(AutoCompleteEvent.CREATE_NEW_BUTTON_CLICK, onCreateNewButtonClickHandler);
 			dropDownContainer.addEventListener(AutoCompleteEvent.PERFECT_MATCH, onPerfectMatchHandler);
 			
@@ -1142,6 +1142,7 @@ package net.fproject.ui.autoComplete
 		protected function dropDownChangeHandler(event:Event):void
 		{
 			_selectedItems.addItem(dropDownContainer.selectedItem);
+			//_selectedItemChanged = true;
 			dispatchEvent(new AutoCompleteEvent(AutoCompleteEvent.CHANGE));
 		}
 		
