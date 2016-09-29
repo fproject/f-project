@@ -82,6 +82,22 @@ package net.fproject.core
 	[Event(name="saved", type="net.fproject.event.AppContextEvent")]
 	
 	/**
+	 * Dispatched when a call to AppContextService is started.
+	 *
+	 * @eventType net.fproject.event.AppContextEvent.SERVICE_CALL_STARTED
+	 * 
+	 */
+	[Event(name="serviceCallStarted", type="net.fproject.event.AppContextEvent")]
+	
+	/**
+	 * Dispatched when a call to AppContextService is completed.
+	 *
+	 * @eventType net.fproject.event.AppContextEvent.SERVICE_CALL_COMPLETED
+	 * 
+	 */
+	[Event(name="serviceCallCompleted", type="net.fproject.event.AppContextEvent")]
+	
+	/**
 	 * Dispatched when a call to AppContextService is failed.
 	 *
 	 * @eventType net.fproject.event.AppContextEvent.SERVICE_CALL_FAILED
@@ -104,6 +120,30 @@ package net.fproject.core
 	 * 
 	 */
 	[Event(name="networkChange", type="net.fproject.event.AppContextEvent")]
+	
+	/**
+	 * Dispatched when the app context is logged in successfully.
+	 *
+	 * @eventType net.fproject.event.AppContextEvent.LOGGED_IN
+	 * 
+	 */
+	[Event(name="loggedIn", type="net.fproject.event.AppContextEvent")]
+	
+	/**
+	 * Dispatched when the app context is logged out successfully.
+	 *
+	 * @eventType net.fproject.event.AppContextEvent.LOGGED_OUT
+	 * 
+	 */
+	[Event(name="loggedOut", type="net.fproject.event.AppContextEvent")]
+	
+	/**
+	 * Dispatched when the app context is failed to login.
+	 *
+	 * @eventType net.fproject.event.AppContextEvent.LOGIN_FAILED
+	 * 
+	 */
+	[Event(name="loginFailed", type="net.fproject.event.AppContextEvent")]
 	
 	/**
 	 * <p>AppContext class is used to bootstrap Flex application by
