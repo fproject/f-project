@@ -20,8 +20,6 @@ package net.fproject.themes
 		
 		protected var _borderAlpha:Number;
 		
-		protected var _borderVisible:Boolean;
-		
 		protected var _leftBorderVisible:Boolean;
 		protected var _rightBorderVisible:Boolean;
 		protected var _topBorderVisible:Boolean;
@@ -33,11 +31,11 @@ package net.fproject.themes
 		
 		protected var borderAlphaChanged:Boolean;
 		
-		protected var borderVisibleChanged:Boolean;
+		protected var sideVisibleChanged:Boolean;
 		
 		public function AdvancedBorderSkin()
 		{
-			_borderVisible = true;
+			_leftBorderVisible = _rightBorderVisible = _topBorderVisible = _bottomBorderVisible = true;
 		}
 		
 		override protected function commitProperties() : void
@@ -66,24 +64,28 @@ package net.fproject.themes
 				dirty = true;
 			}
 			
-			if(borderVisibleChanged)
+			if(sideVisibleChanged)
 			{
-				borderVisibleChanged = false;
+				sideVisibleChanged = false;
 				var styleVal:*;
-				if((styleVal=getStyle("borderVisible")) !== undefined)
-					this._borderVisible = styleVal;
-				
-				if((styleVal=getStyle("leftBorderVisible")) !== undefined)
-					this._leftBorderVisible = styleVal;
-				
-				if((styleVal=getStyle("rightBorderVisible")) !== undefined)
-					this._rightBorderVisible = styleVal;
-				
-				if((styleVal=getStyle("topBorderVisible")) !== undefined)
-					this._topBorderVisible = styleVal;
-				
-				if((styleVal=getStyle("bottomBorderVisible")) !== undefined)
-					this._bottomBorderVisible = styleVal;
+				if((styleVal=getStyle("borderVisible")) !== undefined && !styleVal)
+				{
+					_leftBorderVisible = _rightBorderVisible = _topBorderVisible = _bottomBorderVisible = false;
+				}
+				else
+				{
+					if((styleVal=getStyle("leftBorderVisible")) !== undefined)
+						this._leftBorderVisible = styleVal;
+					
+					if((styleVal=getStyle("rightBorderVisible")) !== undefined)
+						this._rightBorderVisible = styleVal;
+					
+					if((styleVal=getStyle("topBorderVisible")) !== undefined)
+						this._topBorderVisible = styleVal;
+					
+					if((styleVal=getStyle("bottomBorderVisible")) !== undefined)
+						this._bottomBorderVisible = styleVal;
+				}
 				
 				dirty = true;
 			}
@@ -102,9 +104,9 @@ package net.fproject.themes
 				borderColorChanged = true;
 			if(styleProp == null || styleProp == "borderAlpha")
 				borderAlphaChanged = true;
-			if(styleProp == null || styleProp == "borderVisible"|| styleProp == "leftBorderVisible" || 
+			if(styleProp == null || styleProp == "borderVisible" || styleProp == "leftBorderVisible" ||
 				styleProp == "rightBorderVisible" || styleProp == "topBorderVisible"|| styleProp == "bottomBorderVisible")
-				borderVisibleChanged = true;
+				sideVisibleChanged = true;
 			
 			super.styleChanged(styleProp);
 			
@@ -168,13 +170,11 @@ package net.fproject.themes
 			
 			if(this.border)
 			{
-				if((_borderVisible || _leftBorderVisible || _rightBorderVisible || _topBorderVisible || _bottomBorderVisible)
+				if((_leftBorderVisible || _rightBorderVisible || _topBorderVisible || _bottomBorderVisible)
 					&& this.borderStroke)
 				{
 					this.border.mx_internal::invalidatePropertiesFlag = true;
 					this.border.visible = true;
-					if(_borderVisible)
-						_leftBorderVisible = _rightBorderVisible = _topBorderVisible = _bottomBorderVisible = true;
 					this.border.leftBorderVisible = _leftBorderVisible;
 					this.border.rightBorderVisible = _rightBorderVisible;
 					this.border.topBorderVisible = _topBorderVisible;
