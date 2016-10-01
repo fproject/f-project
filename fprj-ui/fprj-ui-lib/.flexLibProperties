@@ -5,6 +5,10 @@
     <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>
     <resourceEntry destPath="design.xml" sourcePath="design.xml"/>
     <resourceEntry destPath="manifest.xml" sourcePath="manifest.xml"/>
+    <resourceEntry destPath="net/fproject/ui/autoComplete/assets/addButton.png" sourcePath="net/fproject/ui/autoComplete/assets/addButton.png"/>
+    <resourceEntry destPath="net/fproject/ui/autoComplete/assets/clear.png" sourcePath="net/fproject/ui/autoComplete/assets/clear.png"/>
+    <resourceEntry destPath="net/fproject/ui/autoComplete/assets/remove.png" sourcePath="net/fproject/ui/autoComplete/assets/remove.png"/>
+    <resourceEntry destPath="net/fproject/ui/autoComplete/assets/remove_over.png" sourcePath="net/fproject/ui/autoComplete/assets/remove_over.png"/>
   </includeResources>
   <namespaceManifests>
     <namespaceManifestEntry manifest="manifest.xml" namespace="http://f-project.net/xmlns/fprj-ui/2015"/>
