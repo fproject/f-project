@@ -132,8 +132,10 @@ package net.fproject.service
 		
 		protected function onCallFailed(e:FaultEvent):void
 		{
-			if (responderToCallbackInfo[e.currentTarget]["failCallback"] != undefined)
-				responderToCallbackInfo[e.currentTarget].failCallback(e.fault);
+			var info:* = responderToCallbackInfo[e.currentTarget];
+			
+			if (info != undefined && info["failCallback"] != undefined)
+				info.failCallback(e.fault);
 			
 			LoggingUtil.error(ServiceBase, "\n[" + DateTimeUtil.formatIsoDate(new Date) + "] Service call failed: " + e.toString());
 			
@@ -147,8 +149,11 @@ package net.fproject.service
 		{
 			changeNetworkAvailability(true);
 			
-			if (responderToCallbackInfo[e.currentTarget]["completeCallback"] != undefined)
-				responderToCallbackInfo[e.currentTarget].completeCallback(e.result);
+			var info:* = responderToCallbackInfo[e.currentTarget];
+			
+			if (info != undefined && info["completeCallback"] != undefined)
+				info.completeCallback(e.result);
+			
 			if(appContext.hasEventListener(AppContextEvent.SERVICE_CALL_COMPLETED))
 				appContext.dispatchEvent(new AppContextEvent(AppContextEvent.SERVICE_CALL_COMPLETED));
 			deleteServiceCall(CallResponder(e.currentTarget));
