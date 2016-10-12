@@ -18,20 +18,32 @@
 package net.fproject.gui.component
 {
 	import flash.display.DisplayObject;
+	import flash.events.IEventDispatcher;
 	import flash.system.ApplicationDomain;
 	import flash.utils.getQualifiedClassName;
 	
 	import mx.core.IVisualElement;
+	import mx.core.UIComponent;
+	import mx.events.FlexEvent;
 	import mx.events.ModuleEvent;
 	
 	import spark.components.Group;
+	import spark.events.ElementExistenceEvent;
 	
 	import net.fproject.core.AppContext;
 	import net.fproject.di.InstanceFactory;
 	import net.fproject.event.AppContextEvent;
+	import net.fproject.event.ComponentLoaderEvent;
 	import net.fproject.gui.component.supportClasses.RslsLoader;
 	import net.fproject.utils.ResourceUtil;
 	
+	/**
+	 *  Dispatched when the child component is loaded.
+	 *
+	 *  @eventType net.fproject.event.ComponentLoaderEvent.LOADED
+	 *  
+	 */
+	[Event(name="loaded", type="net.fproject.event.ComponentLoaderEvent")]
 	
 	/**
 	 * The ComponentLoader extends Spark's ModuleLoader with convenience utility method for module loading, 
@@ -179,12 +191,36 @@ package net.fproject.gui.component
 					
 					this.child = new clazz();
 					
+					if(this.child is UIComponent)
+					{
+						UIComponent(child).addEventListener(FlexEvent.CREATION_COMPLETE, onChildCreationCompleted);
+					}
+					
 					if(this.child is IVisualElement)
+					{
+						this.addEventListener(ElementExistenceEvent.ELEMENT_ADD, onElementAdd);
 						this.addElement(IVisualElement(child));
-					else if(this.child is DisplayObject)
-						this.addChild(DisplayObject(child));
+					}
+					else
+					{
+						throw new Error("ComponentLoader: Not supported component type");
+					}
 				}
 			}
+		}
+		
+		private function onChildCreationCompleted(e:FlexEvent):void
+		{
+			IEventDispatcher(e.target).removeEventListener(FlexEvent.CREATION_COMPLETE, onChildCreationCompleted);
+			if (this.hasEventListener(ComponentLoaderEvent.LOADED))
+				this.dispatchEvent(new ComponentLoaderEvent(ComponentLoaderEvent.LOADED));
+		}
+		
+		private function onElementAdd(e:ElementExistenceEvent):void
+		{
+			this.removeEventListener(ElementExistenceEvent.ELEMENT_ADD, onElementAdd);
+			if (this.hasEventListener(ComponentLoaderEvent.LOADED))
+				this.dispatchEvent(new ComponentLoaderEvent(ComponentLoaderEvent.LOADED));
 		}
 		
 		/**
