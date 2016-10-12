@@ -29,10 +29,19 @@ package net.fproject.gui.component
 	import net.fproject.core.AppContext;
 	import net.fproject.di.InstanceFactory;
 	import net.fproject.event.AppContextEvent;
+	import net.fproject.event.ComponentLoaderEvent;
 	import net.fproject.gui.component.supportClasses.DeferredCallHelper;
 	import net.fproject.gui.component.supportClasses.RslsLoader;
 	import net.fproject.utils.ApplicationGlobals;
 	import net.fproject.utils.ResourceUtil;
+	
+	/**
+	 *  Dispatched when the module component is loaded.
+	 *
+	 *  @eventType net.fproject.event.ComponentLoaderEvent.LOADED
+	 *  
+	 */
+	[Event(name="loaded", type="net.fproject.event.ComponentLoaderEvent")]
 	
 	/**
 	 * The AdvancedModuleLoader extends Spark's ModuleLoader with convenience utility method for module loading, 
@@ -250,6 +259,9 @@ package net.fproject.gui.component
 				
 			if(AppContext.instance.hasEventListener(AppContextEvent.EXIT_BUSY_STATE))
 				AppContext.instance.dispatchEvent(new AppContextEvent(AppContextEvent.EXIT_BUSY_STATE));
+			
+			if (this.hasEventListener(ComponentLoaderEvent.LOADED))
+				this.dispatchEvent(new ComponentLoaderEvent(ComponentLoaderEvent.LOADED));
 		}
 		
 		/**
