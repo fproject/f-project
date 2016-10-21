@@ -203,13 +203,20 @@ package net.fproject.ui.misc {
 					msgId = "Others";
 					break;
 			}
+			if(buttonLabels != null)
+			{
+				var key:String = msgId.charAt(0).toLowerCase() + msgId.substr(1) + "Label";
+				if (buttonLabels.hasOwnProperty(key))
+					return buttonLabels[key];
+			}
 			return ResourceUtil.getString('alert.Button.' + msgId);
 		}
 		
 		private var _message:String;
 		private var _defaultButtonFlag:uint;
 		private var _buttons:Vector.<Button>;
-		private var bitFlagToButtonInfo:Object;
+		private var bitFlagToButton:Object;
+		private var buttonLabels:Object;
 		
 		//--------------------------------------------------------------------------
 		//
@@ -261,6 +268,10 @@ package net.fproject.ui.misc {
 		 *
 		 *  @param moduleFactory The moduleFactory where this Alert should look for
 		 *  its embedded fonts and style manager.
+		 *  
+		 *  @param labels A standard object that contains button label definitions.
+		 *  Example:
+		 *  <pre>{okLabel:"OK", cancelLabel:"Cancel", yesLabel:"Yes", noLabel:"No"}</pre>
 		 *
 		 *  @return A reference to the Alert control.
 		 *
@@ -268,7 +279,8 @@ package net.fproject.ui.misc {
 		 *
 		 */
 		public static function show(message:String = "", title:String = "", flags:uint = OK, parent:Sprite = null, closeHandler:Function = null,
-									iconClass:Class = null, defaultButtonFlag:uint = Alert.OK, moduleFactory:IFlexModuleFactory = null):Alert {
+									iconClass:Class = null, defaultButtonFlag:uint = Alert.OK, moduleFactory:IFlexModuleFactory = null,
+									labels:Object = null):Alert {
 			
 			var modal:Boolean = (flags & Alert.NONMODAL) ? false : true;
 			
@@ -286,6 +298,7 @@ package net.fproject.ui.misc {
 			var alert:Alert = new Alert();
 			alert.buttonsFlag = flags;
 			alert.defaultButtonFlag = defaultButtonFlag;
+			alert.buttonLabels = labels;
 			
 			alert.message = message;
 			alert.title = title;
@@ -535,7 +548,7 @@ package net.fproject.ui.misc {
 			var button:Button;
 			var numButtons:int = 0;
 			
-			bitFlagToButtonInfo = {};
+			bitFlagToButton = {};
 			
 			for each (var flag:uint in btnFlags)
 			{
@@ -554,7 +567,7 @@ package net.fproject.ui.misc {
 					button.addEventListener(MouseEvent.CLICK, onButtonClick, false, 0, true);
 					container.addElement(button);
 					_buttons.push(button);
-					bitFlagToButtonInfo[flag] = button;
+					bitFlagToButton[flag] = button;
 				}
 			}
 			
@@ -577,7 +590,7 @@ package net.fproject.ui.misc {
 				}
 			}
 			_buttons = null;
-			bitFlagToButtonInfo = null;
+			bitFlagToButton = null;
 		}
 		
 		/**
@@ -585,8 +598,8 @@ package net.fproject.ui.misc {
 		 */
 		private function getDefaultButton():Button 
 		{
-			if (bitFlagToButtonInfo.hasOwnProperty(_defaultButtonFlag)) 
-				return bitFlagToButtonInfo[_defaultButtonFlag];
+			if (bitFlagToButton.hasOwnProperty(_defaultButtonFlag)) 
+				return bitFlagToButton[_defaultButtonFlag];
 			return null;
 		}
 		
@@ -595,9 +608,9 @@ package net.fproject.ui.misc {
 		 */
 		private function buttonToBitFlag(btn:Object):uint
 		{
-			for (var flag:* in bitFlagToButtonInfo)
+			for (var flag:* in bitFlagToButton)
 			{
-				if(bitFlagToButtonInfo[flag] === btn)
+				if(bitFlagToButton[flag] === btn)
 				{
 					return flag;
 				}
@@ -645,12 +658,22 @@ package net.fproject.ui.misc {
 			}
 		}
 		
+		private function getFlagForEscapeKey():uint
+		{
+			if(_buttonsFlag & CANCEL)
+				return CANCEL;
+			if(_buttonsFlag & NO)
+				return NO;
+			
+			return _defaultButtonFlag;
+		}
+		
 		/**
 		 * @private
 		 */
 		private function onKeyDown(e:KeyboardEvent):void {
 			if (e.charCode == Keyboard.ESCAPE) {
-				removeAlert(_defaultButtonFlag);
+				removeAlert(getFlagForEscapeKey());
 			}
 		}
 	}
