@@ -19,20 +19,27 @@ package net.fproject.themes
 		{
 			if(!(colors is Array))
 			{
-				var s:String = colors as String;
-				if(s)
+				if(colors is Number)
 				{
-					var a:Array = s.split(",");
-					var b:Array = [];
-					for each (s in a)
-					{
-						if(s.charAt(0) == "#")
-							b.push(parseInt(s.substr(1), 16));
-						else
-							b.push(parseInt(s, 10));
-					}
-					colors = b;
+					colors = [colors];
 				}
+				else
+				{
+					var s:String = colors as String;
+					if(s)
+					{
+						var a:Array = s.split(",");
+						var b:Array = [];
+						for each (s in a)
+						{
+							if(s.charAt(0) == "#")
+								b.push(parseInt(s.substr(1), 16));
+							else
+								b.push(parseInt(s, 10));
+						}
+						colors = b;
+					}
+				}				
 			}
 			return colors as Array;
 		}
