@@ -29,6 +29,10 @@ package net.fproject.themes.chrome.skins
 	
 	public class ButtonSkin extends SimpleButtonSkin
 	{
+		public function ButtonSkin(properties:Object=null)
+		{
+			super(properties);
+		}
 		
 		private static var _watcherSetupUtil:IWatcherSetupUtil2;
 		
