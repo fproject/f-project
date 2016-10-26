@@ -26,6 +26,7 @@ package net.fproject.gui.component
 	import mx.core.UIComponent;
 	import mx.events.FlexEvent;
 	import mx.events.ModuleEvent;
+	import mx.events.PropertyChangeEvent;
 	
 	import spark.components.Group;
 	import spark.events.ElementExistenceEvent;
@@ -116,6 +117,7 @@ package net.fproject.gui.component
 		
 		private var child:Object;
 		
+		[Bindable(event="propertyChange")]
 		public function get component():Object
 		{
 			return child;
@@ -205,6 +207,9 @@ package net.fproject.gui.component
 					{
 						throw new Error("ComponentLoader: Not supported component type");
 					}
+					
+					if (this.hasEventListener(PropertyChangeEvent.PROPERTY_CHANGE))
+						this.dispatchEvent(PropertyChangeEvent.createUpdateEvent(this, "component", null, this.child));
 				}
 			}
 		}
