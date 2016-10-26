@@ -12,9 +12,14 @@ package net.fproject.themes
 	
 	public class SimpleButtonSkin extends SparkButtonSkin implements IBindingClient, IStateClient2
 	{
-		public function SimpleButtonSkin()
+		public function SimpleButtonSkin(properties:Object=null)
 		{
 			super();
+			for (var s:String in properties)
+			{
+				if(this.hasOwnProperty(s))
+					this[s] = properties[s];
+			}
 			construct();
 		}
 		
