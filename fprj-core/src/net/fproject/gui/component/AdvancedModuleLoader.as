@@ -21,6 +21,7 @@ package net.fproject.gui.component
 	import flash.utils.ByteArray;
 	
 	import mx.events.ModuleEvent;
+	import mx.events.PropertyChangeEvent;
 	import mx.managers.SystemManagerGlobals;
 	import mx.rpc.AsyncToken;
 	
@@ -57,6 +58,7 @@ package net.fproject.gui.component
 		
 		private var rslsLoader:RslsLoader;
 		
+		[Bindable(event="propertyChange")]
 		public function get component():Object
 		{
 			return child;
@@ -262,6 +264,9 @@ package net.fproject.gui.component
 			
 			if (this.hasEventListener(ComponentLoaderEvent.LOADED))
 				this.dispatchEvent(new ComponentLoaderEvent(ComponentLoaderEvent.LOADED));
+			
+			if (this.child != null && this.hasEventListener(PropertyChangeEvent.PROPERTY_CHANGE))
+				this.dispatchEvent(PropertyChangeEvent.createUpdateEvent(this, "component", null, this.child));
 		}
 		
 		/**
