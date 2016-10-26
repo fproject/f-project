@@ -1355,5 +1355,19 @@ package net.fproject.di
 			}
 			return null;
 		}
+		
+		/**
+		 * 
+		 * Chech whether a container is already injected or not.
+		 * 
+		 * @param container The container to check
+		 * 
+		 * @return <code>true</code> if the container is already injected.
+		 * 
+		 */
+		public static function isInjected(container:Object):Boolean
+		{
+			return container != null && instanceCache[container] != undefined;
+		}
 	}
 }
