@@ -91,8 +91,8 @@ package net.fproject.gui.component.supportClasses
 		public function load(completeCallback:Function):void
 		{
 			this.completeCallback = completeCallback;
-			loaderToGroupInfo = new Dictionary(true);
-			recusiveLoadPriorityGroups(0);
+			loaderToGroupIndex = new Dictionary(true);
+			loadPriorityGroups(0);
 		}
 		
 		/**
@@ -136,66 +136,56 @@ package net.fproject.gui.component.supportClasses
 				});
 		}
 		
-		private function recusiveLoadPriorityGroups(groupIdx:int):void
+		private var loaderToGroupIndex:Dictionary;
+		
+		/**
+		 * Load all RSLs in a group of same priority 
+		 * @param rslGroup the same priority group of RSLs
+		 * 
+		 */
+		private function loadPriorityGroups(groupIndex:int):void
 		{
-			if(groupIdx >= rslGroups.length)
+			if(groupIndex >= rslGroups.length)
 			{
 				if(completeCallback != null)
 					completeCallback();
 			}
 			else
 			{
-				loadPriorityGroup(groupIdx,
-					function(idx:int):void
+				var groupLoaded:Boolean = true;
+				for each (var rsl:Object in rslGroups[groupIndex])
+				{
+					if(!rsl.loading && !rsl.loaded)
 					{
-						recusiveLoadPriorityGroups(idx + 1);
-					});
+						groupLoaded = false;
+						var rslLoader:Loader = new Loader();
+						var urlRequest:URLRequest = new URLRequest(ApplicationGlobals.getRslBaseUrl() + "/" + rsl.url);
+						var context:LoaderContext = new LoaderContext(false, ApplicationDomain.currentDomain);
+						loaderToGroupIndex[rslLoader.contentLoaderInfo] = groupIndex;
+						rslLoader.contentLoaderInfo.addEventListener(Event.COMPLETE, rslLoadedHandler);
+						rslLoader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, 
+							function(e:IOErrorEvent):void
+							{
+								LoggingUtil.error(RslsLoader, e.text);
+								if(AppContext.instance.hasEventListener(AppContextEvent.APP_ERROR))
+									AppContext.instance.dispatchEvent(new AppContextEvent(AppContextEvent.APP_ERROR, e.text));
+								e.stopPropagation();
+								e.preventDefault();
+								if(AppContext.instance.hasEventListener(AppContextEvent.EXIT_BUSY_STATE))
+									AppContext.instance.dispatchEvent(new AppContextEvent(AppContextEvent.EXIT_BUSY_STATE));
+							});
+						
+						rslLoader.load(urlRequest, context);
+						
+						rsl.loading = true;
+					}				
+				}
+				
+				if(groupLoaded)
+					loadPriorityGroups(groupIndex + 1);
 			}			
 		}
 		
-		private var loaderToGroupInfo:Dictionary;
-		
-		/**
-		 * Load all RSLs in a group of same priority 
-		 * @param rslGroup the same priority group of RSLs
-		 * @param completeCallback the callback invoked when all RSLs loading of group is completed
-		 * 
-		 */
-		private function loadPriorityGroup(groupIndex:int, completeCallback:Function):void
-		{
-			var groupLoaded:Boolean = true;
-			for each (var rsl:Object in rslGroups[groupIndex])
-			{
-				if(!rsl.loading && !rsl.loaded)
-				{
-					groupLoaded = false;
-					var rslLoader:Loader = new Loader();
-					var urlRequest:URLRequest = new URLRequest(ApplicationGlobals.getRslBaseUrl() + "/" + rsl.url);
-					var context:LoaderContext = new LoaderContext(false, ApplicationDomain.currentDomain);
-					loaderToGroupInfo[rslLoader.contentLoaderInfo] = 
-						{index: groupIndex, callback: completeCallback};
-					rslLoader.contentLoaderInfo.addEventListener(Event.COMPLETE, rslLoadedHandler);
-					rslLoader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, 
-						function(e:IOErrorEvent):void
-						{
-							LoggingUtil.error(RslsLoader, e.text);
-							if(AppContext.instance.hasEventListener(AppContextEvent.APP_ERROR))
-								AppContext.instance.dispatchEvent(new AppContextEvent(AppContextEvent.APP_ERROR, e.text));
-							e.stopPropagation();
-							e.preventDefault();
-							if(AppContext.instance.hasEventListener(AppContextEvent.EXIT_BUSY_STATE))
-								AppContext.instance.dispatchEvent(new AppContextEvent(AppContextEvent.EXIT_BUSY_STATE));
-						});
-					
-					rslLoader.load(urlRequest, context);
-					
-					rsl.loading = true;
-				}				
-			}
-			
-			if(groupLoaded)
-				completeCallback(groupIndex);
-		}
 		
 		/**
 		 * @private 
@@ -203,9 +193,9 @@ package net.fproject.gui.component.supportClasses
 		 */
 		private function rslLoadedHandler(e:Event):void
 		{
-			var groupInfo:Object = loaderToGroupInfo[e.target];
+			var groupIndex:int = loaderToGroupIndex[e.target];
 			var allLoaded:Boolean = true;
-			for each (var rsl:Object in rslGroups[groupInfo.index])
+			for each (var rsl:Object in rslGroups[groupIndex])
 			{
 				if(!rsl.loaded)
 				{
@@ -222,7 +212,7 @@ package net.fproject.gui.component.supportClasses
 			}
 			if(allLoaded)
 			{
-				groupInfo.callback(groupInfo.index);									
+				loadPriorityGroups(groupIndex + 1);									
 			}
 		}
 		
