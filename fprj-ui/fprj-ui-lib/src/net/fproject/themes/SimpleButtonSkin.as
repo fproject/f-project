@@ -15,12 +15,12 @@ package net.fproject.themes
 		public function SimpleButtonSkin(properties:Object=null)
 		{
 			super();
+			construct();
 			for (var s:String in properties)
 			{
 				if(this.hasOwnProperty(s))
 					this[s] = properties[s];
 			}
-			construct();
 		}
 		
 		protected function construct():void
@@ -81,6 +81,19 @@ package net.fproject.themes
 			return _borderVisibleStates;
 		}
 		
+		public override function styleChanged(styleProp:String):void
+		{
+			super.styleChanged(styleProp);
+			if(styleProp == null || styleProp=="borderVisibleStates")
+			{
+				var s:* = getStyle("borderVisibleStates");
+				if(s !== undefined)
+				{
+					this.borderVisibleStates = s;
+				}
+			}
+		}
+		
 		public function set borderVisibleStates(value:Object):void
 		{
 			if( _borderVisibleStates !== value)
@@ -104,6 +117,8 @@ package net.fproject.themes
 			}
 		}
 		
+		private var targetToSetProp:Object;
+		
 		protected function bindBorderVisibleStates(target:String):void
 		{
 			if(_borderVisibleStates == null)
@@ -115,11 +130,23 @@ package net.fproject.themes
 					var alpha:Number = 1;
 				else
 					alpha = 0;
-				s.overrides.push(new SetProperty().initializeFromObject({
-					"target":target,
-					"name":"alpha",
-					"value":alpha
-				}));
+				if(targetToSetProp == null)
+					targetToSetProp = {};
+				var sp:SetProperty = targetToSetProp[target] as SetProperty;
+				if(sp == null)
+				{
+					sp = new SetProperty().initializeFromObject({
+						"target":target,
+						"name":"alpha",
+						"value":alpha
+					}) as SetProperty;
+					targetToSetProp[target] = sp;
+					s.overrides.push(sp);
+				}
+				else
+				{
+					sp.value = alpha;
+				}
 			}
 		}
 	}
