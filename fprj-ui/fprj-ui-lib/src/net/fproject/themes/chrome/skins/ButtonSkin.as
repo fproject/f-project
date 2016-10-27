@@ -59,7 +59,7 @@ package net.fproject.themes.chrome.skins
 		public function get cornerRadius():Number
 		{
 			if(isNaN(_cornerRadius))
-				_cornerRadius = 3;
+				_cornerRadius = 0;
 			return _cornerRadius;
 		}
 
@@ -83,13 +83,26 @@ package net.fproject.themes.chrome.skins
 		
 		mx_internal var _bindingsBeginWithWord:Object;
 		
+		public override function styleChanged(styleProp:String):void
+		{
+			super.styleChanged(styleProp);
+			if(styleProp == null || styleProp=="cornerRadius")
+			{
+				var s:* = getStyle("cornerRadius");
+				if(s !== undefined)
+				{
+					this.cornerRadius = s;
+				}
+			}
+		}
+		
 		override protected function commitProperties():void
 		{
 			super.commitProperties();
 			if(this.border is Rect)
-				Rect(this.border).radiusX = _cornerRadius;
+				Rect(this.border).radiusX = cornerRadius;
 			if(this.border2 != null)
-				this.border2.radiusX = _cornerRadius;
+				this.border2.radiusX = cornerRadius;
 		}
 		
 		override protected function construct():void

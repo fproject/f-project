@@ -21,13 +21,17 @@ package net.fproject.ui.misc
 	import flash.events.MouseEvent;
 	import flash.geom.Point;
 	
+	import mx.collections.ArrayCollection;
+	import mx.collections.ArrayList;
 	import mx.collections.IList;
 	import mx.events.MenuEvent;
 	
 	import spark.components.Button;
 	
 	import net.fproject.gui.component.IDataProviderOwner;
+	import net.fproject.gui.component.IMenuOwner;
 	import net.fproject.ui.menu.Menu;
+	import net.fproject.ui.menu.supportClasses.MenuUtil;
 	
 	/**
 	 *  Dispatched when a menu item is selected. 
@@ -36,7 +40,7 @@ package net.fproject.ui.misc
 	 *  
 	 */
 	[Event(name="itemClick", type="mx.events.MenuEvent")]
-	public class DropDownAnchorButton extends Button implements IDataProviderOwner
+	public class DropDownAnchorButton extends Button implements IDataProviderOwner, IMenuOwner
 	{
 		public var menu:Menu;
 		
@@ -95,22 +99,24 @@ package net.fproject.ui.misc
 			}
 		}
 		
-		protected var _labelField:String;
-		
-		public function get labelField():String
+		/**
+		 * 
+		 * @inheritDoc
+		 * 
+		 */
+		public function get menuData() : Object
 		{
-			return _labelField;
-		}
-		
-		private var labelFieldChanged:Boolean
-		public function set labelField(value:String):void
-		{
-			if(_labelField !== value)
-			{
-				_labelField = value;
-				labelFieldChanged = true;
-				invalidateProperties();
-			}
+			if (_dataProvider is ArrayCollection || _dataProvider is Array)
+				var items:* = _dataProvider;
+			else if (_dataProvider is ArrayList)
+				items = ArrayList(_dataProvider).source;
+			else if (_dataProvider is IList)
+				items = IList(_dataProvider).toArray();
+			
+			return {
+				menuItems:items,
+				itemLabelFunction:labelFunction
+			};
 		}
 		
 		/**
@@ -189,35 +195,13 @@ package net.fproject.ui.misc
 		{
 			if(menu == null)
 			{
-				menu = Menu.createMenu(this.menuParent, this.dataProvider);
+				menu = MenuUtil.instance.createMenu(this);
 				menu.addEventListener(MenuEvent.ITEM_CLICK, 
 					function(e:MenuEvent):void
 					{
 						dispatchEvent(e);
 					});
 			}
-			if(this.labelFunction != null)
-				menu.labelField = this.labelField;
-			else if(this.labelField != null)
-				menu.labelField = this.labelField;
-			else
-				menu.labelFunction = defaultLabelFunction;
-		}
-		
-		protected function defaultLabelFunction(item:Object):String
-		{
-			if(item != null)
-			{
-				if(item.hasOwnProperty("label"))
-					return item["label"];
-				if(item.hasOwnProperty("name"))
-					return item["name"];
-				if(item.hasOwnProperty("text"))
-					return item["text"];
-				if(item.hasOwnProperty("title"))
-					return item["title"];
-			}
-			return null;
 		}
 		
 		override protected function commitProperties():void
@@ -225,12 +209,6 @@ package net.fproject.ui.misc
 			super.commitProperties();
 			if(this.menu != null)
 			{
-				if(labelFieldChanged)
-				{
-					labelFieldChanged = false;
-					menu.labelField = this.labelField;
-				}
-				
 				if(labelFunctionChanged)
 				{
 					labelFunctionChanged = false;
