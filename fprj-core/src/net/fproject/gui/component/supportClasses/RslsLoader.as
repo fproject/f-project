@@ -33,6 +33,7 @@ package net.fproject.gui.component.supportClasses
 	import net.fproject.reflect.ReflectionUtil;
 	import net.fproject.utils.ApplicationGlobals;
 	import net.fproject.utils.LoggingUtil;
+	import net.fproject.utils.ResourceUtil;
 	
 	import org.as3commons.reflect.Metadata;
 
@@ -147,13 +148,30 @@ package net.fproject.gui.component.supportClasses
 		{
 			if(groupIndex >= rslGroups.length)
 			{
-				if(completeCallback != null)
-					completeCallback();
+				if(this.allRslsLoaded())
+				{
+					if(completeCallback != null)
+						completeCallback();
+				}
+				else
+				{
+					var msg:String = "";
+					for each (var rsl:Object in this.rsls)
+					{
+						if(!rsl.loaded)
+						{
+							if(msg != "")
+								msg += ", "
+							msg += rsl.url;
+						}
+					}
+					LoggingUtil.logWarn(RslsLoader, ResourceUtil.FPRJ_CORE, 24, null, ResourceUtil.FPRJ_CORE_BUNDLE, "rsl.loader.failed", [msg]);
+				}
 			}
 			else
 			{
 				var groupLoaded:Boolean = true;
-				for each (var rsl:Object in rslGroups[groupIndex])
+				for each (rsl in rslGroups[groupIndex])
 				{
 					if(!rsl.loading && !rsl.loaded)
 					{
