@@ -50,7 +50,6 @@ package net.fproject.ui.autoComplete
 	
 	import spark.components.List;
 	import spark.components.supportClasses.SkinnableComponent;
-	import spark.events.IndexChangeEvent;
 	
 	import net.fproject.ui.autoComplete.supportClasses.AutocompleteDropdown;
 	import net.fproject.ui.autoComplete.supportClasses.DefaultInlineButton;

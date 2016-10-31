@@ -21,6 +21,7 @@ package net.fproject.ui.autoComplete.supportClasses
 	import flash.events.KeyboardEvent;
 	import flash.ui.Keyboard;
 	
+	import mx.binding.utils.BindingUtils;
 	import mx.collections.ArrayCollection;
 	import mx.collections.IList;
 	import mx.collections.ListCollectionView;
@@ -35,20 +36,18 @@ package net.fproject.ui.autoComplete.supportClasses
 	import spark.components.List;
 	import spark.layouts.VerticalLayout;
 	
-	import net.fproject.di.Injector;
 	import net.fproject.ui.events.AutoCompleteEvent;
 	import net.fproject.utils.StringUtil;
 	
 	[SkinState("found")]
 	[SkinState("nothingFound")]
-	[EventHandling(event="mx.events.FlexEvent.INITIALIZE",handler="module_initialize")]
-	[EventHandling(event="mx.events.FlexEvent.CREATION_COMPLETE",handler="module_creationComplete")]
 	public class AutocompleteDropdown extends BorderContainer
 	{
 		public function AutocompleteDropdown()
 		{
 			super();
-			Injector.inject(this);
+			addEventListener(FlexEvent.INITIALIZE, dropDown_initialize);
+			addEventListener(FlexEvent.CREATION_COMPLETE, dropDown_creationComplete);
 		}
 		
 		public static const MATCH_BEGINNING:String 	= "beginning";
@@ -57,18 +56,8 @@ package net.fproject.ui.autoComplete.supportClasses
 		
 		public static const createNewButtonData:Object = {type:"createNewButtonData", label:"Not found? Click to create new"};
 		
-		private var _dropdownWidth:int;
-		
 		[Bindable]
-		public function get dropdownWidth():int
-		{
-			return _dropdownWidth;
-		}
-		
-		public function set dropdownWidth(value:int):void
-		{
-			_dropdownWidth = value;
-		}
+		public var dropdownWidth:Number;
 		
 		public var delimiter:String = ",";
 		
@@ -106,7 +95,7 @@ package net.fproject.ui.autoComplete.supportClasses
 		/**
 		 * Called at initialization time to load the default data sample.
 		 */
-		public function module_initialize(event:FlexEvent):void
+		protected function dropDown_initialize(event:FlexEvent):void
 		{
 			if (!disabledItems)
 			{
@@ -148,7 +137,7 @@ package net.fproject.ui.autoComplete.supportClasses
 		/**
 		 * Called at initialization time to load the default data sample.
 		 */
-		public function module_creationComplete(event:FlexEvent):void
+		protected function dropDown_creationComplete(event:FlexEvent):void
 		{
 			updateDropdown();
 		}
@@ -471,6 +460,7 @@ package net.fproject.ui.autoComplete.supportClasses
 		public function itemRendererFunction(item:Object):IFactory {
 			return (item === createNewButtonData) ? _buttonItemRenderer:_itemRenderer;
 		}
+		
 		protected function dispatchChangeEvent():void
 		{
 			//only dispatch if it is visitable
@@ -483,7 +473,7 @@ package net.fproject.ui.autoComplete.supportClasses
 				this.dispatchEvent(new AutoCompleteEvent(AutoCompleteEvent.CHANGE, item));
 		}
 		
-		public function dropDownChangeEventHandler(event:Event):void
+		protected function dropDownChangeEventHandler(event:Event):void
 		{
 			dispatchChangeEvent();
 			event.stopImmediatePropagation();
@@ -530,16 +520,43 @@ package net.fproject.ui.autoComplete.supportClasses
 			return (filteredCollection !=  null && filteredCollection.length > 0 && filteredCollection.getItemAt(0) !== createNewButtonData);
 		}
 		
+		protected override function partAdded(partName:String, instance:Object):void
+		{
+			super.partAdded(partName, instance);
+			if(instance == nothingFoundLabel)
+			{
+				BindingUtils.bindSetter(function(v:Number):void{
+					nothingFoundLabel.width = v;
+				}, this, "dropdownWidth");
+			}
+			
+			if(instance == dropDown)
+			{
+				BindingUtils.bindSetter(function(v:ListCollectionView):void{
+					dropDown.dataProvider = v;
+				}, this, "filteredCollection");
+				
+				dropDown.itemRendererFunction = itemRendererFunction;
+				
+				BindingUtils.bindSetter(function(v:Number):void{
+					dropDown.width = v;
+				}, this, "dropdownWidth");
+				
+				BindingUtils.bindSetter(function(v:String):void{
+					dropDown.labelField = v;
+				}, this, "labelField");
+				
+				dropDown.labelFunction = highLightMatchLabelFunction;
+				
+				dropDown.addEventListener("change", dropDownChangeEventHandler);
+				dropDown.addEventListener("click", dropDownChangeEventHandler);
+			}
+		}
+		
 		[SkinPart(required="true",type="static")]
-		[PropertyBinding(width="dropdownWidth@")]
 		public var nothingFoundLabel:Label;
 		
 		[SkinPart(required="true",type="static")]
-		[PropertyBinding(dataProvider="filteredCollection@",itemRendererFunction="itemRendererFunction@")]
-		[PropertyBinding(width="dropdownWidth@",labelField="labelField@",labelFunction="highLightMatchLabelFunction@")]
-		[PropertyBinding(itemRendererFunction="itemRendererFunction")]
-		[EventHandling(event="change",handler="dropDownChangeEventHandler")]
-		[EventHandling(event="click",handler="dropDownChangeEventHandler")]
 		public var dropDown:List;
 	}
 }
