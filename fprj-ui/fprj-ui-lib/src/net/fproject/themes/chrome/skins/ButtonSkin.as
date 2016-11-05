@@ -133,10 +133,7 @@ package net.fproject.themes.chrome.skins
 			_watcherSetupUtil.setup(this,function(field:String):*
 			{
 				return target[field];
-			},function(field:String):*
-			{
-				return ButtonSkin[field];
-			},bindings,watchers);
+			}, staticPropertyGetter, bindings, watchers);
 			mx_internal::_bindings = mx_internal::_bindings.concat(bindings);
 			mx_internal::_watchers = mx_internal::_watchers.concat(watchers);
 			this.minWidth = 21;
@@ -153,6 +150,11 @@ package net.fproject.themes.chrome.skins
 				Binding(bindings[i]).execute();
 				i++;
 			}
+		}
+		
+		protected function staticPropertyGetter(field:String):*
+		{
+			return ButtonSkin[field];
 		}
 		
 		protected function createMxmlContent():Array
@@ -480,7 +482,7 @@ package net.fproject.themes.chrome.skins
 			return l;
 		}
 		
-		private function skin_bindingsSetup() : Array
+		protected function skin_bindingsSetup() : Array
 		{
 			var result:Array = [];
 			result[0] = new Binding(this,function():Array
