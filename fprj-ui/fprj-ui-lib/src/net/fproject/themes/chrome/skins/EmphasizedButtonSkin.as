@@ -30,7 +30,7 @@ package net.fproject.themes.chrome.skins
 			r.right = 0;
 			r.top = 0;
 			r.bottom = 0;
-			r.radiusX = 3;
+			r.radiusX = this.cornerRadius;
 			r.stroke = this.createEmphasizedStroke();
 			r.fill = this.createEmphasizedFill();
 			r.initialized(this,"emphasizedOverlay");
