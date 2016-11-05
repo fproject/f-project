@@ -44,15 +44,15 @@ package net.fproject.themes.chrome.skins
 		
 		public var borderStrokeEntry2:GradientEntry;
 		
-		private var _aButtonSkin_GradientEntry3:GradientEntry;
+		private var _borderStrokeEntry3:GradientEntry;
 		
-		private var _aButtonSkin_GradientEntry6:GradientEntry;
+		private var _border2Entry1:GradientEntry;
 		
-		private var _aButtonSkin_GradientEntry7:GradientEntry;
+		private var _border2Entry2:GradientEntry;
 		
 		public var bottomMarkLine:Line;
 		
-		private var _aButtonSkin_LinearGradientStroke1:LinearGradientStroke;
+		private var _borderStroke:LinearGradientStroke;
 		
 		protected var _cornerRadius:Number;
 
@@ -166,12 +166,12 @@ package net.fproject.themes.chrome.skins
 		
 		protected function createStates():Array
 		{
-			var bottomMarkLine_factory:DeferredInstanceFromFunction = new DeferredInstanceFromFunction(this.createBottomMarkLine);
-			var borderStrokeEntry2_factory:DeferredInstanceFromFunction = new DeferredInstanceFromFunction(this.createBorderStrokeEntry2);
+			var bottomMarkLineFactory:DeferredInstanceFromFunction = new DeferredInstanceFromFunction(this.createBottomMarkLine);
+			var borderStrokeEntry2Factory:DeferredInstanceFromFunction = new DeferredInstanceFromFunction(this.createBorderStrokeEntry2);
 			return [new State({
 				"name":"up",
 				"overrides":[new AddItems().initializeFromObject({
-					"itemsFactory":bottomMarkLine_factory,
+					"itemsFactory":bottomMarkLineFactory,
 					"destination":null,
 					"propertyName":"mxmlContent",
 					"position":"after",
@@ -180,7 +180,7 @@ package net.fproject.themes.chrome.skins
 			}),new State({
 				"name":"over",
 				"overrides":[new AddItems().initializeFromObject({
-					"itemsFactory":bottomMarkLine_factory,
+					"itemsFactory":bottomMarkLineFactory,
 					"destination":null,
 					"propertyName":"mxmlContent",
 					"position":"after",
@@ -205,7 +205,7 @@ package net.fproject.themes.chrome.skins
 			}),new State({
 				"name":"down",
 				"overrides":[new AddItems().initializeFromObject({
-					"itemsFactory":borderStrokeEntry2_factory,
+					"itemsFactory":borderStrokeEntry2Factory,
 					"destination":"borderStroke",
 					"propertyName":"entries",
 					"position":"after",
@@ -246,7 +246,7 @@ package net.fproject.themes.chrome.skins
 			}),new State({
 				"name":"disabled",
 				"overrides":[new AddItems().initializeFromObject({
-					"itemsFactory":bottomMarkLine_factory,
+					"itemsFactory":bottomMarkLineFactory,
 					"destination":null,
 					"propertyName":"mxmlContent",
 					"position":"after",
@@ -516,15 +516,15 @@ package net.fproject.themes.chrome.skins
 		
 		public function get borderStrokeEntry3() : GradientEntry
 		{
-			return this._aButtonSkin_GradientEntry3;
+			return this._borderStrokeEntry3;
 		}
 		
 		public function set borderStrokeEntry3(value:GradientEntry) : void
 		{
-			var o:Object = this._aButtonSkin_GradientEntry3;
+			var o:Object = this._borderStrokeEntry3;
 			if(o !== value)
 			{
-				this._aButtonSkin_GradientEntry3 = value;
+				this._borderStrokeEntry3 = value;
 				if(this.hasEventListener("propertyChange"))
 				{
 					this.dispatchEvent(PropertyChangeEvent.createUpdateEvent(this,"borderStrokeEntry3",o,value));
@@ -534,15 +534,15 @@ package net.fproject.themes.chrome.skins
 		
 		public function get border2Entry1() : GradientEntry
 		{
-			return this._aButtonSkin_GradientEntry6;
+			return this._border2Entry1;
 		}
 		
 		public function set border2Entry1(value:GradientEntry) : void
 		{
-			var o:Object = this._aButtonSkin_GradientEntry6;
+			var o:Object = this._border2Entry1;
 			if(o !== value)
 			{
-				this._aButtonSkin_GradientEntry6 = value;
+				this._border2Entry1 = value;
 				if(this.hasEventListener("propertyChange"))
 				{
 					this.dispatchEvent(PropertyChangeEvent.createUpdateEvent(this,"border2Entry1",o,value));
@@ -552,15 +552,15 @@ package net.fproject.themes.chrome.skins
 		
 		public function get border2Entry2() : GradientEntry
 		{
-			return this._aButtonSkin_GradientEntry7;
+			return this._border2Entry2;
 		}
 		
 		public function set border2Entry2(value:GradientEntry) : void
 		{
-			var o:Object = this._aButtonSkin_GradientEntry7;
+			var o:Object = this._border2Entry2;
 			if(o !== value)
 			{
-				this._aButtonSkin_GradientEntry7 = value;
+				this._border2Entry2 = value;
 				if(this.hasEventListener("propertyChange"))
 				{
 					this.dispatchEvent(PropertyChangeEvent.createUpdateEvent(this,"border2Entry2",o,value));
@@ -570,15 +570,15 @@ package net.fproject.themes.chrome.skins
 		
 		public function get borderStroke() : LinearGradientStroke
 		{
-			return this._aButtonSkin_LinearGradientStroke1;
+			return this._borderStroke;
 		}
 		
 		public function set borderStroke(value:LinearGradientStroke) : void
 		{
-			var o:Object = this._aButtonSkin_LinearGradientStroke1;
+			var o:Object = this._borderStroke;
 			if(o !== value)
 			{
-				this._aButtonSkin_LinearGradientStroke1 = value;
+				this._borderStroke = value;
 				if(this.hasEventListener("propertyChange"))
 				{
 					this.dispatchEvent(PropertyChangeEvent.createUpdateEvent(this,"borderStroke",o,value));
