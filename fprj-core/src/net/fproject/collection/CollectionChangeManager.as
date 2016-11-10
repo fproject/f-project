@@ -154,7 +154,7 @@ package net.fproject.collection
 		 */
 		public function resetCollectionChange(collection:Object):void
 		{
-			_collectionToChangeItems[collection] = {deleteItems:[], insertItems:[], updateItems:[], paused: false};
+			_collectionToChangeItems[collection] = {deleteItems:[], insertItems:[], updateItems:[], paused: 0};
 		}
 		
 		/**
@@ -259,7 +259,7 @@ package net.fproject.collection
 		public function pause(collection:ICollectionView):void
 		{
 			if (_collectionToChangeItems[collection]!== undefined)
-				_collectionToChangeItems[collection].paused = true;
+				_collectionToChangeItems[collection].paused++;
 		}
 		
 		/**
@@ -270,7 +270,7 @@ package net.fproject.collection
 		public function resume(collection:ICollectionView):void
 		{
 			if (_collectionToChangeItems[collection] !== undefined)
-				_collectionToChangeItems[collection].paused = false;
+				_collectionToChangeItems[collection].paused = _collectionToChangeItems[collection].paused > 0 ? _collectionToChangeItems[collection].paused - 1 : 0;
 		}
 		
 		/**
@@ -480,7 +480,7 @@ package net.fproject.collection
 		{
 			var ce:CollectionEvent = event as CollectionEvent;
 			
-			if(_collectionToChangeItems[ce.currentTarget].paused)
+			if(_collectionToChangeItems[ce.currentTarget].paused > 0)
 				return;
 			
 			if (ce == null || _collectionToChangeItems[ce.currentTarget] == undefined)
