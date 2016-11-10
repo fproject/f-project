@@ -59,7 +59,7 @@ package net.fproject.utils
 		 * if the object does not have such a field.
 		 * 
 		 * */
-		public static function getFieldValue(data:Object, field:*, defaultValue:Object = null, fieldFunction:Function = null) : Object
+		public static function getFieldValue(data:Object, field:*, defaultValue:Object = null, fieldFunction:Function = null) : *
 		{
 			var fieldValue:Object = null;
 			if (fieldFunction != null)
@@ -82,7 +82,7 @@ package net.fproject.utils
 					}
 				}
 			}
-			else if (data.hasOwnProperty(field))
+			else if (data != null && data.hasOwnProperty(field))
 			{
 				fieldValue = data[field];
 			}

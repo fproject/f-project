@@ -24,6 +24,7 @@ package net.fproject.rpc
 	import mx.messaging.config.ServerConfig;
 	
 	import net.fproject.reflect.ReflectionUtil;
+	import net.fproject.utils.DataUtil;
 	import net.fproject.utils.StringUtil;
 	
 	import org.as3commons.reflect.Metadata;
@@ -45,22 +46,30 @@ package net.fproject.rpc
 		 */
 		private static var nameToRemoteObject:Object = {};
 		
-		private static var serverConfig:XML
+		private static var serverConfig:Object
 		/**
 		 * Set server configuration 
 		 * @param config the server configuration, using the following sample format:
-		 * <pre>
-		 *&lt;ServerConfig&gt;
-	     *   		&lt;DefaultDestination&gt;projectkitamf&lt;/DefaultDestination&gt;
-	     *   		&lt;RemoteObject&gt;
-	     *     			&lt;Name&gt;IssueService&lt;/Name&gt;
-	     *     			&lt;Destination&gt;pk-http&lt;/Destination&gt;
-	     *    			&lt;Impl&gt;net.fproject.rpc.JSONRemoteObject&lt;/Impl&gt;
-	     *   		&lt;/RemoteObject&gt;
-	     *	&lt;/ServerConfig&gt;</pre>
+		 * <pre>{
+		 * "defaultDestination" : "pk-main",
+		 * "remoteObjects" : [
+		 * 	{ "name" : "IssueService", "destination" : "pk-issue" },
+		 * 	{ "name" : "AttachmentService", "destination" : "pk-file" }
+		 * ],
+		 * "htmlEndpoints" : [
+		 * 	{
+		 * 		"name" : "IssueKanban",
+		 * 		"uri" : "http://erp.projectkit.net/auth_oauth/signin",
+		 * 		"params" : {
+		 * 			"access_token" : "$ACCESS_TOKEN",
+		 * 			"state" : {"p": "pk", "m": 165, "d": "odoo_database"}
+		 * 		}
+		 * 	}
+		 * ]
+		 * }</pre>
 		 * 
 		 */
-		public static function setServerConfig(config:XML):void
+		public static function setServerConfig(config:Object):void
 		{
 			serverConfig = config;
 		}
@@ -136,18 +145,23 @@ package net.fproject.rpc
 			
 			if(StringUtil.isBlank(dest))
 			{
-				for each(var x:XML in serverConfig.RemoteObject)
+				var rmObjs:Array = DataUtil.getFieldValue(serverConfig, "remoteObjects") as Array;
+				if(rmObjs != null)
 				{
-					if(x.Name == name)
+					for each(var o:Object in rmObjs)
 					{
-						dest = x.Destination;
-						var impl:String = x.Impl;
-						break;
+						if(o["name"] == name)
+						{
+							dest = o["destination"] as String;
+							var impl:String = o["impl"] as String;
+							break;
+						}
 					}
 				}
 				
 				if(StringUtil.isBlank(dest))
-					dest = serverConfig.DefaultDestination;
+					dest = DataUtil.getFieldValue(serverConfig, "defaultDestination");
+				
 				if(StringUtil.isBlank(dest))
 					return null;
 			}

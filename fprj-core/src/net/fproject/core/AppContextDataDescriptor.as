@@ -35,7 +35,7 @@ package net.fproject.core
 			return info.userToken;
 		}
 		
-		protected function defaultContextDataToServerConfig(data:Object):XML
+		protected function defaultContextDataToServerConfig(data:Object):Object
 		{
 			return data.serverConfig;
 		}
