@@ -331,6 +331,7 @@ class JSONMessageResponder extends MessageResponder
 											   channel:net.fproject.rpc.JSONChannel, urlLoader:URLLoader)
 	{
 		super(agent, msg, channel);
+		resourceManager = ResourceManager.getInstance();
 		this.urlLoader = urlLoader;
 		clientId = channel.clientId;
 	}
@@ -354,7 +355,7 @@ class JSONMessageResponder extends MessageResponder
 	/**
 	 * @private
 	 */
-	private var resourceManager:IResourceManager = ResourceManager.getInstance();
+	private var resourceManager:IResourceManager;
 	
 	/**
 	 *  The URLLoader associated with this responder.
