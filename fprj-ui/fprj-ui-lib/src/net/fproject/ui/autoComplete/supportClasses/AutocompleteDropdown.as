@@ -457,8 +457,23 @@ package net.fproject.ui.autoComplete.supportClasses
 			_buttonItemRenderer = value;
 		}
 		
-		public function itemRendererFunction(item:Object):IFactory {
-			return (item === createNewButtonData) ? _buttonItemRenderer:_itemRenderer;
+		protected function defaultItemRendererFunction(item:Object):IFactory
+		{
+			return itemRenderer;
+		}
+		
+		private var _itemRendererFunction:Function;
+		public function set itemRendererFunction(value:Function):void{
+			_itemRendererFunction = value;
+		}
+		
+		public function get itemRendererFunction():Function
+		{
+			return (_itemRendererFunction != null) ? _itemRendererFunction : defaultItemRendererFunction;
+		}
+			
+		public function itemRendererWrapperFunction(item:Object):IFactory {
+			return (item === createNewButtonData) ? _buttonItemRenderer:itemRendererFunction(item);
 		}
 		
 		protected function dispatchChangeEvent():void
@@ -536,7 +551,7 @@ package net.fproject.ui.autoComplete.supportClasses
 					dropDown.dataProvider = v;
 				}, this, "filteredCollection");
 				
-				dropDown.itemRendererFunction = itemRendererFunction;
+				dropDown.itemRendererFunction = itemRendererWrapperFunction;
 				
 				BindingUtils.bindSetter(function(v:Number):void{
 					dropDown.width = v;
