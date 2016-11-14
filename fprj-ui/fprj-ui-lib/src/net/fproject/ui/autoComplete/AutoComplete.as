@@ -670,7 +670,9 @@ package net.fproject.ui.autoComplete
 			if (isDropDownVisible())
 			{
 				dropDownContainer.dispatchEvent(event);
-				
+				if ((event.keyCode == Keyboard.DOWN) || (event.keyCode == Keyboard.UP))
+					textInput.setCursorPosition(textInput.selectionBeginIndex);
+
 				if (event.keyCode == Keyboard.ESCAPE)
 				{
 					hideDropDown();
@@ -1377,6 +1379,14 @@ package net.fproject.ui.autoComplete
 		public function set dropDownItemRenderer(value:IFactory):void
 		{
 			dropDownContainer.itemRenderer = value;
+		}
+		
+		/**
+		 * The custom item renderer function for the dropdown displayed when searching.
+		 */	
+		public function set dropDownItemRendererFunction(value:Function):void
+		{
+			dropDownContainer.itemRendererFunction = value;
 		}
 		
 		/**
