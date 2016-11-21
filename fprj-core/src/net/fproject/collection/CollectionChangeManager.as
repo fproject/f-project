@@ -501,8 +501,8 @@ package net.fproject.collection
 			{
 				this.deleteItems(ce.items,ce.currentTarget);
 			}
-			else if (ce.kind == CollectionEventKind.RESET ||
-				ce.kind == CollectionEventKind.REFRESH)
+			else if ((ce.kind == CollectionEventKind.RESET ||
+				ce.kind == CollectionEventKind.REFRESH) && !isAutoSaveEnabled(ce.currentTarget as ICollectionView))
 			{
 				delete _collectionToChangeItems[ce.currentTarget];
 				resetCollectionChange(ce.currentTarget);
