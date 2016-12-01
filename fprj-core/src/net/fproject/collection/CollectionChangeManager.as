@@ -18,7 +18,9 @@
 package net.fproject.collection
 {
 	import flash.events.Event;
+	import flash.events.TimerEvent;
 	import flash.utils.Dictionary;
+	import flash.utils.Timer;
 	
 	import mx.collections.ICollectionView;
 	import mx.events.CollectionEvent;
@@ -65,6 +67,7 @@ package net.fproject.collection
 		private var _services:Dictionary = new Dictionary(true);
 		private var _attributes:Dictionary = new Dictionary(true);
 		private var _unregisterPending:Dictionary = new Dictionary(true);
+		private var _timer:Dictionary = new Dictionary(true);
 		
 		/**
 		 * Get all saved (inserted or updated) items
@@ -186,6 +189,7 @@ package net.fproject.collection
 			{
 				if (isAutoSaveEnabled(collection))
 				{
+					Timer(_timer[collection]).removeEventListener(TimerEvent.TIMER, onTimerComplete);
 					if (haveChanges(collection))
 					{
 						_unregisterPending[collection] = true;
@@ -199,6 +203,29 @@ package net.fproject.collection
 				delete _collectionToChangeItems[collection];
 			}
 		}	
+		
+		private function onTimerComplete(event:TimerEvent):void
+		{
+			var timer:Timer = event.currentTarget as Timer;
+			var collection:ICollectionView;
+			for (var key:Object in _timer){
+				if (_timer[key] == timer)
+				{
+					collection = key as ICollectionView;
+					break;
+				}
+			}
+			if (collection == null)
+				return;
+			if (isAutoSaveEnabled(collection))
+			{
+				save(collection);
+			}
+			
+			event.stopImmediatePropagation();
+			Timer(event.currentTarget).stop();
+		}
+		
 		
 		/**
 		 * Check if the collection has been enable the save automation features
@@ -219,10 +246,16 @@ package net.fproject.collection
 		 * attributes = null to save all attributes
 		 * 
 		 */
-		public function enableAutoSave(collection:ICollectionView, service:ActiveService, attributes:Array=null):void
+		public function enableAutoSave(collection:ICollectionView, service:ActiveService, attributes:Array=null, delayTime:int = 1500):void
 		{
 			if (!isRegistered(collection))
 				registerCollection(collection);
+			
+			if (_timer[collection])
+				Timer(_timer[collection]).removeEventListener(TimerEvent.TIMER, onTimerComplete);
+			_timer[collection] = new Timer(delayTime);
+			Timer(_timer[collection]).addEventListener(TimerEvent.TIMER, onTimerComplete);
+			
 			_services[collection] = service;
 			_attributes[collection] = attributes;
 		}
@@ -420,13 +453,17 @@ package net.fproject.collection
 				r.addEventListener(ResultEvent.RESULT, function(e:ResultEvent):void
 				{
 					dispatchEventAfterSave(SAVE_TYPE,e,collection);
-					save(collection);
+					Timer(_timer[collection]).reset();
+					Timer(_timer[collection]).start();
+					//save(collection);
 				});
 				
 				r.addEventListener(FaultEvent.FAULT, function(e:FaultEvent):void
 				{
 					dispatchEventAfterSave(SAVE_TYPE,e,collection);
-					save(collection);
+					Timer(_timer[collection]).reset();
+					Timer(_timer[collection]).start();
+					//save(collection);
 				});
 			}
 			
@@ -441,13 +478,17 @@ package net.fproject.collection
 				r.addEventListener(ResultEvent.RESULT, function(e:ResultEvent):void
 				{
 					dispatchEventAfterSave(DELETE_TYPE,e,collection);
-					save(collection);
+					Timer(_timer[collection]).reset();
+					Timer(_timer[collection]).start();
+					//save(collection);
 				});
 				
 				r.addEventListener(FaultEvent.FAULT, function(e:FaultEvent):void
 				{
 					dispatchEventAfterSave(DELETE_TYPE,e,collection);
-					save(collection);
+					Timer(_timer[collection]).reset();
+					Timer(_timer[collection]).start();
+					//save(collection);
 				});
 			}
 			
@@ -479,11 +520,9 @@ package net.fproject.collection
 		private function collection_collectionChangeHandler(event:Event):void
 		{
 			var ce:CollectionEvent = event as CollectionEvent;
+			var collection:ICollectionView = ce.currentTarget as ICollectionView;
 			
-			if(_collectionToChangeItems[ce.currentTarget].paused > 0)
-				return;
-			
-			if (ce == null || _collectionToChangeItems[ce.currentTarget] == undefined)
+			if (ce == null || _collectionToChangeItems[collection] == undefined || _collectionToChangeItems[collection].paused > 0)
 			{
 				return;
 			}
@@ -491,25 +530,25 @@ package net.fproject.collection
 			var items:Array;
 			if (ce.kind == CollectionEventKind.ADD || ce.kind == CE_KIND_ADD_ITEM)
 			{
-				this.insertItems(ce.items,ce.currentTarget);
+				this.insertItems(ce.items,collection);
 			}
 			else if (ce.kind == CollectionEventKind.UPDATE)
 			{
-				this.updateItems(ce.items,ce.currentTarget);
+				this.updateItems(ce.items,collection);
 			}
 			else if (ce.kind == CollectionEventKind.REMOVE)
 			{
-				this.deleteItems(ce.items,ce.currentTarget);
+				this.deleteItems(ce.items,collection);
 			}
 			else if ((ce.kind == CollectionEventKind.RESET ||
-				ce.kind == CollectionEventKind.REFRESH) && !isAutoSaveEnabled(ce.currentTarget as ICollectionView))
+				ce.kind == CollectionEventKind.REFRESH) && !isAutoSaveEnabled(collection))
 			{
-				delete _collectionToChangeItems[ce.currentTarget];
-				resetCollectionChange(ce.currentTarget);
+				delete _collectionToChangeItems[collection];
+				resetCollectionChange(collection);
 			}
 			else if (ce.kind == CollectionEventKind.REPLACE)
 			{
-				var delItems:Array = _collectionToChangeItems[ce.currentTarget].deleteItems;
+				var delItems:Array = _collectionToChangeItems[collection].deleteItems;
 				for each (var item:Object in ce.items)
 				{
 					if(item is PropertyChangeEvent)
@@ -517,19 +556,20 @@ package net.fproject.collection
 						var oldItem:Object = PropertyChangeEvent(item).oldValue;
 						var newItem:Object = PropertyChangeEvent(item).newValue;
 						
-						this.deleteItems([oldItem], ce.currentTarget);
-						this.insertItems([newItem], ce.currentTarget);
+						this.deleteItems([oldItem], collection);
+						this.insertItems([newItem], collection);
 					}
 					else					
 					{
-						this.insertItems([item],ce.currentTarget);
+						this.insertItems([item],collection);
 					}
 				}
 			}
 			
-			if (isAutoSaveEnabled(ce.currentTarget as ICollectionView))
+			if (isAutoSaveEnabled(collection))
 			{
-				save(ce.currentTarget);
+				Timer(_timer[collection]).reset();
+				Timer(_timer[collection]).start();
 			}
 		}
 		
