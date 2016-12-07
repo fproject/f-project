@@ -246,7 +246,7 @@ package net.fproject.collection
 		 * attributes = null to save all attributes
 		 * 
 		 */
-		public function enableAutoSave(collection:ICollectionView, service:ActiveService, attributes:Array=null, delayTime:int = 1500):void
+		public function enableAutoSave(collection:ICollectionView, service:ActiveService, attributes:Array=null, delayTime:int = 400):void
 		{
 			if (!isRegistered(collection))
 				registerCollection(collection);
