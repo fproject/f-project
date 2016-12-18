@@ -91,6 +91,8 @@ package net.fproject.di
 					if(Implementation(i).abstractor == abstractor)
 					{
 						impl = Implementation(i).impl;
+						if(constructorArgs == undefined)
+							constructorArgs = Implementation(i).constructorArgs;
 						break;
 					}
 				}
