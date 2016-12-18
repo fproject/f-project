@@ -34,10 +34,16 @@ package net.fproject.di
 		 */
 		public var impl:Class;
 		
-		public function Implementation(abstractor:Class=null, impl:Class=null)
+		/**
+		 * The constructor arguments
+		 */
+		public var constructorArgs:*;
+		
+		public function Implementation(abstractor:Class=null, impl:Class=null, constructorArgs:*=null)
 		{
 			this.abstractor = abstractor;
 			this.impl = impl;
+			this.constructorArgs = constructorArgs;
 		}
 	}
 }
