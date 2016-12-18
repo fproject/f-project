@@ -12,6 +12,7 @@
     <classEntry path="net.fproject.html5.FileDownloader"/>
     <classEntry path="net.fproject.utils.ApplicationParam"/>
     <classEntry path="net.fproject.event.ComponentLoaderEvent"/>
+    <classEntry path="net.fproject.logging.RemoteTarget"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="manifest.xml" sourcePath="manifest.xml"/>

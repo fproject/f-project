@@ -20,13 +20,14 @@ package net.fproject.utils
 	import flash.utils.getQualifiedClassName;
 	
 	import mx.logging.ILogger;
+	import mx.logging.ILoggingTarget;
 	import mx.logging.Log;
 	import mx.logging.LogEventLevel;
-	import mx.logging.targets.TraceTarget;
 	import mx.resources.IResourceManager;
 	import mx.resources.ResourceManager;
 	
 	import net.fproject.fproject_internal;
+	import net.fproject.di.InstanceFactory;
 	
 	/**
 	 * 
@@ -37,30 +38,14 @@ package net.fproject.utils
 	 */
 	public class LoggingUtil
 	{
-		private static var isInitialized:Boolean = false;
+		private static var isInitialized:Boolean;
 		
-		private static function initLogging():void {
+		private static function initLogging():void 
+		{
+			if(isInitialized)
+				return;
 			// Create a target.
-			var logTarget:TraceTarget = new TraceTarget();
-			
-			// Log only messages for the classes in the mx.rpc.* and 
-			// mx.messaging packages.
-			logTarget.filters=ResourceUtil.getString("common.log.target.filters", 
-				ResourceUtil.FPRJ_CORE_BUNDLE).split(",");
-			
-			// Log all log levels.
-			logTarget.level = LogEventLevel.ALL;
-			
-			// Add date, time, category, and log level to the output.
-			logTarget.includeDate = 
-				new Boolean(ResourceUtil.getString("common.log.target.includeDate"));
-			logTarget.includeTime = 
-				new Boolean(ResourceUtil.getString("common.log.target.includeTime"));
-			logTarget.includeCategory = 
-				new Boolean(ResourceUtil.getString("common.log.target.includeCategory"));
-			logTarget.includeLevel = 
-				new Boolean(ResourceUtil.getString("common.log.target.includeLevel"));
-			
+			var logTarget:ILoggingTarget = InstanceFactory.getInstance(ILoggingTarget);
 			// Begin logging.
 			Log.addTarget(logTarget);
 			isInitialized = true;
@@ -289,10 +274,7 @@ package net.fproject.utils
 		
 		private static function isLoggable(level:int) : Boolean
 		{
-			if (!isInitialized)
-			{
-				initLogging();
-			}
+			initLogging();
 			switch(level)
 			{
 				case LogEventLevel.ALL:
