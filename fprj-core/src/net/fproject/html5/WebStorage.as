@@ -83,12 +83,13 @@ package net.fproject.html5
 		 * in the list associated with the <code>WebStorage</code> then this method returns <code>null</code>.
 		 * 
 		 * @param key The key
+		 * @param useBase64AMF if true, the item will be decoded using Base64-AMF before returning
 		 * @return The value associated with the given key.
 		 */
-        public function getItem(key:String):*
+        public function getItem(key:String, useBase64AMF:Boolean=true):*
         {
 			var s:String = ExternalInterface.call(type + "Storage.getItem", key);
-            return WebStorage.fproject_internal::fromBase64AMF(s);
+            return WebStorage.fproject_internal::decodeItem(s, useBase64AMF);
         }
 
 		/**
@@ -101,10 +102,13 @@ package net.fproject.html5
 		 * 
 		 * @param key The key to set
 		 * @param value The value to set
+		 * @param useBase64AMF if true, the item will be encoded to Base64-AMF before saving
 		 */
-        public function setItem(key:String, value:*):void
+        public function setItem(key:String, value:*, useBase64AMF:Boolean=true):void
         {
-            ExternalInterface.call(type + "Storage.setItem", key, Serializer.getInstance().toBase64AMF(value));
+			if(useBase64AMF)
+				value = Serializer.getInstance().toBase64AMF(value);
+            ExternalInterface.call(type + "Storage.setItem", key, value);
         }
 
 		/**
@@ -192,12 +196,13 @@ package net.fproject.html5
 			return _sessionStorage;
 		}
 		
-		fproject_internal static function fromBase64AMF(s:String):*
+		fproject_internal static function decodeItem(s:String, useBase64AMF:Boolean):*
 		{
 			if(!StringUtil.isBlank(s))
 			{
 				var s1:String = StringUtil.trim(s," \t\r\n");
-				if(s1.charAt(0) != "{" && s1.charAt(0) != '"' && s1.charAt(s1.length -1) != "}" && s1.charAt(s1.length -1) != '"')
+				if(useBase64AMF && s1.charAt(0) != "{" && s1.charAt(0) != '"' && 
+					s1.charAt(s1.length -1) != "}" && s1.charAt(s1.length -1) != '"')
 				{
 					return Deserializer.getInstance().fromBase64AMF(s);
 				}
