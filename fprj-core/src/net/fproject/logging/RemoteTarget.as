@@ -22,7 +22,9 @@ package net.fproject.logging
 	import mx.logging.LogEventLevel;
 	import mx.logging.targets.LineFormattedTarget;
 	
+	import net.fproject.html5.WebStorage;
 	import net.fproject.utils.ResourceUtil;
+
 	use namespace mx_internal;
 	/**
 	 *  Provides a logger target that uses the remote service to output log messages.
@@ -32,6 +34,8 @@ package net.fproject.logging
 	 */
 	public class RemoteTarget extends LineFormattedTarget
 	{
+		public var itemNumberLimit:Number;
+		
 		public function RemoteTarget(args:*)
 		{
 			var o:Object = args;
@@ -62,6 +66,8 @@ package net.fproject.logging
 					this.includeCategory = o["includeCategory"];
 				if(o.hasOwnProperty("includeLevel"))
 					this.includeLevel = o["includeLevel"];
+				if(o.hasOwnProperty("itemNumberLimit"))
+					this.itemNumberLimit = o["itemNumberLimit"];
 				if(o.hasOwnProperty("filters"))
 				{
 					if(o["filters"] is Array)
@@ -70,7 +76,17 @@ package net.fproject.logging
 						this.filters = String(o["filters"]).split(",");
 				}
 			}
+			
+			if(isNaN(itemNumberLimit) || itemNumberLimit <= 0)
+				itemNumberLimit = 4096;
+			
+			keySet = WebStorage.sessionStorage.getItem('flog_keys', false);
+			if(keySet == null)
+				keySet = [];
+			truncate();
 		}
+		
+		private var keySet:Array;
 		
 		/**
 		 *  @private
@@ -85,6 +101,23 @@ package net.fproject.logging
 		override mx_internal function internalLog(message:String):void
 		{
 			trace(message);
+			var d:Date = new Date();
+			var key:String = "flog_" + d.time;
+			WebStorage.sessionStorage.setItem(key, message, false);
+			keySet.push(d.time);
+			WebStorage.sessionStorage.setItem('flog_keys', JSON.stringify(keySet), false);
+		}
+		
+		private function truncate():void
+		{
+			if(keySet.length > itemNumberLimit)
+			{
+				var removing:Array = keySet.splice(0, keySet.length - itemNumberLimit);
+				for each (var idx:Number in removing)
+				{
+					WebStorage.sessionStorage.removeItem("flog_" + idx);
+				}
+			}
 		}
 	}
 }
