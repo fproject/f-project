@@ -38,17 +38,21 @@ package net.fproject.utils
 	 */
 	public class LoggingUtil
 	{
-		private static var isInitialized:Boolean;
+		private static var _logTarget:ILoggingTarget;
+
+		public static function get logTarget():ILoggingTarget
+		{
+			return _logTarget;
+		}
 		
 		private static function initLogging():void 
 		{
-			if(isInitialized)
+			if(_logTarget != null)
 				return;
 			// Create a target.
-			var logTarget:ILoggingTarget = InstanceFactory.getInstance(ILoggingTarget);
+			_logTarget = InstanceFactory.getInstance(ILoggingTarget);
 			// Begin logging.
-			Log.addTarget(logTarget);
-			isInitialized = true;
+			Log.addTarget(_logTarget);
 		}
 		
 		private static function getLogger(clazz:Class) : ILogger
