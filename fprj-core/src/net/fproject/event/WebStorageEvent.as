@@ -63,8 +63,8 @@ package net.fproject.event
 					if(this.hasOwnProperty(s))
 						this[s] = base64Source[s];
 				}
-				this.oldValue = WebStorage.fproject_internal::fromBase64AMF(this.oldValue);
-				this.newValue = WebStorage.fproject_internal::fromBase64AMF(this.newValue);
+				this.oldValue = WebStorage.fproject_internal::decodeItem(this.oldValue, true);
+				this.newValue = WebStorage.fproject_internal::decodeItem(this.newValue, true);
 			}
 		}
 		

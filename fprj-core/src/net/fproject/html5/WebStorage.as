@@ -200,13 +200,19 @@ package net.fproject.html5
 		{
 			if(!StringUtil.isBlank(s))
 			{
-				var s1:String = StringUtil.trim(s," \t\r\n");
-				if(useBase64AMF && s1.charAt(0) != "{" && s1.charAt(0) != '"' && 
-					s1.charAt(s1.length -1) != "}" && s1.charAt(s1.length -1) != '"')
-				{
-					return Deserializer.getInstance().fromBase64AMF(s);
+				try {
+					var s1:String = StringUtil.trim(s," \t\r\n");
+					if(useBase64AMF && s1.charAt(0) != "{" && s1.charAt(0) != '"' && 
+						s1.charAt(s1.length -1) != "}" && s1.charAt(s1.length -1) != '"')
+					{						
+						return Deserializer.getInstance().fromBase64AMF(s);						
+					}
+					return JSON.parse(s);
 				}
-				return JSON.parse(s);
+				catch (e:Error)
+				{
+					return s;
+				}
 			}
 			return s;
 		}
