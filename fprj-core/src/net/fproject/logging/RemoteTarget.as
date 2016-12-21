@@ -36,6 +36,8 @@ package net.fproject.logging
 	{
 		public var itemNumberLimit:Number;
 		
+		private const KEYSET_ID:String = "flog_keys";
+		
 		public function RemoteTarget(args:*)
 		{
 			var o:Object = args;
@@ -80,7 +82,7 @@ package net.fproject.logging
 			if(isNaN(itemNumberLimit) || itemNumberLimit <= 0)
 				itemNumberLimit = 4096;
 			
-			keySet = WebStorage.sessionStorage.getItem('flog_keys', false);
+			keySet = WebStorage.localStorage.getItem(KEYSET_ID, false);
 			if(keySet == null)
 				keySet = [];
 			truncate();
@@ -102,10 +104,28 @@ package net.fproject.logging
 		{
 			trace(message);
 			var d:Date = new Date();
-			var key:String = "flog_" + d.time;
-			WebStorage.sessionStorage.setItem(key, message, false);
+			var key:String = getKey(d.time);
+			WebStorage.localStorage.setItem(key, message, false);
 			keySet.push(d.time);
-			WebStorage.sessionStorage.setItem('flog_keys', JSON.stringify(keySet), false);
+			WebStorage.localStorage.setItem(KEYSET_ID, JSON.stringify(keySet), false);
+		}
+		
+		public function getAllLogData():String
+		{
+			var s:String = "";
+			for each (var idx:Number in keySet)
+			{
+				if(s != "")
+					s += "\n";
+				s += WebStorage.localStorage.getItem(getKey(idx));
+			}
+			
+			return s;
+		}
+		
+		private function getKey(idx:Number):String
+		{
+			return "flog_" + idx;
 		}
 		
 		private function truncate():void
@@ -115,7 +135,7 @@ package net.fproject.logging
 				var removing:Array = keySet.splice(0, keySet.length - itemNumberLimit);
 				for each (var idx:Number in removing)
 				{
-					WebStorage.sessionStorage.removeItem("flog_" + idx);
+					WebStorage.localStorage.removeItem(getKey(idx));
 				}
 			}
 		}
