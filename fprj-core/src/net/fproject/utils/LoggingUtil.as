@@ -23,6 +23,7 @@ package net.fproject.utils
 	import mx.logging.ILoggingTarget;
 	import mx.logging.Log;
 	import mx.logging.LogEventLevel;
+	import mx.logging.targets.TraceTarget;
 	import mx.resources.IResourceManager;
 	import mx.resources.ResourceManager;
 	
@@ -51,8 +52,31 @@ package net.fproject.utils
 				return;
 			// Create a target.
 			_logTarget = InstanceFactory.getInstance(ILoggingTarget);
+			if(_logTarget == null)
+				_logTarget = createDefaultTarget();
 			// Begin logging.
 			Log.addTarget(_logTarget);
+		}
+		
+		private static function createDefaultTarget():ILoggingTarget
+		{
+			// Create a target.
+			var target:TraceTarget = new TraceTarget();
+			
+			// Log only messages for the classes in the mx.rpc.* and 
+			// mx.messaging packages.
+			target.filters=ResourceUtil.getString("common.log.target.filters", ResourceUtil.FPRJ_CORE_BUNDLE).split(",");
+			
+			// Log all log levels.
+			target.level = LogEventLevel.ALL;
+			
+			// Add date, time, category, and log level to the output.
+			target.includeDate = new Boolean(ResourceUtil.getString("common.log.target.includeDate"));
+			target.includeTime = new Boolean(ResourceUtil.getString("common.log.target.includeTime"));
+			target.includeCategory = new Boolean(ResourceUtil.getString("common.log.target.includeCategory"));
+			target.includeLevel = new Boolean(ResourceUtil.getString("common.log.target.includeLevel"));
+			
+			return target;
 		}
 		
 		private static function getLogger(clazz:Class) : ILogger
