@@ -13,6 +13,7 @@
     <classEntry path="net.fproject.utils.ApplicationParam"/>
     <classEntry path="net.fproject.event.ComponentLoaderEvent"/>
     <classEntry path="net.fproject.logging.RemoteTarget"/>
+    <classEntry path="net.fproject.logging.IRemoteTarget"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="manifest.xml" sourcePath="manifest.xml"/>

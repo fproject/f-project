@@ -18,6 +18,8 @@
 
 package net.fproject.logging
 {
+	import flash.utils.getDefinitionByName;
+	
 	import mx.core.mx_internal;
 	import mx.logging.LogEventLevel;
 	import mx.logging.targets.LineFormattedTarget;
@@ -32,9 +34,11 @@ package net.fproject.logging
 	 *  <p>To view logging output, you must config a F-Project Logging Server.</p>
 	 *  
 	 */
-	public class RemoteTarget extends LineFormattedTarget
+	public class RemoteTarget extends LineFormattedTarget implements IRemoteTarget
 	{
 		public var itemNumberLimit:Number;
+		
+		public var remoteConfig:Object;
 		
 		private const KEYSET_ID:String = "flog_keys";
 		
@@ -70,6 +74,9 @@ package net.fproject.logging
 					this.includeLevel = o["includeLevel"];
 				if(o.hasOwnProperty("itemNumberLimit"))
 					this.itemNumberLimit = o["itemNumberLimit"];
+				if(o.hasOwnProperty("remoteConfig"))
+					this.remoteConfig = o["remoteConfig"];
+				
 				if(o.hasOwnProperty("filters"))
 				{
 					if(o["filters"] is Array)
@@ -110,7 +117,12 @@ package net.fproject.logging
 			WebStorage.localStorage.setItem(KEYSET_ID, JSON.stringify(keySet), false);
 		}
 		
-		public function getAllLogData():String
+		/**
+		 * 
+		 * Returns log data by joining all log items
+		 * 
+		 */
+		public function getLogData():String
 		{
 			var s:String = "";
 			for each (var idx:Number in keySet)
@@ -121,6 +133,15 @@ package net.fproject.logging
 			}
 			
 			return s;
+		}
+		
+		/**
+		 * 
+		 * Report log data to a F-Project Server
+		 * 
+		 */
+		public function reportLogData(logData:*):void
+		{
 		}
 		
 		private function getKey(idx:Number):String
