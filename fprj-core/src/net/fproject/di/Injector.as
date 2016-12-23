@@ -46,7 +46,7 @@ package net.fproject.di
 	 * 
 	 * Dependency Injection utility class
 	 * 
-	 * @author Bui Sy Nguyen
+	 * @author Bui Sy Nguyen, Nguyen Quan Tuan
 	 * 
 	 */
 	public class Injector
