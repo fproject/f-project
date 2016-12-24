@@ -82,7 +82,10 @@ package net.fproject.rpc
 		
 		/**
 		 * Get a singleton instance of a remote object type. 
-		 * @param proxy the proxy object that contains metadata for DI reflection
+		 * @param proxy the proxy object that contains metadata for DI reflection.
+		 * This also can be an untyped object that contains information for DI reflection like
+		 * the following example: <pre>{ name:"MyService",destination:"my-dest",uri:"/some/uri",modelClass:"MyModel" }</pre>
+		 * 
 		 * @return a singleton instance of the remote object type.
 		 * 
 		 */
@@ -90,54 +93,76 @@ package net.fproject.rpc
 		{
 			var type:Type = Type.forInstance(proxy);
 			
-			if(nameToRemoteObject[type.fullName] != undefined)
-				return nameToRemoteObject[type.fullName];
-			
-			var meta:Object = ReflectionUtil.findClassMetadataValue(type, REMOTE_OBJECT);
-			if ((meta is Array) && meta.length > 0 && (meta[0] is Metadata))
-				meta = meta[0];
-			if (meta is Metadata)
+			if(type.fullName == "Object")
 			{
-				var m:Metadata = Metadata(meta);
-				if(m.hasArgumentWithKey(NAME))
-				{
-					var name:String = m.getArgument(NAME).value;
-				}
-				else
-				{
-					name = MetadataArgument(m.arguments[0]).value;
-				}
-				
-				if(m.hasArgumentWithKey(DESTINATION))
-				{
-					var dest:String = m.getArgument(DESTINATION).value;
-				}
-				else if(StringUtil.isBlank(MetadataArgument(m.arguments[1]).key))
-				{
-					dest = MetadataArgument(m.arguments[1]).value;
-				}
-				
-				if(m.hasArgumentWithKey(URI))
-				{
-					var uri:String = m.getArgument(URI).value;
-				}
-				else if(m.arguments.length > 2 && StringUtil.isBlank(MetadataArgument(m.arguments[2]).key))
-				{
-					uri = MetadataArgument(m.arguments[2]).value;
-				}
-				
-				if(m.hasArgumentWithKey(MODEL_CLASS))
-				{
-					var modelClass:String = m.getArgument(MODEL_CLASS).value;
-				}
-				else if(m.arguments.length > 3 && StringUtil.isBlank(MetadataArgument(m.arguments[3]).key))
-				{
-					modelClass = MetadataArgument(m.arguments[3]).value;
-				}
+				if(proxy.hasOwnProperty("name"))
+					var fullName:String = proxy.name;
+				if (StringUtil.isBlank(fullName))
+					return null;
+				var name:String = fullName;
+				if(proxy.hasOwnProperty("destination"))
+					var dest:String = proxy.destination;
+				if(proxy.hasOwnProperty("uri"))
+					var uri:String = proxy.uri;
+				if(proxy.hasOwnProperty("modelClass"))
+					var modelClass:String = proxy.modelClass;
 			}
 			else
 			{
-				name = meta as String;
+				fullName = type.fullName;
+			}
+			
+			if(nameToRemoteObject[fullName] != undefined)
+				return nameToRemoteObject[fullName];
+			
+			if (name == null)
+			{
+				var meta:Object = ReflectionUtil.findClassMetadataValue(type, REMOTE_OBJECT);
+				if ((meta is Array) && meta.length > 0 && (meta[0] is Metadata))
+					meta = meta[0];
+				if (meta is Metadata)
+				{
+					var m:Metadata = Metadata(meta);
+					if(m.hasArgumentWithKey(NAME))
+					{
+						name = m.getArgument(NAME).value;
+					}
+					else
+					{
+						name = MetadataArgument(m.arguments[0]).value;
+					}
+					
+					if(m.hasArgumentWithKey(DESTINATION))
+					{
+						dest = m.getArgument(DESTINATION).value;
+					}
+					else if(StringUtil.isBlank(MetadataArgument(m.arguments[1]).key))
+					{
+						dest = MetadataArgument(m.arguments[1]).value;
+					}
+					
+					if(m.hasArgumentWithKey(URI))
+					{
+						uri = m.getArgument(URI).value;
+					}
+					else if(m.arguments.length > 2 && StringUtil.isBlank(MetadataArgument(m.arguments[2]).key))
+					{
+						uri = MetadataArgument(m.arguments[2]).value;
+					}
+					
+					if(m.hasArgumentWithKey(MODEL_CLASS))
+					{
+						modelClass = m.getArgument(MODEL_CLASS).value;
+					}
+					else if(m.arguments.length > 3 && StringUtil.isBlank(MetadataArgument(m.arguments[3]).key))
+					{
+						modelClass = MetadataArgument(m.arguments[3]).value;
+					}
+				}
+				else
+				{
+					name = meta as String;
+				}
 			}
 			
 			if(StringUtil.isBlank(name))
@@ -196,7 +221,7 @@ package net.fproject.rpc
 			remoteObj.destination = dest;
 			remoteObj.channelSet = cs;
 			
-			nameToRemoteObject[type.fullName] = remoteObj;
+			nameToRemoteObject[fullName] = remoteObj;
 			
 			return remoteObj;
 		}
