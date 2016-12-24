@@ -345,6 +345,7 @@ package net.fproject.active
 			assertNotNull(event.result is Object);
 			assertEquals(1, event.result.departmentId);
 			assertEquals(1, event.result.userId);
+			userDepartmentAssignmentService.remove({userId:1, departmentId:1});
 		}
 		
 		[Test (async, description="Normal case")]
@@ -513,15 +514,15 @@ package net.fproject.active
 		{
 			var id:String = UIDUtil.createUID();
 			var responder:CallResponder = userDepartmentAssignmentService.batchSave(
-				[{_isInserting:true,userId:1, departmentId:1},
-					{_isInserting:true,userId:1, departmentId:2}]);
+				[{_isInserting:true,userId:399, departmentId:98},
+					{_isInserting:true,userId:399, departmentId:99}]);
 			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase601_added, onFault), 2000));
 		}
 		
 		public function testCase601_added(event:ResultEvent, passThroughData:Object):void
 		{
 			var batchSaveReturn:Object = event.result;
-			var a:Array = [{userId:1, departmentId:1}, {userId:1, departmentId:2}];
+			var a:Array = [{userId:399, departmentId:98}, {userId:399, departmentId:99}];
 			var responder:CallResponder = userDepartmentAssignmentService.batchRemove(a);
 			responder.token.addResponder(Async.asyncResponder(this, new TestResponder(testCase601_checkResult, onFault), 2000));	
 		}

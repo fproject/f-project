@@ -9,7 +9,7 @@
 			   minWidth="955" minHeight="600" creationComplete="onCreationComplete()">
 	<fx:Script>
 		<![CDATA[
-			import net.fproject.di.Injector_attachEventListeners;
+			import net.fproject.active.ActiveDataProvider_fetchNextPage;
 			
 			import org.flexunit.runner.Request;
 			
@@ -17,7 +17,7 @@
 			{
 				var testsToRun:Array = new Array();
 				
-				testsToRun.push(Request.methods(net.fproject.di.Injector_attachEventListeners,["testCase021"]));
+				testsToRun.push(Request.methods(net.fproject.active.ActiveDataProvider_fetchNextPage,["testCase001"]));
 				return testsToRun;
 			}
 			
@@ -29,7 +29,9 @@
 			
 		]]>
 	</fx:Script>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
 	<flexui:FlexUnitTestRunnerUI id="testRunner" portNumber="8765">
 	</flexui:FlexUnitTestRunnerUI>
-	
 </s:Application>
