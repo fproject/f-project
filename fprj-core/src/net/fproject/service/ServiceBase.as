@@ -56,14 +56,25 @@ package net.fproject.service
 	 * 
 	 */
 	public class ServiceBase
-	{		
+	{	
+		/**
+		 * Constructor 
+		 * 
+		 */		
+		public function ServiceBase(remoteObject:IRemoteObject=null)
+		{
+			_remoteObject = remoteObject;
+			if(_remoteObject != null)
+				initRemoteObject(_remoteObject);
+		}
+		
 		private var _lastCallResponder:CallResponder;
 		
 		public function get lastCallResponder():CallResponder
 		{
 			return _lastCallResponder;
 		}
-
+		
 		private var _remoteObject:IRemoteObject;
 
 		/**
@@ -71,15 +82,19 @@ package net.fproject.service
 		 * The remote service object
 		 * 
 		 */
-		protected function get remoteObject():Object
+		public function get remoteObject():Object
 		{
 			if(_remoteObject == null)
 			{
-				//Initialize callback dictionary
-				responderToCallbackInfo = new Dictionary(true);
-				
 				_remoteObject = createRemoteObject();
 			}
+			
+			if(responderToCallbackInfo == null)
+			{
+				//Initialize callback dictionary
+				responderToCallbackInfo = new Dictionary(true);	
+			}
+				
 			return _remoteObject;
 		}
 
@@ -97,8 +112,18 @@ package net.fproject.service
 		 */
 		protected function createRemoteObject():IRemoteObject
 		{
+			if(_remoteObject != null)
+				return _remoteObject;
+			
 			var ro:IRemoteObject = RemoteObjectFactory.getInstance(this);
 			
+			initRemoteObject(ro);
+			
+			return ro;
+		}
+		
+		private function initRemoteObject(ro:IRemoteObject):void
+		{
 			//Set default request timeout to 1 minute.
 			ro.requestTimeout = 60;
 			
@@ -109,8 +134,6 @@ package net.fproject.service
 			}				
 			
 			ro.addEventListener(FaultEvent.FAULT, onServiceFailed, false, 0, true);
-			
-			return ro;
 		}
 		
 		protected function deleteServiceCall(responder:CallResponder):void

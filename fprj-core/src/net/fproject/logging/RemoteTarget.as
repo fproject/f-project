@@ -25,6 +25,9 @@ package net.fproject.logging
 	import mx.logging.targets.LineFormattedTarget;
 	
 	import net.fproject.html5.WebStorage;
+	import net.fproject.rpc.IRemoteObject;
+	import net.fproject.rpc.RemoteObjectFactory;
+	import net.fproject.service.ServiceBase;
 	import net.fproject.utils.ResourceUtil;
 
 	use namespace mx_internal;
@@ -135,6 +138,23 @@ package net.fproject.logging
 			return s;
 		}
 		
+		private var _logService:ServiceBase;
+		
+		public function get logService():ServiceBase
+		{
+			if (_logService == null)
+			{
+				if (remoteConfig != null)
+				{
+					var ro:IRemoteObject = RemoteObjectFactory.getInstance(remoteConfig);
+					if(ro != null)
+						_logService = new ServiceBase(ro);
+				}
+			}
+			
+			return _logService;
+		}
+		
 		/**
 		 * 
 		 * Report log data to a F-Project Server
@@ -142,6 +162,8 @@ package net.fproject.logging
 		 */
 		public function reportLogData(logData:*):void
 		{
+			if(logService != null)
+				logService.remoteObject.reportLogData(logData);
 		}
 		
 		private function getKey(idx:Number):String
