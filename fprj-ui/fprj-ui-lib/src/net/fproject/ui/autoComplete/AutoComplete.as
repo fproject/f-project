@@ -637,9 +637,9 @@ package net.fproject.ui.autoComplete
 			textInput.showClearButton = _showClearButton && !_allowMultipleSelection;
 		}
 		
-		protected function defaultCreateNewValue():Object
+		protected function defaultCreateNewValue(searchingText:String):Object
 		{
-			return searchTextInternal;
+			return searchingText;
 		}
 		
 		/**
@@ -1162,7 +1162,7 @@ package net.fproject.ui.autoComplete
 		protected function onCreateNewButtonClickHandler(event:AutoCompleteEvent):void
 		{
 			if (_selectedItems)
-				_selectedItems.addItem(createNewValueFunction());
+				_selectedItems.addItem(createNewValueFunction(searchTextInternal));
 			dispatchEvent(new AutoCompleteEvent(AutoCompleteEvent.CHANGE));
 		}
 		

@@ -235,7 +235,7 @@ package net.fproject.ui.autoComplete.supportClasses
 		
 		public function highLightMatchLabelFunction(item:Object):String
 		{
-			return highlightMatch(labelFunction(item));
+			return (item === createNewButtonData) ? labelFunction(item) : highlightMatch(labelFunction(item));
 		}
 		
 		protected var _matchType:String = MATCH_ANY_PART;
@@ -330,7 +330,9 @@ package net.fproject.ui.autoComplete.supportClasses
 				itemMatchingCount = 0;
 			if (item !== createNewButtonData && itemMatchingCount >= dropDownRowCount)
 				return false; 
-			if (item === createNewButtonData || filterFunction(item, _searchText))
+			if (item === createNewButtonData)
+				return true;
+			if (filterFunction(item, _searchText))
 			{
 				itemMatchingCount++;
 				return true;
@@ -366,8 +368,11 @@ package net.fproject.ui.autoComplete.supportClasses
 			{
 				filteredCollection.removeEventListener(CollectionEvent.COLLECTION_CHANGE,filteredCollection_collectionChange);
 				filteredCollection.removeItem(createNewButtonData);
+				filteredCollection.filterFunction = null;
+				filteredCollection.refresh();
+				
 				if (searchText != null && searchText.length > 0)
-					filteredCollection.list.addItem(createNewButtonData);
+					filteredCollection.addItem(createNewButtonData);
 				filteredCollection.addEventListener(CollectionEvent.COLLECTION_CHANGE, filteredCollection_collectionChange, false, 0, true);
 			}
 			
@@ -387,6 +392,11 @@ package net.fproject.ui.autoComplete.supportClasses
 			
 			if (skin != null)
 				skin.currentState = (isFoundRecentSearchs()) ? "found":"nothingFound";
+			if (dropDown)
+			{
+				dropDown.validateNow();
+				dropDown.invalidateDisplayList();
+			}
 		}
 		
 		/**
@@ -432,6 +442,12 @@ package net.fproject.ui.autoComplete.supportClasses
 			filteredCollection.removeEventListener(CollectionEvent.COLLECTION_CHANGE,filteredCollection_collectionChange);
 			filteredCollection.refresh();
 			filteredCollection.addEventListener(CollectionEvent.COLLECTION_CHANGE, filteredCollection_collectionChange, false, 0, true);
+			
+			if (dropDown)
+			{
+				dropDown.validateNow();
+				dropDown.invalidateDisplayList();
+			}
 		}
 		
 		protected var _itemRenderer:IFactory;
