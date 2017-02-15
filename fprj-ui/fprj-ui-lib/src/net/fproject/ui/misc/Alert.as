@@ -38,7 +38,7 @@ package net.fproject.ui.misc {
 	import spark.components.Panel;
 	import spark.components.supportClasses.TextBase;
 	
-	import net.fproject.supportClasses.ResourceUtil;
+	import net.fproject.util.FprjuiUtil;
 	
 	//--------------------------------------
 	//  Styles
@@ -88,6 +88,8 @@ package net.fproject.ui.misc {
 	 *  or press the Escape key.</p>
 	 *
 	 */
+	
+	[ResourceBundle("fprjui")]
 	public class Alert extends Panel {
 		[SkinPart(required="false")]
 		public var messageDisplay:TextBase;
@@ -209,7 +211,7 @@ package net.fproject.ui.misc {
 				if (buttonLabels.hasOwnProperty(key))
 					return buttonLabels[key];
 			}
-			return ResourceUtil.getString('alert.Button.' + msgId);
+			return FprjuiUtil.getString('alert.Button.' + msgId);
 		}
 		
 		private var _message:String;
