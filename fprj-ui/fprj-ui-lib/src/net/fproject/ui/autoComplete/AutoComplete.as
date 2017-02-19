@@ -637,10 +637,9 @@ package net.fproject.ui.autoComplete
 			textInput.showClearButton = _showClearButton && !_allowMultipleSelection;
 		}
 		
-		protected function defaultCreateNewValue():void
+		protected function defaultCreateNewValue(searchingText:String):Object
 		{
-			if (_selectedItems && searchTextInternal)
-				_selectedItems.addItem(searchTextInternal);
+			return searchingText;
 		}
 		
 		/**
@@ -654,7 +653,7 @@ package net.fproject.ui.autoComplete
 			}
 			
 			var p:Point = dropDownContainer.localToGlobal(new Point(0, 0));
-			var rect:Rectangle = new Rectangle(p.x, p.y, dropDownContainer.width, dropDownContainer.height);
+			var rect:Rectangle = new Rectangle(p.x, p.y + height, width, dropDownContainer.height);
 			
 			if (!rect.contains(event.stageX, event.stageY))
 			{
@@ -1162,7 +1161,8 @@ package net.fproject.ui.autoComplete
 		
 		protected function onCreateNewButtonClickHandler(event:AutoCompleteEvent):void
 		{
-			createNewValueFunction();
+			if (_selectedItems)
+				_selectedItems.addItem(createNewValueFunction(searchTextInternal));
 			dispatchEvent(new AutoCompleteEvent(AutoCompleteEvent.CHANGE));
 		}
 		
@@ -1210,6 +1210,7 @@ package net.fproject.ui.autoComplete
 		
 		public function set searchText(value:String):void
 		{
+			dropDownContainer.searchText = value;
 			if(_searchText != value)
 			{
 				_searchText = value == null ? "":value;
