@@ -201,14 +201,17 @@ package net.fproject.rpc
 				while (j != -1)
 				{
 					var k:int = j - 1;
-					while(route.charAt(k) != "&" && route.charAt(k) != "?")
+					while(k >=0 && route.charAt(k) != "&" && route.charAt(k) != "?")
 					{
 						k--;
 					}
-					if(route.charAt(k) == "?")
+					if(k >= 0 && route.charAt(k) == "?")
 						k++;
-						
-					route = route.substring(0, k) + route.substr(j + target.length);
+					if(k > 0)						
+						route = route.substring(0, k) + route.substr(j + target.length);
+					else
+						route = route.substr(j + target.length);
+					
 					j = route.lastIndexOf(target);
 				}
 				
