@@ -311,6 +311,48 @@ package net.fproject.utils
 			return true;
 		}
 		
+		public static function simplifyByLocal(s:String):String
+		{
+			var characterVariations:String = ResourceUtil.getString("character.variations");
+			var inputString:String = s.toLocaleLowerCase();
+			var result:String = "";
+			if(characterVariations != "character.variations")
+			{
+				var semicolonStart:int;
+				var semicolonEnd:int;
+				for (var i:int = 0; i < inputString.length; i++)
+				{
+					var localChar:String = inputString.charAt(i);
+					var index:int = characterVariations.indexOf(localChar);
+					var found:Boolean = false;
+					if(index != -1)
+					{
+						semicolonStart = characterVariations.lastIndexOf(";", index);
+						semicolonEnd = characterVariations.indexOf(";", index);
+						if(semicolonEnd == -1)
+							semicolonEnd = characterVariations.length;
+						for(var j:int = semicolonStart + 1; j < semicolonEnd; j++)
+						{
+							if(localChar == characterVariations.charAt(j))
+							{
+								found = true;
+								break;
+							}
+						}
+					}
+					
+					if (found)
+						result += characterVariations.charAt(semicolonStart+1);
+					else
+						result += localChar;
+				}
+			}
+			else
+				result = inputString;
+			
+			return result;
+		}
+		
 		private static var characterVariations:String;
 		private static var _defaultCharacterCompareMethod:Function;
 		
