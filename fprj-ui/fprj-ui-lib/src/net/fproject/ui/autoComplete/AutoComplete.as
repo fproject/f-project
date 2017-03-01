@@ -946,8 +946,7 @@ package net.fproject.ui.autoComplete
 					}
 					else if (target.text && dropDownContainer.allowNewValues && target.isEditable())
 					{
-						_selectedItems.addItem(target.text);
-						dispatchEvent(new AutoCompleteEvent(AutoCompleteEvent.CHANGE));
+						onCreateNewButtonClickHandler();																														
 					}
 					else if (event.keyCode == Keyboard.ENTER)
 					{
