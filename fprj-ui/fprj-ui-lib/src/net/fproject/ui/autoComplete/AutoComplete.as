@@ -677,6 +677,8 @@ package net.fproject.ui.autoComplete
 				if (event.keyCode == Keyboard.ESCAPE)
 				{
 					hideDropDown();
+                    event.preventDefault();
+                    event.stopImmediatePropagation();
 				}
 			}
 			else

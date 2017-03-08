@@ -178,7 +178,7 @@ package net.fproject.service
 				info.completeCallback(e.result);
 			
 			if(appContext.hasEventListener(AppContextEvent.SERVICE_CALL_COMPLETED))
-				appContext.dispatchEvent(new AppContextEvent(AppContextEvent.SERVICE_CALL_COMPLETED));
+				appContext.dispatchEvent(new AppContextEvent(AppContextEvent.SERVICE_CALL_COMPLETED,this));
 			deleteServiceCall(CallResponder(e.currentTarget));
 		}
 		
@@ -205,7 +205,7 @@ package net.fproject.service
 			_lastCallResponder.addEventListener(FaultEvent.FAULT, onCallFailed);	
 			
 			if(appContext.hasEventListener(AppContextEvent.SERVICE_CALL_STARTED))
-				appContext.dispatchEvent(new AppContextEvent(AppContextEvent.SERVICE_CALL_STARTED));
+				appContext.dispatchEvent(new AppContextEvent(AppContextEvent.SERVICE_CALL_STARTED,this));
 			
 			responderToCallbackInfo[_lastCallResponder] = {};
 			
