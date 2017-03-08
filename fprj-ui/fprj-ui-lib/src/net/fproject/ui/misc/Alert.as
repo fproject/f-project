@@ -469,7 +469,6 @@ package net.fproject.ui.misc {
 			_message = value;
 			if (messageDisplay) {
 				messageDisplay.text = _message;
-				messageDisplay.maxHeight = 99;
 			}
 		}
 		
