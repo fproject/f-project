@@ -23,9 +23,10 @@ package net.fproject.ui.autoComplete.supportClasses
 	{
 		public static function contains(string:String, searchStr:String):Boolean
 		{
-			var regExp:RegExp = new RegExp(regexEscape(searchStr), "i");
-			
-			return regExp.test(string);			
+			var s1:String = StringUtil.simplifyByLocal(string);
+			var s2:String = StringUtil.simplifyByLocal(searchStr);
+			var regExp:RegExp = new RegExp(regexEscape(s2), "i");
+			return regExp.test(s1);	
 		}
 				
 		public static function anyWordBeginsWith(string:String, pattern:String):Boolean
@@ -170,7 +171,25 @@ package net.fproject.ui.autoComplete.supportClasses
 		
 		public static function highlightMatch(string:String, searchStr:String):String
 		{
+			var s1:String = StringUtil.simplifyByLocal(string);
+			var s2:String = StringUtil.simplifyByLocal(searchStr);
 			var returnStr:String = string;
+			var index:int = s1.indexOf(s2);
+			
+			if (StringUtil.isBlank(s2))
+				return s1;
+			
+			var addCharCount:int = 0;
+			while (index != -1)
+			{
+				returnStr  = returnStr.slice(0, index) + "<b><u>" +  returnStr.slice(index, index+s2.length) + "</u></b>" + returnStr.slice(index + s2.length);
+				s1  = s1.slice(0, index) + "<b><u>" +  s2 + "</u></b>" + s1.slice(index + s2.length);
+				index += 14;
+				index = s1.indexOf(s2,index);
+			}
+			
+			return returnStr;
+			/*var returnStr:String = string;
 			
 			if(!StringUtil.isBlank(searchStr))
 			{
@@ -180,7 +199,7 @@ package net.fproject.ui.autoComplete.supportClasses
 				returnStr = returnStr.replace(regExp, "<b><u>$1</u></b>");
 			}
 			
-			return returnStr;
+			return returnStr;*/
         }
 
         /**

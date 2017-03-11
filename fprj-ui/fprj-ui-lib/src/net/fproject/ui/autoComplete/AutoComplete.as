@@ -147,11 +147,6 @@ package net.fproject.ui.autoComplete
 		{
 			_selectedItems = new ArrayCollection();
 			_selectedItems.addEventListener(CollectionEvent.COLLECTION_CHANGE, selectedItems_collectionChange);
-			dropDownContainer.addEventListener(AutoCompleteEvent.CHANGE, dropDownChangeHandler);
-			dropDownContainer.addEventListener(AutoCompleteEvent.CREATE_NEW_BUTTON_CLICK, onCreateNewButtonClickHandler);
-			dropDownContainer.addEventListener(AutoCompleteEvent.PERFECT_MATCH, onPerfectMatchHandler);
-
-			systemManager.addEventListener(MouseEvent.MOUSE_DOWN, mouseDownHandler);
 			this.addEventListener('removedFromStage', removedFromStageHandler);
 
 			if (!_disabledItems)
@@ -655,15 +650,22 @@ package net.fproject.ui.autoComplete
 		{
 			if (!isDropDownVisible())
 			{
+				event.preventDefault();
+				event.stopImmediatePropagation();
 				return;
 			}
 			
 			var p:Point = dropDownContainer.localToGlobal(new Point(0, 0));
-			var rect:Rectangle = new Rectangle(p.x, p.y + height, width, dropDownContainer.height);
+			var rect:Rectangle = new Rectangle(p.x, p.y, width, dropDownContainer.height + height);
 			
 			if (!rect.contains(event.stageX, event.stageY))
 			{
 				hideDropDown();
+			}
+			else
+			{
+				event.preventDefault();
+				event.stopImmediatePropagation();
 			}
 		}			
 		
@@ -681,6 +683,8 @@ package net.fproject.ui.autoComplete
 				if (event.keyCode == Keyboard.ESCAPE)
 				{
 					hideDropDown();
+                    event.preventDefault();
+                    event.stopImmediatePropagation();
 				}
 			}
 			else
@@ -1164,7 +1168,7 @@ package net.fproject.ui.autoComplete
 			}
 		}
 		
-		protected function onCreateNewButtonClickHandler(event:AutoCompleteEvent):void
+		protected function onCreateNewButtonClickHandler(event:AutoCompleteEvent=null):void
 		{
 			if (_selectedItems)
 				_selectedItems.addItem(createNewValueFunction(searchTextInternal));
@@ -1249,6 +1253,11 @@ package net.fproject.ui.autoComplete
 			{
 				PopUpManager.addPopUp(dropDownContainer, this);
 				callLater(callLater, [calculateDropDownPosition]);
+				
+				dropDownContainer.addEventListener(AutoCompleteEvent.CHANGE, dropDownChangeHandler);
+				dropDownContainer.addEventListener(AutoCompleteEvent.CREATE_NEW_BUTTON_CLICK, onCreateNewButtonClickHandler);
+				dropDownContainer.addEventListener(AutoCompleteEvent.PERFECT_MATCH, onPerfectMatchHandler);
+				systemManager.addEventListener(MouseEvent.MOUSE_DOWN, mouseDownHandler);
 			}
 			
 			if (focusManager)
@@ -1286,6 +1295,13 @@ package net.fproject.ui.autoComplete
 		public function hideDropDown():void
 		{
 			PopUpManager.removePopUp(dropDownContainer);
+			
+			dropDownContainer.removeEventListener(AutoCompleteEvent.CHANGE, dropDownChangeHandler);
+			dropDownContainer.removeEventListener(AutoCompleteEvent.CREATE_NEW_BUTTON_CLICK, onCreateNewButtonClickHandler);
+			dropDownContainer.removeEventListener(AutoCompleteEvent.PERFECT_MATCH, onPerfectMatchHandler);
+			systemManager.removeEventListener(MouseEvent.MOUSE_DOWN, mouseDownHandler);
+			
+			
 			callLater(enableDefaultButton);
 		}
 		

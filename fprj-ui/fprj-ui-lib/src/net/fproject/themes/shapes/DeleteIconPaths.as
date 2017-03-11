@@ -1,27 +1,26 @@
+///////////////////////////////////////////////////////////////////////////////
+//
+// © Copyright f-project.net 2010-present.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+///////////////////////////////////////////////////////////////////////////////
 package net.fproject.themes.shapes
 {
-	import mx.graphics.IFill;
-	
 	import spark.primitives.Path;
 	
-	public class DeleteIconPaths
+	public class DeleteIconPaths extends AbstractPaths
 	{
-		private var _paths:Array;
-
-		[Bindable("_none_")]
-		public function get paths():Array
-		{
-			return _paths;
-		}
-
-		public function set fill(value:IFill):void
-		{
-			for each (var p:Path in _paths)
-			{
-				p.fill = value;
-			}
-		}
-		
 		public function DeleteIconPaths()
 		{
 			_paths = [];
@@ -29,7 +28,7 @@ package net.fproject.themes.shapes
 			p.x = 6;
 			p.y = 5;
 			p.winding = "nonZero";
-			p.data = "M8.47217 0.203125C8.47217 0.0908203 8.56396 0 8.67676 0 8.79004 0 8.88184 0.0913086 8.88184 0.203125L8.88184 7.99561C8.88184 8.33936 8.73926 8.65283 8.51025 8.87988 8.28174 9.10693 7.96533 9.24805 7.61768 9.24805L1.26416 9.24805C0.916504 9.24805    0.600098 9.10693 0.371582 8.87988 0.142578 8.65283 0 8.33984 0 7.99561L0 0.203125C0 0.0908203 0.0917969 0 0.205078 0 0.317871 0 0.409668 0.0913086 0.409668 0.203125L0.409668 7.99561C0.409668 8.22754 0.506348 8.43945 0.661133 8.59277 0.81543 8.74561    1.0293 8.8418 1.26367 8.8418L7.61768 8.8418C7.85156 8.8418 8.06494 8.74561 8.21973 8.59277 8.37451 8.43896 8.47119 8.22754 8.47119 7.99561L8.47119 0.203125 8.47217 0.203125Z";
+            p.data = "M8.47 0.2C8.47 0.09 8.56 0 8.68 0 8.79 0 8.88 0.09 8.88 0.2L8.88 8C8.88 8.34 8.74 8.65 8.51 8.88 8.28 9.11 7.97 9.25 7.62 9.25L1.26 9.25C0.92 9.25    0.6 9.11 0.37 8.88 0.14 8.65 0 8.34 0 8L0 0.2C0 0.09 0.09 0 0.21 0 0.32 0 0.41 0.09 0.41 0.2L0.41 8C0.41 8.23 0.51 8.44 0.66 8.59 0.82 8.75 1.03 8.84 1.26 8.84L7.62 8.84C7.85 8.84 8.06 8.75 8.22 8.59 8.37 8.44 8.47 8.23 8.47 8L8.47 0.2 8.47 0.2Z";
 			_paths.push(p);
 			
 			p = new Path;

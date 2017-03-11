@@ -1,3 +1,20 @@
+///////////////////////////////////////////////////////////////////////////////
+//
+// © Copyright f-project.net 2010-present.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+///////////////////////////////////////////////////////////////////////////////
 package net.fproject.themes.shapes
 {
 	import spark.primitives.Path;
@@ -7,7 +24,7 @@ package net.fproject.themes.shapes
 		public function TickCircle()
 		{
 			super();
-			this.data = "M4.72021 6.47998 3.6001 7.6001 7.2002 11.2002 15.2002 3.2002 14.0801 2.08008 7.2002 8.95996 4.72021 6.47998ZM14.3999 8C14.3999 11.52 11.52 14.3999 8 14.3999 4.47998 14.3999 1.6001 11.52 1.6001 8 1.6001 4.47998 4.47998 1.6001 8 1.6001 8.64014 1.6001 9.2002 1.68018 9.75977 1.83984L11.04 0.560059C10.0801 0.240234 9.04004 0 8 0 3.6001 0 0 3.6001 0 8 0 12.3999 3.6001 16 8 16 12.3999 16 16 12.3999 16 8L14.3999 8Z";
+			this.data ="M4.72 6.48 3.6 7.6 7.2 11.2 15.2 3.2 14.08 2.08 7.2 8.96 4.72 6.48ZM14.4 8C14.4 11.52 11.52 14.4 8 14.4 4.48 14.4 1.6 11.52 1.6 8 1.6 4.48 4.48 1.6 8 1.6 8.64 1.6 9.2 1.68 9.76 1.84L11.04 0.56C10.08 0.24 9.04 0 8 0 3.6 0 0 3.6 0 8 0 12.4 3.6 16 8 16 12.4 16 16 12.4 16 8L14.4 8Z";
 		}
 	}
 }

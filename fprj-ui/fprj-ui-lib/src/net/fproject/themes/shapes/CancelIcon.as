@@ -1,3 +1,20 @@
+///////////////////////////////////////////////////////////////////////////////
+//
+// © Copyright f-project.net 2010-present.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+///////////////////////////////////////////////////////////////////////////////
 package net.fproject.themes.shapes
 {
 	import spark.primitives.Path;
@@ -7,7 +24,7 @@ package net.fproject.themes.shapes
 		public function CancelIcon()
 		{
 			super();
-			this.data = "M7.95752 0C5.68701 0 3.64063 0.960938 2.18945 2.4917 2.1792 2.50049 2.16602 2.50391 2.15674 2.51367 2.14111 2.52881 2.13574 2.54932 2.12158 2.56592 0.809082 3.98584 0 5.87695 0 7.95801 0 12.3457 3.56934 15.9155 7.95752 15.9155 12.3447 15.9155 15.9146 12.3457 15.9146 7.95801 15.9146 3.56982 12.3452 0 7.95752 0ZM1.28223 7.95752C1.28223 6.43896 1.79834 5.0415 2.65576 3.91846L11.9961 13.2598C10.8735 14.1167 9.47656 14.6323 7.95752 14.6323 4.27686 14.6323 1.28223 11.6382 1.28223 7.95752Z M12.937 12.3867 3.52783 2.97803C4.70801 1.92725 6.25684 1.28223 7.95752 1.28223 11.6377 1.28223 14.6318 4.27686 14.6318 7.95752 14.6318 9.6582 13.9883 11.207 12.937 12.3867Z";
+            this.data = "M7.96 0C5.69 0 3.64 0.96 2.19 2.49 2.18 2.5 2.17 2.5 2.16 2.51 2.14 2.53 2.14 2.55 2.12 2.57 0.81 3.99 0 5.88 0 7.96 0 12.35 3.57 15.92 7.96 15.92 12.34 15.92 15.91 12.35 15.91 7.96 15.91 3.57 12.35 0 7.96 0ZM1.28 7.96C1.28 6.44 1.8 5.04 2.66 3.92L12 13.26C10.87 14.12 9.48 14.63 7.96 14.63 4.28 14.63 1.28 11.64 1.28 7.96Z M12.94 12.39 3.53 2.98C4.71 1.93 6.26 1.28 7.96 1.28 11.64 1.28 14.63 4.28 14.63 7.96 14.63 9.66 13.99 11.21 12.94 12.39Z";
 		}
 	}
 }
