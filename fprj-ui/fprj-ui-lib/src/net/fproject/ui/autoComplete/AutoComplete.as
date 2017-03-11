@@ -150,9 +150,10 @@ package net.fproject.ui.autoComplete
 			dropDownContainer.addEventListener(AutoCompleteEvent.CHANGE, dropDownChangeHandler);
 			dropDownContainer.addEventListener(AutoCompleteEvent.CREATE_NEW_BUTTON_CLICK, onCreateNewButtonClickHandler);
 			dropDownContainer.addEventListener(AutoCompleteEvent.PERFECT_MATCH, onPerfectMatchHandler);
-			
+
 			systemManager.addEventListener(MouseEvent.MOUSE_DOWN, mouseDownHandler);
-			
+			this.addEventListener('removedFromStage', removedFromStageHandler);
+
 			if (!_disabledItems)
 			{
 				_disabledItems = new ArrayCollection();
@@ -183,6 +184,11 @@ package net.fproject.ui.autoComplete
 			addEventListener(MoveEvent.MOVE, moveHandler);
 		}
 		
+		protected function removedFromStageHandler(e:Event):void
+		{
+			hideDropDown();
+		}
+
 		private function get defaultInlineButtonFactory():IFactory
 		{
 			return new ClassFactory(DefaultInlineButton);
