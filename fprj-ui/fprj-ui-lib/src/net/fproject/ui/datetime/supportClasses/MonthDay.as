@@ -17,6 +17,8 @@
 ///////////////////////////////////////////////////////////////////////////////
 package net.fproject.ui.datetime.supportClasses
 {
+	import mx.utils.ObjectUtil;
+	
 	import net.fproject.model.LocalUID;
 	
 	/**
@@ -25,8 +27,25 @@ package net.fproject.ui.datetime.supportClasses
 	public class MonthDay extends LocalUID
 	{
 		// the date to display
-		[Bindable]
-		public var date:Date;
+		private var _date:Date;
+
+		[Bindable("propertyChange")]
+		public function get date():Date
+		{
+			return _date;
+		}
+
+		public function set date(value:Date):void
+		{
+			if(ObjectUtil.dateCompare(_date,value) != 0)
+			{
+				var oldVal:Date = _date;
+				_date = value;
+				this.dispatchChangeEvent("date", oldVal, value);
+				this.dispatchChangeEvent("dateLabel", null, dateLabel);
+			}			
+		}
+
 		
 		[Bindable]
 		public var isInCurrentMonth:Boolean;
@@ -37,10 +56,10 @@ package net.fproject.ui.datetime.supportClasses
 			return date.fullYear.toString() + date.month.toString() + date.date.toString();
 		}
 		
-		[Bindable("_none_")]
+		[Bindable("propertyChange")]
 		public function get dateLabel():String
 		{
-			return date.date.toString();
+			return date != null ? date.date.toString() : null;
 		}
 	}
 	
