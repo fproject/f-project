@@ -518,9 +518,9 @@ package net.fproject.di
 		}
 		
 		/**
-		 * <p>Late binding properties for member variables of an container object by dependency injection.</p>
-		 * In order to inject, the member must be declared by [PropertyBinding] metatdata, follows
-		 * this syntax:
+		 * <p>Late binding properties for member variables of a container object using dependency injection.</p>
+		 * In order to inject, the member must be declared by [PropertyBinding] metatdata using
+		 * the following syntax:
 		 * <pre>[PropertyBinding(property1="value1", property2="value2")]</pre>
 		 * Examples:<br/>
 		 * <pre>
