@@ -22,8 +22,8 @@ package net.fproject.ui.datetime
 	import mx.events.FlexMouseEvent;
 	
 	import spark.components.Group;
-	import spark.components.Label;
 	import spark.components.PopUpAnchor;
+	import spark.components.TextInput;
 	import spark.events.IndexChangeEvent;
 	
 	import net.fproject.ui.datetime.supportClasses.DateFieldButton;
@@ -127,7 +127,7 @@ package net.fproject.ui.datetime
 		public var openButton:DateFieldButton;
 		
 		[SkinPart(required="false",type="static")] 
-		public var labelDisplay:Label; // only used by DateField
+		public var textInput:TextInput; // only used by DateField
 		
 		private var _formatString:String;
 		
@@ -142,21 +142,27 @@ package net.fproject.ui.datetime
 			{
 				var oldValue:String = _formatString;
 				_formatString = value;
-				if (labelDisplay != null && _formatString != null)
-					labelDisplay.text = DateTimeUtil.formatDate(selectedDate, _formatString);
+				if (textInput != null && _formatString != null)
+					textInput.text = DateTimeUtil.formatDate(selectedDate, _formatString);
 			}
 		}
 		
-		private var _editable:String;
+		private var _editable:Boolean;
 
-		public function get editable():String
+		[Bindable("propertyChanged")]
+		[Inspectable(category="General", defaultValue="false")]
+		public function get editable():Boolean
 		{
 			return _editable;
 		}
 
-		public function set editable(value:String):void
+		public function set editable(value:Boolean):void
 		{
+			var oldVal:Boolean = _editable;
 			_editable = value;
+			if(textInput != null)
+				textInput.editable = _editable;
+			dispatchPropertyChangeEvent("editable", oldVal, value);
 		}
 		
 		/**
@@ -171,23 +177,23 @@ package net.fproject.ui.datetime
 		override protected function onSelectionChange(e:IndexChangeEvent):void
 		{
 			super.onSelectionChange(e);
-			if (labelDisplay)
-				labelDisplay.text = DateTimeUtil.formatDate(selectedDate, _formatString);
+			if (textInput)
+				textInput.text = DateTimeUtil.formatDate(selectedDate, _formatString);
 		}
 		
 		// selectedDate changes externally
 		override public function set selectedDate(value:Date):void
 		{
 			super.selectedDate = value;
-			if(labelDisplay)
+			if(textInput)
 			{
 				if (value == null) 
 				{
-					labelDisplay.text = "";
+					textInput.text = "";
 				}
 				else
 				{
-					labelDisplay.text = (selectedDate.month+1) + "/" + 
+					textInput.text = (selectedDate.month+1) + "/" + 
 						selectedDate.date+"/" + selectedDate.fullYear;
 				}
 			}			
@@ -203,6 +209,9 @@ package net.fproject.ui.datetime
 			
 			if(instance === dataGroup)
 				dataGroup.addEventListener(MouseEvent.CLICK, onDataGroupClick);
+			
+			if (instance === textInput) 
+				textInput.editable = _editable; 
 		}
 		
 		override protected function partRemoved(partName:String, instance:Object):void
@@ -229,12 +238,15 @@ package net.fproject.ui.datetime
 		
 		protected function onOpenButtonMouseDown(e:MouseEvent):void
 		{
-			if(popUpAnchor != null && !popUpAnchor.isPopUp)
-				dispatchEvent(new DateControlEvent(DateControlEvent.OPEN));
-			else
-				openRequested = true;
-					
-			this.invalidateSkinState();
+			if(_editable)
+			{
+				if(popUpAnchor != null && !popUpAnchor.isPopUp)
+					dispatchEvent(new DateControlEvent(DateControlEvent.OPEN));
+				else
+					openRequested = true;
+				
+				this.invalidateSkinState();
+			}
 		}
 		
 		protected function onDataGroupClick(e:MouseEvent):void
