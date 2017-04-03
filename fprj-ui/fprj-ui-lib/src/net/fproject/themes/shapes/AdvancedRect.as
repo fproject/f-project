@@ -203,6 +203,7 @@ package net.fproject.themes.shapes
 			
 			if(this.fill != null)
 			{
+				g.lineStyle();
 				g.drawRect(drawX, drawY, width, height);
 			}
 			
@@ -212,8 +213,6 @@ package net.fproject.themes.shapes
 				strokeBounds.offset(drawX, drawY);
 				stroke.apply(g, strokeBounds, new Point(drawX, drawY));
 			}
-			else
-				g.lineStyle();
 			
 			if(leftBorderVisible)
 			{
@@ -238,7 +237,6 @@ package net.fproject.themes.shapes
 				g.moveTo(drawX , drawY);
 				g.lineTo(drawX + width, drawY);
 			}			
-			
 		}
 	}
 }

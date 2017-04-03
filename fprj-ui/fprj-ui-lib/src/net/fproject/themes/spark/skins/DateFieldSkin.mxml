@@ -70,17 +70,16 @@
 				<s:fill><s:SolidColor color="0xFFFFFF" /></s:fill>
 			</s:Rect>
 			
-			<s:Rect width="100%" height="30" >
-				<s:fill>
-					<s:LinearGradient rotation="90">
-						<s:entries>
-							<s:GradientEntry color="0xFFFFFF" ratio="0" alpha="1"/>
-							<s:GradientEntry color="0xD8D8D8" ratio="1" alpha="1"/>
-						</s:entries>
-					</s:LinearGradient>
-				</s:fill>
-				<s:stroke><s:SolidColorStroke color="0x696969" /></s:stroke>
-			</s:Rect>
+			<ui:AdvancedRect width="100%" height="30" 
+							 leftBorderVisible="{getStyle('borderVisible')}"
+							 rightBorderVisible="{getStyle('borderVisible')}"
+							 topBorderVisible="{getStyle('borderVisible')}"
+							 bottomBorderVisible="false">
+				<ui:stroke><s:SolidColorStroke color="0x696969"/></ui:stroke>
+				<ui:fill>
+					<s:SolidColor color="0xE8E8E8" />
+				</ui:fill>
+			</ui:AdvancedRect>
 			
 			<s:ButtonBase id="prevMonthButton" 
 						  skinClass="mx.skins.spark.DateChooserPrevMonthSkin" x="5" y="11"/>
