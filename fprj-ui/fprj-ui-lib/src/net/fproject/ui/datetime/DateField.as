@@ -17,9 +17,11 @@
 ///////////////////////////////////////////////////////////////////////////////
 package net.fproject.ui.datetime
 {
+	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
 	import mx.events.FlexMouseEvent;
+	import mx.utils.ObjectUtil;
 	
 	import spark.components.Group;
 	import spark.components.PopUpAnchor;
@@ -29,6 +31,7 @@ package net.fproject.ui.datetime
 	import net.fproject.ui.datetime.supportClasses.DateFieldButton;
 	import net.fproject.ui.events.DateControlEvent;
 	import net.fproject.utils.DateTimeUtil;
+	import net.fproject.utils.StringUtil;
 
 	/**
 	 * Dispatched when user opens the the DateChooser pop-up
@@ -112,6 +115,7 @@ package net.fproject.ui.datetime
 		public function DateField()
 		{
 			_formatString = 'MM/dd/yyyy';
+			_editable = true;
 		}
 		
 		[SkinPart(required="false",type="static")] 
@@ -177,27 +181,27 @@ package net.fproject.ui.datetime
 		override protected function onSelectionChange(e:IndexChangeEvent):void
 		{
 			super.onSelectionChange(e);
-			if (textInput)
-				textInput.text = DateTimeUtil.formatDate(selectedDate, _formatString);
+			updateTextInput();
 		}
 		
 		// selectedDate changes externally
 		override public function set selectedDate(value:Date):void
 		{
 			super.selectedDate = value;
-			if(textInput)
-			{
-				if (value == null) 
-				{
-					textInput.text = "";
-				}
-				else
-				{
-					textInput.text = (selectedDate.month+1) + "/" + 
-						selectedDate.date+"/" + selectedDate.fullYear;
-				}
-			}			
+			updateTextInput();			
 		}
+		
+		protected function updateTextInput():void
+		{
+			if (textInput != null)
+			{
+				if (selectedDate == null) 
+					textInput.text = "";
+				else
+					textInput.text = DateTimeUtil.formatDate(selectedDate, _formatString);
+			}
+		}
+			
 		
 		override protected function partAdded(partName:String, instance:Object):void
 		{
@@ -211,7 +215,10 @@ package net.fproject.ui.datetime
 				dataGroup.addEventListener(MouseEvent.CLICK, onDataGroupClick);
 			
 			if (instance === textInput) 
+			{
+				textInput.addEventListener(Event.CHANGE, textInput_changeHandler);
 				textInput.editable = _editable; 
+			}
 		}
 		
 		override protected function partRemoved(partName:String, instance:Object):void
@@ -224,6 +231,63 @@ package net.fproject.ui.datetime
 			
 			if(instance === dataGroup)
 				dataGroup.removeEventListener(MouseEvent.CLICK, onDataGroupClick);
+			
+			if (instance === textInput) 
+				textInput.removeEventListener(Event.CHANGE, textInput_changeHandler);
+		}
+		
+		protected function textInput_changeHandler(event:Event):void
+		{
+			var inputDate:Date = stringToDate(textInput.text);
+			if (inputDate != null && ObjectUtil.dateCompare(this.selectedDate, inputDate) != 0)
+				this.selectedDate = inputDate;
+		}
+		
+		protected function stringToDate(sdate:String):Date
+		{
+			if(StringUtil.isBlank(sdate))
+				return null;
+			var d:Date = DateTimeUtil.parseDate(sdate, _formatString);
+			
+			if(d == null)
+			{
+				var f:String = _formatString.toLowerCase();
+				var fset:Array = this.getFormatSet();
+				
+				for each (var a:Array in fset)
+				{
+					for each (var fmt:String in a)
+					{
+						if(fmt.toLowerCase() == f)
+						{
+							for each (var s:String in a)
+							{
+								if(s != _formatString)
+								{
+									d = DateTimeUtil.parseDate(sdate, s);
+									if(d != null)
+										return d;
+								}
+							}
+							return null;
+						}
+					}
+				}
+			}
+			return d;
+		}
+		
+		private var _formatSet:Array;
+		
+		protected function getFormatSet():Array
+		{
+			if(_formatSet == null)
+			{
+				_formatSet = [["dd/MM/yy", "dd/MM/yyyy", "d/M/y", "d/M/yy", "d/M/yyyy"],
+					["MM/dd/yy", "MM/dd/yyyy", "M/d/y", "M/d/yy", "M/d/yyyy"],
+					["yy/MM/dd", "yyyy/MM/dd", "y/M/d", "yy/M/d", "yyyy/M/d"]];
+			}
+			return _formatSet;
 		}
 		
 		private var openRequested:Boolean;

@@ -30,7 +30,7 @@
 		]]>
 	</fx:Metadata> 
 	
-	<fx:Script>
+	<fx:Script fb:purpose="styling">
 		<![CDATA[
 			import mx.skins.spark.DateChooserNextMonthSkin;
 			import mx.skins.spark.DateChooserNextYearSkin;
@@ -38,9 +38,25 @@
 			import mx.skins.spark.DateChooserPrevYearSkin;
 			protected override function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
 			{
-				if(yearLabel && hostComponent.yearNavigationEnabled)
+				if(yearLabel != null && hostComponent.yearNavigationEnabled)
 					yearLabel.right = 45;
 				super.updateDisplayList(unscaledWidth, unscaledHeight);
+				
+				if(monthLabel != null && !monthLabel.hasEventListener("widthChanged"))
+					monthLabel.addEventListener("widthChanged", monthLabelWidthChanged);
+			}
+			
+			protected function monthLabelWidthChanged(e:Event):void
+			{
+				if(yearLabel != null)
+				{
+					var diff:Number = monthLabel.width + 33 - yearLabel.x;
+					var l:Number = monthLabel.x;
+					if(diff >= -2)
+						monthLabel.move(30 - diff, 11);
+					else
+						monthLabel.move(33, 11);
+				}
 			}
 		]]>
 	</fx:Script>
@@ -84,7 +100,7 @@
 			<s:ButtonBase id="prevMonthButton" 
 						  skinClass="mx.skins.spark.DateChooserPrevMonthSkin" x="5" y="11"/>
 			
-			<s:Label id="monthLabel" left="33" y="11"/>
+			<s:Label id="monthLabel" x="33" y="11"/>
 			<s:Label id="yearLabel" right="33" right.withYearButton="45" y="11" textAlign="right"/>
 			<s:ButtonBase id="nextYearButton" includeIn="normalWithYearButtonAndOpen"
 						  skinClass="mx.skins.spark.DateChooserNextYearSkin" right="30" y="9"/>
