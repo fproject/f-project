@@ -20,6 +20,12 @@ package net.fproject.ui.datetime
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
+	import mx.controls.dataGridClasses.DataGridListData;
+	import mx.controls.listClasses.BaseListData;
+	import mx.controls.listClasses.IDropInListItemRenderer;
+	import mx.controls.listClasses.IListItemRenderer;
+	import mx.controls.listClasses.ListData;
+	import mx.events.FlexEvent;
 	import mx.events.FlexMouseEvent;
 	import mx.utils.ObjectUtil;
 	
@@ -110,7 +116,7 @@ package net.fproject.ui.datetime
 	 *  @includeExample examples/DateControlsDemo.mxml
 	 *
 	 */
-	public class DateField extends DateChooser
+	public class DateField extends DateChooser implements IListItemRenderer, IDropInListItemRenderer
 	{
 		public function DateField()
 		{
@@ -333,6 +339,100 @@ package net.fproject.ui.datetime
 				s +='AndOpen';
 			callLater(function():void{openRequested=false;});
 			return s;
+		}
+		
+		/**
+		 *  @private
+		 *  Storage for the data property
+		 */
+		private var _data:Object;
+		
+		[Bindable("dataChange")]
+		[Inspectable(environment="none")]
+		
+		/**
+		 *  The <code>data</code> property lets you pass a value
+		 *  to the component when you use it in an item renderer or item editor.
+		 *  You typically use data binding to bind a field of the <code>data</code>
+		 *  property to a property of this component.
+		 *
+		 *  <p>When you use the control as a drop-in item renderer or drop-in
+		 *  item editor, Flex automatically writes the current value of the item
+		 *  to the <code>selectedDate</code> property of this control.</p>
+		 *
+		 *  @default null
+		 *  @see mx.core.IDataRenderer
+		 *  
+		 */
+		public function get data():Object
+		{
+			return _data;
+		}
+		
+		/**
+		 *  @private
+		 */
+		public function set data(value:Object):void
+		{
+			var newDate:Date;
+			
+			_data = value;
+			
+			if (_listData && _listData is DataGridListData)
+				newDate = _data[DataGridListData(_listData).dataField];
+			else if (_listData is ListData && ListData(_listData).labelField in _data)
+				newDate = _data[ListData(_listData).labelField];
+			else if (_data is String)
+			{
+				newDate = stringToDate(data as String);
+				if(newDate == null)
+					newDate = new Date(Date.parse(data as String));
+			}
+			else
+				newDate = _data as Date;
+			
+			if (ObjectUtil.dateCompare(selectedDate, newDate) != 0)
+				selectedDate = newDate;
+			
+			dispatchEvent(new FlexEvent(FlexEvent.DATA_CHANGE));
+		}
+		
+		/**
+		 *  @private
+		 *  Storage for the listData property
+		 */
+		private var _listData:BaseListData;
+		
+		[Bindable("dataChange")]
+		[Inspectable(environment="none")]
+		
+		/**
+		 *  When a component is used as a drop-in item renderer or drop-in
+		 *  item editor, Flex initializes the <code>listData</code> property
+		 *  of the component with the appropriate data from the List control.
+		 *  The component can then use the <code>listData</code> property
+		 *  to initialize the <code>data</code> property of the drop-in
+		 *  item renderer or drop-in item editor.
+		 *
+		 *  <p>You do not set this property in MXML or ActionScript;
+		 *  Flex sets it when the component is used as a drop-in item renderer
+		 *  or drop-in item editor.</p>
+		 *
+		 *  @default null
+		 *  @see mx.controls.listClasses.IDropInListItemRenderer
+		 *  
+		 */
+		public function get listData():BaseListData
+		{
+			return _listData;
+		}
+		
+		/**
+		 *  @private
+		 */
+		public function set listData(value:BaseListData):void
+		{
+			_listData = value;
 		}
 	}
 }
