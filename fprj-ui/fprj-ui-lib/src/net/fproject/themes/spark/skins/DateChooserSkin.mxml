@@ -28,6 +28,24 @@
 		[HostComponent("net.fproject.ui.datetime.DateChooser")]
 		]]>
 	</fx:Metadata> 
+	<fx:Script fb:purpose="styling">
+		<![CDATA[
+			protected override function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
+			{
+				super.updateDisplayList(unscaledWidth, unscaledHeight);
+				if(monthLabel != null && yearLabel != null)
+				{
+					var diff:Number = monthLabel.width + 33 - yearLabel.x;
+					var l:Number = monthLabel.x;
+					if(diff >= -2)
+						monthLabel.x = 30 - diff;
+					else
+						monthLabel.x = 33;
+				}
+			}
+			
+		]]>
+	</fx:Script>
 	
 	<s:states>
 		<s:State name="normal"/>
@@ -55,7 +73,7 @@
 	<s:ButtonBase id="prevMonthButton" 
 				  skinClass="mx.skins.spark.DateChooserPrevMonthSkin" x="5" y="11"/>
 	
-	<s:Label id="monthLabel" left="33" y="11"/>
+	<s:Label id="monthLabel" x="33" y="11"/>
 	<s:Label id="yearLabel" right="33" right.withYearButton="45" y="11" textAlign="right"/>
 	<s:ButtonBase id="nextYearButton" includeIn="withYearButton"
 				  skinClass="mx.skins.spark.DateChooserNextYearSkin" right="30" y="9"/>

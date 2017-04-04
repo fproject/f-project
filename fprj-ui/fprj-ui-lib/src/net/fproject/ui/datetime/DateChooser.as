@@ -350,7 +350,7 @@ package net.fproject.ui.datetime
 		}
 		
 		// called, if the selected month changes
-		private function onDataCollectionChange(e:CollectionEvent):void
+		protected function onDataCollectionChange(e:CollectionEvent):void
 		{
 			var found:Boolean = false;
 			if (_selectedDate)
