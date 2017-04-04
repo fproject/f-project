@@ -17,18 +17,27 @@
 ///////////////////////////////////////////////////////////////////////////////
 package net.fproject.ui.datetime
 {
+	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
+	import mx.controls.dataGridClasses.DataGridListData;
+	import mx.controls.listClasses.BaseListData;
+	import mx.controls.listClasses.IDropInListItemRenderer;
+	import mx.controls.listClasses.IListItemRenderer;
+	import mx.controls.listClasses.ListData;
+	import mx.events.FlexEvent;
 	import mx.events.FlexMouseEvent;
+	import mx.utils.ObjectUtil;
 	
 	import spark.components.Group;
-	import spark.components.Label;
 	import spark.components.PopUpAnchor;
+	import spark.components.TextInput;
 	import spark.events.IndexChangeEvent;
 	
 	import net.fproject.ui.datetime.supportClasses.DateFieldButton;
 	import net.fproject.ui.events.DateControlEvent;
 	import net.fproject.utils.DateTimeUtil;
+	import net.fproject.utils.StringUtil;
 
 	/**
 	 * Dispatched when user opens the the DateChooser pop-up
@@ -107,11 +116,12 @@ package net.fproject.ui.datetime
 	 *  @includeExample examples/DateControlsDemo.mxml
 	 *
 	 */
-	public class DateField extends DateChooser
+	public class DateField extends DateChooser implements IListItemRenderer, IDropInListItemRenderer
 	{
 		public function DateField()
 		{
 			_formatString = 'MM/dd/yyyy';
+			_editable = true;
 		}
 		
 		[SkinPart(required="false",type="static")] 
@@ -127,7 +137,7 @@ package net.fproject.ui.datetime
 		public var openButton:DateFieldButton;
 		
 		[SkinPart(required="false",type="static")] 
-		public var labelDisplay:Label; // only used by DateField
+		public var textInput:TextInput; // only used by DateField
 		
 		private var _formatString:String;
 		
@@ -142,21 +152,27 @@ package net.fproject.ui.datetime
 			{
 				var oldValue:String = _formatString;
 				_formatString = value;
-				if (labelDisplay != null && _formatString != null)
-					labelDisplay.text = DateTimeUtil.formatDate(selectedDate, _formatString);
+				if (textInput != null && _formatString != null)
+					textInput.text = DateTimeUtil.formatDate(selectedDate, _formatString);
 			}
 		}
 		
-		private var _editable:String;
+		private var _editable:Boolean;
 
-		public function get editable():String
+		[Bindable("propertyChanged")]
+		[Inspectable(category="General", defaultValue="false")]
+		public function get editable():Boolean
 		{
 			return _editable;
 		}
 
-		public function set editable(value:String):void
+		public function set editable(value:Boolean):void
 		{
+			var oldVal:Boolean = _editable;
 			_editable = value;
+			if(textInput != null)
+				textInput.editable = _editable;
+			dispatchPropertyChangeEvent("editable", oldVal, value);
 		}
 		
 		/**
@@ -171,27 +187,27 @@ package net.fproject.ui.datetime
 		override protected function onSelectionChange(e:IndexChangeEvent):void
 		{
 			super.onSelectionChange(e);
-			if (labelDisplay)
-				labelDisplay.text = DateTimeUtil.formatDate(selectedDate, _formatString);
+			updateTextInput();
 		}
 		
 		// selectedDate changes externally
 		override public function set selectedDate(value:Date):void
 		{
 			super.selectedDate = value;
-			if(labelDisplay)
-			{
-				if (value == null) 
-				{
-					labelDisplay.text = "";
-				}
-				else
-				{
-					labelDisplay.text = (selectedDate.month+1) + "/" + 
-						selectedDate.date+"/" + selectedDate.fullYear;
-				}
-			}			
+			updateTextInput();			
 		}
+		
+		protected function updateTextInput():void
+		{
+			if (textInput != null)
+			{
+				if (selectedDate == null) 
+					textInput.text = "";
+				else
+					textInput.text = DateTimeUtil.formatDate(selectedDate, _formatString);
+			}
+		}
+			
 		
 		override protected function partAdded(partName:String, instance:Object):void
 		{
@@ -203,6 +219,12 @@ package net.fproject.ui.datetime
 			
 			if(instance === dataGroup)
 				dataGroup.addEventListener(MouseEvent.CLICK, onDataGroupClick);
+			
+			if (instance === textInput) 
+			{
+				textInput.addEventListener(Event.CHANGE, textInput_changeHandler);
+				textInput.editable = _editable; 
+			}
 		}
 		
 		override protected function partRemoved(partName:String, instance:Object):void
@@ -215,6 +237,63 @@ package net.fproject.ui.datetime
 			
 			if(instance === dataGroup)
 				dataGroup.removeEventListener(MouseEvent.CLICK, onDataGroupClick);
+			
+			if (instance === textInput) 
+				textInput.removeEventListener(Event.CHANGE, textInput_changeHandler);
+		}
+		
+		protected function textInput_changeHandler(event:Event):void
+		{
+			var inputDate:Date = stringToDate(textInput.text);
+			if (inputDate != null && ObjectUtil.dateCompare(this.selectedDate, inputDate) != 0)
+				this.selectedDate = inputDate;
+		}
+		
+		protected function stringToDate(sdate:String):Date
+		{
+			if(StringUtil.isBlank(sdate))
+				return null;
+			var d:Date = DateTimeUtil.parseDate(sdate, _formatString);
+			
+			if(d == null)
+			{
+				var f:String = _formatString.toLowerCase();
+				var fset:Array = this.getFormatSet();
+				
+				for each (var a:Array in fset)
+				{
+					for each (var fmt:String in a)
+					{
+						if(fmt.toLowerCase() == f)
+						{
+							for each (var s:String in a)
+							{
+								if(s != _formatString)
+								{
+									d = DateTimeUtil.parseDate(sdate, s);
+									if(d != null)
+										return d;
+								}
+							}
+							return null;
+						}
+					}
+				}
+			}
+			return d;
+		}
+		
+		private var _formatSet:Array;
+		
+		protected function getFormatSet():Array
+		{
+			if(_formatSet == null)
+			{
+				_formatSet = [["dd/MM/yy", "dd/MM/yyyy", "d/M/y", "d/M/yy", "d/M/yyyy"],
+					["MM/dd/yy", "MM/dd/yyyy", "M/d/y", "M/d/yy", "M/d/yyyy"],
+					["yy/MM/dd", "yyyy/MM/dd", "y/M/d", "yy/M/d", "yyyy/M/d"]];
+			}
+			return _formatSet;
 		}
 		
 		private var openRequested:Boolean;
@@ -229,12 +308,15 @@ package net.fproject.ui.datetime
 		
 		protected function onOpenButtonMouseDown(e:MouseEvent):void
 		{
-			if(popUpAnchor != null && !popUpAnchor.isPopUp)
-				dispatchEvent(new DateControlEvent(DateControlEvent.OPEN));
-			else
-				openRequested = true;
-					
-			this.invalidateSkinState();
+			if(_editable)
+			{
+				if(popUpAnchor != null && !popUpAnchor.isPopUp)
+					dispatchEvent(new DateControlEvent(DateControlEvent.OPEN));
+				else
+					openRequested = true;
+				
+				this.invalidateSkinState();
+			}
 		}
 		
 		protected function onDataGroupClick(e:MouseEvent):void
@@ -257,6 +339,100 @@ package net.fproject.ui.datetime
 				s +='AndOpen';
 			callLater(function():void{openRequested=false;});
 			return s;
+		}
+		
+		/**
+		 *  @private
+		 *  Storage for the data property
+		 */
+		private var _data:Object;
+		
+		[Bindable("dataChange")]
+		[Inspectable(environment="none")]
+		
+		/**
+		 *  The <code>data</code> property lets you pass a value
+		 *  to the component when you use it in an item renderer or item editor.
+		 *  You typically use data binding to bind a field of the <code>data</code>
+		 *  property to a property of this component.
+		 *
+		 *  <p>When you use the control as a drop-in item renderer or drop-in
+		 *  item editor, Flex automatically writes the current value of the item
+		 *  to the <code>selectedDate</code> property of this control.</p>
+		 *
+		 *  @default null
+		 *  @see mx.core.IDataRenderer
+		 *  
+		 */
+		public function get data():Object
+		{
+			return _data;
+		}
+		
+		/**
+		 *  @private
+		 */
+		public function set data(value:Object):void
+		{
+			var newDate:Date;
+			
+			_data = value;
+			
+			if (_listData && _listData is DataGridListData)
+				newDate = _data[DataGridListData(_listData).dataField];
+			else if (_listData is ListData && ListData(_listData).labelField in _data)
+				newDate = _data[ListData(_listData).labelField];
+			else if (_data is String)
+			{
+				newDate = stringToDate(data as String);
+				if(newDate == null)
+					newDate = new Date(Date.parse(data as String));
+			}
+			else
+				newDate = _data as Date;
+			
+			if (ObjectUtil.dateCompare(selectedDate, newDate) != 0)
+				selectedDate = newDate;
+			
+			dispatchEvent(new FlexEvent(FlexEvent.DATA_CHANGE));
+		}
+		
+		/**
+		 *  @private
+		 *  Storage for the listData property
+		 */
+		private var _listData:BaseListData;
+		
+		[Bindable("dataChange")]
+		[Inspectable(environment="none")]
+		
+		/**
+		 *  When a component is used as a drop-in item renderer or drop-in
+		 *  item editor, Flex initializes the <code>listData</code> property
+		 *  of the component with the appropriate data from the List control.
+		 *  The component can then use the <code>listData</code> property
+		 *  to initialize the <code>data</code> property of the drop-in
+		 *  item renderer or drop-in item editor.
+		 *
+		 *  <p>You do not set this property in MXML or ActionScript;
+		 *  Flex sets it when the component is used as a drop-in item renderer
+		 *  or drop-in item editor.</p>
+		 *
+		 *  @default null
+		 *  @see mx.controls.listClasses.IDropInListItemRenderer
+		 *  
+		 */
+		public function get listData():BaseListData
+		{
+			return _listData;
+		}
+		
+		/**
+		 *  @private
+		 */
+		public function set listData(value:BaseListData):void
+		{
+			_listData = value;
 		}
 	}
 }
