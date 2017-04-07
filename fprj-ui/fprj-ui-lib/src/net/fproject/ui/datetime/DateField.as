@@ -213,7 +213,11 @@ package net.fproject.ui.datetime
 		{
 			super.partAdded(partName, instance);
 			if(instance === dropDownGroup)
+			{
 				dropDownGroup.addEventListener(FlexMouseEvent.MOUSE_DOWN_OUTSIDE, onDropDownMouseDownOutside);
+				dropDownGroup.addEventListener(Event.REMOVED_FROM_STAGE, onPopUpRemoved);
+			}
+			
 			if(instance === openButton)
 				openButton.addEventListener(MouseEvent.MOUSE_DOWN, onOpenButtonMouseDown);
 			
@@ -225,6 +229,12 @@ package net.fproject.ui.datetime
 				textInput.addEventListener(Event.CHANGE, textInput_changeHandler);
 				textInput.editable = _editable; 
 			}
+		}
+		
+		private function onPopUpRemoved(e:Event):void
+		{
+			dropDownGroup.removeEventListener(Event.REMOVED, onPopUpRemoved);
+			dispatchEvent(new DateControlEvent(DateControlEvent.CLOSE));
 		}
 		
 		override protected function partRemoved(partName:String, instance:Object):void
@@ -300,9 +310,6 @@ package net.fproject.ui.datetime
 		
 		protected function onDropDownMouseDownOutside(e:FlexMouseEvent):void
 		{
-			if(popUpAnchor != null && popUpAnchor.isPopUp)
-				dispatchEvent(new DateControlEvent(DateControlEvent.CLOSE));
-			
 			this.invalidateSkinState();
 		}
 		
@@ -310,20 +317,14 @@ package net.fproject.ui.datetime
 		{
 			if(_editable)
 			{
-				if(popUpAnchor != null && !popUpAnchor.isPopUp)
-					dispatchEvent(new DateControlEvent(DateControlEvent.OPEN));
-				else
-					openRequested = true;
-				
+				openRequested = true;
 				this.invalidateSkinState();
+				dispatchEvent(new DateControlEvent(DateControlEvent.OPEN));
 			}
 		}
 		
 		protected function onDataGroupClick(e:MouseEvent):void
 		{
-			if(popUpAnchor != null && popUpAnchor.isPopUp)
-				dispatchEvent(new DateControlEvent(DateControlEvent.CLOSE));
-			
 			this.invalidateSkinState();
 		}
 		
