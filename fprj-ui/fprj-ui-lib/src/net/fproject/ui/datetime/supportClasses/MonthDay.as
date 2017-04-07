@@ -53,7 +53,10 @@ package net.fproject.ui.datetime.supportClasses
 		
 		override public function get uid():String
 		{
-			return date == null ? null : date.fullYear.toString() + date.month.toString() + date.date.toString();
+			if(date == null)
+				return null;
+			var n:Number = date.fullYear * 10000 + date.month * 100 + date.date;
+			return n.toString();
 		}
 		
 		[Bindable("propertyChange")]
