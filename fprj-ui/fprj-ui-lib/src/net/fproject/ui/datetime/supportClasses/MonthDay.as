@@ -64,6 +64,16 @@ package net.fproject.ui.datetime.supportClasses
 		{
 			return date != null ? date.date.toString() : null;
 		}
+		
+		/**
+		 * Constructor 
+		 * 
+		 */
+		public function MonthDay(date:Date, isInCurrentMonth:Boolean)
+		{
+			_date = date;
+			this.isInCurrentMonth = isInCurrentMonth;
+		}
 	}
 	
 }
