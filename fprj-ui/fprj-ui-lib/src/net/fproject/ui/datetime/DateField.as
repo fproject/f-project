@@ -122,6 +122,8 @@ package net.fproject.ui.datetime
 		{
 			_formatString = 'MM/dd/yyyy';
 			_editable = true;
+			tabEnabled = true;
+			tabFocusEnabled = true;
 		}
 		
 		[SkinPart(required="false",type="static")] 
@@ -194,7 +196,8 @@ package net.fproject.ui.datetime
 		override public function set selectedDate(value:Date):void
 		{
 			super.selectedDate = value;
-			updateTextInput();			
+			if(!textInputChangeHandling)
+				updateTextInput();			
 		}
 		
 		protected function updateTextInput():void
@@ -252,58 +255,31 @@ package net.fproject.ui.datetime
 				textInput.removeEventListener(Event.CHANGE, textInput_changeHandler);
 		}
 		
+		
+		private var textInputChangeHandling:Boolean;
+		
 		protected function textInput_changeHandler(event:Event):void
 		{
 			var inputDate:Date = stringToDate(textInput.text);
 			if (inputDate != null && ObjectUtil.dateCompare(this.selectedDate, inputDate) != 0)
+			{
+				textInputChangeHandling = true;
 				this.selectedDate = inputDate;
+				textInputChangeHandling = false;
+			}
 		}
 		
 		protected function stringToDate(sdate:String):Date
 		{
 			if(StringUtil.isBlank(sdate))
 				return null;
-			var d:Date = DateTimeUtil.parseDate(sdate, _formatString);
-			
-			if(d == null)
-			{
-				var f:String = _formatString.toLowerCase();
-				var fset:Array = this.getFormatSet();
-				
-				for each (var a:Array in fset)
-				{
-					for each (var fmt:String in a)
-					{
-						if(fmt.toLowerCase() == f)
-						{
-							for each (var s:String in a)
-							{
-								if(s != _formatString)
-								{
-									d = DateTimeUtil.parseDate(sdate, s);
-									if(d != null)
-										return d;
-								}
-							}
-							return null;
-						}
-					}
-				}
+			try {
+				return DateTimeUtil.parseDate(sdate, _formatString);
 			}
-			return d;
-		}
-		
-		private var _formatSet:Array;
-		
-		protected function getFormatSet():Array
-		{
-			if(_formatSet == null)
+			catch (e:Error)
 			{
-				_formatSet = [["dd/MM/yy", "dd/MM/yyyy", "d/M/y", "d/M/yy", "d/M/yyyy"],
-					["MM/dd/yy", "MM/dd/yyyy", "M/d/y", "M/d/yy", "M/d/yyyy"],
-					["yy/MM/dd", "yyyy/MM/dd", "y/M/d", "yy/M/d", "yyyy/M/d"]];
 			}
-			return _formatSet;
+			return null;
 		}
 		
 		private var openRequested:Boolean;
@@ -434,6 +410,18 @@ package net.fproject.ui.datetime
 		public function set listData(value:BaseListData):void
 		{
 			_listData = value;
+		}
+		
+		/**
+		 * @inheritDoc 
+		 * 
+		 */
+		override public function setFocus():void
+		{
+			if (textInput && _editable)
+				textInput.setFocus();
+			else
+				super.setFocus();
 		}
 	}
 }
