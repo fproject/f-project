@@ -317,6 +317,7 @@ package net.fproject.ui.datetime
 
 		fproject_internal var _selectedDate:Date;
 		
+		[Inspectable(category="General")]
 		[Bindable(event="selectedDateChange")]
 		public function get selectedDate():Date
 		{
@@ -338,15 +339,7 @@ package net.fproject.ui.datetime
 				else
 				{
 					dayList.resetFromMonthAndYear(value.month, value.fullYear);
-					// select the date
-					var n:int = dataProvider.length;
-					for (var i:int = 0; i<n; i++) 
-					{
-						if (MonthDay(dataProvider.getItemAt(i)).date.date == value.date) 
-						{
-							selectedItem = dataProvider.getItemAt(i);
-						}
-					}
+					super.selectedItem = dayList.getItemByDate(value);
 				}
 				
 				dispatchEvent(new DateControlEvent(DateControlEvent.SELECTED_DATE_CHANGE));
