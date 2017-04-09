@@ -376,6 +376,7 @@ package net.fproject.utils
 		public function set formatString(value:String):void
 		{
 			this._explicitFormatString = value;
+			_compiledPattern = null;
 		}
 
 		/**
@@ -1470,251 +1471,986 @@ package net.fproject.utils
 		 */
 		public function parse(valueString:String):Date
 		{
-			if (!valueString || valueString == "")
-				return null;
+			return fproject_internal::parse(valueString, new ParsePosition(0));
+		}
+		
+		/**
+		 * Tags for the compiled pattern.
+		 */
+		private static const TAG_QUOTE_ASCII_CHAR:int       = 100;
+		private static const TAG_QUOTE_CHARS:int            = 101;
+		
+		private var _compiledPattern:Vector.<uint>;
 
-			var year:int = -1;
-			var mon:int = -1;
-			var day:int = -1;
-			var hour:int = -1;
-			var min:int = -1;
-			var sec:int = -1;
-			var ms:int = -1;
-			
-			var letter:String = "";
-			var marker:Object = 0;
-
-			var count:int = 0;
-			var len:int = valueString.length;
-
-			// Strip out the Timezone. It is not used by the DateFormatter
-			var timezoneRegEx:RegExp = /(GMT|UTC)((\+|-)\d\d\d\d )?/ig;
-
-			valueString = valueString.replace(timezoneRegEx, "");
-
-			while (count < len)
-			{
-				letter = valueString.charAt(count);
-				count++;
-
-				// If the letter is a blank space or a comma,
-				// continue to the next character
-				if (letter <= " " || letter == ",")
-					continue;
-
-				// If the letter is a key punctuation character,
-				// cache it for the next time around.
-				if (letter == "/" || letter == ":" || letter == "+" ||
-					letter == "-")
-				{
-					marker = letter;
-					continue;
-				}
-
-				// Scan for groups of numbers and letters
-				// and match them to Date parameters
-				if ("a" <= letter && letter <= "z" ||
-					"A" <= letter && letter <= "Z")
-				{
-					// Scan for groups of letters
-					var word:String = letter;
-					while (count < len)
-					{
-						letter = valueString.charAt(count);
-						if (!("a" <= letter && letter <= "z" ||
-							"A" <= letter && letter <= "Z"))
-						{
-							break;
-						}
-						word += letter;
-						count++;
-					}
-
-					// Allow for an exact match
-					// or a match to the first 3 letters as a prefix.
-					var n:int = DateBase.defaultStringKey.length;
-					for (var i:int = 0; i < n; i++)
-					{
-						var s:String = String(DateBase.defaultStringKey[i]);
-						if (s.toLowerCase() == word.toLowerCase() ||
-							s.toLowerCase().substr(0, 3) == word.toLowerCase())
-						{
-							if (i == 13)
-							{
-								// pm
-								if (hour > 12 || hour < 1)
-									break; // error
-								else if (hour < 12)
-									hour += 12;
-							}
-							else if (i == 12)
-							{
-								// am
-								if (hour > 12 || hour < 1)
-									break; // error
-								else if (hour == 12)
-									hour = 0;
-
-							}
-							else if (i < 12)
-							{
-								// month
-								if (mon < 0)
-									mon = i;
-								else
-									break; // error
-							}
-							break;
-						}
-					}
-					marker = 0;
-				}
-
-				else if ("0" <= letter && letter <= "9")
-				{
-					// Scan for groups of digits
-					var digits:String = letter;
-
-					var midBreak:Boolean = false;
-
-					while (count < len && "0" <= (letter = valueString.charAt(count)) &&
-						letter <= "9")
-					{
-						if (count >= formatString.length ||
-							(formatString.charAt(count - 1) != formatString.charAt(count)))
-						{
-							midBreak = true;
-							break;
-						}
-
-						digits += letter;
-						count++;
-					}
-					var num:int = int(digits);
-					var formatLetter:String = count < formatString.length + 1 ? formatString.charAt(count - 1) : "";
-					
-					// If num is a number greater than 70 and current letter is not at millisecond part, assign num to year.
-					if (num >= 70 && formatLetter != "b")
-					{
-						if (year != -1)
-						{
-							break; // error
-						}
-						else if (letter.charCodeAt(0) <= 0xA0 ||
-							letter == "," || letter == "." || letter == "/" ||
-							letter == "-" || count >= len)
-						{
-							year = num;
-						}
-						else
-						{
-							break; //error
-						}
-					}
-					
-					// If current letter is at millisecond part, assign num to ms
-					else if (formatLetter == "b" && ms < 0)
-					{
-						ms = int(1000 * Number("0." + digits));
-						break;
-					}
-					// If the current letter is a slash or a dash,
-					// assign num to month or day.
-					else if (midBreak || letter == "/" || letter == "-" ||
-						letter == ".")
-					{
-						if (mon < 0 &&
-							(formatLetter == "M" || formatLetter == ""))
-							mon = num - 1;
-						else if (day < 0 &&
-							(formatLetter == "d" || formatLetter == ""))
-							day = num;
-						else if (hour < 0 &&
-							(formatLetter == "h" || formatLetter == ""))
-							hour = num;
-						else if (min < 0 &&
-							(formatLetter == "m" || formatLetter == ""))
-							min = num;
-						else if (sec < 0 &&
-							(formatLetter == "s" || formatLetter == ""))
-							sec = num;
-						else if (sec < 0 &&
-							(formatLetter == "b" || formatLetter == ""))
-							ms = num;
-						else
-							break; //error
-					}
-
-					// If the current letter is a colon,
-					// assign num to hour or minute.
-					else if (letter == ":")
-					{
-						if (hour < 0)
-							hour = num;
-						else if (min < 0)
-							min = num;
-						else
-							break; //error
-					}
-
-					// If hours are defined and minutes are not,
-					// assign num to minutes.
-					else if (hour >= 0 && min < 0)
-					{
-						min = num;
-					}
-
-					// If minutes are defined and seconds are not,
-					// assign num to seconds.
-					else if (min >= 0 && sec < 0)
-					{
-						sec = num;
-					}
-
-					// If day is not defined, assign num to day.
-					else if (day < 0)
-					{
-						day = num;
-					}
-
-					// If month and day are defined and year is not,
-					// assign num to year.
-					else if (year < 0 && mon >= 0 && day >= 0)
-					{
-						year = 2000 + num;
-					}
-
-					// Otherwise, break the loop
-					else
-					{
-						break; //error
-					}
-
-					marker = 0
-				}
-			}
-
-			if (year < 0 || mon < 0 || mon > 11 || day < 1 || day > 31)
-				return null; // error - needs to be a date
-
-			// Time is set to 0 if null.
-			if (ms < 0)
-				ms = 0;
-			if (sec < 0)
-				sec = 0;
-			if (min < 0)
-				min = 0;
-			if (hour < 0)
-				hour = 0;
-
-			// create a date object and check the validity of the input date
-			// by comparing the result with input values.
-			var newDate:Date = new Date(year, mon, day, hour, min, sec, ms);
-			if (day != newDate.getDate() || mon != newDate.getMonth())
-				return null;
-
-			return newDate;
+		public function get compiledPattern():Vector.<uint>
+		{
+			if(_compiledPattern == null)
+				_compiledPattern = compilePattern(this.formatString);
+			return _compiledPattern;
 		}
 
+		/**
+		 * The minus sign to be used with format and parse.
+		 */
+		private var minusSign:String = '-';
+		
+		/**
+		 * True when a negative sign follows a number.
+		 * (True as default in Arabic.)
+		 */
+		private var hasFollowingMinusSign:Boolean = false;
+		
+		/**
+		 * True if standalone form needs to be used.
+		 */
+		private var forceStandaloneForm:Boolean = false;
+		
+		fproject_internal function parse(text:String, pos:ParsePosition):Date
+		{
+			if(text == null)
+				return null;
+			
+			var start:int = pos.index;
+			var oldStart:int = start;
+			var textLength:int = text.length;
+			var minusSignCode:uint = minusSign.charCodeAt(0);
+			var ambiguousYear:Array = [false];
+			
+			var builder:DateBuilder = new DateBuilder;
+			
+			for (var i:int = 0; i < compiledPattern.length; ) {
+				var tag:int = compiledPattern[i] >>> 8;
+				var count:int = compiledPattern[i++] & 0xff;
+				if (count == 255) {
+					count = compiledPattern[i++] << 16;
+					count |= compiledPattern[i++];
+				}
+				
+				switch (tag) {
+					case TAG_QUOTE_ASCII_CHAR:
+						if (start >= textLength || text.charCodeAt(start) != count) {
+							pos.index = oldStart;
+							pos.errorIndex = start;
+							return null;
+						}
+						start++;
+						break;
+					
+					case TAG_QUOTE_CHARS:
+						while (count-- > 0) {
+							if (start >= textLength || text.charCodeAt(start) != compiledPattern[i++]) {
+								pos.index = oldStart;
+								pos.errorIndex = start;
+								return null;
+							}
+							start++;
+						}
+						break;
+					
+					default:
+						// Peek the next pattern to determine if we need to
+						// obey the number of pattern letters for
+						// parsing. It's required when parsing contiguous
+						// digit text (e.g., "20010704") with a pattern which
+						// has no delimiters between fields, like "yyyyMMdd".
+						var obeyCount:Boolean = false;
+						
+						// In Arabic, a minus sign for a negative number is put after
+						// the number. Even in another locale, a minus sign can be
+						// put after a number using DateFormat.setNumberFormat().
+						// If both the minus sign and the field-delimiter are '-',
+						// subParse() needs to determine whether a '-' after a number
+						// in the given text is a delimiter or is a minus sign for the
+						// preceding number. We give subParse() a clue based on the
+						// information in compiledPattern.
+						var useFollowingMinusSignAsDelimiter:Boolean = false;
+						
+						if (i < compiledPattern.length) {
+							var nextTag:int = compiledPattern[i] >>> 8;
+							if (!(nextTag == TAG_QUOTE_ASCII_CHAR ||
+								nextTag == TAG_QUOTE_CHARS)) {
+								obeyCount = true;
+							}
+							
+							if (hasFollowingMinusSign &&
+								(nextTag == TAG_QUOTE_ASCII_CHAR ||
+									nextTag == TAG_QUOTE_CHARS)) {
+								var c:uint;
+								if (nextTag == TAG_QUOTE_ASCII_CHAR) {
+									c = compiledPattern[i] & 0xff;
+								} else {
+									c = compiledPattern[i+1];
+								}
+								
+								if (c == minusSignCode) {
+									useFollowingMinusSignAsDelimiter = true;
+								}
+							}
+						}
+						start = subParse(text, start, tag, count, obeyCount,
+							ambiguousYear, pos,
+							useFollowingMinusSignAsDelimiter, builder);
+						if (start < 0) {
+							pos.index = oldStart;
+							return null;
+						}
+				}
+			}
+			
+			// At this point the fields of Calendar have been set.  Calendar
+			// will fill in default values for missing fields when the time
+			// is computed.
+			
+			pos.index = start;
+			
+			var parsedDate:Date;
+			try {
+				parsedDate = builder.getDate();
+				// If the year value is ambiguous,
+				// then the two-digit year == the default start year
+				if (ambiguousYear[0]) {
+					if (parsedDate.getTime() < Consts.defaultCenturyStart.getTime()) {
+						parsedDate = builder.addYear(100).getDate();
+					}
+				}
+			}
+			// An IllegalArgumentException will be thrown by Calendar.getTime()
+			// if any fields are out of range, e.g., MONTH == 17.
+			catch (e:Error) {
+				pos.errorIndex = start;
+				pos.index = oldStart;
+				return null;
+			}
+			
+			return parsedDate;
+		}
+
+		
+		private const PATTERN_INDEX_TO_CALENDAR_FIELD:Array = [0,1,2,5,11,11,12,13,14,7,6,8,3,4,9,10,10,15,15,17,1000,15,2];
+		
+		private function matchString(text:String, start:int, field:int, data:Object, builder:DateBuilder):int
+		{
+			return 0;
+		}
+		
+		private function getDisplayNamesMap(field:int/*, locale:String*/):Object {
+			return {};
+		}
+		
+		private function subParseNumericZone(text:String, start:int, sign:int, count:int,
+											 colon:Boolean, builder:DateBuilder):int {
+			return 0;
+		}
+		
+		private function subParseZoneString(text:String, start:int, builder:DateBuilder):int {
+			return 0;
+		}
+		
+		/**
+		 * Tell whether date/time parsing is to be lenient.
+		 *
+		 */
+		public function get isLenient():Boolean
+		{
+			return true;
+		}
+		
+		private var formatData:DateFormatSymbols;
+		
+		private var  useDateFormatSymbols:Boolean;
+		
+		private function getDisplayNames(field:int, style:int):Object
+		{
+			return {};
+		}
+		
+		/**
+		 * Returns the compiled form of the given pattern. The syntax of
+		 * the compiled pattern is:
+		 * <blockquote>
+		 * CompiledPattern:
+		 *     EntryList
+		 * EntryList:
+		 *     Entry
+		 *     EntryList Entry
+		 * Entry:
+		 *     TagField
+		 *     TagField data
+		 * TagField:
+		 *     Tag Length
+		 *     TaggedData
+		 * Tag:
+		 *     pattern_char_index
+		 *     TAG_QUOTE_CHARS
+		 * Length:
+		 *     short_length
+		 *     long_length
+		 * TaggedData:
+		 *     TAG_QUOTE_ASCII_CHAR ascii_char
+		 *
+		 * </blockquote>
+		 *
+		 * where `short_length' is an 8-bit unsigned integer between 0 and
+		 * 254.  `long_length' is a sequence of an 8-bit integer 255 and a
+		 * 32-bit signed integer value which is split into upper and lower
+		 * 16-bit fields in two char's. `pattern_char_index' is an 8-bit
+		 * integer between 0 and 18. `ascii_char' is an 7-bit ASCII
+		 * character value. `data' depends on its Tag value.
+		 * <p>
+		 * If Length is short_length, Tag and short_length are packed in a
+		 * single char, as illustrated below.
+		 * <blockquote>
+		 *     char[0] = (Tag << 8) | short_length;
+		 * </blockquote>
+		 *
+		 * If Length is long_length, Tag and 255 are packed in the first
+		 * char and a 32-bit integer, as illustrated below.
+		 * <blockquote>
+		 *     char[0] = (Tag << 8) | 255;
+		 *     char[1] = (char) (long_length >>> 16);
+		 *     char[2] = (char) (long_length & 0xffff);
+		 * </blockquote>
+		 * <p>
+		 * If Tag is a pattern_char_index, its Length is the number of
+		 * pattern characters. For example, if the given pattern is
+		 * "yyyy", Tag is 1 and Length is 4, followed by no data.
+		 * <p>
+		 * If Tag is TAG_QUOTE_CHARS, its Length is the number of char's
+		 * following the TagField. For example, if the given pattern is
+		 * "'o''clock'", Length is 7 followed by a char sequence of
+		 * <code>o&nbs;'&nbs;c&nbs;l&nbs;o&nbs;c&nbs;k</code>.
+		 * <p>
+		 * TAG_QUOTE_ASCII_CHAR is a special tag and has an ASCII
+		 * character in place of Length. For example, if the given pattern
+		 * is "'o'", the TaggedData entry is
+		 * <code>((TAG_QUOTE_ASCII_CHAR&nbs;<<&nbs;8)&nbs;|&nbs;'o')</code>.
+		 *
+		 */
+		private function compilePattern(pattern:String):Vector.<uint> 
+		{
+			var length:int = pattern.length;
+			var inQuote:Boolean = false;
+			var compiledCode:Vector.<uint> = new Vector.<uint>;
+			var tmpBuffer:Vector.<uint> = null;
+			var count:int = 0, tagcount:int = 0;
+			var lastTag:int = -1, prevTag:int = -1;
+			
+			for (var i:int = 0; i < length; i++) {
+				var c:String = pattern.charAt(i);
+				
+				if (c == "'") {
+					// '' is treated as a single quote regardless of being
+					// in a quoted section.
+					if ((i + 1) < length) {
+						c = pattern.charAt(i + 1);
+						if (c == "'") {
+							i++;
+							if (count != 0) {
+								encode(lastTag, count, compiledCode);
+								tagcount++;
+								prevTag = lastTag;
+								lastTag = -1;
+								count = 0;
+							}
+							if (inQuote) {
+								tmpBuffer.push(c.charCodeAt(0));
+							} else {
+								compiledCode.push((TAG_QUOTE_ASCII_CHAR << 8 | c.charCodeAt(0)));
+							}
+							continue;
+						}
+					}
+					if (!inQuote) {
+						if (count != 0) {
+							encode(lastTag, count, compiledCode);
+							tagcount++;
+							prevTag = lastTag;
+							lastTag = -1;
+							count = 0;
+						}
+						tmpBuffer = new Vector.<uint>;
+						inQuote = true;
+					} else {
+						var len:int = tmpBuffer.length;
+						if (len == 1) {
+							var ch:uint = tmpBuffer[0];
+							if (ch < 128) {
+								compiledCode.push(TAG_QUOTE_ASCII_CHAR << 8 | ch);
+							} else {
+								compiledCode.push(TAG_QUOTE_CHARS << 8 | 1);
+								compiledCode.push(ch);
+							}
+						} else {
+							encode(TAG_QUOTE_CHARS, len, compiledCode);
+							compiledCode = compiledCode.concat(tmpBuffer);//compiledCode.append(tmpBuffer);
+						}
+						inQuote = false;
+					}
+					continue;
+				}
+				if (inQuote) {
+					tmpBuffer.push(c.charCodeAt(0));
+					continue;
+				}
+				if (!(c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z')) {
+					if (count != 0) {
+						encode(lastTag, count, compiledCode);
+						tagcount++;
+						prevTag = lastTag;
+						lastTag = -1;
+						count = 0;
+					}
+					if (c.charCodeAt(0) < 128) {
+						// In most cases, c would be a delimiter, such as ':'.
+						compiledCode.push(TAG_QUOTE_ASCII_CHAR << 8 | c.charCodeAt(0));
+					} else {
+						// Take any contiguous non-ASCII alphabet characters and
+						// put them in a single TAG_QUOTE_CHARS.
+						var j:int;
+						for (j = i + 1; j < length; j++) {
+							var d:String = pattern.charAt(j);
+							if (d == "'" || (d >= 'a' && d <= 'z' || d >= 'A' && d <= 'Z')) {
+								break;
+							}
+						}
+						compiledCode.push(TAG_QUOTE_CHARS << 8 | (j - i));
+						for (; i < j; i++) {
+							compiledCode.push(pattern.charCodeAt(i));
+						}
+						i--;
+					}
+					continue;
+				}
+				
+				var tag:int;
+				if ((tag = DateFormatSymbols.patternChars.indexOf(c)) == -1) {
+					throw new Error("Illegal pattern character " +
+						"'" + c + "'");
+				}
+				if (lastTag == -1 || lastTag == tag) {
+					lastTag = tag;
+					count++;
+					continue;
+				}
+				encode(lastTag, count, compiledCode);
+				tagcount++;
+				prevTag = lastTag;
+				lastTag = tag;
+				count = 1;
+			}
+			
+			if (inQuote) {
+				throw new Error("Unterminated quote");
+			}
+			
+			if (count != 0) {
+				encode(lastTag, count, compiledCode);
+				tagcount++;
+				prevTag = lastTag;
+			}
+			
+			forceStandaloneForm = (tagcount == 1 && prevTag == Consts.PATTERN_MONTH);
+			
+			// Copy the compiled pattern to a char array
+			//var len:String = compiledCode.length;
+			//char[] r = new char[len];
+			//compiledCode.getChars(0, len, r, 0);
+			//return r;
+			return compiledCode;
+		}
+
+		/**
+		 * Encodes the given tag and length and puts encoded char(s) into buffer.
+		 */
+		private static function encode(tag:int, length:int, buffer:Vector.<uint>):void {
+			if (tag == Consts.PATTERN_ISO_ZONE && length >= 4) {
+				throw new Error("invalid ISO 8601 format: length=" + length);
+			}
+			if (length < 255) {
+				buffer.push(tag << 8 | length);
+			} else {
+				buffer.push((tag << 8) | 0xff);
+				buffer.push(length >>> 16);
+				buffer.push(length & 0xffff);
+			}
+		}
+		
+		private static function parseNumber(s:String, pos:ParsePosition):Number
+		{
+			for (var i:int = pos.index; i <= s.length; i++)
+			{
+				if(i == s.length || !net.fproject.utils.StringUtil.isDigit(s.charCodeAt(i)))
+				{
+					if(i > pos.index)
+					{
+						var start:int = pos.index;
+						pos.index = i;
+						return Number(s.substring(start, i));
+					}
+					break;
+				}
+			}
+			return NaN;
+		}
+		
+		/**
+		 * Private member function that converts the parsed date strings into
+		 * timeFields. Returns -start (for ParsePosition) if failed.
+		 * @param text the time text to be parsed.
+		 * @param start where to start parsing.
+		 * @param patternCharIndex the index of the pattern character.
+		 * @param count the count of a pattern character.
+		 * @param obeyCount if true, then the next field directly abuts this one,
+		 * and we should use the count to know when to stop parsing.
+		 * @param ambiguousYear return parameter; upon return, if ambiguousYear[0]
+		 * is true, then a two-digit year was parsed and may need to be readjusted.
+		 * @param origPos origPos.errorIndex is used to return an error index
+		 * at which a parse error occurred, if matching failure occurs.
+		 * @return the new start position if matching succeeded; -1 indicating
+		 * matching failure, otherwise. In case matching failure occurred,
+		 * an error index is set to origPos.errorIndex.
+		 */
+		private function subParse(text:String, start:int, patternCharIndex:int, count:int,
+								  obeyCount:Boolean, ambiguousYear:Array, origPos:ParsePosition,
+								  useFollowingMinusSignAsDelimiter:Boolean, builder:DateBuilder) : int
+		{
+			var number:Number;
+			var value:int = 0;
+			var pos:ParsePosition = new ParsePosition(0);
+			pos.index = start;
+			var field:int = PATTERN_INDEX_TO_CALENDAR_FIELD[patternCharIndex];
+			
+			// If there are any spaces here, skip over them.  If we hit the end
+			// of the string, then fail.
+			for (;;) {
+				if (pos.index >= text.length) {
+					origPos.errorIndex = start;
+					return -1;
+				}
+				var c:String = text.charAt(pos.index);
+				if (c != ' ' && c != "\t") {
+					break;
+				}
+				++pos.index;
+			}
+			// Remember the actual start index
+			var actualStart:int = pos.index;
+			
+			parsing:
+			{
+				// We handle a few special cases here where we need to parse
+				// a number value.  We handle further, more generic cases below.  We need
+				// to handle some of them here because some fields require extra processing on
+				// the parsed value.
+				if (patternCharIndex == Consts.PATTERN_HOUR_OF_DAY1 ||
+					patternCharIndex == Consts.PATTERN_HOUR1 ||
+					(patternCharIndex == Consts.PATTERN_MONTH && count <= 2) ||
+					patternCharIndex == Consts.PATTERN_YEAR ||
+					patternCharIndex == Consts.PATTERN_WEEK_YEAR) {
+					// It would be good to unify this with the obeyCount logic below,
+					// but that's going to be difficult.
+					if (obeyCount) {
+						if ((start+count) > text.length) {
+							break parsing;
+						}
+						//number = numberFormat.parse(text.substring(0, start+count), pos);
+						number = parseNumber(text.substring(0, start+count), pos);
+					} else {
+						number = parseNumber(text, pos);
+					}
+					if (isNaN(number)) {
+						break parsing;
+					} else {
+						value = int(number);
+						
+						if (useFollowingMinusSignAsDelimiter && (value < 0) &&
+							(((pos.index < text.length) &&
+								(text.charAt(pos.index) != minusSign)) ||
+								((pos.index == text.length) &&
+									(text.charAt(pos.index-1) == minusSign)))) {
+							value = -value;
+							pos.index--;
+						}
+					}
+				}
+				
+				var index:int;
+				switch (patternCharIndex) {
+					case Consts.PATTERN_WEEK_YEAR: // 'Y'
+					case Consts.PATTERN_YEAR:      // 'y'
+						
+						// If there are 3 or more YEAR pattern characters, this indicates
+						// that the year value is to be treated literally, without any
+						// two-digit year adjustments (e.g., from "01" to 2001).  Otherwise
+						// we made adjustments to place the 2-digit year in the proper
+						// century, for parsed strings from "00" to "99".  Any other string
+						// is treated literally:  "2250", "-1", "1", "002".
+						if (count <= 2 && (pos.index - actualStart) == 2
+							&& net.fproject.utils.StringUtil.isDigit(text.charCodeAt(actualStart))
+							&& net.fproject.utils.StringUtil.isDigit(text.charCodeAt(actualStart + 1))) {
+							// Assume for example that the defaultCenturyStart is 6/18/1903.
+							// This means that two-digit years will be forced into the range
+							// 6/18/1903 to 6/17/2003.  As a result, years 00, 01, and 02
+							// correspond to 2000, 2001, and 2002.  Years 04, 05, etc. correspond
+							// to 1904, 1905, etc.  If the year is 03, then it is 2003 if the
+							// other fields specify a date before 6/18, or 1903 if they specify a
+							// date afterwards.  As a result, 03 is an ambiguous year.  All other
+							// two-digit years are unambiguous.
+							var ambiguousTwoDigitYear:int = Consts.defaultCenturyStartYear % 100;
+							ambiguousYear[0] = value == ambiguousTwoDigitYear;
+							value += int(Consts.defaultCenturyStartYear/100)*100 +
+								(value < ambiguousTwoDigitYear ? 100 : 0);
+						}
+						builder.setFieldValue(field, value);
+						return pos.index;
+						
+					case Consts.PATTERN_MONTH: // 'M'
+						if (count <= 2) // i.e., M or MM.
+						{
+							// Don't want to parse the month if it is a string
+							// while pattern uses numeric style: M or MM.
+							// [We computed 'value' above.]
+							builder.setFieldValue(2, value - 1);//Calendar.MONTH
+							return pos.index;
+						}
+						
+						if (useDateFormatSymbols) {
+							// count >= 3 // i.e., MMM or MMMM
+							// Want to be able to parse both short and long forms.
+							// Try count == 4 first:
+							var newStart:int;
+							if ((newStart = matchString(text, start, 2,// 2: Calendar.MONTH
+								formatData.months, builder)) > 0) {
+								return newStart;
+							}
+							// count == 4 failed, now try count == 3
+							if ((index = matchString(text, start, 2,// 2: Calendar.MONTH
+								formatData.shortMonths, builder)) > 0) {
+								return index;
+							}
+						} else {
+							/*Map<String, Integer>*/var map:Object = getDisplayNamesMap(field);
+							if ((index = matchString(text, start, field, map, builder)) > 0) {
+								return index;
+							}
+						}
+						break parsing;
+					
+					case Consts.PATTERN_HOUR_OF_DAY1: // 'k' 1-based.  eg, 23:59 + 1 hour =>> 24:59
+						if (!isLenient) {
+							// Validate the hour value in non-lenient
+							if (value < 1 || value > 24) {
+								break parsing;
+							}
+						}
+						// [We computed 'value' above.]
+						if (value == 24) {//24:calendar.getMaximum(Calendar.HOUR_OF_DAY) + 1)
+							value = 0;
+						}
+						builder.setFieldValue(11, value);//11:Calendar.HOUR_OF_DAY
+						return pos.index;
+						
+					case Consts.PATTERN_DAY_OF_WEEK:  // 'E'
+					{
+						if (useDateFormatSymbols) {
+							// Want to be able to parse both short and long forms.
+							// Try count == 4 (DDDD) first:
+							if ((newStart=matchString(text, start, 7,//7: Calendar.DAY_OF_WEEK
+								formatData.weekdays, builder)) > 0) {
+								return newStart;
+							}
+							// DDDD failed, now try DDD
+							if ((index = matchString(text, start, 7,//7: Calendar.DAY_OF_WEEK
+								formatData.shortWeekdays, builder)) > 0) {
+								return index;
+							}
+						} else {
+							var styles:Array = [ 2, 1 ];//2: Calendar.LONG, 1: Calendar.SHORT
+							for each(var style:int in styles) {
+								map = getDisplayNames(field, style);
+								if ((index = matchString(text, start, field, map, builder)) > 0) {
+									return index;
+								}
+							}
+						}
+					}
+						
+						break parsing;
+					
+					case Consts.PATTERN_AM_PM:    // 'a'
+						if (useDateFormatSymbols) {
+							if ((index = matchString(text, start, 9,//9: Calendar.AM_PM
+								formatData.ampms, builder)) > 0) {
+								return index;
+							}
+						} else {
+							map = getDisplayNamesMap(field);
+							if ((index = matchString(text, start, field, map, builder)) > 0) {
+								return index;
+							}
+						}
+						break parsing;
+					
+					case Consts.PATTERN_HOUR1: // 'h' 1-based.  eg, 11PM + 1 hour =>> 12 AM
+						if (!isLenient) {
+							// Validate the hour value in non-lenient
+							if (value < 1 || value > 12) {
+								break parsing;
+							}
+						}
+						// [We computed 'value' above.]
+						if (value == 12) {//12: calendar.getLeastMaximum(Calendar.HOUR) + 1
+							value = 0;
+						}
+						builder.setFieldValue(10, value);//10:Calendar.HOUR
+						return pos.index;
+						
+					case Consts.PATTERN_ZONE_NAME:  // 'z'
+					case Consts.PATTERN_ZONE_VALUE: // 'Z'
+					{
+						var sign:int = 0;
+						try {
+							c = text.charAt(pos.index);
+							if (c == '+') {
+								sign = 1;
+							} else if (c == '-') {
+								sign = -1;
+							}
+							if (sign == 0) {
+								// Try parsing a custom time zone "GMT+hh:mm" or "GMT".
+								if ((c == 'G' || c == 'g')
+									&& (text.length - start) >= 3
+									&& text.substr(start,3).toUpperCase() == "GMT") {
+									pos.index = start + 3;
+									
+									if ((text.length - pos.index) > 0) {
+										c = text.charAt(pos.index);
+										if (c == '+') {
+											sign = 1;
+										} else if (c == '-') {
+											sign = -1;
+										}
+									}
+									
+									if (sign == 0) {    /* "GMT" without offset */
+										builder.setFieldValue(15, 0)//15: Calendar.ZONE_OFFSET
+											.setFieldValue(16, 0);//16: Calendar.DST_OFFSET
+										return pos.index;
+									}
+									
+									// Parse the rest as "hh:mm"
+									var i:int = subParseNumericZone(text, ++pos.index,
+										sign, 0, true, builder);
+									if (i > 0) {
+										return i;
+									}
+									pos.index = -i;
+								} else {
+									// Try parsing the text as a time zone
+									// name or abbreviation.
+									i = subParseZoneString(text, pos.index, builder);
+									if (i > 0) {
+										return i;
+									}
+									pos.index = -i;
+								}
+							} else {
+								// Parse the rest as "hhmm" (RFC 822)
+								i = subParseNumericZone(text, ++pos.index,
+									sign, 0, false, builder);
+								if (i > 0) {
+									return i;
+								}
+								pos.index = -i;
+							}
+						} catch (e:Error) {
+						}
+					}
+						break parsing;
+					
+					case Consts.PATTERN_ISO_ZONE:   // 'X'
+					{
+						if ((text.length - pos.index) <= 0) {
+							break parsing;
+						}
+						
+						sign = 0;
+						c = text.charAt(pos.index);
+						if (c == 'Z') {
+							builder.setFieldValue(15, 0).setFieldValue(16, 0);//15: Calendar.ZONE_OFFSET, 16: Calendar.DST_OFFSET
+							return ++pos.index;
+						}
+						
+						// parse text as "+/-hh[[:]mm]" based on count
+						if (c == '+') {
+							sign = 1;
+						} else if (c == '-') {
+							sign = -1;
+						} else {
+							++pos.index;
+							break parsing;
+						}
+						i = subParseNumericZone(text, ++pos.index, sign, count,
+							count == 3, builder);
+						if (i > 0) {
+							return i;
+						}
+						pos.index = -i;
+					}
+						break parsing;
+					
+					default:
+						// case PATTERN_DAY_OF_MONTH:         // 'd'
+						// case PATTERN_HOUR_OF_DAY0:         // 'H' 0-based.  eg, 23:59 + 1 hour =>> 00:59
+						// case PATTERN_MINUTE:               // 'm'
+						// case PATTERN_SECOND:               // 's'
+						// case PATTERN_MILLISECOND:          // 'S'
+						// case PATTERN_DAY_OF_YEAR:          // 'D'
+						// case PATTERN_DAY_OF_WEEK_IN_MONTH: // 'F'
+						// case PATTERN_WEEK_OF_YEAR:         // 'w'
+						// case PATTERN_WEEK_OF_MONTH:        // 'W'
+						// case PATTERN_HOUR0:                // 'K' 0-based.  eg, 11PM + 1 hour =>> 0 AM
+						// case PATTERN_ISO_DAY_OF_WEEK:      // 'u' (pseudo field);
+						
+						// Handle "generic" fields
+						if (obeyCount) {
+							if ((start+count) > text.length) {
+								break parsing;
+							}
+							number = parseNumber(text.substring(0, start+count), pos);
+						} else {
+							number = parseNumber(text, pos);
+						}
+						if (!isNaN(number)) {
+							value = int(number);
+							
+							if (useFollowingMinusSignAsDelimiter && (value < 0) &&
+								(((pos.index < text.length) &&
+									(text.charAt(pos.index) != minusSign)) ||
+									((pos.index == text.length) &&
+										(text.charAt(pos.index-1) == minusSign)))) {
+								value = -value;
+								pos.index--;
+							}
+							
+							builder.setFieldValue(field, value);
+							return pos.index;
+						}
+						break parsing;
+				}
+			}
+			
+			// Parsing failed.
+			origPos.errorIndex = pos.index;
+			return -1;
+		}
 	}
+	
+}
+import net.fproject.core.TimeUnit;
+
+class ParsePosition {
+	/**
+	 * Input: the place you start parsing.
+	 * <br>Output: position where the parse stopped.
+	 * This is designed to be used serially,
+	 * with each call setting index up for the next one.
+	 */
+	public var index:int;
+	public var errorIndex:int;
+	
+	public function ParsePosition(index:int) 
+	{
+		this.index = index;
+		this.errorIndex = -1;
+	}
+	
+	public function equals(obj:ParsePosition):Boolean
+	{
+		if (obj == null) return false;
+		return (index == obj.index && errorIndex == obj.errorIndex);
+	}
+}
+
+class DateBuilder {
+	private static const MAX_FIELD:int = 18;//FIELD_COUNT + 1
+	
+	public static const WEEK_YEAR:int = 17;//FIELD_COUNT
+	public static const ISO_DAY_OF_WEEK:int = 1000; // pseudo field index
+	
+	// stamp[] (lower half) and field[] (upper half) combined
+	private var field:Vector.<int>;
+	private var nextStamp:int;
+	private var maxFieldIndex:int;
+	
+	public function DateBuilder() {
+		field = new Vector.<int>(MAX_FIELD * 2);
+		nextStamp = 2;//2: MINIMUM_USER_STAMP
+		maxFieldIndex = -1;
+	}
+	
+	public function setFieldValue(index:int, value:int):DateBuilder {
+		if (index == ISO_DAY_OF_WEEK) {
+			index = 7;//DAY_OF_WEEK
+			value = toCalendarDayOfWeek(value);
+		}
+		field[index] = nextStamp++;
+		field[MAX_FIELD + index] = value;
+		if (index > maxFieldIndex && index < 17) {//17: FIELD_COUNT
+			maxFieldIndex = index;
+		}
+		return this;
+	}
+	
+	public function addYear(value:int):DateBuilder {
+		field[MAX_FIELD + 1] += value;//1: YEAR
+		field[MAX_FIELD + WEEK_YEAR] += value;
+		return this;
+	}
+	
+	public function isSet(index:int):Boolean {
+		if (index == ISO_DAY_OF_WEEK) {
+			index = 7;//DAY_OF_WEEK;
+		}
+		return field[index] > 0;//0: UNSET
+	}
+	
+	public function clear(index:int):DateBuilder {
+		if (index == ISO_DAY_OF_WEEK) {
+			index = 7;//DAY_OF_WEEK;
+		}
+		field[index] = 0;//0: UNSET
+		field[MAX_FIELD + index] = 0;
+		return this;
+	}
+	
+	public function getDate():Date
+	{
+		var y:int = field[MAX_FIELD + 1];//1: YEAR
+		var mo:int = field[MAX_FIELD + 2];//2: MONTH
+		var d:int = field[MAX_FIELD + 5];//5: DAY_OF_MONTH
+		var h:int = field[MAX_FIELD + 10];//10: HOUR
+		var mi:int = field[MAX_FIELD + 12];//12: MINUTE
+		var s:int = field[MAX_FIELD + 13];//13: SECOND
+		var ms:int = field[MAX_FIELD + 14];//14: MILLISECOND
+		return new Date(y, mo, d, h, mi, s, ms);
+	}
+	
+	private static function toCalendarDayOfWeek(isoDayOfWeek:int):int {
+		if (isoDayOfWeek < 0 || isoDayOfWeek > 7) {
+			// adjust later for lenient mode
+			return isoDayOfWeek;
+		}
+		return isoDayOfWeek == 7 ? 1 : isoDayOfWeek + 1;
+	}
+}
+
+class Consts {
+	public static const PATTERN_ERA:int                  =  0; // G
+	public static const PATTERN_YEAR:int                 =  1; // y
+	public static const PATTERN_MONTH:int                =  2; // M
+	public static const PATTERN_DAY_OF_MONTH:int         =  3; // d
+	public static const PATTERN_HOUR_OF_DAY1:int         =  4; // k
+	public static const PATTERN_HOUR_OF_DAY0:int         =  5; // H
+	public static const PATTERN_MINUTE:int               =  6; // m
+	public static const PATTERN_SECOND:int               =  7; // s
+	public static const PATTERN_MILLISECOND:int          =  8; // S
+	public static const PATTERN_DAY_OF_WEEK:int          =  9; // E
+	public static const PATTERN_DAY_OF_YEAR:int          = 10; // D
+	public static const PATTERN_DAY_OF_WEEK_IN_MONTH:int = 11; // F
+	public static const PATTERN_WEEK_OF_YEAR:int         = 12; // w
+	public static const PATTERN_WEEK_OF_MONTH:int        = 13; // W
+	public static const PATTERN_AM_PM:int                = 14; // a
+	public static const PATTERN_HOUR1:int                = 15; // h
+	public static const PATTERN_HOUR0:int                = 16; // K
+	public static const PATTERN_ZONE_NAME:int            = 17; // z
+	public static const PATTERN_ZONE_VALUE:int           = 18; // Z
+	public static const PATTERN_WEEK_YEAR:int            = 19; // Y
+	public static const PATTERN_ISO_DAY_OF_WEEK:int      = 20; // u
+	public static const PATTERN_ISO_ZONE:int             = 21; // X
+	public static const PATTERN_MONTH_STANDALONE:int     = 22; // L
+	
+	public static const defaultCenturyStart:Date = getDefaultCenturyStart();
+	public static const defaultCenturyStartYear:int = getDefaultCenturyStart().fullYear;
+	
+	private static function getDefaultCenturyStart():Date
+	{
+		if(defaultCenturyStart != null)
+			return defaultCenturyStart;
+		var d:Date = new Date;
+		d.setTime(d.getTime() - TimeUnit.YEAR.milliseconds * 80);
+		return d;
+	}
+}
+
+class DateFormatSymbols {
+	/**
+	 * Era strings. For example: "AD" and "BC".  An array of 2 strings,
+	 * indexed by <code>Calendar.BC</code> and <code>Calendar.AD</code>.
+	 */
+	//public var eras:Vector.<String> = null;
+	
+	/**
+	 * Month strings. For example: "January", "February", etc.  An array
+	 * of 13 strings (some calendars have 13 months), indexed by
+	 * <code>Calendar.JANUARY</code>, <code>Calendar.FEBRUARY</code>, etc.
+	 */
+	public var months:Vector.<String> = null;
+	
+	/**
+	 * Short month strings. For example: "Jan", "Feb", etc.  An array of
+	 * 13 strings (some calendars have 13 months), indexed by
+	 * <code>Calendar.JANUARY</code>, <code>Calendar.FEBRUARY</code>, etc.
+	 */
+	public var shortMonths:Vector.<String> = null;
+	
+	/**
+	 * Weekday strings. For example: "Sunday", "Monday", etc.  An array
+	 * of 8 strings, indexed by <code>Calendar.SUNDAY</code>,
+	 * <code>Calendar.MONDAY</code>, etc.
+	 * The element <code>weekdays[0]</code> is ignored.
+	 */
+	public var weekdays:Vector.<String> = null;
+	
+	/**
+	 * Short weekday strings. For example: "Sun", "Mon", etc.  An array
+	 * of 8 strings, indexed by <code>Calendar.SUNDAY</code>,
+	 * <code>Calendar.MONDAY</code>, etc.
+	 * The element <code>shortWeekdays[0]</code> is ignored.
+	 */
+	public var shortWeekdays:Vector.<String> = null;
+	
+	/**
+	 * AM and PM strings. For example: "AM" and "PM".  An array of
+	 * 2 strings, indexed by <code>Calendar.AM</code> and
+	 * <code>Calendar.PM</code>.
+	 */
+	public var ampms:Vector.<String> = null;
+	
+	/**
+	 * Localized names of time zones in this locale.  This is a
+	 * two-dimensional array of strings of size <em>n</em> by <em>m</em>,
+	 * where <em>m</em> is at least 5.  Each of the <em>n</em> rows is an
+	 * entry containing the localized names for a single <code>TimeZone</code>.
+	 * Each such row contains (with <code>i</code> ranging from
+	 * 0..<em>n</em>-1):
+	 * <ul>
+	 * <li><code>zoneStrings[i][0]</code> - time zone ID</li>
+	 * <li><code>zoneStrings[i][1]</code> - long name of zone in standard
+	 * time</li>
+	 * <li><code>zoneStrings[i][2]</code> - short name of zone in
+	 * standard time</li>
+	 * <li><code>zoneStrings[i][3]</code> - long name of zone in daylight
+	 * saving time</li>
+	 * <li><code>zoneStrings[i][4]</code> - short name of zone in daylight
+	 * saving time</li>
+	 * </ul>
+	 */
+	public var zoneStrings:Array = null;
+	
+	/**
+	 * Unlocalized date-time pattern characters. For example: 'y', 'd', etc.
+	 * All locales use the same these unlocalized pattern characters.
+	 */
+	public static const patternChars:String = "GyMdkHmsSEDFwWahKzZYuXL";
 }

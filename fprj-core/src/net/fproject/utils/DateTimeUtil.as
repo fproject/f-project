@@ -716,6 +716,8 @@ package net.fproject.utils
 		public static function formatIsoDate(d:Date, includeMilliseconds:Boolean=false,
 											 useZsign:Boolean=false, useTsign:Boolean=true):String
 		{
+			if(d==null)
+				return null;
 			var date:Number = d.getUTCDate();
 			var month:Number = d.getUTCMonth();
 			var hours:Number = d.getUTCHours();
@@ -772,6 +774,15 @@ package net.fproject.utils
 			if(useZsign)
 				sb += "Z";
 			return sb;
+		}
+		
+		public static function formatToUniversalDate(d:Date, includeMilliseconds:Boolean=false,
+			useZsign:Boolean=false, useTsign:Boolean=true):String
+		{
+			if (d==null)
+				return null;
+			var ud:Date = new Date(d.time - d.timezoneOffset*TimeUnit.MINUTE.milliseconds);
+			return formatIsoDate(ud,includeMilliseconds,useZsign,useTsign);
 		}
 		
 		/* **************************************************************
