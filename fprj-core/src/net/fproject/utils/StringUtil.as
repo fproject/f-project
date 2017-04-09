@@ -640,5 +640,10 @@ package net.fproject.utils
 			s = s.replace('"', "&quot;");
 			return s;
 		}
+		
+		public static function isDigit(charCode:int):Boolean
+		{
+			return charCode > 47 && charCode < 58
+		}
 	}
 }

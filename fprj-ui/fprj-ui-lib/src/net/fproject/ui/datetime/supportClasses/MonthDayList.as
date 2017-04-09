@@ -55,13 +55,22 @@ package net.fproject.ui.datetime.supportClasses
 			for (var i:int = 0; i < 42; i++)
 			{
 				var dt:Date = new Date(value);
-				var data:MonthDay = new MonthDay();
-				data.date = dt;
-				data.isInCurrentMonth = dt.month == month;
+				var data:MonthDay = new MonthDay(dt, dt.month == month);
 				arr.push(data);
 				value += TimeUnit.DAY.milliseconds;
 			}
 			source = arr;
+		}
+		
+		/**
+		 * Get item by a Date  
+		 * 
+		 */
+		public function getItemByDate(d:Date):Object
+		{
+			var md:MonthDay = new MonthDay(d, true);
+			var idx:int = this.getItemIndex(md);
+			return idx != -1 ? this.getItemAt(idx) : null;
 		}
 		
 		private var _month:int;

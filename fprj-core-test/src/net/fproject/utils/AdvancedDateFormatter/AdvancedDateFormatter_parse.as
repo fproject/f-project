@@ -143,7 +143,55 @@ package net.fproject.utils.AdvancedDateFormatter
 			//---- Place result assertion here ----
 			// You must replace this code by function specifications or 
 			// the test always returns false!
-			assertTrue(returnTestValue.fullYear==2010 && returnTestValue.month==4 && 
+			assertTrue(returnTestValue.fullYear==2012 && returnTestValue.month==0 && 
+				returnTestValue.date==2 && returnTestValue.hours==8 && 
+				returnTestValue.minutes==0 && returnTestValue.seconds==0);
+			//-------------------------------------
+		}
+		
+		[Test (description="Normal case")]
+		/**
+		 * Test Case Type: Normal<br/>
+		 * <br/>
+		 * INPUT VALUES:<br/>
+		 * <br/>
+		 * OUTPUT EXPECTED:<br/>
+		 * ---- expectations ----
+		 *
+		 */
+		public function testCase006():void
+		{
+			var valueString:String = "2010-11-2 8:1:10";
+			advancedDateformatter.formatString = "yyyy-M-dd h:m:s";
+			var returnTestValue:Date = advancedDateformatter.parse(valueString);
+			//---- Place result assertion here ----
+			// You must replace this code by function specifications or 
+			// the test always returns false!
+			assertTrue(returnTestValue.fullYear==2010 && returnTestValue.month==10 && 
+				returnTestValue.date==2 && returnTestValue.hours==8 && 
+				returnTestValue.minutes==1 && returnTestValue.seconds==10);
+			//-------------------------------------
+		}
+		
+		[Test (description="Normal case")]
+		/**
+		 * Test Case Type: Normal<br/>
+		 * <br/>
+		 * INPUT VALUES:<br/>
+		 * <br/>
+		 * OUTPUT EXPECTED:<br/>
+		 * ---- expectations ----
+		 *
+		 */
+		public function testCase007():void
+		{
+			var valueString:String = "2010-11-2 8:0:0";
+			advancedDateformatter.formatString = "yyyy-M-dd hh:mm:ss";
+			var returnTestValue:Date = advancedDateformatter.parse(valueString);
+			//---- Place result assertion here ----
+			// You must replace this code by function specifications or 
+			// the test always returns false!
+			assertTrue(returnTestValue.fullYear==2010 && returnTestValue.month==10 && 
 				returnTestValue.date==2 && returnTestValue.hours==8 && 
 				returnTestValue.minutes==0 && returnTestValue.seconds==0);
 			//-------------------------------------
