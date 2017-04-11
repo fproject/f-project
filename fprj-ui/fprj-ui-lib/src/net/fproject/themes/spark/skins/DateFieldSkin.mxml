@@ -74,6 +74,9 @@
 				if(yearLabel != null)
 				{
 					var diff:Number = monthLabel.width + 33 - yearLabel.x;
+					if(nextYearButton != null && dropDownGroup.containsElement(nextYearButton))
+						diff -= 2;
+					
 					var l:Number = monthLabel.x;
 					if(diff >= -2)
 						monthLabel.move(30 - diff, 11);
@@ -90,7 +93,7 @@
 		<s:State name="disabled"/>
 		<s:State name="normalWithYearButton" stateGroups="withYearButton"/>
 		<s:State name="normalWithYearButtonAndOpen" stateGroups="withYearButton,open"/>
-		<s:State name="disabledWithYearButton" stateGroups="withYearButton"/>
+		<s:State name="disabledWithYearButton" basedOn="disabled" stateGroups="withYearButton"/>
 	</s:states>
 	
 	<s:PopUpAnchor id="popUpAnchor" displayPopUp.normal="false"
