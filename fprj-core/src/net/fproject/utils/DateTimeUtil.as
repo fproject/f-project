@@ -776,7 +776,7 @@ package net.fproject.utils
 			return sb;
 		}
 		
-		public static function formatToUniversalDate(d:Date, includeMilliseconds:Boolean=false,
+		public static function formatUTCDate(d:Date, includeMilliseconds:Boolean=false,
 			useZsign:Boolean=false, useTsign:Boolean=true):String
 		{
 			if (d==null)
