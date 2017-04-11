@@ -17,6 +17,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 package net.fproject.ui.datetime
 {
+	import flash.display.DisplayObject;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
@@ -26,7 +27,7 @@ package net.fproject.ui.datetime
 	import mx.controls.listClasses.IListItemRenderer;
 	import mx.controls.listClasses.ListData;
 	import mx.events.FlexEvent;
-	import mx.events.FlexMouseEvent;
+	import mx.events.SandboxMouseEvent;
 	import mx.utils.ObjectUtil;
 	
 	import spark.components.Group;
@@ -130,9 +131,6 @@ package net.fproject.ui.datetime
 		public var popUpAnchor:PopUpAnchor;
 		
 		[SkinPart(required="false",type="static")] 
-		public var dropDown:PopUpAnchor;
-		
-		[SkinPart(required="false",type="static")] 
 		public var dropDownGroup:Group;
 		
 		[SkinPart(required="false",type="static")] 
@@ -217,44 +215,119 @@ package net.fproject.ui.datetime
 			super.partAdded(partName, instance);
 			if(instance === dropDownGroup)
 			{
-				dropDownGroup.addEventListener(FlexMouseEvent.MOUSE_DOWN_OUTSIDE, onDropDownMouseDownOutside);
+				dropDownGroup.addEventListener(Event.ADDED_TO_STAGE, onPopUpAdded);
 				dropDownGroup.addEventListener(Event.REMOVED_FROM_STAGE, onPopUpRemoved);
 			}
 			
 			if(instance === openButton)
 				openButton.addEventListener(MouseEvent.MOUSE_DOWN, onOpenButtonMouseDown);
 			
-			if(instance === dataGroup)
-				dataGroup.addEventListener(MouseEvent.CLICK, onDataGroupClick);
-			
-			if (instance === textInput) 
+			if(instance === textInput) 
 			{
 				textInput.addEventListener(Event.CHANGE, textInput_changeHandler);
 				textInput.editable = _editable; 
 			}
 		}
 		
-		private function onPopUpRemoved(e:Event):void
-		{
-			dropDownGroup.removeEventListener(Event.REMOVED, onPopUpRemoved);
-			dispatchEvent(new DateControlEvent(DateControlEvent.CLOSE));
-		}
-		
 		override protected function partRemoved(partName:String, instance:Object):void
 		{
 			super.partRemoved(partName, instance);
-			if(instance === dropDownGroup)
-				dropDownGroup.removeEventListener(FlexMouseEvent.MOUSE_DOWN_OUTSIDE, onDropDownMouseDownOutside);
+			
 			if(instance === openButton)
 				openButton.removeEventListener(MouseEvent.MOUSE_DOWN, onOpenButtonMouseDown);
-			
-			if(instance === dataGroup)
-				dataGroup.removeEventListener(MouseEvent.CLICK, onDataGroupClick);
 			
 			if (instance === textInput) 
 				textInput.removeEventListener(Event.CHANGE, textInput_changeHandler);
 		}
 		
+		/**
+		 *  @private
+		 *  Adds event triggers close the popup.
+		 * 
+		 *  <p>This is called when the drop down is popped up.</p>
+		 */ 
+		private function addCloseTriggers():void
+		{
+			if (systemManager)
+			{
+				systemManager.getSandboxRoot().addEventListener(MouseEvent.MOUSE_DOWN, systemManager_mouseDownHandler);
+				systemManager.getSandboxRoot().addEventListener(SandboxMouseEvent.MOUSE_DOWN_SOMEWHERE, systemManager_mouseDownHandler);
+				
+				if (openButton && openButton.systemManager)
+					openButton.systemManager.getSandboxRoot().addEventListener(MouseEvent.MOUSE_WHEEL, systemManager_mouseWheelHandler);
+			}
+		}
+		
+		/**
+		 *  @private
+		 *  Adds event triggers close the popup.
+		 * 
+		 *  <p>This is called when the drop down is closed.</p>
+		 */ 
+		private function removeCloseTriggers():void
+		{
+			if (systemManager)
+			{
+				systemManager.getSandboxRoot().removeEventListener(MouseEvent.MOUSE_DOWN, systemManager_mouseDownHandler);
+				systemManager.getSandboxRoot().removeEventListener(SandboxMouseEvent.MOUSE_DOWN_SOMEWHERE, systemManager_mouseDownHandler);
+				
+				if (openButton && openButton.systemManager)
+					openButton.systemManager.getSandboxRoot().removeEventListener(MouseEvent.MOUSE_WHEEL, systemManager_mouseWheelHandler);
+			}
+		} 
+		
+		/**
+		 *  @private
+		 *  Called when the systemManager receives a mouseDown event. This closes
+		 *  the dropDown if the target is outside of the dropDown. 
+		 */     
+		private function systemManager_mouseDownHandler(event:Event):void
+		{
+			var target:DisplayObject = event.target as DisplayObject;
+			
+			if (!popUpAnchor || (popUpAnchor && (event.target == popUpAnchor || (!popUpAnchor.contains(target)))))
+			{
+				// don't close if it's on the openButton
+				
+				if (openButton && openButton.contains(target))
+					return;
+				
+				if (textInput && textInput.contains(target))
+					return;
+				
+				if (popUpAnchor && popUpAnchor.owns(target))
+					return;
+				
+				closeDropDown();
+			} 
+		}
+		
+		/**
+		 *  @private
+		 *  Called when the mouseWheel is used
+		 */
+		private function systemManager_mouseWheelHandler(event:MouseEvent):void
+		{
+			// Close the dropDown unless we scrolled over the dropdown and the dropdown handled the event
+			if (popUpAnchor && !(popUpAnchor.contains(DisplayObject(event.target)) && event.isDefaultPrevented()))
+				closeDropDown();
+		}
+		
+		private var closeRequested:Boolean;
+		
+		/**
+		 *  Close the drop down and dispatch a <code>DropDownEvent.CLOSE</code> event.  
+		 *   
+		 *  @param commit If <code>true</code>, commit the selected
+		 *  data item. 
+		 *  
+		 */
+		protected function closeDropDown():void
+		{
+			removeCloseTriggers();
+			closeRequested = true;
+			invalidateSkinState();
+		}
 		
 		private var textInputChangeHandling:Boolean;
 		
@@ -282,12 +355,24 @@ package net.fproject.ui.datetime
 			return null;
 		}
 		
-		private var openRequested:Boolean;
 		
-		protected function onDropDownMouseDownOutside(e:FlexMouseEvent):void
+		private function onPopUpAdded(e:Event):void
 		{
-			this.invalidateSkinState();
+			dropDownGroup.removeEventListener(Event.ADDED_TO_STAGE, onPopUpAdded);
+			dispatchEvent(new DateControlEvent(DateControlEvent.OPEN));
+			openRequested=false;
+			addCloseTriggers();
 		}
+		
+		private function onPopUpRemoved(e:Event):void
+		{
+			dropDownGroup.removeEventListener(Event.REMOVED_FROM_STAGE, onPopUpRemoved);
+			dispatchEvent(new DateControlEvent(DateControlEvent.CLOSE));
+			closeRequested = false;
+		}
+		
+		
+		private var openRequested:Boolean;
 		
 		protected function onOpenButtonMouseDown(e:MouseEvent):void
 		{
@@ -295,13 +380,7 @@ package net.fproject.ui.datetime
 			{
 				openRequested = true;
 				this.invalidateSkinState();
-				dispatchEvent(new DateControlEvent(DateControlEvent.OPEN));
 			}
-		}
-		
-		protected function onDataGroupClick(e:MouseEvent):void
-		{
-			this.invalidateSkinState();
 		}
 		
 		/**

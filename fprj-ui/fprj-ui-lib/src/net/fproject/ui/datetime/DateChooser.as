@@ -77,6 +77,15 @@ package net.fproject.ui.datetime
 	 */	
 	[Style(name="otherMonthDayColor", inherit="yes", type="uint", format="Color")]
 	
+	[Exclude(name="allowMultipleSelection", kind="property")]
+	[Exclude(name="dragEnabled", kind="property")]
+	[Exclude(name="dragMoveEnabled", kind="property")]
+	[Exclude(name="dropEnabled", kind="property")]
+	[Exclude(name="selectedIndex", kind="property")]
+	[Exclude(name="selectedIndices", kind="property")]
+	[Exclude(name="selectedItem", kind="property")]
+	[Exclude(name="selectedItems", kind="property")]
+	
 	[SkinState("normalWithYearButton")]
 	[SkinState("disabledWithYearButton")]
 	[ResourceBundle("fprjui")]
@@ -144,10 +153,10 @@ package net.fproject.ui.datetime
 		[SkinPart(required="false",type="static")] 
 		public var nextMonthButton:ButtonBase;
 		
-		[SkinPart(required="false",type="static")] 
+		[SkinPart(required="false",type="dynamic")] 
 		public var prevYearButton:ButtonBase;
 		
-		[SkinPart(required="false",type="static")] 
+		[SkinPart(required="false",type="dynamic")] 
 		public var nextYearButton:ButtonBase;
 		
 		[SkinPart(required="false",type="static")] 

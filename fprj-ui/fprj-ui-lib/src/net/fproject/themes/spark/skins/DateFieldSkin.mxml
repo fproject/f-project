@@ -38,6 +38,29 @@
 			import mx.skins.spark.DateChooserPrevYearSkin;
 			protected override function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
 			{
+				//Workaround for the Flex framework's state machine error
+				if(this.currentState == "normalWithYearButtonAndOpen")
+				{
+					if(nextYearButton == null)
+					{
+						var f:Function = this["_DateFieldSkin_ButtonBase2_i"];
+						if(f != null)
+						{
+							nextYearButton = f();
+							dropDownGroup.addElement(nextYearButton);
+						}						
+					}
+					if(prevYearButton == null)
+					{
+						f = this["_DateFieldSkin_ButtonBase3_i"];
+						if(f != null)
+						{
+							prevYearButton = f();
+							dropDownGroup.addElement(prevYearButton);
+						}
+					}
+				}
+				
 				if(yearLabel != null && hostComponent.yearNavigationEnabled)
 					yearLabel.right = 45;
 				super.updateDisplayList(unscaledWidth, unscaledHeight);
@@ -60,7 +83,7 @@
 			}
 		]]>
 	</fx:Script>
-	
+
 	<s:states>
 		<s:State name="normal"/>
 		<s:State name="normalAndOpen" stateGroups="open"/>
@@ -77,8 +100,8 @@
 				   popUpPosition="below" popUpWidthMatchesAnchorWidth="false" >
 		
 		<s:Group id="dropDownGroup">
-			
-			<s:RectangularDropShadow id="dropShadow" blurX="0" blurY="10" alpha="0.45" distance="0" 
+
+			<s:RectangularDropShadow id="dropShadow" blurX="0" blurY="10" alpha="0.45" distance="0"
 									 angle="90" color="#000000" left="0" top="0" right="0" bottom="0"/>
 			
 			<s:Rect left="0" right="0" top="0" bottom="0">
