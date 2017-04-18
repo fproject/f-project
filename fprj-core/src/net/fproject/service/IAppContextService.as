@@ -19,7 +19,7 @@ package net.fproject.service
 {
 	import mx.rpc.CallResponder;
 	
-	import net.fproject.model.User;
+	import net.fproject.mvc.model.User;
 
 	/**
 	 * 

@@ -31,8 +31,8 @@ package net.fproject.core
 	import net.fproject.di.ImplementationConfig;
 	import net.fproject.di.InstanceFactory;
 	import net.fproject.event.AppContextEvent;
-	import net.fproject.model.ISerializableModel;
-	import net.fproject.model.User;
+	import net.fproject.mvc.model.ISerializableModel;
+	import net.fproject.mvc.model.User;
 	import net.fproject.rpc.RemoteObjectFactory;
 	import net.fproject.service.IAppContextService;
 	import net.fproject.utils.ApplicationGlobals;

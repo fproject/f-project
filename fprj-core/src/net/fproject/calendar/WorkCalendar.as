@@ -27,7 +27,7 @@ package net.fproject.calendar
 	import net.fproject.core.TimeRange;
 	import net.fproject.core.TimeUnit;
 	import net.fproject.di.InstanceFactory;
-	import net.fproject.model.OptimisticLockModel;
+	import net.fproject.mvc.model.OptimisticLockModel;
 	import net.fproject.utils.DataUtil;
 	import net.fproject.utils.DateTimeUtil;
 	import net.fproject.utils.GregorianCalendar;

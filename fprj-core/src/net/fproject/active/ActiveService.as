@@ -22,9 +22,9 @@ package net.fproject.active
 	import mx.rpc.CallResponder;
 	import mx.rpc.events.ResultEvent;
 	
-	import net.fproject.model.AbstractModel;
-	import net.fproject.model.IOptimisticLockModel;
-	import net.fproject.model.IUpdatableKeyModel;
+	import net.fproject.mvc.model.AbstractModel;
+	import net.fproject.mvc.model.IOptimisticLockModel;
+	import net.fproject.mvc.model.IUpdatableKeyModel;
 	import net.fproject.service.ServiceBase;
 	import net.fproject.utils.NumberUtil;
 	
@@ -69,7 +69,7 @@ package net.fproject.active
 		 * JSON data.</p>
 		 * <p>This model class also can be specified by class metadata, for example:</p>
 		 * <pre>
-		 * [RemoteObject(modelClass="net.fproject.model.User")]
+		 * [RemoteObject(modelClass="net.fproject.mvc.model.User")]
 		 * public class UserService extends ActiveService</pre>
 		 * <p>In the case of the extends class doesn't override the getter <code>modelClass</code>,
 		 * the service will find the model class in current application domain by the name of the
