@@ -21,7 +21,7 @@ package net.fproject.calendar.recurrence
 	import mx.resources.ResourceManager;
 	import mx.utils.StringUtil;
 	
-	import net.fproject.model.LocalUID;
+	import net.fproject.mvc.model.LocalUID;
 	import net.fproject.utils.DateTimeUtil;
 	import net.fproject.utils.LoggingUtil;
 	import net.fproject.utils.NumberUtil;

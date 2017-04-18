@@ -15,7 +15,7 @@
 // limitations under the License.
 //
 ///////////////////////////////////////////////////////////////////////////////
-package net.fproject.model
+package net.fproject.mvc.model
 {
 	import net.fproject.fproject_internal;
 	import net.fproject.core.AppContext;

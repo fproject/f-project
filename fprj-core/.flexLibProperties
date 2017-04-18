@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
   <includeClasses>
-    <classEntry path="net.fproject.model.OptimisticLockModel"/>
-    <classEntry path="net.fproject.model.OptimisticLockHierarchicalItem"/>
-    <classEntry path="net.fproject.model.IOptimisticLockModel"/>
+    <classEntry path="net.fproject.mvc.model.OptimisticLockModel"/>
+    <classEntry path="net.fproject.mvc.model.OptimisticLockHierarchicalItem"/>
     <classEntry path="net.fproject.core.ClassFactory"/>
     <classEntry path="net.fproject.utils.ExternalInterfaceUtil"/>
     <classEntry path="net.fproject.event.WebStorageEvent"/>

@@ -19,7 +19,7 @@ package net.fproject.ui.datetime.supportClasses
 {
 	import mx.utils.ObjectUtil;
 	
-	import net.fproject.model.LocalUID;
+	import net.fproject.mvc.model.LocalUID;
 	
 	/**
 	 *  Data object that will be element type for MonthDayList
