@@ -159,5 +159,5 @@
 						icon="@Embed('CalendarIcon.png')"/>  
 	
 	<s:TextInput id="textInput" width="70" height="22"
-			 left="7" right="26" top="2" bottom="2" verticalCenter="1" /> 
+			 left="0" right="26" top="2" bottom="2" verticalCenter="1" /> 
 </s:Skin>
