@@ -144,14 +144,17 @@
 				</s:layout>
 			</s:DataGroup>
 			
-			<s:DataGroup id="dataGroup" top="60" left="6" right="6" bottom="6"
-						 itemRenderer="net.fproject.themes.spark.skins.DateChooserMonthDayRenderer" >
+			<s:DataGroup id="dataGroup" top="60" left="6" right="6"
+						 itemRenderer="net.fproject.themes.spark.skins.DateChooserMonthDayRenderer">
 				<s:layout>
 					<s:TileLayout requestedColumnCount="7" requestedRowCount="6" 
-								  columnWidth="24" rowHeight="23"
+								  columnWidth="25" rowHeight="20"
 								  horizontalGap="0" verticalGap="0"/>
 				</s:layout>
 			</s:DataGroup>
+			
+			<!--Time Field-->
+			<ui:TimeField top="{dataGroup.y + dataGroup.height + 10}" left="57" bottom="6" id="timeField" snapInterval="30"/> 
 		</s:Group>
 	</s:PopUpAnchor>
 	

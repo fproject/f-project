@@ -36,6 +36,7 @@ package net.fproject.ui.datetime
 	import spark.events.IndexChangeEvent;
 	
 	import net.fproject.ui.datetime.supportClasses.DateFieldButton;
+	import net.fproject.ui.datetime.supportClasses.Time;
 	import net.fproject.ui.events.DateControlEvent;
 	import net.fproject.utils.DateTimeUtil;
 	import net.fproject.utils.StringUtil;
@@ -139,6 +140,9 @@ package net.fproject.ui.datetime
 		[SkinPart(required="false",type="static")] 
 		public var textInput:TextInput; // only used by DateField
 		
+		[SkinPart(required="false",type="static")] 
+		public var timeField:TimeField; // show time of date
+		
 		private var _formatString:String;
 		
 		public function get formatString():String
@@ -195,7 +199,9 @@ package net.fproject.ui.datetime
 		{
 			super.selectedDate = value;
 			if(!textInputChangeHandling)
-				updateTextInput();			
+				updateTextInput();
+			if (timeField)
+				timeField.selectClosestMinutes(selectedDate.hours * 60 + selectedDate.minutes);
 		}
 		
 		protected function updateTextInput():void
@@ -226,6 +232,15 @@ package net.fproject.ui.datetime
 			{
 				textInput.addEventListener(Event.CHANGE, textInput_changeHandler);
 				textInput.editable = _editable; 
+			}
+			
+			if(instance === timeField) 
+			{
+				timeField.addEventListener(Event.CHANGE, timeField_changeHandler);
+				if (selectedDate)
+				{
+					timeField.selectClosestMinutes(selectedDate.hours * 60 + selectedDate.minutes);
+				}
 			}
 		}
 		
@@ -330,7 +345,7 @@ package net.fproject.ui.datetime
 		}
 		
 		private var textInputChangeHandling:Boolean;
-		
+
 		protected function textInput_changeHandler(event:Event):void
 		{
 			var inputDate:Date = stringToDate(textInput.text);
@@ -341,6 +356,17 @@ package net.fproject.ui.datetime
 				textInputChangeHandling = false;
 			}
 		}
+
+        protected function timeField_changeHandler(event:Event):void
+        {
+            if (selectedDate)
+            {
+				var newSelectedDate:Date = new Date(selectedDate.time);
+				newSelectedDate.hours = Time(timeField.selectedItem).hour;
+				newSelectedDate.minutes = Time(timeField.selectedItem).minute;
+				selectedDate = newSelectedDate; //work-around: mục đích bắn sự kiện selectedChange với oldValue != newValue.
+            }
+        }
 		
 		protected function stringToDate(sdate:String):Date
 		{
