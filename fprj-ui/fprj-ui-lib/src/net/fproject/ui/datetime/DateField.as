@@ -191,6 +191,11 @@ package net.fproject.ui.datetime
 		override protected function onSelectionChange(e:IndexChangeEvent):void
 		{
 			super.onSelectionChange(e);
+			if (timeField) //chỉ thay đổi ngày, không thay đổi giờ
+			{
+				selectedDate.hours = Time(timeField.selectedItem).hour;
+				selectedDate.minutes = Time(timeField.selectedItem).minute;
+			}
 			updateTextInput();
 		}
 		
