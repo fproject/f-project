@@ -324,6 +324,9 @@ package net.fproject.ui.datetime
 			sort.fields = [sortField];
 			this.collection.sort = sort;
 			this.buildCollection();
+			if (_templeClosetMinutes) //truong hop nguoi dung set time cho truoc khi danh sach duoc build
+				selectClosestMinutes(_templeClosetMinutes);
+			_templeClosetMinutes = NaN;
 			super.dataProvider = this.collection;
 			addEventListener(DropDownEvent.OPEN,this.dropDownEventHandler);
 			addEventListener(DropDownEvent.CLOSE,this.dropDownEventHandler);
@@ -560,6 +563,7 @@ package net.fproject.ui.datetime
 			return -1;
 		}
 		
+		private var _templeClosetMinutes:Number = NaN;
 		/**
 		 * <p>
 		 * Set value for the selectedIndex field by the index of the element in the collection with the closest minutes
@@ -568,7 +572,10 @@ package net.fproject.ui.datetime
 		 */
 		public function selectClosestMinutes(minutes:Number) : void
 		{
-			this.selectedIndex = getClosestMinutesIndex(minutes);
+			if (this.collection)
+				this.selectedIndex = getClosestMinutesIndex(minutes);
+			else 
+				_templeClosetMinutes = minutes;
 		}
 		
 		/**
