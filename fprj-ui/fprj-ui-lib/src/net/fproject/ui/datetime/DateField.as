@@ -19,7 +19,10 @@ package net.fproject.ui.datetime
 {
 	import flash.display.DisplayObject;
 	import flash.events.Event;
+	import flash.events.FocusEvent;
+	import flash.events.KeyboardEvent;
 	import flash.events.MouseEvent;
+	import flash.ui.Keyboard;
 	
 	import mx.controls.dataGridClasses.DataGridListData;
 	import mx.controls.listClasses.BaseListData;
@@ -235,7 +238,11 @@ package net.fproject.ui.datetime
 			
 			if(instance === textInput) 
 			{
-				textInput.addEventListener(Event.CHANGE, textInput_changeHandler);
+				//Chỉ khi nào người dùng focusOut hoặc nhấn enter mới xử lý cập nhật lại time.
+				//changeEvent: ngay khi người dùng đang sửa text đã cập nhật lại time. --> tiềm ẩn lỗi.
+				//textInput.addEventListener(Event.CHANGE, textInput_changeHandler);
+				textInput.addEventListener(FocusEvent.FOCUS_OUT, textInput_focusOutHandler);
+				textInput.addEventListener(KeyboardEvent.KEY_DOWN, textInput_keyDownHandler);
 				textInput.editable = _editable; 
 			}
 			
@@ -257,7 +264,11 @@ package net.fproject.ui.datetime
 				openButton.removeEventListener(MouseEvent.MOUSE_DOWN, onOpenButtonMouseDown);
 			
 			if (instance === textInput) 
-				textInput.removeEventListener(Event.CHANGE, textInput_changeHandler);
+			{
+				//textInput.removeEventListener(Event.CHANGE, textInput_changeHandler);
+				textInput.addEventListener(FocusEvent.FOCUS_OUT, textInput_focusOutHandler);
+				textInput.addEventListener(KeyboardEvent.KEY_DOWN, textInput_keyDownHandler);
+			}
 		}
 		
 		/**
@@ -349,9 +360,24 @@ package net.fproject.ui.datetime
 			invalidateSkinState();
 		}
 		
-		private var textInputChangeHandling:Boolean;
-
+		protected function textInput_focusOutHandler(event:Event):void
+		{
+			updateSelectedTimeFromTextInput();
+		}
+		
+		protected function textInput_keyDownHandler(event:KeyboardEvent):void
+		{
+			if (event.keyCode == Keyboard.ENTER)
+				updateSelectedTimeFromTextInput();
+		}
+		
 		protected function textInput_changeHandler(event:Event):void
+		{
+			//updateSelectedTimeFromTextInput();
+		}
+
+		private var textInputChangeHandling:Boolean;
+		protected function updateSelectedTimeFromTextInput():void
 		{
 			var inputDate:Date = stringToDate(textInput.text);
 			if (inputDate != null && ObjectUtil.dateCompare(this.selectedDate, inputDate) != 0)
@@ -361,7 +387,7 @@ package net.fproject.ui.datetime
 				textInputChangeHandling = false;
 			}
 		}
-
+		
         protected function timeField_changeHandler(event:Event):void
         {
             if (selectedDate)
