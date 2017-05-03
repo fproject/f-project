@@ -282,8 +282,8 @@ package net.fproject.ui.datetime
 		{
 			if (systemManager)
 			{
-				systemManager.getSandboxRoot().addEventListener(MouseEvent.MOUSE_DOWN, systemManager_mouseDownHandler);
-				systemManager.getSandboxRoot().addEventListener(SandboxMouseEvent.MOUSE_DOWN_SOMEWHERE, systemManager_mouseDownHandler);
+				systemManager.getSandboxRoot().addEventListener(MouseEvent.MOUSE_UP, systemManager_mouseUpHandler);
+				systemManager.getSandboxRoot().addEventListener(SandboxMouseEvent.MOUSE_UP_SOMEWHERE, systemManager_mouseUpHandler);
 				
 				if (openButton && openButton.systemManager)
 					openButton.systemManager.getSandboxRoot().addEventListener(MouseEvent.MOUSE_WHEEL, systemManager_mouseWheelHandler);
@@ -300,8 +300,8 @@ package net.fproject.ui.datetime
 		{
 			if (systemManager)
 			{
-				systemManager.getSandboxRoot().removeEventListener(MouseEvent.MOUSE_DOWN, systemManager_mouseDownHandler);
-				systemManager.getSandboxRoot().removeEventListener(SandboxMouseEvent.MOUSE_DOWN_SOMEWHERE, systemManager_mouseDownHandler);
+				systemManager.getSandboxRoot().removeEventListener(MouseEvent.MOUSE_UP, systemManager_mouseUpHandler);
+				systemManager.getSandboxRoot().removeEventListener(SandboxMouseEvent.MOUSE_UP_SOMEWHERE, systemManager_mouseUpHandler);
 				
 				if (openButton && openButton.systemManager)
 					openButton.systemManager.getSandboxRoot().removeEventListener(MouseEvent.MOUSE_WHEEL, systemManager_mouseWheelHandler);
@@ -313,7 +313,7 @@ package net.fproject.ui.datetime
 		 *  Called when the systemManager receives a mouseDown event. This closes
 		 *  the dropDown if the target is outside of the dropDown. 
 		 */     
-		private function systemManager_mouseDownHandler(event:Event):void
+		private function systemManager_mouseUpHandler(event:Event):void
 		{
 			var target:DisplayObject = event.target as DisplayObject;
 			
@@ -329,7 +329,7 @@ package net.fproject.ui.datetime
 				
 				if (popUpAnchor && popUpAnchor.owns(target))
 					return;
-				
+
 				closeDropDown();
 			} 
 		}
@@ -345,7 +345,14 @@ package net.fproject.ui.datetime
 				closeDropDown();
 		}
 		
-		private var closeRequested:Boolean;
+		private var _closeRequested:Boolean;
+
+		public function set closeRequested(value:Boolean):void
+		{
+			openRequested = openRequested && !value;
+			_closeRequested = value;
+		}
+
 		
 		/**
 		 *  Close the drop down and dispatch a <code>DropDownEvent.CLOSE</code> event.  
@@ -383,6 +390,11 @@ package net.fproject.ui.datetime
 			var inputDate:Date = stringToDate(textInput.text);
 			if (inputDate != null && ObjectUtil.dateCompare(this.selectedDate, inputDate) != 0)
 			{
+				if (selectedDate) //do textInput hiện tại chưa có thông tin về giờ.
+				{
+					inputDate.hours = selectedDate.hours;
+					inputDate.minutes = selectedDate.minutes;
+				}
 				textInputChangeHandling = true;
 				this.selectedDate = inputDate;
 				textInputChangeHandling = false;
@@ -418,7 +430,7 @@ package net.fproject.ui.datetime
 		{
 			dropDownGroup.removeEventListener(Event.ADDED_TO_STAGE, onPopUpAdded);
 			dispatchEvent(new DateControlEvent(DateControlEvent.OPEN));
-			openRequested=false;
+			//openRequested=false;
 			addCloseTriggers();
 		}
 		
