@@ -63,7 +63,7 @@
 			description="%remote.object.destination"/>
 		<attribute name="uri" type="String" required="false" 
 			description="%remote.object.uri"/>
-		<attribute name="modelClass" type="Class" hint="classes" hintType="net.fproject.model.AbstractModel" required="false" 
+		<attribute name="modelClass" type="Class" hint="classes" hintType="net.fproject.mvc.model.AbstractModel" required="false"
 			description="%remote.object.model.class"/>
 	</metadata>
 	

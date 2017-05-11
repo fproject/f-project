@@ -38,6 +38,29 @@
 			import mx.skins.spark.DateChooserPrevYearSkin;
 			protected override function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
 			{
+				//Workaround for the Flex framework's state machine error
+				if(this.currentState == "normalWithYearButtonAndOpen")
+				{
+					if(nextYearButton == null)
+					{
+						var f:Function = this["_DateFieldSkin_ButtonBase2_i"];
+						if(f != null)
+						{
+							nextYearButton = f();
+							dropDownGroup.addElement(nextYearButton);
+						}						
+					}
+					if(prevYearButton == null)
+					{
+						f = this["_DateFieldSkin_ButtonBase3_i"];
+						if(f != null)
+						{
+							prevYearButton = f();
+							dropDownGroup.addElement(prevYearButton);
+						}
+					}
+				}
+				
 				if(yearLabel != null && hostComponent.yearNavigationEnabled)
 					yearLabel.right = 45;
 				super.updateDisplayList(unscaledWidth, unscaledHeight);
@@ -51,6 +74,9 @@
 				if(yearLabel != null)
 				{
 					var diff:Number = monthLabel.width + 33 - yearLabel.x;
+					if(nextYearButton != null && dropDownGroup.containsElement(nextYearButton))
+						diff -= 2;
+					
 					var l:Number = monthLabel.x;
 					if(diff >= -2)
 						monthLabel.move(30 - diff, 11);
@@ -60,14 +86,14 @@
 			}
 		]]>
 	</fx:Script>
-	
+
 	<s:states>
 		<s:State name="normal"/>
 		<s:State name="normalAndOpen" stateGroups="open"/>
 		<s:State name="disabled"/>
 		<s:State name="normalWithYearButton" stateGroups="withYearButton"/>
 		<s:State name="normalWithYearButtonAndOpen" stateGroups="withYearButton,open"/>
-		<s:State name="disabledWithYearButton" stateGroups="withYearButton"/>
+		<s:State name="disabledWithYearButton" basedOn="disabled" stateGroups="withYearButton"/>
 	</s:states>
 	
 	<s:PopUpAnchor id="popUpAnchor" displayPopUp.normal="false"
@@ -77,8 +103,8 @@
 				   popUpPosition="below" popUpWidthMatchesAnchorWidth="false" >
 		
 		<s:Group id="dropDownGroup">
-			
-			<s:RectangularDropShadow id="dropShadow" blurX="0" blurY="10" alpha="0.45" distance="0" 
+
+			<s:RectangularDropShadow id="dropShadow" blurX="0" blurY="10" alpha="0.45" distance="0"
 									 angle="90" color="#000000" left="0" top="0" right="0" bottom="0"/>
 			
 			<s:Rect left="0" right="0" top="0" bottom="0">
@@ -118,14 +144,17 @@
 				</s:layout>
 			</s:DataGroup>
 			
-			<s:DataGroup id="dataGroup" top="60" left="6" right="6" bottom="6"
-						 itemRenderer="net.fproject.themes.spark.skins.DateChooserMonthDayRenderer" >
+			<s:DataGroup id="dataGroup" top="60" left="6" right="6"
+						 itemRenderer="net.fproject.themes.spark.skins.DateChooserMonthDayRenderer">
 				<s:layout>
 					<s:TileLayout requestedColumnCount="7" requestedRowCount="6" 
-								  columnWidth="24" rowHeight="23"
+								  columnWidth="25" rowHeight="20"
 								  horizontalGap="0" verticalGap="0"/>
 				</s:layout>
 			</s:DataGroup>
+			
+			<!--Time Field-->
+			<ui:TimeField top="{dataGroup.y + dataGroup.height + 10}" left="57" bottom="6" id="timeField" snapInterval="30"/> 
 		</s:Group>
 	</s:PopUpAnchor>
 	
@@ -133,5 +162,5 @@
 						icon="@Embed('CalendarIcon.png')"/>  
 	
 	<s:TextInput id="textInput" width="70" height="22"
-			 left="7" right="26" top="2" bottom="2" verticalCenter="1" /> 
+			 left="0" right="26" top="2" bottom="2" verticalCenter="1" /> 
 </s:Skin>

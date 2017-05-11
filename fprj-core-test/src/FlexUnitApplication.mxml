@@ -9,7 +9,7 @@
 			   minWidth="955" minHeight="600" creationComplete="onCreationComplete()">
 	<fx:Script>
 		<![CDATA[
-			import net.fproject.active.ActiveDataProvider_fetchNextPage;
+			import net.fproject.utils.AdvancedDateFormatter.AdvancedDateFormatter_parse;
 			
 			import org.flexunit.runner.Request;
 			
@@ -17,7 +17,8 @@
 			{
 				var testsToRun:Array = new Array();
 				
-				testsToRun.push(Request.methods(net.fproject.active.ActiveDataProvider_fetchNextPage,["testCase001"]));
+				//testsToRun.push(Request.methods(AdvancedDateFormatter_parse,["testCase003"]));
+				testsToRun.push(AdvancedDateFormatter_parse);
 				return testsToRun;
 			}
 			

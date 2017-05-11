@@ -17,8 +17,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 package net.fproject.ui.datetime
 {
+	import flash.display.DisplayObject;
 	import flash.events.Event;
+	import flash.events.FocusEvent;
+	import flash.events.KeyboardEvent;
 	import flash.events.MouseEvent;
+	import flash.ui.Keyboard;
 	
 	import mx.controls.dataGridClasses.DataGridListData;
 	import mx.controls.listClasses.BaseListData;
@@ -26,7 +30,7 @@ package net.fproject.ui.datetime
 	import mx.controls.listClasses.IListItemRenderer;
 	import mx.controls.listClasses.ListData;
 	import mx.events.FlexEvent;
-	import mx.events.FlexMouseEvent;
+	import mx.events.SandboxMouseEvent;
 	import mx.utils.ObjectUtil;
 	
 	import spark.components.Group;
@@ -35,6 +39,7 @@ package net.fproject.ui.datetime
 	import spark.events.IndexChangeEvent;
 	
 	import net.fproject.ui.datetime.supportClasses.DateFieldButton;
+	import net.fproject.ui.datetime.supportClasses.Time;
 	import net.fproject.ui.events.DateControlEvent;
 	import net.fproject.utils.DateTimeUtil;
 	import net.fproject.utils.StringUtil;
@@ -122,13 +127,12 @@ package net.fproject.ui.datetime
 		{
 			_formatString = 'MM/dd/yyyy';
 			_editable = true;
+			tabEnabled = true;
+			tabFocusEnabled = true;
 		}
 		
 		[SkinPart(required="false",type="static")] 
 		public var popUpAnchor:PopUpAnchor;
-		
-		[SkinPart(required="false",type="static")] 
-		public var dropDown:PopUpAnchor;
 		
 		[SkinPart(required="false",type="static")] 
 		public var dropDownGroup:Group;
@@ -138,6 +142,9 @@ package net.fproject.ui.datetime
 		
 		[SkinPart(required="false",type="static")] 
 		public var textInput:TextInput; // only used by DateField
+		
+		[SkinPart(required="false",type="static")] 
+		public var timeField:TimeField; // show time of date
 		
 		private var _formatString:String;
 		
@@ -187,6 +194,11 @@ package net.fproject.ui.datetime
 		override protected function onSelectionChange(e:IndexChangeEvent):void
 		{
 			super.onSelectionChange(e);
+			if (timeField && timeField.selectedItem is Date) //chỉ thay đổi ngày, không thay đổi giờ
+			{
+				selectedDate.hours = Time(timeField.selectedItem).hour;
+				selectedDate.minutes = Time(timeField.selectedItem).minute;
+			}
 			updateTextInput();
 		}
 		
@@ -194,7 +206,10 @@ package net.fproject.ui.datetime
 		override public function set selectedDate(value:Date):void
 		{
 			super.selectedDate = value;
-			updateTextInput();			
+			if(!textInputChangeHandling)
+				updateTextInput();
+			if (timeField)
+				timeField.selectClosestMinutes(selectedDate.hours * 60 + selectedDate.minutes);
 		}
 		
 		protected function updateTextInput():void
@@ -213,118 +228,229 @@ package net.fproject.ui.datetime
 		{
 			super.partAdded(partName, instance);
 			if(instance === dropDownGroup)
-				dropDownGroup.addEventListener(FlexMouseEvent.MOUSE_DOWN_OUTSIDE, onDropDownMouseDownOutside);
+			{
+				dropDownGroup.addEventListener(Event.ADDED_TO_STAGE, onPopUpAdded);
+				dropDownGroup.addEventListener(Event.REMOVED_FROM_STAGE, onPopUpRemoved);
+			}
+			
 			if(instance === openButton)
 				openButton.addEventListener(MouseEvent.MOUSE_DOWN, onOpenButtonMouseDown);
 			
-			if(instance === dataGroup)
-				dataGroup.addEventListener(MouseEvent.CLICK, onDataGroupClick);
-			
-			if (instance === textInput) 
+			if(instance === textInput) 
 			{
-				textInput.addEventListener(Event.CHANGE, textInput_changeHandler);
+				//Chỉ khi nào người dùng focusOut hoặc nhấn enter mới xử lý cập nhật lại time.
+				//changeEvent: ngay khi người dùng đang sửa text đã cập nhật lại time. --> tiềm ẩn lỗi.
+				//textInput.addEventListener(Event.CHANGE, textInput_changeHandler);
+				updateTextInput();
+				textInput.addEventListener(FocusEvent.FOCUS_OUT, textInput_focusOutHandler);
+				textInput.addEventListener(KeyboardEvent.KEY_DOWN, textInput_keyDownHandler);
 				textInput.editable = _editable; 
+			}
+			
+			if(instance === timeField) 
+			{
+				timeField.addEventListener(Event.CHANGE, timeField_changeHandler);
+				if (selectedDate)
+				{
+					timeField.selectClosestMinutes(selectedDate.hours * 60 + selectedDate.minutes);
+				}
 			}
 		}
 		
 		override protected function partRemoved(partName:String, instance:Object):void
 		{
 			super.partRemoved(partName, instance);
-			if(instance === dropDownGroup)
-				dropDownGroup.removeEventListener(FlexMouseEvent.MOUSE_DOWN_OUTSIDE, onDropDownMouseDownOutside);
+			
 			if(instance === openButton)
 				openButton.removeEventListener(MouseEvent.MOUSE_DOWN, onOpenButtonMouseDown);
 			
-			if(instance === dataGroup)
-				dataGroup.removeEventListener(MouseEvent.CLICK, onDataGroupClick);
-			
 			if (instance === textInput) 
-				textInput.removeEventListener(Event.CHANGE, textInput_changeHandler);
+			{
+				//textInput.removeEventListener(Event.CHANGE, textInput_changeHandler);
+				textInput.addEventListener(FocusEvent.FOCUS_OUT, textInput_focusOutHandler);
+				textInput.addEventListener(KeyboardEvent.KEY_DOWN, textInput_keyDownHandler);
+			}
+		}
+		
+		/**
+		 *  @private
+		 *  Adds event triggers close the popup.
+		 * 
+		 *  <p>This is called when the drop down is popped up.</p>
+		 */ 
+		private function addCloseTriggers():void
+		{
+			if (systemManager)
+			{
+				systemManager.getSandboxRoot().addEventListener(MouseEvent.MOUSE_UP, systemManager_mouseUpHandler);
+				systemManager.getSandboxRoot().addEventListener(SandboxMouseEvent.MOUSE_UP_SOMEWHERE, systemManager_mouseUpHandler);
+				
+				if (openButton && openButton.systemManager)
+					openButton.systemManager.getSandboxRoot().addEventListener(MouseEvent.MOUSE_WHEEL, systemManager_mouseWheelHandler);
+			}
+		}
+		
+		/**
+		 *  @private
+		 *  Adds event triggers close the popup.
+		 * 
+		 *  <p>This is called when the drop down is closed.</p>
+		 */ 
+		private function removeCloseTriggers():void
+		{
+			if (systemManager)
+			{
+				systemManager.getSandboxRoot().removeEventListener(MouseEvent.MOUSE_UP, systemManager_mouseUpHandler);
+				systemManager.getSandboxRoot().removeEventListener(SandboxMouseEvent.MOUSE_UP_SOMEWHERE, systemManager_mouseUpHandler);
+				
+				if (openButton && openButton.systemManager)
+					openButton.systemManager.getSandboxRoot().removeEventListener(MouseEvent.MOUSE_WHEEL, systemManager_mouseWheelHandler);
+			}
+		} 
+		
+		/**
+		 *  @private
+		 *  Called when the systemManager receives a mouseDown event. This closes
+		 *  the dropDown if the target is outside of the dropDown. 
+		 */     
+		private function systemManager_mouseUpHandler(event:Event):void
+		{
+			var target:DisplayObject = event.target as DisplayObject;
+			
+			if (!popUpAnchor || (popUpAnchor && (event.target == popUpAnchor || (!popUpAnchor.contains(target)))))
+			{
+				// don't close if it's on the openButton
+				
+				if (openButton && openButton.contains(target))
+					return;
+				
+				if (textInput && textInput.contains(target))
+					return;
+				
+				if (popUpAnchor && popUpAnchor.owns(target))
+					return;
+
+				closeDropDown();
+			} 
+		}
+		
+		/**
+		 *  @private
+		 *  Called when the mouseWheel is used
+		 */
+		private function systemManager_mouseWheelHandler(event:MouseEvent):void
+		{
+			// Close the dropDown unless we scrolled over the dropdown and the dropdown handled the event
+			if (popUpAnchor && !(popUpAnchor.contains(DisplayObject(event.target)) && event.isDefaultPrevented()))
+				closeDropDown();
+		}
+		
+		private var _closeRequested:Boolean;
+
+		public function set closeRequested(value:Boolean):void
+		{
+			openRequested = openRequested && !value;
+			_closeRequested = value;
+		}
+
+		
+		/**
+		 *  Close the drop down and dispatch a <code>DropDownEvent.CLOSE</code> event.  
+		 *   
+		 *  @param commit If <code>true</code>, commit the selected
+		 *  data item. 
+		 *  
+		 */
+		protected function closeDropDown():void
+		{
+			removeCloseTriggers();
+			closeRequested = true;
+			invalidateSkinState();
+		}
+		
+		protected function textInput_focusOutHandler(event:Event):void
+		{
+			updateSelectedTimeFromTextInput();
+		}
+		
+		protected function textInput_keyDownHandler(event:KeyboardEvent):void
+		{
+			if (event.keyCode == Keyboard.ENTER)
+				updateSelectedTimeFromTextInput();
 		}
 		
 		protected function textInput_changeHandler(event:Event):void
 		{
+			//updateSelectedTimeFromTextInput();
+		}
+
+		private var textInputChangeHandling:Boolean;
+		protected function updateSelectedTimeFromTextInput():void
+		{
 			var inputDate:Date = stringToDate(textInput.text);
 			if (inputDate != null && ObjectUtil.dateCompare(this.selectedDate, inputDate) != 0)
+			{
+				if (selectedDate) //do textInput hiện tại chưa có thông tin về giờ.
+				{
+					inputDate.hours = selectedDate.hours;
+					inputDate.minutes = selectedDate.minutes;
+				}
+				textInputChangeHandling = true;
 				this.selectedDate = inputDate;
+				textInputChangeHandling = false;
+			}
 		}
+		
+        protected function timeField_changeHandler(event:Event):void
+        {
+            if (selectedDate)
+            {
+				var newSelectedDate:Date = new Date(selectedDate.time);
+				newSelectedDate.hours = Time(timeField.selectedItem).hour;
+				newSelectedDate.minutes = Time(timeField.selectedItem).minute;
+				selectedDate = newSelectedDate; //work-around: mục đích bắn sự kiện selectedChange với oldValue != newValue.
+            }
+        }
 		
 		protected function stringToDate(sdate:String):Date
 		{
 			if(StringUtil.isBlank(sdate))
 				return null;
-			var d:Date = DateTimeUtil.parseDate(sdate, _formatString);
-			
-			if(d == null)
-			{
-				var f:String = _formatString.toLowerCase();
-				var fset:Array = this.getFormatSet();
-				
-				for each (var a:Array in fset)
-				{
-					for each (var fmt:String in a)
-					{
-						if(fmt.toLowerCase() == f)
-						{
-							for each (var s:String in a)
-							{
-								if(s != _formatString)
-								{
-									d = DateTimeUtil.parseDate(sdate, s);
-									if(d != null)
-										return d;
-								}
-							}
-							return null;
-						}
-					}
-				}
+			try {
+				return DateTimeUtil.parseDate(sdate, _formatString);
 			}
-			return d;
+			catch (e:Error)
+			{
+			}
+			return null;
 		}
 		
-		private var _formatSet:Array;
 		
-		protected function getFormatSet():Array
+		private function onPopUpAdded(e:Event):void
 		{
-			if(_formatSet == null)
-			{
-				_formatSet = [["dd/MM/yy", "dd/MM/yyyy", "d/M/y", "d/M/yy", "d/M/yyyy"],
-					["MM/dd/yy", "MM/dd/yyyy", "M/d/y", "M/d/yy", "M/d/yyyy"],
-					["yy/MM/dd", "yyyy/MM/dd", "y/M/d", "yy/M/d", "yyyy/M/d"]];
-			}
-			return _formatSet;
+			dropDownGroup.removeEventListener(Event.ADDED_TO_STAGE, onPopUpAdded);
+			dispatchEvent(new DateControlEvent(DateControlEvent.OPEN));
+			//openRequested=false;
+			addCloseTriggers();
 		}
+		
+		private function onPopUpRemoved(e:Event):void
+		{
+			dropDownGroup.removeEventListener(Event.REMOVED_FROM_STAGE, onPopUpRemoved);
+			dispatchEvent(new DateControlEvent(DateControlEvent.CLOSE));
+			closeRequested = false;
+		}
+		
 		
 		private var openRequested:Boolean;
-		
-		protected function onDropDownMouseDownOutside(e:FlexMouseEvent):void
-		{
-			if(popUpAnchor != null && popUpAnchor.isPopUp)
-				dispatchEvent(new DateControlEvent(DateControlEvent.CLOSE));
-			
-			this.invalidateSkinState();
-		}
 		
 		protected function onOpenButtonMouseDown(e:MouseEvent):void
 		{
 			if(_editable)
 			{
-				if(popUpAnchor != null && !popUpAnchor.isPopUp)
-					dispatchEvent(new DateControlEvent(DateControlEvent.OPEN));
-				else
-					openRequested = true;
-				
+				openRequested = true;
 				this.invalidateSkinState();
 			}
-		}
-		
-		protected function onDataGroupClick(e:MouseEvent):void
-		{
-			if(popUpAnchor != null && popUpAnchor.isPopUp)
-				dispatchEvent(new DateControlEvent(DateControlEvent.CLOSE));
-			
-			this.invalidateSkinState();
 		}
 		
 		/**
@@ -433,6 +559,18 @@ package net.fproject.ui.datetime
 		public function set listData(value:BaseListData):void
 		{
 			_listData = value;
+		}
+		
+		/**
+		 * @inheritDoc 
+		 * 
+		 */
+		override public function setFocus():void
+		{
+			if (textInput && _editable)
+				textInput.setFocus();
+			else
+				super.setFocus();
 		}
 	}
 }

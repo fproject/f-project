@@ -165,6 +165,7 @@ package net.fproject.active.supportClasses
 				parent.criteria.pagination["page"] = 1;
 			
 			_fetchPending = true;
+			maxReachedIndex = -1;
 			
 			parent.setSource(null);
 			parent.setPaginationResult(null);

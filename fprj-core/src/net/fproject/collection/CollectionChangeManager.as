@@ -32,7 +32,7 @@ package net.fproject.collection
 	
 	import net.fproject.active.ActiveService;
 	import net.fproject.event.CollectionChangeEvent;
-	import net.fproject.model.IUpdatableKeyModel;
+	import net.fproject.mvc.model.IUpdatableKeyModel;
 	
 	/**
 	 * 

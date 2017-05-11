@@ -19,7 +19,7 @@ package net.fproject.ui.datetime.supportClasses
 {
 	import mx.utils.ObjectUtil;
 	
-	import net.fproject.model.LocalUID;
+	import net.fproject.mvc.model.LocalUID;
 	
 	/**
 	 *  Data object that will be element type for MonthDayList
@@ -53,13 +53,26 @@ package net.fproject.ui.datetime.supportClasses
 		
 		override public function get uid():String
 		{
-			return date == null ? null : date.fullYear.toString() + date.month.toString() + date.date.toString();
+			if(date == null)
+				return null;
+			var n:Number = date.fullYear * 10000 + date.month * 100 + date.date;
+			return n.toString();
 		}
 		
 		[Bindable("propertyChange")]
 		public function get dateLabel():String
 		{
 			return date != null ? date.date.toString() : null;
+		}
+		
+		/**
+		 * Constructor 
+		 * 
+		 */
+		public function MonthDay(date:Date, isInCurrentMonth:Boolean)
+		{
+			_date = date;
+			this.isInCurrentMonth = isInCurrentMonth;
 		}
 	}
 	

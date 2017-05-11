@@ -21,6 +21,7 @@ package net.fproject.ui.datetime
 	import flash.events.Event;
 	import flash.events.FocusEvent;
 	import flash.events.KeyboardEvent;
+	import flash.events.MouseEvent;
 	import flash.geom.Rectangle;
 	import flash.ui.Keyboard;
 	
@@ -324,6 +325,9 @@ package net.fproject.ui.datetime
 			sort.fields = [sortField];
 			this.collection.sort = sort;
 			this.buildCollection();
+			if (_templeClosetMinutes) //truong hop nguoi dung set time cho truoc khi danh sach duoc build
+				selectClosestMinutes(_templeClosetMinutes);
+			_templeClosetMinutes = NaN;
 			super.dataProvider = this.collection;
 			addEventListener(DropDownEvent.OPEN,this.dropDownEventHandler);
 			addEventListener(DropDownEvent.CLOSE,this.dropDownEventHandler);
@@ -560,6 +564,7 @@ package net.fproject.ui.datetime
 			return -1;
 		}
 		
+		private var _templeClosetMinutes:Number = NaN;
 		/**
 		 * <p>
 		 * Set value for the selectedIndex field by the index of the element in the collection with the closest minutes
@@ -568,7 +573,10 @@ package net.fproject.ui.datetime
 		 */
 		public function selectClosestMinutes(minutes:Number) : void
 		{
-			this.selectedIndex = getClosestMinutesIndex(minutes);
+			if (this.collection)
+				this.selectedIndex = getClosestMinutesIndex(minutes);
+			else 
+				_templeClosetMinutes = minutes;
 		}
 		
 		/**
@@ -942,14 +950,40 @@ package net.fproject.ui.datetime
 							time.isHinted = false;
 						}
 					}
+					if (systemManager)
+						systemManager.getSandboxRoot().removeEventListener(MouseEvent.MOUSE_UP, onMouseUpHandler);
 					break;
 				case DropDownEvent.OPEN:
 					if(selectedIndex == NO_SELECTION)
 						this.setDefaultDropDownIndex();
 					else
 						this.setCenteredVerticalScrollPosition(selectedIndex);
+					if (systemManager)
+					systemManager.getSandboxRoot().addEventListener(MouseEvent.MOUSE_UP, onMouseUpHandler);
 					break;
 			}
+		}
+		
+		//Work-around: Do advancedDataGrid bắt sự kiện startEdit khi mouseUp
+		//ComboBox closeDialog trong sự kiện mouseDown
+		//--> khi người dùng click --> lúc mouseDown đã đóng Dialog, lúc mouseUp sẽ startEdit ở advancedDataGrid(không mong muốn)
+		//Cần: Đợi mouseUp mới đóng dialog
+		//Giải pháp: override lại hàm closeDialog --> không trực tiếp closeDialog mà chỉ bật cờ lên
+		//bắt thêm sự kiện mouseUp: check nếu cờ bật thì closeDialog
+		
+		private var _commit:Boolean = true;
+		private var closeRequested:Boolean = false;
+		override public function closeDropDown(commit:Boolean):void
+		{
+			_commit = commit;
+			closeRequested = true;
+		}
+		
+		private function onMouseUpHandler(event:MouseEvent):void
+		{
+			if (closeRequested)
+				super.closeDropDown(_commit);
+			closeRequested = false;
 		}
 	}
 }

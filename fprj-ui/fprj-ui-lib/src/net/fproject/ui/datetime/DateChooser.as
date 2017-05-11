@@ -23,6 +23,7 @@ package net.fproject.ui.datetime
 	import mx.collections.ArrayList;
 	import mx.collections.IList;
 	import mx.events.CollectionEvent;
+	import mx.utils.ObjectUtil;
 	
 	import spark.components.DataGroup;
 	import spark.components.Label;
@@ -30,6 +31,7 @@ package net.fproject.ui.datetime
 	import spark.components.supportClasses.ButtonBase;
 	import spark.events.IndexChangeEvent;
 	
+	import net.fproject.fproject_internal;
 	import net.fproject.ui.datetime.supportClasses.MonthDay;
 	import net.fproject.ui.datetime.supportClasses.MonthDayList;
 	import net.fproject.ui.events.DateControlEvent;
@@ -74,6 +76,15 @@ package net.fproject.ui.datetime
 	 * 
 	 */	
 	[Style(name="otherMonthDayColor", inherit="yes", type="uint", format="Color")]
+	
+	[Exclude(name="allowMultipleSelection", kind="property")]
+	[Exclude(name="dragEnabled", kind="property")]
+	[Exclude(name="dragMoveEnabled", kind="property")]
+	[Exclude(name="dropEnabled", kind="property")]
+	[Exclude(name="selectedIndex", kind="property")]
+	[Exclude(name="selectedIndices", kind="property")]
+	[Exclude(name="selectedItem", kind="property")]
+	[Exclude(name="selectedItems", kind="property")]
 	
 	[SkinState("normalWithYearButton")]
 	[SkinState("disabledWithYearButton")]
@@ -128,6 +139,8 @@ package net.fproject.ui.datetime
 	 */
 	public class DateChooser extends List
 	{
+		use namespace fproject_internal;
+		
 		[SkinPart(required="false",type="static")] 
 		public var yearLabel:Label;
 		
@@ -140,10 +153,10 @@ package net.fproject.ui.datetime
 		[SkinPart(required="false",type="static")] 
 		public var nextMonthButton:ButtonBase;
 		
-		[SkinPart(required="false",type="static")] 
+		[SkinPart(required="false",type="dynamic")] 
 		public var prevYearButton:ButtonBase;
 		
-		[SkinPart(required="false",type="static")] 
+		[SkinPart(required="false",type="dynamic")] 
 		public var nextYearButton:ButtonBase;
 		
 		[SkinPart(required="false",type="static")] 
@@ -311,8 +324,9 @@ package net.fproject.ui.datetime
 			}
 		}
 
-		private var _selectedDate:Date;
+		fproject_internal var _selectedDate:Date;
 		
+		[Inspectable(category="General")]
 		[Bindable(event="selectedDateChange")]
 		public function get selectedDate():Date
 		{
@@ -322,7 +336,7 @@ package net.fproject.ui.datetime
 		// selectedDate changes externally
 		public function set selectedDate(value:Date):void
 		{
-			if(_selectedDate != value)
+			if(ObjectUtil.dateCompare(_selectedDate, value) != 0)
 			{
 				_selectedDate = value;
 				
@@ -334,15 +348,7 @@ package net.fproject.ui.datetime
 				else
 				{
 					dayList.resetFromMonthAndYear(value.month, value.fullYear);
-					// select the date
-					var n:int = dataProvider.length;
-					for (var i:int = 0; i<n; i++) 
-					{
-						if (MonthDay(dataProvider.getItemAt(i)).date.date == value.date) 
-						{
-							selectedItem = dataProvider.getItemAt(i);
-						}
-					}
+					super.selectedItem = dayList.getItemByDate(value);
 				}
 				
 				dispatchEvent(new DateControlEvent(DateControlEvent.SELECTED_DATE_CHANGE));
