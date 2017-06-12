@@ -574,7 +574,7 @@ package net.fproject.utils
 			var s:String = formatDurationNumber(days);	
 			
 			if(showUnit)
-				s += " " + TimeUnit.DAY.getLabel(days > 1);
+				s += " " + TimeUnit.DAY.getLabel(days != 1);
 			
 			return s;
 		}
