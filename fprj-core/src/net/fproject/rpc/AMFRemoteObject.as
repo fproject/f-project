@@ -22,6 +22,12 @@ package net.fproject.rpc
 	import net.fproject.core.AppContext;
 	import net.fproject.event.AppContextEvent;
 	
+	/**
+	 * AMFRemoteObject extends from RemoteObject with OAuth 2.0 and some additional supports
+	 * 
+	 * @author Bui Sy Nguyen
+	 * 
+	 */
 	public dynamic class AMFRemoteObject extends RemoteObject implements IRemoteObject
 	{
 		/**

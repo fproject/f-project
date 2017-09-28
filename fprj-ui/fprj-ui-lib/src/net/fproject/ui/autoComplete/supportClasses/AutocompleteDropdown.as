@@ -160,7 +160,7 @@ package net.fproject.ui.autoComplete.supportClasses
 		{
 			if (value != _dataProvider)
 			{
-				if (_dataProvider != null)
+				if (_dataProvider != null && filteredCollection)
 				{
 					filteredCollection.removeEventListener(CollectionEvent.COLLECTION_CHANGE,
 						filteredCollection_collectionChange);
@@ -172,7 +172,8 @@ package net.fproject.ui.autoComplete.supportClasses
 					filteredCollection = new ListCollectionView(ListCollectionView(value).list);
 				else
 					filteredCollection = value == null ? null : new ListCollectionView(value);
-				filteredCollection.removeEventListener(CollectionEvent.COLLECTION_CHANGE,filteredCollection_collectionChange);
+				if (filteredCollection)
+					filteredCollection.removeEventListener(CollectionEvent.COLLECTION_CHANGE,filteredCollection_collectionChange);
 				updateDropdown();
 			}
 		}

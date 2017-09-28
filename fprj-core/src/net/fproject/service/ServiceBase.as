@@ -34,19 +34,19 @@ package net.fproject.service
 	import net.fproject.utils.LoggingUtil;
 
 	/**
-	 * <p>Base class cho tất các các service class.
-	 * Cung cấp các common property và method cho các service</p>
-	 * <p>Việc truy cập remote service được thực hiện thông qua <code>RemoteObject</code></p>
+	 * <p>This is the base class for all service classes.
+	 * Provides common properties and methods for all drived service classes</p>
+	 * <p>The access to remote service is performed via <code>remoteObject</code> object that is a
+	 * public field of this class.</p>
 	 * 
-	 * <p>Thông tin <code>source</code> và <code>destination</code> của RemoteObject được xác định như sau:
+	 * <p>The fields <code>source</code> and <code>destination</code> of RemoteObject is defined as below:
 	 * <ul>
-	 * <li><code>source</code> của service được định nghĩa ngay trong AS3 code bằng tham số thứ nhất của metadata
-	 * <code>[RemoteObject("SourceName")]</code></li> của service class.
-	 * <li>Nếu trong metadata có định nghĩa tham số thứ hai, ví dụ
-	 * <code>[RemoteObject("SourceName","destination")]</code> thì tham số này sẽ được lấy làm destination
-	 * của remote object</li>
-	 * <li>Nếu trong metadata không định nghĩa destination, destination này sẽ được look-up từ 
-	 * XML của AppContextData</li>
+	 * <li><code>source</code> of service can be directly defined using AS3 code, by the first metadata parameter
+	 * <code>[RemoteObject("SourceName")]</code></li> of service class.
+	 * <li>If the second metadata parameter exists, for example <br/>
+	 * <code>[RemoteObject("SourceName","destination")]</code><br/> then this parameter's value will be the destination
+	 * of remote object</li>
+	 * <li>If there's no destination defined in the class metadata, it will be looked-up from XML of <code>AppContextData</code></li>
 	 * </ul>
 	 * </p>
 	 * 
