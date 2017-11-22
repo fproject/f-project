@@ -158,9 +158,14 @@
 				
 				<!-- layer 3: text -->
 				<!--- @copy spark.components.Panel#titleDisplay -->
-				<s:Label id="titleDisplay" maxDisplayedLines="1"  color="#FFFFFF"
-						 left="15" right="5" top="2" bottom="0" minHeight="30" height="30"
-						 verticalAlign="middle"/>
+				<s:HGroup width="100%"  paddingLeft="15" paddingRight="10" verticalAlign="middle" minHeight="30" height="30">
+					<s:Label id="titleDisplay" maxDisplayedLines="1"  color="#FFFFFF"
+							 
+							 verticalAlign="middle"
+							 width="100%"/>
+					<s:Button id="closeBtn" skinClass="net.fproject.themes.spark.skins.CloseButtonSkin"/>
+				</s:HGroup>
+				
 			</s:Group>
 			
 			<!--
