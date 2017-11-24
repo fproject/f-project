@@ -1708,7 +1708,7 @@ package net.fproject.calendar
 				ws = workInfo.workShifts[i];
 				if (time >= ws.startTime)
 				{
-					if (time <= ws.endTime)
+					if (time < ws.endTime)
 						return true;
 				}
 				else
