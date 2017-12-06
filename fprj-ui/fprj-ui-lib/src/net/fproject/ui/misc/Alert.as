@@ -100,6 +100,9 @@ package net.fproject.ui.misc {
 		[SkinPart(required="false")]
 		public var iconGroup:Group;
 		
+		[SkinPart(required="false")]
+		public var closeBtn:Button;
+		
 		//----------------------------------
 		//  buttonHeight
 		//----------------------------------
@@ -505,6 +508,8 @@ package net.fproject.ui.misc {
 			if (partName == "iconGroup") {
 				createIcon(Group(instance));
 			}
+			if (partName == "closeBtn")
+				Button(instance).addEventListener(MouseEvent.CLICK,onCancelBtnClick);
 		}
 		
 		override protected function partRemoved(partName:String, instance:Object):void {
@@ -512,6 +517,8 @@ package net.fproject.ui.misc {
 			if (partName == "buttonGroup") {
 				destroyButtons(Group(instance));
 			}
+			if (partName == "closeBtn")
+				Button(instance).removeEventListener(MouseEvent.CLICK,onCancelBtnClick);
 		}
 		
 		override public function set initialized(value:Boolean):void {
@@ -677,6 +684,10 @@ package net.fproject.ui.misc {
 			if (e.charCode == Keyboard.ESCAPE) {
 				removeAlert(getFlagForEscapeKey());
 			}
+		}
+		
+		private function onCancelBtnClick(e:MouseEvent):void {
+			removeAlert(CANCEL);
 		}
 	}
 }

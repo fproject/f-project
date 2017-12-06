@@ -1685,6 +1685,39 @@ package net.fproject.calendar
 		}
 		
 		/**
+		 * Indicates if the specified time is a working time.
+		 * @param date The date to test.
+		 * @return <code>true</code> if the specified time is a working; Otherwise, <code>false</code>.
+		 *
+		 */
+		public function isWorkingTime(date:Date):Boolean
+		{
+			var workInfo:WorkInfo = this.getPeriodAt(date);
+			var startDate:Date = DateTimeUtil.fproject_internal::getStartOfDay(date);
+			var time:Number = date.time - startDate.time;
+			if (!workInfo.isWorking)
+				return false;
+			var ws:WorkShift = null;
+			var len:uint = workInfo.workShifts.length;
+			if (len == 0)
+			{
+				return false;
+			}
+			for (var i:int = 0; i < len; i++)
+			{
+				ws = workInfo.workShifts[i];
+				if (time >= ws.startTime)
+				{
+					if (time < ws.endTime)
+						return true;
+				}
+				else
+					break;
+			}
+			return false;
+		}
+		
+		/**
 		 * Checks if the calendar is modified from its base calendar.<br/>
 		 * <br/>
 		 * A calendar is called modified calendar if there exist a difference in
